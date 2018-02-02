@@ -53,12 +53,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("At the RBC contact window, press ‘RBC Data’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays RBC Data window");
+            MakeTestStepHeader(1, UniqueIdentifier++, "At the RBC contact window, press ‘RBC Data’ button",
+                "DMI displays RBC Data window");
             /*
             Test Step 1
             Action: At the RBC contact window, press ‘RBC Data’ button
@@ -82,13 +78,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Data window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 10_4_1_5_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716");
-            TraceReport("Expected Result");
-            TraceInfo("The hourglass symbol ST05 is displayed at window title area");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_4_1_5_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716",
+                "The hourglass symbol ST05 is displayed at window title area");
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_5_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -101,13 +93,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 10_4_1_5_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 10_4_1_5_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215",
                 "Verify the followin information,(1)     The RBC Data window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 3
@@ -119,13 +106,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The RBC Data window is closed and DMI displays the System info window");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,At System info window, press ‘close’ button.Press and hold ‘Radio network ID’ button at least 2 seconds.Release the pressed area.Repeat action step 2-3");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,At System info window, press ‘close’ button.Press and hold ‘Radio network ID’ button at least 2 seconds.Release the pressed area.Repeat action step 2-3",
                 "Verify the followin information,(1)    The Radio Network ID window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 4
@@ -161,11 +143,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Radio Network ID window is closed and DMI displays the System info window");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 5
             Action: End of test

@@ -54,13 +54,8 @@ namespace Testcase.DMITestCases
 
             // Set up from config to set range of speed dial ??
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Driver drives the train forward passing BG1.Then, stop the train and acknowledge OS mode by pressing area C1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Driver drives the train forward passing BG1.Then, stop the train and acknowledge OS mode by pressing area C1",
                 "DMI displays in OS mode, Level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 4166 (150km/h)MMI_V_TARGET = 4027 (145km/h)(2)   All basic speed hooks are not displays in sub-area B2");
             /*
             Test Step 1
@@ -87,13 +82,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in OS mode, Level 1." + Environment.NewLine +
                                 "2. No basic speed hooks are displayed in sub-area B2.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 12_6_2_a.xml to send EVC-1 with,MMI_V_TARGET = 65535MMI_V_PERMITTED = 0");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,(1)   There is only white basic speed hook displays at 0 km/h");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 12_6_2_a.xml to send EVC-1 with,MMI_V_TARGET = 65535MMI_V_PERMITTED = 0",
+                "Verify the following information,(1)   There is only white basic speed hook displays at 0 km/h");
             /*
             Test Step 2
             Action: Use the test script file 12_6_2_a.xml to send EVC-1 with,MMI_V_TARGET = 65535MMI_V_PERMITTED = 0
@@ -108,13 +99,8 @@ namespace Testcase.DMITestCases
                 Environment.NewLine + Environment.NewLine +
                 "1. Only a white basic speed hook is displayed at 0 km/h.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 12_6_2_b.xml to send EVC-1 with,MMI_V_TARGET = 0MMI_V_PERMITTED = 65535");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 12_6_2_b.xml to send EVC-1 with,MMI_V_TARGET = 0MMI_V_PERMITTED = 65535",
                 "Verify the following information,(1)   There is only medium grey basic speed hook displays at 0 km/h");
             /*
             Test Step 3
@@ -127,11 +113,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Only a medium-grey basic speed hook is displays at 0 km/h.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 4
             Action: End of test

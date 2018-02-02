@@ -35,12 +35,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Power on DMI");
-            TraceReport("Expected Result");
-            TraceInfo("‘Driver’s desk not active’ is displayed on DMI in Deutsch language");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on DMI",
+                "‘Driver’s desk not active’ is displayed on DMI in Deutsch language");
             /*
             Test Step 1
             Action: Power on DMI
@@ -50,12 +46,7 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
             WaitForVerification("‘Driver’s desk not active’ is displayed on DMI in Deutsch language");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays the Driver ID window.");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Activate cabin A", "DMI displays the Driver ID window.");
             /*
             Test Step 2
             Action: Activate cabin A
@@ -72,12 +63,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("The window headline of the Driver ID window is displayed in Deutsch language");
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the Driver ID");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Enter the Driver ID", "Verify the following information,");
             /*
             Test Step 3
             Action: Enter the Driver ID
@@ -93,12 +79,7 @@ namespace Testcase.DMITestCases
                 "DMI displays the acknowledgement message of perform brake test at area E in Deutsch language");
 
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Acknowledge the message");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Acknowledge the message", "Verify the following information,");
             /*
             Test Step 4
             Action: Acknowledge the message
@@ -112,12 +93,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("DMI displays the text message ‘Brake Test in progress’ in Deutsch language");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select and confirm level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SB mode, level 1.");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Select and confirm level 1",
+                "DMI displays in SB mode, level 1.");
             /*
             Test Step 5
             Action: Select and confirm level 1
@@ -138,12 +115,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("The buttons at sub-area F1-F4 is displayed in Deutsch language");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select all buttons in the Main menu window");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Select all buttons in the Main menu window",
+                "Verify the following information,");
             /*
             Test Step 6
             Action: Select all buttons in the Main menu window
@@ -153,12 +126,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close ‘Main menu’ window and then press sub-area F4");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The Special window is displayed in Deutsch language");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Close ‘Main menu’ window and then press sub-area F4",
+                "Verify the following information,The Special window is displayed in Deutsch language");
             /*
             Test Step 7
             Action: Close ‘Main menu’ window and then press sub-area F4
@@ -167,12 +136,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select all buttons in the Special window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Select all buttons in the Special window",
                 "Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Deutsch language");
             /*
             Test Step 8
@@ -182,12 +146,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the Special window, then select  Settings menu button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Close the Special window, then select  Settings menu button",
                 "Verify the following information,The Settings window is displayed with the window headline in Deutsch language");
             /*
             Test Step 9
@@ -197,12 +156,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select all buttons in the Settings window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Select all buttons in the Settings window",
                 "Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Deutsch language.The Language Selection window is displayed eight language buttons");
             /*
             Test Step 10
@@ -212,12 +166,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the Settings window");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays the default window");
+            MakeTestStepHeader(11, UniqueIdentifier++, "Close the Settings window", "DMI displays the default window");
             /*
             Test Step 11
             Action: Close the Settings window
@@ -229,11 +178,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.DMI_displays_the_default_window(this);
 
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Power off the DMI");
-            
+            MakeTestStepHeader(12, UniqueIdentifier++, "Power off the DMI", "");
+
             /*
             Test Step 12
             Action: Power off the DMI
@@ -241,13 +187,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Set DEFAULT_LANGUAGE configuration as 2 (Swedish language). Repeat the actions following step 1-12");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Set DEFAULT_LANGUAGE configuration as 2 (Swedish language). Repeat the actions following step 1-12",
                 "Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Swedish language");
             /*
             Test Step 13
@@ -257,13 +198,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Set DEFAULT_LANGUAGE configuration as 3 (Dutch language). Repeat the actions following step 1-12");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Set DEFAULT_LANGUAGE configuration as 3 (Dutch language). Repeat the actions following step 1-12",
                 "Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Dutch language");
             /*
             Test Step 14
@@ -273,13 +209,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Set DEFAULT_LANGUAGE configuration as 4 (Spanish language). Repeat the actions following step 1-12");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Set DEFAULT_LANGUAGE configuration as 4 (Spanish language). Repeat the actions following step 1-12",
                 "Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Spanish language");
             /*
             Test Step 15
@@ -289,13 +220,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Set DEFAULT_LANGUAGE configuration as 5 (Polish language). Repeat the actions following step 1-12");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Set DEFAULT_LANGUAGE configuration as 5 (Polish language). Repeat the actions following step 1-12",
                 "Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Polish language");
             /*
             Test Step 16
@@ -305,13 +231,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Set DEFAULT_LANGUAGE configuration as 6 (Hungarian language). Repeat the actions following step 1-12");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Set DEFAULT_LANGUAGE configuration as 6 (Hungarian language). Repeat the actions following step 1-12",
                 "Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Hungarian language");
             /*
             Test Step 17
@@ -321,13 +242,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Set DEFAULT_LANGUAGE configuration as 7 (Czech language). Repeat the actions following step 1-12");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Set DEFAULT_LANGUAGE configuration as 7 (Czech language). Repeat the actions following step 1-12",
                 "Verify the following information,All texts in the window headline, buttons, input fields, echo texts, text labels of input fields are displayed in Czech language");
             /*
             Test Step 18
@@ -337,11 +253,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(19, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 19
             Action: End of test

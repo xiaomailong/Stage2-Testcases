@@ -52,12 +52,7 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Data view’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Data view’ button",
                 "DMI displays Data view window.Verify the following information,Use the log file to confirm that DMI send packet EVC-101 with variable MMI_M_REQUEST = 21 (Start Train Data View).The Data View window is displayed.Data View WindowThe Data view window is covered in main area D, F and G.LayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Z, YLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.LabelThe data view text is composed of a Label Part and Data Part. The labels of data view items are right aligned.The data of data view items are left aligned.Data view text colour is grey.The different topics (i.e., Train running number and Train data entry) are separated by one empty line.The Data Part are display only a valid value.The window title is displayed with text ‘Data view(1/2)’.Data View ItemsUse the log file to confirm that DMI received packet EVC-13 and displays the following information respectively:Driver IDTrain running numberTrain typeTrain categoryLength (m)Brake percentageMaximum speed (km/h)Axle load categoryAirtightLoading gaugeNote: The display information of Data View items (except Driver ID) are display when the specified bit value of variable MMI_M_DATA_ENABLE is set refer to received packet EVC-13 as follows,MMI_M_DATA_ENABLE (#0) = display of the label of ‘Train Set ID’MMI_M_DATA_ENABLE (#1) = display of label of ‘Train Category’MMI_M_DATA_ENABLE (#2) = display of label of ‘Train Length’MMI_M_DATA_ENABLE (#3) = display of label of ‘Brake Percentage’MMI_M_DATA_ENABLE (#4) = display of label of ‘Max. Train Speed’MMI_M_DATA_ENABLE (#5) = display of label of ‘Axle Load CategoryMMI_M_DATA_ENABLE (#6) = display of label of ‘Airtightness’MMI_M_DATA_ENABLE (#7) = display of label of ‘Loading Guage’The following objects are display in Data View window Enabled Close button (NA11)   Disabled Previous button (NA19)   Enabled Next button (NA17)General property of windowThe Data view window is presented with objects, text messages and which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not covering the current window.Sub-level window covers partially depending on the size of the Sub-Level window. There is no other window is displayed and activated at the same time");
             /*
             Test Step 1
@@ -124,12 +119,7 @@ namespace Testcase.DMITestCases
                                 "15. The Default window does not cover the current window." + Environment.NewLine +
                                 "16. A sub-level window can partially cover another window, depending on its size. Another window cannot be displayed and activated at the same time.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘Next’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press and hold ‘Next’ button",
                 "Verify the following information,(1)   The state of button is changed to ‘Pressed’, the border of button is removed.(2)   The sound ‘Click’ is played once");
             /*
             Test Step 2
@@ -143,12 +133,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Next’ button pressed with no border." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out the ‘Next’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Slide out the ‘Next’ button",
                 "Verify the following information,(1)   The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 3
@@ -162,12 +147,8 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Next’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into the ‘Next’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,(1)   The button is back to state ‘Pressed’ without a sound");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Slide back into the ‘Next’ button",
+                "Verify the following information,(1)   The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 4
             Action: Slide back into the ‘Next’ button
@@ -180,12 +161,7 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Next’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Next’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Release ‘Next’ button",
                 "Verify that the Data view is displayed the next page of the train data.The window title of the next page is displayed with text ‘Data view (2/2)’. Data View ItemsThe data view items are displayed correctly refer to following items,RBC IDRBC phone numberVBC set code (if any)The data part of RBC phone number is displayed as 2 lines.Navigation buttonsThe state of ‘Previous’ and ‘Next’ button are displayed as follows,  ‘Next’ button is disabled, displays as symbol NA18.2  ‘Previous’ button is enabled, displays as symbol NA18");
             /*
             Test Step 5
@@ -206,12 +182,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"4. The ‘Previous’ button is enabled (DMI displays symbol NA18).");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform action step 2-5 for ‘Previous’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Perform action step 2-5 for ‘Previous’ button",
                 "See the expected result of step 2-5 and the following points,(1)   The state of ‘Previous’ and ‘Next’ button are displayed as follows,‘Next’ button is enabled, displays as symbol NA17  ‘Previous’ button is enabled, displays as symbol NA19");
             /*
             Test Step 6
@@ -255,13 +226,8 @@ namespace Testcase.DMITestCases
                                 @"3. The ‘Next’ button is enabled (DMI displays symbol NA17)." + Environment.NewLine +
                                 @"4. The ‘Previous’ button is disabled (DMI displays symbol NA19).");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_7_2_a.xml to send EVC-13 with,MMI_X_DRIVER_ID =0MMI_NID_OPERATION = 4294967295MMI_M_DATA_ENABLE = 256MMI_N_CAPTION_TRAINSET = 13MMI_X_CAPTION_TRAINSET =0 (Note: All index of this variable are same)MMI_NID_KEY_TRAIN_CAT = 21MMI_L_TRAIN = 4096MMI_M_BRAKE_PERC = 9MMI_V_MAXTRAIN = 601MMI_NID_KEY_AXLE_LOAD = 20MMI_M_AIRTIGHT = 3MMI_NID_KEY_LOAD_GAUGE = 33MMI_N_CAPTION_NETWORK = 17MMI_X_CAPTION_NETWORK = 0(Note: All index of this variable are same)MMI_NID_RBC =8388608MMI_NID_RADIO = 0xFFFFFFFFFFFFFFFFMMI_N_VBC = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Use the test script file 22_7_2_a.xml to send EVC-13 with,MMI_X_DRIVER_ID =0MMI_NID_OPERATION = 4294967295MMI_M_DATA_ENABLE = 256MMI_N_CAPTION_TRAINSET = 13MMI_X_CAPTION_TRAINSET =0 (Note: All index of this variable are same)MMI_NID_KEY_TRAIN_CAT = 21MMI_L_TRAIN = 4096MMI_M_BRAKE_PERC = 9MMI_V_MAXTRAIN = 601MMI_NID_KEY_AXLE_LOAD = 20MMI_M_AIRTIGHT = 3MMI_NID_KEY_LOAD_GAUGE = 33MMI_N_CAPTION_NETWORK = 17MMI_X_CAPTION_NETWORK = 0(Note: All index of this variable are same)MMI_NID_RBC =8388608MMI_NID_RADIO = 0xFFFFFFFFFFFFFFFFMMI_N_VBC = 0",
                 "Verify the following information,DMI displays the following information respectively with blank value:Page 1:Driver IDTrain running numberPage 2:Radio Network IDRBC IDRBC Phone Number");
             /*
             Test Step 7
@@ -277,13 +243,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. On page 2, DMI displays information on Radio Network ID, RBC ID and Train running number with blank values.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_7_2_b.xml to send EVC-13 with,MMI_X_DRIVER_ID = 0x31323334363738393132333436373839MMI_M_DATA_ENABLE = 255MMI_N_CAPTION_NETWORK = 16MMI_X_CAPTION_TRAINSET[0] = 65MMI_X_CAPTION_TRAINSET[1] = 66MMI_X_CAPTION_TRAINSET[2] = 67MMI_X_CAPTION_TRAINSET[3] = 68MMI_X_CAPTION_TRAINSET[4] = 69MMI_X_CAPTION_TRAINSET[5] = 70MMI_X_CAPTION_TRAINSET[6] = 71MMI_X_CAPTION_TRAINSET[7] = 72MMI_X_CAPTION_TRAINSET[8] = 73MMI_X_CAPTION_TRAINSET[9] = 74MMI_X_CAPTION_TRAINSET[10] = 75MMI_X_CAPTION_TRAINSET[11] = 76MMI_X_CAPTION_TRAINSET[12] =77MMI_X_CAPTION_TRAINSET[13] = 78MMI_X_CAPTION_TRAINSET[14] = 79MMI_X_CAPTION_TRAINSET[15] = 80MMI_NID_RADIO = 0x9999999999999999");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Use the test script file 22_7_2_b.xml to send EVC-13 with,MMI_X_DRIVER_ID = 0x31323334363738393132333436373839MMI_M_DATA_ENABLE = 255MMI_N_CAPTION_NETWORK = 16MMI_X_CAPTION_TRAINSET[0] = 65MMI_X_CAPTION_TRAINSET[1] = 66MMI_X_CAPTION_TRAINSET[2] = 67MMI_X_CAPTION_TRAINSET[3] = 68MMI_X_CAPTION_TRAINSET[4] = 69MMI_X_CAPTION_TRAINSET[5] = 70MMI_X_CAPTION_TRAINSET[6] = 71MMI_X_CAPTION_TRAINSET[7] = 72MMI_X_CAPTION_TRAINSET[8] = 73MMI_X_CAPTION_TRAINSET[9] = 74MMI_X_CAPTION_TRAINSET[10] = 75MMI_X_CAPTION_TRAINSET[11] = 76MMI_X_CAPTION_TRAINSET[12] =77MMI_X_CAPTION_TRAINSET[13] = 78MMI_X_CAPTION_TRAINSET[14] = 79MMI_X_CAPTION_TRAINSET[15] = 80MMI_NID_RADIO = 0x9999999999999999",
                 "Verify the following information,(1)   The data part of following information are automatically insert a line brake at the end of first line, represented as 2 lines.Page 1:Driver IDPage 2:Radio Network IDRBC Phone Number");
             /*
             Test Step 8
@@ -301,11 +262,8 @@ namespace Testcase.DMITestCases
                 "1. On page 1, DMI displays information on Driver ID." + Environment.NewLine +
                 "2. On page 2, DMI displays information on Radio Network ID and RBC Phone Number.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 9
             Action: End of test

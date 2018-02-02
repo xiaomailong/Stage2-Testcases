@@ -52,13 +52,9 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following action:         Power on the systemActivate the cabin Perform start of mission to Unfitted mode , Level 0");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Unfitted mode, Level 0");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following action:         Power on the systemActivate the cabin Perform start of mission to Unfitted mode , Level 0",
+                "DMI displays Unfitted mode, Level 0");
             /*
             Test Step 1
             Action: Perform the following action:         Power on the systemActivate the cabin Perform start of mission to Unfitted mode , Level 0
@@ -76,12 +72,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in UN mode, Level 0.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward with 30 km/h then pass BG0 with level transition announcement");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays LE08 symbol in sub-area C1");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Drive the train forward with 30 km/h then pass BG0 with level transition announcement",
+                "DMI displays LE08 symbol in sub-area C1");
             /*
             Test Step 2
             Action: Drive the train forward with 30 km/h then pass BG0 with level transition announcement
@@ -98,12 +91,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol LE08 in sub-area C1");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Pass the level transition acknowledgement area");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays LE09 symbol in sub-area C1");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Pass the level transition acknowledgement area",
+                "DMI displays LE09 symbol in sub-area C1");
             /*
             Test Step 3
             Action: Pass the level transition acknowledgement area
@@ -116,12 +105,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol LE09 in sub-area C1");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press acknowledgement LE09 symbol in sub-area C1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI replaces LE09 symbol with LE08 in sub-area C1");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press acknowledgement LE09 symbol in sub-area C1",
+                "DMI replaces LE09 symbol with LE08 in sub-area C1");
             /*
             Test Step 4
             Action: Press acknowledgement LE09 symbol in sub-area C1
@@ -136,12 +121,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol LE08 in sub-area C1");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Pass BG1 at level transition border");
-            TraceReport("Expected Result");
-            TraceInfo("Mode changes to ATB STM mode, Level NTC");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Pass BG1 at level transition border",
+                "Mode changes to ATB STM mode, Level NTC");
             /*
             Test Step 5
             Action: Pass BG1 at level transition border
@@ -154,11 +135,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SN mode, Level NTC.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 6
             Action: End of test

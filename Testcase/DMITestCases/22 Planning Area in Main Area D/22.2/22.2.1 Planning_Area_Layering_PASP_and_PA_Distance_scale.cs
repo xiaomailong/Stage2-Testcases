@@ -21,7 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_2_1_Planning_Area : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -29,12 +28,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Driver ID window");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -47,12 +41,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform SoM in SR mode, Level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SR mode, level 1");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM in SR mode, Level 1",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Perform SoM in SR mode, Level 1
@@ -67,12 +57,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SR_Mode_displayed(this);
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Driver drives the train passing BG1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Driver drives the train passing BG1",
                 "DMI changes from SR mode to FS mode.Verify the order (background to fore ground) for each objects in PA as follows,PASPPA Distance ScaleIndication MarkerPA Track Condition, Gradient profile and Speed DiscontinuitiesHide/Show and Zoom PA buttons.Note: The object which have a lower order (i.e. PASP) cannot overlap the higher order object");
             /*
             Test Step 3
@@ -91,11 +76,8 @@ namespace Testcase.DMITestCases
                 "4. PA Track Condition, Gradient Profile and Speed Discontinuities." + Environment.NewLine +
                 "5. Hide/Show and Zoom PA buttons." + Environment.NewLine +
                 "6. An object in the background of another object does not overlap it." + Environment.NewLine);
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 4
             Action: End of test

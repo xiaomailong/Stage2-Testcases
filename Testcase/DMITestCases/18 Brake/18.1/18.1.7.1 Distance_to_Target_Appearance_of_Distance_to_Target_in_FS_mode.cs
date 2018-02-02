@@ -42,12 +42,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1",
                 "DMI displays in FS mode, level 1Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-1: MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)MMI_O_BRAKETARGET = -1 (Default) EVC-7: OBU_TR_M_MODE = 0 (FS mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2");
             /*
             Test Step 1
@@ -71,12 +66,7 @@ namespace Testcase.DMITestCases
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to drive the train forward.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Continue to drive the train forward.Then, stop the train",
                 "Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 2 (Status = NoS, Supervision = PIM)MMI_O_BRAKETARGET > -1(2)    The distance to target bar is display in sub-area A3.(3)   The sound 'Sinfo' is played once.(4)    The distance to target digital is display in sub-area A2");
             /*
             Test Step 2
@@ -94,12 +84,7 @@ namespace Testcase.DMITestCases
                                 @"2. The sound 'Sinfo' is played once." + Environment.NewLine +
                                 "3. The digital distance to target is displayed in sub-area A2.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to drive the train forward.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Continue to drive the train forward.Then, stop the train",
                 "Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM)MMI_O_BRAKETARGET > -1(2)    The distance to target bar is display in sub-area A3.(3)    The distance to target digital is display in sub-area A2");
             /*
             Test Step 3
@@ -117,12 +102,8 @@ namespace Testcase.DMITestCases
                                 "1. The distance to target bar is displayed in sub-area A3." + Environment.NewLine +
                                 "2. The digital distance to target is displayed in sub-area A2.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 13_1_7_a.xml to send EVC-1 with,MMI_M_WARNING = 7");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 13_1_7_a.xml to send EVC-1 with,MMI_M_WARNING = 7",
                 "Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.Note: After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 4
@@ -144,12 +125,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The digital distance to target is re-displayed in sub-area A2 after 2s.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 13_1_7_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Use the test script file 13_1_7_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17",
                 "Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.Note: After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 5
@@ -173,12 +150,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The digital distance to target is re-displayed in sub-area A2 after 2s.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to drive the train forward.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Continue to drive the train forward.Then, stop the train",
                 "Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 3 (Status = Inds, Supervision = RSM)(2)    The distance to target bar is display in sub-area A3.(3)    The distance to target digital is display in sub-area A2");
             /*
             Test Step 6
@@ -194,11 +166,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance to target bar is displayed in sub-area A3." + Environment.NewLine +
                                 "2. The digital distance to target is displayed in sub-area A2.");
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 7
             Action: End of test

@@ -17,7 +17,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class Introduction : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -25,12 +24,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A. Driver performs SoM to SR mode, level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SR mode, Level 1");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Driver performs SoM to SR mode, level 1",
+                "DMI displays in SR mode, Level 1");
             /*
             Test Step 1
             Action: Activate cabin A. Driver performs SoM to SR mode, level 1
@@ -42,12 +37,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SR_Mode_displayed(this);
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Driver drives the train forward passing BG1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI changes from SR mode to FS mode, Level 1.The planning area is displayed");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Driver drives the train forward passing BG1",
+                "DMI changes from SR mode to FS mode, Level 1.The planning area is displayed");
             /*
             Test Step 2
             Action: Driver drives the train forward passing BG1
@@ -55,12 +46,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Increase the train speed until reaching the warning margin");
-            TraceReport("Expected Result");
-            TraceInfo("The over speed warning sound is played");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Increase the train speed until reaching the warning margin",
+                "The over speed warning sound is played");
             /*
             Test Step 3
             Action: Increase the train speed until reaching the warning margin
@@ -68,12 +55,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Simulate the communication loss between DMI and ETCS Onboard");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Simulate the communication loss between DMI and ETCS Onboard",
                 "DMI enters ‘ATP-down’ state.Verify that all information on DMI’s screen is disappeared. The continuous 1000Hz sound is play.DMI displays message ‘ATP Down Alarm’ with yellow flashing frame.Use log file to confirm that DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 5 only once");
             /*
             Test Step 4
@@ -85,12 +67,7 @@ namespace Testcase.DMITestCases
             DmiActions.Simulate_the_communication_loss_between_DMI_and_ETCS_Onboard(this);
 
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Driver acknowledges ‘ATP Down Alarm’ message");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Driver acknowledges ‘ATP Down Alarm’ message",
                 "Verify the following information,The ATP down alarm is removed.The yellow flashing frame is removed but the message ‘ATP Down Alarm’ is still displayed.Use log file to confirm that DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 6 only once");
             /*
             Test Step 5
@@ -100,12 +77,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Re-establish the communication between DMI and ETCS Onboard");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Re-establish the communication between DMI and ETCS Onboard",
                 "Verify the following information,The message ‘ATP Down Alarm’ is removed.Use log file to confirm that DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 3 every 250ms.The normal operation is resumed");
             /*
             Test Step 6
@@ -117,12 +89,7 @@ namespace Testcase.DMITestCases
             DmiActions.Re_establish_the_communication_between_DMI_and_ETCS_Onboard(this);
 
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Stop the train");
-            TraceReport("Expected Result");
-            TraceInfo("The train is at standstill");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Stop the train", "The train is at standstill");
             /*
             Test Step 7
             Action: Stop the train
@@ -134,12 +101,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_train_is_at_standstill(this);
 
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Simulate the communication loss between DMI and ETCS Onboard");
-            TraceReport("Expected Result");
-            TraceInfo("DMI enters ‘ATP-down’ state with continuous 1000Hz sound");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Simulate the communication loss between DMI and ETCS Onboard",
+                "DMI enters ‘ATP-down’ state with continuous 1000Hz sound");
             /*
             Test Step 8
             Action: Simulate the communication loss between DMI and ETCS Onboard
@@ -149,12 +112,7 @@ namespace Testcase.DMITestCases
             DmiActions.Simulate_the_communication_loss_between_DMI_and_ETCS_Onboard(this);
 
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Re-establish the communication between DMI and ETCS Onboard");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Re-establish the communication between DMI and ETCS Onboard",
                 "Verify that if ATP Down is not acknowledged yet, the sound alarm and confirmation button are cleared when the communication is recovered");
             /*
             Test Step 9
@@ -166,11 +124,8 @@ namespace Testcase.DMITestCases
             DmiActions.Re_establish_the_communication_between_DMI_and_ETCS_Onboard(this);
 
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 10
             Action: End of test

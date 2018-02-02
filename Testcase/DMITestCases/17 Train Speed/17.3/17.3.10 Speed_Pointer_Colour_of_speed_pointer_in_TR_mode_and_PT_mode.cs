@@ -40,12 +40,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint            
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in FS mode, level 1");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1",
+                "DMI displays in FS mode, level 1");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
@@ -56,12 +52,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, level 1.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Force the train into TR mode by moving the train forward to position of EOA");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Force the train into TR mode by moving the train forward to position of EOA",
                 "DMI displays in TR mode, level 1.The train is forced to stop, train speed is decreasing to 0 km/h.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 7 (Trip)(2)   The speed pointer is always display in red colour");
             /*
             Test Step 2
@@ -79,13 +71,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in TR mode, level 1." + Environment.NewLine +
                                 "2. Is the speed pointer red?");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press an acknowledgement in sub-area C1.Chage the train direction to ‘Reverse’Drive the train with speed = 40 km/h");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Perform the following procedure,Press an acknowledgement in sub-area C1.Chage the train direction to ‘Reverse’Drive the train with speed = 40 km/h",
                 "DMI displays in PT mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 8 (Post trip)(2)   The speed pointer is always display in grey colour.Note: The train will be force to stop due to runaway movement is detect when the train moving back over 200m");
             /*
             Test Step 3
@@ -109,11 +96,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in PT mode, level 1." + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 4
             Action: End of test

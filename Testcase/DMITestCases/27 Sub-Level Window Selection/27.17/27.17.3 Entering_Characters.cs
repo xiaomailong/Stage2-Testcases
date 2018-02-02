@@ -27,12 +27,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A",
                 "DMI displays Driver ID window.Verify the following information,The flashing horizontal-line cursor is always flashed in the next position of the echoed entered-data key in the ‘Selected IF/value of pressed key(s)’ data input field when selected the next character it will be inserted cursor position");
             /*
             Test Step 1
@@ -51,13 +46,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Driver ID window." + Environment.NewLine +
                                 "2. A flashing underscore is displayed as a cursor in the data input field (at the left side).");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press the data key which have only single character once.Note: This step is for testing ‘1’ and ‘0’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Press the data key which have only single character once.Note: This step is for testing ‘1’ and ‘0’ button",
                 "Verify the following information,The pressed key is added in an input field immediately.The cursor is jumped to next position after entered the character immediately");
             /*
             Test Step 2
@@ -77,13 +67,8 @@ namespace Testcase.DMITestCases
                                 "1. The data input field immediately displays ‘10’." + Environment.NewLine +
                                 "2. A flashing underscore is displayed after the ‘0’ in the data input field.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press and hold the data key which have only single character.Note: This step is for testing ‘1’ and ‘0’ button.Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press and hold the data key which have only single character.Note: This step is for testing ‘1’ and ‘0’ button.Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable",
                 "Verify the following information,Sound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.Pressed key is added in an input field after pressing the button");
             /*
             Test Step 3
@@ -104,12 +89,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press the <Del> key until the input field is blank");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Released the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, The character is stop adding");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Released the pressed button",
+                "Verify the following information, The character is stop adding");
             /*
             Test Step 4
             Action: Released the pressed button
@@ -122,12 +103,7 @@ namespace Testcase.DMITestCases
                                 "1. The data input field displays a series of ‘0’ characters." + Environment.NewLine +
                                 "2. After releasing the key, no more ‘0’ characters are added to the data input field.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘Del’ button.Note: Stopwatch is required");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press and hold ‘Del’ button.Note: Stopwatch is required",
                 "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 5
@@ -147,12 +123,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "5. The ‘Click’ sound is played repeatedly while the key is pressed and characters are deleted repeatedly from the end of the data input field.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Del’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, The character is stop removing");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Release ‘Del’ button",
+                "Verify the following information, The character is stop removing");
             /*
             Test Step 6
             Action: Release ‘Del’ button
@@ -164,13 +136,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Characters stop being deleted from the end of the data input field.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press the data key which have various characters once.Note: This step is for testing ‘2’-‘9’ button.Stopwatch is required");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Press the data key which have various characters once.Note: This step is for testing ‘2’-‘9’ button.Stopwatch is required",
                 "Verify the following information,The first character of the data key is added on an input field immediately. The cursor is jumped to next position after entered the character after 2 seconds");
             /*
             Test Step 7
@@ -236,13 +203,8 @@ namespace Testcase.DMITestCases
                                 @"1. The data input field immediately displays ‘2345 6789’." + Environment.NewLine +
                                 @"2. After 2s the cursor is re-displayed after the ‘9’");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press the same data key repeatly within these 2 seconds.Then, verify the displayed information at an input field while pressing button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Press the same data key repeatly within these 2 seconds.Then, verify the displayed information at an input field while pressing button",
                 "Verify the following information,The next character of the same data key is selected and displayed on an input field refer to the label of pressed button and wrap-around.For example, the single character is displayed at input field with following step ‘2’ -> ‘a’ -> ‘b’ -> ‘c’ -> ‘2’");
             /*
             Test Step 8
@@ -329,13 +291,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The data input field displays ‘9’, ‘w’, ‘x’, ‘y’, ‘z’, then ‘9’, ‘w’, and so on, as the key is re-pressed.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press and hold the same data key.Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required.Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Press and hold the same data key.Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required.Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable",
                 "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.Pressed key is added in an input field after pressing the button.While press and hold button over 1.5 secThe next character of the same data key is selected and displayed on an input field refer to the label ot pressed button and wrap-around.For example, the single character is displayed at input field with following step ‘2’ -> ‘a’ -> ‘b’ -> ‘c’ -> ‘2’");
             /*
             Test Step 9
@@ -425,12 +382,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The data input field displays ‘9’, ‘w’, ‘x’, ‘y’, ‘z’, then ‘9’, ‘w’, and so on, as the key is re-pressed.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Released the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, The character is stop changing");
+            MakeTestStepHeader(10, UniqueIdentifier++, "Released the pressed button",
+                "Verify the following information, The character is stop changing");
             /*
             Test Step 10
             Action: Released the pressed button
@@ -442,13 +395,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field stops changing the value for the <9> key in the data input field.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press the data key which have various characters once.After passed 2 seconds, press the same data key.Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Press the data key which have various characters once.After passed 2 seconds, press the same data key.Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required",
                 "Verify the following information, An entered data are separated as 2 characters, for example ‘22’");
             /*
             Test Step 11
@@ -511,13 +459,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘99’.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press data key and then another data key within 2 seconds, for example 2 then 3Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Press data key and then another data key within 2 seconds, for example 2 then 3Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required",
                 "Verify the following information, The selected characters are added on an input field.The horizontal line cursor is forced to jump to next position directly");
             /*
             Test Step 12
@@ -532,12 +475,7 @@ namespace Testcase.DMITestCases
                                 "1. The data input field displays ‘24’." + Environment.NewLine +
                                 "2. The cursor moves to the right of the character just entered immediately after the key is pressed.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the data value with 5 characters");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++, "Enter the data value with 5 characters",
                 "Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘12345')");
             /*
             Test Step 13
@@ -551,12 +489,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘12345’.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the 6th character");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(14, UniqueIdentifier++, "Continue to enter the 6th character",
                 "Verify the following information,The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. 1234 56)");
             /*
             Test Step 14
@@ -569,12 +502,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234 56’.");
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the new value more than 8 characters");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++, "Continue to enter the new value more than 8 characters",
                 "Verify the following information,The data value is separated as 2 lines. In each line is displayed only 8 characters");
             /*
             Test Step 15
@@ -587,11 +515,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234 5612’ and ‘3456’ (over 2 lines).");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(16, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 16
             Action: End of test

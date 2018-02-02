@@ -36,13 +36,9 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 2_5_1_a.xml to send EVC-0 with,MMI_M_START_REQ = 10 (DMI reboot, Indication error)");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,(1)   DMI is rebooted");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 2_5_1_a.xml to send EVC-0 with,MMI_M_START_REQ = 10 (DMI reboot, Indication error)",
+                "Verify the following information,(1)   DMI is rebooted");
             /*
             Test Step 1
             Action: Use the test script file 2_5_1_a.xml to send EVC-0 with,MMI_M_START_REQ = 10 (DMI reboot, Indication error)
@@ -63,12 +59,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI is rebooted.");
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            TraceReport("Expected Result");
-            TraceInfo("");
+            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
             /*
             Test Step 2
             Action: End of test

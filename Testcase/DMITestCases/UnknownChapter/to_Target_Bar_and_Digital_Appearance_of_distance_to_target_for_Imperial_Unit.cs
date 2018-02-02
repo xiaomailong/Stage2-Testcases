@@ -18,7 +18,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class to_Target_Bar_and_Digital_Appearance_of_distance_to_target_for_Imperial_Unit : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -26,12 +25,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1 follow the permitted speed");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1 follow the permitted speed",
                 "DMI displays in FS mode, level 1.Verify the following information,(1)    The distance to target bar is displayed distance from zero to a maximum of 1760yard according to the distance scale. Distances above 1760yard is limited to the distance scale’s upper boundary.(2)   Use the log file to confirm that the distance to target (bar and digital) is calculated from the received packet information EVC-7 and EVC-1 as follows,(EVC-1) MMI_O_BRAKETARGET - (EVC-7) OBU_TR_O_TRAINThe result of calculation is displayed in Yard unit.Example: The observation point of the distance target is 445. [EVC-1.MMI_O_BRAKETARGET = 1000080700] - [EVC-7.OBU_TR_O_TRAIN = 1000040036] = 40664 cm (406.64 m, 444.71 yard).       The distance target digital in sub-area A2 displays as 445 yard.The distance target bar in sub-area A3 displays over the indicator line No.3 (200m/352 yard)Note: Unit conversion1cm = 0.01m1m = 1.09361yard(3)   Use the log file to confirm that the movement authority is calculated from the received packet information EVC-7 and EVC-4 as follows,(EVC-4) MMI_O_MRSP[0] - (EVC-7) OBU_TR_O_TRAINThe result of calculation is displayed in Yard unit.Example: The observation point of the movement authority is 445. [EVC-4.MMI_O_MRSP[0]= 1000080700] – [EVC-7.OBU_TR_O_TRAIN = 1000040036] = 40664 cm (406.64 m, 444.71 yard). Note: Unit conversion1cm = 0.01m1m = 1.09361yard");
             /*
             Test Step 1
@@ -41,12 +35,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Stop the train",
                 "Verify the following information,Use the log file to check the different of the following received packets is less than zero(EVC-1) MMI_O_BRAKETARGET – (EVC-7) OBU_TR_O_TRAIN < 0(1)    If the result of calculation data is less than 0, The distance to target bar is not display in sub-area A3");
             /*
             Test Step 2
@@ -58,11 +47,8 @@ namespace Testcase.DMITestCases
             DmiActions.Stop_the_train(this);
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 3
             Action: End of test

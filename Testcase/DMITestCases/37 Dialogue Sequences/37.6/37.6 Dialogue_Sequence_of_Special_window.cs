@@ -46,12 +46,8 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Spec’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The Special window is displayed. Verify that the Close button is always enabled");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Spec’ button",
+                "The Special window is displayed. Verify that the Close button is always enabled");
             /*
             Test Step 1
             Action: Press ‘Spec’ button
@@ -66,12 +62,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Special window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The Special window is closed. DMI displays the default window");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Close’ button",
+                "The Special window is closed. DMI displays the default window");
             /*
             Test Step 2
             Action: Press ‘Close’ button
@@ -84,12 +76,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Special window and displays the Default window.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Spec’ button again");
-            TraceReport("Expected Result");
-            TraceInfo("The Special window is displayed");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press ‘Spec’ button again", "The Special window is displayed");
             /*
             Test Step 3
             Action: Press ‘Spec’ button again
@@ -106,12 +93,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Adhesion’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The Adhesion window is displayed. Verify that the Close button is always enabled");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Adhesion’ button",
+                "The Adhesion window is displayed. Verify that the Close button is always enabled");
             /*
             Test Step 4
             Action: Press ‘Adhesion’ button
@@ -125,12 +108,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Adhesion window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify that the Special window is displayed");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify that the Special window is displayed");
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -142,12 +121,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Adhesion window and displays the Special window.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘SR speed/distance’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The SR speed/distance window is displayed. Verify that the Close button is always enabled");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press ‘SR speed/distance’ button",
+                "The SR speed/distance window is displayed. Verify that the Close button is always enabled");
             /*
             Test Step 6
             Action: Press ‘SR speed/distance’ button
@@ -165,12 +140,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the SR speed/distance window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Special window");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Special window");
             /*
             Test Step 7
             Action: Press ‘Close’ button
@@ -182,11 +152,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the SR speed/distance window and displays the Special window.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 8
             Action: End of test

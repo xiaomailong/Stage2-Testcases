@@ -47,12 +47,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 6_4_a.xml to send EVC-8 with ");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Use the test script file 6_4_a.xml to send EVC-8 with ",
                 "DMI displays the text message ‘Brake test aborted, perform new Test?’ with an acknowledgement option in sub-area E5-E9.");
             /*
             Test Step 1
@@ -79,12 +74,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The ‘NACK’ button has text ‘NACK’ in yellow on a red background");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold 'NACK' button.");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press and hold 'NACK' button.",
+                "Verify the following information,");
             /*
             Test Step 2
             Action: Press and hold 'NACK' button.
@@ -104,12 +95,8 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "2. The ‘NACK’ button is displayed pressed, with the border removed.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out 'NACK' button.");
-            TraceReport("Expected Result");
-            TraceInfo("The border of the button is shown (state ‘Enabled’) without a sound.");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Slide out 'NACK' button.",
+                "The border of the button is shown (state ‘Enabled’) without a sound.");
             /*
             Test Step 3
             Action: Slide out 'NACK' button.
@@ -123,12 +110,8 @@ namespace Testcase.DMITestCases
                                 "1. The button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into 'NACK' button.");
-            TraceReport("Expected Result");
-            TraceInfo("The button is back to state ‘Pressed’ without a sound.");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Slide back into 'NACK' button.",
+                "The button is back to state ‘Pressed’ without a sound.");
             /*
             Test Step 4
             Action: Slide back into 'NACK' button.
@@ -142,12 +125,8 @@ namespace Testcase.DMITestCases
                                 "1. The button border is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the 'NACK' button.	");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Release the 'NACK' button.	",
+                "Verify the following information,");
             /*
             Test Step 5
             Action: Release the 'NACK' button.	
@@ -167,12 +146,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the acknowledgement buttons.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 6_4_a.xml to send EVC-8.");
-            TraceReport("Expected Result");
-            TraceInfo("See the expected results of Step 2 – Step 5.	");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Use the test script file 6_4_a.xml to send EVC-8.",
+                "See the expected results of Step 2 – Step 5.	");
             /*
             Test Step 6
             Action: Use the test script file 6_4_a.xml to send EVC-8.
@@ -218,12 +193,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the acknowledgement buttons.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 6_4_b.xml to send EVC-8 with,");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Use the test script file 6_4_b.xml to send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 7
             Action: Use the test script file 6_4_b.xml to send EVC-8 with,
@@ -241,12 +212,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displaying the message ‘Brake test aborted. Perform new Test?’ with a flashing yellow frame around sub-areas E5-E9.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold sub-area E5.	");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press and hold sub-area E5.	",
+                "Verify the following information,");
             /*
             Test Step 8
             Action: Press and hold sub-area E5.	
@@ -264,12 +231,8 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "2. The sub-area E5 is displayed pressed with no border.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out sub-area E5.	");
-            TraceReport("Expected Result");
-            TraceInfo("The border of the sub-area E5 is shown (state ‘Enabled’) without a sound.");
+            MakeTestStepHeader(9, UniqueIdentifier++, "Slide out sub-area E5.	",
+                "The border of the sub-area E5 is shown (state ‘Enabled’) without a sound.");
             /*
             Test Step 9
             Action: Slide out sub-area E5.	
@@ -283,12 +246,8 @@ namespace Testcase.DMITestCases
                                 "1. The border of sub-area E5 is displayed enabled" + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into sub-area E5.	");
-            TraceReport("Expected Result");
-            TraceInfo("The sub-area E5 is back to state ‘Pressed’ without a sound. ");
+            MakeTestStepHeader(10, UniqueIdentifier++, "Slide back into sub-area E5.	",
+                "The sub-area E5 is back to state ‘Pressed’ without a sound. ");
             /*
             Test Step 10
             Action: Slide back into sub-area E5.	
@@ -302,12 +261,8 @@ namespace Testcase.DMITestCases
                                 "1. Sub-area E5 is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed area.	");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(11, UniqueIdentifier++, "Release the pressed area.	",
+                "Verify the following information,");
             /*
             Test Step 11
             Action: Release the pressed area.	
@@ -325,11 +280,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The flashing yellow frame around sub-areas E5-E9 is removed.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 12
             Action: End of test

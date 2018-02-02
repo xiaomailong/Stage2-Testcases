@@ -48,12 +48,9 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 15_2_8_a.xml to send EVC-7 with,OBU_TR_M_Level =  15");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,(1)   No symbol displays in sub-area C8");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 15_2_8_a.xml to send EVC-7 with,OBU_TR_M_Level =  15",
+                "Verify the following information,(1)   No symbol displays in sub-area C8");
             /*
             Test Step 1
             Action: Use the test script file 15_2_8_a.xml to send EVC-7 with,OBU_TR_M_Level =  15
@@ -84,11 +81,8 @@ namespace Testcase.DMITestCases
 
             #endregion
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 2
             Action: End of test

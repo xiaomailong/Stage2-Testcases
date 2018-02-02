@@ -49,13 +49,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Activate Cabin A.Enter Driver ID and perform break test.Select and confirm Level 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure,Activate Cabin A.Enter Driver ID and perform break test.Select and confirm Level 1",
                 "DMI displays Main window.Verify the following information,Use the log file to confirm that DMI receives packet EVC-30 with the value of following bit in variable MMI_Q_REQUEST_ENABLE_64,Bit #0 = 0 (Start)Bit #1 = 1 (Driver ID)Bit #2 = 1 (Train Data)Bit #3 = 1 (Level )Bit #4 = 1 (Train running number)Bit #5 = 1 (Shunting)Bit #7 = 0 (Non-Leading)Bit #8 = 0 (Maintain Shunting)Bit #9 = 0 (EOA)Bit #28 =1 (Start Brake Test)Bit #32 = 1 (System info)And displays the buttons which have the bit value is 1");
             /*
             Test Step 1
@@ -98,13 +93,8 @@ namespace Testcase.DMITestCases
                                 "10. ‘Start Brake Test’ enabled." + Environment.NewLine +
                                 "11. ‘System Info’ enabled.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result",
                 "Verify the following information,The hourglass symbol ST05 is displayed at window title area.The hourglass symbol ST05 is vertically aligned center of the window title area.All buttons and the ‘Close’ button are disabled.The disabled Close button NA12 is display in area G.The symbol ST05 is move to the right every second.After symbol ST05 is moved to the end of the window title area, the symbol comes back to the first position and keeps moving to the right");
             /*
             Test Step 2
@@ -121,12 +111,8 @@ namespace Testcase.DMITestCases
                                 "3. The ‘Close’ button NA12 is displayed disabled in area G." + Environment.NewLine +
                                 "4. The hourglass symbol ST05 moves to the right each second." + Environment.NewLine +
                                 "5. When the hourglass symbol ST05 has reached the edge of the window title area it is re-displayed on the lefthand side of the window title area and continues to move to the right.");
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716",
                 "Verify the following information,The hourglass symbol ST05 is removed.The state of all buttons is restored according to the last received EVC-30, see Step 3:Button Start is disabledButton Driver ID is enabledButton Train Data is enabledButton Level is enabledButton Train running number is enabledButton Shunting is enabledButton Non-Leading is disabledButton Maintain Shunting is disabledThe enabled Close button NA11 is display in area G");
             /*
             Test Step 3
@@ -153,12 +139,7 @@ namespace Testcase.DMITestCases
                 "12. ‘System Info’ button is enabled." + Environment.NewLine +
                 "13. ‘EOA’ button is displayed enabled in area G");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Train data’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Train data window");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Train data’ button", "DMI displays Train data window");
             /*
             Test Step 4
             Action: Press ‘Train data’ button
@@ -176,13 +157,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Train_data_window_displayed(this);
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Confirm the value of input field refer to specified type of Train data window below,Fixed Train data window: Confirm the value of Train typeFlexible Train data window: Confirm the value of Train length");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Confirm the value of input field refer to specified type of Train data window below,Fixed Train data window: Confirm the value of Train typeFlexible Train data window: Confirm the value of Train length",
                 "Verify the following information,The ‘Selected’ state (medium-grey background with black text) of the input fields are changed to the ‘Accepted’ state (dark-grey background with white text).The buttons are stated as follows:The keypad is enabled.The ‘Close’ button is enabled.The ‘Yes’ button is enabled");
             /*
             Test Step 5
@@ -210,12 +186,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Close’ button is enabled." + Environment.NewLine +
                                 "3. The ‘Yes’ button is enabled.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716",
                 "Verify the following information,The hourglass symbol ST05 is displayed.The buttons are disabled as follows:The ‘Close’ button is disabled.The ‘Yes’ button is disabled.The keypad is still enabled.All input field is in the ‘Not Selected’ state (dark-grey background with grey text)");
             /*
             Test Step 6
@@ -231,12 +203,8 @@ namespace Testcase.DMITestCases
                                 "4. The keypad is still enabled." + Environment.NewLine +
                                 "5. All input fields are in the not ‘Selected’ state (grey text on dark-grey background)");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716",
                 "Verify the following information,The hourglass symbol ST05 is removed.The button state is resumed as follows:The ‘Close’ button is enabled.The ‘Yes’ button is enabled.The input field is stated as follows:The first input field is in the ‘Selected’ state.The rests are in the ‘Not selected’ state");
             /*
             Test Step 7
@@ -252,13 +220,8 @@ namespace Testcase.DMITestCases
                                 "4. The first input field is in the ‘Selected’ state." + Environment.NewLine +
                                 "5. All other input fields are in the not ‘Selected’ state");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Confirm all value in Train data window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Perform the following procedure,Confirm all value in Train data window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)",
                 "DMI displays Train data validation window with “Yes” in the input field.Verify the following information,The input field is in ‘Selected’ state (medium-grey background with black text). The buttons are stated as follows:The keypad is enabled.The ‘Close’ button is enabled");
             /*
             Test Step 8
@@ -278,12 +241,8 @@ namespace Testcase.DMITestCases
                                 "3. The keypad is enabled." + Environment.NewLine +
                                 "4. The ‘Close’ button is enabled.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716",
                 "Verifies the following points,The hourglass symbol ST05 is displayed.The ‘Close’ button is disabled.The keypad is still enabled.The input field is in the ‘Not Selected’ state (dark-grey background with grey text)");
             /*
             Test Step 9
@@ -298,12 +257,8 @@ namespace Testcase.DMITestCases
                                 "3. The keypad is still enabled." + Environment.NewLine +
                                 "4. The input fields is in the ‘Not Selected’ state (grey text on dark-grey background)");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716",
                 "Verifies the following points,The hourglass symbol ST05 is removed.The ‘Close’ button is enabled.The input field is in the ‘Selected’ state");
             /*
             Test Step 10
@@ -317,12 +272,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Close’ button is enabled." + Environment.NewLine +
                                 "3. The input field is in the not ‘Selected’ state");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm entered data by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Train Running Number window");
+            MakeTestStepHeader(11, UniqueIdentifier++, "Confirm entered data by pressing an input field",
+                "DMI displays Train Running Number window");
             /*
             Test Step 11
             Action: Confirm entered data by pressing an input field
@@ -336,12 +287,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train Running Number window");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter and confirm Train running number");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++, "Enter and confirm Train running number",
                 "DMI displays Main window.Verify the following information,Use the log file to confirm that DMI receives packet EVC-30 with the value of following bit in variable MMI_Q_REQUEST_ENABLE_64,Bit #0 = 1 (Start)Bit #1 = 1 (Driver ID)Bit #2 = 1 (Train Data)Bit #3 = 1 (Level )Bit #4 = 1 (Train running number)Bit #5 = 1 (Shunting)Bit #7 = 0 (Non-Leading)Bit #8 = 0 (Maintain Shunting)And displays the buttons which have the bit value is 1");
             /*
             Test Step 12
@@ -381,12 +327,8 @@ namespace Testcase.DMITestCases
                                 "7. ‘Non Leading’  disabled." + Environment.NewLine +
                                 "8. ‘Maintain Shunting’ disabled.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716",
                 "DMI displays the  message “ATP Down Alarm” with sound alarm.Verify the following information,The hourglass symbol ST05 is displayed.All buttons and the ‘Close’ button are disabled");
             /*
             Test Step 13
@@ -402,13 +344,8 @@ namespace Testcase.DMITestCases
                                 "3. The hourglass symbol ST05 is displayed." + Environment.NewLine +
                                 "4. All buttons and the ‘Close’ button are disabled.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Then, simulate the communication loss between ETCS Onboard and DMI and re-establish the communication between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Then, simulate the communication loss between ETCS Onboard and DMI and re-establish the communication between ETCS onboard and DMI",
                 "Verify the following information,The hourglass symbol ST05 is removed.The ‘Main’ window is closed and DMI returns to the default window.The state of all buttons is restored according to the last received EVC-30, see Step 12:Button Start is enabledButton Driver ID is enabledButton Train Data is enabledButton Level is enabledButton Train running number is enabledButton Shunting is enabledButton Non-Leading is disabledButton Maintain Shunting is disabled");
             /*
             Test Step 14
@@ -433,12 +370,7 @@ namespace Testcase.DMITestCases
                                 "9. ‘Non Leading’ button is disabled." + Environment.NewLine +
                                 "10. ‘Maintain Shunting’ button is disabled.");
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Data view’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++, "Press ‘Data view’ button",
                 "DMI displays Data view window.Verify the following information,The buttons are stated as follows:The navigation buttons are enabled.The ‘Close’ button is enabled");
             /*
             Test Step 15
@@ -454,12 +386,8 @@ namespace Testcase.DMITestCases
                                 "2. The navigation buttons are enabled." + Environment.NewLine +
                                 "3.	The ‘Close’ button is enabled.");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716",
                 "Verify the following information,The hourglass symbol ST05 is displayed.The ‘Close’ button is disabled.The navigation buttons are still enabled");
             /*
             Test Step 16
@@ -474,12 +402,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Close’ button is disabled." + Environment.NewLine +
                                 "3. The navigation buttons are still enabled.");
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Use the test script file 10_2_b.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716",
                 "Verify the following information,The hourglass symbol ST05 is removed.The ‘Close’ button is enabled");
             /*
             Test Step 17
@@ -493,13 +417,9 @@ namespace Testcase.DMITestCases
                                 "1. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Then, start the stopwatch (to verify expected result of the next step).Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The hourglass symbol ST05 is displayed");
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Then, start the stopwatch (to verify expected result of the next step).Note: Stopwatch is required for accuracy of test result",
+                "Verify the following information,The hourglass symbol ST05 is displayed");
             /*
             Test Step 18
             Action: Use the test script file 10_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Then, start the stopwatch (to verify expected result of the next step).Note: Stopwatch is required for accuracy of test result
@@ -511,12 +431,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed.");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Wait for 46 second.Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(19, UniqueIdentifier++,
+                "Wait for 46 second.Note: Stopwatch is required for accuracy of test result",
                 "Verify the following information,The hourglass symbol ST05 is removed.The ‘Data view’ window is closed and DMI returns to the default window.The state of all buttons is restored according to the last received EVC-30, see Step 12");
             /*
             Test Step 19
@@ -539,11 +455,8 @@ namespace Testcase.DMITestCases
                                 "9. ‘Non Leading’ button is disabled." + Environment.NewLine +
                                 "10. ‘Maintain Shunting’ button is disabled.");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(20, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 20
             Action: End of test

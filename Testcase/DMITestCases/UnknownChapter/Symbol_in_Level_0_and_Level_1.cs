@@ -19,7 +19,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class Symbol_in_Level_0_and_Level_1 : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -27,13 +26,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Enter SH mode by performing the procedure below,Press and hold ‘Shunting’ button at least 2 secondsRelease ‘Shunting’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Enter SH mode by performing the procedure below,Press and hold ‘Shunting’ button at least 2 secondsRelease ‘Shunting’ button",
                 "Verify the following information,Use the log file to confirm that DMI receives EVC-7 with variable OBU_TR_M_MODE = 3 (SH – Shunting).The symbol MO01 is display in area B7.DMI closes Main window and returns to the Default window");
             /*
             Test Step 1
@@ -47,13 +41,9 @@ namespace Testcase.DMITestCases
                     this);
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 1");
-            TraceReport("Expected Result");
-            TraceInfo("See the expected results at Step 1");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 1",
+                "See the expected results at Step 1");
             /*
             Test Step 2
             Action: Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 1
@@ -63,11 +53,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.See_the_expected_results_at_Step_1(this);
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 3
             Action: End of test

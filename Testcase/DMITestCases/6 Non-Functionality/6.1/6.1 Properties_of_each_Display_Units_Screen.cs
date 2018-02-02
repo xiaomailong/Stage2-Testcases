@@ -39,12 +39,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Settings’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Settings window");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Settings’ button", "DMI displays Settings window");
             /*
             Test Step 1
             Action: Press ‘Settings’ button
@@ -56,12 +51,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Brightness’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Brightness window.");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Brightness’ button", "DMI displays Brightness window.");
             /*
             Test Step 2
             Action: Press ‘Brightness’ button
@@ -75,12 +65,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘-‘ button in order to decreasing brightness to defined minimum level");
-            TraceReport("Expected Result");
-            TraceInfo("The adjust luminance is used by DMI.");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press and hold ‘-‘ button in order to decreasing brightness to defined minimum level",
+                "The adjust luminance is used by DMI.");
             /*
             Test Step 3
             Action: Press and hold ‘-‘ button in order to decreasing brightness to defined minimum level
@@ -100,12 +87,7 @@ namespace Testcase.DMITestCases
                 Environment.NewLine +
                 "Verify that the minimum level of bightness is defined as 10.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Settings window");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 4
             Action: Press ‘Close’ button
@@ -116,12 +98,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Driver ID window");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Driver ID window");
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -132,12 +109,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure,");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Brightness window.");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Perform the following procedure,",
+                "DMI displays Brightness window.");
             /*
             Test Step 6
             Action: Perform the following procedure,
@@ -152,12 +125,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
             WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘+‘ button in order to increasing brightness to defined maximum level");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Press and hold ‘+‘ button in order to increasing brightness to defined maximum level",
                 "The value of an input field is increasing while button is pressed and the brightness is brighter than before pressing button.");
             /*
             Test Step 7
@@ -174,12 +143,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "- The maximum level of bightness is defined as 100.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure,");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Perform the following procedure,",
                 "The brightness is increased from the minimum and the value of and input field is 55 (median value between 10 an 100)");
             /*
             Test Step 8
@@ -203,12 +167,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
             WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action Step 7.Then, confirm entered data by pressing an input fied");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Settings window with luminance increased refer to entered data");
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Repeat action Step 7.Then, confirm entered data by pressing an input fied",
+                "DMI displays Settings window with luminance increased refer to entered data");
             /*
             Test Step 9
             Action: Repeat action Step 7.Then, confirm entered data by pressing an input fied
@@ -223,12 +184,8 @@ namespace Testcase.DMITestCases
             WaitForVerification(
                 @"Confirm that DMI displays Settings window with luminance increased refer to entered data");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Brightness’ button.");
-            TraceReport("Expected Result");
-            TraceInfo("The ‘Brightness’ window is come up with maximum value of the luminance range");
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Brightness’ button.",
+                "The ‘Brightness’ window is come up with maximum value of the luminance range");
             /*
             Test Step 10
             Action: Press ‘Brightness’ button.
@@ -248,11 +205,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification(@"Is the Brightness set at its maximum value?");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 11
             Action: End of test

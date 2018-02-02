@@ -46,12 +46,8 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in FS mode, Level 1 with PA in Main-area D");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1.Then, stop the train",
+                "DMI displays in FS mode, Level 1 with PA in Main-area D");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then, stop the train
@@ -63,13 +59,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The Planning Area is displayed in area D.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press ‘Main’ buttonPress ‘Level’ buttonSelect and confirm  level ‘ATB’At Main window, press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Main’ buttonPress ‘Level’ buttonSelect and confirm  level ‘ATB’At Main window, press ‘Close’ button",
                 "DMI displays in SN mode, Level ATB.Verify the following information,(1)    All objects of PA in Main-area D are removed");
             /*
             Test Step 2
@@ -102,11 +93,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SN mode, Level AWS TPWS." + Environment.NewLine +
                                 "2. The Planning Area is removed from area D.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 3
             Action: End of test

@@ -48,13 +48,8 @@ namespace Testcase.DMITestCases
 
             XML_15_3_2(msgType.typea);
             // Steps 1 to 7 are carried out in XML_15_3_2_a.cs
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 15_3_2_a.xml to send EVC-8 with,MMI_Q_TEXT = 256MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1MMI_N_TEXT = 2MMI_X_TEXT[0] = 42MMI_X_TEXT[1] = 43");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 15_3_2_a.xml to send EVC-8 with,MMI_Q_TEXT = 256MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1MMI_N_TEXT = 2MMI_X_TEXT[0] = 42MMI_X_TEXT[1] = 43",
                 "Verify the following information,(1)   The plain text message ‘*+’ is display in sub-area E5 without yellow flashing frame.(2)   The text message is presented with characters in bold style.(3)   Sound Sinfo is played.E.g.*+");
             /*
             Test Step 1
@@ -64,13 +59,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "(Continue from step 1)Send EVC-8 with,MMI_Q_TEXT = 580MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 2MMI_N_TEXT = 2MMI_X_TEXT[0] = 42MMI_X_TEXT[1] = 42");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "(Continue from step 1)Send EVC-8 with,MMI_Q_TEXT = 580MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 2MMI_N_TEXT = 2MMI_X_TEXT[0] = 42MMI_X_TEXT[1] = 42",
                 "Verify the following information,(1)   The plain text message ‘**’ is display in sub-are E6 without yellow flashing frame.(2)   The text message is presented with characters in regular style.(3)   There is no sound played.(4)   There is no gap between the new text message and older message from previous step.E.g.*+**");
             /*
             Test Step 2
@@ -80,13 +70,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "(Continue from step 2)Send EVC-8 with,MMI_Q_TEXT = 0MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 3");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "(Continue from step 2)Send EVC-8 with,MMI_Q_TEXT = 0MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 3",
                 "Verify the following information,(1)   Text message ‘Level crossing not protected’ is displayed in sub-area E6 without yellow flashing frame.(2)   The bold text message is still displayed above the regular messages. (3)  There is no sound played.(4)  The old text message ‘**’ is moved to sub-area E7. E.g.*+Level crossing not protected**");
             /*
             Test Step 3
@@ -96,13 +81,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "(Continue from step 3)Send EVC-8 with,MMI_Q_TEXT = 273MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 4");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "(Continue from step 3)Send EVC-8 with,MMI_Q_TEXT = 273MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 4",
                 "Verify the following information,(1)   Text message ‘Unauthorize passing of EOA/LOA’ is displayed in sub-area E5-E6 without yellow flashing frame.(2)   Sound Sinfo is played.(3)   The old text messages are moved to sub-area E7-E9 respectively.(4)   The navigation buttons <Up> and <Down> at sub-area E10-E11 are disabled.(5)   DMI displays symbol NA15 at sub-area E10.(6)   DMI displays symbol NA16 at sub-area E11.E.g. Unauthorize passing of EOA/LOA  *+  Level crossing not protected  **");
             /*
             Test Step 4
@@ -112,13 +92,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "(Continue from step 4)Send EVC-8 with,MMI_Q_TEXT = 625MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 5");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "(Continue from step 4)Send EVC-8 with,MMI_Q_TEXT = 625MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 5",
                 "Verify the following information,(1)   Text message ‘Tachometer error’ is displayed in sub-area E5 without yellow flashing frame.(2)   Sound Sinfo is played.(3)   The old text messages are moved to sub-area E6-E9 respectively.(4)   The navigation button <Down> is enabled.(5)   DMI displays symbol NA14 at sub-area E11.E.g.Shown messages:Tachometer error Unauthorize passing of EOA/LOA *+ Level crossing not protectedHidden messages:**");
             /*
             Test Step 5
@@ -128,13 +103,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "(Continue from step 5)Send EVC-8 with,MMI_Q_TEXT = 712MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 6");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "(Continue from step 5)Send EVC-8 with,MMI_Q_TEXT = 712MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 6",
                 "Verify the following information,(1)   Text message ‘Wheel data settings were successfully changed’ is displayed in sub-area E9 without yellow flashing frame.Note: The text message is too long for 1 line. So, the message is not completely displayed in the visibility window.(2)   There is no sound played.E.g.Shown messages: Tachometer error  Unauthorize passing of EOA/LOA  *+  Wheel data settings were Hidden messages: successfully changed  Level crossing not protected  **");
             /*
             Test Step 6
@@ -144,13 +114,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "(Continue from step 6)Send EVC-8 with,MMI_Q_TEXT = 583MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 2");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "(Continue from step 6)Send EVC-8 with,MMI_Q_TEXT = 583MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 2",
                 "Verify the following information,(1)   Text message ‘Doppler error’ is displayed in sub-area E9 without yellow flashing frame.(2)    There is no sound played.E.g.Shown messages: Tachometer error  Unauthorize passing of EOA/LOA  *+  Doppler error Hidden messages: Wheel data settings were successfully changed  Level crossing not protected");
             /*
             Test Step 7
@@ -160,12 +125,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Down’ button at sub-area E11");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press ‘Down’ button at sub-area E11",
                 "Verify the following information,(1)   The navigation button <Up> is enabled.(2)   DMI displays symbol NA13 at sub-area E10.(3)   The visibility window is moves down to the 1st line of the next lower text message, text message ‘Wheel data settings were successfully changed' is displayed in sub-area E8-E9.E.g.Hidden messages (above): Tachometer error  Unauthorize passing ofShown messages: EOA/LOA  *+  Doppler error  Wheel data settings were successfully changedHidden messages (below): Level crossing not protected");
             /*
             Test Step 8
@@ -181,12 +141,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. Text message ‘Wheel data settings were successfully changed' is displayed in sub-area E8-E9.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Down’ button at sub-area E11");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Press ‘Down’ button at sub-area E11",
                 "Verify the following information,(1)   The visibility window is moves one line down, text message ‘Level crossing not protected’ is displayed at sub-area E9.(2)   The navigation buttons <Down> at sub-area E11 is disabled, display as symbol NA16");
             /*
             Test Step 9
@@ -200,12 +155,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The navigation button <Down> at sub-area E11 is disabled, displayed as symbol NA16.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Down’ button at sub-area E11");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Down’ button at sub-area E11",
                 "Verify the following information,(1)   The display information in sub-area E5-E9 are not changed");
             /*
             Test Step 10
@@ -217,13 +167,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. The display information in sub-area E5-E9 are not changed.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 15_3_2_b.xml to send EVC-8 with to remove a text message, MMI_Q_TEXT = 0MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 2");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Use the test script file 15_3_2_b.xml to send EVC-8 with to remove a text message, MMI_Q_TEXT = 0MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 2",
                 "Verify the following information,The fixed text message ‘Doppler error’ is removed.The text message ‘Wheel data settings were successfully changed’ at the lowest position is move up to close the gap, display in sub-area E9.The navigation buttons <Down> at sub-area E11 is disabled, display as symbol NA16. E.g.Hidden messages (above): Tachometer error  Unauthorize passing ofShown messages: EOA/LOA  *+  Wheel data settings were successfully changed  Level crossing not protected");
             /*
             Test Step 11
@@ -233,12 +178,7 @@ namespace Testcase.DMITestCases
             */
             XML_15_3_2(msgType.typeb);
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Up’ button at sub-area E10 3 times");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press ‘Up’ button at sub-area E10 3 times",
                 "Verify the following information,(1)   The navigation buttons <Up> at sub-area E10 is disabled, display as symbol NA15.(2)   The visibility window is moved up to the next 1st line of a text message when the button is pressed.E.g.Hidden messages (above):“Shown messages:Tachometer error   Unauthorize passing of EOA/LOA  *+   Wheel data settings were Hidden messages (below): successfully changed  Level crossing not protected");
             /*
             Test Step 12
@@ -252,12 +192,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The visibility window is moved up to the next 1st line of a text message each time the button is pressed.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Up’ button at sub-area E10");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++, "Press ‘Up’ button at sub-area E10",
                 "Verify the following information,(1)   The display information in sub-area E5-E9 are not changed");
             /*
             Test Step 13
@@ -269,13 +204,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. The display information in sub-area E5-E9 is not changed.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 15_3_2_c.xml to send a multiple packet of EVC-8 to remove a text message,Common variables MMI_Q_TEXT = 0MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT_CLASS = 0The order of MMI_I_TEXT value in each packetMMI_I_TEXT = 1MMI_I_TEXT = 3MMI_I_TEXT = 5MMI_I_TEXT = 6");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Use the test script file 15_3_2_c.xml to send a multiple packet of EVC-8 to remove a text message,Common variables MMI_Q_TEXT = 0MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT_CLASS = 0The order of MMI_I_TEXT value in each packetMMI_I_TEXT = 1MMI_I_TEXT = 3MMI_I_TEXT = 5MMI_I_TEXT = 6",
                 "The text messages of “Tachometer error”, “*+”, “Wheel data settings were successfully changed” and “Level crossing not protected” disappear.E.g.Shown messages: Unauthorize passing of EOA/LOA");
             /*
             Test Step 14
@@ -284,13 +214,8 @@ namespace Testcase.DMITestCases
             */
             XML_15_3_2(msgType.typec);
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 15_3_2_d.xml to send EVC-8 with,MMI_Q_TEXT = 261MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Use the test script file 15_3_2_d.xml to send EVC-8 with,MMI_Q_TEXT = 261MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 1",
                 "Verify the following information,(1)    The new incoming message “Fixed Text Message 261” is display in sub-area E6.E.g.Shown messages: Unauthorize passing of EOA/LOA  Fixed Text Message 261");
             /*
             Test Step 15
@@ -301,13 +226,8 @@ namespace Testcase.DMITestCases
             XML_15_3_2(msgType.typed);
             // Steps 15 to 18 are carried out in XML_15_3_2_d.cs
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "(Continue from step 15) Send EVC-8 withMMI_Q_TEXT = 270MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 3");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "(Continue from step 15) Send EVC-8 withMMI_Q_TEXT = 270MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 3",
                 "Verify the following information,(1)    The new incoming message “Fixed Text Message 270” is display in sub-area E5.(2)    Sound Sinfo is played.E.g.Shown messages:  Fixed Text Message 270  Unauthorize passing of EOA/LOA  Fixed Text Message 261");
             /*
             Test Step 16
@@ -317,13 +237,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "(Continue from step 16) Send EVC-8 withMMI_Q_TEXT = 271MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 5");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "(Continue from step 16) Send EVC-8 withMMI_Q_TEXT = 271MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 5",
                 "Verify the following information,(1)    The new incoming message “Fixed Text Message 271” is display in sub-area E5. (2)    Sound Sinfo is played.E.g.Shown messages:  Fixed Text Message 271  Fixed Text Message 270  Unauthorize passing of EOA/LOA  Fixed Text Message 261");
             /*
             Test Step 17
@@ -333,13 +248,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "(Continue from step 17) Send EVC-8 withMMI_Q_TEXT = 272MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 6");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "(Continue from step 17) Send EVC-8 withMMI_Q_TEXT = 272MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 6",
                 "Verify the following information,(1)    The new incoming message “Fixed Text Message 272” is display in sub-area E9.E.g.Shown messages:  Fixed Text Message 271  Fixed Text Message 270  Unauthorize passing of EOA/LOAFixed Text Message 272Hidden messages: Fixed Text Message 261");
             /*
             Test Step 18
@@ -349,13 +259,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press ‘Down’ button.Then, use the test script file 15_3_2_e.xml to send EVC-8 to remove text message,MMI_Q_TEXT = 261MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 4MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(19, UniqueIdentifier++,
+                "Press ‘Down’ button.Then, use the test script file 15_3_2_e.xml to send EVC-8 to remove text message,MMI_Q_TEXT = 261MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 4MMI_I_TEXT = 1",
                 "Verify the following information,(1)    The new incoming message “Fixed Text Message 261” is removed from sub-area E9.E.g.Shown messages:  Fixed Text Message 271  Fixed Text Message 270  Unauthorize passing of EOA/LOAFixed Text Message 272");
             /*
             Test Step 19
@@ -371,13 +276,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. The new incoming message “Fixed Text Message 261” is removed from sub-area E9.");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "(Continue from step 19)Send EVC-8 with,MMI_Q_TEXT = 271MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 4MMI_I_TEXT = 5");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(20, UniqueIdentifier++,
+                "(Continue from step 19)Send EVC-8 with,MMI_Q_TEXT = 271MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 4MMI_I_TEXT = 5",
                 "Verify the following information,(1)    The new incoming message “Fixed Text Message 271” is removed from sub-area E5.E.g.Shown messages:  Fixed Text Message 270  Unauthorize passing of EOA/LOA  Fixed Text Message 272");
             /*
             Test Step 20
@@ -387,11 +287,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(21, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 21
             Action: End of test

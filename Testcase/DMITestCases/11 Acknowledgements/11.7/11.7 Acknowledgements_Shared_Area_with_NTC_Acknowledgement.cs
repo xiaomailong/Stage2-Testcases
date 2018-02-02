@@ -46,12 +46,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform SoM to Level STM-ATB in SN mode");
-            TraceReport("Expected Result");
-            TraceInfo("ETCS OB enters Level STM-ATB, SN mode");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to Level STM-ATB in SN mode",
+                "ETCS OB enters Level STM-ATB, SN mode");
             /*
             Test Step 1
             Action: Perform SoM to Level STM-ATB in SN mode
@@ -65,13 +61,8 @@ namespace Testcase.DMITestCases
             // ????
             WaitForVerification("ETCS OB enters Level STM-ATB, SN mode.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use test script file 6_7.xml to send STM text message and ETCS text message to the DMI via STM-38 and EVC-8, respectively with:-Message 1: STM-38- MMI_STM_Q_ACK = 1- MMI_STM_X_TEXT = 2Message 2: EVC-8- MMI_Q_TEXT_CLASS = 0- MMI_Q_TEXT_CRITERIA = 1- MMI_Q_TEXT = 268Message 3: STM-38- MMI_STM_Q_ACK = 1- MMI_STM_X_TEXT = 4Message 4: EVC-8- MMI_Q_TEXT_CLASS = 0- MMI_Q_TEXT_CRITERIA = 1- MMI_Q_TEXT = 305");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use test script file 6_7.xml to send STM text message and ETCS text message to the DMI via STM-38 and EVC-8, respectively with:-Message 1: STM-38- MMI_STM_Q_ACK = 1- MMI_STM_X_TEXT = 2Message 2: EVC-8- MMI_Q_TEXT_CLASS = 0- MMI_Q_TEXT_CRITERIA = 1- MMI_Q_TEXT = 268Message 3: STM-38- MMI_STM_Q_ACK = 1- MMI_STM_X_TEXT = 4Message 4: EVC-8- MMI_Q_TEXT_CLASS = 0- MMI_Q_TEXT_CRITERIA = 1- MMI_Q_TEXT = 305",
                 "Verify the following information:After DMI receives test script- Text message ‘2 - Brakes are not operated’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is not played.5 seconds later- Text message ‘Communication error’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is played once.5 seconds later- Text message ‘4 - Brake feedback fault’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is not played.5 seconds later- Text message ‘Train divided’ is displayed in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9).- Sound Sinfo is played once");
             /*
             Test Step 2
@@ -81,12 +72,7 @@ namespace Testcase.DMITestCases
             */
             XML_6_7();
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press sub-area (E5+E6+E7+E8+E9) for acknowledgement",
                 "Verify the following information:- Text message ‘Train divided’ is disappeared.- Text message ‘4 - Brake feedback fault’ is reappeared in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9)");
             /*
             Test Step 3
@@ -100,12 +86,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the message ‘Train divided’ and displays the message ‘4 - Brake feedback fault’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9).");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press sub-area (E5+E6+E7+E8+E9) for acknowledgement",
                 "Verify the following information:- Text message ‘4 - Brake feedback fault’ is disappeared.- Text message ‘Communication error’ is reappeared in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9)");
             /*
             Test Step 4
@@ -118,12 +99,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the message ‘4 - Brake feedback fault’ and displays the message ‘Communication error’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9).");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press sub-area (E5+E6+E7+E8+E9) for acknowledgement",
                 "Verify the following information:- Text message ‘Communication error’ is disappeared.- Text message ‘2 - Brakes are not operated’ is reappeared in sub-area E5 with yellow flashing frame surrounded area (E5+E6+E7+E8+E9)");
             /*
             Test Step 5
@@ -136,12 +112,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the message ‘Communication error’ and displays the message ‘2 - Brakes are not operated’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9).");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press sub-area (E5+E6+E7+E8+E9) for acknowledgement");
-            TraceReport("Expected Result");
-            TraceInfo("- Text message ‘2 - Brakes are not operated’ is disappeared");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press sub-area (E5+E6+E7+E8+E9) for acknowledgement",
+                "- Text message ‘2 - Brakes are not operated’ is disappeared");
             /*
             Test Step 6
             Action: Press sub-area (E5+E6+E7+E8+E9) for acknowledgement
@@ -153,11 +125,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying the message ‘2 - Brakes are not operated’ in sub-area E5 with a yellow flashing frame surrounding sub-areas (E5+E6+E7+E8+E9).");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 7
             Action: End of test

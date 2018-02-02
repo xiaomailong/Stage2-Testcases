@@ -60,12 +60,8 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform SoM until select and confirm Level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Main window.(1)   Verify the close button is always enable");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM until select and confirm Level 1",
+                "DMI displays Main window.(1)   Verify the close button is always enable");
             /*
             Test Step 1
             Action: Perform SoM until select and confirm Level 1
@@ -82,13 +78,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Main Window." + Environment.NewLine +
                                 "2. ‘Close’ button is enabled.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 10_2_2_a.xml to disable and enable button of the Main window via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_2_2_a.xml to disable and enable button of the Main window via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result",
                 "Verify the following information;DMI in the entry state of ‘ST05’.(1)   The hourglass symbol ST05 is displayed at window title area.(2)   The hourglass symbol ST05 is vertically aligned center of the window title area.(3)   The symbol ST05 is move to the right every second.(4)   After symbol ST05 is moved to the end of the window title area, the symbol comes back to the first position and keeps moving to the right. (5)   Verify all buttons and the close button are disable.(6)   The disabled Close button NA12 is display in area G.10 seconds later(7)   DMI in the exit state of ‘ST05’.(8)   The hourglass symbol ST05 is removed.(9)   The state of all buttons is restored according to the last status before script is sent.(10) The enabled Close button NA11 is display in area G");
             /*
             Test Step 2
@@ -98,12 +89,7 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_2_a();
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Driver ID’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press ‘Driver ID’ button",
                 "Verify the following information;(1)   Verify DMI still displays Main window until Driver ID window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 3
@@ -123,12 +109,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Driver ID window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Repeat action step 2 with Driver ID window",
                 "Verify the following information;DMI in the entry state of ‘ST05’.(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button are disable.(3)   The disabled Close button NA12 is display in area G.(4)   The Input Field is deselected.10 seconds laterDMI in the exit state of ‘ST05’.(5)   The hourglass symbol ST05 is removed.(6)  The state of all buttons is restored according to the last status before script is sent.(7)  The enabled Close button NA11 is display in area G.(8)   The input field is in the ‘Selected’ state");
             /*
             Test Step 4
@@ -138,13 +119,8 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_2_a(true);
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 10_2_2_b.xml to disable and enable button via EVC-14 withPacket 1 (disable all button)MMI_Q_CLOSE_ENABLE (#0) = 0Packet 2 (enable all button)MMI_Q_CLOSE_ENABLE (#0) = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Use the test script file 10_2_2_b.xml to disable and enable button via EVC-14 withPacket 1 (disable all button)MMI_Q_CLOSE_ENABLE (#0) = 0Packet 2 (enable all button)MMI_Q_CLOSE_ENABLE (#0) = 1",
                 "Verify the following information;(1)   ‘close’ buttons in Driver ID window is disable.10 seconds later(2)   ‘close’ buttons in Driver ID window is enable");
             /*
             Test Step 5
@@ -154,13 +130,8 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_2_b_and_c(msgType.typeb);
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Press ‘close’ button (Driver ID window).Press ‘Train Data’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (Driver ID window).Press ‘Train Data’ button",
                 "Verify the following information;(1)   Verify DMI still displays Main window until Train Data window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 6
@@ -177,12 +148,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. ‘Close’ button is enabled.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with fixed Train Data window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Repeat action step 2 with fixed Train Data window",
                 "Verify the following information;DMI in the entry state of ‘ST05’.(1)  The hourglass symbol ST05 is displayed.(2)  Verify all buttons and the close button are disable.(3)  The disabled Close button NA12 is display in area G.10 seconds laterDMI in the exit state of ‘ST05’.(4)  The hourglass symbol ST05 is removed.(5)  The state of all buttons is restored according to the last status before script is sent.(6)  The enabled Close button NA11 is display in area G");
             /*
             Test Step 7
@@ -192,13 +158,8 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_2_a();
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Confirm Train type in Train data window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Perform the following procedure;Confirm Train type in Train data window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)",
                 "Verify the following information;(1)   Verify DMI still displays Train data window until Validate Train data window is displayed.(2)  Verify the close button is always enable. (3)   Verify the <Yes> button is always enable");
             /*
             Test Step 8
@@ -225,12 +186,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Close’ button is enabled." + Environment.NewLine +
                                 @"2. The <Yes> key is enabled");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Validate Train Data window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Repeat action step 2 with Validate Train Data window",
                 "Verify the following information;DMI entry on state of 'ST05'.(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button are disable.(3)  The disabled Close button NA12 is display in area G.(4)  The Input Field is deselected.10 seconds laterDMI in the exit state of ‘ST05’.(5)  The hourglass symbol ST05 is removed.(6)  The state of all buttons is restored according to the last status before script is sent.(7)  The enabled Close button NA11 is display in area G.(8)  The input field is in the ‘Selected’ state");
             /*
             Test Step 9
@@ -240,13 +196,8 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_2_a(true);
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Press ‘close’ button (Validate Train Data window).Press ‘Train Data’ button.Press ‘Enter data’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (Validate Train Data window).Press ‘Train Data’ button.Press ‘Enter data’ button",
                 "Verify the following information;(1)   Verify DMI still displays fixed TDE in Train data window until the window is changed to flexible TDE in Train data window.(2)   Verify the close button is always enable");
             /*
             Test Step 10
@@ -279,12 +230,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with flexible Train Data window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++, "Repeat action step 2 with flexible Train Data window",
                 "Verify the following information;DMI in the entry state of ‘ST05’.(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button are disable. (except ‘Navigator’ button)(3)   The disabled Close button NA12 is display in area G.(4)   All Input Field are deselected.10 seconds laterDMI in the exit state of ‘ST05’.(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is stated as follows:The first input field is in the ‘Selected’ state.The all others are in the ‘Not selected’ state");
             /*
             Test Step 11
@@ -298,13 +244,8 @@ namespace Testcase.DMITestCases
                                 "1. The first data input field is ‘Selected’." + Environment.NewLine +
                                 "2. All other data input fields are ‘Not Selected’.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Confirm all value in Train data window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Perform the following procedure;Confirm all value in Train data window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)",
                 "Verify the following information;(1)   Verify DMI still displays Train data window until Validate Train data window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable");
             /*
             Test Step 12
@@ -334,12 +275,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. ‘Close’ button is enabled." + Environment.NewLine +
                                 @"2. <Yes> button is enabled.");
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Validate Train Data window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 9");
+            MakeTestStepHeader(13, UniqueIdentifier++, "Repeat action step 2 with Validate Train Data window",
+                "See the expectation in step 9");
             /*
             Test Step 13
             Action: Repeat action step 2 with Validate Train Data window
@@ -349,13 +286,8 @@ namespace Testcase.DMITestCases
             XML_10_2_2_a(true);
 
             // Steps 14 and 15 missing in spec
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘Level’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘Level’ button",
                 "Verify the following information;(1)   Verify DMI still displays Main window until Level window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 16
@@ -386,12 +318,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. ‘Close’ button is still enabled.");
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Level window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 4");
+            MakeTestStepHeader(17, UniqueIdentifier++, "Repeat action step 2 with Level window",
+                "See the expectation in step 4");
             /*
             Test Step 17
             Action: Repeat action step 2 with Level window
@@ -400,13 +328,8 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_2_a(true);
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 10_2_2_c.xml to disable and enable button via EVC-20 withPacket 1 (disable all button)MMI_Q_CLOSE_ENABLE (#0) = 0Packet 2 (enable all button)MMI_Q_CLOSE_ENABLE (#0) = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Use the test script file 10_2_2_c.xml to disable and enable button via EVC-20 withPacket 1 (disable all button)MMI_Q_CLOSE_ENABLE (#0) = 0Packet 2 (enable all button)MMI_Q_CLOSE_ENABLE (#0) = 1",
                 "Verify the following information;(1)   ‘close’ buttons in Level window is disable.10 seconds later(2)   ‘close’ buttons in Level window is enable");
             /*
             Test Step 18
@@ -416,12 +339,7 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_2_b_and_c(msgType.typec);
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘L inh’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(19, UniqueIdentifier++, "Press ‘L inh’ button",
                 "Verify the following information;(1)   Verify DMI still displays Level window until Level inhibition window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 19
@@ -437,12 +355,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. ‘Close’ button is enabled.");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Level inhibition window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 4");
+            MakeTestStepHeader(20, UniqueIdentifier++, "Repeat action step 2 with Level inhibition window",
+                "See the expectation in step 4");
             /*
             Test Step 20
             Action: Repeat action step 2 with Level inhibition window
@@ -451,13 +365,8 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_2_a(true);
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Press ‘close’ button (Level window).Press ‘Train running number’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(21, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (Level window).Press ‘Train running number’ button",
                 "Verify the following information;(1)   Verify DMI still displays Main window until Train running number window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 21 Action: Perform the following procedure;Press ‘close’ button (Level window).Press ‘Train running number’ button
@@ -478,12 +387,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. ‘Close’ button is enabled.");
 
-            TraceHeader("Test Step 22");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Train running number window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 4");
+            MakeTestStepHeader(22, UniqueIdentifier++, "Repeat action step 2 with Train running number window",
+                "See the expectation in step 4");
             /*
             Test Step 22
             Action: Repeat action step 2 with Train running number window
@@ -492,11 +397,8 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_2_a(true);
 
-            TraceHeader("Test Step 23");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(23, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 23
             Action: End of test

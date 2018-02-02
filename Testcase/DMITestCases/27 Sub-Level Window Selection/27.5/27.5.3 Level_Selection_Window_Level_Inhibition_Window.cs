@@ -47,12 +47,7 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter Driver ID and perform brake test");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Enter Driver ID and perform brake test",
                 "Verify the following information,The state of ‘L inh’ button in sub-area G13 is disabled.  Use the log file to confirm that DMI received packet information EVC-20 with every index of variable MMI_M_INHIBIT_ENABLE = 0 (not allowed for inhibiting)");
             /*
             Test Step 1
@@ -83,13 +78,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘L inh’ button disabled in sub-area G13.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure, Power off system.Use the ATP config editor to set the value of parameters refer to note belowPower on systemEnter Driver ID and perform brake test.Note:  InhibitEnable_1 = 1InhibitEnable_2 = 2InhibitEnable_3 = 3InhibitEnable_4 = 4");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure, Power off system.Use the ATP config editor to set the value of parameters refer to note belowPower on systemEnter Driver ID and perform brake test.Note:  InhibitEnable_1 = 1InhibitEnable_2 = 2InhibitEnable_3 = 3InhibitEnable_4 = 4",
                 "DMI displays Level window.Verify the following information,The state of ‘L inh’ button in sub-area G13 is enabled.  The text colour of each button is grey.Use the log file to confirm that DMI received packet information EVC-20 with the following variables,Level 1MMI_Q_LEVEL_NTC_ID[0] = 1MMI_M_LEVEL_NTC_ID[0] = 1MMI_M_INHIBIT_ENABLE[0] = 1MMI_M_INHIBITED_LEVEL[0] =0 Level 2MMI_Q_LEVEL_NTC_ID[1] = 1MMI_M_LEVEL_NTC_ID[1] = 2MMI_M_INHIBIT_ENABLE[1] = 1MMI_M_INHIBITED_LEVEL[1] =0 Level 3MMI_Q_LEVEL_NTC_ID[2] = 1MMI_M_LEVEL_NTC_ID[2] = 3MMI_M_INHIBIT_ENABLE[2] = 1MMI_M_INHIBITED_LEVEL[2] =0 Level 0MMI_Q_LEVEL_NTC_ID[3] = 1MMI_M_LEVEL_NTC_ID[3] = 0MMI_M_INHIBIT_ENABLE[3] = 1MMI_M_INHIBITED_LEVEL[3] =0 Note: The first index of parameter is the topmost position in packet EVC-20");
             /*
             Test Step 2
@@ -144,12 +134,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘L inh’ button is displayed enabled in sub-area G13." + Environment.NewLine +
                                 "3. Each button in the keypad has grey text");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘L inh’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The ‘Inhibit/Enable’ button is shown as pressed state");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press and hold ‘L inh’ button",
+                "The ‘Inhibit/Enable’ button is shown as pressed state");
             /*
             Test Step 3
             Action: Press and hold ‘L inh’ button
@@ -161,12 +147,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.  The ‘Inhibit/Enable’ button is displayed pressed");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out ‘L inh’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The ‘Inhibit/Enable’ button becomes the ‘Enabled’ state without a sound");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Slide out ‘L inh’ button",
+                "The ‘Inhibit/Enable’ button becomes the ‘Enabled’ state without a sound");
             /*
             Test Step 4
             Action: Slide out ‘L inh’ button
@@ -179,12 +161,8 @@ namespace Testcase.DMITestCases
                                 "1. ‘Inhibit/Enable’ button is displayed enabled." + Environment.NewLine +
                                 @"2. No sound is played.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into ‘L inh’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The ‘Inhibit/Enable’ button is shown as pressed state and no sound ‘Click’ is played");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Slide back into ‘L inh’ button",
+                "The ‘Inhibit/Enable’ button is shown as pressed state and no sound ‘Click’ is played");
             /*
             Test Step 5
             Action: Slide back into ‘L inh’ button
@@ -197,12 +175,7 @@ namespace Testcase.DMITestCases
                                 "1. ‘Inhibit/Enable’ button is displayed pressed." + Environment.NewLine +
                                 @"2. No sound is played.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘L inh’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Release ‘L inh’ button",
                 "Verify the following information,DMI displays Level inhibition window.LayersThe level of layers in each area of window as follows,Layer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text ‘Level inhibition’.Verify that the Level window is displayed in main area D, F and G as half-grid array.A data entry window is containing only one input field covers the Main area D, F and GThe following objects are displayed in Level window.Close buttonWindow TitleInput FieldThe 4buttons are displayed in Level Inhibition window,Level 0Level 1Level 2Level 3The ‘Close’ button of Level inhibition window is enabled.Input fieldThe input field is located in main area D and F.For a single input field, the window title is clearly explaining the topic of the input field. The Level inhibition window is contained a single input field with only the data part.The data area of the input field remains empty.KeyboardThe colour of text label in each button is grey");
             /*
             Test Step 6
@@ -236,12 +209,7 @@ namespace Testcase.DMITestCases
                                 "13. The data input field is blank." + Environment.NewLine +
                                 "11. The text of the buttons is grey.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘Level2’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press and hold ‘Level2’ button",
                 "Verify the following information,(1)    The value of input field is replaced by the pressed button.(2)    Sound ‘Click’ is played once.(3)    The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.(4)    The Input Field displays the level associated to the data key according to the pressings in state ‘Pressed’.(5)    An input field is used to enter the level inhibition.(6)    The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.(7)    The data value of the input field is aligned to the left of the data area");
             /*
             Test Step 7
@@ -261,13 +229,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "6. The input field value is left-aligned in its area.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Release the pressed button.Note: Please verify the state of all Level buttons refer to action step No.7-8");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Release the pressed button.Note: Please verify the state of all Level buttons refer to action step No.7-8",
                 "Verify the following information,(1)    The state of pressed button is changed to ‘Enabled’ state");
             /*
             Test Step 8
@@ -335,12 +298,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The  ‘Level 0’ button is displayed enabled.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select and confirm ‘Level 2’.Then, acknowledge the change of inhibit level");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Select and confirm ‘Level 2’.Then, acknowledge the change of inhibit level",
                 "Verify the following information,DMI closes the Level Inhibition window and displays Level window.The text colour of ‘Level 2’ button is changed to orange.Use the log file to confirm that DMI send out EVC-121 with the following variables,Level 1MMI_Q_LEVEL_NTC_ID[0] = 1MMI_M_LEVEL_NTC_ID[0] = 1MMI_M_INHIBITED_LEVEL[0] = 0MMI_M_LEVEL_FLAG[0] = 1Level 2MMI_Q_LEVEL_NTC_ID[1] = 1MMI_M_LEVEL_NTC_ID[1] = 2MMI_M_INHIBITED_LEVEL[1] = 1MMI_M_LEVEL_FLAG[1] = 0Level 3MMI_Q_LEVEL_NTC_ID[2] = 1MMI_M_LEVEL_NTC_ID[2] = 3MMI_M_INHIBITED_LEVEL[2] = 0MMI_M_LEVEL_FLAG[2] = 1Level 0MMI_Q_LEVEL_NTC_ID[3] = 1MMI_M_LEVEL_NTC_ID[3] = 0MMI_M_INHIBITED_LEVEL[3] = 0MMI_M_LEVEL_FLAG[3] = 1Note: The first index of parameter is the topmost position in packet EVC-121.Use the log file to confirm that DMI received packet EVC-20 which all index of variable MMI_M_INHIBITED_LEVEL are same as packet EVC-121 from expected result No.3");
             /*
             Test Step 9
@@ -395,12 +354,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Level 2’ button is displayed with orange text");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Level 2’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Level 2’ button",
                 "Verify that the state of ‘Level 2’ button is not changed and the value of an input field is not changed");
             /*
             Test Step 10
@@ -414,12 +368,7 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Level2’ button is still displayed with orange text" + Environment.NewLine +
                                 "2. The value of the data input field is unchanged.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘L inh’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++, "Press ‘L inh’ button",
                 "DMI displays Level inhibition window.Verify that the text colour of ‘Level 2’ button is changed to yellow.The value of an input field is ‘Level 2’ The text colour of an input field is black");
             /*
             Test Step 11
@@ -436,13 +385,8 @@ namespace Testcase.DMITestCases
                                 "3. The data input field value is ‘Level 2’." + Environment.NewLine +
                                 "1. The data input field text is black.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform action step 9-11 for each button on keypad of Level inhibition window.Note: This procedure is include the previous ‘Leve’ in step 9 -11 which already executed");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Perform action step 9-11 for each button on keypad of Level inhibition window.Note: This procedure is include the previous ‘Leve’ in step 9 -11 which already executed",
                 "Verify the following information,(1)    The text buttons in Level inhibition window are changed to yellow colour.(2)    The text buttons in Level window are changed to orange colour. DMI also updates and changes information according to the driver’s action");
             /*
             Test Step 12
@@ -644,12 +588,8 @@ namespace Testcase.DMITestCases
                                 "3. The data input field value is ‘Level 0’." + Environment.NewLine +
                                 "1. The data input field text is black.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 22_5_3_a.xml to send EVC-20 with,MMI_N_LEVELS = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Use the test script file 22_5_3_a.xml to send EVC-20 with,MMI_N_LEVELS = 0",
                 "Verify the following information,DMI close the Level inhibition window and displays Level window instead.Use the log file to confirm that there is no packet information (i.e. EVC-101, EVC-121) send out from DMI");
             /*
             Test Step 13
@@ -678,12 +618,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Inhibition level window and opens the Level window.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘L inh’ button.Then, select ‘Level 3’ button without confirmation");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Press ‘L inh’ button.Then, select ‘Level 3’ button without confirmation",
                 "DMI displays Level inhibition window with the value of input field is changed refer to driver’s selection");
             /*
             Test Step 14
@@ -697,12 +633,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Level inhibition window." + Environment.NewLine +
                                 "2. The data input field value is ‘Level 3’.");
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The ‘Close’ button is shown as pressed state");
+            MakeTestStepHeader(15, UniqueIdentifier++, "Press and hold ‘Close’ button",
+                "The ‘Close’ button is shown as pressed state");
             /*
             Test Step 15
             Action: Press and hold ‘Close’ button
@@ -715,12 +647,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Close’ button is displayed pressed.");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The ‘Close’ button becomes the ‘Enabled’ state without a sound");
+            MakeTestStepHeader(16, UniqueIdentifier++, "Slide out ‘Close’ button",
+                "The ‘Close’ button becomes the ‘Enabled’ state without a sound");
             /*
             Test Step 16
             Action: Slide out ‘Close’ button
@@ -734,12 +662,8 @@ namespace Testcase.DMITestCases
                                 @"2. No sound is played.");
 
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The ‘Close’ button is shown as pressed state and no sound ‘Click’ is played");
+            MakeTestStepHeader(17, UniqueIdentifier++, "Slide back into ‘Close’ button",
+                "The ‘Close’ button is shown as pressed state and no sound ‘Click’ is played");
             /*
             Test Step 17
             Action: Slide back into ‘Close’ button
@@ -752,12 +676,8 @@ namespace Testcase.DMITestCases
                                 "1. ‘Close’ button is displayed pressed." + Environment.NewLine +
                                 @"2. No sound is played.");
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI close the Level inhibition window and displays Level window instead");
+            MakeTestStepHeader(18, UniqueIdentifier++, "Release ‘Close’ button",
+                "DMI close the Level inhibition window and displays Level window instead");
             /*
             Test Step 18
             Action: Release ‘Close’ button
@@ -785,12 +705,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level inhibition window and displays the Level window.");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘L inh’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(19, UniqueIdentifier++, "Press ‘L inh’ button",
                 "Verify the following information,(1)    DMI displays the Level inhibition window with the value of input field is different from driver’s selection on step 14");
             /*
             Test Step 19
@@ -804,13 +719,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level inhibition window with the data input field with value ‘Level 0’.");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_5_3_b.xml to send EVC-20 with,MMI_N_LEVELS = 2MMI_Q_LEVEL_NTC_ID[0] = 1MMI_M_CURRENT_LEVEL[0]  = 0MMI_M_LEVEL_FLAG[0] = 1MMI_M_INHIBITED_LEVEL[0] = 0MMI_M_INHIBIT_ENABLE[0] = 1MMI_M_LEVEL_NTC_ID[0] = 0MMI_Q_LEVEL_NTC_ID[1] = 1MMI_M_CURRENT_LEVEL[1]  = 0MMI_M_LEVEL_FLAG[1] = 1MMI_M_INHIBITED_LEVEL[1] = 1MMI_M_INHIBIT_ENABLE[1] = 1MMI_M_LEVEL_NTC_ID[1] = 2");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(20, UniqueIdentifier++,
+                "Use the test script file 22_5_3_b.xml to send EVC-20 with,MMI_N_LEVELS = 2MMI_Q_LEVEL_NTC_ID[0] = 1MMI_M_CURRENT_LEVEL[0]  = 0MMI_M_LEVEL_FLAG[0] = 1MMI_M_INHIBITED_LEVEL[0] = 0MMI_M_INHIBIT_ENABLE[0] = 1MMI_M_LEVEL_NTC_ID[0] = 0MMI_Q_LEVEL_NTC_ID[1] = 1MMI_M_CURRENT_LEVEL[1]  = 0MMI_M_LEVEL_FLAG[1] = 1MMI_M_INHIBITED_LEVEL[1] = 1MMI_M_INHIBIT_ENABLE[1] = 1MMI_M_LEVEL_NTC_ID[1] = 2",
                 "Verify the following information,DMI displays Level window.The state of ‘L inh’ button in sub-area G13 is disabled.  Use the log file to confirm that DMI received packet information EVC-20 with every index of variable MMI_M_CURRENT_LEVEL = 0.Use the log file to confirm that there is no packet information (i.e. EVC-101, EVC-121) send out from DMI.The value of an input field is blank refer to received packet EVC-20");
             /*
             Test Step 20
@@ -825,11 +735,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘L inh’ button in area G3 is displayed disabled." + Environment.NewLine +
                                 "3. The data input field is blank.");
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(21, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 21
             Action: End of test

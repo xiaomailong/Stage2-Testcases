@@ -50,12 +50,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the ‘Main’ window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Close the ‘Main’ window",
                 "Verify the following information,Speed Dial is displayed in sub-area B0.Speed Dial is shaped with circular border and indicated speed scaling from 0km/h to 400km/h.The speed indicator with its numbers and lines is coloured white. Speed Dial is composed of short and long lines speed indicator drawn radially from limit of sub-area B0 towards the center of sub-area B0 at every 10km/h.No speed unit is beneath the speed pointer’s hub.The scaling numbers are positioned at the end of the related indicator line towards the centre of B0");
             /*
             Test Step 1
@@ -74,13 +69,8 @@ namespace Testcase.DMITestCases
                                 "5. No speed unit is displayed beneath the speed pointer’s hub." + Environment.NewLine +
                                 "6. The scaling numbers are positioned at the end of the related indicator line towards the centre of B0.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Power off the test environmentRe-configure the speed dial properties for 250 km/h as specified below.Start the test environment.Start the mission until Level 1 is confirmedClose the ‘Main’ windowConfiguration valueSPEED_UNIT_TYPE = 0SPEED_UNIT_DISPLAY= 0SPEED_DIAL_V_MAX = 250SPEED_DIAL_V_TRANS = 100SPEED_DIAL_V_NUMBER1 = 20SPEED_DIAL_V_NUMBER2 = 20SPEED_DIAL_N_SHORT_LINES1 = 1SPEED_DIAL_N_SHORT_LINES2 = 1SPEED_DIAL_N_LONG_LINES1 = 0SPEED_DIAL_N_LONG_LINES2 =0SPEED_DIAL_ANGLE_V_0 = -144SPEED_DIAL_ANGLE_V_TRANS = -29SPEED_DIAL_ANGLE_V_MAX = 144");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Power off the test environmentRe-configure the speed dial properties for 250 km/h as specified below.Start the test environment.Start the mission until Level 1 is confirmedClose the ‘Main’ windowConfiguration valueSPEED_UNIT_TYPE = 0SPEED_UNIT_DISPLAY= 0SPEED_DIAL_V_MAX = 250SPEED_DIAL_V_TRANS = 100SPEED_DIAL_V_NUMBER1 = 20SPEED_DIAL_V_NUMBER2 = 20SPEED_DIAL_N_SHORT_LINES1 = 1SPEED_DIAL_N_SHORT_LINES2 = 1SPEED_DIAL_N_LONG_LINES1 = 0SPEED_DIAL_N_LONG_LINES2 =0SPEED_DIAL_ANGLE_V_0 = -144SPEED_DIAL_ANGLE_V_TRANS = -29SPEED_DIAL_ANGLE_V_MAX = 144",
                 "Verify the following information,Speed Dial is displayed in sub-area B0.Speed Dial is shaped with circular border and indicated speed scaling from 0km/h to 250km/h.The speed indicator with its numbers and lines is coloured white. Speed Dial is composed of short and long lines speed indicator drawn radially from limit of sub-area B0 towards the center of sub-area B0 at every 10km/h.No speed unit is beneath the speed pointer’s hub.The scaling numbers are positioned at the end of the related indicator line towards the centre of B0");
             /*
             Test Step 2
@@ -110,13 +100,8 @@ namespace Testcase.DMITestCases
                                 "5. No speed unit is displayed beneath the speed pointer’s hub." + Environment.NewLine +
                                 "6. The scaling numbers are positioned at the end of the related indicator line towards the centre of B0.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Power off the test environmentRe-configure the speed dial properties for 180 km/h as specified below.Start the test environment.Start the mission until Level 1 is confirmedClose the ‘Main’ windowConfiguration valueSPEED_UNIT_TYPE = 0SPEED_UNIT_DISPLAY= 0SPEED_DIAL_V_MAX = 180SPEED_DIAL_V_TRANS = 0SPEED_DIAL_V_NUMBER1 = 20SPEED_DIAL_V_NUMBER2 = 0SPEED_DIAL_N_SHORT_LINES1 = 1SPEED_DIAL_N_SHORT_LINES2 = 0SPEED_DIAL_N_LONG_LINES1 = 0SPEED_DIAL_N_LONG_LINES2 =0SPEED_DIAL_ANGLE_V_0 = -144SPEED_DIAL_ANGLE_V_TRANS = 0SPEED_DIAL_ANGLE_V_MAX = 144");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Perform the following procedure,Power off the test environmentRe-configure the speed dial properties for 180 km/h as specified below.Start the test environment.Start the mission until Level 1 is confirmedClose the ‘Main’ windowConfiguration valueSPEED_UNIT_TYPE = 0SPEED_UNIT_DISPLAY= 0SPEED_DIAL_V_MAX = 180SPEED_DIAL_V_TRANS = 0SPEED_DIAL_V_NUMBER1 = 20SPEED_DIAL_V_NUMBER2 = 0SPEED_DIAL_N_SHORT_LINES1 = 1SPEED_DIAL_N_SHORT_LINES2 = 0SPEED_DIAL_N_LONG_LINES1 = 0SPEED_DIAL_N_LONG_LINES2 =0SPEED_DIAL_ANGLE_V_0 = -144SPEED_DIAL_ANGLE_V_TRANS = 0SPEED_DIAL_ANGLE_V_MAX = 144",
                 "Verify the following information,Speed Dial is display in sub-area B0.Speed Dial is shaped with circular border and indicated speed scaling from 0km/h to 180km/h.The speed indicator with its numbers and lines is coloured white. Speed Dial is composed of short and long lines speed indicator drawn radially from limit of sub-area B0 towards the center of sub-area B0 at every 10km/h.No speed unit is beneath the speed pointer’s hub.The scaling numbers are positioned at the end of the related indicator line towards the centre of B0");
             /*
             Test Step 3
@@ -146,13 +131,8 @@ namespace Testcase.DMITestCases
                                 "5. No speed unit is displayed beneath the speed pointer’s hub." + Environment.NewLine +
                                 "6. The scaling numbers are positioned at the end of the related indicator line towards the centre of B0.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Power off the test environmentRe-configure the speed dial properties for 140 km/h without speed unit as specified below.Start the test environment.Start the mission until Level 1 is confirmedClose the ‘Main’ windowConfiguration valueSPEED_UNIT_TYPE = 0SPEED_UNIT_DISPLAY= 0SPEED_DIAL_V_MAX = 140SPEED_DIAL_V_TRANS = 0SPEED_DIAL_V_NUMBER1 = 20SPEED_DIAL_V_NUMBER2 = 0SPEED_DIAL_N_SHORT_LINES1 = 1SPEED_DIAL_N_SHORT_LINES2 = 0SPEED_DIAL_N_LONG_LINES1 = 0SPEED_DIAL_N_LONG_LINES2 =0SPEED_DIAL_ANGLE_V_0 = -144SPEED_DIAL_ANGLE_V_TRANS = 0SPEED_DIAL_ANGLE_V_MAX = 144");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Power off the test environmentRe-configure the speed dial properties for 140 km/h without speed unit as specified below.Start the test environment.Start the mission until Level 1 is confirmedClose the ‘Main’ windowConfiguration valueSPEED_UNIT_TYPE = 0SPEED_UNIT_DISPLAY= 0SPEED_DIAL_V_MAX = 140SPEED_DIAL_V_TRANS = 0SPEED_DIAL_V_NUMBER1 = 20SPEED_DIAL_V_NUMBER2 = 0SPEED_DIAL_N_SHORT_LINES1 = 1SPEED_DIAL_N_SHORT_LINES2 = 0SPEED_DIAL_N_LONG_LINES1 = 0SPEED_DIAL_N_LONG_LINES2 =0SPEED_DIAL_ANGLE_V_0 = -144SPEED_DIAL_ANGLE_V_TRANS = 0SPEED_DIAL_ANGLE_V_MAX = 144",
                 "Verify the following information,Speed Dial is display in sub-area B0.Speed Dial is shaped with circular border and and indicated speed scaling from 0km/h to 140km/h.The speed indicator with its numbers and lines is coloured white. Speed Dial is composed of short and long lines speed indicator drawn radially from limit of sub-area B0 towards the center of sub-area B0 at every 10km/h.No speed unit is beneath the speed pointer’s hub.The scaling numbers are positioned at the end of the related indicator line towards the centre of B0");
             /*
             Test Step 4
@@ -182,13 +162,8 @@ namespace Testcase.DMITestCases
                                 "5. No speed unit is displayed beneath the speed pointer’s hub." + Environment.NewLine +
                                 "6. The scaling numbers are positioned at the end of the related indicator line towards the centre of B0.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Power off the test environmentRe-configure the speed dial properties for 140 km/h with speed unit as specified below.Start the test environment.Start the mission until Level 1 is confirmedClose the ‘Main’ windowConfiguration valueSPEED_UNIT_TYPE = 0SPEED_UNIT_DISPLAY= 1SPEED_DIAL_V_MAX = 140SPEED_DIAL_V_TRANS = 0SPEED_DIAL_V_NUMBER1 = 20SPEED_DIAL_V_NUMBER2 = 0SPEED_DIAL_N_SHORT_LINES1 = 1SPEED_DIAL_N_SHORT_LINES2 = 0SPEED_DIAL_N_LONG_LINES1 = 0SPEED_DIAL_N_LONG_LINES2 =0SPEED_DIAL_ANGLE_V_0 = -144SPEED_DIAL_ANGLE_V_TRANS = 0SPEED_DIAL_ANGLE_V_MAX = 144");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform the following procedure,Power off the test environmentRe-configure the speed dial properties for 140 km/h with speed unit as specified below.Start the test environment.Start the mission until Level 1 is confirmedClose the ‘Main’ windowConfiguration valueSPEED_UNIT_TYPE = 0SPEED_UNIT_DISPLAY= 1SPEED_DIAL_V_MAX = 140SPEED_DIAL_V_TRANS = 0SPEED_DIAL_V_NUMBER1 = 20SPEED_DIAL_V_NUMBER2 = 0SPEED_DIAL_N_SHORT_LINES1 = 1SPEED_DIAL_N_SHORT_LINES2 = 0SPEED_DIAL_N_LONG_LINES1 = 0SPEED_DIAL_N_LONG_LINES2 =0SPEED_DIAL_ANGLE_V_0 = -144SPEED_DIAL_ANGLE_V_TRANS = 0SPEED_DIAL_ANGLE_V_MAX = 144",
                 "Verify the following information,Speed Dial is display in sub-area B0.Speed Dial is shaped with circular border and and indicated speed scaling from 0km/h to 140km/h.The speed indicator with itsbers and lines is coloured white. Speed Dial is composed of short and long lines speed indicator drawn radially from limit of sub-area B0 towards the center of sub-area B0 at every 10km/h.The speed unit is displayed centered beneath the speed pointer’s hub.The scaling numbers are positioned at the end of the related indicator line towards the centre of B0");
             /*
             Test Step 5
@@ -219,11 +194,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "6. The scaling numbers are positioned at the end of the related indicator line towards the centre of B0.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 6
             Action: End of test

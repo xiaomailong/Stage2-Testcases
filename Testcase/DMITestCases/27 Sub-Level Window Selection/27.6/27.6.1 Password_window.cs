@@ -21,7 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_6_1_Password_window : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -30,12 +29,7 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Maintenance’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Maintenance’ button",
                 "Verify the following points,LayersThe layers of window on half-grid array is displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text “Maintenance password”.Verify that the Maintenance password window is displayed in main area D, F and G as half-grid array.A data entry window is containing only one input field covers the Main area D, F and GThe following objects are displayed in Maintenance password window. Enabled Close button (NA11)Window TitleInput FieldInput fieldThe input field is located in main area D and F.For a single input field, the window title is clearly explaining the topic of the input field. The Maintenance password window is displayed as a single input field with only the data part.KeyboardThe keyboard associated to the Maintenance password window is displayed as numeric keyboard.The keyboard is presented below the area of input field.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.DMI displays Maintenance password window.General property of windowThe Maintenance password window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 1
@@ -82,13 +76,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "13. The Default window is not displayed covering the current window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press and hold every buttons on the dedicate keyboard respectively.Note: This step is for testing ‘0’ - ‘9’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Press and hold every buttons on the dedicate keyboard respectively.Note: This step is for testing ‘0’ - ‘9’ button",
                 "Verify the following information,On next activation of a data key of the associated keyboard, the character or value corresponding to this data key shall be added into the Data Area.Sound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The Input Field displays the number associated to the data key according to the pressings in state ‘Pressed’.An input field is used to enter the Maintenance password.The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.The data value of the input field is aligned to the left of the data area.The flashing horizontal-line cursor is always in the next position of the echoed entered-data key in the ‘Selected IF/value of pressed key(s)’ data input field when selected the next character it will be inserted cursor position");
             /*
             Test Step 2
@@ -126,12 +115,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press the ‘Delete’ button to remove the number from the data input field");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Released the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Released the pressed button",
                 "Verify the following information, The character is stop adding and the state of button is changed to ‘Enabled’");
             /*
             Test Step 3
@@ -145,12 +129,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The pressed button is displayed enabled.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘Del’ button.Note: Stopwatch is required");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press and hold ‘Del’ button.Note: Stopwatch is required",
                 "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 4
@@ -174,12 +153,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "6. After the button has been pressed for more than 1.5s, characters are removed from the end of the data input field repeatedly.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Del’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, The character is stop removing");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Release ‘Del’ button",
+                "Verify the following information, The character is stop removing");
             /*
             Test Step 5
             Action: Release ‘Del’ button
@@ -192,12 +167,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. No more characters are removed from the data input field");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field");
-            TraceReport("Expected Result");
-            TraceInfo("No character is displayed on the Input Field");
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field",
+                "No character is displayed on the Input Field");
             /*
             Test Step 6
             Action: Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field
@@ -207,12 +179,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press ‘Del’ button on the numeric keyboard until the data input field is blank");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("The 5 characters are added on an input field as one group. (e.g. ‘12345')");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "The 5 characters are added on an input field as one group. (e.g. ‘12345')",
                 "Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘*****').Single input field is show on asterisk (*) symbol for each entered number");
             /*
             Test Step 7
@@ -225,12 +193,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed with the value ‘*****’.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the 6th character");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Continue to enter the 6th character",
                 "Verify the following information,The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. **** **)");
             /*
             Test Step 8
@@ -243,13 +206,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed with the value ‘**** **’ (with a space between the fourth and fifth ‘*’.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Delete the old value and enter the new value more than 8 characters which different from configured value in tag PASS_CODE_MTN");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Delete the old value and enter the new value more than 8 characters which different from configured value in tag PASS_CODE_MTN",
                 "Verify the following information,The data value is displayed only 8 characters (e.g. **** ****)");
             /*
             Test Step 9
@@ -263,12 +221,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed with the value ‘**** ****’.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press and hold an input field",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 10
@@ -282,12 +235,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++, "Slide out an input field",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound");
             /*
             Test Step 11
@@ -301,12 +249,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the data input field enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++, "Slide back into an input field",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 12
@@ -322,12 +265,7 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played.");
 
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++, "Release the pressed area",
                 "Verify the followings information,Data entry process is terminated, DMI displays the Settings window");
             /*
             Test Step 13
@@ -340,13 +278,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays closes the data input window and displays the Settings window.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the folowing procedure,Press ‘Maintenance’ button.Enter the password refer to configured value in PASS_CODE_MTNConfirm an entered data");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays the Maintenance window");
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Perform the folowing procedure,Press ‘Maintenance’ button.Enter the password refer to configured value in PASS_CODE_MTNConfirm an entered data",
+                "DMI displays the Maintenance window");
             /*
             Test Step 14
             Action: Perform the folowing procedure,Press ‘Maintenance’ button.Enter the password refer to configured value in PASS_CODE_MTNConfirm an entered data
@@ -359,13 +293,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Maintenance window.");
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following step to re-configure the Maintenance passwordPower off systemRe-configure the Maintenance password ‘PASS_CODE_MTN’ to ‘4444’. Perform the following test step to verify configuration result,Power On system.Activate Cabin A.Press ‘Settings icon’ button.Press ‘Maintenance’ button.Enter password as 4444.Confirm entered data by pressing input field");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays the Maintenance window");
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Perform the following step to re-configure the Maintenance passwordPower off systemRe-configure the Maintenance password ‘PASS_CODE_MTN’ to ‘4444’. Perform the following test step to verify configuration result,Power On system.Activate Cabin A.Press ‘Settings icon’ button.Press ‘Maintenance’ button.Enter password as 4444.Confirm entered data by pressing input field",
+                "DMI displays the Maintenance window");
             /*
             Test Step 15
             Action: Perform the following step to re-configure the Maintenance passwordPower off systemRe-configure the Maintenance password ‘PASS_CODE_MTN’ to ‘4444’. Perform the following test step to verify configuration result,Power On system.Activate Cabin A.Press ‘Settings icon’ button.Press ‘Maintenance’ button.Enter password as 4444.Confirm entered data by pressing input field
@@ -385,13 +315,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Maintenance window.");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following step to re-configure the Maintenance passwordPower off systemRe-configure the Maintenance password ‘PASS_CODE_MTN’ to ‘333’. Perform the following test step to verify configuration result,Power On system.Activate Cabin A.Press ‘Settings icon’ button.Press ‘Maintenance’ button.Enter password as 333.Confirm entered data by pressing input field");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays the Settings window");
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Perform the following step to re-configure the Maintenance passwordPower off systemRe-configure the Maintenance password ‘PASS_CODE_MTN’ to ‘333’. Perform the following test step to verify configuration result,Power On system.Activate Cabin A.Press ‘Settings icon’ button.Press ‘Maintenance’ button.Enter password as 333.Confirm entered data by pressing input field",
+                "DMI displays the Settings window");
             /*
             Test Step 16
             Action: Perform the following step to re-configure the Maintenance passwordPower off systemRe-configure the Maintenance password ‘PASS_CODE_MTN’ to ‘333’. Perform the following test step to verify configuration result,Power On system.Activate Cabin A.Press ‘Settings icon’ button.Press ‘Maintenance’ button.Enter password as 333.Confirm entered data by pressing input field
@@ -410,13 +336,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following step to re-configure the Maintenance passwordPower off systemRe-configure the Maintenance password ‘PASS_CODE_MTN’ to ‘999999999’. Perform the following test step to verify configuration result,Power On system.Activate Cabin A.Press ‘Settings icon’ button.Press ‘Maintenance’ button.Enter password as 999999999.Confirm entered data by pressing input field");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays the Settings window");
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Perform the following step to re-configure the Maintenance passwordPower off systemRe-configure the Maintenance password ‘PASS_CODE_MTN’ to ‘999999999’. Perform the following test step to verify configuration result,Power On system.Activate Cabin A.Press ‘Settings icon’ button.Press ‘Maintenance’ button.Enter password as 999999999.Confirm entered data by pressing input field",
+                "DMI displays the Settings window");
             /*
             Test Step 17
             Action: Perform the following step to re-configure the Maintenance passwordPower off systemRe-configure the Maintenance password ‘PASS_CODE_MTN’ to ‘999999999’. Perform the following test step to verify configuration result,Power On system.Activate Cabin A.Press ‘Settings icon’ button.Press ‘Maintenance’ button.Enter password as 999999999.Confirm entered data by pressing input field
@@ -436,12 +358,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the ‘Maintenance’ button.Then, press the ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following informaiton,(1) DMI displays the Settings window");
+            MakeTestStepHeader(18, UniqueIdentifier++, "Press the ‘Maintenance’ button.Then, press the ‘Close’ button",
+                "Verify the following informaiton,(1) DMI displays the Settings window");
             /*
             Test Step 18
             Action: Press the ‘Maintenance’ button.Then, press the ‘Close’ button
@@ -453,11 +371,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(19, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 19
             Action: End of test

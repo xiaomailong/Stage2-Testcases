@@ -51,12 +51,7 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires a DMI configuration change; See Precondition requirements. " +
                       "If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Data view’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Data view’ button",
                 "Verify the following information,(1)   The label part of Data View item No.3 is changed to ‘For Test Data View truncated by long text’.  The text label which longer than the maximum width of label part is not display (truncated).(2)   The data part of Data View item No.3 is changed to ‘For Test Data View truncated by long text’.The data part is displayed as 2 lines.At the 2nd line, the text which longer than the maximum width of data part is not display (truncated)");
             /*
             Test Step 1
@@ -96,11 +91,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "   with the second line truncated at the maximum width of the data part.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 2
             Action: End of test

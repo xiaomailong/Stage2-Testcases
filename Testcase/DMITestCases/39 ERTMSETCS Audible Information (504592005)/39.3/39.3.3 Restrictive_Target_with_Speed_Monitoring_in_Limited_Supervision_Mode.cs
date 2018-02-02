@@ -24,19 +24,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_36_3_3_Restrictive_Target_with_Speed_Monitoring_in_Limited_Supervision_Mode : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform SoM to Level 1 in SR mode");
-            TraceReport("Expected Result");
-            TraceInfo("ETCS OB enters SR mode in Level 1");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to Level 1 in SR mode",
+                "ETCS OB enters SR mode in Level 1");
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -48,12 +43,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward with constant speed at 20 km/h");
-            TraceReport("Expected Result");
-            TraceInfo("The train can drive forward and all brakes are not applied");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with constant speed at 20 km/h",
+                "The train can drive forward and all brakes are not applied");
             /*
             Test Step 2
             Action: Drive the train forward with constant speed at 20 km/h
@@ -64,12 +55,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1.Then, press an LS mode acknowledgement on sub-area C1");
-            TraceReport("Expected Result");
-            TraceInfo("ETCS OB enters LS mode in Level 1");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Drive the train forward pass BG1.Then, press an LS mode acknowledgement on sub-area C1",
+                "ETCS OB enters LS mode in Level 1");
             /*
             Test Step 3
             Action: Drive the train forward pass BG1.Then, press an LS mode acknowledgement on sub-area C1
@@ -91,12 +79,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in LS mode, Level 1." + Environment.NewLine +
                                 "2. The ‘Sinfo’ sound is played once");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to drive the train forward with constant speed at 20 km/h");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Continue to drive the train forward with constant speed at 20 km/h",
                 "Sound ‘Sinfo’ is not played when train enters PIM, TSM and RSM with verification below:-Log FileUse log file to verify that when train enters PIM, TSM and RSM in LS mode, restrictive target doesn’t exist as follows:-- When train is in LS mode, the DMI receives EVC-7 with variable [MMI_OBU_TR_M_Mode = 12].- When train enters PIM, the DMI receives EVC-1 with variable [MMI_M_WARNING = 2].- When train enters TSM, the DMI receives EVC-1 with variable [MMI_M_WARNING = 11].- When train enters RSM, the DMI receives EVC-1 with variable [MMI_M_WARNING = 3 or 15].- The DMI receives EVC-1 with variable [MMI_V_TARGET = -1] all the time.- The DMI receives EVC-1 with variable [MMI_O_BRAKETARGET = -1] all the time");
             /*
             Test Step 4
@@ -127,12 +111,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Sinfo’ sound is not played (again).");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Stop the train");
-            TraceReport("Expected Result");
-            TraceInfo("The train is at standstill");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Stop the train", "The train is at standstill");
             /*
             Test Step 5
             Action: Stop the train
@@ -143,11 +122,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer displays 0 km/h.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 6
             Action: End of test

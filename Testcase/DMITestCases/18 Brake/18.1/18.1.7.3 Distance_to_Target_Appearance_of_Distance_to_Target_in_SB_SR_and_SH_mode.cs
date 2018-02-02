@@ -44,13 +44,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Enter Driver ID and skip break testSelect and confirm ‘Level 1’");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure,Enter Driver ID and skip break testSelect and confirm ‘Level 1’",
                 "DMI displays in SB mode, level 1.Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-7: OBU_TR_M_MODE = 6 (SB mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)");
             /*
             Test Step 1
@@ -89,13 +84,8 @@ namespace Testcase.DMITestCases
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Perform SoM in SR mode, level1.Press ‘Special’ button.Press ‘SR speed/distance’ button.Enter the value of SR speed = 40 km/h and SR distance = 500mPress ‘Yes’ button.Press on sub-area B to toggle the basic speed hook become visible");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Perform SoM in SR mode, level1.Press ‘Special’ button.Press ‘SR speed/distance’ button.Enter the value of SR speed = 40 km/h and SR distance = 500mPress ‘Yes’ button.Press on sub-area B to toggle the basic speed hook become visible",
                 "DMI displays in SR mode, level 1Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-1: MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM) EVC-7: OBU_TR_M_MODE = 2 (SR mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)");
             /*
             Test Step 2
@@ -146,12 +136,7 @@ namespace Testcase.DMITestCases
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to drive the train forward.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Continue to drive the train forward.Then, stop the train",
                 "Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 2 (Status = NoS, Supervision = PIM)(2)    The distance to target bar is not display in sub-area A3.(3)   The distance to target digital is display in sub-area A2");
             /*
             Test Step 3
@@ -168,12 +153,7 @@ namespace Testcase.DMITestCases
                                 "1. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "2. The digital distance to target is not displayed in sub-area A2.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to drive the train forward.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Continue to drive the train forward.Then, stop the train",
                 "Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM)(2)    The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is display in sub-area A2");
             /*
             Test Step 4
@@ -190,13 +170,8 @@ namespace Testcase.DMITestCases
                                 "1. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "2. The digital distance to target is not displayed in sub-area A2.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 second.Release the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Main’ button.Press and hold ‘Shunting’ button at least 2 second.Release the pressed button",
                 "DMI displays in SH mode, level 1.Verify the following information,(1)    Use the log file to confirm that DMI receives the following packets information with a specific value, EVC-7: OBU_TR_M_MODE = 3 (SH mode) (2)    The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)");
             /*
             Test Step 5
@@ -221,11 +196,8 @@ namespace Testcase.DMITestCases
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 6
             Action: End of test

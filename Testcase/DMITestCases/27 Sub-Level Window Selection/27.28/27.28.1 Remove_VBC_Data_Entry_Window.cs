@@ -40,12 +40,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Remove VBC’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Remove VBC’ button",
                 "DMI displays Remove VBC window.Verify the following information,Data Entry WindowThe window title is ‘Remove VBC’.The text label of the window title is right aligned.The following objects are displayed in Remove VBC window,  Enabled Close button (NA11)Window TitleInput fieldsThe following objects are additionally displayed in Remove VBC window,Yes buttonThe text label ‘Remove VBC Entry complete?’Yes button is displayed in Disabled state as follows,Text label is black Background colour is dark-greyThe border colour is medium-grey the same as the input field’s colour.The sensitive area of Yes button is extended from text label ‘Remove VBC Entry complete?’Input fieldsThe input fields are located on Main area D and F.Each input field is devided into a Label Area and a Data Area.The Label Area is give the topic of the input field.The Label Area text is displayed corresponding to the input field as ‘VBC code’.The Label Area is placed to the left of The Data Area.The text in the Label Area is aligned to the right.The value of data in the Data Area is aligned to the left.The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.There are only single input fields displayed in the window.The first input field is in state ‘Selected’ as follows,The background colour of the Data Area is medium-grey.KeyboardThe keyboard associated to selected input field ‘Remove VBC’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.LayersThe level of layers of all areas in window are in Layer 0.Echo TextsThe Label Part of an echo texts is same as The Label area of an input fields.The echo texts are displayed in main area A, B, C and E with same order as their related input fields.The Label part of echo text is right aligned.The colour of texts in echo texts are grey.Entering CharactersThe cursor is flashed by changing from visible to not visible.The cursor is displayed as horizontal line below the value in the input field.Packet transmissionUse the log file to confirm that DMI sent out packet information [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 24 (Start Remove VBC).Use the log file to confirm that DMI received packet information [MMI_REMOVE_VBC (EVC-19)] with MMI_N_VBC = 0.General property of windowThe Remove VBC window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 1
@@ -91,12 +86,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "15. The Default window does not cover the current window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘0’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press and hold ‘0’ button",
                 "Verify the following information,The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The sound ‘Click’ is played once.The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’.The cursor is displayed as horizontal line below the value of the numeric-keyboard data key in the input field.The input field is used to enter the VBC code.The colour of data value is black.An echo text is composed of Label Part and Data Part.The Data part of echo text is left aligned");
             /*
             Test Step 2
@@ -117,12 +107,8 @@ namespace Testcase.DMITestCases
                                 "6. The data value is in black." + Environment.NewLine +
                                 "7. The echo text has a label part and a data part (with left-aligned text).");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The state of released button is changed to enabled");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Release the pressed button",
+                "Verify the following information,The state of released button is changed to enabled");
             /*
             Test Step 3
             Action: Release the pressed button
@@ -134,13 +120,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The key is displayed enabled.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable",
                 "See the expected results of Step 3 – Step 4 and the following additional information,The pressed key is added in an input field immediately. The cursor is jumped to next position after entered the character immediately");
             /*
             Test Step 4
@@ -320,12 +301,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The key is displayed enabled.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘Del’ button.Note: Stopwatch is required");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press and hold ‘Del’ button.Note: Stopwatch is required",
                 "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 5
@@ -347,12 +323,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "6. The ‘Click’ sound is played repeatedly.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Del’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, The character is stop removing");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Release ‘Del’ button",
+                "Verify the following information, The character is stop removing");
             /*
             Test Step 6
             Action: Release ‘Del’ button
@@ -364,12 +336,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Characters stop being removed from the data input field.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the data value with 5 characters");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Enter the data value with 5 characters",
                 "Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘12345')");
             /*
             Test Step 7
@@ -383,12 +350,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘12345’ (the value is displayed as a group of 5 characters with no spaces).");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the 6th character");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Continue to enter the 6th character",
                 "Verify the following information,The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. 1234 56)");
             /*
             Test Step 8
@@ -401,12 +363,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234 56’ (the value is displayed as two groups of characters with a space between ‘4’ and ‘5’).");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the new value more than 8 characters");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Continue to enter the new value more than 8 characters",
                 "Verify the following information,The data value is separated into 2 lines. In each line is displayed only 8 characters");
             /*
             Test Step 9
@@ -419,13 +376,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value over 2 lines ‘1234 5678’ (first line), ‘9’ (second line).");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Delete the old value and enter the value ‘65536’ for VBC code.Then, confirm an entered data by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Delete the old value and enter the value ‘65536’ for VBC code.Then, confirm an entered data by pressing an input field",
                 "Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘VBC Code’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.There is no input field selected.Echo TextsThe echo text of ‘VBC Code’ is changed to white colour.The value of echo text is changed refer to entered data.Data Entry windowThe state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The colour of border is medium-grey.Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_REMOVE_VBC (EVC-119)] with following variablesMMI_M_VBC_CODE (bit 16-23) = 65536MMI_M_BUTTONS = 254The data part of the echo text of train category is displayed according to [MMI_REMOVE_VBC (EVC-19)] with the following variables,MMI_N_TEXT = 5MMI_X_TEXT = “65536”");
             /*
             Test Step 10
@@ -457,12 +409,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "6. The ‘Yes’ button is displayed enabled, with black text on a Medium-grey background and Medium-grey border.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select and enter the value ‘65536’ for VBC code again");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++, "Select and enter the value ‘65536’ for VBC code again",
                 "Verify the following information,The state of ‘Yes’ button below text label ‘Remove VBC entry is complete?’ is disabled");
             /*
             Test Step 11
@@ -475,12 +422,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button (below the ‘Remove VBC Entry complete?’ label) is displayed disabled.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm an entered data.Then, apply the action step 2-3 for ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Confirm an entered data.Then, apply the action step 2-3 for ‘Yes’ button",
                 "See the expected results of Step 2 – Step 3 and the following points,DMI displays Remove VBC validation window.Use the log file to confirm that DMI sent out packet [MMI_NEW_REMOVE_VBC (EVC-119)] with following variablesMMI_M_VBC_CODE (bit 16-23) = 65536MMI_M_BUTTONS = 36");
             /*
             Test Step 12
@@ -522,12 +465,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove RBC validation window.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Remove VBC window");
+            MakeTestStepHeader(13, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Remove VBC window");
             /*
             Test Step 13
             Action: Press ‘Close’ button
@@ -538,12 +476,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC window.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the value ‘65536’ for VBC code.Then, confirm an entered data by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo("The state of ‘VBC Code’ input field is changed to ‘accepted’");
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Enter the value ‘65536’ for VBC code.Then, confirm an entered data by pressing an input field",
+                "The state of ‘VBC Code’ input field is changed to ‘accepted’");
             /*
             Test Step 14
             Action: Enter the value ‘65536’ for VBC code.Then, confirm an entered data by pressing an input field
@@ -556,12 +491,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed ‘Accepted’.");
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold the Label area of ‘Remove VBC’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++, "Press and hold the Label area of ‘Remove VBC’ input field",
                 "Verify the following information,The state of ‘Remove VBC’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Remove VBC’ input field remains ‘accecpted’. The sound ‘Click’ is played once");
             /*
             Test Step 15
@@ -574,12 +504,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border, but still ‘Accepted’.");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out the Label area of ‘Remove VBC’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++, "Slide out the Label area of ‘Remove VBC’ input field",
                 "Verify the following information,The border of ‘Remove VBC’ input field is shown (state ‘Enabled’) without a sound.The state of ‘Remove VBC’ input field remains ‘accecpted’");
             /*
             Test Step 16
@@ -595,12 +520,7 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played." + Environment.NewLine +
                                 "3. The data input field stays ‘Accepted’.");
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into the Label area of ‘Remove VBC’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(17, UniqueIdentifier++, "Slide back into the Label area of ‘Remove VBC’ input field",
                 "Verify the following information,The state of ‘Remove VBC’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Remove VBC’ input field remains ‘accecpted’");
             /*
             Test Step 17
@@ -616,12 +536,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The data input field stays ‘Accepted’.");
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The state of ‘Remove VBC’ input field is changed to selected");
+            MakeTestStepHeader(18, UniqueIdentifier++, "Release the pressed area",
+                "Verify the following information,The state of ‘Remove VBC’ input field is changed to selected");
             /*
             Test Step 18
             Action: Release the pressed area
@@ -636,12 +552,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1 The data input field is displayed ‘Selected’.");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform action step 13-17 for the Data area of an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(19, UniqueIdentifier++, "Perform action step 13-17 for the Data area of an input field",
                 "Verify the following information,The state of an input field is changed to ‘accepted’ when release the pressed area at the Data area of input field");
             /*
             Test Step 19
@@ -682,12 +593,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1 The data input field is displayed ‘Selected’.");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(20, UniqueIdentifier++, "Press ‘Close’ button",
                 "Verify the following information, Use the log file to confirm that DMI sent out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 26 (Exit Remove VBC Entry).Use the log file to confirm that DMI sent out packet [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_NID_WINDOW = 254.The window is closed and the Settings window is displayed");
             /*
             Test Step 20
@@ -703,11 +609,8 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Close_current_return_to_parent;
             EVC30_MMIRequestEnable.Send();
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(21, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 21
             Action: End of test

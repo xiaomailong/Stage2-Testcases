@@ -31,12 +31,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A. Then  perform SoM to SR mode, level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays SR mode, level 1");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Then  perform SoM to SR mode, level 1",
+                "DMI displays SR mode, level 1");
             /*
             Test Step 1
             Action: Activate cabin A. Then  perform SoM to SR mode, level 1
@@ -47,12 +43,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward pass BG1.Then, stop the train",
                 "DMI changes from SR to FS mode. The Planning Area is displayed in area D with PA Gradient Profile value = 1 and PA Gradient Profile colour is grey");
             /*
             Test Step 2
@@ -77,13 +68,9 @@ namespace Testcase.DMITestCases
                                 "3. A Gradient Profile is displayed in grey, with a value (Uphill) of 2.");
 
             // Steps 3 to 6 are in XML_17_5_4_a()
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 17_5_4_a.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 254MMI_N_GRADIENT = 0");
-            TraceReport("Expected Result");
-            TraceInfo("Verify that the value of PA Gradient Profile is change to 254");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 17_5_4_a.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 254MMI_N_GRADIENT = 0",
+                "Verify that the value of PA Gradient Profile is change to 254");
             /*
             Test Step 3
             Action: Use the test script file 17_5_4_a.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 254MMI_N_GRADIENT = 0
@@ -91,13 +78,9 @@ namespace Testcase.DMITestCases
             */
             XML_17_5_4_a();
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 255MMI_N_GRADIENT = 0");
-            TraceReport("Expected Result");
-            TraceInfo("Verify that the value of PA Gradient Profile is not change, still display as 254");
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 255MMI_N_GRADIENT = 0",
+                "Verify that the value of PA Gradient Profile is not change, still display as 254");
             /*
             Test Step 4
             Action: Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 255MMI_N_GRADIENT = 0
@@ -105,13 +88,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7260 (partly: 4th bullet);
             */
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = -254MMI_N_GRADIENT = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = -254MMI_N_GRADIENT = 0",
                 "Verify that the value of PA Gradient Profile is change to 254 and PA Gradient Profile colour is change to dark-grey colour");
             /*
             Test Step 5
@@ -119,13 +97,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the value of PA Gradient Profile is change to 254 and PA Gradient Profile colour is change to dark-grey colour
             */
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = -255MMI_N_GRADIENT = 0");
-            TraceReport("Expected Result");
-            TraceInfo("Verify that PA Gradient Profile is removed from area D");
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = -255MMI_N_GRADIENT = 0",
+                "Verify that PA Gradient Profile is removed from area D");
             /*
             Test Step 6
             Action: Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = -255MMI_N_GRADIENT = 0
@@ -134,13 +108,8 @@ namespace Testcase.DMITestCases
             */
 
             // Steps 7 to 8 are in XML_17_5_4_b 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 17_5_4_b.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 10MMI_N_GRADIENT = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Use the test script file 17_5_4_b.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 10MMI_N_GRADIENT = 0",
                 "The Planning Area is displayed in area D with PA Gradient Profile value = 10 and PA Gradient Profile colour is grey");
             /*
             Test Step 7
@@ -149,13 +118,9 @@ namespace Testcase.DMITestCases
             */
             XML_17_5_4_b();
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send EVC-4 with,MMI_V_MRSP_CURR = 11112MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 0");
-            TraceReport("Expected Result");
-            TraceInfo("Verify that the value of PA Gradient Profile is not change, still display as 10");
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Send EVC-4 with,MMI_V_MRSP_CURR = 11112MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 0",
+                "Verify that the value of PA Gradient Profile is not change, still display as 10");
             /*
             Test Step 8
             Action: Send EVC-4 with,MMI_V_MRSP_CURR = 11112MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 0
@@ -164,13 +129,9 @@ namespace Testcase.DMITestCases
             */
 
             // Steps 8 to 9 are in XML_17_5_4_c
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 17_5_4_c.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 22MMI_N_GRADIENT = 1MMI_G_GRADIENT = 11MMI_O_GRADIENT_2 = 15259MMI_O_GRADIENT_1 = 16176");
-            TraceReport("Expected Result");
-            TraceInfo("The 2 PA Gradient profiles (value = 11 and 22) are displayed in area D5");
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Use the test script file 17_5_4_c.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 22MMI_N_GRADIENT = 1MMI_G_GRADIENT = 11MMI_O_GRADIENT_2 = 15259MMI_O_GRADIENT_1 = 16176",
+                "The 2 PA Gradient profiles (value = 11 and 22) are displayed in area D5");
             /*
             Test Step 9
             Action: Use the test script file 17_5_4_c.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 22MMI_N_GRADIENT = 1MMI_G_GRADIENT = 11MMI_O_GRADIENT_2 = 15259MMI_O_GRADIENT_1 = 16176
@@ -178,13 +139,8 @@ namespace Testcase.DMITestCases
             */
             XML_17_5_4_c();
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 10MMI_N_GRADIENT = 32MMI_G_GRADIENT = 1MMI_O_GRADIENT_2 = 15259MMI_O_GRADIENT_1 = 16176");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 10MMI_N_GRADIENT = 32MMI_G_GRADIENT = 1MMI_O_GRADIENT_2 = 15259MMI_O_GRADIENT_1 = 16176",
                 "Verify that the value of PA Gradient Profile is not change, still display PA Gradient Profiles value = 11 and 22");
             /*
             Test Step 10
@@ -194,13 +150,8 @@ namespace Testcase.DMITestCases
             */
 
             // Steps 11 to 13 are in XML_17_5_4_d
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 17_5_4_d.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 1MMI_G_GRADIENT = 1MMI_O_GRADIENT_2 = 15258MMI_O_GRADIENT_1 = 51712");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Use the test script file 17_5_4_d.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 1MMI_G_GRADIENT = 1MMI_O_GRADIENT_2 = 15258MMI_O_GRADIENT_1 = 51712",
                 "Verify that the value of PA Gradient Profile is not change, still display PA Gradient Profiles value = 11 and 22");
             /*
             Test Step 11
@@ -210,13 +161,8 @@ namespace Testcase.DMITestCases
             */
             XML_17_5_4_d();
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 1MMI_G_GRADIENT = 255MMI_O_GRADIENT_2 = 15259MMI_O_GRADIENT_1 = 16176");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 1MMI_G_GRADIENT = 255MMI_O_GRADIENT_2 = 15259MMI_O_GRADIENT_1 = 16176",
                 "Verify that the value of PA Gradient Profile is not change, still display PA Gradient Profiles value = 11 and 22");
             /*
             Test Step 12
@@ -225,13 +171,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7261 (partly: 1st  bullet);
             */
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 1MMI_G_GRADIENT = 2MMI_O_GRADIENT_2 = 32768MMI_O_GRADIENT_1 = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 0MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 1MMI_G_GRADIENT = 2MMI_O_GRADIENT_2 = 32768MMI_O_GRADIENT_1 = 0",
                 "Verify that the value of PA Gradient Profile is not change, still display PA Gradient Profiles value = 11 and 22");
             /*
             Test Step 13
@@ -241,13 +182,8 @@ namespace Testcase.DMITestCases
             */
 
             // Steps 14 to 15 are in XML_17_5_4_e
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 17_5_4_e.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 1MMI_V_MRSP = 3000MMI_O_MRSP_2 = 15259MMI_O_MRSP_1 = 16176MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Use the test script file 17_5_4_e.xml to send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 1MMI_V_MRSP = 3000MMI_O_MRSP_2 = 15259MMI_O_MRSP_1 = 16176MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 0",
                 "Verify that only one PA Gradient value is display as value = 20 with speed profile updated as picture in comment");
             /*
             Test Step 14
@@ -256,13 +192,8 @@ namespace Testcase.DMITestCases
             */
             XML_17_5_4_e();
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 32MMI_V_MRSP = 3000MMI_O_MRSP_2 = 15259MMI_O_MRSP_1 = 16176MMI_G_GRADIENT_CURR = 2MMI_N_GRADIENT = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Send EVC-4 with,MMI_V_MRSP_CURR = 11111MMI_N_MRSP = 32MMI_V_MRSP = 3000MMI_O_MRSP_2 = 15259MMI_O_MRSP_1 = 16176MMI_G_GRADIENT_CURR = 2MMI_N_GRADIENT = 0",
                 "Verify that PA Gradient Profile and speed profile is not update, result is still same as step 14");
             /*
             Test Step 15
@@ -271,11 +202,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7260 (partly: 2nd   bullet);    
             */
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(16, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 16
             Action: End of test

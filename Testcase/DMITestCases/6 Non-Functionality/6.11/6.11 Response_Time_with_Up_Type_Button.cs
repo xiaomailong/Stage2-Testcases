@@ -38,7 +38,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_11_Response_Time_with_Up_Type_Button : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -46,12 +45,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform SoM to Level 1 in SR mode");
-            TraceReport("Expected Result");
-            TraceInfo("ETCS OB enters SR mode in Level 1");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to Level 1 in SR mode",
+                "ETCS OB enters SR mode in Level 1");
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -80,12 +75,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Verify response time of DMI on actuation of ‘Train data’ button in ‘Main’ window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Verify response time of DMI on actuation of ‘Train data’ button in ‘Main’ window",
                 "Use log file to verify that response time of DMI on actuation of the ‘Train data’ buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:");
             /*
             Test Step 2
@@ -131,12 +122,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Verify response time of DMI on actuation of ‘Start’ button in ‘Main’ window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Verify response time of DMI on actuation of ‘Start’ button in ‘Main’ window",
                 "Use log file to verify that response time of DMI on actuation of the ‘Start’ buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:");
             /*
             Test Step 3
@@ -162,12 +149,8 @@ namespace Testcase.DMITestCases
             DmiActions.Send_L1(this);
             DmiActions.Finished_SoM_Default_Window(this);
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Data view’ button in sub area F3 and then press ‘Close’ button in ‘Data view’ window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Press ‘Data view’ button in sub area F3 and then press ‘Close’ button in ‘Data view’ window",
                 "Use log file to verify that response time of DMI on actuation of the ‘Data view’ buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:");
             /*
             Test Step 4
@@ -186,12 +169,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press Close Button.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press SE04 symbol in sub area F5. Then press ‘System Version’ button in ‘Settings’ window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Press SE04 symbol in sub area F5. Then press ‘System Version’ button in ‘Settings’ window",
                 "Use log file to verify that response time of DMI on actuation of the  buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:");
             /*
             Test Step 5
@@ -209,11 +188,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Verify the following:" + Environment.NewLine + Environment.NewLine +
                                 "Actuation of the ‘System Version’ buttons is not exceeded 130 ms when DMI sends EVC-101");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 6
             Action: End of test

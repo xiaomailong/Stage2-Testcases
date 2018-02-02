@@ -105,9 +105,9 @@ namespace Testcase
         {
             // not interested in Set Value or TraceInfo or Wait commands
             if (glim.Command == "Set" || glim.IsInfoItem || glim.Command == "Wait")
-                return;            
+                return;
 
-            if(glim.IsHeaderItem)
+            if (glim.IsHeaderItem)
             {
                 var regex = new Regex(@"^TP-\d*");
 
@@ -117,7 +117,7 @@ namespace Testcase
                     TestStepResults.Add(CurrentTestStepIdentifier, true);
                 }
             }
-            else if(glim.Result == "Failed")
+            else if (glim.Result == "Failed")
             {
                 TestStepResults[CurrentTestStepIdentifier] = false;
             }
@@ -149,6 +149,26 @@ namespace Testcase
         public override void RunDebugger()
         {
             Debugger.Launch();
+        }
+
+        /// <summary>
+        /// Creates a test step header
+        /// </summary>
+        /// <param name="step">The test step, always starts at 1</param>
+        /// <param name="ident">The unique identifier to link to Doors</param>
+        /// <param name="action">The test step action</param>
+        /// <param name="result">The test step expected result</param>
+        public void MakeTestStepHeader(int step, int ident, string action, string result)
+        {
+            TraceHeader("Test Step " + step);
+            TraceHeader("TP-" + ident);
+            TraceReport("Action");
+            TraceInfo(action);
+            if (!string.IsNullOrEmpty(result))
+            {
+                TraceReport("Expected Result");
+                TraceInfo(result);
+            }
         }
     }
 }

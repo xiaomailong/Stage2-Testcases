@@ -40,7 +40,8 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;            
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
+                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
         }
 
         public override bool TestcaseEntryPoint()
@@ -181,9 +182,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_symbol_deleted(this, "Emergency brake intervention", "ST01", "C9");
             DmiExpectedResults.SR_Mode_Ack_requested(this);
-            
 
-          
+
             /*
             Test Step 7
             Action: Press on sub-area C9
@@ -254,7 +254,8 @@ namespace Testcase.DMITestCases
             */
             XML_6_1(msgType.typeb);
 
-            DmiExpectedResults.Driver_symbol_displayed(this, "Brake test aborded, perform new Test?", "text message", "E5", true);
+            DmiExpectedResults.Driver_symbol_displayed(this, "Brake test aborded, perform new Test?", "text message",
+                "E5", true);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Brake test aborted, perform new Test?’ in sub-area E5 with ‘Yes’/‘No’ buttons." +
@@ -278,7 +279,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 "Press several times on area E5 without touching the ‘Yes’ or ‘No’ button");
 
-            DmiExpectedResults.Driver_symbol_displayed(this, "Brake test aborded, perform new Test?", "text message", "E5-E9", true);
+            DmiExpectedResults.Driver_symbol_displayed(this, "Brake test aborded, perform new Test?", "text message",
+                "E5-E9", true);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The DMI display does not change" + Environment.NewLine +
@@ -309,7 +311,7 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             //this.Wait_Realtime(100);
 
-           // EVC111_MMIDriverMessageAck.MMI_I_TEXT = 2;
+            // EVC111_MMIDriverMessageAck.MMI_I_TEXT = 2;
             //EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.NotAcknowledgeNO;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
 

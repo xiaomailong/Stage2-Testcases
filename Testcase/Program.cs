@@ -11,7 +11,7 @@ namespace Testcase
     {
         static void Main(string[] args)
         {
-            if (true)
+            if (false)
             {
                 // Create a list of TestCases to ignore
                 var ignorelist = new List<string>
@@ -25,7 +25,7 @@ namespace Testcase
                 // Filter typelist through ignorelist and add them to Testcaserunner
                 foreach (var type in typelist.Where(t => !ignorelist.Contains(t.Name)))
                     TestcaseRunner.AddTestcase(type);
-                
+
                 TestcaseRunner.RunTestcases(args);
             }
             else

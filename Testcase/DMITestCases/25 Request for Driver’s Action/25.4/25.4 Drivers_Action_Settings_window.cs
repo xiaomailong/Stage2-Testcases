@@ -44,13 +44,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,a)   Press the ‘Settings’ button.b)  Press the ‘System version’ button.c)   Press the ‘Close’ button. Then, press the ‘System info’ button.d)   Press the ‘Close’ button. Then, press the ‘Brake’ button and ‘Brake test’ button respectively.e)   Press the ‘Close’ button. Then, press the ‘Set VBC’ button.f)    Press the ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure,a)   Press the ‘Settings’ button.b)  Press the ‘System version’ button.c)   Press the ‘Close’ button. Then, press the ‘System info’ button.d)   Press the ‘Close’ button. Then, press the ‘Brake’ button and ‘Brake test’ button respectively.e)   Press the ‘Close’ button. Then, press the ‘Set VBC’ button.f)    Press the ‘Close’ button",
                 "Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST refer to sequence below,a)   MMI_M_REQUEST = 58 (Settings)b)   MMI_M_REQUEST = 55 (System version request)c)   MMI_M_REQUEST = 29 (System Info request)d)   MMI_M_REQUEST = 22 (Start Brake Test)e)   MMI_M_REQUEST = 23 (Start Set VBC)f)   MMI_M_REQUEST = 25 (Exit Set VBC)Note: The sequence of MMI_M_REQUEST value are consistent with step of each action.(2)   When the button is pressed in each action, the window of pressed button is closed");
             /*
             Test Step 1
@@ -132,13 +127,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Set VBC window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press the ‘Set VBC’ button.Enter and confirm the value ‘65536’ at the input field.Press ‘Yes’ button.Select and confirm ‘Yes’ button at Set VBC validation window.Press the ‘Remove VBC’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Press the ‘Set VBC’ button.Enter and confirm the value ‘65536’ at the input field.Press ‘Yes’ button.Select and confirm ‘Yes’ button at Set VBC validation window.Press the ‘Remove VBC’ button",
                 "Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 24 (Start Remove VBC)(2)   The Settings window is closed, DMI displays Remove VBC window");
             /*
             Test Step 2
@@ -171,12 +161,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC window.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press the ‘Close’ button",
                 "Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 26 (Exit  Remove VBC)(2)   The Remove VBC window is closed, DMI displays Settings  window");
             /*
             Test Step 3
@@ -198,13 +183,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Maintenance window");
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password",
+                "DMI displays Maintenance window");
             /*
             Test Step 4
             Action: Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password
@@ -218,13 +199,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Enter the password (as in the ‘PASS_CODE_MTN’ tag of the configuration file), then confirm");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,a)   Press the ‘Wheel diameter’ button.b)   Press the ‘Close’ button.c)   Press the ‘Radar’d)   Press the ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform the following procedure,a)   Press the ‘Wheel diameter’ button.b)   Press the ‘Close’ button.c)   Press the ‘Radar’d)   Press the ‘Close’ button",
                 "Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST refer to sequence below,a)   MMI_M_REQUEST = 53 (Change Wheel Diameter)b)   MMI_M_REQUEST = 54 (Exit Maintenance)c)   MMI_M_REQUEST = 52 (Change Doppler)d)   MMI_M_REQUEST = 54 (Exit Maintenance)Note: The sequence of MMI_M_REQUEST value are consistent with step of each action.(2)   When the button is pressed in each action, the window of pressed button is closed.(3)   Use the log file to confirm that DMI receives packet EVC-30 with the value of following bit of MMI_Q_REQUEST_ENABLE_64Bit #29  = 1 (Enable wheel diameter)Bit #30 = 1 (Enable doppler) Bit #31 = 1 (Enable brake percentage)");
             /*
             Test Step 5
@@ -260,13 +236,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Radar window.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press the 'Brake' button.Use the test script file 20_4_a.xml to send EVC-30 with MMI_NID_WINDOW = 4 and MMI_Q_REQUEST_ENABLE_64 (#31) =1Press the enabled 'Brake percentage' button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure,Press the 'Brake' button.Use the test script file 20_4_a.xml to send EVC-30 with MMI_NID_WINDOW = 4 and MMI_Q_REQUEST_ENABLE_64 (#31) =1Press the enabled 'Brake percentage' button",
                 "Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 51 (Change Brake Percentage)(2)   The Brake window is closed, DMI displays Brake percentage window");
             /*
             Test Step 6
@@ -287,12 +258,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake percentage window.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press the ‘Close’ button",
                 "Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 60 (Exit Brake Percentage)(2)   The Brake percentage window is closed, DMI displays Brake window");
             /*
             Test Step 7
@@ -308,11 +274,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 8
             Action: End of test

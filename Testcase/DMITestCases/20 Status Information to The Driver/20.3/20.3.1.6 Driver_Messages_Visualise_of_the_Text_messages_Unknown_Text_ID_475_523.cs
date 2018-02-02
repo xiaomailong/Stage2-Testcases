@@ -47,13 +47,8 @@ namespace Testcase.DMITestCases
 
             XML_15_3_1_6();
             // All the following steps are carried out in XML_15_3_1_6.cs
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 15_3_1_6.xml to send EVC-8 with,MMI_Q_TEXT = 475MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 15_3_1_6.xml to send EVC-8 with,MMI_Q_TEXT = 475MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 475’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 1
@@ -63,12 +58,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 476MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 476MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 476’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 2
@@ -78,12 +69,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 477MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 477MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 477’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 3
@@ -93,12 +80,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 478MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 478MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 478’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 4
@@ -108,12 +91,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 479MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 479MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 479’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 5
@@ -123,12 +102,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 480MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 480MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 480’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 6
@@ -138,12 +113,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 481MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 481MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 481’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 7
@@ -153,12 +124,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 482MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 482MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 482’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 8
@@ -168,12 +135,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 483MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 483MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 483’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 9
@@ -183,12 +146,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 484MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 484MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 484’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 10
@@ -198,12 +157,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 485MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 485MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 485’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 11
@@ -213,12 +168,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 486MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 486MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 486’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 12
@@ -228,12 +179,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 487MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 487MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 487’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 13
@@ -243,12 +190,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 488MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 488MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 488’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 14
@@ -258,12 +201,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 489MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 489MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 489’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 15
@@ -273,12 +212,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 490MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 490MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 490’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 16
@@ -288,12 +223,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 491MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 491MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 491’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 17
@@ -303,12 +234,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 492MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 492MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 492’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 18
@@ -318,12 +245,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 493MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(19, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 493MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 493’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 19
@@ -333,12 +256,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 494MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(20, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 494MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,1.    The text message ‘’Fixed Text Message 494’ is display in the area E5.2.    No flashing frame display.3.    There is no sound played");
             /*
             Test Step 20
@@ -348,12 +267,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 495MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(21, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 495MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 495’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 21
@@ -363,12 +278,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 22");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 496MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(22, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 496MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 496’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 22
@@ -378,12 +289,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 23");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 497MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(23, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 497MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 497’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 23
@@ -393,12 +300,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 24");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 498MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(24, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 498MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 498’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 24
@@ -408,12 +311,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 25");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 499MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(25, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 499MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 499’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 25
@@ -423,12 +322,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 26");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 500MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(26, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 500MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 500’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 26
@@ -438,12 +333,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 27");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 501MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(27, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 501MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 501’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 27
@@ -453,12 +344,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 28");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 502MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(28, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 502MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 502’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 28
@@ -468,12 +355,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 29");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 503MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(29, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 503MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 503’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 29
@@ -483,12 +366,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 30");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 504MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(30, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 504MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 504’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 30
@@ -498,12 +377,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 31");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 505MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(31, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 505MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text msage ‘’Fixed Text Message 505’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 31
@@ -513,12 +388,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 32");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 506MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(32, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 506MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 506’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 32
@@ -528,12 +399,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 33");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 507MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(33, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 507MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 507’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 33
@@ -543,12 +410,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 34");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 508MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(34, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 508MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 508’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 34
@@ -558,12 +421,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 35");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 509MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(35, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 509MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 509’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 35
@@ -573,12 +432,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 36");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 510MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(36, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 510MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 510’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 36
@@ -588,12 +443,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 37");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 511MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(37, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 511MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 511’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 37
@@ -603,12 +454,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 38");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 512MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(38, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 512MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 512’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 38
@@ -618,12 +465,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 39");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 513MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(39, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 513MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 513’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 39
@@ -633,12 +476,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 40");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 518MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(40, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 518MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 518’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 40
@@ -648,12 +487,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 41");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 519MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(41, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 519MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 519’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 41
@@ -663,12 +498,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 42");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Send EVC-8 with,MMI_Q_TEXT = 523MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(42, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 523MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
                 "Verifies the display information as follows,The text message ‘’Fixed Text Message 523 is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 42
@@ -678,11 +509,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 43");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(43, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 43
             Action: End of test

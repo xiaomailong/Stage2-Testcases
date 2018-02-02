@@ -24,19 +24,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_9_10_Hide_PA_Function_with_the_communication_loss_between_ETCS_Onboard_and_DMI : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A. Driver performs SoM to SR mode, level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SR mode, level 1");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Driver performs SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 1
             Action: Activate cabin A. Driver performs SoM to SR mode, level 1
@@ -48,12 +43,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward with speed = 40 km/h pass BG1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with speed = 40 km/h pass BG1",
                 "DMI displays the Planning area The “Entering FS” message is shown. The Hide PA function is enabled and locate at Main area D");
             /*
             Test Step 2
@@ -78,12 +68,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Simulate the communication loss between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Simulate the communication loss between ETCS onboard and DMI",
                 "DMI displays “ATP Down Alarm” message with sound alarm.Verify that the planning area and Hide PA function is disappeared");
             /*
             Test Step 3
@@ -98,12 +83,8 @@ namespace Testcase.DMITestCases
                                 "2. The Planning Area is removed from area D." + Environment.NewLine +
                                 "3. The ‘Hide PA’ button is not displayed in area D.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press at Main area D");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,PA is not be resumed to display on DMI");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press at Main area D",
+                "Verify the following information,PA is not be resumed to display on DMI");
             /*
             Test Step 4
             Action: Press at Main area D
@@ -115,12 +96,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is not re-displayed in area D.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Re-establish the communication between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI",
                 "DMI displays in FS mode, level 1.Verify that DMI displays the planning area and Hide PA button is resumed");
             /*
             Test Step 5
@@ -135,12 +111,8 @@ namespace Testcase.DMITestCases
                                 "2. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "3. The ‘Hide PA’ button (enabled) is re-displayed in area D.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press Hide PA button");
-            TraceReport("Expected Result");
-            TraceInfo("The Planning Information is disappeared from main area D");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press Hide PA button",
+                "The Planning Information is disappeared from main area D");
             /*
             Test Step 6
             Action: Press Hide PA button
@@ -151,12 +123,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is removed from area D.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press at Main area D");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,PA is resumed to display at main area D");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press at Main area D",
+                "Verify the following information,PA is resumed to display at main area D");
             /*
             Test Step 7
             Action: Press at Main area D
@@ -166,12 +134,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press in Main area D");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press Hide PA button");
-            TraceReport("Expected Result");
-            TraceInfo("The Planning Information is disappeared from main area D");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press Hide PA button",
+                "The Planning Information is disappeared from main area D");
             /*
             Test Step 8
             Action: Press Hide PA button
@@ -183,12 +147,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is not displayed in area D.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Simulate the communication loss between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays “ATP Down Alarm” message with sound alarm and Hide PA function is disappeared");
+            MakeTestStepHeader(9, UniqueIdentifier++, "Simulate the communication loss between ETCS onboard and DMI",
+                "DMI displays “ATP Down Alarm” message with sound alarm and Hide PA function is disappeared");
             /*
             Test Step 9
             Action: Simulate the communication loss between ETCS onboard and DMI
@@ -202,12 +162,7 @@ namespace Testcase.DMITestCases
                                 "3. The ‘Hide PA’ button is not displayed in area D." + Environment.NewLine +
                                 "4. The ‘Alarm’ sound is played.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Re-establish the communication between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI",
                 "Verify the following information,Verify that DMI is not displays the planning area and Hide PA button because state of Hide PA is no affected");
             /*
             Test Step 10
@@ -221,11 +176,8 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is not displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is not displayed in area D.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 11
             Action: End of test

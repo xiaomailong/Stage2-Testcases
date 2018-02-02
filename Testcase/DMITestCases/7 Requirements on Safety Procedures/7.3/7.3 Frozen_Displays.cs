@@ -39,12 +39,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A. Then, perform SoM to SR mode, level 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Then, perform SoM to SR mode, level 1",
                 "DMI displays in SR mode, level 1.Verify the following information,The local time is displayed in form of ‘hh:mm:ss’ with flashing colons at sub-area G13");
             /*
             Test Step 1
@@ -69,12 +64,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
                                 "2. The local time is displayed in ‘hh:mm:ss’ format with flashing colons at sub-area G13");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure,Press ‘Spec’ button.Press ‘Close’ button on Spedical window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Spec’ button.Press ‘Close’ button on Spedical window",
                 "The Default window is displayed.Verify the following information,The local time is displayed in form of ‘hh:mm:ss’ with flashing colons at sub-area G13");
             /*
             Test Step 2
@@ -88,13 +79,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Default window." + Environment.NewLine +
                                 "2. The local time is displayed in ‘hh:mm:ss’ format with flashing colons at sub-area G13");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press ‘Settings’ button.Press ‘Close’ button on Settings window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Settings’ button.Press ‘Close’ button on Settings window",
                 "The Default window is displayed.Verify the following information,The local time is displayed in form of ‘hh:mm:ss’ with flashing colons at sub-area G13");
             /*
             Test Step 3
@@ -109,12 +95,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Default window." + Environment.NewLine +
                                 "2. The local time is displayed in ‘hh:mm:ss’ format with flashing colons at sub-area G13");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure,Press ‘Main’ button.Press ‘Close’ button on Main window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Main’ button.Press ‘Close’ button on Main window",
                 "The Default window is displayed.Verify the following information,The local time is displayed in form of ‘hh:mm:ss’ with flashing colons at sub-area G13");
             /*
             Test Step 4
@@ -129,11 +111,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Default window." + Environment.NewLine +
                                 "2. The local time is displayed in ‘hh:mm:ss’ format with flashing colons at sub-area G13");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 5
             Action: End of test

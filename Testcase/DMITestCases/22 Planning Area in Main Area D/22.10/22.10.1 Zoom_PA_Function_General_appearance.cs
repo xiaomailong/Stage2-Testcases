@@ -22,7 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_10_1_Zoom_PA_Function_General_appearance : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -31,12 +30,7 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform SoM to SR mode, level 2.Then, drive the train forward");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to SR mode, level 2.Then, drive the train forward",
                 "DMI displays in SR mode, level 2.Verify that the Zoom PA function is not enabled when DMI displays in SR mode");
             /*
             Test Step 1
@@ -52,12 +46,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
                                 "2. The Zoom PA function is not enabled.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Received information from RBC");
-            TraceReport("Expected Result");
-            TraceInfo("DMI changes from SR mode to FS mode, level 2");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Received information from RBC",
+                "DMI changes from SR mode to FS mode, level 2");
             /*
             Test Step 2
             Action: Received information from RBC
@@ -70,12 +60,8 @@ namespace Testcase.DMITestCases
                                 "2. Planning Information is displayed." + Environment.NewLine +
                                 "3. The Zoom PA function is enabled.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Acknowledge OS mode by press at area C1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI changes from FS mode to OS mode, level 2");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Acknowledge OS mode by press at area C1",
+                "DMI changes from FS mode to OS mode, level 2");
             /*
             Test Step 3
             Action: Acknowledge OS mode by press at area C1
@@ -95,13 +81,8 @@ namespace Testcase.DMITestCases
                                 "2. Planning Information is still displayed." + Environment.NewLine +
                                 "3. The Zoom PA function is still enabled.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Stop the train.Then, perform the following procedurePress and hold ‘Scale Up’ button.Slide out ‘Scale Up’ button.Slide back into ‘Scale Up’ button.Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Stop the train.Then, perform the following procedurePress and hold ‘Scale Up’ button.Slide out ‘Scale Up’ button.Slide back into ‘Scale Up’ button.Release the pressed area",
                 "Verify the following information,The PA distance scale is not change until driver release at the ‘Scale Up’ button area");
             /*
             Test Step 4
@@ -130,13 +111,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA distance scale changes.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedurePress and hold ‘Scale Down’ button.Slide out ‘Scale Down’ button.Slide back into ‘Scale Down’ button.Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform the following procedurePress and hold ‘Scale Down’ button.Slide out ‘Scale Down’ button.Slide back into ‘Scale Down’ button.Release the pressed area",
                 "Verify the following information,The PA distance scale is not change until driver release at the ‘Scale Down’ button area");
             /*
             Test Step 5
@@ -166,12 +142,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA distance scale changes.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward");
-            TraceReport("Expected Result");
-            TraceInfo("DMI still displays as OS mode, Level 2");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Drive the train forward",
+                "DMI still displays as OS mode, Level 2");
             /*
             Test Step 6
             Action: Drive the train forward
@@ -182,12 +154,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays in OS mode, Level 2.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Received information from RBC");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Received information from RBC",
                 "DMI display symbol DR02 (Confirm Track Ahead Free) in Main area D.Verify that ‘Scale Up’ and ‘Scale Down’ button at sub-area D9 and D12 are removed, not display on DMI");
             /*
             Test Step 7
@@ -206,12 +173,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Scale Up’ and ‘Scale Down’ buttons in sub-areas D9 and D12 are not displayed.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Acknowledge Track Ahead Free by press ‘Yes’ button in Main area D");
-            TraceReport("Expected Result");
-            TraceInfo("The PA is reappear in Main area D");
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Acknowledge Track Ahead Free by press ‘Yes’ button in Main area D",
+                "The PA is reappear in Main area D");
             /*
             Test Step 8
             Action: Acknowledge Track Ahead Free by press ‘Yes’ button in Main area D
@@ -223,12 +187,7 @@ namespace Testcase.DMITestCases
                                 "1. Planning Information is re-displayed." + Environment.NewLine +
                                 "3. The Zoom PA function is enabled.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train pass over EOA");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Drive the train pass over EOA",
                 "The train is tripped. DMI displays the symbol of TR and driver is required to acknowledge TR mode to PT mode.SB &EB applied.The Planning area which including ‘Scale Up’ and ‘Scale Down’ buttons is removed from DMI");
             /*
             Test Step 9
@@ -268,12 +227,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Stop the train");
-            TraceReport("Expected Result");
-            TraceInfo("The train is at standstill");
+            MakeTestStepHeader(10, UniqueIdentifier++, "Stop the train", "The train is at standstill");
             /*
             Test Step 10
             Action: Stop the train
@@ -284,11 +238,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 0 km/h.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 11
             Action: End of test

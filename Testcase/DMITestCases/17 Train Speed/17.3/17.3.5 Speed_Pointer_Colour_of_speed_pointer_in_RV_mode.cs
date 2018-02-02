@@ -52,12 +52,8 @@ namespace Testcase.DMITestCases
             /// No intervention speed described here: comment is that it is less than 11, presumably 10...
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 10;
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1.Then stop the train");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1.Then stop the train",
+                "DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then stop the train
@@ -79,13 +75,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Speed is displayed at 0 km/h.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Chage the train direction to reverseAcknowledge RV mode by pressing the symbol in sub-area C1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in RV mode, Level 1");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Chage the train direction to reverseAcknowledge RV mode by pressing the symbol in sub-area C1",
+                "DMI displays in RV mode, Level 1");
             /*
             Test Step 2
             Action: Perform the following procedure,Chage the train direction to reverseAcknowledge RV mode by pressing the symbol in sub-area C1
@@ -104,12 +96,7 @@ namespace Testcase.DMITestCases
                 "Then check the following:" + Environment.NewLine + Environment.NewLine +
                 "1.DMI displays in RV mode, Level 1.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train with speed = 5 km/h");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train with speed = 5 km/h",
                 "Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,(EVC-7) OBU_TR_M_MODE = 14 (Reversing)(EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)(EVC-1) MMI_V_PERMITTED = 139 (5km/h)(2)   The speed pointer display in grey colour");
             /*
             Test Step 3
@@ -123,12 +110,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Increase the train speed to 6 km/h");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Increase the train speed to 6 km/h",
                 "Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 8 (Status = OvS, Supervision = CSM) while the value of MMI_V_TRAIN = 167 (6 km/h) which greater than MMI_V_PERMITTED(2)   The speed pointer display in orange colour");
             /*
             Test Step 4
@@ -142,13 +124,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Increase the train speed to 10 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Increase the train speed to 10 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]",
                 "Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 278 (10 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION(2)   The speed pointer display in orange colour");
             /*
             Test Step 5
@@ -162,12 +139,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Increase the train speed to 11 km/h");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Increase the train speed to 11 km/h",
                 "The train speed is force to decrease because of emergency brake is applied by ETCS onboard.Verify the following information,Before train speed is decreased(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN = 306 (11 km/h) which greater than MMI_V_INTERVENTION(2)   The speed pointer display in red colourAfter train speed is decreased(3)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN is lower than MMI_V_INTERVENTION(4)   The speed pointer display in grey colour");
             /*
             Test Step 6
@@ -189,11 +161,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 7
             Action: End of test

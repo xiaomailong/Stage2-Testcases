@@ -39,12 +39,8 @@ namespace Testcase.DMITestCases
         {
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform SoM until train running number is entered");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Main window with enabled ‘Start’ button");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM until train running number is entered",
+                "DMI displays Main window with enabled ‘Start’ button");
             /*
             Test Step 1
             Action: Perform SoM until train running number is entered
@@ -107,13 +103,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Main_Window_displayed(this, true);
 
             // Steps 2 to 22 are in XML_5_10_a.cs
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send the test script file 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE           (#0) = 0           (#1) = 0           (#2) = 0           (#3) = 0           (#4) = 0           (#5) = 0           (#6) = 0           (#7) = 0           (#8) = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Send the test script file 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE           (#0) = 0           (#1) = 0           (#2) = 0           (#3) = 0           (#4) = 0           (#5) = 0           (#6) = 0           (#7) = 0           (#8) = 0",
                 "The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Start’ buttonThe ‘Driver ID’ buttonThe ‘Train data’ buttonThe ‘Level’ buttonThe ‘Train running number’ buttonThe ‘Shunting’ buttonThe ‘Non-Leading’ buttonThe ‘Maintain Shunting’ button");
             /*
             Test Step 2
@@ -178,13 +169,8 @@ namespace Testcase.DMITestCases
                                 @"8. The ‘Maintain Shunting’ button");
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press Exit button and select Override menu then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#9) = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press Exit button and select Override menu then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#9) = 0",
                 "The following button is shown with a border and its text is coloured Dark-Grey:The ‘EOA’ button");
             /*
             Test Step 3
@@ -240,13 +226,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘EOA’ button.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press Exit button and select Special menu then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#10) = 0         (#11) = 0         (#12) = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Press Exit button and select Special menu then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#10) = 0         (#11) = 0         (#12) = 0",
                 "The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Adhesion’ buttonThe ‘SR speed/distance’ buttonThe ‘Train Integrity’ button");
             /*
             Test Step 4
@@ -307,13 +288,8 @@ namespace Testcase.DMITestCases
                                 @"3. The ‘Train Integrity’ button.");
 
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press Exit button and select Setting menu then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#13) = 0         (#14) = 0         (#15) = 0         (#16) = 0         (#17) = 0         (#18) = 0         (#25) = 0         (#26) = 0         (#32) = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Press Exit button and select Setting menu then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#13) = 0         (#14) = 0         (#15) = 0         (#16) = 0         (#17) = 0         (#18) = 0         (#25) = 0         (#26) = 0         (#32) = 0",
                 "The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Language’ buttonThe ‘Volume’ buttonThe ‘Brightness’ buttonThe ‘System version’ buttonThe ‘Set VBC’ buttonThe ‘Remove VBC’ buttonThe ‘Set Clock’ button The ‘System info’ button");
             /*
             Test Step 5
@@ -385,12 +361,7 @@ namespace Testcase.DMITestCases
                                 @"7. The ‘Set Clock’ button." + Environment.NewLine +
                                 @"8. The ‘System info’ button");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Deativate and activate the cabin");
-            TraceReport("Expected Result");
-            TraceInfo("DMI disiplays in SB mode");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Deativate and activate the cabin", "DMI disiplays in SB mode");
             /*
             Test Step 6
             Action: Deativate and activate the cabin
@@ -409,13 +380,8 @@ namespace Testcase.DMITestCases
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press Setting menu and select Maintenace button and passward. The  run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#29) = 0         (#30) = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Press Setting menu and select Maintenace button and passward. The  run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#29) = 0         (#30) = 0",
                 "The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Wheel diameter’ buttonThe ‘Radar’ button");
             /*
             Test Step 7
@@ -474,12 +440,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Wheel diameter’ button." + Environment.NewLine +
                                 @"2. The ‘Radar’ button."); // aka Enable Doppler
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Deativate and activate the cabin");
-            TraceReport("Expected Result");
-            TraceInfo("DMI disiplays in SB mode");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Deativate and activate the cabin", "DMI disiplays in SB mode");
             /*
             Test Step 8
             Action: Deativate and activate the cabin
@@ -497,12 +458,8 @@ namespace Testcase.DMITestCases
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter Driver ID, skip brake test, select Level 1 then  shunting mode");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SH mode");
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Enter Driver ID, skip brake test, select Level 1 then  shunting mode", "DMI displays in SH mode");
             /*
             Test Step 9
             Action: Enter Driver ID, skip brake test, select Level 1 then  shunting mode
@@ -529,12 +486,8 @@ namespace Testcase.DMITestCases
 
             DMITestCases.DmiExpectedResults.SH_Mode_displayed(this);
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#6) = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#6) = 0",
                 "The following button is shown with a border and its text is coloured Dark-Grey:The ‘Exit Shuntingr’ button");
             /*
             Test Step 10
@@ -589,12 +542,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Exit Shunting’ button.");
 
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Deativate and activate the cabin");
-            TraceReport("Expected Result");
-            TraceInfo("DMI disiplays in SB mode");
+            MakeTestStepHeader(11, UniqueIdentifier++, "Deativate and activate the cabin", "DMI disiplays in SB mode");
             /*
             Test Step 11
             Action: Deativate and activate the cabin
@@ -608,12 +556,8 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
 
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform Start of Mission to SR mode , Level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI disiplays in SR mode");
+            MakeTestStepHeader(12, UniqueIdentifier++, "Perform Start of Mission to SR mode , Level 1",
+                "DMI disiplays in SR mode");
             /*
             Test Step 12
             Action: Perform Start of Mission to SR mode , Level 1
@@ -623,12 +567,7 @@ namespace Testcase.DMITestCases
             DMITestCases.DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
             DmiExpectedResults.SR_Mode_displayed(this);
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward with 40 km/h then select Setting menu");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++, "Drive the train forward with 40 km/h then select Setting menu",
                 "The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Lock screen for cleanning’ buttonThe ‘Brake’ buttonThe ‘National’ buttonThe ‘Maintenance’ button");
             /*
             Test Step 13
@@ -649,12 +588,7 @@ namespace Testcase.DMITestCases
                                 @"3. The ‘National’ button." + Environment.NewLine +
                                 @"4. The ‘Maintenance’ button.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Pass BG1 with Pkt 12,21 and 27");
-            TraceReport("Expected Result");
-            TraceInfo("DMI disiplays in FS mode");
+            MakeTestStepHeader(14, UniqueIdentifier++, "Pass BG1 with Pkt 12,21 and 27", "DMI disiplays in FS mode");
             /*
             Test Step 14
             Action: Pass BG1 with Pkt 12,21 and 27
@@ -665,13 +599,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.FS_mode_displayed(this);
 
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Pass BG2 with pkt 79 Geographical position then Run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#23) = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Pass BG2 with pkt 79 Geographical position then Run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#23) = 0",
                 "The following button is shown with a border and its text is coloured Dark-Grey:The ‘Geographical        position’ button");
             /*
             Test Step 15
@@ -723,12 +652,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Geographical position’ button.");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Stop the train");
-            TraceReport("Expected Result");
-            TraceInfo("Train is at standstill");
+            MakeTestStepHeader(16, UniqueIdentifier++, "Stop the train", "Train is at standstill");
             /*
             Test Step 16
             Action: Stop the train
@@ -745,12 +669,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays speed = 0 km/h.");
 
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Deactivate and activate cabin");
-            TraceReport("Expected Result");
-            TraceInfo("DMI disiplays in SB mode");
+            MakeTestStepHeader(17, UniqueIdentifier++, "Deactivate and activate cabin", "DMI disiplays in SB mode");
             /*
             Test Step 17
             Action: Deactivate and activate cabin
@@ -766,13 +685,8 @@ namespace Testcase.DMITestCases
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 2Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#19) = 0         (#20) = 0         (#21) = 0         (#22) = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 2Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#19) = 0         (#20) = 0         (#21) = 0         (#22) = 0",
                 "The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Contract last window’ buttonThe ‘Use short number’ buttonThe ‘Enter RBC data’ buttonThe ‘Radio Network ID’ button");
             /*
             Test Step 18
@@ -852,12 +766,7 @@ namespace Testcase.DMITestCases
                                 @"3. The ‘Enter RBC data’ button." + Environment.NewLine +
                                 @"4. The ‘Radio Network ID’ button.");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Deactivate and activate cabin");
-            TraceReport("Expected Result");
-            TraceInfo("DMI disiplays in SB mode");
+            MakeTestStepHeader(19, UniqueIdentifier++, "Deactivate and activate cabin", "DMI disiplays in SB mode");
             /*
             Test Step 19
             Action: Deactivate and activate cabin
@@ -873,13 +782,8 @@ namespace Testcase.DMITestCases
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level STM PLZBEnter train data entry and comfirm Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#24) = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(20, UniqueIdentifier++,
+                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level STM PLZBEnter train data entry and comfirm Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#24) = 0",
                 "The following button is shown with a border and its text is coloured Dark-Grey:The ‘End of data entry’ button");
             /*
             Test Step 20
@@ -966,12 +870,8 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘End of data entry’ button.");
 
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Deactivate and activate cabin cabin");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SB mode");
+            MakeTestStepHeader(21, UniqueIdentifier++, "Deactivate and activate cabin cabin",
+                "DMI displays in SB mode");
             /*
             Test Step 21
             Action: Deactivate and activate cabin cabin
@@ -988,13 +888,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SB_Mode_displayed(this);
 
 
-            TraceHeader("Test Step 22");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testAt the Main window, press ‘Close’ buttonPress ‘Settings’ buttonPress ‘Brake’ button.Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE(#28) = 0");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(22, UniqueIdentifier++,
+                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testAt the Main window, press ‘Close’ buttonPress ‘Settings’ buttonPress ‘Brake’ button.Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE(#28) = 0",
                 "The following button is shown with a border and its text is coloured Dark-Grey:The ‘Brake test’ button");
             /*
             Test Step 22
@@ -1061,11 +956,6 @@ namespace Testcase.DMITestCases
             TraceReport("Action");
             TraceInfo("End of test");
 
-            /*
-            Test Step 23
-            Action: End of test
-            Expected Result: 
-            */
 
             return GlobalTestResult;
         }

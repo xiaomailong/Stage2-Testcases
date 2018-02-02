@@ -24,20 +24,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_22_9_1_SR_Speed_Distance_window : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_9_1_a.xml to send EVC-11,MMI_N_DATA_ELEMENTS = 0MMI_V_STFF = 100MMI_L_STFF = 100000");
-            TraceReport("Expected Result");
-            TraceInfo("DMI does not display SR speed/distance window");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 22_9_1_a.xml to send EVC-11,MMI_N_DATA_ELEMENTS = 0MMI_V_STFF = 100MMI_L_STFF = 100000",
+                "DMI does not display SR speed/distance window");
             /*
             Test Step 1
             Action: Use the test script file 22_9_1_a.xml to send EVC-11,MMI_N_DATA_ELEMENTS = 0MMI_V_STFF = 100MMI_L_STFF = 100000
@@ -49,13 +44,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the SR/speed distance window");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Activate cabin A.Perform SoM in SR mode, Level 1.Press ‘Spec’ buttonPress ‘SR speed/distance’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Activate cabin A.Perform SoM in SR mode, Level 1.Press ‘Spec’ buttonPress ‘SR speed/distance’ button",
                 "Verify the following information,Data entry windowThe window title is ‘SR speed / distance’.The text label of the window title is right aligned.The following objects are displayed in Train data window,  Enabled Close button (NA11)Window TitleInput fieldThe following objects are additionally displayed in Train data window,Yes buttonThe text label ‘SR speed / distance entry complete?’Yes button is displayed in Disabled state as follows,Text label is black Background colour is dark-greyThe border colour is medium-grey the same as the input field’s colour.The sensitive area of Yes button is extended from text label ‘SR speed / distance entry complete?’Input fieldsThe input fields are located on Main area D and F.Each input field is devided into a Label Area and a Data Area.The Label Area is give the topic of the input field.The Label Area text is displayed corresponding to the input field i.e. SR Speed and SR distance. The Label Area is placed to the left of The Data Area.The text in the Label Area is aligned to the right.The value of data in the Data Area is aligned to the left.The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.There are only 2 input fields displayed in the window.The first input field is in state ‘Selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.All other input fields are in state ‘Not selected’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is grey.KeyboardThe keyboard associated to selected input field ‘SR Speed’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete buttonLayersThe level of layers of all areas in window are in Layer 0.Echo TextsAn echo text is composed of Label Part and Data Part.The Label Part of an echo texts is same as The Label area of an input fields.The echo texts are displayed in main area A, B, C and E with same order as their related input fields.The Label part of echo text is right aligned.The Data part of echo text is left aligned.The colour of texts in echo texts are grey.Entering CharactersThe cursor is flashed by changing from visible to not visible.The cursor is displayed as a horizontal line below the position of the next character to be entered.Packet transmissionUse the log file to confirm that DMI received packet EVC-11 with the variable MMI_N_DATA_ELEMENTS = 0.DMI displays SR Speed/Distance window.The data part of each input field is filled according to received packet EVC-11 with following variables,MMI_V_STFF = SR speedMMI_L_STFF = SR Distance");
             /*
             Test Step 2
@@ -115,12 +105,7 @@ namespace Testcase.DMITestCases
                                 "21. The SR speed data input field displays ‘100’." + Environment.NewLine +
                                 "22. The SR Distance data input field displays ‘100000’.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘0’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press and hold ‘0’ button",
                 "Verify the following information,The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The sound ‘Click’ is played once.The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’.The cursor is displayed as horizontal line below the value of the numeric-keyboard data key in the input field.The input field is used to enter the SR speed");
             /*
             Test Step 3
@@ -139,12 +124,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. An underscore character is displayed after the ‘0’ at the end of the SR Speed data input field.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The state of released button is changed to enabled");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Release the pressed button",
+                "Verify the following information,The state of released button is changed to enabled");
             /*
             Test Step 4
             Action: Release the pressed button
@@ -157,13 +138,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The <0> key is displayed enabled");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable",
                 "See the expected results of Step 3 – Step 4 and the following additional information,The pressed key is added in an input field immediately. The cursor is jumped to next position after entered the character immediately");
             /*
             Test Step 5
@@ -333,12 +309,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The <9> key is displayed enabled");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘Del’ button.Note: Stopwatch is required");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press and hold ‘Del’ button.Note: Stopwatch is required",
                 "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 6
@@ -360,12 +331,8 @@ namespace Testcase.DMITestCases
                                 "5. Characters are repeatedly deleted from the end of the SR speed data input field." +
                                 "6. The ‘Click’ sound is played repeatedly.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Del’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, The character is stop removing");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Release ‘Del’ button",
+                "Verify the following information, The character is stop removing");
             /*
             Test Step 7
             Action: Release ‘Del’ button
@@ -377,12 +344,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. No more characters are deleted from the end of the SR data input field.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the data value with 3 characters");
-            TraceReport("Expected Result");
-            TraceInfo("The 3 characters are added on an input field");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Enter the data value with 3 characters",
+                "The 3 characters are added on an input field");
             /*
             Test Step 8
             Action: Enter the data value with 3 characters
@@ -394,12 +357,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed data input field displays ‘123’");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the 4th character");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The value pressed key is not added into an input field");
+            MakeTestStepHeader(9, UniqueIdentifier++, "Continue to enter the 4th character",
+                "Verify the following information,The value pressed key is not added into an input field");
             /*
             Test Step 9
             Action: Continue to enter the 4th character
@@ -411,13 +370,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed data input field still displays ‘123’");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Delete the old value and enter the value ‘40’ for SR speed.Then, confirm an entered data by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Delete the old value and enter the value ‘40’ for SR speed.Then, confirm an entered data by pressing an input field",
                 "Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘SR Speed’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘SR Distance’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo TextsThe echo text of ‘SR Speed’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘SR Distance’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_SR_RULES (EVC-106)] with following variablesMMI_V_STFF = 40 MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 15 (SR Speed)MMI_M_BUTTONS = 254Use the log file to confirm that the Data part of echo texts are displayed correspond with each index of variables in received packet EVC-11 as follows,For MMI_NID_DATA= 15 (SR speed)MMI_N_TEXT = number of characters of SR speed value.MMI_X_TEXT[x] = each characters which displayed as value of SR speed.For MMI_NID_DATA = 16 (SR distance)MMI_N_TEXT = number of characters of SR distance value.MMI_X_TEXT[x] = each characters which displayed as value of SR distance.Note: x is index of characters");
             /*
             Test Step 10
@@ -454,12 +408,8 @@ namespace Testcase.DMITestCases
                                 "7. A numeric keypad is displayed for SR Distance." + Environment.NewLine +
                                 "8. The keypad contains enabled buttons for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform action step 3-7 for keypad of the ‘SR Distance’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Perform action step 3-7 for keypad of the ‘SR Distance’ input field",
                 "See the expected results of Step 3 – Step 7 and the following additional information,The pressed key is added in an input field immediately. The cursor is jumped to next position after entered the character immediately.The input field is used to enter the SR Distance");
             /*
             Test Step 11
@@ -651,12 +601,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Delete the value in the SR distance data input field");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the data value with 5 characters");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++, "Enter the data value with 5 characters",
                 "Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘10000’)");
             /*
             Test Step 12
@@ -669,12 +614,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed data input field displays ‘10000’");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the 6th character");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++, "Continue to enter the 6th character",
                 "Verify the following information,The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. 1000 00)");
             /*
             Test Step 13
@@ -687,12 +627,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed data input field displays ‘1000 00’ (with a space after the 4th character).");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the 7th character without deletion");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The value pressed key is not added into an input field");
+            MakeTestStepHeader(14, UniqueIdentifier++, "Continue to enter the 7th character without deletion",
+                "Verify the following information,The value pressed key is not added into an input field");
             /*
             Test Step 14
             Action: Continue to enter the 7th character without deletion
@@ -703,13 +639,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed data input field still displays ‘1000 00’ (no character added).");
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Delete the old value and enter the new value ‘1000’ for SR Distance.Then, confirm an entered data by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Delete the old value and enter the new value ‘1000’ for SR Distance.Then, confirm an entered data by pressing an input field",
                 "Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘SR Distance’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.There is no input field selected.Echo TextsThe echo text of ‘SR Distance’ is changed to white colour.The value of echo text is changed refer to entered data.Data Entry windowThe state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The colour of border is medium-grey.Packet transmissionUse the log file to confirm that DMI received packet [MMI_CURRENT_SR_RULES (EVC-11)] with variable MMI_M_BUTTONS = 36.Use the log file to confirm that DMI sent out packet [MMI_NEW_SR_RULES (EVC-106)] with following variablesMMI_L_STFF = 1000 MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 16 (SR Distance)MMI_M_BUTTONS = 254");
             /*
             Test Step 15
@@ -743,13 +674,8 @@ namespace Testcase.DMITestCases
                                 "7. A numeric keypad is displayed for SR Distance." + Environment.NewLine +
                                 "8. The keypad contains enabled buttons for the numbers <1> to <9>, <Del> (symbol NA21), <0> and (disabled) <Decimal_Separator>.");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Select ‘SR Speed’ input field.Enter new value for ‘SR Speed’.Select ‘SR Distance’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Perform the following procedure,Select ‘SR Speed’ input field.Enter new value for ‘SR Speed’.Select ‘SR Distance’ input field",
                 "Verify the following information,The state of ‘Yes’ button below text label ‘SR speed/distance entry is complete?’ is disabled. The state of input field ‘SR Speed’ is changed to ‘Not selected’ as follows,The value of ‘SR Speed’ input field is removed, display as blank.The background colour of the input field is dark-grey");
             /*
             Test Step 16
@@ -766,12 +692,8 @@ namespace Testcase.DMITestCases
                                 "2. The SR speed data input field is displayed ‘Not Selected’." + Environment.NewLine +
                                 "3. The SR speed data input field displays a blank value on a Dark-grey background.");
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm the value of ‘SR Distance’");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The state of input field ‘SR Speed’ is changed to ‘Selected’");
+            MakeTestStepHeader(17, UniqueIdentifier++, "Confirm the value of ‘SR Distance’",
+                "Verify the following information,The state of input field ‘SR Speed’ is changed to ‘Selected’");
             /*
             Test Step 17
             Action: Confirm the value of ‘SR Distance’
@@ -783,12 +705,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR distance data input field is displayed ‘Selected’.");
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the value ‘40’ for ‘SR Speed’ value.Press and hold ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Enter the value ‘40’ for ‘SR Speed’ value.Press and hold ‘Yes’ button",
                 "Verify the following information,The state of button is changed to ‘Pressed’, the border of button is removed.The sound ‘Click’ is played once");
             /*
             Test Step 18
@@ -803,12 +721,7 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Yes’ button is displayed pressed, without a border." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out the ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(19, UniqueIdentifier++, "Slide out the ‘Yes’ button",
                 "Verify the following information,The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 19
@@ -822,12 +735,8 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Yes’ button is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into the ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The button is back to state ‘Pressed’ without a sound");
+            MakeTestStepHeader(20, UniqueIdentifier++, "Slide back into the ‘Yes’ button",
+                "Verify the following information,The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 20
             Action: Slide back into the ‘Yes’ button
@@ -840,12 +749,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Yes’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(21, UniqueIdentifier++, "Release ‘Yes’ button",
                 "Verify the following information,DMI displays Special window.Use the log file to confirm that DMI sent out packet [MMI_NEW_SR_RULES (EVC-106)] with following variablesMMI_N_DATA_ELEMENTS = 0MMI_M_BUTTONS = 36");
             /*
             Test Step 21
@@ -866,12 +770,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SRSpeedDistance;
             EVC30_MMIRequestEnable.Send();
-            TraceHeader("Test Step 22");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘SR speed / distance’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(22, UniqueIdentifier++, "Press ‘SR speed / distance’ button",
                 "DMI displays SR speed/distance window.Verify the following information,An entered value from step 8 and 13 are set to the data value of input fields and echo texts as follows,SR Speed = 40SR Distance = 1000");
             /*
             Test Step 22
@@ -892,12 +791,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The SR distance data input field and its echo text display the value ‘1000’.");
 
-            TraceHeader("Test Step 23");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm the current data without re-entry SR speed and SR distance.Then, press ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(23, UniqueIdentifier++,
+                "Confirm the current data without re-entry SR speed and SR distance.Then, press ‘Yes’ button",
                 "Verify the following information,An input field is used to revalidation the SR Speed and SR Distance, DMI displays Special window");
             /*
             Test Step 23
@@ -913,12 +808,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI displays the Special window.");
 
-            TraceHeader("Test Step 24");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘SR spee/distance’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays SR speed/distance window");
+            MakeTestStepHeader(24, UniqueIdentifier++, "Press ‘SR spee/distance’ button",
+                "DMI displays SR speed/distance window");
             /*
             Test Step 24
             Action: Press ‘SR spee/distance’ button
@@ -934,12 +825,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR speed/distance window.");
 
-            TraceHeader("Test Step 25");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold the Label area of ‘SR Distance’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(25, UniqueIdentifier++, "Press and hold the Label area of ‘SR Distance’ input field",
                 "Verify the following information,The state of ‘SR Distance’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘SR Distance’ input field remains ‘not selected’. The state of ‘SR Speed’ input field remains ‘selected’.The sound ‘Click’ is played once");
             /*
             Test Step 25
@@ -955,12 +841,7 @@ namespace Testcase.DMITestCases
                                 "2. The SR distance data input field stays ‘Not Selected’." + Environment.NewLine +
                                 "3. The SR speed data input field stays ‘Selected’.");
 
-            TraceHeader("Test Step 26");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out the Label area of ‘SR Distance’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(26, UniqueIdentifier++, "Slide out the Label area of ‘SR Distance’ input field",
                 "Verify the following information,The border of ‘SR Distance’ input field is shown (state ‘Enabled’) without a sound.The state of ‘SR Distance’ input field remains ‘not selected’. The state of ‘SR Speed’ input field remains ‘selected’");
             /*
             Test Step 26
@@ -978,12 +859,7 @@ namespace Testcase.DMITestCases
                                 "3. The SR distance data input field stays ‘Not Selected’." + Environment.NewLine +
                                 "4. The SR speed data input field stays ‘Selected’.");
 
-            TraceHeader("Test Step 27");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into the Label area of ‘SR Distance’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(27, UniqueIdentifier++, "Slide back into the Label area of ‘SR Distance’ input field",
                 "Verify the following information,The state of ‘SR Distance’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘SR Distance’ input field remains ‘not selected’. The state of ‘SR Speed’ input field remains ‘selected’");
             /*
             Test Step 27
@@ -1001,12 +877,8 @@ namespace Testcase.DMITestCases
                                 "2. The SR distance data input field stays ‘Not Selected’." + Environment.NewLine +
                                 "3. The SR speed data input field stays ‘Selected’.");
 
-            TraceHeader("Test Step 28");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The state of ‘SR Distance’ input field is changed to selected");
+            MakeTestStepHeader(28, UniqueIdentifier++, "Release the pressed area",
+                "Verify the following information,The state of ‘SR Distance’ input field is changed to selected");
             /*
             Test Step 28
             Action: Release the pressed area
@@ -1019,12 +891,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR distance data input field is displayed ‘Selected’.");
 
-            TraceHeader("Test Step 29");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform action step 21-24 for the Label area of SR Speed input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(29, UniqueIdentifier++,
+                "Perform action step 21-24 for the Label area of SR Speed input field",
                 "Verify the following information,The state of an input field is changed to ‘selected’ when release the pressed area at the Label area of input field");
             /*
             Test Step 29
@@ -1056,12 +924,8 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
 
-            TraceHeader("Test Step 30");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform action step 21-24 for the Data area of each input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(30, UniqueIdentifier++,
+                "Perform action step 21-24 for the Data area of each input field",
                 "Verify the following information,The state of an input field is changed to ‘selected’ when release the pressed area at the Data area of input field");
             /*
             Test Step 30
@@ -1085,12 +949,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR speed data input field is displayed ‘Selected’.");
 
-            TraceHeader("Test Step 31");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 22_9_1_a.xml to send EVC-11");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(31, UniqueIdentifier++, "Use the test script file 22_9_1_a.xml to send EVC-11",
                 "Verify the following information,The value of an input fields for SR speed and SR distance are changed refer to received packet as follows,SR Speed = 100SR Distance = 100000");
             /*
             Test Step 31
@@ -1104,13 +963,8 @@ namespace Testcase.DMITestCases
                                 "1. The SR speed data input field displays ‘100’." + Environment.NewLine +
                                 "2. The SR distance data input field displays ‘100000’.");
 
-            TraceHeader("Test Step 32");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_9_1_b.xml to send EVC-11 with,MMI_N_DATA_ELEMENTS = 0MMI_V_STFF = 601MMI_L_STFF = 100001");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(32, UniqueIdentifier++,
+                "Use the test script file 22_9_1_b.xml to send EVC-11 with,MMI_N_DATA_ELEMENTS = 0MMI_V_STFF = 601MMI_L_STFF = 100001",
                 "Verify the following information,The value of input fields for SR speed and SR distance are changed to blank");
             /*
             Test Step 32
@@ -1125,12 +979,7 @@ namespace Testcase.DMITestCases
                                 "1. The SR speed data input field is blank." + Environment.NewLine +
                                 "2. The SR distance data input field is blank.");
 
-            TraceHeader("Test Step 33");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(33, UniqueIdentifier++, "Press ‘Close’ button",
                 "Verify the following information,Use the log file to confirm that DMI sent out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 12 (Exit Change SR rules).Use the log file to confirm that DMI sent out packet [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_NID_WINDOW = 254.The window is closed and the Special window is displayed");
             /*
             Test Step 33
@@ -1151,11 +1000,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the SR speed/distance window and displays the Special window.");
 
-            TraceHeader("Test Step 34");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(34, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 34
             Action: End of test

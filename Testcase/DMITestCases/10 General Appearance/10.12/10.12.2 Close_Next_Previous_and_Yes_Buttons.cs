@@ -22,7 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_5_12_2_Navigation_Buttons : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // Testcase entrypoint

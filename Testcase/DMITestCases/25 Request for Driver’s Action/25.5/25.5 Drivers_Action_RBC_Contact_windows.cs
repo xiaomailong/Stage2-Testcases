@@ -46,13 +46,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,a)   Press and hold the ‘Radio Network ID’ button at least 2 seconds. Then, release the pressed button.b)  Press the ‘Close’ button.c)   Press the ‘Enter RBC Data’ button.d)   Press the ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure,a)   Press and hold the ‘Radio Network ID’ button at least 2 seconds. Then, release the pressed button.b)  Press the ‘Close’ button.c)   Press the ‘Enter RBC Data’ button.d)   Press the ‘Close’ button",
                 "DMI displays RBC Contact window.Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST refer to sequence below,a)   MMI_M_REQUEST = 56 (Start Network ID)b)   MMI_M_REQUEST = 61 (Exit RBC Network ID)c)   MMI_M_REQUEST = 28 (Start RBC Data Entry)d)   MMI_M_REQUEST = 33 (Exit RBC Data Entry)Note: The sequence of MMI_M_REQUEST value are consistent with step of each action.(2)   When the button is pressed in each action, the window of pressed button is closed");
             /*
             Test Step 1
@@ -106,13 +101,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC data window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press the ‘Enter RBC Data’ button.Enter the value of an input fields as follows,RBC ID = 6996969RBC Phone = 0031840880100Press 'Yes' button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Main window");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Press the ‘Enter RBC Data’ button.Enter the value of an input fields as follows,RBC ID = 6996969RBC Phone = 0031840880100Press 'Yes' button",
+                "DMI displays Main window");
             /*
             Test Step 2
             Action: Perform the following procedure,Press the ‘Enter RBC Data’ button.Enter the value of an input fields as follows,RBC ID = 6996969RBC Phone = 0031840880100Press 'Yes' button
@@ -135,13 +126,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press the ‘Level’ button.Select and confirm ‘Level 2’At the RBC Contact window, press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Perform the following procedure,Press the ‘Level’ button.Select and confirm ‘Level 2’At the RBC Contact window, press ‘Close’ button",
                 "Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 39 (Exit RBC contact).(2)   The RBC Contact window is closed, DMI displays Main window");
             /*
             Test Step 3
@@ -179,13 +165,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC Contact window and displays the Main window.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press the ‘Level’ button.Select and confirm ‘Level 2’At the RBC Contact window, press ‘Contact last RBC’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Press the ‘Level’ button.Select and confirm ‘Level 2’At the RBC Contact window, press ‘Contact last RBC’ button",
                 "DMI displays Main window.Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST = 57 (Contact last RBC).(2)   The RBC Contact window is closed, DMI displays Main window");
             /*
             Test Step 4
@@ -227,11 +208,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC Contact window and displays the Main window.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 5
             Action: End of test

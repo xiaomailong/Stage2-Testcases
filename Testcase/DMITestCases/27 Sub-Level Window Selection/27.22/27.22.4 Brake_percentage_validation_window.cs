@@ -50,12 +50,7 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter and confirm all data in Brake Percentage window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Enter and confirm all data in Brake Percentage window",
                 "Verify the following information,(1)   Use the log file to confirm that DMI received the packet MMI_ECHOED_BRAKE_PERCENTAGE (EVC-51). (2)   Use the log file to confirm that the following variables in packet EVC-51 are same as entered data,MMI_M_BP_CURRENT = entered brake percentageMMI_M_BP_MEASURED = entered Last measured BPMMI_M_BP_ORIG = entered Original BP(3)   DMI displays Brake Percentage Validation window.(4)   The following objects are displayed in Brake Percentage Validation window. Enabled Close button (NA11)Window TitleInput fieldYes buttonNo buttonWindow Title(5)   The window title is ‘Validate brake percentage’.(6)   The window title is right aligned.Layer(7)   The window is displayed in main area A/B/C/D/E/F/G.(8)   All areas of Data validation window are displayed in Layer 0.Input field(9)   The window contains a single input field which has only data area.(10)   The value of input field is empty.Keyboard(11)   The displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo Text(12)   Echo Text is composed of a Label part and Data part.(13)   The Label of echo text is right aligned.(14)   The Data part of echo text is left aligned.(15)   The order of echo texts are same as of the Brake Percentage window as follows,Original BPLast measured BPBrake percentage(16)   The data part of echo texts are display the data value same as of the Brake percentage window.(17)   The echo texts are located in Main area A,B,C and E.(18)   The echo texts colour is white.General property of window(19)   The Brake percentage validation window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI(20)   All objects, text messages and buttons are presented within the same layer.(21)   The Default window is not displayed and covered the current window");
             /*
             Test Step 1
@@ -98,12 +93,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "10. The Default window does not cover the current window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘No’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The value of input field is changed refer to selected button");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘No’ button",
+                "The value of input field is changed refer to selected button");
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -115,12 +106,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘No’.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm entered data by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Confirm entered data by pressing an input field",
                 "Verify the following information,DMI displays Brake window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 60 (Exit brake percentage)");
             /*
             Test Step 3
@@ -135,13 +121,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press ‘Brake’ percentage button.Enter and confirm all data in brake percentage window.Press ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Brake percentage validation window");
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Brake’ percentage button.Enter and confirm all data in brake percentage window.Press ‘Yes’ button",
+                "DMI displays Brake percentage validation window");
             /*
             Test Step 4
             Action: Perform the following procedure,Press ‘Brake’ percentage button.Enter and confirm all data in brake percentage window.Press ‘Yes’ button
@@ -169,12 +151,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘Yes’");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Close’ button",
                 "Verify the following information,DMI displays Brake window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 60 (Exit brake percentage)");
             /*
             Test Step 5
@@ -189,13 +166,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press ‘Brake’ percentage button.Enter and confirm all data in brake percentage window.Press ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Brake percentage validation window");
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Brake’ percentage button.Enter and confirm all data in brake percentage window.Press ‘Yes’ button",
+                "DMI displays Brake percentage validation window");
             /*
             Test Step 6
             Action: Perform the following procedure,Press ‘Brake’ percentage button.Enter and confirm all data in brake percentage window.Press ‘Yes’ button
@@ -218,12 +191,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake percentage validation window");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The value of input field is changed refer to selected button");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press ‘Yes’ button",
+                "The value of input field is changed refer to selected button");
             /*
             Test Step 7
             Action: Press ‘Yes’ button
@@ -235,12 +204,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘Yes’");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm entered data by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Confirm entered data by pressing an input field",
                 "Verify the following information,The Brake percentage validation is closed.DMI displays Brake window.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_BRAKE_PERCENTAGE (EVC-151)] with variable based on confirmed data");
             /*
             Test Step 8
@@ -257,13 +221,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake window");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press ‘Brake percentage’ button.Enter and confirm all data in brake percentage window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Default window with the  message “ATP Down Alarm” and sound alarm");
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Brake percentage’ button.Enter and confirm all data in brake percentage window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI",
+                "DMI displays Default window with the  message “ATP Down Alarm” and sound alarm");
             /*
             Test Step 9
             Action: Perform the following procedure,Press ‘Brake percentage’ button.Enter and confirm all data in brake percentage window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI
@@ -284,12 +244,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the message ‘ATP Down Alarm’." + Environment.NewLine +
                                 "2.The ‘Alarm’ sound is played.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Re-establish communication between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Re-establish communication between ETCS onboard and DMI",
                 "Verify the following informaiton,All buttons except ‘No’ button are disabled.The state of ‘No’ button is enabled.The disabled buttons are shown as a button in state ‘disabled‘ with text label in dark-grey");
             /*
             Test Step 10
@@ -305,11 +260,8 @@ namespace Testcase.DMITestCases
                                 "2. The <No> key is displayed enabled." + Environment.NewLine +
                                 "3. The text of all disabled button and keys labels is in dark-grey.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 11
             Action: End of test

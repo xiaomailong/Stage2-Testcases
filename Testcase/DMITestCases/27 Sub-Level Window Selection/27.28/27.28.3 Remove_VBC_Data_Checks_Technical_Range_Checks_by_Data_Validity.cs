@@ -26,7 +26,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_28_3_Remove_VBC_Data_Checks_Technical_Range_Checks_by_Data_Validity : TestcaseBase
     {
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -47,13 +46,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press the ‘Settings’ button located on the ‘Driver ID’ window.Then, open the ‘Remove VBC’ data entry window from the Settings menu");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Press the ‘Settings’ button located on the ‘Driver ID’ window.Then, open the ‘Remove VBC’ data entry window from the Settings menu",
                 "The ‘Remove VBC’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window");
             /*
             Test Step 1
@@ -82,13 +76,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. A ‘Remove VBC entry complete?’ label is displayed in the bottom left-hand corner with an enabled ‘Yes’ button below it.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Enter “1” (invalid value) with the numeric keypad and press the data input field (Accept) in the same screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Enter “1” (invalid value) with the numeric keypad and press the data input field (Accept) in the same screen",
                 "EVC-19Use the log file to verify that DMI receives packet EVC-19 with variable:(1) MMI_Q_DATA_CHECK = 1 in order to indicate the technical range check failure.(2) MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.Input Field(3) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(4) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).Echo Texts(5) The data part of the echo text displays “++++”.(6) The data part of the echo text is coloured red");
             /*
             Test Step 2
@@ -110,12 +99,8 @@ namespace Testcase.DMITestCases
                                 "2. The echo text data part displays ‘++++’ in red." + Environment.NewLine +
                                 "3. The ‘Yes’ button is disabled.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the data input field once again (Accept) in the same screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press the data input field once again (Accept) in the same screen",
                 "Input Field(1) The ‘Enter’ button associated to the data area of the input field is still coloured grey and its text is black (state ‘Selected IF/data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).EVC-119(3) Use the log file to confirm that DMI does not send out packet EVC-119 as the ‘Enter’ button is disabled.Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 3
@@ -130,12 +115,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The echo text data part displays ‘++++’ in red.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter “1” (invalid value) with the numeric keypad in the same screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Enter “1” (invalid value) with the numeric keypad in the same screen",
                 "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “1” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)");
             /*
             Test Step 4
@@ -154,12 +135,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The echo text data part displays ‘++++’ in red.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the data input field (Accept)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press the data input field (Accept)",
                 "EVC-19Use the log file to verify that DMI receives packet EVC-19 with variable:(1) MMI_Q_DATA_CHECK = 1 in order to indicate the technical range check failure.(2) MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.Input Field(3) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’)");
             /*
             Test Step 5
@@ -177,12 +153,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field ‘Enter’ button still displays ‘1’ in black on a grey background.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the data input field once again (Accept) in the same screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Press the data input field once again (Accept) in the same screen",
                 "Input Field(1) The ‘Enter’ button associated to the data area of the input field is still coloured grey and its text is black (state ‘Selected IF/data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).EVC-119(3) Use the log file to confirm that DMI does not send out packet EVC-119 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 6
@@ -198,12 +170,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The echo text data part displays ‘++++’ in red.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter “65536” (valid value) with the numeric keypad");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Enter “65536” (valid value) with the numeric keypad",
                 "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “65536” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)");
             /*
             Test Step 7
@@ -216,12 +183,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field ‘Enter’ button displays ‘65536’.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the data input field (Accept) in the same screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press the data input field (Accept) in the same screen",
                 "EVC-119(1) Use the log file to verify that DMI sends packet EVC-119 with variable:MMI_M_VBC_CODE = 65536 MMI_M_BUTTONS =  254 (BTN_ENTER)EVC-19(2) Use the log file to verify that DMI receives packet EVC-19 with variable:MMI_Q_DATA_CHECK = 0 (All checks have passed)MMI_X_TEXT = 54 (“6”)MMI_X_TEXT = 53 (“5”)MMI_X_TEXT = 53 (“5”) MMI_X_TEXT = 51 (“3”) MMI_X_TEXT = 54 (“6”)");
             /*
             Test Step 8
@@ -242,13 +204,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field ‘Enter’ button displays ‘65536’.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "This step is to complete the process of ‘Remove VBC’:- Press the ‘Yes’ button on the ‘Remove VBC’ window.- Validate the data in the data validation window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "This step is to complete the process of ‘Remove VBC’:- Press the ‘Yes’ button on the ‘Remove VBC’ window.- Validate the data in the data validation window",
                 "1. After pressing the ‘Yes’ button, the data validation window (‘Validate Remove VBC’) appears instead of the ‘Remove VBC’ data entry window. The data part of echo text displays “65536” in white.2. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Remove VBC’ window with enabled ‘Remove VBC’ button");
             /*
             Test Step 9
@@ -269,13 +226,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with the ‘Remove VBC’ button enabled.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_28_3_a.xmlEVC-19MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_28_3_a.xmlEVC-19MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)",
                 "Input Field(1) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).Echo Texts(2) The data part of the echo text displays “++++”");
             /*
             Test Step 10
@@ -298,11 +250,8 @@ namespace Testcase.DMITestCases
 
             #endregion
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 11
             Action: End of test

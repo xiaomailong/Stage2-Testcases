@@ -26,7 +26,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_20_3_Drivers_Action_Special_window : TestcaseBase
     {
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -44,12 +43,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the ‘SR speed/distance’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press the ‘SR speed/distance’ button",
                 "Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 13 (Change SR Rules)(2)   The Special window is closed, DMI displays SR speed/distance window");
             /*
             Test Step 1
@@ -73,12 +67,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Special window and displays the SR speed/distance window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press the ‘Close’ button",
                 "Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 12 (Exit Change SR Rules)(2)   The SR speed/distance window is closed, DMI displays Special window");
             /*
             Test Step 2
@@ -99,12 +88,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the SR speed/distance window and displays the Special window.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1.Then, stop the train and press the ‘Special’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Special window with enabled Adhesion button");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Drive the train forward pass BG1.Then, stop the train and press the ‘Special’ button",
+                "DMI displays Special window with enabled Adhesion button");
             /*
             Test Step 3
             Action: Drive the train forward pass BG1.Then, stop the train and press the ‘Special’ button
@@ -117,12 +103,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button(this);
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the ‘Adhesion’ button.Then, select and confirm ‘Slippery rail’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Press the ‘Adhesion’ button.Then, select and confirm ‘Slippery rail’ button",
                 "Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 11 (Set adhesion coefficient to ‘slippery rail’)(2)   The Adhesion window is closed, DMI displays Special window");
             /*
             Test Step 4
@@ -140,12 +122,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Adhesion window and displays the Special window.");
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the ‘Adhesion’ button.Then, select and confirm ‘Non slippery rail’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Press the ‘Adhesion’ button.Then, select and confirm ‘Non slippery rail’ button",
                 "DMI displays Special window.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 10 (Restore adhesion coefficient to ‘non-slippery rail’)(2)   The Adhesion window is closed, DMI displays Special window");
             /*
             Test Step 5
@@ -163,13 +141,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Adhesion window and displays the Special window.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press and hold ‘Train integrity’ button at least 2 seconds.Release the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure,Press and hold ‘Train integrity’ button at least 2 seconds.Release the pressed button",
                 "Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 38 (Start procedure ‘Train Integrity’)(2)   The Special window is closed, DMI displays Default window");
             /*
             Test Step 6
@@ -186,11 +159,8 @@ namespace Testcase.DMITestCases
             Wait_Realtime(300);
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartProcedureTrainIntegrity;
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 7
             Action: End of test

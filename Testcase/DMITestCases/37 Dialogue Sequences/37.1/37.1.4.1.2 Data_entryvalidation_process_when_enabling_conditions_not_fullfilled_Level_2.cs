@@ -50,13 +50,9 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press ‘Level’ button.Enter and confirm Level 2.Press ‘RBC data’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays RBC data window");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Level’ button.Enter and confirm Level 2.Press ‘RBC data’ button",
+                "DMI displays RBC data window");
             /*
             Test Step 1
             Action: Perform the following procedure,Press ‘Level’ button.Enter and confirm Level 2.Press ‘RBC data’ button
@@ -95,13 +91,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays RBC data window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1",
                 "Verify the following information,DMI closes the RBC data window and displays RBC Contact window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#21) = 0");
             /*
             Test Step 2
@@ -137,13 +128,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC data window and displays the RBC contact window.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press and hold  ‘Radio network ID’ button at least 2 seconds.Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Radio network ID window");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Perform the following procedure,Press and hold  ‘Radio network ID’ button at least 2 seconds.Release the pressed area",
+                "DMI displays Radio network ID window");
             /*
             Test Step 3
             Action: Perform the following procedure,Press and hold  ‘Radio network ID’ button at least 2 seconds.Release the pressed area
@@ -160,13 +147,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Radio network ID window.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Drive the train forward until the brake is appliedStop driving the trainAcknowledge the ‘Brake intervention’ symbol by pressing area E1",
                 "Verify the following information,DMI closes the RBC data window and displays RBC Contact window instead.Use the log file to confirm that DMI receives packet information [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_Q_REQUEST_ENABLE_64 (#22) = 0");
             /*
             Test Step 4
@@ -200,11 +182,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Radio network ID window and displays the RBC Contact window.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 5
             Action: End of test

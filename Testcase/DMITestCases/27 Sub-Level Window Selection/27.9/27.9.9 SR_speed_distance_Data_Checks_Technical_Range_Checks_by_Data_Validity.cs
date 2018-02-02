@@ -43,12 +43,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Open the ‘SR speed / distance’ data entry window from the Special menu");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Open the ‘SR speed / distance’ data entry window from the Special menu",
                 "The ‘SR speed / distance’ data entry window appears on ETCS-DMI screen instead of the ‘Special’ menu window");
             /*
             Test Step 1
@@ -67,13 +63,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR/speed distance window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Enter “1” (invalid value) for SR speed with the numeric keypad and press the data input field (Accept) in the same screen.Then, observe the echo texts on the left hand side");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Enter “1” (invalid value) for SR speed with the numeric keypad and press the data input field (Accept) in the same screen.Then, observe the echo texts on the left hand side",
                 "EVC-11Use the log file to verify that DMI receives packet EVC-11 with variable:(1) MMI_Q_DATA_CHECK = 1 in order to indicate the technical range check failure.(2) MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.(3) MMI_NID_DATA = 15 (SR Speed)Input Field(4) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(5) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).Echo Texts of SR Speed(6) The data part of the echo text displays “++++”.(7) The data part of the echo text is coloured red");
             /*
             Test Step 2
@@ -99,12 +90,8 @@ namespace Testcase.DMITestCases
                                 @"3. The echo text for SR speed displays ‘++++’ in red." + Environment.NewLine +
                                 @"4. The ‘Yes’ button is disabled.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the data input field once again (Accept) in the same screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press the data input field once again (Accept) in the same screen",
                 "Input Field(1) The ‘Enter’ button associated to the data area of the input field is still coloured grey and its text is black (state ‘Selected IF/data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).EVC-106(3) Use the log file to verify that DMI does not send out packet EVC-106 as the ‘Enter’ button is disabled.Echo Texts of SR Speed(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 3
@@ -122,12 +109,8 @@ namespace Testcase.DMITestCases
                                 @"3. The echo text for SR speed still displays ‘++++’ in red." + Environment.NewLine +
                                 @"4. The ‘Yes’ button is disabled.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter “1” (invalid value) for SR speed with the numeric keypad in the same screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Enter “1” (invalid value) for SR speed with the numeric keypad in the same screen",
                 "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “1” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)");
             /*
             Test Step 4
@@ -140,12 +123,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR speed data input field displays ‘1’");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the data input field of SR speed (Accept)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press the data input field of SR speed (Accept)",
                 "EVC-11Use the log file to verify that DMI receives packet EVC-11 with variable:(1) MMI_Q_DATA_CHECK = 1 in order to indicate the technical range check failure.(2) MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.Input Field(3) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’)");
             /*
             Test Step 5
@@ -159,12 +137,8 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Enter’ button has black text on a grey background." + Environment.NewLine +
                                 @"2. The ‘Yes’ button is disabled.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the data input field of SR speed once again (Accept) in the same screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Press the data input field of SR speed once again (Accept) in the same screen",
                 "Input Field(1) The ‘Enter’ button associated to the data area of the input field is still coloured grey and its text is black (state ‘Selected IF/data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).EVC-106(3) Use the log file to verify that DMI does not send out packet EVC-106 as the ‘Enter’ button is disabled. Echo Texts of SR Speed(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 6
@@ -179,12 +153,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Enter’ button displays ‘1’.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter “40” (valid value) for SR speed with the numeric keypad");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Enter “40” (valid value) for SR speed with the numeric keypad",
                 "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “40” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)");
             /*
             Test Step 7
@@ -197,12 +166,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR speed data input field displays ‘40’.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the data input field of SR speed (Accept) in the same screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Press the data input field of SR speed (Accept) in the same screen",
                 "Input Field(1) The ‘SR distance’ data input field remains the same.EVC-106(1) Use the log file to confirm that DMI sends packet EVC-106 with variable:-   MMI_V_STFF = 40-    MMI_M_BUTTONS =  254 (BTN_ENTER)-    MMI_N_DATA_ELEMENTS = 1-    MMI_NID_DATA = 15 (SR Speed)EVC-11(2) Use the log file to verify that DMI receives packet EVC-11 with variable:-    MMI_Q_DATA_CHECK = 0 (All checks have passed)-   MMI_X_TEXT = 52 (“4”)-    MMI_X_TEXT = 48 (“0”)");
             /*
             Test Step 8
@@ -225,12 +190,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR speed data input field still displays ‘40’.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Follow step 2 – step 8 for SR distance with:invalid value of “1”valid value of “10000”");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Follow step 2 – step 8 for SR distance with:invalid value of “1”valid value of “10000”",
                 "See step 2 – step 8EVC-106(1) Use the log file to confirm that DMI sends packet EVC-106 with variable:-    MMI_L_STFF = 10000 -    MMI_M_BUTTONS =  254 (BTN_ENTER)-    MMI_N_DATA_ELEMENTS = 1-    MMI_NID_DATA = 16 (SR Distance)EVC-11(2) Use the log file to verify that DMI receives packet EVC-11 with variable:-    MMI_Q_DATA_CHECK = 0 (All checks have passed)-    MMI_X_TEXT = 49 (“1”)-    MMI_X_TEXT = 48 (“0”)-    MMI_X_TEXT = 48 (“0”)-    MMI_X_TEXT = 48 (“0”)-    MMI_X_TEXT = 48 (“0”)");
             /*
             Test Step 9
@@ -311,13 +272,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The SR distance data input field still displays ‘10000’.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "This step is to complete the process of ‘SR speed / distance’:- Press the ‘Yes’ button on the ‘SR speed / distance’ window.- Validate the data in the data validation window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "This step is to complete the process of ‘SR speed / distance’:- Press the ‘Yes’ button on the ‘SR speed / distance’ window.- Validate the data in the data validation window",
                 "1. After pressing the ‘Yes’ button, the data validation window (‘Validate SR speed / distance’) appears instead of the ‘SR speed / distance’ data entry window. The data part of echo text displays in white:SR Speed: 40SR Distance: 100002. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Special’ window) of ‘SR speed / distance’ window with enabled ‘SR speed / distance’ button");
             /*
             Test Step 10
@@ -340,13 +296,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the SR speed/distance window with the ‘SR speed / distance’ button enabled.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_9_9_a.xmlEVC-11MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)MMI_NID_DATA = 16 (SR Distance)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_9_9_a.xmlEVC-11MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)MMI_NID_DATA = 16 (SR Distance)",
                 "Input Field(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Texts of SR Distance(2) The data part of the echo text displays “++++”");
             /*
             Test Step 11
@@ -361,13 +312,8 @@ namespace Testcase.DMITestCases
                                 @"2. The echo text for SR distance still displays ‘10000’." + Environment.NewLine +
                                 @"2. The data parts of the echo texts display ‘++++’.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_9_9_b.xmlEVC-11MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)MMI_NID_DATA = 15 (SR Speed)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_9_9_b.xmlEVC-11MMI_Q_DATA_CHECK = 1 (Technical Range Check failed)MMI_NID_DATA = 15 (SR Speed)",
                 "Input Field(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Texts of SR Speed(2) The data part of the echo text displays “++++”");
             /*
             Test Step 12
@@ -384,11 +330,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"3. The echo text for SR speed still displays ‘++++’.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(13, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 13
             Action: End of test

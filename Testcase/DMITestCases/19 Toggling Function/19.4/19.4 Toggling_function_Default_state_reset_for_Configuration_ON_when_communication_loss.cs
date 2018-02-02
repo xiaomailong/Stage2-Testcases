@@ -38,12 +38,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in FS mode, Level 1");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1",
+                "DMI displays in FS mode, Level 1");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
@@ -54,12 +50,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG2.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in OS mode, Level 1");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward pass BG2.Then, stop the train",
+                "DMI displays in OS mode, Level 1");
             /*
             Test Step 2
             Action: Drive the train forward pass BG2.Then, stop the train
@@ -75,13 +67,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook not appear.Then simulate loss-communication between ETCS onboard and DMI (1 second).Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook not appear.Then simulate loss-communication between ETCS onboard and DMI (1 second).Note: Stopwatch is required for accuracy of test result",
                 "DMI displays the  message “ATP Down Alarm” with sound alarm.Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 3
@@ -103,13 +90,8 @@ namespace Testcase.DMITestCases
                                 "4. DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "5. DMI does not display the Digital release speed.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Re-establish communication between ETCS onboard and DMI (in 1 second).Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Re-establish communication between ETCS onboard and DMI (in 1 second).Note: Stopwatch is required for accuracy of test result",
                 "DMI displays in OS mode, Level 1.Verify the following information,The objects below are displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 4
@@ -133,11 +115,8 @@ namespace Testcase.DMITestCases
                                 "4. DMI displays the Digital distance to target." + Environment.NewLine +
                                 "5. DMI displays the Digital release speed.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 5
             Action: End of test

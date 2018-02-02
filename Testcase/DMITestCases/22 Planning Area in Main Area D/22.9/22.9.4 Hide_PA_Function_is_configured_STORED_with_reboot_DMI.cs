@@ -22,7 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_9_4_Hide_PA_Function_is_configured_STORED_with_reboot_DMI : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -31,12 +30,7 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Power On the system");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays the default window");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power On the system", "DMI displays the default window");
             /*
             Test Step 1
             Action: Power On the system
@@ -48,12 +42,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Default window.");
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A and Perform SoM to SR mode, Level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SR mode and level 1");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Activate cabin A and Perform SoM to SR mode, Level 1",
+                "DMI displays in SR mode and level 1");
             /*
             Test Step 2
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
@@ -70,12 +60,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward with speed = 40 km/h pass BG1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward with speed = 40 km/h pass BG1",
                 "DMI shows “Entering FS” messageDMI displays the Planning area in main area D.The Hide PA button is appeared on  the main area D of the DMI");
             /*
             Test Step 3
@@ -101,12 +86,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press Hide PA button");
-            TraceReport("Expected Result");
-            TraceInfo("The Planning area is disappeared from the main area D of DMI");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press Hide PA button",
+                "The Planning area is disappeared from the main area D of DMI");
             /*
             Test Step 4
             Action: Press Hide PA button
@@ -117,12 +98,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is removed from area D.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Turn off power of DMI");
-            TraceReport("Expected Result");
-            TraceInfo("DMI is power off");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Turn off power of DMI", "DMI is power off");
             /*
             Test Step 5
             Action: Turn off power of DMI
@@ -133,12 +109,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is blank.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Turn on power of DMI");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Turn on power of DMI",
                 "DMI is power on DMI displays the Planning area. The Hide PA button is appeared on the main area D of DMI");
             /*
             Test Step 6
@@ -155,11 +126,8 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is re-displayed in area D.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 7
             Action: End of test

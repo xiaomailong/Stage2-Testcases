@@ -17,7 +17,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class at_least_31_PA_Gradient_Profile_Segments : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -25,12 +24,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays the default window. The Driver ID window is displayed");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A",
+                "DMI displays the default window. The Driver ID window is displayed");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -42,12 +37,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Driver performs SoM to SR mode, level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI is displayed in SR mode, level 1");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Driver performs SoM to SR mode, level 1",
+                "DMI is displayed in SR mode, level 1");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -59,12 +50,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SR_Mode_displayed(this);
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward pass BG1",
                 "DMI changes from SR mode to FS mode.The planning area is displayed the PA Gradient Profile. DMI is able to handle more than 16 PA Gradient Profile segments. (see the figure in ‘Comment’ column)Note: PA Gradient Profile value are 2, 4, 6, …. 34. In grey segment bars");
             /*
             Test Step 3
@@ -75,12 +61,7 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_pass_BG1(this);
 
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG2");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Drive the train forward pass BG2",
                 "An information of PA Gradient Profile is updated.The planning area is displayed the PA Gradient Profile. DMI is able to handle more than 31 PA Gradient Profile segments.Note: PA Gradient Profile value are 1, 2, 4, 6, …. 32. In both of grey colour segment bars and dark-grey colour segment bars.Press ‘Scale Up’  button and it will increase the distance scale to [0…1000]");
             /*
             Test Step 4
@@ -92,11 +73,8 @@ namespace Testcase.DMITestCases
             DmiActions.Drive_the_train_forward_pass_BG2(this);
 
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of Test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of Test", "");
+
             /*
             Test Step 5
             Action: End of Test

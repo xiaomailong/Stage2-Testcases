@@ -23,7 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_12_2_2_Train_Speed : TestcaseBase
     {
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -43,12 +42,8 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Power on the system and activate the cabin");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays SB mode");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on the system and activate the cabin",
+                "DMI displays SB mode");
             /*
             Test Step 1
             Action: Power on the system and activate the cabin
@@ -69,12 +64,7 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.SB_Mode_displayed(this);
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform SoM to  SR mode, level 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM to  SR mode, level 1",
                 "Mode changes to SR mode , level 1Verify the following information:The speed dial displays 550 km/h as a mixminum speed");
             /*
             Test Step 2
@@ -91,12 +81,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. The speed dial displays 550 km/h maximum speed");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Change the configuration: SPEED_DIAL_V_MAX  to 200, 300 and 400 then retest with step 1 to 2");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Change the configuration: SPEED_DIAL_V_MAX  to 200, 300 and 400 then retest with step 1 to 2",
                 "Verify the following information:The speed dial displays the maxinum speed accroding to configuration setting");
             /*
             Test Step 3
@@ -184,11 +170,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. The speed dial displays 400 km/h maximum speed");
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 4
             Action: End of test

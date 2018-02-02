@@ -21,19 +21,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_10_2_Zoom_PA_Function_with_Scale_Up : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SB mode. The Driver ID window is displayed");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A",
+                "DMI displays in SB mode. The Driver ID window is displayed");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -46,12 +41,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode." + Environment.NewLine +
                                 "2. The Driver ID window is displayed.");
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Driver performs SoM to SR mode, level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SR mode, level 1");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Driver performs SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -64,12 +55,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Driver drives the train forward with speed = 30km/h and pass BG1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Driver drives the train forward with speed = 30km/h and pass BG1",
                 "DMI changes from SR mode to FS mode, Level 1 with PA in area D.Verify the following information,The symbol NA03 is displayed at sub-area D9");
             /*
             Test Step 3
@@ -89,12 +76,7 @@ namespace Testcase.DMITestCases
                                 "2. The Planning Area is displayed in area D." + Environment.NewLine +
                                 "3. The ‘Scale Up’ button, symbol NA03, is displayed in sub-area D9.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Presses ‘Scale Up’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Presses ‘Scale Up’ button",
                 "DMI remains displays in FS mode.Verify the following information,The PA’s distance range is changed to [0…2000]");
             /*
             Test Step 4
@@ -108,12 +90,7 @@ namespace Testcase.DMITestCases
                                 "1. DM still displays in FS mode." + Environment.NewLine +
                                 "2. The Planning Area distance range changes to 0..2000.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Scale Up’ button until the distance range is [0…1000]");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Scale Up’ button until the distance range is [0…1000]",
                 "Verify the following information,Verify that the Zoom PA function is switched the PA’s distance range to the next lower range and the visualisation of the PA are updated accordingly.When the distance range is [0…1000], the symbol NA05 is displayed in sub-area D9");
             /*
             Test Step 5
@@ -129,12 +106,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The (enabled) ‘Scale Up’ symbol, NA03, is removed and the disabled ‘Scale Up’ symbol, NA05, is displayed in sub-area D9.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Scale Up’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press ‘Scale Up’ button",
                 "Verify the following information,Verify that The ‘Scale Up’ button of the operable Zoom PA function is disabled, visualisation of the PA are not change");
             /*
             Test Step 6
@@ -148,12 +120,7 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area scale does not change." + Environment.NewLine +
                                 "2. The Zoom PA function is disabled.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Scale Down’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press ‘Scale Down’ button",
                 "Verify the following information,The PA’s distance range is changed to [0…2000] and the symbol NA03 is displayed in sub-area D9");
             /*
             Test Step 7
@@ -169,12 +136,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The (disabled) ‘Scale Up’ symbol, NA05, is removed and the (enabled) ‘Scale Up’ symbol, NA03, is displayed in sub-area D9.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Driver presses ‘Hide’ button at position top-right of planning area in sub-area D14");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Driver presses ‘Hide’ button at position top-right of planning area in sub-area D14",
                 "The Planning information area is  disappeared from DMI.Verify that the ‘Scale Up’ and ‘Scale Down’ buttons are removed");
             /*
             Test Step 8
@@ -188,11 +151,8 @@ namespace Testcase.DMITestCases
                                 "1. Planning Information is removed." + Environment.NewLine +
                                 "2. The ‘Scale Up’ and ‘Scale Down’ buttons are removed.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 9
             Action: End of test

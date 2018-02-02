@@ -42,12 +42,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Brightness’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Brightness’ button",
                 "DMI displays the Brightness window on the right half part of the window.LayersThe layers of window on half-grid array is displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text “Brightness”.Verify that the Brightness window is displayed in main area D, F and G as half-grid array.A data entry window contains only one input field that covers the Main area D, F and G.The following objects are displayed in Brightness window. Enabled Close button (NA11)Window TitleInput FieldInput fieldThe input field is located in main area D and F.For a single input field, the window title is clearly explaining the topic of the input field. The Brightness window is displayed as a single input field with only the data part.KeyboardThe keyboard associated to the Brightness window is displayed as dedicated keyboard.The keyboard is presented below the area of input field.General property of windowThe Brightness window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 1
@@ -78,12 +73,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "11. The Default window does not cover the current window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘-’ button.Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Press and hold ‘-’ button.Note: Stopwatch is required for accuracy of test result",
                 "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of ‘-‘ button is changed to ‘Pressed’ and immediately back to ‘Enabled’ stateThe eventually displayed data value (Data Area) is decreased after pressing the button. The single input field is used for the entry of the luminance.The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.The data value of the input field is aligned to the left of the data area.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the value of input field is decreased repeatly refer to pressed state.Sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 2
@@ -108,12 +99,8 @@ namespace Testcase.DMITestCases
                                 "        the data input value is repeatedly decreased;" + Environment.NewLine +
                                 @"7. The ‘Click’ sound is played repeatedly while the key is pressed.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘-’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The input field is stop decreasing");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Release ‘-’ button",
+                "Verify the following information,The input field is stop decreasing");
             /*
             Test Step 3
             Action: Release ‘-’ button
@@ -125,12 +112,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. The value displayed in the data input field stops decreasing.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘+’ button.Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Press and hold ‘+’ button.Note: Stopwatch is required for accuracy of test result",
                 "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of ‘+‘ button is changed to ‘Pressed’ and immediately back to ‘Enabled’ stateThe eventually displayed data value (Data Area) is increased after pressing the button.While press and hold over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the value of input field is increased repeatly refer to pressed state.Sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 4
@@ -152,12 +135,8 @@ namespace Testcase.DMITestCases
                                 "        the data input value is repeatedly increased;" + Environment.NewLine +
                                 @"5. The ‘Click’ sound is played repeatedly while the key is pressed.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘+’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The input field is stop increasing");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Release ‘+’ button",
+                "Verify the following information,The input field is stop increasing");
             /*
             Test Step 5
             Action: Release ‘+’ button
@@ -168,12 +147,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. The value displayed in the data input field stops increasing.");
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press and hold an input field",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 6
@@ -186,12 +160,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Slide out an input field",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound");
             /*
             Test Step 7
@@ -205,12 +174,7 @@ namespace Testcase.DMITestCases
                                 "1. The data input field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Slide back into an input field",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 8
@@ -226,12 +190,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo("The Brightness window is closed. DMI displays the Settings window");
+            MakeTestStepHeader(9, UniqueIdentifier++, "Release the pressed area",
+                "The Brightness window is closed. DMI displays the Settings window");
             /*
             Test Step 9
             Action: Release the pressed area
@@ -243,12 +203,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Brightness window and displays the Settings window.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Brightness’ button on Settings menu window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Brightness’ button on Settings menu window",
                 "DMI displays Brightness window.(1)   The brightness is saved by remaining luminance as confirmed an entered data is replaced in input field");
             /*
             Test Step 10
@@ -262,13 +217,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Brightness window." + Environment.NewLine +
                                 "2. The data input field displays the same value for luminance as previously confirmed.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Confirm the current data without re-entry by pressing an input field.Then, press ‘Brightness’  button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Brightness window.The brightness is still same");
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Confirm the current data without re-entry by pressing an input field.Then, press ‘Brightness’  button",
+                "DMI displays Brightness window.The brightness is still same");
             /*
             Test Step 11
             Action: Confirm the current data without re-entry by pressing an input field.Then, press ‘Brightness’  button
@@ -284,12 +235,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Brightness window." + Environment.NewLine +
                                 "2. The data input field displays the same value for luminance as before.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,(1)   DMI displays the Settings window");
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify the following information,(1)   DMI displays the Settings window");
             /*
             Test Step 12
             Action: Press ‘Close’ button
@@ -301,11 +248,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(13, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 13
             Action: End of test

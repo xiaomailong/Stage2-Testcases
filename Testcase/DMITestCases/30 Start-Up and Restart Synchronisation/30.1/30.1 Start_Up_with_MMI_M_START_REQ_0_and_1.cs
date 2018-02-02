@@ -28,7 +28,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_25_1_Start_Up_with_MMI_M_START_REQ_0_and_1 : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -36,12 +35,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Power on test system and start OTE");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on test system and start OTE",
                 "Verify the following information:(1)    DMI is in isolation state and keeps all specific ATP indications extinguished. The text “No contact with ATP” is presented in area E5");
             /*
             Test Step 1
@@ -55,13 +49,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI is isolated and all ATP indications are off." + Environment.NewLine +
                                 @"2. The message ‘No contact with ATP’ is displayed in area E5.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Establish the communication between ETCS Onboard and DMI with start of ATP.Ensure that the ‘Sleeping’ is selected on OTE Simulator");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Establish the communication between ETCS Onboard and DMI with start of ATP.Ensure that the ‘Sleeping’ is selected on OTE Simulator",
                 "Verify the following information:(1)    Use the log file to verify packet that DMI receives and sends out as following:DMI receives packet EVC-0 with variable [MMI_M_START_REQ] = 0.No ATP related information on DMI screen, except the text “starting up” in area E5.DMI sends out [MMI_START_MMI (EVC-100)] with all corresponding data.(2)    Use the log file to verify packet that DMI receives and sends out with variables and value as following:DMI receives packet EVC-0 with variable [MMI_M_START_REQ] = 1.The text “starting up” in area E5 is removed.DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 2 (Idle) to the ETC/ATP at least each 250ms regardless of the status of the cabin activation.No mode information in area B7.No ETCS related information on DMI screen, except the text “Driver's cab not active” in area E5.No button corresponds to driver’s request on DMI screen.(3)    When DMI receives MMI_M_START_REQ = 1,  use the log file to confirm that DMI receives packet EVC-1 with cylical update of variable SDT_SSC32 (Counter)");
             /*
             Test Step 2
@@ -101,12 +90,7 @@ namespace Testcase.DMITestCases
                                 "2. DMI displays no mode information in area B7." + Environment.NewLine +
                                 "3. No other ETCS information or driver request buttons are displayed.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Deselect the ‘Sleeping’ on the OTE Simulator");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Deselect the ‘Sleeping’ on the OTE Simulator",
                 "Verify the following information:(1)    In “Idle” state, the following actions are carried out: DMI displays a current mode in area B7.No ETCS related information on DMI screen, except the text “Driver's cab not active” in area E5.No button corresponds to driver’s request on DMI screen except Settings button");
             /*
             Test Step 3
@@ -121,13 +105,8 @@ namespace Testcase.DMITestCases
                                 "2. DMI displays the current mode in area B7." + Environment.NewLine +
                                 "3. No driver request buttons are displayed.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Driver simulates the communication loss between ETCS Onboard and DMI by removing connection (MVB/Ethernet) from DMI hardware");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Driver simulates the communication loss between ETCS Onboard and DMI by removing connection (MVB/Ethernet) from DMI hardware",
                 "Verify the following information:(1)    In “Idle” state, the following actions are carried out: No ATP related information on DMI screen, except the text “No connection to the ATP” in area E5.Use the log file to confirm that DMI stops sending [MMI_STATUS_REPORT (EVC-102)] packet since no EVC-1 have been received during the latest second");
             /*
             Test Step 4
@@ -140,12 +119,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays ‘No connection to the ATP’ in area E5." + Environment.NewLine +
                                 "2. No other ATP information is displayed.");
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Re-establish the communication between ETCS Onboard and DMI with start of ATP");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Re-establish the communication between ETCS Onboard and DMI with start of ATP",
                 "Verify the following information:(1)    DMI remains in “idle” state. Use the log file to confirm packet that DMI sends out or updates variables and value below: DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 2 (Idle) to the ETC/ATP at least each 250ms.DMI sends out and updated value [MMI_STATUS_REPORT (EVC-102). SDT_SSC32] to the ETC/ATP at least each 250ms");
             /*
             Test Step 5
@@ -160,12 +135,7 @@ namespace Testcase.DMITestCases
             Wait_Realtime(250);
             EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS = EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusIdle;
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Activate cabin",
                 "Verify the following information:(1)    In “active” state, the following actions are carried out by using the log file to confirm packet that DMI sends out below:DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 3 (Active) to the ETC/ATP at least each 250ms.DMI sends out and updated value [MMI_STATUS_REPORT (EVC-102). SDT_SSC32] to the ETC/ATP at least each 250ms.All relevant ATP information is presented on DMI screen.(2)    Use the log file to confirm that DMI sends out ETCS mode and displays status via packet EVC-102 preriodically at least every 1.5s");
             /*
             Test Step 6
@@ -191,12 +161,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays all ATP relevant information.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Deactivate cabin");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Deactivate cabin",
                 "Verify the following information:(1)    DMI removes all current ETCS objects related to indications to the driver.(2)    DMI returns to “idle” state. Use the log file to confirm that DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 2 (Idle) to the ETC/ATP at least each 250ms");
             /*
             Test Step 7
@@ -213,12 +178,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes all ETCS objects relevant to driver information.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press or touch any area on DMI screen");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information:(1)    No response/reaction from touching on the DMI screen");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press or touch any area on DMI screen",
+                "Verify the following information:(1)    No response/reaction from touching on the DMI screen");
             /*
             Test Step 8
             Action: Press or touch any area on DMI screen
@@ -230,11 +191,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not respond to pressing or touching the screen.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 9
             Action: End of test

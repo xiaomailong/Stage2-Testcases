@@ -40,13 +40,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button",
                 "Verify the following information,Use the log file to confirm that DMI received the packet MMI_ECHOED_REMOVE_VBC_DATA (EVC-29). DMI displays Remove VBC Validation window.The following objects are displayed in Remove VBC Validation window. Enabled Close button (NA11)Window TitleInput fieldYes buttonNo buttonWindow TitleThe window title is ‘Validate Remove VBC’.The window title is right aligned.LayerThe window is displayed in main area A/B/C/D/E/F/G.All areas of Data validation window are displayed in Layer 0.Input fieldThe window contains a single input field which has only data area.The value of input field is empty.KeyboardThe displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo TextEcho Text is composed of a Label part and Data part.The Label of echo text is right aligned.The Data part of echo text is left aligned.The order of echo texts are same as of the Remove VBC window.The data part of echo texts are displayed the data value same as of the Remove VBC window.The echo texts are located in Main area A,B,C and E.The echo texts colour is white.Use the log file to confirm that the following variable in packet EVC-29 is same as entered data and display in the data part of echo text,MMI_M_VBC_CODE = entered VBC codeGeneral property of windowThe Remove VBC Validation window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMIAll objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 1
@@ -96,12 +91,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "13. The Default window does not cover the current window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘No’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The value of input field is changed refer to selected button");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘No’ button",
+                "The value of input field is changed refer to selected button");
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -113,12 +104,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘No’");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm entered data by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Confirm entered data by pressing an input field",
                 "Verify the following information,DMI displays Remove VBC window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 26 (Exit Remove VBC)");
             /*
             Test Step 3
@@ -133,13 +119,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC window");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Remove VBC Validation window");
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button",
+                "DMI displays Remove VBC Validation window");
             /*
             Test Step 4
             Action: Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button
@@ -153,12 +135,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC validation window");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Close’ button",
                 "Verify the following information,DMI displays Settings window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 25 (Exit Remove VBC)");
             /*
             Test Step 5
@@ -175,13 +152,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press ‘Remove VBC’ button.Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Remove VBC Validation window");
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Remove VBC’ button.Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button",
+                "DMI displays Remove VBC Validation window");
             /*
             Test Step 6
             Action: Perform the following procedure,Press ‘Remove VBC’ button.Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button
@@ -209,12 +182,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC validation window");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The value of input field is changed refer to selected button");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press ‘Yes’ button",
+                "The value of input field is changed refer to selected button");
             /*
             Test Step 7
             Action: Press ‘Yes’ button
@@ -226,12 +195,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘Yes’");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press and hold an input field",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 8
@@ -244,12 +208,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Slide out an input field",
                 "Verify the following information,(1)     The state of an input field is changed to ‘Enabled, the border of button is shown without a sound");
             /*
             Test Step 9
@@ -263,12 +222,7 @@ namespace Testcase.DMITestCases
                                 @"1. The data input field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Slide back into an input field",
                 "Verify the following information,(1)     The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 10
@@ -282,12 +236,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++, "Release the pressed area",
                 "DMI displays Settings window.Verify the following information,The Remove VBC validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_REMOVE_VBC (EVC-129)] with variable based on confirmed data");
             /*
             Test Step 11
@@ -302,13 +251,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Remove VBC validation window and displays the Settings window.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press ‘Set VBC’ button.Enter and validate value ‘65536’Press ‘Remove VBC button.Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button.Then, simulate loss-communication between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Default window with the  message “ATP Down Alarm” and sound alarm");
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Set VBC’ button.Enter and validate value ‘65536’Press ‘Remove VBC button.Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button.Then, simulate loss-communication between ETCS onboard and DMI",
+                "DMI displays Default window with the  message “ATP Down Alarm” and sound alarm");
             /*
             Test Step 12
             Action: Perform the following procedure,Press ‘Set VBC’ button.Enter and validate value ‘65536’Press ‘Remove VBC button.Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button.Then, simulate loss-communication between ETCS onboard and DMI
@@ -343,12 +288,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the message ‘ATP Down Alarm’." + Environment.NewLine +
                                 "2. The ‘Alarm’ sound is played.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Re-establish communication between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++, "Re-establish communication between ETCS onboard and DMI",
                 "Verify the following information,All buttons except ‘No’ button are disabled.The state of ‘No’ button is enabled.The disabled buttons are shown as a button is state ‘disabled’ with text label in dark-grey");
             /*
             Test Step 13
@@ -364,11 +304,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The ‘No’ button is displayed enabled.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(14, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 14
             Action: End of test

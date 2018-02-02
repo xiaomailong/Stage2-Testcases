@@ -41,12 +41,8 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Driver the train forward");
-            TraceReport("Expected Result");
-            TraceInfo("DMI changes from SR mode to FS mode");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Driver the train forward",
+                "DMI changes from SR mode to FS mode");
             /*
             Test Step 1
             Action: Driver the train forward
@@ -58,12 +54,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.FS_mode_displayed(this);
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward with speed = 140 km/h");
-            TraceReport("Expected Result");
-            TraceInfo("The speed pointer is displayed with speed =140");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with speed = 140 km/h",
+                "The speed pointer is displayed with speed =140");
             /*
             Test Step 2
             Action: Drive the train forward with speed = 140 km/h
@@ -74,12 +66,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 140 km/h.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 12_14_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0");
-            TraceReport("Expected Result");
-            TraceInfo("The Slip indication is displayed and shown as arrow pointing clockwise");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 12_14_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0",
+                "The Slip indication is displayed and shown as arrow pointing clockwise");
             /*
             Test Step 3
             Action: Use the test script file 12_14_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0
@@ -90,12 +79,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Slip indication is displayed and shown as arrow pointing clockwise.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 12_14_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE = 1");
-            TraceReport("Expected Result");
-            TraceInfo("The Slide indication is displayed and shown as arrow pointing counterclockwise");
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 12_14_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE = 1",
+                "The Slide indication is displayed and shown as arrow pointing counterclockwise");
             /*
             Test Step 4
             Action: Use the test script file 12_14_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE = 1
@@ -106,12 +92,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Slide indication is displayed and shown as arrow pointing clockwise.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 12_14_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Use the test script file 12_14_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 1",
                 "Verify the following information,The Slip indication is displayed and shown as arrow pointing clockwise");
             /*
             Test Step 5
@@ -124,11 +106,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. (1)	The Slip indication is displayed and shown as arrow pointing clockwise.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 6
             Action: End of test

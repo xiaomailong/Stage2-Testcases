@@ -23,7 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_22_5_4_Level_Window : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -34,12 +33,8 @@ namespace Testcase.DMITestCases
             // M_InstalledLevels = 4082NID_NTC_Installe_0 = 1NID_NTC_Installe_1 = 20NID_NTC_Installe_2 = 28NID_NTC_Installe_3 = 9
             // NID_NTC_Installe_4 = 6NID_NTC_Installe_5 = 10NID_NTC_Installe_6 = 22NID_NTC_Installe_7 = 0
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Power on the system and activate the cabin");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Driver ID window in SB mode");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on the system and activate the cabin",
+                "DMI displays Driver ID window in SB mode");
             /*
             Test Step 1
             Action: Power on the system and activate the cabin
@@ -56,12 +51,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enetr Driver ID and skip brake test");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Enetr Driver ID and skip brake test",
                 "Verify the following information,The level selection window displays 8 folllowing STMs accroding to configuration settingATBTPWS/AWSTBL1+PZB/LZBPZBLZBATC2ASFA");
             /*
             Test Step 2
@@ -103,11 +93,8 @@ namespace Testcase.DMITestCases
                                 "1. TPWS/AWS" + Environment.NewLine +
                                 "2. CBTC");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 3
             Action: End of test

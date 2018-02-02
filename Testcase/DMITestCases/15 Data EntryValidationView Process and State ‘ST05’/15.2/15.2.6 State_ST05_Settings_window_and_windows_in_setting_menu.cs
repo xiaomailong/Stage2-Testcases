@@ -59,12 +59,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure;Press ‘Setting’ buttonPress ‘Maintenance’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘Setting’ buttonPress ‘Maintenance’ button",
                 "Verify the following information;(1)   Verify DMI still displays Setting window until Maintenance password window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 1
@@ -87,13 +83,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 10_2_6_a.xml to disable and enable button of the password window via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_2_6_a.xml to disable and enable button of the password window via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result",
                 "Verify the following information;DMI in the entry state of ‘ST05’(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.(4)   The Input Field is deselected.10 seconds laterDMI in the exit state of ‘ST05’(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is in the ‘Selected’ state");
             /*
             Test Step 2
@@ -103,12 +94,7 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_6_a();
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter and confirm the password");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Enter and confirm the password",
                 "Verify the following information;(1)   Verify DMI still displays Maintenance password window until Maintenance window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 3
@@ -123,12 +109,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Maintenance window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Repeat action step 2 with Maintenance window",
                 "Verify the following information;DMI in the entry state of ‘ST05’(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.10 seconds laterDMI in the exit state of ‘ST05’(4)   The hourglass symbol ST05 is removed.(5)   The state of all buttons is restored according to the last status before script is sent.(6)   The enabled Close button NA11 is display in area G");
             /*
             Test Step 4
@@ -157,12 +138,7 @@ namespace Testcase.DMITestCases
                                 "3. All buttons are enabled." + Environment.NewLine +
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Wheel diameter’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Wheel diameter’ button",
                 "Verify the following information;(1)   Verify DMI still displays Maintenance window until Wheel diameter window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 5
@@ -184,12 +160,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Wheel diameter window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Repeat action step 2 with Wheel diameter window",
                 "Verify the following information;DMI in the entry state of ‘ST05’(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.(4)   All Input Field are deselected.10 seconds laterDMI in the exit state of ‘ST05’(5)    The hourglass symbol ST05 is removed.(6)    The state of all buttons is restored according to the last status before script is sent.(7)    The enabled Close button NA11 is display in area G.(8)   The input field is stated as follows:The first input field is in the ‘Selected’ state.The all others are in the ‘Not selected’ state");
             /*
             Test Step 6
@@ -221,13 +192,8 @@ namespace Testcase.DMITestCases
                                 "5. The first Input Field is selected" + Environment.NewLine +
                                 "6. All other Input Fields are not selected.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Confirm all value in Wheel diameter window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Perform the following procedure;Confirm all value in Wheel diameter window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)",
                 "Verify the following information;(1)   Verify DMI still displays Wheel diameter window until Validate wheel diameter window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable");
             /*
             Test Step 7
@@ -252,12 +218,7 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Validate wheel diameter window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Repeat action step 2 with Validate wheel diameter window",
                 "Verify the following information;DMI in the entry state of ‘ST05’(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.(4)   The Input Field is deselected.10 seconds laterDMI in the exit state of ‘ST05’(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is in the ‘Selected’ state");
             /*
             Test Step 8
@@ -288,13 +249,8 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘Radar’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘Radar’ button",
                 "Verify the following information;(1)   Verify DMI still displays Validate wheel diameter window until Radar window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 9
@@ -316,12 +272,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Radar window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 2");
+            MakeTestStepHeader(10, UniqueIdentifier++, "Repeat action step 2 with Radar window",
+                "See the expectation in step 2");
             /*
             Test Step 10
             Action: Repeat action step 2 with Radar window
@@ -351,13 +303,8 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Confirm value in Radar window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Perform the following procedure;Confirm value in Radar window.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)",
                 "Verify the following information;(1)   Verify DMI still displays Radar window until Validate Radar window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable");
             /*
             Test Step 11
@@ -380,12 +327,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. The <Yes> key is always enabled.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Validate Radar window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 8");
+            MakeTestStepHeader(12, UniqueIdentifier++, "Repeat action step 2 with Validate Radar window",
+                "See the expectation in step 8");
             /*
             Test Step 12
             Action: Repeat action step 2 with Validate Radar window
@@ -415,13 +358,9 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘close’ button (Maintenance window) Press ‘close’ button (Settings window)SoM is performed in SR mode, Level 1.Note: in NTC data entry windows, enter and confirm the input field data follow echo text data");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SR mode, level 1");
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘close’ button (Maintenance window) Press ‘close’ button (Settings window)SoM is performed in SR mode, Level 1.Note: in NTC data entry windows, enter and confirm the input field data follow echo text data",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 13
             Action: Perform the following procedure;Confirm entered data by pressing an input field.Press ‘close’ button (Maintenance window) Press ‘close’ button (Settings window)SoM is performed in SR mode, Level 1.Note: in NTC data entry windows, enter and confirm the input field data follow echo text data
@@ -436,12 +375,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.SR_Mode_displayed(this);
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Setting’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(14, UniqueIdentifier++, "Press ‘Setting’ button",
                 "Verify the following information;(1)   Verify DMI still displays Default window until Setting window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 14
@@ -457,12 +391,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Setting window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++, "Repeat action step 2 with Setting window",
                 "Verify the following information;DMI in the entry state of ‘ST05’(1)    The hourglass symbol ST05 is displayed.(2)    Verify all buttons and the close button is disable. (except ‘Lock screen for cleaning’ button)(3)    The disabled Close button NA12 is display in area G.10 seconds laterDMI in the exit state of ‘ST05’(4)   The hourglass symbol ST05 is removed.(5)   The state of all buttons is restored according to the last status before script is sent.(6)   The enabled Close button NA11 is display in area G");
             /*
             Test Step 15
@@ -491,12 +420,7 @@ namespace Testcase.DMITestCases
                                 "3. All buttons are enabled." + Environment.NewLine +
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G.");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Language’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++, "Press ‘Language’ button",
                 "Verify the following information;(1)   Verify DMI still displays Setting window until Language window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 16
@@ -512,12 +436,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Language window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 2");
+            MakeTestStepHeader(17, UniqueIdentifier++, "Repeat action step 2 with Language window",
+                "See the expectation in step 2");
             /*
             Test Step 17
             Action: Repeat action step 2 with Language window
@@ -547,12 +467,8 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure;Press ‘close’ button (Language window) Press ‘Volume’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (Language window) Press ‘Volume’ button",
                 "Verify the following information;(1)   Verify DMI still displays Setting window until Volume window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 18
@@ -568,12 +484,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Volume window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 2");
+            MakeTestStepHeader(19, UniqueIdentifier++, "Repeat action step 2 with Volume window",
+                "See the expectation in step 2");
             /*
             Test Step 19
             Action: Repeat action step 2 with Volume window
@@ -603,12 +515,8 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure;Press ‘close’ button (Volume window) Press ‘Brightness’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(20, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (Volume window) Press ‘Brightness’ button",
                 "Verify the following information;(1)   Verify DMI still displays Setting window until Brightness window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 20
@@ -624,12 +532,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Brightness window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 2");
+            MakeTestStepHeader(21, UniqueIdentifier++, "Repeat action step 2 with Brightness window",
+                "See the expectation in step 2");
             /*
             Test Step 21
             Action: Repeat action step 2 with Brightness window
@@ -659,13 +563,8 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 22");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Press ‘close’ button (Brightness window) Press ‘System Version’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(22, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (Brightness window) Press ‘System Version’ button",
                 "Verify the following information;(1)   Verify DMI still displays Setting window until System Version window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 22
@@ -685,12 +584,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 23");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with System Version window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(23, UniqueIdentifier++, "Repeat action step 2 with System Version window",
                 "Verify the following information;DMI in the entry state of ‘ST05’(1)   The hourglass symbol ST05 is displayed.(2)   The disabled Close button NA12 is display in area G.10 seconds laterDMI in the exit state of ‘ST05’(3)   The hourglass symbol ST05 is removed.(4)   The enabled Close button NA11 is display in area G");
             /*
             Test Step 23
@@ -717,13 +611,8 @@ namespace Testcase.DMITestCases
                                 "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                 "3. The ‘Close’ button NA11 is displayed enabled in area G.");
 
-            TraceHeader("Test Step 24");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Press ‘close’ button (System Version window) Press ‘Set VBC’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(24, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (System Version window) Press ‘Set VBC’ button",
                 "Verify the following information;(1)   Verify DMI still displays Setting window until Set VBC window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 24
@@ -742,12 +631,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 25");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Set VBC window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 2");
+            MakeTestStepHeader(25, UniqueIdentifier++, "Repeat action step 2 with Set VBC window",
+                "See the expectation in step 2");
             /*
             Test Step 25
             Action: Repeat action step 2 with Set VBC window
@@ -777,13 +662,8 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 26");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Enter VBC Code ‘65536’Confirm entered data by pressing an input field.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(26, UniqueIdentifier++,
+                "Perform the following procedure;Enter VBC Code ‘65536’Confirm entered data by pressing an input field.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)",
                 "Verify the following information;(1)   Verify DMI still displays Set VBC window until Validate Set VBC window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable");
             /*
             Test Step 26
@@ -803,12 +683,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
-            TraceHeader("Test Step 27");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Validate set VBC window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 8");
+            MakeTestStepHeader(27, UniqueIdentifier++, "Repeat action step 2 with Validate set VBC window",
+                "See the expectation in step 8");
             /*
             Test Step 27
             Action: Repeat action step 2 with Validate set VBC window
@@ -838,13 +714,8 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 28");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘Remove VBC’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(28, UniqueIdentifier++,
+                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘Remove VBC’ button",
                 "Verify the following information;(1)   Verify DMI still displays Setting window until Remove VBC window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 28
@@ -863,12 +734,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 29");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Remove VBC window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 2");
+            MakeTestStepHeader(29, UniqueIdentifier++, "Repeat action step 2 with Remove VBC window",
+                "See the expectation in step 2");
             /*
             Test Step 29
             Action: Repeat action step 2 with Remove VBC window
@@ -877,13 +744,8 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_6_a();
 
-            TraceHeader("Test Step 30");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Enter VBC Code ‘65536’Confirm entered data by pressing an input field.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(30, UniqueIdentifier++,
+                "Perform the following procedure;Enter VBC Code ‘65536’Confirm entered data by pressing an input field.Press ‘Yes’ button.Press ‘Yes’ button (on keypad)",
                 "Verify the following information;(1)   Verify DMI still displays Remove VBC window until Validate Remove VBC window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable");
             /*
             Test Step 30
@@ -904,12 +766,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
-            TraceHeader("Test Step 31");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Validate remove VBC window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 8");
+            MakeTestStepHeader(31, UniqueIdentifier++, "Repeat action step 2 with Validate remove VBC window",
+                "See the expectation in step 8");
             /*
             Test Step 31
             Action: Repeat action step 2 with Validate remove VBC window
@@ -939,13 +797,8 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 32");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘Set Clock’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(32, UniqueIdentifier++,
+                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘Set Clock’ button",
                 "Verify the following information;(1)   Verify DMI still displays Setting window until Set Clock window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 32
@@ -961,12 +814,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 33");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Set Clock window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(33, UniqueIdentifier++, "Repeat action step 2 with Set Clock window",
                 "Verify the following information;DMI in the entry state of ‘ST05’.(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable. (except ‘Navigator’ button)(3)   The disabled Close button NA12 is display in area G.(4)   All Input Field are deselected.10 seconds laterDMI in the exit state of ‘ST05’.(5)   The hourglass symbol ST05 is removed.(6)   The state of all buttons is restored according to the last status before script is sent.(7)   The enabled Close button NA11 is display in area G.(8)   The input field is stated as follows:The first input field is in the ‘Selected’ state.The all others are in the ‘Not selected’ state");
             /*
             Test Step 33
@@ -998,12 +846,8 @@ namespace Testcase.DMITestCases
                                 "5. The first Input Field is selected" + Environment.NewLine +
                                 "6. All other Input Fields are not selected.");
 
-            TraceHeader("Test Step 34");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure;Press ‘close’ button (Set Clock window) Press ‘Brake’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(34, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (Set Clock window) Press ‘Brake’ button",
                 "Verify the following information;(1)   Verify DMI still displays Setting window until Brake window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 34
@@ -1018,12 +862,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 35");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Brake window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 4");
+            MakeTestStepHeader(35, UniqueIdentifier++, "Repeat action step 2 with Brake window",
+                "See the expectation in step 4");
             /*
             Test Step 35
             Action: Repeat action step 2 with Brake window
@@ -1051,12 +891,7 @@ namespace Testcase.DMITestCases
                                 "3. All buttons are enabled." + Environment.NewLine +
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G.");
 
-            TraceHeader("Test Step 36");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Test’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(36, UniqueIdentifier++, "Press ‘Test’ button",
                 "Verify the following information;(1)   Verify DMI still displays Brake window until Brake test window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 36
@@ -1072,12 +907,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 37");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Brake test window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 4");
+            MakeTestStepHeader(37, UniqueIdentifier++, "Repeat action step 2 with Brake test window",
+                "See the expectation in step 4");
             /*
             Test Step 37
             Action: Repeat action step 2 with Brake test window
@@ -1105,13 +936,8 @@ namespace Testcase.DMITestCases
                                 "3. All buttons are enabled." + Environment.NewLine +
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G.");
 
-            TraceHeader("Test Step 38");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Press ‘close’ button (Brake test window)Press ‘Percentage’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(38, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (Brake test window)Press ‘Percentage’ button",
                 "Verify the following information;(1)   Verify DMI still displays Brake window until Brake percentage window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 38
@@ -1128,12 +954,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 39");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Brake percentage window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 2");
+            MakeTestStepHeader(39, UniqueIdentifier++, "Repeat action step 2 with Brake percentage window",
+                "See the expectation in step 2");
             /*
             Test Step 39
             Action: Repeat action step 2 with Brake percentage window
@@ -1163,13 +985,8 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 40");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Enter brake percentage ‘80’Confirm entered data by pressing an input field.Press ‘Yes’ button (on keypad)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(40, UniqueIdentifier++,
+                "Perform the following procedure;Enter brake percentage ‘80’Confirm entered data by pressing an input field.Press ‘Yes’ button (on keypad)",
                 "Verify the following information;(1)   Verify DMI still displays Brake percentage window until Validate Brake percentage window is displayed.(2)   Verify the close button is always enable. (3)   Verify the <Yes> button is always enable");
             /*
             Test Step 40
@@ -1189,12 +1006,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Close’ button is always enabled." + Environment.NewLine +
                                 @"3. <Yes> button is always enabled.");
 
-            TraceHeader("Test Step 41");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with Validate brake percentage window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 8");
+            MakeTestStepHeader(41, UniqueIdentifier++, "Repeat action step 2 with Validate brake percentage window",
+                "See the expectation in step 8");
             /*
             Test Step 41
             Action: Repeat action step 2 with Validate brake percentage window
@@ -1224,13 +1037,8 @@ namespace Testcase.DMITestCases
                                 "4. The ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected.");
 
-            TraceHeader("Test Step 42");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘close’ button (Brake window) Press ‘System Info’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(42, UniqueIdentifier++,
+                "Perform the following procedure;Confirm entered data by pressing an input field.Press ‘close’ button (Brake window) Press ‘System Info’ button",
                 "Verify the following information;(1)   Verify DMI still displays Setting window until System Info window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 42
@@ -1253,12 +1061,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Close’ button is always enabled.");
 
-            TraceHeader("Test Step 43");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat action step 2 with System Info window");
-            TraceReport("Expected Result");
-            TraceInfo("See the expectation in step 23");
+            MakeTestStepHeader(43, UniqueIdentifier++, "Repeat action step 2 with System Info window",
+                "See the expectation in step 23");
             /*
             Test Step 43
             Action: Repeat action step 2 with System Info window
@@ -1284,11 +1088,8 @@ namespace Testcase.DMITestCases
                                 "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                 "3. The ‘Close’ button NA11 is displayed enabled in area G.");
 
-            TraceHeader("Test Step 44");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(44, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 44
             Action: End of test

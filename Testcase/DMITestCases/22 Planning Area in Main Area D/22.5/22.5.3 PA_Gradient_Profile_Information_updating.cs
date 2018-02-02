@@ -24,7 +24,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_5_3_PA_Gradient_Profile_Information_updating : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -32,12 +31,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A. Then  perform SoM to SR mode, level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays SR mode, level 1");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Then  perform SoM to SR mode, level 1",
+                "DMI displays SR mode, level 1");
             /*
             Test Step 1
             Action: Activate cabin A. Then  perform SoM to SR mode, level 1
@@ -49,12 +44,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward pass BG1",
                 "DMI changes from SR to FS mode. The Planning Area is displayed in area D with PA Gradient profile value = 10 with grey colour (uphill).Verify the following information,After PA information is updated, use the log file to verify a value of each variables in first packet of EVC-4 at transition state,MMI_N_GRADIENT = 0MMI_G_GRADIENT_CURR = 10The upper boundary of PA Gradient Profile is extended to 2000m");
             /*
             Test Step 2
@@ -81,12 +71,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The upper boundary of the PA Gradient Profile is at 2000m.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG2");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward pass BG2",
                 "Verify the following information,The order of PA Gradient Profile segments are updated correctly refer to received EVC-4 packet 0-250m: Gradient Profile value = 20 (grey colour)251-500m: Gradient Profile value = 25 (grey colour)501-2000m: No Gradient Profile display.Use the log file to confirm that DMI receives EVC-4 packet with the following variables,MMI_G_GRADIENT_CURR = 20MMI_N_GRADIENT = 2MMI_G_GRADIENT[0] = 25MMI_G_GRADIENT[1] = -255Note: The first index of parameter is the topmost position in packet EVC-4");
             /*
             Test Step 3
@@ -110,12 +95,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The first profile extends from the zero line to 250 and the second from 251 to 500 (m).");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG3");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Drive the train forward pass BG3",
                 "DMI changes from FS mode to TR mode because of PA gradient profile is removed.Note: There is text message ‘Balise read error’ displays in sub-area E5-E9.Verify the following information,After PA information is updated, use the log file to verify a value of each variables in first packet of EVC-4 at transition state,MMI_N_GRADIENT = 0MMI_G_GRADIENT_CURR = -255");
             /*
             Test Step 4

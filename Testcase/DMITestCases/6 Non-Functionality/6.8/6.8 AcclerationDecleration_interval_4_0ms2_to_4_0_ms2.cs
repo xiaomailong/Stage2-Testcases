@@ -21,7 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_8_AcclerationDecleration : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -30,12 +29,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "THIS TESCASE NEEDS TO BE RUN WITH ETCS AND VSIM");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Power on the system and activate cabin");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SB mode");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on the system and activate cabin",
+                "DMI displays in SB mode");
             /*
             Test Step 1
             Action: Power on the system and activate cabin
@@ -43,12 +38,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform Start of Mission to SR mode , eevel 1");
-            TraceReport("Expected Result");
-            TraceInfo("Mode changes to SR mode , Level 1");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform Start of Mission to SR mode , eevel 1",
+                "Mode changes to SR mode , Level 1");
             /*
             Test Step 2
             Action: Perform Start of Mission to SR mode , eevel 1
@@ -56,12 +47,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Pass BG0 with MA and Track description");
-            TraceReport("Expected Result");
-            TraceInfo("Mode changes to FS mode");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Pass BG0 with MA and Track description",
+                "Mode changes to FS mode");
             /*
             Test Step 3
             Action: Pass BG0 with MA and Track description
@@ -69,12 +56,9 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Full accelerate the traction (100%) until service brake is applied");
-            TraceReport("Expected Result");
-            TraceInfo("The speedometer movement goes up and down smoothly");
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Full accelerate the traction (100%) until service brake is applied",
+                "The speedometer movement goes up and down smoothly");
             /*
             Test Step 4
             Action: Full accelerate the traction (100%) until service brake is applied
@@ -83,11 +67,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of Test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of Test", "");
+
             /*
             Test Step 5
             Action: End of Test

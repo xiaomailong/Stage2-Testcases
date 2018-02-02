@@ -39,13 +39,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Drive the train forward pass BG1. Then, press an acknowledgement in sub-area C1 and press on sub-area B to toggle the basic speed hook become visible");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Drive the train forward pass BG1. Then, press an acknowledgement in sub-area C1 and press on sub-area B to toggle the basic speed hook become visible",
                 "DMI displays in OS mode, level 1Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-1: MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)MMI_O_BRAKETARGET = -1 (Default) EVC-7: OBU_TR_M_MODE = 1 (OS mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2");
             /*
             Test Step 1
@@ -84,12 +79,7 @@ namespace Testcase.DMITestCases
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to drive the train forward.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Continue to drive the train forward.Then, stop the train",
                 "Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 2 (Status = NoS, Supervision = PIM)(2)    The distance to target bar is not display in sub-area A3.(3)   The distance to target digital is display in sub-area A2");
             /*
             Test Step 2
@@ -106,12 +96,7 @@ namespace Testcase.DMITestCases
                                 "1. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "2. The digital distance to target is not displayed in sub-area A2.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to drive the train forward.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Continue to drive the train forward.Then, stop the train",
                 "Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM)(2)     The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is display in sub-area A2");
             /*
             Test Step 3
@@ -128,12 +113,7 @@ namespace Testcase.DMITestCases
                                 "1. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "2. The digital distance to target is not displayed in sub-area A2.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to drive the train forward.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Continue to drive the train forward.Then, stop the train",
                 "Verify the following information,(1)    Use the log file to confirm that DMI receives the packet information EVC-1 with following variables,MMI_M_WARNING = 3 (Status = Inds, Supervision = RSM)(2)     The distance to target bar is not display in sub-area A3.(3)    The distance to target digital is display in sub-area A2");
             /*
             Test Step 4
@@ -150,11 +130,8 @@ namespace Testcase.DMITestCases
                                 "1. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "2. The digital distance to target is not displayed in sub-area A2.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 5
             Action: End of test

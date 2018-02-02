@@ -52,12 +52,8 @@ namespace Testcase.DMITestCases
 
             #region Skipped due to repeated test steps of TC_18_4_1_Geographical_Position
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward past BG1");
-            TraceReport("Expected Result");
-            TraceInfo("The symbol ‘DR03’ displays in sub-area G12");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward past BG1",
+                "The symbol ‘DR03’ displays in sub-area G12");
             /*
             Test Step 1
             Action: Drive the train forward past BG1
@@ -67,12 +63,7 @@ namespace Testcase.DMITestCases
 
             // Call generic Check Results Method
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘DR03’ symbol at sub-area G12");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘DR03’ symbol at sub-area G12",
                 "Use the log file to confirm that DMI sent out only one packet of EVC-101 with variable MMI_M_REQUEST = 8 (Geographical position request)");
             /*
             Test Step 2
@@ -83,12 +74,8 @@ namespace Testcase.DMITestCases
 
             #endregion
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure:");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SR mode, Level 1");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Perform the following procedure:",
+                "DMI displays in SR mode, Level 1");
             /*
             Test Step 3
             Action: Perform the following procedure:
@@ -101,12 +88,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.SR_Mode_displayed(this);
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1");
-            TraceReport("Expected Result");
-            TraceInfo("The symbol ‘DR03’ displays in sub-area G12");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Drive the train forward pass BG1",
+                "The symbol ‘DR03’ displays in sub-area G12");
             /*
             Test Step 4
             Action: Drive the train forward pass BG1
@@ -127,12 +110,7 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Geographical Position", "DR03", "G12", false);
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘DR03’ symbol at sub-area G12");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘DR03’ symbol at sub-area G12",
                 "Use the log file to confirm that DMI sent out packet of EVC-101 with variable MMI_M_REQUEST = 8 (Geographical position request) every 1 second.");
             /*
             Test Step 5
@@ -172,13 +150,8 @@ namespace Testcase.DMITestCases
 
             #region Skipped due to repeated cycle times not required
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Repeat action step 3-5 for the remaining configuration of cycle time (GEOPOS_REQ_PERIOD = 2 to 10)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Repeat action step 3-5 for the remaining configuration of cycle time (GEOPOS_REQ_PERIOD = 2 to 10)",
                 "Use the log file to confirm that DMI sent out packet of EVC-101 with variable MMI_M_REQUEST = 8 (Geographical position request) every X second.");
             /*
             Test Step 6
@@ -193,12 +166,8 @@ namespace Testcase.DMITestCases
 
             #endregion
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("De-activate cabin A");
-            TraceReport("Expected Result");
-            TraceInfo("The geographical position in sub-area G12 is removed");
+            MakeTestStepHeader(7, UniqueIdentifier++, "De-activate cabin A",
+                "The geographical position in sub-area G12 is removed");
             /*
             Test Step 7
             Action: De-activate cabin A
@@ -209,12 +178,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. There is no symbol displayed in area G12.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press at sub-area G12");
-            TraceReport("Expected Result");
-            TraceInfo("The symbol DR03 is not display in sub-area G12.");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press at sub-area G12",
+                "The symbol DR03 is not display in sub-area G12.");
             /*
             Test Step 8
             Action: Press at sub-area G12
@@ -228,12 +193,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. There is no symbol displayed in area G12.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A");
-            TraceReport("Expected Result");
-            TraceInfo("The symbol ‘DR03’ displays in sub-area G12");
+            MakeTestStepHeader(9, UniqueIdentifier++, "Activate cabin A", "The symbol ‘DR03’ displays in sub-area G12");
             /*
             Test Step 9
             Action: Activate cabin A
@@ -245,12 +205,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Geographical Position", "DR03", "G12", false);
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Simulate loss-communication between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo("The geographical position in sub-area G12 is removed");
+            MakeTestStepHeader(10, UniqueIdentifier++, "Simulate loss-communication between ETCS onboard and DMI",
+                "The geographical position in sub-area G12 is removed");
             /*
             Test Step 10
             Action: Simulate loss-communication between ETCS onboard and DMI
@@ -262,12 +218,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. There is no symbol displayed in area G12.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press at sub-area G12");
-            TraceReport("Expected Result");
-            TraceInfo("The symbol DR03 is not display in sub-area G12.");
+            MakeTestStepHeader(11, UniqueIdentifier++, "Press at sub-area G12",
+                "The symbol DR03 is not display in sub-area G12.");
             /*
             Test Step 11
             Action: Press at sub-area G12
@@ -281,11 +233,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. There is no symbol displayed in area G12.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 12
             Action: End of test

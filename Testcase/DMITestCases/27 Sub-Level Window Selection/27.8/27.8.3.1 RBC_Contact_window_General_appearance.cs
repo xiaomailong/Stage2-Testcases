@@ -23,19 +23,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_8_3_1_RBC_Contact_window : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 22_8_3_1_a.xml to send EVC-22 with,MMI_NID_WINDOW = 5");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,DMI does not display RBC Contact window");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 22_8_3_1_a.xml to send EVC-22 with,MMI_NID_WINDOW = 5",
+                "Verify the following information,DMI does not display RBC Contact window");
             /*
             Test Step 1
             Action: Use the test script file 22_8_3_1_a.xml to send EVC-22 with,MMI_NID_WINDOW = 5
@@ -49,13 +45,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the RBC contact ID window");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 2");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 2",
                 "Verify the following information,Hour glass symbolThe hour glass symbol ST05 is displayed vertically centered in window title area and move to the right every second and come back to its first position and continue moving when there is no more possible to display inside window title area.Note: stopwatch is required.Menu windowThe RBC Contact window is displayed in main area D/F/G.The window title is ‘RBC contact’.The following objects are displayed in RBC Contact window,  Disabled Close button (NA12)Window TitleButton 1 with label ‘Contact last RBC’Button 2 with label ‘Use short number’Button 3 with label ‘Enter RBC data’Button 4 with label ‘Radio Network ID’Note: See the position of buttons in picture below,The state of each button in RBC Contact window are displayed correctly as follows,Contact last RBC = DisableUse short number = DisableEnter RBC data = EnableRadio Network ID = EnableLayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.Packet receivingUse the log file to confirm that DMI received pacekt EVC-22 with variable MMI_NID_WINDOW = 5.DMI displays RBC Contact window.Use the log file to confirm that DMI received packet EVC-30 with the value in each bit of variable MMI_Q_REQUEST_ENABLE_64 as follows,Bit #19 = 0 (Disable Contact last RBC)Bit #20 = 0 (Disable Use short number)Bit #21  = 1 (Enable Start RBC Data Entry)Bit #22 = 1 (Enable Radio Network ID)General property of windowThe RBC Contact window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 2
@@ -104,12 +95,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "9. The Default window is not covering the current window.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘Enter RBC data’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press and hold ‘Enter RBC data’ button",
                 "Verify the following information,The sound ‘Click’ is played once.The ‘Enter RBC data’ button is shown as pressed state, the border of button is removed");
             /*
             Test Step 3
@@ -128,12 +114,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out of ‘Enter RBC data’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The border of the button is shown (state ‘Enabled’) without a sound");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Slide out of ‘Enter RBC data’ button",
+                "The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 4
             Action: Slide out of ‘Enter RBC data’ button
@@ -147,12 +129,8 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Enter RBC data’ button field is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into ‘Enter RBC data’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The button is back to state ‘Pressed’ without a sound");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Slide back into ‘Enter RBC data’ button",
+                "The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 5
             Action: Slide back into ‘Enter RBC data’ button
@@ -166,12 +144,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Enter RBC data’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Enter RBC data’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Release ‘Enter RBC data’ button",
                 "Verify the following points,DMI displays RBC Data window.Use the log file to confirm that DMI sends out the packet [MMI_NEW_RBC_DATA (EVC-112)] with variable [MMI_NEW_RBC_DATA (EVC-112). MMI_M_BUTTONS] = 23 (BTN_ENTER_RBC_DATA) and [MMI_NEW_RBC_DATA (EVC-112). MMI_N_DATA_ELEMENTS] = 0");
             /*
             Test Step 6
@@ -199,12 +172,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC data window");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,(1)   DMI displays RBC Contact window");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify the following information,(1)   DMI displays RBC Contact window");
             /*
             Test Step 7
             Action: Press ‘Close’ button
@@ -217,12 +186,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC contact window");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Radio Network ID ‘ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press ‘Radio Network ID ‘ button",
                 "Verify the following information,The ‘Radio Network ID’ button becomes state ‘Pressed’, then state ‘Enabled’ once the button is immediately released.DMI still displays the RBC Contact window.The ‘Click’ sound is played once");
             /*
             Test Step 8
@@ -238,13 +202,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. DMI still displays the RBC contact window");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press and hold ‘Radio Network ID’ button for 2s.Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Press and hold ‘Radio Network ID’ button for 2s.Note: Stopwatch is required for accuracy of test result",
                 "Verify the following information,While press and hold button less than 2 secThe ‘Click’ sound is played once.The state of button is changed to ‘Pressed’.The state ‘pressed’ and ‘enabled’ are switched repeatly while button is pressed. While press and hold button over 2 secThe state of button is changed to ‘Pressed’ and without toggle");
             /*
             Test Step 9
@@ -259,12 +218,7 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. When the button has been pressed for more than 2s it is displayed pressed and does not change further.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out from the “Radio Network ID” button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Slide out from the “Radio Network ID” button",
                 "Verify the following information,The ‘‘Radio Network ID’ button turns to the ‘Enabled’ state without a sound");
             /*
             Test Step 10
@@ -279,13 +233,8 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Radio Network ID’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Slide back to the “Radio Network ID” button and hold it for 1 seconds.Then, slide out again.Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Slide back to the “Radio Network ID” button and hold it for 1 seconds.Then, slide out again.Note: Stopwatch is required for accuracy of test result",
                 "Verify the following information,  (1)  The ‘Radio Network ID’ button turns to the ‘Enabled’ state without a sound");
             /*
             Test Step 11
@@ -300,13 +249,8 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Radio Network ID’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Slide back to the “Radio Network ID” button and hold it for 2 seconds.Note: Stopwatch is required for accuracy of test result");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Slide back to the “Radio Network ID” button and hold it for 2 seconds.Note: Stopwatch is required for accuracy of test result",
                 "While press and hold button less than 2 secThe state ‘pressed’ and ‘enabled’ are switched repeatly while button is pressed without a sound. While press and hold button over 2 secThe state of button is changed to ‘Pressed’ and without toggle");
             /*
             Test Step 12
@@ -322,12 +266,7 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Click’ sound is not played." + Environment.NewLine +
                                 "3. When the button has been pressed for more than 2s it is displayed pressed and does not change further.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Radio Network ID’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++, "Release ‘Radio Network ID’ button",
                 "Verify the following information,DMI displays Radio Network ID window.Use the log file to confirm that DMI sends out the packet [MMI_NEW_RBC_DATA (EVC-112)] with variable [MMI_NEW_RBC_DATA (EVC-112). MMI_M_BUTTONS] = 24 (BTN_RADIO_NETWORK_ID) and [MMI_NEW_RBC_DATA (EVC-112). MMI_N_DATA_ELEMENTS] = 0");
             /*
             Test Step 13
@@ -350,12 +289,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Radio Network ID window");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press Close button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays RBC contact window");
+            MakeTestStepHeader(14, UniqueIdentifier++, "Press Close button", "DMI displays RBC contact window");
             /*
             Test Step 14
             Action: Press Close button
@@ -365,13 +299,9 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.RBC_Contact_Window_displayed(this);
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press ‘Enter RBC data’ button.Then, enter and confirm all data in RBC data window as follows,RBC ID= 6996969RBC Phone number = 0031840880100");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Main window");
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Press ‘Enter RBC data’ button.Then, enter and confirm all data in RBC data window as follows,RBC ID= 6996969RBC Phone number = 0031840880100",
+                "DMI displays Main window");
             /*
             Test Step 15
             Action: Press ‘Enter RBC data’ button.Then, enter and confirm all data in RBC data window as follows,RBC ID= 6996969RBC Phone number = 0031840880100
@@ -392,12 +322,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Restart OTE and RBC simulator.Then, perform SoM until Level 2 is selected and confirmed");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Restart OTE and RBC simulator.Then, perform SoM until Level 2 is selected and confirmed",
                 "Verify the following information,Use the log file to confirm that DMI received packet EVC-30 with the value in each bit of variable MMI_Q_REQUEST_ENABLE_64 as follows,Bit 19 = 1 (Enable Contact last RBC)");
             /*
             Test Step 16
@@ -417,12 +343,7 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
             EVC22_MMICurrentRBC.Send();
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Follow action step 2 – step 6 for ‘Contact last RBC’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(17, UniqueIdentifier++, "Follow action step 2 – step 6 for ‘Contact last RBC’ button",
                 "See the expected results of Step 2 – Step 6 and the following additional information,DMI close the RBC Contact window.Use the log file to confirm that DMI sends out the packet [MMI_NEW_RBC_DATA (EVC-112)] with variable [MMI_NEW_RBC_DATA (EVC-112). MMI_M_BUTTONS] = 21 (BTN_CONTACT_LAST_RBC) and [MMI_NEW_RBC_DATA (EVC-112). MMI_N_DATA_ELEMENTS] = 0.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 57 (Contact last RBC)");
             /*
             Test Step 17
@@ -488,12 +409,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window");
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Level’ button.Then, select and confirm ‘Level 2’");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays RBC Contact window.(1)   The enabled Close button NA11 is display in area G");
+            MakeTestStepHeader(18, UniqueIdentifier++, "Press ‘Level’ button.Then, select and confirm ‘Level 2’",
+                "DMI displays RBC Contact window.(1)   The enabled Close button NA11 is display in area G");
             /*
             Test Step 18
             Action: Press ‘Level’ button.Then, select and confirm ‘Level 2’
@@ -536,12 +453,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window with an enabled close button, symbol NA211, in area G");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Restart OTE and RBC simulator.Then, perform SoM until Level 2 is selected and confirmed");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays RBC Contact window");
+            MakeTestStepHeader(19, UniqueIdentifier++,
+                "Restart OTE and RBC simulator.Then, perform SoM until Level 2 is selected and confirmed",
+                "DMI displays RBC Contact window");
             /*
             Test Step 19
             Action: Restart OTE and RBC simulator.Then, perform SoM until Level 2 is selected and confirmed
@@ -563,12 +477,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Follow action step 2 – step 6 for ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(20, UniqueIdentifier++, "Follow action step 2 – step 6 for ‘Close’ button",
                 "See the expected results of Step 2 – Step 6 and the following additional information,The RBC Contact window is closed, DMI displays Main window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)])  with variable MMI_M_REQUEST] = 39 (Exit RBC contact)");
             /*
             Test Step 20
@@ -620,12 +529,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window");
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Restart OTE and RBC simulator.Then, perform SoM until Level 2 is selected and confirmed");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays RBC Contact window");
+            MakeTestStepHeader(21, UniqueIdentifier++,
+                "Restart OTE and RBC simulator.Then, perform SoM until Level 2 is selected and confirmed",
+                "DMI displays RBC Contact window");
             /*
             Test Step 21
             Action: Restart OTE and RBC simulator.Then, perform SoM until Level 2 is selected and confirmed
@@ -647,13 +553,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window");
 
-            TraceHeader("Test Step 22");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_8_3_1_b.xml to send EVC-22 with,MMI_NID_WINDOW  = 9MMI_N_NETWORKS = 0");
-            TraceReport("Expected Result");
-            TraceInfo("The RBC Contact window is closed, DMI displays Main window");
+            MakeTestStepHeader(22, UniqueIdentifier++,
+                "Use the test script file 22_8_3_1_b.xml to send EVC-22 with,MMI_NID_WINDOW  = 9MMI_N_NETWORKS = 0",
+                "The RBC Contact window is closed, DMI displays Main window");
             /*
             Test Step 22
             Action: Use the test script file 22_8_3_1_b.xml to send EVC-22 with,MMI_NID_WINDOW  = 9MMI_N_NETWORKS = 0
@@ -670,11 +572,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC Contact window and displays the Main window.");
 
-            TraceHeader("Test Step 23");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(23, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 23
             Action: End of test

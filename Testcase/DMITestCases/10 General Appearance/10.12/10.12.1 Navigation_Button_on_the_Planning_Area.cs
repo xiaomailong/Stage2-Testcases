@@ -43,12 +43,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward with 40 km/h and pass BG1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays  “Entering FS” message.");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with 40 km/h and pass BG1",
+                "DMI displays  “Entering FS” message.");
             /*
             Test Step 1
             Action: Drive the train forward with 40 km/h and pass BG1
@@ -82,12 +78,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. Show/Hide PA button NA01 is enabled in Sub-area D14");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold scale up button");
-            TraceReport("Expected Result");
-            TraceInfo("The distance range on the Planning area is not changed.");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press and hold scale up button",
+                "The distance range on the Planning area is not changed.");
             /*
             Test Step 2
             Action: Press and hold scale up button
@@ -100,12 +92,8 @@ namespace Testcase.DMITestCases
                                 "1. The distance range in the planning area does not change." + Environment.NewLine +
                                 "2. The ‘click’ sound is played once.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Try to move outside of the scale up button area");
-            TraceReport("Expected Result");
-            TraceInfo("The distance range on the Planning area is not changed.");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Try to move outside of the scale up button area",
+                "The distance range on the Planning area is not changed.");
             /*
             Test Step 3
             Action: Try to move outside of the scale up button area
@@ -119,12 +107,8 @@ namespace Testcase.DMITestCases
                 "1. The distance range in the planning area does not change." + Environment.NewLine +
                 "2. The ‘click’ sound is not played.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Try to move back into the scale up button area");
-            TraceReport("Expected Result");
-            TraceInfo("The distance range on the Planning area is not changed.");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Try to move back into the scale up button area",
+                "The distance range on the Planning area is not changed.");
             /*
             Test Step 4
             Action: Try to move back into the scale up button area
@@ -138,12 +122,8 @@ namespace Testcase.DMITestCases
                 "1. The distance range in the planning area does not change." + Environment.NewLine +
                 "2. The ‘click’ sound is not played.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the scale up button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Release the scale up button",
+                "Verify the following information,");
             /*
             Test Step 5
             Action: Release the scale up button
@@ -155,12 +135,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. The distance range in the planning area changes to the next lower range.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and release scale up button until the distance range is [0…1000]");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Press and release scale up button until the distance range is [0…1000]",
+                "Verify the following information,");
             /*
             Test Step 6
             Action: Press and release scale up button until the distance range is [0…1000]
@@ -175,12 +152,8 @@ namespace Testcase.DMITestCases
                 "1. The Scale Up button is displayed disabled." + Environment.NewLine +
                 "2. The disabled Scale Up button symbol NA05 is displayed in sub-area D9");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold scale down button");
-            TraceReport("Expected Result");
-            TraceInfo("The distance range on the Planning range is not changed.");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press and hold scale down button",
+                "The distance range on the Planning range is not changed.");
             /*
             Test Step 7
             Action: Press and hold scale down button
@@ -193,12 +166,8 @@ namespace Testcase.DMITestCases
                                 "1. The distance range in the planning area does not change." + Environment.NewLine +
                                 "2. The ‘click’ sound is played once.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Try to move outside of the scale down button area");
-            TraceReport("Expected Result");
-            TraceInfo("The distance range on the Planning range is not changed.");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Try to move outside of the scale down button area",
+                "The distance range on the Planning range is not changed.");
             /*
             Test Step 8
             Action: Try to move outside of the scale down button area
@@ -212,12 +181,8 @@ namespace Testcase.DMITestCases
                 "1. The distance range in the planning area does not change." + Environment.NewLine +
                 "2. The ‘click’ sound is not played.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Try to move back into the scale down button area");
-            TraceReport("Expected Result");
-            TraceInfo("The distance range on the Planning range is not changed.");
+            MakeTestStepHeader(9, UniqueIdentifier++, "Try to move back into the scale down button area",
+                "The distance range on the Planning range is not changed.");
             /*
             Test Step 9
             Action: Try to move back into the scale down button area
@@ -231,12 +196,8 @@ namespace Testcase.DMITestCases
                 "1. The distance range in the planning area does not change." + Environment.NewLine +
                 "2. The ‘click’ sound is not played.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release scale down button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(10, UniqueIdentifier++, "Release scale down button",
+                "Verify the following information,");
             /*
             Test Step 10
             Action: Release scale down button
@@ -249,12 +210,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. The distance range in the planning area changes to the next higher range.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and release scale down button until the distance range is [0…32000]");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Press and release scale down button until the distance range is [0…32000]",
+                "Verify the following information,");
             /*
             Test Step 11
             Action: Press and release scale down button until the distance range is [0…32000]
@@ -270,12 +228,7 @@ namespace Testcase.DMITestCases
                 "1. The Scale Down button is displayed disabled." + Environment.NewLine +
                 "2. The disabled Scale Down button symbol NA06 is displayed in sub-area D12");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press scale up button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press scale up button", "Verify the following information,");
             /*
             Test Step 12
             Action: Press scale up button
@@ -287,12 +240,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. The enabled Scale Down button symbol NA04 is displayed in sub-area D12.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold hide PA button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI still displays the planning area.");
+            MakeTestStepHeader(13, UniqueIdentifier++, "Press and hold hide PA button",
+                "DMI still displays the planning area.");
             /*
             Test Step 13
             Action: Press and hold hide PA button
@@ -305,12 +254,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI still displays the planning area." + Environment.NewLine +
                                 "2. The ‘click’ sound is played once.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Try to move outside of the hide PA button area");
-            TraceReport("Expected Result");
-            TraceInfo("DMI still displays the planning area.");
+            MakeTestStepHeader(14, UniqueIdentifier++, "Try to move outside of the hide PA button area",
+                "DMI still displays the planning area.");
             /*
             Test Step 14
             Action: Try to move outside of the hide PA button area
@@ -324,12 +269,8 @@ namespace Testcase.DMITestCases
                 "1. DMI still displays the planning area." + Environment.NewLine +
                 "2. The ‘click’ sound is not played.");
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Try to move back into the hide PA button area");
-            TraceReport("Expected Result");
-            TraceInfo("DMI still displays the planning area.");
+            MakeTestStepHeader(15, UniqueIdentifier++, "Try to move back into the hide PA button area",
+                "DMI still displays the planning area.");
             /*
             Test Step 15
             Action: Try to move back into the hide PA button area
@@ -343,12 +284,8 @@ namespace Testcase.DMITestCases
                 "1. DMI still displays the planning area." + Environment.NewLine +
                 "2. The ‘click’ sound is not played.");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release hide PA button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The planning area is hidden. ");
+            MakeTestStepHeader(16, UniqueIdentifier++, "Release hide PA button",
+                "Verify the following information,The planning area is hidden. ");
             /*
             Test Step 16
             Action: Release hide PA button
@@ -363,12 +300,8 @@ namespace Testcase.DMITestCases
                                 "2. The main area D is empty." + Environment.NewLine +
                                 "3. The NA01 symbol is still displayed in sub-area D14");
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold in area D");
-            TraceReport("Expected Result");
-            TraceInfo("The planning area is still hidden. ");
+            MakeTestStepHeader(17, UniqueIdentifier++, "Press and hold in area D",
+                "The planning area is still hidden. ");
             /*
             Test Step 17
             Action: Press and hold in area D
@@ -381,12 +314,8 @@ namespace Testcase.DMITestCases
                                 "1. The planning area is still hidden." + Environment.NewLine +
                                 "2. The ‘click’ sound is played once.");
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Try to move outside  of the area D");
-            TraceReport("Expected Result");
-            TraceInfo("The planning area still hidden.");
+            MakeTestStepHeader(18, UniqueIdentifier++, "Try to move outside  of the area D",
+                "The planning area still hidden.");
             /*
             Test Step 18
             Action: Try to move outside  of the area D
@@ -400,12 +329,8 @@ namespace Testcase.DMITestCases
                 "1. The planning area is still hidden." + Environment.NewLine +
                 "2. The ‘click’ sound is not played.");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Try to move back into area D");
-            TraceReport("Expected Result");
-            TraceInfo("The planning area still hidden.");
+            MakeTestStepHeader(19, UniqueIdentifier++, "Try to move back into area D",
+                "The planning area still hidden.");
             /*
             Test Step 19
             Action: Try to move back into area D
@@ -419,12 +344,7 @@ namespace Testcase.DMITestCases
                 "1. The planning area is still hidden." + Environment.NewLine +
                 "2. The ‘click’ sound is not played.");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release area D");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,");
+            MakeTestStepHeader(20, UniqueIdentifier++, "Release area D", "Verify the following information,");
             /*
             Test Step 20
             Action: Release area D
@@ -436,11 +356,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. The planning area is displayed.");
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(21, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 21
             Action: End of test

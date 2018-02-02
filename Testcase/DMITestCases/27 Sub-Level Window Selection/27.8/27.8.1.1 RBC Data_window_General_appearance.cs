@@ -23,20 +23,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_8_1_1_RBC_Data_window : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_8_1_1_a.xml to send EVC-22,MMI_NID_WINDOW = 10MMI_N_DATA_ELEMENTS = 0MMI_NID_RBC = 1234MMI_NID_RADIO = 0x1234FFFFFFFFFFFF");
-            TraceReport("Expected Result");
-            TraceInfo("DMI does not display RBC data window");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 22_8_1_1_a.xml to send EVC-22,MMI_NID_WINDOW = 10MMI_N_DATA_ELEMENTS = 0MMI_NID_RBC = 1234MMI_NID_RADIO = 0x1234FFFFFFFFFFFF",
+                "DMI does not display RBC data window");
             /*
             Test Step 1
             Action: Use the test script file 22_8_1_1_a.xml to send EVC-22,MMI_NID_WINDOW = 10MMI_N_DATA_ELEMENTS = 0MMI_NID_RBC = 1234MMI_NID_RADIO = 0x1234FFFFFFFFFFFF
@@ -48,13 +43,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI does not display the RBC data window");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Activate cabin A.Enter ID and perform brake test.Select and confirm Level 2.Press ‘Enter RBC data’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Activate cabin A.Enter ID and perform brake test.Select and confirm Level 2.Press ‘Enter RBC data’ button",
                 "Verify the following information,Data entry windowThe window title is ‘RBC data’.The text label of the window title is right aligned.The following objects are displayed in Train data window,  Enabled Close button (NA11)Window TitleInput fieldThe following objects are additionally displayed in Train data window,Yes buttonThe text label ‘RBC data entry complete?’Yes button is displayed in Disabled state as follows,Text label is black Background colour is dark-greyThe border colour is medium-grey the same as the input field’s colour.The sensitive area of Yes button is extended from text label ‘RBC data entry complete?’Input fieldsThe input fields are located on Main area D and F.Each input field is devided into a Label Area and a Data Area.The Label Area is give the topic of the input field.The Label Area text is displayed corresponding to the input field i.e. RBC ID, RBC Phone Number. The Label Area is placed to the left of The Data Area.The text in the Label Area is aligned to the right.The value of data in the Data Area is aligned to the left.The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.There are only 2 input fields displayed in the window.The first input field is in state ‘Selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.All other input fields are in state ‘Not selected’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is grey.KeyboardThe keyboard associated to selected input field ‘RBC ID’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete buttonLayersThe level of layers of all areas in window are in Layer 0.Entering CharactersThe cursor is flashed by changing from visible to not visible.The cursor is displayed as a horizontal line below the position of the next character to be entered.Packet transmissionUse the log file to confirm that DMI received packet EVC-22 with the variable MMI_NID_WINDOW = 10.DMI displays RBC data window.The data part of each input field is filled according to received packet EVC-22 with following variables,MMI_NID_RBC = RBC IDMMI_NID_RADIO = RBC Phone number");
             /*
             Test Step 2
@@ -112,12 +102,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "15. The data input fields display ‘1234’ for RBC ID and ‘3054632954294967295’ for RBC Phone number.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘0’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press and hold ‘0’ button",
                 "Verify the following information,The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The sound ‘Click’ is played once.The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’.The cursor is displayed as horizontal line below the value of the numeric-keyboard data key in the input field.The input field is used to enter the RBC ID");
             /*
             Test Step 3
@@ -137,12 +122,8 @@ namespace Testcase.DMITestCases
                                 "4. A cursor is displayed after the character just added to the data input field.");
 
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The state of released button is changed to enabled");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Release the pressed button",
+                "Verify the following information,The state of released button is changed to enabled");
             /*
             Test Step 4
             Action: Release the pressed button
@@ -154,13 +135,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The button is displayed enabled.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable",
                 "See the expected results of Step 3 – Step 4 and the following additional information,The pressed key is added in an input field immediately. The cursor is jumped to next position after entered the character immediately");
             /*
             Test Step 5
@@ -320,12 +296,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The button is displayed enabled.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘Del’ button.Note: Stopwatch is required");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press and hold ‘Del’ button.Note: Stopwatch is required",
                 "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 6
@@ -345,12 +316,8 @@ namespace Testcase.DMITestCases
                                 "5. The ‘Click’ sound is played repeatedly." + Environment.NewLine +
                                 "6. The last character in the data input field is deleted repeatedly.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Del’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, The character is stop removing");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Release ‘Del’ button",
+                "Verify the following information, The character is stop removing");
             /*
             Test Step 7
             Action: Release ‘Del’ button
@@ -362,12 +329,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Characters in the data input field are not deleted.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the data value with 5 characters");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Enter the data value with 5 characters",
                 "Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘10000’)");
             /*
             Test Step 8
@@ -381,12 +343,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘10000’, with no spaces between the digits.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the 6th character");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Continue to enter the 6th character",
                 "Verify the following information,The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. 1000 00)");
             /*
             Test Step 9
@@ -399,12 +356,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1000 00’, with a space between ‘1000’ and ‘00’.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the new value more than 8 characters");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Continue to enter the new value more than 8 characters",
                 "Verify the following information,The data value is separated as 2 lines. In each line is displayed only 8 characters");
             /*
             Test Step 10
@@ -420,13 +372,8 @@ namespace Testcase.DMITestCases
                                 "‘11’" + Environment.NewLine +
                                 "   a total of eight characters on line 1 (with no space between ‘1000’ and ‘0000’.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Delete the old value and enter the new value ‘6996969’ for RBC ID.Then, confirm an entered data by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Delete the old value and enter the new value ‘6996969’ for RBC ID.Then, confirm an entered data by pressing an input field",
                 "Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘RBC ID’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘RBC Phone number’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘RBC Phone number’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_RBC_DATA (EVC-112)] with following variables,MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 4 (RBC ID)MMI_M_BUTTONS = 254MMI_NID_RBC = 6996969");
             /*
             Test Step 11
@@ -449,12 +396,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The next data input field is displayed ‘Selected’ with the value in black on a Medium-grey background.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform action step 2-7 for ‘RBC Phone number’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++, "Perform action step 2-7 for ‘RBC Phone number’ input field",
                 "See the expected results of Step 2 – Step 7 and the following additional information,The pressed key is added in an input field immediately. The cursor is jumped to next position after entered the character immediately.The input field is used to enter the RBC Phone number");
             /*
             Test Step 12
@@ -645,12 +587,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Characters in the data input field are not deleted.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the data value with 5 characters");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++, "Enter the data value with 5 characters",
                 "Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘10000’)");
             /*
             Test Step 13
@@ -663,12 +600,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘10000’, with no spaces between the digits.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the 6th character");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(14, UniqueIdentifier++, "Continue to enter the 6th character",
                 "Verify the following information,The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. 1000 00)");
             /*
             Test Step 14
@@ -681,12 +613,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1000 00’, with a space between ‘1000’ and ‘00’.");
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the new value more than 8 characters");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++, "Continue to enter the new value more than 8 characters",
                 "Verify the following information,The data value is separated as 2 lines. In each line is displayed only 8 characters");
             /*
             Test Step 15
@@ -702,13 +629,8 @@ namespace Testcase.DMITestCases
                                 "‘11’" + Environment.NewLine +
                                 "   a total of eight characters on line 1 (with no space between ‘1000’ and ‘0000’.");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Delete the old value and enter the new value ‘0031840880100’ for RBC Phone number.Then, confirm an entered data by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Delete the old value and enter the new value ‘0031840880100’ for RBC Phone number.Then, confirm an entered data by pressing an input field",
                 "Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘RBC Phone number’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.There is no input field selected.Data Entry windowThe state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The border colour is medium-grey.Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_RBC_DATA (EVC-112)] with following variables,MMI_N_DATA_ELEMENTS = 1MMI_NID_DATA = 5 (RBC Phone number)MMI_M_BUTTONS = 254MMI_NID_RADIO = 0x0031840880100FFFUse the log file to confirm that DMI sent out packet [MMI_CURRENT_RBC_DATA (EVC-22)] with variable MMI_M_BUTTONS = 36");
             /*
             Test Step 16
@@ -726,13 +648,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The next data input field is displayed ‘Selected’ with the value in black on a Medium-grey background.");
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Select ‘RBC ID’ input field.Enter new value for ‘RBC ID’.Select ‘RBC Phone number’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Perform the following procedure,Select ‘RBC ID’ input field.Enter new value for ‘RBC ID’.Select ‘RBC Phone number’ input field",
                 "Verify the following information,The state of ‘Yes’ button below text label ‘RBC data entry is complete?’ is disabled. The state of input field ‘RBC ID’ is changed to ‘Not selected’ as follows,The value of ‘RBC ID’ input field is removed, display as blank.The background colour of the input field is dark-grey");
             /*
             Test Step 17
@@ -748,12 +665,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The RBC ID data input field is displayed ‘Not Selected’, with a blank value on a Dark-grey background.");
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm the value of ‘RBC Phone number’");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The state of input field ‘RBC ID’ is changed to ‘Selected’");
+            MakeTestStepHeader(18, UniqueIdentifier++, "Confirm the value of ‘RBC Phone number’",
+                "Verify the following information,The state of input field ‘RBC ID’ is changed to ‘Selected’");
             /*
             Test Step 18
             Action: Confirm the value of ‘RBC Phone number’
@@ -765,12 +678,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The RBC ID data input field is displayed ‘Selected’.");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the new value ‘6996969’ for RBC ID.Then, press and hold ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(19, UniqueIdentifier++,
+                "Enter the new value ‘6996969’ for RBC ID.Then, press and hold ‘Yes’ button",
                 "Verify the following information,The state of button is changed to ‘Pressed’, the border of button is removed.The sound ‘Click’ is played once");
             /*
             Test Step 19
@@ -785,12 +694,7 @@ namespace Testcase.DMITestCases
                                 "1. The button is displayed pressed, without a border." + Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once.");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out the ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(20, UniqueIdentifier++, "Slide out the ‘Yes’ button",
                 "Verify the following information,The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 20
@@ -804,12 +708,8 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Yes’ button is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into the ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The button is back to state ‘Pressed’ without a sound");
+            MakeTestStepHeader(21, UniqueIdentifier++, "Slide back into the ‘Yes’ button",
+                "Verify the following information,The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 21
             Action: Slide back into the ‘Yes’ button
@@ -822,12 +722,7 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Yes’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 22");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(22, UniqueIdentifier++, "Release ‘Yes’ button",
                 "Verify the following information,DMI displays Main window.Use the log file to confirm that DMI sent out packet [MMI_NEW_RBC_DATA (EVC-112)] with following variables,MMI_N_DATA_ELEMENTS = 0MMI_M_BUTTONS = 36MMI_NID_RBC = 6996969MMI_NID_RADIO = 0x0031840880100FFF");
             /*
             Test Step 22
@@ -852,12 +747,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
-            TraceHeader("Test Step 23");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure,Select and confirm Level 2.Press ‘Enter RBC data’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays RBC data window");
+            MakeTestStepHeader(23, UniqueIdentifier++,
+                "Perform the following procedure,Select and confirm Level 2.Press ‘Enter RBC data’ button",
+                "DMI displays RBC data window");
             /*
             Test Step 23
             Action: Perform the following procedure,Select and confirm Level 2.Press ‘Enter RBC data’ button
@@ -873,12 +765,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC data window.");
 
-            TraceHeader("Test Step 24");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm the current data without re-entry RBC ID and RBC Phone number.Then, press ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(24, UniqueIdentifier++,
+                "Confirm the current data without re-entry RBC ID and RBC Phone number.Then, press ‘Yes’ button",
                 "Verify the following information,An input field is used to revalidation RBC ID and RBC Phone number, DMI displays Main window");
             /*
             Test Step 24
@@ -899,12 +787,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI displays the Main window.");
 
-            TraceHeader("Test Step 25");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure,Select and confirm Level 2.Press ‘Enter RBC data’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays RBC data window");
+            MakeTestStepHeader(25, UniqueIdentifier++,
+                "Perform the following procedure,Select and confirm Level 2.Press ‘Enter RBC data’ button",
+                "DMI displays RBC data window");
             /*
             Test Step 25
             Action: Perform the following procedure,Select and confirm Level 2.Press ‘Enter RBC data’ button
@@ -931,12 +816,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC data window.");
 
-            TraceHeader("Test Step 26");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold the Label area of ‘RBC Phone number’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(26, UniqueIdentifier++,
+                "Press and hold the Label area of ‘RBC Phone number’ input field",
                 "Verify the following information,The state of ‘RBC Phone number’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘RBC Phone number’ input field remains ‘not selected’. The state of ‘RBC ID’ input field remains ‘selected’.The sound ‘Click’ is played once");
             /*
             Test Step 26
@@ -954,12 +835,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The ‘Click’ sound is played once.");
 
-            TraceHeader("Test Step 27");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out the Label area of ‘RBC Phone number’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(27, UniqueIdentifier++, "Slide out the Label area of ‘RBC Phone number’ input field",
                 "Verify the following information,The border of ‘RBC Phone number’ input field is shown (state ‘Enabled’) without a sound.The state of ‘RBC Phone number’ input field remains ‘not selected’. The state of ‘RBC ID’ input field remains ‘selected’");
             /*
             Test Step 27
@@ -978,12 +854,8 @@ namespace Testcase.DMITestCases
                                 "3. The ‘RBC ID’ data input field stays ‘Selected’." + Environment.NewLine +
                                 "4. No sound is played.");
 
-            TraceHeader("Test Step 28");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into the Label area of ‘RBC Phone number’ input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(28, UniqueIdentifier++,
+                "Slide back into the Label area of ‘RBC Phone number’ input field",
                 "Verify the following information,The state of ‘RBC Phone number’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘RBC Phone number’ input field remains ‘not selected’. The state of ‘RBC ID’ input field remains ‘selected’");
             /*
             Test Step 28
@@ -1001,12 +873,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The ‘RBC ID’ data input field stays ‘Selected’.");
 
-            TraceHeader("Test Step 29");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(29, UniqueIdentifier++, "Release the pressed area",
                 "Verify the following information,The state of ‘RBC Phone number’ input field is changed to selected");
             /*
             Test Step 29
@@ -1019,12 +886,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘RBC Phone number’ data input field is displayed ‘Selected’.");
 
-            TraceHeader("Test Step 30");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform action step 26-29 for the Label area of RBC Data input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(30, UniqueIdentifier++,
+                "Perform action step 26-29 for the Label area of RBC Data input field",
                 "Verify the following information,The state of an input field is changed to ‘selected’ when release the pressed area at the Label area of input field");
             /*
             Test Step 30
@@ -1045,12 +908,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘RBC ID’ data input field is displayed ‘Selected’.");
 
-            TraceHeader("Test Step 31");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform action step 26-29 for the Data area of each input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(31, UniqueIdentifier++,
+                "Perform action step 26-29 for the Data area of each input field",
                 "Verify the following information,The state of an input field is changed to ‘selected’ when release the pressed area at the Data part of input field");
             /*
             Test Step 31
@@ -1085,12 +944,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘RBC ID’ data input field is displayed ‘Selected’.");
-            TraceHeader("Test Step 32");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 22_8_1_1_a.xml to send EVC-22");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(32, UniqueIdentifier++, "Use the test script file 22_8_1_1_a.xml to send EVC-22",
                 "Verify the following information,The value of input fields for RBC ID and RBC Phone number are changed refer to received packet as follows,RBC ID = 1234RBC Phone number = 1234");
             /*
             Test Step 32
@@ -1106,13 +960,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘RBC ID’ data input field displays ‘6996969’.");
 
-            TraceHeader("Test Step 33");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_8_1_1_b.xml to send EVC-22,MMI_NID_WINDOW = 10MMI_N_DATA_ELEMENTS = 0MMI_NID_RADIO = 0xFFFFFFFFFFFFFFFF");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(33, UniqueIdentifier++,
+                "Use the test script file 22_8_1_1_b.xml to send EVC-22,MMI_NID_WINDOW = 10MMI_N_DATA_ELEMENTS = 0MMI_NID_RADIO = 0xFFFFFFFFFFFFFFFF",
                 "Verify the following information,The value of input fields for RBC Phone number are changed to empty refer to received packet");
             /*
             Test Step 33
@@ -1125,13 +974,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘RBC Phone number’ data input field is blank.");
 
-            TraceHeader("Test Step 34");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_8_1_1_c.xml to send EVC-22,MMI_NID_WINDOW = 10MMI_N_DATA_ELEMENTS = 0MMI_NID_RADIO = 0xABCDEFFFFFFFFFFF");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(34, UniqueIdentifier++,
+                "Use the test script file 22_8_1_1_c.xml to send EVC-22,MMI_NID_WINDOW = 10MMI_N_DATA_ELEMENTS = 0MMI_NID_RADIO = 0xABCDEFFFFFFFFFFF",
                 "erify the following information,The value of input fields for RBC Phone number are changed to empty refer to received packet");
             /*
             Test Step 34
@@ -1144,12 +988,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘RBC Phone number’ data input field is blank.");
 
-            TraceHeader("Test Step 35");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm blank value of RBC Phone number by pressing an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(35, UniqueIdentifier++,
+                "Confirm blank value of RBC Phone number by pressing an input field",
                 "Verify the following information,Use the log file to confirm that DMI sent out packet [MMI_NEW_RBC_DATA (EVC-112)] with following variables,MMI_NID_DATA = 5 (RBC Phone number)MMI_NID_RADIO = 0xFFFFFFFFFFFFFFFF");
             /*
             Test Step 35
@@ -1164,13 +1004,8 @@ namespace Testcase.DMITestCases
             EVC112_MMINewRbcData.MMI_NID_RADIO = 0xffffffffffffffff;
             EVC112_MMINewRbcData.CheckPacketContent();
 
-            TraceHeader("Test Step 36");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_8_1_1_d.xml to send EVC-22,MMI_NID_WINDOW = 10MMI_N_DATA_ELEMENTS = 2MMI_NID_RADIO = 0x5678EFFFFFFFFFFFMMI_NID_RBC = 5678MMI_NID_DATA[0] = 4MMI_NID_DATA[1] = 5MMI_N_TEXT[0] = 1MMI_X_TEXT[0] = 48MMI_N_TEXT[1] = 1MMI_X_TEXT[1] = 48");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(36, UniqueIdentifier++,
+                "Use the test script file 22_8_1_1_d.xml to send EVC-22,MMI_NID_WINDOW = 10MMI_N_DATA_ELEMENTS = 2MMI_NID_RADIO = 0x5678EFFFFFFFFFFFMMI_NID_RBC = 5678MMI_NID_DATA[0] = 4MMI_NID_DATA[1] = 5MMI_N_TEXT[0] = 1MMI_X_TEXT[0] = 48MMI_N_TEXT[1] = 1MMI_X_TEXT[1] = 48",
                 "Verify the following information,(1)   The result of variable MMI_N_DATA_ELEMENTS and MMI_Q_DATA_CHECK are ignored, the value of each input field is changed refer to the value of variable MMI_NID_RBC and MMI_NID_RADIO as follows,  RBC ID = 5678  RBC Phone number = 5678");
             /*
             Test Step 36
@@ -1184,12 +1019,7 @@ namespace Testcase.DMITestCases
                                 "1. The ‘RBC Phone number’ data input field displays ‘5678’." + Environment.NewLine +
                                 "2. The ‘RBC ID’ data input field displays ‘5678’.");
 
-            TraceHeader("Test Step 37");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(37, UniqueIdentifier++, "Press ‘Close’ button",
                 "Verify the following information,Use the log file to confirm that DMI sent out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 33 (Exit RBC Data Entry).DMI displays RBC contact window");
             /*
             Test Step 37
@@ -1204,11 +1034,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window");
-            TraceHeader("Test Step 38");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(38, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 38
             Action: End of test

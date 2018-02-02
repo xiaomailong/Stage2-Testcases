@@ -44,12 +44,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform SoM in SR mode, Level 2");
-            TraceReport("Expected Result");
-            TraceInfo("RCI logs the concerned activities as specified in the precondition");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM in SR mode, Level 2",
+                "RCI logs the concerned activities as specified in the precondition");
             /*
             Test Step 1
             Action: Perform SoM in SR mode, Level 2
@@ -59,13 +55,8 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_in_SR_mode_Level_2(this);
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Observe the timestamps in RCI log and calculate the average differentiation of the response time of the incoming data and ETCS-DMI update in:- The MVB port- The ETCS-DMI screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Observe the timestamps in RCI log and calculate the average differentiation of the response time of the incoming data and ETCS-DMI update in:- The MVB port- The ETCS-DMI screen",
                 "(1) Use the RCI log to confirm the  (average) response time differentiation of the incoming data (message) and when related visualization is updated on ETCS-DMI screen (tupdatedDMI – tinMVB) is less than 130 ms");
             /*
             Test Step 2
@@ -75,11 +66,8 @@ namespace Testcase.DMITestCases
             */
 
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 3
             Action: End of test

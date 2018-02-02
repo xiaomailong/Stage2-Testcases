@@ -42,12 +42,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Settings menu’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Settings menu window is displayed");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Settings menu’ button",
+                "Settings menu window is displayed");
             /*
             Test Step 1
             Action: Press ‘Settings menu’ button
@@ -59,12 +55,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_1_a.xml to disable and enable button via EVC-30 with");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_1_a.xml to disable and enable button via EVC-30 with",
                 "All buttons in Settings menu window are disabled, except ‘Lock screen for cleaning’. 10 seconds later");
             /*
             Test Step 2
@@ -79,12 +71,9 @@ namespace Testcase.DMITestCases
             */
             XML_10_1_a("Settings");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the Setting window. Cabin A is activated. Perform SoM until select and confirm Level 1");
-            TraceReport("Expected Result");
-            TraceInfo("Main menu window is displayed");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Close the Setting window. Cabin A is activated. Perform SoM until select and confirm Level 1",
+                "Main menu window is displayed");
             /*
             Test Step 3
             Action: Close the Setting window. Cabin A is activated. Perform SoM until select and confirm Level 1
@@ -95,12 +84,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main menu window.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_1_b.xml to disable and enable button via EVC-30 with");
-            TraceReport("Expected Result");
-            TraceInfo("(1) All buttons in Main menu window are disabled. 10 seconds later");
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 10_1_b.xml to disable and enable button via EVC-30 with",
+                "(1) All buttons in Main menu window are disabled. 10 seconds later");
             /*
             Test Step 4
             Action: Use the test script file 10_1_b.xml to disable and enable button via EVC-30 with
@@ -113,12 +99,7 @@ namespace Testcase.DMITestCases
             */
             XML_10_1_b();
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the Main window");
-            TraceReport("Expected Result");
-            TraceInfo("(1) The Default window is displayed");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Close the Main window", "(1) The Default window is displayed");
             /*
             Test Step 5
             Action: Close the Main window
@@ -130,12 +111,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the Override button. Repeat action step 2 with Override window");
-            TraceReport("Expected Result");
-            TraceInfo("Override menu window is displayed.");
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Press the Override button. Repeat action step 2 with Override window",
+                "Override menu window is displayed.");
             /*
             Test Step 6
             Action: Press the Override button. Repeat action step 2 with Override window
@@ -148,12 +126,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Override’ button");
             XML_10_1_a("Override menu", false);
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the Override menu window");
-            TraceReport("Expected Result");
-            TraceInfo("(1) The Default window is displayed");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Close the Override menu window",
+                "(1) The Default window is displayed");
             /*
             Test Step 7
             Action: Close the Override menu window
@@ -165,12 +139,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Spec’ button. Repeat action step 2 with Special window");
-            TraceReport("Expected Result");
-            TraceInfo("Special menu window is displayed.");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press ‘Spec’ button. Repeat action step 2 with Special window",
+                "Special menu window is displayed.");
             /*
             Test Step 8
             Action: Press ‘Spec’ button. Repeat action step 2 with Special window
@@ -183,12 +153,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Spec’ button");
             XML_10_1_a("Special menu", false);
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the Special menu window");
-            TraceReport("Expected Result");
-            TraceInfo("(1) The Default window is displayed");
+            MakeTestStepHeader(9, UniqueIdentifier++, "Close the Special menu window",
+                "(1) The Default window is displayed");
             /*
             Test Step 9
             Action: Close the Special menu window
@@ -200,12 +166,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Settings’ button. Repeat action step 2 with Settings window");
-            TraceReport("Expected Result");
-            TraceInfo("Settings menu window is displayed.");
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Press ‘Settings’ button. Repeat action step 2 with Settings window",
+                "Settings menu window is displayed.");
             /*
             Test Step 10
             Action: Press ‘Settings’ button. Repeat action step 2 with Settings window
@@ -219,12 +182,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Settings’ button");
             XML_10_1_a("Settings menu");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Brake’ button. Repeat action step 2 with Brake window");
-            TraceReport("Expected Result");
-            TraceInfo("Brake menu window is displayed.");
+            MakeTestStepHeader(11, UniqueIdentifier++, "Press ‘Brake’ button. Repeat action step 2 with Brake window",
+                "Brake menu window is displayed.");
             /*
             Test Step 11
             Action: Press ‘Brake’ button. Repeat action step 2 with Brake window
@@ -237,12 +196,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Brake’ button");
             XML_10_1_a("Brake menu", false);
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Test’ button. Repeat action step 2 with Brake Test window");
-            TraceReport("Expected Result");
-            TraceInfo("Brake Test menu window is displayed.");
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Press ‘Test’ button. Repeat action step 2 with Brake Test window",
+                "Brake Test menu window is displayed.");
             /*
             Test Step 12
             Action: Press ‘Test’ button. Repeat action step 2 with Brake Test window
@@ -255,12 +211,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Test’ button");
             XML_10_1_a("Brake Test menu", false);
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the Brake Test window and Brake window");
-            TraceReport("Expected Result");
-            TraceInfo("(1) The Settings window is displayed");
+            MakeTestStepHeader(13, UniqueIdentifier++, "Close the Brake Test window and Brake window",
+                "(1) The Settings window is displayed");
             /*
             Test Step 13
             Action: Close the Brake Test window and Brake window
@@ -272,12 +224,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the Settings menu window");
-            TraceReport("Expected Result");
-            TraceInfo("(1) The Default window is displayed");
+            MakeTestStepHeader(14, UniqueIdentifier++, "Close the Settings menu window",
+                "(1) The Default window is displayed");
             /*
             Test Step 14
             Action: Close the Settings menu window
@@ -289,12 +237,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press the Main button. Press the Level button. Select and confirm Level 2.");
-            TraceReport("Expected Result");
-            TraceInfo("RBC contact window is displayed");
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Press the Main button. Press the Level button. Select and confirm Level 2.",
+                "RBC contact window is displayed");
             /*
             Test Step 15
             Action: Press the Main button. Press the Level button. Select and confirm Level 2.
@@ -329,12 +274,8 @@ namespace Testcase.DMITestCases
 
             XML_10_1_a("RBC Contact", false);
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the RBC contact window");
-            TraceReport("Expected Result");
-            TraceInfo("(1) The Main menu window is displayed");
+            MakeTestStepHeader(16, UniqueIdentifier++, "Close the RBC contact window",
+                "(1) The Main menu window is displayed");
             /*
             Test Step 16
             Action: Close the RBC contact window
@@ -346,11 +287,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main menu window.");
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(17, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 17
             Action: End of test

@@ -38,13 +38,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 6_6_a.xml to send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 6_6_a.xml to send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1",
                 "Verify the following information,(1)    DMI displays ST01 symbol with yellow flashing frame in sub-area C9");
             /*
             Test Step 1
@@ -57,13 +52,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ST01 symbol with a yellow flashing frame in sub-area C9.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press an acknowledgement on sub-area C9.Then, use the test script file 6_6_b.xml to send EVC-8 with,MMI_Q_TEXT = 298MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,(1)    DMI displays DR02 symbol with yes button in area D");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Press an acknowledgement on sub-area C9.Then, use the test script file 6_6_b.xml to send EVC-8 with,MMI_Q_TEXT = 298MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1",
+                "Verify the following information,(1)    DMI displays DR02 symbol with yes button in area D");
             /*
             Test Step 2
             Action: Press an acknowledgement on sub-area C9.Then, use the test script file 6_6_b.xml to send EVC-8 with,MMI_Q_TEXT = 298MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1
@@ -81,13 +72,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the DR02 symbol and a ‘Yes’ button (to the right) in area D.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press ‘Yes’ button on area D.Then, use the test script file 6_6_c.xml to send EVC-8 with,MMI_Q_TEXT = 263MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press ‘Yes’ button on area D.Then, use the test script file 6_6_c.xml to send EVC-8 with,MMI_Q_TEXT = 263MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1",
                 "Verify the following information,(1)    DMI displays MO10 symbol with yellow flashing frame in sub-area C1");
             /*
             Test Step 3
@@ -106,11 +92,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the MO10 symbol with a yellow flashing frame in sub-area C1.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 4
             Action: End of test

@@ -36,12 +36,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("At the Default window, press ‘Data View’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Data View window");
+            MakeTestStepHeader(1, UniqueIdentifier++, "At the Default window, press ‘Data View’ button",
+                "DMI displays Data View window");
             /*
             Test Step 1
             Action: At the Default window, press ‘Data View’ button
@@ -68,13 +64,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data View window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 10_4_1_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716");
-            TraceReport("Expected Result");
-            TraceInfo("The hourglass symbol ST05 is displayed at window title area");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_4_1_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716",
+                "The hourglass symbol ST05 is displayed at window title area");
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_2_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -87,12 +79,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 10_4_1_2_b.xml to send EVC-14 withMMI_X_DRIVER_ID = ‘4444’");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 10_4_1_2_b.xml to send EVC-14 withMMI_X_DRIVER_ID = ‘4444’",
                 "Verify the followin information,(1)     The Data View window is closed, DMI displays Driver ID window after received packet EVC-14");
             /*
             Test Step 3
@@ -107,13 +95,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Data View window is closed and DMI displays the Driver ID window");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,At Driver ID window, press ‘close’ button.Open System Info windowRepeat action step 2-3");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,At Driver ID window, press ‘close’ button.Open System Info windowRepeat action step 2-3",
                 "Verify the followin information,(1)     The System Info window is closed, DMI displays Driver ID window after received packet EVC-14");
             /*
             Test Step 4
@@ -147,13 +130,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The System info window is closed and DMI displays the Driver ID window");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,At Driver ID window, press ‘close’ button.Open System version windowRepeat action step 2-3");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform the following procedure,At Driver ID window, press ‘close’ button.Open System version windowRepeat action step 2-3",
                 "Verify the followin information,(1)     The System version window is closed, DMI displays Driver ID window after received packet EVC-14");
             /*
             Test Step 5
@@ -187,11 +165,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The System version window is closed and DMI displays the Driver ID window");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 6
             Action: End of test

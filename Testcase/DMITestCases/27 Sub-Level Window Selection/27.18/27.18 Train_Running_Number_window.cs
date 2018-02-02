@@ -22,20 +22,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_18_Entering_Characters : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 22_18.xml to send EVC-16 with,	MMI_NID_OPERATION = 1 Note: Please wait for 5-10 seconds to make sure that test script is executed completely.");
-            TraceReport("Expected Result");
-            TraceInfo("Train Running Number window is not displayed.");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 22_18.xml to send EVC-16 with,	MMI_NID_OPERATION = 1 Note: Please wait for 5-10 seconds to make sure that test script is executed completely.",
+                "Train Running Number window is not displayed.");
             /*
             Test Step 1
             Action: Use the test script file 22_18.xml to send EVC-16 with,	MMI_NID_OPERATION = 1 Note: Please wait for 5-10 seconds to make sure that test script is executed completely.
@@ -55,13 +50,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the Train running number window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Activate cabin A and press ‘TRN’ button on the Driver ID window and verify the presentation on the screen");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Activate cabin A and press ‘TRN’ button on the Driver ID window and verify the presentation on the screen",
                 "The Train Running Number window is displayed on the right half part of the window as shown in figure belowLayers(1)	The layers of window on half-grid array is displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry window(2)	The window title is displayed with text ‘Train running number’.(3)	Verify that the Train Running Number window is displayed in main area D, F and G as half-grid array.(4)	A data entry window is containing only one input field covers the Main area D, F and G(5)	The following objects are displayed in Train Running Number window.  Enabled Close button (NA11)Window TitleInput FieldInput field(6)	The input field is located in main area D and F.(7)	For a single input field, the window title is clearly explaining the topic of the input field. (8)	The Train Running Number window is displayed as a single input field with only the data part.Keyboard(9)	The keyboard associated to the Train Running Number window is displayed as numeric keyboard.(10)	The keyboard is presented below the area of input field.(11)	The keyboard contains enabled button for the number <1>, <2 >, … , <9 >, <Delete>(NA21), <0> and disabled <Decimal_Separator>.   NA21, Delete button.Packet Receiving(12)	DMI displays 'Train Running Number' window with the data stored onboard from EVC-16 with variable MMI_NID_OPERATION = TRN (The data is the same as displayed on DMI).General property of window(13)	The Train Running Number window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI(14)	All objects, text messages and buttons are presented within the same layer.(15)	The Default window is not displayed and covered the current window.            ");
             /*
             Test Step 2
@@ -110,13 +100,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "10. The Default window does not cover the current window.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press and hold every buttons on the dedicate keyboard respectively.Note:	This step is for testing ’0’-‘9’ button.");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press and hold every buttons on the dedicate keyboard respectively.Note:	This step is for testing ’0’-‘9’ button.",
                 "Verify the following information,(1)	On next activation of a data key of the associated keyboard, the character or value corresponding to this data key shall be added into the Data Area.(2)	Sound ‘Click’ is played once.(3)	The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.(4)	The Input Field displays the number associated to the data key according to the pressings in state ‘Pressed’.(5)	An input field is used to enter the Train Running Number.(6)	The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.(7)	The data value of the input field is aligned to the left of the data area.(8)	The flashing horizontal-line cursor is always in the next position of the echoed entered-data key in the ‘Selected IF/value of pressed key(s)’ data input field when selected the next character it will be inserted cursor position.");
             /*
             Test Step 3
@@ -247,12 +232,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "5. A flashing underscore is displayed as a cursor after the ‘9’ entered.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Released the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, (1)	The state of button is changed to ‘Enabled’");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Released the pressed button",
+                "Verify the following information, (1)	The state of button is changed to ‘Enabled’");
             /*
             Test Step 4
             Action: Released the pressed button
@@ -264,12 +245,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The <9> key is displayed enabled.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold ‘Del’ button.Note: Stopwatch is required.");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press and hold ‘Del’ button.Note: Stopwatch is required.",
                 "Verify the following information,While press and hold button less than 1.5 sec(1)	Sound ‘Click’ is played once.(2)	The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.(3)	The last character is removed from an input field after pressing the button.While press and hold button over 1.5 sec(4)	The state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.(5)	The sound ‘Click’ is played repeatly while button is pressed.");
             /*
             Test Step 5
@@ -289,12 +265,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "5. The ‘Click’ sound is played repeatedly while the key is pressed and characters are deleted repeatedly from the end of the data input field.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Del’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, The character is stop removing");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Release ‘Del’ button",
+                "Verify the following information, The character is stop removing");
             /*
             Test Step 6
             Action: Release ‘Del’ button
@@ -306,12 +278,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Characters stop being deleted from the end of the data input field.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field");
-            TraceReport("Expected Result");
-            TraceInfo("No number is displayed on the Input Field.");
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field",
+                "No number is displayed on the Input Field.");
             /*
             Test Step 7
             Action: Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field
@@ -321,12 +290,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 "Press and hold the <Del> key until the value in the data input field is blank");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the data value with 5 characters.");
-            TraceReport("Expected Result");
-            TraceInfo("(1)	The 5 characters are added on an input field as one group. (e.g. ‘12345').");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Enter the data value with 5 characters.",
+                "(1)	The 5 characters are added on an input field as one group. (e.g. ‘12345').");
             /*
             Test Step 8
             Action: Enter the data value with 5 characters.
@@ -338,12 +303,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘12345’ (as a single group of digits).");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Continue to enter the 6th character.");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Continue to enter the 6th character.",
                 "Verify the following information,(1)	The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. 1234 56) ");
             /*
             Test Step 9
@@ -356,12 +316,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234 56’ (as two groups of digits).");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold an input field.");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press and hold an input field.",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed.");
             /*
             Test Step 10
@@ -374,12 +329,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++, "Slide out an input field",
                 "Verify the following information, The state of an input field is changed to ‘Enabled, the border of button is shown without a sound.");
             /*
             Test Step 11
@@ -393,12 +343,7 @@ namespace Testcase.DMITestCases
                                 @"1. The data input field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into an input field.");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++, "Slide back into an input field.",
                 "Verify the following information, The state of an input field is changed to ‘Pressed’, the border of button is removed.");
             /*
             Test Step 12
@@ -412,12 +357,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is displayed pressed, without a border.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed area.");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++, "Release the pressed area.",
                 "(1)	The Train Running Number window is closed. DMI displays the Driver ID window.(2)	Use the log file to confirm that DMI sent out packet EVC-116 with variable MMI_NID_OPERATION = TRN (The entered and confirmed value in the data entry window)Note: A value of MMI_NID_OPERATION shows as hexadecimal value of ASCII which corresponds to its character that displayed in the input field in the Train running number window.");
             /*
             Test Step 13
@@ -432,12 +372,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train running number window and displays the Driver ID window.");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure, Enter and confirm the Driver ID	Select and confirm Level 1.");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Main window.");
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Perform the following procedure, Enter and confirm the Driver ID	Select and confirm Level 1.",
+                "DMI displays Main window.");
             /*
             Test Step 14
             Action: Perform the following procedure, Enter and confirm the Driver ID	Select and confirm Level 1.
@@ -449,12 +386,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
-            TraceHeader("Test Step 15");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Train Running Number’ button on Main window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(15, UniqueIdentifier++, "Press ‘Train Running Number’ button on Main window",
                 "The Train Running Number window is displayed.(1)	 An input field is used to revalidation the Train running number.");
             /*
             Test Step 15
@@ -478,12 +410,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Train running number window." + Environment.NewLine +
                                 "2. The data input field displays ‘1’.");
 
-            TraceHeader("Test Step 16");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm the current data without re-entry Train running number. ");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Confirm the current data without re-entry Train running number. ",
                 " (1) The Train Running Number window is closed.DMI displays the Main window.(2) Use the log file to confirm that DMI sent out packet EVC-116 with variable MMI_NID_OPERATION = TRN(The entered and confirmed value in the data entry window)Note: A value of MMI_NID_OPERATION shows as hexadecimal value of ASCII which corresponds to its character that displayed in the input field in the Driver ID window.	(1) MMI_gen 9959(partly: switch back to the previous window);                        ");
             /*
             Test Step 16
@@ -496,12 +424,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
-            TraceHeader("Test Step 17");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Train Running Number’ button on Main window.	");
-            TraceReport("Expected Result");
-            TraceInfo("The Train Running Number window is displayed.");
+            MakeTestStepHeader(17, UniqueIdentifier++, "Press ‘Train Running Number’ button on Main window.	",
+                "The Train Running Number window is displayed.");
             /*
             Test Step 17
             Action: Press ‘Train Running Number’ button on Main window.	
@@ -523,12 +447,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train running number window.");
 
-            TraceHeader("Test Step 18");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter the new Train running number.	");
-            TraceReport("Expected Result");
-            TraceInfo("The current data in the input field is replaced by the entered data from the driver.");
+            MakeTestStepHeader(18, UniqueIdentifier++, "Enter the new Train running number.	",
+                "The current data in the input field is replaced by the entered data from the driver.");
             /*
             Test Step 18
             Action: Enter the new Train running number.	
@@ -540,12 +460,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234’.");
 
-            TraceHeader("Test Step 19");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Confirm the entered value by pressing an input field.	");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(19, UniqueIdentifier++, "Confirm the entered value by pressing an input field.	",
                 "(1)    DMI closes the Train Running Number window and displays Main window.	(1) MMI_gen 4681 (partly: accept the entered value in the input field); ");
             /*
             Test Step 19
@@ -558,12 +473,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train running number window and displays the Main window.");
 
-            TraceHeader("Test Step 20");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Train Running Number’ button on Main menu window");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(20, UniqueIdentifier++, "Press ‘Train Running Number’ button on Main menu window",
                 "	The Train Running Number window is displayed.(1)   DMI displays ‘Train Running Number’ window with the entered data that confirmed in Step 19. This data stored onboard is received from EVC-16 with variable MMI_NID_OPERATION = TRN (The data is the same as displayed on DMI).	");
             /*
             Test Step 20
@@ -587,12 +497,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Train running number window." + Environment.NewLine +
                                 @"2. The data input field displays ‘1234’.");
 
-            TraceHeader("Test Step 21");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Close the Train Running Number window and verify the presentation on the screen	");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(21, UniqueIdentifier++,
+                "Close the Train Running Number window and verify the presentation on the screen	",
                 "The Train Running Number window is closed. DMI displays the Main window.(1)	 Use the log file to confirm that DMI sends out EVC-101 with variable MMI_M_REQUEST = 31 (Exit Change Train Running Number)	");
             /*
             Test Step 21
@@ -605,11 +511,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train running number window and displays the Main window.");
 
-            TraceHeader("Test Step 22");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(22, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 22
             Action: End of test

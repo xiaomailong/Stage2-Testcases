@@ -43,12 +43,9 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform SoM to SR mode, level 2.Then, drive the train forward with speed = 30km/h");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SR mode, level 2");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform SoM to SR mode, level 2.Then, drive the train forward with speed = 30km/h",
+                "DMI displays in SR mode, level 2");
             /*
             Test Step 1
             Action: Perform SoM to SR mode, level 2.Then, drive the train forward with speed = 30km/h
@@ -63,12 +60,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 2.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Received information from RBC");
-            TraceReport("Expected Result");
-            TraceInfo("DMI changes from SR mode to FS mode, level 2");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Received information from RBC",
+                "DMI changes from SR mode to FS mode, level 2");
             /*
             Test Step 2
             Action: Received information from RBC
@@ -79,12 +72,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 2.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Acknowledge OS mode by press at area C1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI changes from FS mode to OS mode, level 2");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Acknowledge OS mode by press at area C1",
+                "DMI changes from FS mode to OS mode, level 2");
             /*
             Test Step 3
             Action: Acknowledge OS mode by press at area C1
@@ -102,12 +91,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 2.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Main’ button");
-            TraceReport("Expected Result");
-            TraceInfo("The Main window is displayed");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Main’ button", "The Main window is displayed");
             /*
             Test Step 4
             Action: Press ‘Main’ button
@@ -123,12 +107,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Received information from RBC.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Received information from RBC.Then, stop the train",
                 "Verify the following information,DMI displays the TAF Question box in area D and cover a currently open Main window. TAF Question box is divided into a Question part and Answer part.The Question part is placed to the left of the Answer part.The symbol DR02 is displayed in centered of the Question part.The background colour of Question part is Dark-Grey.The label ‘Yes’ is displayed in Answer part with black colour.The background colour of Answer part is Medium-Grey.The Main window is forced to background, The background of area D is blank.The area G is shown the Default window’s contents.The area F is displayed into the foreground with the buttons.Use the log file to confirm that DMI received packet information MMI_DRIVER_MESSAGE (EVC-8) with following variables,MMI_Q_TEXT = 298 (Confirm Track Ahead Free)MMI_Q_TEXT_CRITERIA = 1 (Removed after Ack)The border of Question part and Answer Part are drawn with medium grey colour in the following positions,LeftTopRightBottom");
             /*
             Test Step 5
@@ -157,12 +136,7 @@ namespace Testcase.DMITestCases
                                 "9. Area F is displayed in the foreground with its buttons" + Environment.NewLine +
                                 "10. Both the Question and Answer parts have a Medium-grey border");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press at Question part of Track Ahead Free");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press at Question part of Track Ahead Free",
                 "Verify the following information,Use the log file to confirm that DMI did not send out packet information MMI_DRIVER_MESSAGE_ACK (EVC-111)");
             /*
             Test Step 6
@@ -173,12 +147,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press in the Track Ahead Free Question part");
 
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold Answer part of Track Ahead Free.(‘Yes’ button)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press and hold Answer part of Track Ahead Free.(‘Yes’ button)",
                 "Verify the following information,(1)   ‘The ‘Yes’ button is shown as pressed state. (2)   The sound ‘Click’ is played once.(3)   Use the log file to confirm that DMI send out packet information MMI_DRIVER_MESSAGE_ACK (EVC-111) with the following variables,MMI_Q_ACK = 1MMI_Q_BUTTON = 1MMI_T_BUTTONEVENT  is not blank");
             /*
             Test Step 7
@@ -196,12 +165,8 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Yes’ button is displayed pressed." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,The ‘Yes’ button becomes the ‘Enabled’ state without a sound");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Slide out ‘Yes’ button",
+                "Verify the following information,The ‘Yes’ button becomes the ‘Enabled’ state without a sound");
             /*
             Test Step 8
             Action: Slide out ‘Yes’ button
@@ -214,12 +179,7 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Yes’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Slide back into ‘Yes’ button",
                 "Verify the following information,(1)   The ‘Yes’ button turns to the ‘Pressed’ state without a sound");
             /*
             Test Step 9
@@ -233,12 +193,7 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Yes’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(10, UniqueIdentifier++, "Release ‘Yes’ button",
                 "Verify the following information,TAF Question box is removed from area D.Use the log file to confirm that DMI send out packet information MMI_DRIVER_MESSAGE_ACK (EVC-111) with the following variables,MMI_Q_ACK = 1MMI_Q_BUTTON = 0MMI_T_BUTTONEVENT  is not blank");
             /*
             Test Step 10
@@ -251,12 +206,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the TAF Question box in area D.");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 16_1.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 2MMI_Q_TEXT = 298");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,DMI displays TAF Question box which contain only ‘Yes’ button");
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Use the test script file 16_1.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 2MMI_Q_TEXT = 298",
+                "Verify the following information,DMI displays TAF Question box which contain only ‘Yes’ button");
             /*
             Test Step 11
             Action: Use the test script file 16_1.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 2MMI_Q_TEXT = 298
@@ -268,12 +220,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the TAF Question box containing only a ‘Yes’ button.");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure,Set the train direction to ‘Neutral’Drive the train forward");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Perform the following procedure,Set the train direction to ‘Neutral’Drive the train forward",
                 "Verify the following information,TAF Question box is removed after ST01 symbol is displayed in sub-area C9");
             /*
             Test Step 12
@@ -296,11 +244,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the TAF Question box after displaying symbol ST01 in sub-area C9.");
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(13, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 13
             Action: End of test

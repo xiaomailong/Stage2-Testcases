@@ -58,12 +58,8 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires a DMI configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Power on the system and activate cabin");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays the Driver ID window");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on the system and activate cabin",
+                "DMI displays the Driver ID window");
             /*
             Test Step 1
             Action: Power on the system and activate cabin
@@ -90,12 +86,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter and confirm Driver ID. Then perform brake test");
-            TraceReport("Expected Result");
-            TraceInfo("DMI shall not display text message “Brake Test in Progress!” in any other languages");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Enter and confirm Driver ID. Then perform brake test",
+                "DMI shall not display text message “Brake Test in Progress!” in any other languages");
             /*
             Test Step 2
             Action: Enter and confirm Driver ID. Then perform brake test
@@ -109,12 +101,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the message ‘Brake Test in Progress’ because " +
                                 "   the display text is Russian and English is the current language.");
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select ATB STM and complete Start of Mission");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SN mode, Level STM-ATB");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Select ATB STM and complete Start of Mission",
+                "DMI displays in SN mode, Level STM-ATB");
             /*
             Test Step 3
             Action: Select ATB STM and complete Start of Mission
@@ -140,13 +128,9 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Press settings menu and start to perform brake test by pressing ‘Test’ button in the Brake window");
-            TraceReport("Expected Result");
-            TraceInfo("DMI shall not display text message “Brake Test in Progress!” in any other languages");
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Press settings menu and start to perform brake test by pressing ‘Test’ button in the Brake window",
+                "DMI shall not display text message “Brake Test in Progress!” in any other languages");
             /*
             Test Step 4
             Action: Press settings menu and start to perform brake test by pressing ‘Test’ button in the Brake window
@@ -161,11 +145,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI does not display the message ‘Brake Test in Progress’ because " +
                                 "the display text is Russian and English is the current language.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 5
             Action: End of test

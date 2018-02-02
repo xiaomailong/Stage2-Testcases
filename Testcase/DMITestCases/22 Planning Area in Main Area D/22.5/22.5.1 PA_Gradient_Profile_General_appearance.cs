@@ -24,7 +24,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_5_1_PA_Gradient_Profile_General_appearance : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -32,12 +31,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate cabin A. Driver performs SoM to SR mode, level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SR mode, level 1");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Driver performs SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 1
             Action: Activate cabin A. Driver performs SoM to SR mode, level 1
@@ -49,12 +44,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward passing BG1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward passing BG1",
                 "DMI changes from SR mode to FS mode.The Planning Area is displayed in area D.Verify that the Gradient Profile is displayed in sub-area D5 and shown as a set of bars with different gradients. (see the second figure in ‘Comment’ column)The Gradient Profile segment bar is displayed two ‘+’ signs for uphill gradient, two ‘-‘ signs for downhill gradient, and no sign for zero gradient. The gradient value is displayed in the middle of the bar. (see the second figure in ‘Comment’ column)The Downhill PA Gradient Profile segment bars are displayed in dark-grey colour with the value and sign of gradient in white. The Uphill and zero PA Gradient Profile segment bars are displayed in grey colour with the value and sign of gradient in black.The Uphill and zero PA Gradient Profile have a white line on their upper and left boundary.The Downhill PA Gradient Profile have a grey line on their upper and left boundary.All PA gradient Profile have a black line on their lower boundary");
             /*
             Test Step 2
@@ -113,12 +103,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "9. The lower borders of all PA Gradient Profiles are black");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Simulate the communication loss between ETCS Onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Simulate the communication loss between ETCS Onboard and DMI",
                 "DMI displays the  message “ATP Down Alarm” with sound.Verify that the PA Gradient Profile is removed from DMI");
             /*
             Test Step 3
@@ -134,12 +119,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Alarm’ sound is played." + Environment.NewLine +
                                 "3. DMI does not display PA Gradient Profiles.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Re-establish the communication between ETCS onboard and DMI");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in FS mode, level 1. The PA Gradient Profile is resumed");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI",
+                "DMI displays in FS mode, level 1. The PA Gradient Profile is resumed");
             /*
             Test Step 4
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -153,11 +134,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The PA Gradient Profiles are re-displayed.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 5
             Action: End of test

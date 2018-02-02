@@ -47,13 +47,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Select and confirm Level 1.Press the 'Driver ID' button.Press 'Close' button. Press the 'Train data' button.At the Train data window, press 'Close' button.Press 'Level' button.At the Level window, press 'Close' button.Press 'Train running number' button.At the Train running number window, press 'Close' button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure,Select and confirm Level 1.Press the 'Driver ID' button.Press 'Close' button. Press the 'Train data' button.At the Train data window, press 'Close' button.Press 'Level' button.At the Level window, press 'Close' button.Press 'Train running number' button.At the Train running number window, press 'Close' button",
                 "Verify the following information(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with the value of variable MMI_M_REQUEST refer to sequence below,a)   MMI_M_REQUEST = 40 (Level entered)b)   MMI_M_REQUEST = 20 (Change Driver Identity)c)   MMI_M_REQUEST = 34 (Exit Driver ID Data entry)d)   MMI_M_REQUEST = 3 (Start Train Data Entry)e)   MMI_M_REQUEST = 4 (Exit Train Data Entry)f)   MMI_M_REQUEST = 27 (Change Level)g)   MMI_M_REQUEST = 32 (Exit Change Level)h)   MMI_M_REQUEST = 30 (Change Train Running Number)i)   MMI_M_REQUEST = 31 (Exit Change Train Running Number)Note: The sequence of MMI_M_REQUEST value are consistent with step of each action.(2)   When the button is pressed in each action, the window of pressed button is closed.(3)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 7 (ACK Level 1)b)   MMI_M_DRIVER_ACTION = 35 (Level 1 selected)");
             /*
             Test Step 1
@@ -155,13 +150,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train running number window");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press the 'Train data' button.Enter and validate all train data.Enter the train running number.Press the 'Start' button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Press the 'Train data' button.Enter and validate all train data.Enter the train running number.Press the 'Start' button",
                 "Verify the following information,(1)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 9 (Start)(2)   The Main window is closed, DMI displays Default window.(3)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 19 (Start selected)b)   MMI_M_DRIVER_ACTION = 20 (Train Data Entry requested)c)   MMI_M_DRIVER_ACTION = 21 (Validation of train data)");
             /*
             Test Step 2
@@ -198,13 +188,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Main window and displays the Default window");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press and hold sub-area C1 at least 2 seconds.Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays in SR mode, Level 1");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Perform the following procedure,Press and hold sub-area C1 at least 2 seconds.Release the pressed area",
+                "DMI displays in SR mode, Level 1");
             /*
             Test Step 3
             Action: Perform the following procedure,Press and hold sub-area C1 at least 2 seconds.Release the pressed area
@@ -224,13 +210,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.SR_Mode_displayed(this);
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press the 'Main' button.Press and hold 'Shunting' button at least 2 seconds.Released the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Press the 'Main' button.Press and hold 'Shunting' button at least 2 seconds.Released the pressed button",
                 "DMI displays Default window in SH mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 1 (Start Shunting)(2)   The Main window is closed, DMI displays Default window.(3)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 1 (ACK of shunting mode)b)   MMI_M_DRIVER_ACTION = 11 (Shunting selected)");
             /*
             Test Step 4
@@ -252,13 +233,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Main window and displays the Default window in SH mode, Level 1.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Press the 'Main' button.Simulate the ‘Passive-Shunting’ signal by activating the ‘Passive-Shunting’ checkbox on OTE.Press and hold 'Maintain Shunting' button at least 2 seconds.Released the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform the following procedure,Press the 'Main' button.Simulate the ‘Passive-Shunting’ signal by activating the ‘Passive-Shunting’ checkbox on OTE.Press and hold 'Maintain Shunting' button at least 2 seconds.Released the pressed button",
                 "DMI displays Default window in SH mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 14 (Continue shunting on desk closure)(2)   The Main window is closed, DMI displays Default window.(3)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)     MMI_M_DRIVER_ACTION = 15 (Continue Shunting on desk closure selected)");
             /*
             Test Step 5
@@ -286,12 +262,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Main window and displays the Default window");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform action follow step 4 for the ‘Exit Shunting’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Perform action follow step 4 for the ‘Exit Shunting’ button",
                 "DMI displays Default window in SH mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 2 (Exit Shunting)(2)   The Main window is closed, DMI displays Default window.(3)    Use the log file to verify that DMI receives EVC-30 with bit No.6 of variable: MMI_Q_REQUEST_ENABLE_64 = 1 (Exit shunting).(3)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)    MMI_M_DRIVER_ACTION = 17 (Exit of Shunting selected)");
             /*
             Test Step 6
@@ -310,13 +281,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Main window and displays the Default window in SH mode, Level 1.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure,Enter Driver IDSelect and confirm Level 1. Note: If Level window is display");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Main window in SB mode, Level 1");
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Perform the following procedure,Enter Driver IDSelect and confirm Level 1. Note: If Level window is display",
+                "DMI displays Main window in SB mode, Level 1");
             /*
             Test Step 7
             Action: Perform the following procedure,Enter Driver IDSelect and confirm Level 1. Note: If Level window is display
@@ -349,12 +316,9 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.NonLeading;
             EVC30_MMIRequestEnable.Send();
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Simulate the ‘Non-leading’ signal by activating the ‘Non-leading’ checkbox on OTE");
-            TraceReport("Expected Result");
-            TraceInfo("The state of ‘Non-leading’ button is changed to enabled");
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Simulate the ‘Non-leading’ signal by activating the ‘Non-leading’ checkbox on OTE",
+                "The state of ‘Non-leading’ button is changed to enabled");
             /*
             Test Step 8
             Action: Simulate the ‘Non-leading’ signal by activating the ‘Non-leading’ checkbox on OTE
@@ -366,12 +330,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Non-leading’ button is enabled");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform action follow step 4 for the ‘Non-leading’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Perform action follow step 4 for the ‘Non-leading’ button",
                 "DMI displays Default window in NL mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 5 (Start Non-leading)(2)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)     MMI_M_DRIVER_ACTION = 12 (Non Leading selected)");
             /*
             Test Step 9
@@ -386,11 +345,8 @@ namespace Testcase.DMITestCases
                 EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.NonLeadingSelected;
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartNonLeading;
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 10
             Action: End of test

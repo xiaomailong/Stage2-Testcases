@@ -41,12 +41,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG1.Then, stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1.Then, stop the train",
                 "DMI displays in FS mode, level 1.Verify the following information,(1)   Use the log file to confirm that the distance to target (bar and digital) is calculated from the received packet information EVC-7 and EVC -1 as follows,(EVC-1) MMI_O_BRAKETARGET  – (EVC-7) OBU_TR_O_TRAIN Example: The observation point of the distance target is 4480. [EVC-1.MMI_O_BRAKETARGET = 1000498078] – [EVC-7.OBU_TR_O_TRAIN = 1000050121] = 447,957 cm (4479.57m)(2)   The first digit of distance to target digital in sub-area A2 is not zero. (3)   The distane to target digital is right aligned");
             /*
             Test Step 1
@@ -71,12 +66,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The digital distance to target  is right aligned.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 13_1_8_a.xml to send EVC-1 with,MMI_O_BRAKETARGET = 1010500000");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,(1)   DMI display the distance to target digital as ‘99999’");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 13_1_8_a.xml to send EVC-1 with,MMI_O_BRAKETARGET = 1010500000",
+                "Verify the following information,(1)   DMI display the distance to target digital as ‘99999’");
             /*
             Test Step 2
             Action: Use the test script file 13_1_8_a.xml to send EVC-1 with,MMI_O_BRAKETARGET = 1010500000
@@ -87,12 +79,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the digital distance to target  as ‘99999’.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 13_1_8_b.xml to send EVC-1 with,MMI_M_WARNING = 7");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 13_1_8_b.xml to send EVC-1 with,MMI_M_WARNING = 7",
                 "Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.        After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 3
@@ -113,12 +101,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI re-displays the distance to target bar and digital distance to target after 2s.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Use the test script file 13_1_8_c.xml to send EVC-7 with,OBU_TR_M_MODE = 17");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 13_1_8_c.xml to send EVC-7 with,OBU_TR_M_MODE = 17",
                 "Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.        After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 4
@@ -138,11 +122,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI re-displays the distance to target bar and digital distance to target after 2s.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 5
             Action: End of test

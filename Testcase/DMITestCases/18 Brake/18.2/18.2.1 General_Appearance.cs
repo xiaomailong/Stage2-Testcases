@@ -39,24 +39,17 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Force the train roll away by moving of speed with ‘Neutral’ direction throughout the test step 2, 3, 4 and 5");
-            
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Force the train roll away by moving of speed with ‘Neutral’ direction throughout the test step 2, 3, 4 and 5",
+                "");
+
             /*
             Test Step 1
             Action: Force the train roll away by moving of speed with ‘Neutral’ direction throughout the test step 2, 3, 4 and 5
             Expected Result: 
             */
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Wait until a runaway movement is detected");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++, "Wait until a runaway movement is detected",
                 "Verify the following information,The symbol ‘ST01’ is displayed when packet [MMI_DRIVER_MESSAGE (EVC-8)] is received with variable [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT]= 260Note: Use the log file to verify a received packet EVC-8.The symbol ‘ST01’ is displayed in sub-area C9A flashing frame is only surrounded in the sub-area C9");
             /*
             Test Step 2
@@ -72,12 +65,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol ST01 in sub-area C9 in a yellow flashing frame.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press sub-area E1 (below ST01 symbol)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press sub-area E1 (below ST01 symbol)",
                 "Verify the following information,The sub-area E1 can be acknowledged as sensitive areaThe symbol ‘ST01’ is removed from the sub-area C9.Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 16 (Brake release acknowledgement)");
             /*
             Test Step 3
@@ -94,13 +82,8 @@ namespace Testcase.DMITestCases
                                 "1. Sub-area E1 can be acknowledged as sensitive area." + Environment.NewLine +
                                 "2. DMI stops displaying symbol ST01");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Wait until a runaway movement is detected, and the symbol ST01 is displayed again.Then, press sub-area C8 (above ST01 symbol)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Wait until a runaway movement is detected, and the symbol ST01 is displayed again.Then, press sub-area C8 (above ST01 symbol)",
                 "Verify the following information,The sub-area C8 can be acknowledged as sensitive areaThe symbol ‘ST01’ is removed from the sub-area C9");
             /*
             Test Step 4
@@ -119,13 +102,8 @@ namespace Testcase.DMITestCases
                                 "1. Sub-area C8 can be acknowledged as sensitive area." + Environment.NewLine +
                                 "2. DMI stops displaying symbol ST01");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Wait until a runaway movement is detected, and the symbol ST01 is displayed again.Then, press sub-area C9 (ST01 symbol)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Wait until a runaway movement is detected, and the symbol ST01 is displayed again.Then, press sub-area C9 (ST01 symbol)",
                 "Verify the following information,The sub-area C9 can be acknowledged as sensitive areaThe symbol ‘ST01’ is removed from the sub-area C9");
             /*
             Test Step 5
@@ -143,24 +121,17 @@ namespace Testcase.DMITestCases
                                 "1. Sub-area C9 can be acknowledged as sensitive area." + Environment.NewLine +
                                 "2. DMI stops displaying symbol ST01");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Stop the train from runway by dropping the train’s speed to zero");
-            
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Stop the train from runway by dropping the train’s speed to zero", "");
+
             /*
             Test Step 6
             Action: Stop the train from runway by dropping the train’s speed to zero
             Expected Result: 
             */
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1",
                 "Verifies that the following information,The symbol ST01 is displayed in sub-area C9 with yellow flashing frame.A yellow flashing frame is surrounded in the related object (sub-area C9) and sound Sinfo is played");
             /*
             Test Step 7
@@ -175,12 +146,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI plays sound ‘Sinfo’");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press on sub-area E1 (below ST01 symbol)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press on sub-area E1 (below ST01 symbol)",
                 "Verify the following information,The sub-area E1 can be acknowledged as sensitive areaThe flashing frame belonging to the acknowledgement is disappearedThe symbol ‘ST01’ is still displayed.When the driver carries out an acknowledgement, the DMI will send [MMI_DRIVER_MESSAGE_ACK (EVC-111)] for pressed and released event with [MMI_DRIVER_MESSAGE (EVC-8).MMI_I_TEXT] and [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK]Note: For pressed and released event, the DMI will send variable [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 1, and then send [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 0");
             /*
             Test Step 8
@@ -205,12 +171,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI still displays symbol ST01");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press on sub-area E1 (below ST01 symbol)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Press on sub-area E1 (below ST01 symbol)",
                 "Verify the following information,Touch sensitive areas of the acknowledgement is removed.Note: DMI will not send the packet [MMI_DRIVER_MESSAGE_ACK (EVC-111)] when there is no detection of acknowledgement");
             /*
             Test Step 9
@@ -232,13 +193,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The touch-sensitive area in sub-area E1 is removed.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, (1)   Sound Sinfo is played");
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1",
+                "Verify the following information, (1)   Sound Sinfo is played");
             /*
             Test Step 10
             Action: This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1
@@ -251,13 +208,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI plays sound ‘Sinfo’");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1Then, press at sub-area C8 (above ST01 symbol)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1Then, press at sub-area C8 (above ST01 symbol)",
                 "Verify the following information, The sub-area C8 can be acknowledged as sensitive areaThe flashing frame belonging to the acknowledgement is disappearedThe symbol ‘ST01’ is still displayed.When the driver carries out an acknowledgement, the DMI will send [MMI_DRIVER_MESSAGE_ACK (EVC-111)] for pressed and released event with [MMI_DRIVER_MESSAGE (EVC-8).MMI_I_TEXT] and [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK]Note: For pressed and released event, the DMI will send variable [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 1, and then send [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 0");
             /*
             Test Step 11
@@ -283,12 +235,10 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI still displays symbol ST01");
 
-            TraceHeader("Test Step 12");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1");
-            
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1",
+                "");
+
             /*
             Test Step 12
             Action: This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1
@@ -296,13 +246,8 @@ namespace Testcase.DMITestCases
             */
             XML_13_2_1(msgType.typeb);
 
-            TraceHeader("Test Step 13");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1Then, press at sub-area C9 (ST01 symbol)");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1Then, press at sub-area C9 (ST01 symbol)",
                 "Verify the following information,The sub-area C9 can be acknowledged as sensitive areaThe flashing frame belonging to the acknowledgement is disappearedThe symbol ‘ST01’ is still displayed.When the driver carries out an acknowledgement, the DMI will send [MMI_DRIVER_MESSAGE_ACK (EVC-111)] for pressed and released event with [MMI_DRIVER_MESSAGE (EVC-8).MMI_I_TEXT] and [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK]Note: For pressed and released event, the DMI will send variable [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 1, and then send [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 0");
             /*
             Test Step 13
@@ -330,11 +275,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI still displays symbol ST01");
 
-            TraceHeader("Test Step 14");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(14, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 14
             Action: End of test

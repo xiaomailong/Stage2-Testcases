@@ -21,7 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_34_1_1_Dialogue_Sequences : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -29,12 +28,9 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
             TraceInfo("This test case requires a specific configuration - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Main window");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1",
+                "DMI displays Main window");
             /*
             Test Step 1
             Action: Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
@@ -51,12 +47,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Train data’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Train data window");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Train data’ button", "DMI displays Train data window");
             /*
             Test Step 2
             Action: Press ‘Train data’ button
@@ -70,13 +61,9 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Train_data_window_displayed(this);
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Select dedicated keyboard button which have different label from an input field without confirmation");
-            TraceReport("Expected Result");
-            TraceInfo("The value of input field is changed refer to pressed button");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Select dedicated keyboard button which have different label from an input field without confirmation",
+                "The value of input field is changed refer to pressed button");
             /*
             Test Step 3
             Action: Select dedicated keyboard button which have different label from an input field without confirmation
@@ -88,12 +75,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value pressed.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select Close button.Then, select Train data button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Select Close button.Then, select Train data button",
                 "DMI displays Train data window.Verify that the train type is not changed to the pressed button from step 3");
             /*
             Test Step 4
@@ -111,13 +93,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. The train type does not change to the type of the button pressed in Step 3.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Select and confirm dedicated keyboard button which have different label from an input field. Then, press ‘Yes’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Train data validation window");
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Select and confirm dedicated keyboard button which have different label from an input field. Then, press ‘Yes’ button",
+                "DMI displays Train data validation window");
             /*
             Test Step 5
             Action: Select and confirm dedicated keyboard button which have different label from an input field. Then, press ‘Yes’ button
@@ -131,12 +109,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select and confirm ‘No’ button");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Main window");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Select and confirm ‘No’ button", "DMI displays Main window");
             /*
             Test Step 6
             Action: Select and confirm ‘No’ button
@@ -147,12 +120,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main window.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select Train data button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Select Train data button",
                 "DMI displays Train data window.Verify that the train type is not changed to the pressed button from step 5");
             /*
             Test Step 7
@@ -171,12 +139,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. Train type is ‘type 1’ and does not change to ‘type 2’ (confirmed in Step 5.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Repeat Step 5.Then, select and confirm ‘Yes’ button.");
-            TraceReport("Expected Result");
-            TraceInfo("DMI displays Main window.");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Repeat Step 5.Then, select and confirm ‘Yes’ button.",
+                "DMI displays Main window.");
             /*
             Test Step 8
             Action: Repeat Step 5.Then, select and confirm ‘Yes’ button.
@@ -193,12 +157,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press and confirm the ‘Yes’ button");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select Train data button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++, "Select Train data button",
                 "DMI displays Train data window.Verify that the train type is change to pressed button from step 8.");
             /*
             Test Step 9
@@ -216,11 +175,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. Train type changes to ‘type 2’ (confirmed in Step 8).");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 10
             Action: End of test

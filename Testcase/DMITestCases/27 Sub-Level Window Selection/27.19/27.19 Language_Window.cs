@@ -44,12 +44,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Language’ button");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Language’ button",
                 "DMI displays the Language window on the right half part of the window as shown in figure belowLayersThe layers of window on half-grid array is displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text “Language”.Verify that the Language window is displayed in main area D, F and G as half-grid array.A data entry window is containing only one input field covers the Main area D, F and G.The following objects are displayed in Language window. Enabled Close button (NA11)Window TitleInput FieldInput fieldThe input field is located in main area D and F.For a single input field, the window title is clearly explaining the topic of the input field. The Language window is displayed as a single input field with only the data part.KeyboardThe keyboard associated to the Language window is displayed as dedicated keyboard and displayed with the possible language(s) in its (their) own language for driver selection.The keyboard is presented below the area of input field.General property of windowThe Language window is presented with objects and buttons which is the one of several levels and allocated to areas of DMIAll objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 1
@@ -77,12 +72,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "9. The Default window does not cover the current window.");
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press and hold every buttons on the dedicate keyboard respectively");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Press and hold every buttons on the dedicate keyboard respectively",
                 "Verify the following information,The value of input field is replaced by the pressed button.Sound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The Input Field displays the language associated to the data key according to the pressings in state ‘Pressed’.An input field is used to enter the Language.The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.The data value of the input field is aligned to the left of the data area");
             /*
             Test Step 2
@@ -100,12 +91,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The data input field accepts the value according to the key pressed.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Released the pressed button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information, The state of button is changed to ‘Enabled’");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Released the pressed button",
+                "Verify the following information, The state of button is changed to ‘Enabled’");
             /*
             Test Step 3
             Action: Released the pressed button
@@ -117,12 +104,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The key is displayed enabled.");
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Select ‘Deutsch’ button.Then, press and hold an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++, "Select ‘Deutsch’ button.Then, press and hold an input field",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 4
@@ -135,12 +117,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide out an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Slide out an input field",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound");
             /*
             Test Step 5
@@ -154,12 +131,7 @@ namespace Testcase.DMITestCases
                                 @"1. The data input field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Slide back into an input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(6, UniqueIdentifier++, "Slide back into an input field",
                 "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 6
@@ -173,12 +145,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is displayed pressed, without a border.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Release the pressed area");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++, "Release the pressed area",
                 "Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_NEW_LANGUAGE (EVC-122)] with variable [MMI_NEW_LANGUAGE (EVC-122).MMI_NID_LANGUAGE].Note: The correctness of value cannot verify because it’s not specify in the [GenVSIS].The language is updated, DMI displays all texts and button labeled as Deustch language.(2)   An input field is used to enter the Language");
             /*
             Test Step 7
@@ -191,12 +158,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All texts and buttons are displayed in German.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Perform the following procedure, Press ‘Language’ button.Select and confirm ‘English’ language");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Perform the following procedure, Press ‘Language’ button.Select and confirm ‘English’ language",
                 "Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_NEW_LANGUAGE (EVC-122)] with variable [MMI_NEW_LANGUAGE (EVC-122).MMI_NID_LANGUAGE].Note: The correctness of value cannot verify because it’s not specify in the [GenVSIS].The language is updated, DMI displays all texts and button labeled as English language");
             /*
             Test Step 8
@@ -210,13 +173,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All texts and buttons are displayed in English.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Perform the following procedure, Press ‘Language’ button.Confirm the current data without re-entry by press at input field");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Perform the following procedure, Press ‘Language’ button.Confirm the current data without re-entry by press at input field",
                 "Verify the following information,Use the log file to confirm that DMI sends out the packet [MMI_NEW_LANGUAGE (EVC-122)] with the value of variable  [MMI_NEW_LANGUAGE (EVC-122).MMI_NID_LANGUAGE] is same as action step 8.Note: The correctness of value cannot verify because it’s not specify in the [GenVSIS].The language is still same, DMI displays all texts and button labeled as English language");
             /*
             Test Step 9
@@ -229,12 +187,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. All texts and buttons are displayed in English.");
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Press ‘Language’ buttonThen, press the ‘Close’ button");
-            TraceReport("Expected Result");
-            TraceInfo("Verify the following information,(1)   DMI displays Settings window");
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Language’ buttonThen, press the ‘Close’ button",
+                "Verify the following information,(1)   DMI displays Settings window");
             /*
             Test Step 10
             Action: Press ‘Language’ buttonThen, press the ‘Close’ button
@@ -246,11 +200,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Settings window");
 
-            TraceHeader("Test Step 11");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 11
             Action: End of test

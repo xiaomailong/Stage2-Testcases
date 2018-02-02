@@ -55,12 +55,8 @@ namespace Testcase.DMITestCases
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
-            TraceHeader("Test Step 1");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward with speed = 20 km/h");
-            TraceReport("Expected Result");
-            TraceInfo("The speed pointer is indicated as 20  km/h");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with speed = 20 km/h",
+                "The speed pointer is indicated as 20  km/h");
             /*
             Test Step 1
             Action: Drive the train forward with speed = 20 km/h
@@ -72,12 +68,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays a speed of 20 km/h.");
 
 
-            TraceHeader("Test Step 2");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27");
-            TraceReport("Expected Result");
-            TraceInfo("Mode changes to FS mode , L1");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27",
+                "Mode changes to FS mode , L1");
             /*
             Test Step 2
             Action: Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27
@@ -88,25 +81,17 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
-            TraceHeader("Test Step 3");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo(
-                "Pass BG1 with Track conditionPkt 68:D_TRACKCOND = 500L_TRACKCOND = 200M_TRACKCOND = 8(Switch off magnetic shoe brake)");
-            TraceReport("Expected Result");
-            TraceInfo("Mode remians in FS mode");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Pass BG1 with Track conditionPkt 68:D_TRACKCOND = 500L_TRACKCOND = 200M_TRACKCOND = 8(Switch off magnetic shoe brake)",
+                "Mode remians in FS mode");
             /*
             Test Step 3
             Action: Pass BG1 with Track conditionPkt 68:D_TRACKCOND = 500L_TRACKCOND = 200M_TRACKCOND = 8(Switch off magnetic shoe brake)
             Expected Result: Mode remians in FS mode
             */
 
-            TraceHeader("Test Step 4");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Enter Anouncement of Track condition “Change of traction system, DC  600/750 V”");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Enter Anouncement of Track condition “Change of traction system, DC  600/750 V”",
                 "Verify the following information(1)   DMI displays PL35 or PL36 symbol in sub-area D2. (PL35) or  (PL36)");
             /*
             Test Step 4
@@ -133,12 +118,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol PL35 in sub-area D2.");
 
-            TraceHeader("Test Step 5");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Stop the train");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(5, UniqueIdentifier++, "Stop the train",
                 "Verify the following information(1)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 15MMI_Q_TRACKCOND_STEP = 0MMI_Q_TRACKCOND_ACTION_START = 1 (PL35) or 0 (PL36)MMI_O_TRACKCOND_ANNOUNCE - OBU_TR_O_TRAIN (EVC-7) =  Remaining distance from PL35 or PL36 symbol on area D2 to the first distance scale line (zero line)(2)    The bottom of PL35 or PL36 symbol is displayed with the correct position in the PA distance scale refer to the result of calculation from expected result (1)");
             /*
             Test Step 5
@@ -157,12 +137,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL35 symbol is displayed at ~60.");
 
-            TraceHeader("Test Step 6");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward with speed = 20 km/h");
-            TraceReport("Expected Result");
-            TraceInfo("The speed pointer is indicated as 20  km/h");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Drive the train forward with speed = 20 km/h",
+                "The speed pointer is indicated as 20  km/h");
             /*
             Test Step 6
             Action: Drive the train forward with speed = 20 km/h
@@ -173,12 +149,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
-            TraceHeader("Test Step 7");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Stop the train when the TC33 or TC34 symbol displays in sub-area B3");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Stop the train when the TC33 or TC34 symbol displays in sub-area B3",
                 "Verify the following information(1)   DMI displays TC33 or TC34 symbol in sub-area B3. (TC33) or  (TC34)(2)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_M_TRACkCOND_TYPE = 15MMI_Q_TRACKCOND_STEP = 1(TC33 or TC34) or 2 (TC33)MMI_Q_TRACKCOND_ACTION_START = 1 (TC33) or 0 (TC34)");
             /*
             Test Step 7
@@ -197,12 +169,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC33 in sub-area B3.");
 
-            TraceHeader("Test Step 8");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Drive the train forward with speed = 20 km/h");
-            TraceReport("Expected Result");
-            TraceInfo("The speed pointer is indicated as 20  km/h");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Drive the train forward with speed = 20 km/h",
+                "The speed pointer is indicated as 20  km/h");
             /*
             Test Step 8
             Action: Drive the train forward with speed = 20 km/h
@@ -213,12 +181,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
-            TraceHeader("Test Step 9");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("Stop the train when the track condition symbol has been removed from sub-area B3");
-            TraceReport("Expected Result");
-            TraceInfo(
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Stop the train when the track condition symbol has been removed from sub-area B3",
                 "Verify the following information(1)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = Same value with expected result No.2 of step 7");
             /*
             Test Step 9
@@ -231,11 +195,8 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            TraceHeader("Test Step 10");
-            TraceHeader("TP-" + UniqueIdentifier++);
-            TraceReport("Action");
-            TraceInfo("End of test");
-            
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 10
             Action: End of test
