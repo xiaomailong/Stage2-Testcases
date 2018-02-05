@@ -7,6 +7,24 @@ using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
+
+    /// <summary>
+    /// TCMS_DMI_SoM_L1
+    /// 
+    /// This test case verifies the presentation and the functionality of the DMI during a Start of Mission in Level 1 
+    /// NOTE: This test case is relevant only if both real ETCS and TCMS DMI are part of the simulation environment   
+    /// 
+    /// Scenario:
+    /// Activate Cabin A
+    /// Enter Driver ID
+    /// Perform Brake Test
+    /// Select Level 1
+    /// Proceed to Train Data entry and validation
+    /// Enter TRN
+    /// Press 'Start' button and acknowledge SR mode
+    /// De-activate Cabin A.
+    /// 
+    /// </summary>
     public class TCMS_DMI_SoM_L1 : TestcaseBase
     {
         public override void PreExecution()
