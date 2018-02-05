@@ -21,22 +21,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_2_5_1_Failure_Reaction : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // -   System is power on.-   Cabin is activated.-   SoM is perform until level 1 is selected and confirmed.
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            StartUp();
+            // -   System is power on.-   Cabin is activated.-   SoM is perform until level 1 is selected and confirmed.
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use the test script file 2_5_1_a.xml to send EVC-0 with,MMI_M_START_REQ = 10 (DMI reboot, Indication error)",

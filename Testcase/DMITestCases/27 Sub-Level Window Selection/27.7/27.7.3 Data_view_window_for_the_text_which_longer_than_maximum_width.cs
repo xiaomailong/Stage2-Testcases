@@ -21,16 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_7_3_Sub_Level_Window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // All value of Parameter ‘TR_OBU_TrainType’ is set to 2 (Flexible Train Data) in defaultValues_default.xml in OTE.Set the following information in language_mgr.xmlRevise wording from ‘PASS1’ to be ‘For Test Data View truncated by long text’Revise wording from ‘Train category’ to be ‘For Test Data View truncated by long text’SoM is performed in SR mode, Level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override void PostExecution()
         {
@@ -47,6 +37,10 @@ namespace Testcase.DMITestCases
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
+
             // Testcase entrypoint
             TraceInfo("This test case requires a DMI configuration change; See Precondition requirements. " +
                       "If this is not done manually, the test may fail!");

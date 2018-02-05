@@ -32,6 +32,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM until select and confirm Level 2",
                 "Verify the following information;(1)   Verify DMI still displays Level window until RBC contact window is displayed");
@@ -41,10 +42,6 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information;(1)   Verify DMI still displays Level window until RBC contact window is displayed
             Test Step Comment: (1) MMI_gen 8859 (partly: RBC contact window);
             */
-            DmiActions.Start_ATP();
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
 
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");

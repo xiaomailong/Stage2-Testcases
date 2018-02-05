@@ -40,7 +40,8 @@ namespace Testcase.DMITestCases
             Expected Result: ATP is in SB mode.DMI displays in SB mode
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

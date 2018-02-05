@@ -22,21 +22,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_10_4_1_3_State_ST05 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Use the ATP config editor to set the parameter Q_NVDRIVER_ADHES = 1 (See the instruction in Appendix 2).Test system is powered onCabin is activeSoM is performed until level 1 is selected and confirmed.Main window is closedSpecial window is opened
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "At the Special window, press ‘SR speed/distance’’ button",
                 "DMI displays SR speed/distance window");

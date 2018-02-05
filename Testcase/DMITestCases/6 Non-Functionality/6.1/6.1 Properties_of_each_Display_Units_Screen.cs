@@ -19,25 +19,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_1_Properties_of_each_Display_Units_Screen : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tag names (See the instruction in Appendix 1)MIN_BRIGHT = 10MAX_BRIGHT = 100Test system is powered ONCabin A is activated
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
-            DmiActions.Send_SB_Mode(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            StartUp();
+            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Send_SB_Mode(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Settings’ button", "DMI displays Settings window");
             /*

@@ -25,22 +25,18 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_29_4_Train_data_Data_Checks_Technical_Range_Checks_by_Variable_Range : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // 1. The test environment is powered on.2. ATP-CU is verified that the train is set as ‘Flexible’.TR_OBU_TrainType = 23. 
-            //The cabin is activated.4. The ‘Start of Mission’ procedure is performed until the ‘Staff Resonsible’ mode, level 1, is confirmed.5. The ‘Main’ window is opened.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            // 1. The test environment is powered on.2. ATP-CU is verified that the train is set as ‘Flexible’.TR_OBU_TrainType = 23. 
+            //The cabin is activated.4. The ‘Start of Mission’ procedure is performed until the ‘Staff Resonsible’ mode, level 1, is confirmed.5. The ‘Main’ window is opened.
+            DmiActions.Complete_SoM_L1_SR(this);
+
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 

@@ -22,22 +22,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_17_Driver_ID_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered onCabin is inactive
-            DmiActions.Start_ATP();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use the test script file 22_17_a.xml to send EVC-14 withMMI_X_DRIVER_ID = ‘4444’Note: Please wait for 5-10 seconds to make sure that test script is executed completely",

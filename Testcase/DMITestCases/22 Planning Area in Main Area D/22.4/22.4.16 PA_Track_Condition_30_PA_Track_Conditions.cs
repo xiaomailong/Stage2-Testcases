@@ -30,6 +30,7 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train up to 20 km/h",
                 "The speed pointer is indicated as 20  km/h");

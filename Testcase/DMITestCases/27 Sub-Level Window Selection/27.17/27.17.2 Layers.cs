@@ -23,16 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_8_2_1_Layers : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.
-            DmiActions.Start_ATP();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -48,7 +38,7 @@ namespace Testcase.DMITestCases
             Expected Result: The Driver ID window is displayed cover  the half-grid array in area D, F and G
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 

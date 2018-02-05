@@ -21,21 +21,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_6_1_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // The DMI default configuration has TOGGLE_FUNCTION = 0 (‘ON’).
-            // System is power on.Cabin is activated.SoM is performed in SR mode, Level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
+
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");

@@ -23,23 +23,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_10_Special_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Call the TestCaseBase PreExecution
 
-            base.PreExecution();
-
-            // Test system is powered on Cabin A is activatedSoM is completed in SR mode, level 1
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Spec’ button",
                 "DMI displays Special window.Verify the following information,Menu window(1)   TheSpecial window is displayed in main area D/F/G.(2)   The window title is ‘Special’.(3)   The following objects are displayed in Main window, Enabled Close button (NA11)Window TitleButton 1 with label ‘Adhesion’Button 2 with label ‘SR speed /distance’Button 3 with label ‘Train integrity’ Note: See the position of buttons in picture below,(4)   The state of each button in Special window are displayed correctly as follows ,SR speed/distance = EnableAdhesion = DisableTrain integrity = Enable(5)   Use the log file to confirm that DMI receives packet EVC-30 with the value of following bit of MMI_Q_REQUEST_ENABLE_64Bit #10  = 0 (Adhesion disabled)Bit #11 = 1 (SR speed/distance enabled)Bit #12 = 1 (Train Integrity enabled)Layers(6)   The level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.General property of window(7)   The Special window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI.(8)   All objects, text messages and buttons are presented within the same layer.(9)   The Default window is not displayed and covered the current window.(10)   Sub-level window covers partially depending on the size of the Sub-Level window. There is no other window is displayed and activated at the same time");

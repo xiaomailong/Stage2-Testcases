@@ -21,25 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_13_1_7_6_Brake : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is powered on.Cabin is activated.Driver ID is entered.Level 1 is selected and confirmed.
-            DmiActions.Start_ATP();
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
-
-            // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
-
-            // Set to level 1
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -47,6 +28,13 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            StartUp();
+
+            // Set driver ID
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            // Set to level 1
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure, Force the simulation to ‘Non-leadingPress and hold ‘Non-leading’ button at least 2 second.Release the pressed button",

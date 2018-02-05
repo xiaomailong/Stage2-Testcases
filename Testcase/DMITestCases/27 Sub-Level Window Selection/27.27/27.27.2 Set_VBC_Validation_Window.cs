@@ -22,23 +22,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_27_2_Set_VBC_Validation_Window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // The VBC code is not stored on ETCS. (See the information in the “Data View” menu)Settings window is opened.Set VBC window is opened.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is powered ON.Cabin is activated.Perform SoM until level 1 is selected and confirmed.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            // System is powered ON.Cabin is activated.Perform SoM until level 1 is selected and confirmed.
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button",

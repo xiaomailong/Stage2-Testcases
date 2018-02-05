@@ -22,30 +22,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_4_Building_Texts : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // System is power on.Cabin is activateSoM is perform in SR mode, Level 1.The active language is English.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1.Then, stop the train",
                 "Verify the following information,Use the log file to confirm that DMI received packet EVC-8 with MMI_Q_TEXT = 256 (Plain Text Message).The plain text message ‘TEST 15.4’ is displayed on sub-area E5.Text messsage is display in white colour.The local time of appearance is attached in front of plain text messge at the first line.The local time is separated from the first character of displayed text by an indent.The format of local time is “hh:mm” with a 24 hours time reference");

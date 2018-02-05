@@ -37,6 +37,7 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A. Driver performs SoM in SB mode, level 1
             Expected Result: DMI displays in SB mode, Level 1
             */
+            StartUp();
             DmiActions.Complete_SoM_L1_SB(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

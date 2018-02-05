@@ -35,6 +35,7 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
             Expected Result: DMI displays Main window
             */
+            StartUp();
             DmiActions.Complete_SoM_L1_SB(this);
 
             DmiActions.ShowInstruction(this, "Press the ‘Main’ button");

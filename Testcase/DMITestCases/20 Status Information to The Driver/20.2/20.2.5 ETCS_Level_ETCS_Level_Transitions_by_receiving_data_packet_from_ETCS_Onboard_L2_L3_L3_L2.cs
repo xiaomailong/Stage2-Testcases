@@ -20,33 +20,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_15_2_5_ETCS_Level : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // -     System is power ON.-     SoM is performed in SR mode, Level 2
-            DmiActions.Complete_SoM_L1_SR(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 2
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1",
                 "Verify the following information,(1)     DMI display symbol LE14 in sub-area C1.(2)    Use the log file to confirm that DMI receives packet information EVC-8 with the following variables,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITIRIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 3");
             /*

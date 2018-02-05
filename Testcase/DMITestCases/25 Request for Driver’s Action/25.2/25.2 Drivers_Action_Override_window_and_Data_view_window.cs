@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.Override window is opened.
-            DmiActions.Complete_SoM_L1_SR(this);
+
         }
 
         public override bool TestcaseEntryPoint()
@@ -39,6 +39,8 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press the ‘EOA’ button",
                 "DMI displays Default window in SR mode, Level 1 with MO03 symbol in sub-area C7.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 7 (Start Override EOA (Pass stop))(2)   The Override window is closed, DMI displays Default window.(3)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)    MMI_M_DRIVER_ACTION = 14 (Override selected)");

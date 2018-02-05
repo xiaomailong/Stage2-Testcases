@@ -50,6 +50,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            StartUp();
+
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Start’ button", "Verify the following information,");
             /*
             Test Step 1

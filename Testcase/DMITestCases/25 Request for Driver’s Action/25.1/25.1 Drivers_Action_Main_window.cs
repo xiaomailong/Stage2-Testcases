@@ -29,23 +29,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_20_1_Drivers_Action_Main_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered on.Cabin is activated.Driver ID is entered and the brake test is performed.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Set_Driver_ID(this, "1234");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,Select and confirm Level 1.Press the 'Driver ID' button.Press 'Close' button. Press the 'Train data' button.At the Train data window, press 'Close' button.Press 'Level' button.At the Level window, press 'Close' button.Press 'Train running number' button.At the Train running number window, press 'Close' button",

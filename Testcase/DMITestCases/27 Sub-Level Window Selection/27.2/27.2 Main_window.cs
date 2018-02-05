@@ -22,27 +22,17 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_7_1_Main_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered onCabin is activeSoM is performed until the train data validated.
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            // Test system is powered onCabin is activeSoM is performed until the train data validated.
+            StartUp();
+            DmiActions.Set_Driver_ID(this, "1234");
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Enter and confirm the Train running number",
                 "DMI displays Main window.Use the log file to confirm that DMI received packet EVC-30 with the variable MMI_Q_REQUEST_ENABLE_64 (#0) = 1 (Enable Start) and the ‘Start’ button is enabled.The Main window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons in Main window are presented within the same layer.The Default window is not displayed and covered the current window.Sub-level window covers partially depending on the size of the Sub-Level window. There is no other window is displayed and activated at the same time");

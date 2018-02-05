@@ -19,22 +19,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_1_6_ETCS_Mode_Symbols : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered onSoM is performed in SR mode, Level 1.
-
-            // Call the TestCaseBase PreExecution
-
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             #region Test Step 1
 

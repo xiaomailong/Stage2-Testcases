@@ -22,22 +22,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_6_1_PA_Speed_Profile_Discontinuity_Display_in_sub_area_D6_and_D7 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is power on.Cabin is activated.SoM is performed in SR mode, Level1.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward and pass BG1.Then, stop the train",
                 "DMI displays in FS mode, Level 1.Verify the following information,The PA Speed Profile Discontinuities symbol are displayed in area D6-D7 and the right half of PA Speed Profile Discontinuities symbol are extended into area D7, a remaining part are covering the right side of area D6.Use the log file to confirm the result of comparision in packet EVC-4 for displaying each PA Speed Profile Discontinuities symbol at sub-area D6-D7 and position for each position of PA Speed Profile Discontinuities from the differentiate of variable [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP] and [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] refer as follows,Speed Profile DiscontinuitiesMMI_V_MRSP[0] < MMI_V_MRSP_CURRPosition [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[0]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 50000 (500m)DMI displays symbol PL22 (a speed decrease) at position 500m. Speed Profile DiscontinuitiesMMI_V_MRSP[0] < MMI_V_MRSP[1]Position[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[1]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 100000 (1000m)DMI displays symbol PL21 (a speed increase) At position 1000m.Speed Profile DiscontinuitiesMMI_V_MRSP[2] = 0 Position[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[2]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 200000 (2000m)DMI displays symbol PL23 (a speed decrease to a target at zero speed).There is no PA Speed Profile Discontinuity symbol displayed beyond position 2000m.(4)   The bottom of horizontal line of each symbol are located at specific location in expected result No.2");

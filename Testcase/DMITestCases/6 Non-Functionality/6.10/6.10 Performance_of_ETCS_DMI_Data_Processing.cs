@@ -21,28 +21,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_10_Performance_of_ETCS_DMI_Data_Processing : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // 1. The test environment is powered on.
-            // 2. The RCI client is connected to ETCS-DMI with the concerned ETCS-DMI IP address via port 15001 (Raw connection). 
-            // 3. The RCI is commanded to start logging the following data:
-            //      - The incoming data received by MVB port.- The concerned data for ETCS-DMI screen update.
-            //      - The ETCS-DMI screen update according to the incoming data.
-            // 4. The cabin is activated.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.ShowInstruction(this, "THIS TESCASE TO BE SKIPPED??");
-            DmiActions.Activate_Cabin_1(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            DmiActions.ShowInstruction(this, "THIS TESCASE TO BE SKIPPED??");
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM in SR mode, Level 2",
                 "RCI logs the concerned activities as specified in the precondition");

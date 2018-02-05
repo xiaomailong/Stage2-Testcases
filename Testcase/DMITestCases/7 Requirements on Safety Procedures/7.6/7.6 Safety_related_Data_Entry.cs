@@ -25,29 +25,22 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_2_6_Safety_related_Data_Entry : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // System is power on.
-            // Cabin is activated.
-            // Settings window is opened.
-            // Maintenance password window is opened.
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
-
-            // force the window
-            DmiActions.Open_the_Settings_window(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            // System is power on.
+            // Cabin is activated.
+            // Settings window is opened.
+            // Maintenance password window is opened.
+
+            // Set train running number, cab 1 active, and other defaults
+            StartUp();
+
+            // force the window
+            DmiActions.Open_the_Settings_window(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Wheel diameter’ button",
                 "DMI displays Wheel diameter window.");

@@ -47,7 +47,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify the following information,The local time is displayed in form of ‘hh:mm:ss’ with flashing colons at sub-area G13
             Test Step Comment: (1) MMI_gen 3204-1 (THR); MMI_gen 3852 (partly: flashing colons);
             */
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");

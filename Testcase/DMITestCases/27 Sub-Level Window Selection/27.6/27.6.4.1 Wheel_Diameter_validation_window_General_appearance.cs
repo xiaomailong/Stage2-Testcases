@@ -22,27 +22,21 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_6_4_1_Wheel_diameter : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // The Maintenance password in tag name ‘PASS_CODE_MTN’ of the configuration file is set correctly refer to MMI_gen 11722Test system is power on.Cabin is activated.Settings window is opened.Maintenance window is opened.Wheel diameter window is opened.
-            DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
-                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
-            EVC30_MMIRequestEnable.Send();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            // The Maintenance password in tag name ‘PASS_CODE_MTN’ of the configuration file is set correctly refer to MMI_gen 11722Test system is power on.Cabin is activated.Settings window is opened.Maintenance window is opened.Wheel diameter window is opened.
+            StartUp();
+            DmiActions.Set_Driver_ID(this, "1234");
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
+                EVC30_MMIRequestEnable.EnabledRequests.EnableWheelDiameter;
+            EVC30_MMIRequestEnable.Send();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Enter and confirm all data in Wheel diameter window",
                 "Verify the following information,Use the log file to confirm that DMI received the packet MMI_ECHOED_MAINTENANCE_DATA (EVC-41) with variable MMI_Q_MD_DATASET = 0. Use the log file to confirm that the following variables in packet EVC-41 are same as entered data,MMI_M_SDU_WHEEL_SIZE_1 = entered Wheel diameter1MMI_M_SDU_WHEEL_SIZE_2 = entered Wheel diameter2MMI_M_WHEEL_SIZE_ERR = entered AccuracyDMI displays Wheel diameter Validation window.The following objects are displayed in Wheel diameter Validation window. Enabled Close button (NA11)Window TitleInput fieldYes buttonNo buttonWindow TitleThe window title is ‘Validate Wheel diameter’.The window title is right aligned.LayerThe window is displayed in main area A/B/C/D/E/F/G.All areas of Data validation window are Layer 0.Input fieldThe window contains a single input field which have only data area.The value of input field is empty.KeyboardThe displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo TextEcho Text is composed of a Label part and Data part.The Label of echo text is right aligned.The Data part of echo text is left aligned.The order of echo texts are same as of the Wheel diameter window as follows,Wheel diameter 1 (mm)Wheel diameter 2 (mm)Accuracy (mm)The data part of echo texts are display the data value same as of the Wheel diameter window.The echo texts are located in Main area A,B,C and E.The colour of echo texts is white.General property of windowThe Wheel diameter Validation window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");

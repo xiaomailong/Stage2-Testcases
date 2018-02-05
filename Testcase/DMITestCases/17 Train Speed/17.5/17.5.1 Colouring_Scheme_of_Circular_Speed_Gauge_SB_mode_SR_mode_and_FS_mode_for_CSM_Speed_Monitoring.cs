@@ -25,21 +25,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_5_1_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on. Cabin is activated.Perform SoM until Level 1 is selected and confirmed.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,Press ‘Train data’ button.Enter and validate all train data.Enter the train running number",

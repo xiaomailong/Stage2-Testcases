@@ -37,6 +37,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            StartUp();
+
             MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM in SR mode, Level 1",
                 "DMI displays Default window in SR mode, Level 1.Verify the following information,LayerAreas displayed with the same impression of depth shall form a layer as picture below,The level of layers in each area of window as follows,Layer 0: Area E10, E11, F, G1, G2, G3, G4, G5, G6, G7, G8, G9, G10, Z, YLayer 0 areas have no border. Layer -1: Area A1, (A2+A3)*, A4, B*, D, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -1 areas are inside layer 0 and have a border. Layer -2: Area B3, B4, B5, B6 and B7.Layer -2 areas are located inside Layer -1 and have a border.Note: ‘*’ symbol is mean that specified area are drawn as one area");
             /*

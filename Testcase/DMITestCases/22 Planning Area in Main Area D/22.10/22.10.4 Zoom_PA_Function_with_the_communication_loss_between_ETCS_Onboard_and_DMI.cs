@@ -21,17 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_10_4_Zoom_PA_Function_with_the_communication_loss_between_ETCS_Onboard_and_DMI : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // The default configuration of PA distance scale is not set as [0…1000] (variable DEFAULT_PAGE_DISPLAY in etcs_planningArea.xml is not equal to 0)
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.
-            DmiActions.Start_ATP();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -47,7 +36,7 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

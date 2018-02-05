@@ -36,7 +36,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode, level 1. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
+
             DmiActions.Set_Driver_ID(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -22,15 +22,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_22_4_Brake_percentage_validation_window : TestcaseBase
     {
-        public override void PreExecution()
+
+        public override bool TestcaseEntryPoint()
         {
-            // Pre-conditions from TestSpec:
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
 
             // Configure atpcu configuration file as following (See the instruction in Appendix 2)M_InstalledLevels = 31NID_NTC_Installe_0 = 22 (ATC-2)
             //Test system is powered on.Cabin is activated.Level ATC-2 is selected and confirmed.SoM is performed until train running number is entered.Settings window is opened.Brake button is enabled.Brake Percentage button is enabled.Brake Percentage window is opened.
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
@@ -40,12 +40,7 @@ namespace Testcase.DMITestCases
                 EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings
             EVC30_MMIRequestEnable.Send();
-        }
 
-        public override bool TestcaseEntryPoint()
-        {
-            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");

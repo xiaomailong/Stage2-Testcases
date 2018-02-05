@@ -43,6 +43,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            StartUp();
+
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with 40 km/h and pass BG1",
                 "DMI displays  “Entering FS” message.");
             /*

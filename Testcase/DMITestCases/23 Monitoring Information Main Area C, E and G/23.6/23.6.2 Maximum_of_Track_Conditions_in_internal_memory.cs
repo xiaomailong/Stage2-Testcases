@@ -22,22 +22,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_18_6_2_Track_Conditions : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered on.Activate Cabin A.SoM is perform until level 1 is selected and confirmed.Main window is closed.
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SB(this);
 
             // Steps 1 to 11 are in XML_18_6_2_a.cs
             MakeTestStepHeader(1, UniqueIdentifier++,

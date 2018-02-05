@@ -93,8 +93,16 @@ namespace Testcase
             EVC151_MMIConfirmedBrakePercentage.Initialise(this);
             EVC152_MMIDriverAction.Initialise(this);
 
+        }
+
+        /// <summary>
+        /// Common startup steps
+        /// </summary>
+        public virtual void StartUp()
+        {
             DmiActions.Deactivate_Cabin(this);
             DmiActions.Start_ATP();
+            DmiActions.Activate_Cabin_1(this);
         }
 
         /// <summary>

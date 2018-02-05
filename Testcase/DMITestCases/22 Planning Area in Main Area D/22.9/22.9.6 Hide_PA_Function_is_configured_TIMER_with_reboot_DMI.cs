@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
             Action: Power On the system
             Expected Result: DMI displays the default window
             */
-            DmiActions.Start_ATP();
+            StartUp();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");

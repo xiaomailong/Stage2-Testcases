@@ -42,6 +42,7 @@ namespace Testcase.DMITestCases
             */
             // tested elsewhere: set SR mode, level 1
             //DmiActions.ShowInstruction(this, "Perform SoM in SR mode, level 1.");
+            StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring;

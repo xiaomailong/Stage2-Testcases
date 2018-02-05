@@ -25,16 +25,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_6_Adjustment_of_Sound_Volume : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Configure the tags in configuration file, DEFAULT_VOLUME = 70 and IN_VOLUME = 10., See the instruction in the Appendix 1.                                                                                        DMI is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Start_ATP();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -50,7 +40,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
 
-            DmiActions.Activate_Cabin_1(this);
+           StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
 
             DmiExpectedResults.Driver_ID_window_displayed(this);

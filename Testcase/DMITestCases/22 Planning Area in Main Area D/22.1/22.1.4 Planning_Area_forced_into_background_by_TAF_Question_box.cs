@@ -37,6 +37,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 2
             */
             // Call generic Check Results Method
+            StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -21,21 +21,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_13_1_2_Brake : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // System is powered on.Cabin is activatedSoM is performed in SR mode, level 1.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward passing BG1 until entering FS mode",
                 "Verify the following information,The distance to target digital is displayed in sub-area A2.The distance to target digital is vertically centered in sub-area A2.The distance to target digital is displayed in grey.Use the log file to confirm that DMI receives packet information EVC-1 and EVC-7 with following variables,OBU_TR_M_MODE (EVC-7) = 0 (Full Supervision)MMI_M_WARNING (EVC-1) = 2 (Status = NoS, Supervision = PIM)");

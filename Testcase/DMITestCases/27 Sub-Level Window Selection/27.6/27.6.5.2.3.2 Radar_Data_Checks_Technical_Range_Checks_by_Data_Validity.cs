@@ -21,31 +21,18 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_22_6_5_2_3_2_Radar_Data_Checks : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec: 
-            // 1. The test environment is powered on.
-            // 2.The cabin is activated.
-            // 3.The ‘Settings’ window is opened.
-
-            // 
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // settings window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
-            EVC30_MMIRequestEnable.Send();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Set_Driver_ID(this, "1234");
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // settings window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnableDoppler;
+            EVC30_MMIRequestEnable.Send();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Open the ‘Radar’ data entry window from the Settings menu.",
                 "The ‘Radar’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window.");

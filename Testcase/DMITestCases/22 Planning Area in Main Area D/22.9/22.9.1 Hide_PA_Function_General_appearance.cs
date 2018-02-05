@@ -23,18 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_9_1_Hide_PA_Function_General_appearance : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)
-            // HIDE_PA_FUNCTION = 0 (‘ON’ state) 
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power ON.
-            DmiActions.Start_ATP();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -50,7 +38,7 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays Driver ID window
             */
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

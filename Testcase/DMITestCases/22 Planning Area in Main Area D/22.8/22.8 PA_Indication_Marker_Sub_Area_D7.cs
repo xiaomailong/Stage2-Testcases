@@ -40,6 +40,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1 and the Planning Area is displayed in area D
             */
             // Tested elsewhere, force SR mode/level 1
+            StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

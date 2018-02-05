@@ -30,7 +30,7 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // Test system is power on.Cabin is activeComplete the SoM in SR mode, Level 1
-            DmiActions.Complete_SoM_L1_SR(this);
+
         }
 
         public override bool TestcaseEntryPoint()
@@ -38,6 +38,9 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Force the train roll away by moving of speed with ‘Neutral’ direction throughout the test step 2, 3, 4 and 5",

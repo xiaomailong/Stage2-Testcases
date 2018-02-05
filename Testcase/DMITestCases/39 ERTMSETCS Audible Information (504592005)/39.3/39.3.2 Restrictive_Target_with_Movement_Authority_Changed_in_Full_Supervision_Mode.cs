@@ -40,6 +40,7 @@ namespace Testcase.DMITestCases
             Expected Result: ETCS OB enters SR mode in Level 1
             */
             // Steps tested elsewhere: force SoM
+            StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

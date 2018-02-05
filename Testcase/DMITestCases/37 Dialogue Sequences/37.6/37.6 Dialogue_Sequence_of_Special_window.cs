@@ -27,21 +27,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_34_6_Dialogue_Sequences : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Use the ATP config editor to set the following parameters as follows (See the instruction in Appendix 2),Q_NVDRIVER_ADHES = 1Test system is powered on Activate Cabin A.Start of Mission is completed in SR mode, level 1DMI displays the ‘Default’ window
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
+
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");

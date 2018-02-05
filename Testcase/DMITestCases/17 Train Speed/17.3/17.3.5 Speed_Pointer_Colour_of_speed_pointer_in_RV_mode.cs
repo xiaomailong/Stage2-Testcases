@@ -22,17 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_3_5_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is power on.Cabin is activated.SoM is performed in SR mode, Level 1.
-
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // Test spec says that the test is started in FS mode
-            DmiActions.Complete_SoM_L1_FS(this);
-        }
 
         public override void PostExecution()
         {
@@ -49,6 +38,10 @@ namespace Testcase.DMITestCases
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_FS(this);
+
             /// No intervention speed described here: comment is that it is less than 11, presumably 10...
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 10;
 

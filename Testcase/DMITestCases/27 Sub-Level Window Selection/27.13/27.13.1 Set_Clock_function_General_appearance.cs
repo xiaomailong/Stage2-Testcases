@@ -21,20 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_13_1_Set_Clock_function_General_appearance : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is power on.Cabin is activateSettings window is opened. 
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
-            EVC30_MMIRequestEnable.Send();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -42,6 +28,11 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            // Test system is power on.Cabin is activateSettings window is opened. 
+            StartUp();
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
+            EVC30_MMIRequestEnable.Send();
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use the test script file 22_13_1_a.xml to send EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#25) = 0MMI_Q_REQUEST_ENABLE_64 (#26) = 0",

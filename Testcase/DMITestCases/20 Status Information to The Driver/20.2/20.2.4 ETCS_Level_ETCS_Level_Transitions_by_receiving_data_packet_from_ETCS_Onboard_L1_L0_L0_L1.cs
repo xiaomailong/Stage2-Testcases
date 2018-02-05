@@ -23,31 +23,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_2_4_ETCS_Level : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power ON.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Start_ATP();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Acivate cabin A", "DMI displays Driver ID window");
             /*
@@ -56,7 +38,6 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
 
-            DmiActions.Activate_Cabin_1(this);
             DmiExpectedResults.Cabin_A_is_activated(this);
 
             DmiActions.Set_Driver_ID(this, "1234");

@@ -46,7 +46,7 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Activate Cabin A.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Train data button.Enter and confirm all data. Then, press ‘Yes’ button.Press ‘Yes’ button and Confirm entered data by pressing an input field.Enter and confirm Train running numberPress ‘Close’ button
             Expected Result: DMI displays Default window in SB mode and Level 1
             */
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
 
             DmiActions.Send_SB_Mode(this);

@@ -26,23 +26,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_20_4_Drivers_Action_Settings_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered on.Cabin is activated.
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,a)   Press the ‘Settings’ button.b)  Press the ‘System version’ button.c)   Press the ‘Close’ button. Then, press the ‘System info’ button.d)   Press the ‘Close’ button. Then, press the ‘Brake’ button and ‘Brake test’ button respectively.e)   Press the ‘Close’ button. Then, press the ‘Set VBC’ button.f)    Press the ‘Close’ button",

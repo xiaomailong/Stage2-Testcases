@@ -37,6 +37,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Call generic Check Results Method
+            StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
 
             DmiExpectedResults.SR_Mode_displayed(this);

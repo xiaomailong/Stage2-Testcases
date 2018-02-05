@@ -20,15 +20,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_1_3_ETCS_Mode_Symbols : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Start_ATP();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -43,7 +34,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
 
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiExpectedResults.Cabin_A_is_activated(this);
 
             DmiActions.Set_Driver_ID(this, "1234");

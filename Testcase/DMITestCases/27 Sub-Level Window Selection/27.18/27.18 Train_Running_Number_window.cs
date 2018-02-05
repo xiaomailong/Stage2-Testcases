@@ -28,6 +28,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            StartUp();
+
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use the test script file 22_18.xml to send EVC-16 with,	MMI_NID_OPERATION = 1 Note: Please wait for 5-10 seconds to make sure that test script is executed completely.",
                 "Train Running Number window is not displayed.");

@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward passing BG2
             Expected Result: 
             */
-
+            StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
             DmiActions.Send_FS_Mode(this);
 

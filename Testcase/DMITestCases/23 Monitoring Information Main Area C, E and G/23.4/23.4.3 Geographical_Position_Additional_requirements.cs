@@ -27,23 +27,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_18_4_3_Geographical_Position : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)
-            // GEOPOS_REQ_PERIOD = 0 (Send only one request via EVC-101)
-            // Test System is powered on. SoM is performed in SR mode, Level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             TraceInfo("This test case requires a DMI configuration change;" + Environment.NewLine +
                       "GEOPOS_REQ_PERIOD = 0 (Send only one request via EVC-101) as opposed default of 1." +

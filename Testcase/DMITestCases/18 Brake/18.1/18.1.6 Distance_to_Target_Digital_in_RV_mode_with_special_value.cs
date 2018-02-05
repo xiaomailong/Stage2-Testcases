@@ -25,12 +25,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_13_1_6_Brake : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
 
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
+        public override bool TestcaseEntryPoint()
+        {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
+            // Testcase entrypoint
+            StartUp();
 
             EVC2_MMIStatus.TrainRunningNumber = 1;
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
@@ -50,22 +51,6 @@ namespace Testcase.DMITestCases
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in RV mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
-        public override bool TestcaseEntryPoint()
-        {
-            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
-            // Testcase entrypoint
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Drive the train forward passing BG1 with speed = 40 km/h until entering FS mode", "");

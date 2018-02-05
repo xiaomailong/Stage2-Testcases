@@ -28,8 +28,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            // System is power on.
-            DmiActions.Start_ATP();
+
         }
 
         public override bool TestcaseEntryPoint()
@@ -37,6 +36,7 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A",
                 "DMI displays in SB mode. The Driver ID window is displayed");
@@ -45,8 +45,7 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
-            // Call generic Action Method
-            DmiActions.Activate_Cabin_1(this);
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |

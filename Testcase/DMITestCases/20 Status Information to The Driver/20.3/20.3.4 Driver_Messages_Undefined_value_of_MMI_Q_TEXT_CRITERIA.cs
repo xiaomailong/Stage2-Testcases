@@ -23,30 +23,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_3_4_Driver_Messages : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is power onSoM is perform until Level 1 is selected and confirmed.Main window is closed.
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SB(this);
 
             // These steps are carried out in XML_15_3_4.cs
             XML_15_3_4();

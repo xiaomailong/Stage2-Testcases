@@ -26,21 +26,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_10_2_5_State_ST05 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // Test system is powered onCabin is activeSoM is performed in SR mode, level 1.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Spec’ button",
                 "Verify the following information;(1)   Verify DMI still displays Default window until Special window is displayed.(2)   Verify the close button is always enable");

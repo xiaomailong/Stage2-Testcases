@@ -22,35 +22,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_6_2_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // The speed dial properties below are configured for 140 km/h dial: True, False, 140, 0, 20, 0, 1, 0, 0, 0, -144, 0, 144 respectively: Speed in km/h (otherwise mph)Display speed unitMaximum Speed (upper boundary of the entire Speed Dial)Transition Speed (boundary between the two segments, if 0 – only segment 1 available)Speed interval between subsequent speed labels in segment 1Speed interval between subsequent speed labels in segment 2Number of short scale divisions between long scale divisions in segment 1Number of short scale divisions between long scale divisions in segment 2Number of long scale divisions between labels in segment 1Number of long scale divisions between labels in segment 2Position of Zero point (angle in grad, 0 grad at 12 o’clock, counting clockwise)Position of Transition Speed (angle, see above)Position of Maximum Speed (angle, see above)Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.
-            // load config settings: TODO Check these
-            // SPEED_UNIT_TYPE = 1
-            // SPEED_UNIT_DISPLAY = 0
-            // SPEED_DIAL_V_MAX = 140
-            // SPEED_DIAL_V_TRANS = 0
-            // SPEED_DIAL_V_NUMBER1 = 20
-            // SPEED_DIAL_V_NUMBER2 = 0
-            // SPEED_DIAL_N_SHORT_LINES1 = 1
-            // SPEED_DIAL_N_SHORT_LINES2 = 0
-            // SPEED_DIAL_N_LONG_LINES1 = 0
-            // SPEED_DIAL_N_LONG_LINES2 = 0
-            // SPEED_DIAL_ANGLE_V_0 = -144
-            // SPEED_DIAL_ANGLE_V_TRANS = 0
-            // SPEED_DIAL_ANGLE_V_MAX = 144
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+
+            DmiActions.Complete_SoM_L1_SR(this);
 
             // Set up from config to set range of speed dial ??
 

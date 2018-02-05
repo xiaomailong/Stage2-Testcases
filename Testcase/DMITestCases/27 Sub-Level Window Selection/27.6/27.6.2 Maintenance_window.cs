@@ -23,22 +23,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_6_2_Maintenance_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered onCabin is active‘Settings’ button is pressed after cabin activation.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Activate_Cabin_1(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use test script file 22_6_2_a.xml to disable wheel diameter and doppler by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 0MMI_Q_REQUEST_ENABLE_64 (#30) = 0",
