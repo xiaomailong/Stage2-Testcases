@@ -21,28 +21,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_2_2_Planning_Area : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_SR_MODE = 1System is power ON
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -55,6 +40,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM in SR mode, Level 1",
+                "DMI displays in SR mode, level 1.Verify that there are only the following objects are displayed in PA,PA Distance Scale (0-4000m)PASP with PASP-dark-colour");
             /*
             Test Step 2
             Action: Perform SoM in SR mode, Level 1
@@ -69,6 +56,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. PA Distance Scale." + Environment.NewLine +
                                 "2. PASP (in the PASP-dark-colour");
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

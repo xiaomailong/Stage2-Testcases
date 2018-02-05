@@ -36,21 +36,16 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // ETCS-DMI is in the ‘Staff Responsible’ mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Open the ‘Train data’ data entry window from the Main menu",
+                "The ‘Train data’ data entry window appears on ETCS-DMI screen instead of the ‘Main’ menu window");
             /*
             Test Step 1
             Action: Open the ‘Train data’ data entry window from the Main menu
@@ -78,6 +73,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI replaces the Main window with the Train data window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Enter “0” (minimum inbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen",
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “0” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-107(2) Use the log file to verify that DMI sends packet EVC-107 with variable:MMI_L_TRAIN = 0 MMI_NID_DATA = 8 (Length)");
             /*
             Test Step 2
             Action: Enter “0” (minimum inbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen
@@ -94,6 +92,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The value for train length is ‘Selected’.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Enter “4096” (outbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen",
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “4096” (previously entered value).EVC-107(3) Use the log file to verify that DMI does not send out packet EVC-107 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 3
             Action: Enter “4096” (outbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen
@@ -110,6 +111,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The echo text for train length displays ‘++++’ in red.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Enter “4095” (maximum inbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen",
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “4095” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-107(2) Use the log file to verify that DMI sends packet EVC-107 with variable:MMI_L_TRAIN = 4095 MMI_NID_DATA = 8 (Length)");
             /*
             Test Step 4
             Action: Enter “4095” (maximum inbound) for Train Length with the numeric keypad and press the data input field (Accept) in the same screen
@@ -124,6 +128,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘4095’ for train length.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Follow step 2 – step 4 for Brake Percentage with:Minimum inbound = 10Outbound = 251Maximum inbound = 250",
+                "See step 2 – step 4EVC-107(1) Use the log file to confirm that DMI sends packet EVC-107 with variable:MMI_M_BRAKE_PERC = See Action MMI_NID_DATA = 9 (Brake Percentage)");
             /*
             Test Step 5
             Action: Follow step 2 – step 4 for Brake Percentage with:Minimum inbound = 10Outbound = 251Maximum inbound = 250
@@ -161,6 +168,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘250’ for brake percentage.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Follow step 2 – step 4 for Max speed with:Minimum inbound = 0Outbound = 601Maximum inbound = 600",
+                "See step 2 – step 4EVC-107(1) Use the log file to confirm that DMI sends packet EVC-107 with variable:MMI_V_MAXTRAIN = See Action MMI_NID_DATA = 10 (Maximum speed)");
             /*
             Test Step 6
             Action: Follow step 2 – step 4 for Max speed with:Minimum inbound = 0Outbound = 601Maximum inbound = 600
@@ -198,6 +208,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘250’ for maximum speed.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "This step is to complete the process of ‘Train data’:- Press the ‘Yes’ button on the ‘Train data’ window.- Validate the data in the data validation window",
+                "1. After pressing the ‘Yes’ button, the data validation window (‘Validate Train data’) appears instead of the ‘Train data’ data entry window. The data part of echo text displays “600” in white.2. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Train data’ window with enabled ‘Train data’ button");
             /*
             Test Step 7
             Action: This step is to complete the process of ‘Train data’:- Press the ‘Yes’ button on the ‘Train data’ window.- Validate the data in the data validation window
@@ -228,6 +241,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI closes the Validate train data window and displays the Main window." +
                                 Environment.NewLine +
                                 "2. The ‘Train data’ button is displayed enabled.");
+
+            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 8

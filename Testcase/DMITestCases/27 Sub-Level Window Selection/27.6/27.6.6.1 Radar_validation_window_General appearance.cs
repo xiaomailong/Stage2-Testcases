@@ -30,7 +30,6 @@ namespace Testcase.DMITestCases
 
             // The Maintenance password in tag name ‘PASS_CODE_MTN’ of the configuration file is set correctly refer to MMI_gen 11722Test system is power on.Cabin is activated.Settings window is opened. 
             // ?? Maintenance window is opened.Radar window is opened.
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
@@ -39,19 +38,14 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Enter and confirm all data in Radar window",
+                "Verify the following information,Use the log file to confirm that DMI received the packet MMI_ECHOED_MAINTENANCE_DATA (EVC-41) with variable MMI_Q_MD_DATASET = 1. Use the log file to confirm that the following variables in packet EVC-41 are same as the entered data,MMI_M_PULSE_PER_KM_1 = entered radar 1DMI displays Radar Validation window.The following objects are displayed in Radar Validation window. Enabled Close button (NA11)Window TitleInput fieldYes buttonNo buttonWindow TitleThe window title is ‘Validate radar’.The window title is right aligned.LayerThe window is displayed in main area A/B/C/D/E/F/G.All areas of Data validation window are Layer 0.Input fieldThe window contains a single input field which have only data area.The value of input field is empty.KeyboardThe displayed keyboard type is dedicated keyboard which contain only ‘Yes’ and ‘No’ button.The key #7 is No button.The key #8 is Yes button.Echo TextEcho Text is composed of a Label part and Data part.The Label of echo text is right aligned.The Data part of echo text is left aligned.The order of echo texts are same as of the Radar window as follows,Radar 1 (mm)Radar 2 (mm)The data part of echo texts is displayed the data value same as of the Radar window.The echo texts are located in Main area A,B,C and E.The colour of echo texts is white.General property of windowThe Radar Validation window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 1
             Action: Enter and confirm all data in Radar window
@@ -94,6 +88,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "14. The Default window is not displayed covering the current window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘No’ button",
+                "The value of input field is changed refer to selected button");
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -106,6 +102,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘No’.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press and hold an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 3
             Action: Press and hold an input field
@@ -117,6 +115,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Slide out an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound");
             /*
             Test Step 4
             Action: Slide out an input field
@@ -129,6 +129,8 @@ namespace Testcase.DMITestCases
                                 "1. The data input field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Slide back into an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 5
             Action: Slide back into an input field
@@ -141,6 +143,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Release the pressed area",
+                "Verify the following information,DMI displays Maintenance window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 54 (Exit Maintenance)");
             /*
             Test Step 6
             Action: Release the pressed area
@@ -153,6 +157,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Maintenance window");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Radar’ button.Enter and confirm all data in Radar window.Press ‘Yes’ button",
+                "DMI displays Radar validation window");
             /*
             Test Step 7
             Action: Perform the following procedure,Press ‘Radar’ button.Enter and confirm all data in Radar window.Press ‘Yes’ button
@@ -177,6 +184,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Radar validation window");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify the following information,DMI displays Maintenance window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable ;[MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 54 (Exit Maintenance)");
             /*
             Test Step 8
             Action: Press ‘Close’ button
@@ -191,6 +200,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Maintenance window");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Radar’ button.Enter and confirm all data in Radar window.Press ‘Yes’ button",
+                "DMI displays Radar validation window");
             /*
             Test Step 9
             Action: Perform the following procedure,Press ‘Radar’ button.Enter and confirm all data in Radar window.Press ‘Yes’ button
@@ -214,6 +226,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Radar validation window");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Yes’ button",
+                "The value of input field is changed refer to selected button");
             /*
             Test Step 10
             Action: Press ‘Yes’ button
@@ -225,6 +239,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘Yes’.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Confirm entered data by pressing an input field",
+                "Verify the following information,The Radar validation is closed.DMI displays Maintenance window.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_MAINTENANCE_DATA (EVC-141)] with variable based on confirmed data");
             /*
             Test Step 11
             Action: Confirm entered data by pressing an input field
@@ -240,6 +256,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the data validation window and displays the Maintenance window.");
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Radar’ button.Enter and confirm all data in Radar window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI",
+                "DMI displays Default window with the  message “ATP Down Alarm” and sound alarm");
             /*
             Test Step 12
             Action: Perform the following procedure,Press ‘Radar’ button.Enter and confirm all data in Radar window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI
@@ -266,6 +285,8 @@ namespace Testcase.DMITestCases
                                 @"1. DMI displays the message ‘ATP Down Alarm’." + Environment.NewLine +
                                 @"2. The ‘Alarm’ sound is played.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Re-establish communication between ETCS onboard and DMI",
+                "Verify the following informaiton,All buttons except ‘No’ button are disabled.The state of ‘No’ button is enabled.The disabled button are shown as a button in state ‘disabled’ with text label in dark-grey");
             /*
             Test Step 13
             Action: Re-establish communication between ETCS onboard and DMI
@@ -279,6 +300,8 @@ namespace Testcase.DMITestCases
                                 @"1. All buttons are displayed disabled, with the label text in Dark-grey, except the ‘No’ button." +
                                 Environment.NewLine +
                                 @"2. The ‘No’ button is displayed enabled.");
+
+            MakeTestStepHeader(14, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 14

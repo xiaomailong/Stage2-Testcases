@@ -44,8 +44,12 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward, speed up to 25 Km/h",
+                "The train is at standstill");
             /*
             Test Step 1
             Action: Drive the train forward, speed up to 25 Km/h
@@ -67,6 +71,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
             WaitForVerification("Are the speed pointer and speed digital showing 0?");
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

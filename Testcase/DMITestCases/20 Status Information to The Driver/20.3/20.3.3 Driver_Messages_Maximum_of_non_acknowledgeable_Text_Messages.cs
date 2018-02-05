@@ -43,9 +43,14 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 15_3_3_a.xml to send multiple packets EVC-8 with the following value,Common variablesMMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1The order of MMI_Q_TEXT value in each packetMMI_Q_TEXT = 0MMI_Q_TEXT = 1MMI_Q_TEXT = 267MMI_Q_TEXT = 268MMI_Q_TEXT = 269MMI_Q_TEXT = 274MMI_Q_TEXT = 275MMI_Q_TEXT = 280MMI_Q_TEXT = 290MMI_Q_TEXT = 292MMI_Q_TEXT = 296MMI_Q_TEXT = 299MMI_Q_TEXT = 305MMI_Q_TEXT = 310MMI_Q_TEXT = 315MMI_Q_TEXT = 316MMI_Q_TEXT = 320MMI_Q_TEXT = 321MMI_Q_TEXT = 514MMI_Q_TEXT = 515MMI_Q_TEXT = 516MMI_Q_TEXT = 520MMI_Q_TEXT = 521MMI_Q_TEXT = 524MMI_Q_TEXT = 526MMI_Q_TEXT = 527MMI_Q_TEXT = 531MMI_Q_TEXT = 532MMI_Q_TEXT = 533MMI_Q_TEXT = 536MMI_Q_TEXT = 540MMI_Q_TEXT = 552MMI_Q_TEXT = 554MMI_Q_TEXT = 560MMI_Q_TEXT = 563MMI_Q_TEXT = 572MMI_Q_TEXT = 606MMI_Q_TEXT = 580MMI_Q_TEXT = 581MMI_Q_TEXT = 582MMI_Q_TEXT = 621MMI_Q_TEXT = 622MMI_Q_TEXT = 701MMI_Q_TEXT = 702MMI_Q_TEXT = 703MMI_Q_TEXT = 706MMI_Q_TEXT = 711MMI_Q_TEXT = 712MMI_Q_TEXT = 713MMI_Q_TEXT = 714Note: MMI_I_TEXT is unique",
+                "Verify the following information,(1)   The following text messages are displays on sub-area E5 respectively with sound Sinfo,Level crossing not protected AcknowledgementBalise read errorCommunication errorRunaway movementEntering FSEntering OSEmergency stopSH refusedSH request failedTrackside not compatibleTrain is rejectedTrain dividedTrain data changedSR Distance exceededSR stop orderRV distance exceededETCS IsolatedPerform Brake Test!Unable to start Brake TestBrake Test in ProgressLZB Partial Block ModeOverride LZB Partial Block ModeBrake Test successfulBrake Test TimeoutBrake Test aborted, perform new Test?BTM Test in ProgressBTM Test FailureBTM Test TimeoutRestart ATP!No Level available OnboardAnnounced levels(s) not supported OnboardReactivate the Cabin!Trackside malfunctionTrackside Level(s) not supported OnboardNo Track DescriptionSH Stop OrderProcedure Brake Percentage Entry terminated by ATPProcedure Wheel Diameter Entry terminated by ATPProcedure Doppler Radar Entry terminated by ATPUnable to start Brake Test, vehicle not readyUnblock EBRoute unsuitable – axle load categoryRoute unsuitable – loading gaugeRoute unsuitable – traction systemNo valid authentication keyNL-input signal is withdrawnWheel data settings were successfully changedDoppler radar settings were successfully changedBrake percentage was successfully changedNote: When the new message is added in sub-area E5, an every older message are moved down 1 line");
             /*
             Test Step 1
             Action: Use the test script file 15_3_3_a.xml to send multiple packets EVC-8 with the following value,Common variablesMMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1The order of MMI_Q_TEXT value in each packetMMI_Q_TEXT = 0MMI_Q_TEXT = 1MMI_Q_TEXT = 267MMI_Q_TEXT = 268MMI_Q_TEXT = 269MMI_Q_TEXT = 274MMI_Q_TEXT = 275MMI_Q_TEXT = 280MMI_Q_TEXT = 290MMI_Q_TEXT = 292MMI_Q_TEXT = 296MMI_Q_TEXT = 299MMI_Q_TEXT = 305MMI_Q_TEXT = 310MMI_Q_TEXT = 315MMI_Q_TEXT = 316MMI_Q_TEXT = 320MMI_Q_TEXT = 321MMI_Q_TEXT = 514MMI_Q_TEXT = 515MMI_Q_TEXT = 516MMI_Q_TEXT = 520MMI_Q_TEXT = 521MMI_Q_TEXT = 524MMI_Q_TEXT = 526MMI_Q_TEXT = 527MMI_Q_TEXT = 531MMI_Q_TEXT = 532MMI_Q_TEXT = 533MMI_Q_TEXT = 536MMI_Q_TEXT = 540MMI_Q_TEXT = 552MMI_Q_TEXT = 554MMI_Q_TEXT = 560MMI_Q_TEXT = 563MMI_Q_TEXT = 572MMI_Q_TEXT = 606MMI_Q_TEXT = 580MMI_Q_TEXT = 581MMI_Q_TEXT = 582MMI_Q_TEXT = 621MMI_Q_TEXT = 622MMI_Q_TEXT = 701MMI_Q_TEXT = 702MMI_Q_TEXT = 703MMI_Q_TEXT = 706MMI_Q_TEXT = 711MMI_Q_TEXT = 712MMI_Q_TEXT = 713MMI_Q_TEXT = 714Note: MMI_I_TEXT is unique
@@ -54,6 +59,9 @@ namespace Testcase.DMITestCases
             */
             XML_15_3_3(msgType.typea);
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 15_3_3_b.xml to send EVC-8 with, MMI_Q_TEXT = 715MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 51",
+                "The text messages in area E5-E9 are not change.Verify the following information,(1)   There is no sound ‘Sinfo’");
             /*
             Test Step 2
             Action: Use the test script file 15_3_3_b.xml to send EVC-8 with, MMI_Q_TEXT = 715MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 51
@@ -62,6 +70,8 @@ namespace Testcase.DMITestCases
             */
             XML_15_3_3(msgType.typeb);
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press <Down> button until it is disabled",
+                "Verify the following information,(1)   The text message ‘Level crossing not protected’ is changed to ‘No Country Selection in LZB PB Mode’ with regular style in sub-area E9");
             /*
             Test Step 3
             Action: Press <Down> button until it is disabled
@@ -73,6 +83,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "Text message ‘Level crossing not protected’ changes to ‘No Country Selection in LZB PB Mode’ in normal style in sub-area E9");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 15_3_3_c.xml to send EVC-8 with, MMI_Q_TEXT = 278MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 52",
+                "Verify the following points,(1)   The visibility window is not moved.(2)   The text message ‘No Country Selection in LZB PB Mode’ is changed to ‘Emergency Brake Failure’.(3)   There is no sound ‘Sinfo’");
             /*
             Test Step 4
             Action: Use the test script file 15_3_3_c.xml to send EVC-8 with, MMI_Q_TEXT = 278MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 52
@@ -81,6 +94,9 @@ namespace Testcase.DMITestCases
             */
             XML_15_3_3(msgType.typec);
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "(Continue from step 4) send EVC-8 with, MMI_Q_TEXT = 273MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 53",
+                "Verify the following points,The visibility window is moved on top of the message list, <Up> button is disabled and DMI display text message “Unauthorized passing of EOA / LOA” in sub-area E5");
             /*
             Test Step 5
             Action: (Continue from step 4) send EVC-8 with, MMI_Q_TEXT = 273MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 53
@@ -88,6 +104,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1)  MMI_gen 138 (partly: move the visibility window on top of the Message List);
             */
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press <Down> button until it is disabled",
+                "Verify the following information,(1)  The text message ‘Emergency Brake Failure’ is removed from sub-are E9, DMI displays the text message ‘Acknowledgement’ instead");
             /*
             Test Step 6
             Action: Press <Down> button until it is disabled
@@ -101,6 +119,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI displays the text message ‘Acknowledgement’ instead.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Simulate loss communication between DMI and ETCS",
+                "DMI displays the message “ATP Down Alarm” with sound alarm.Verify the following information,(1)   The non-acknowledgeable message list is flushed, no driver message display in area E5-E9");
             /*
             Test Step 7
             Action: Simulate loss communication between DMI and ETCS
@@ -114,6 +134,8 @@ namespace Testcase.DMITestCases
                                 "2. A sound alarm is played." + Environment.NewLine +
                                 "3. The non-acknowledgeable message list is flushed, no driver messages are displayed in areas E5-E9.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Re-establish communication between DMI and ETCS",
+                "Verify the following information,(1)  If ETCS Onboard re-transmits the driver messages, the messages re-appear");
             /*
             Test Step 8
             Action: Re-establish communication between DMI and ETCS
@@ -124,6 +146,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI re-displays driver messages in areas E5-E9.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Use the test script file 15_3_3_b.xml to send EVC-8.Then, perform the following procedure, De-activate DMI cabin. Simulate loss communication between DMI and ETCS",
+                "DMI displays the message “ATP Down Alarm” with sound alarm.Verify the following information,(1)   The non-acknowledgeable message list is flushed, no driver message display in area E5-E9");
             /*
             Test Step 9
             Action: Use the test script file 15_3_3_b.xml to send EVC-8.Then, perform the following procedure, De-activate DMI cabin. Simulate loss communication between DMI and ETCS
@@ -138,6 +163,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the text message ‘ATP Down Alarm’." + Environment.NewLine +
                                 "2. A sound alarm is played." + Environment.NewLine +
                                 "3. The non-acknowledgeable message list is flushed, no driver messages are displayed in areas E5-E9.");
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 10
             Action: End of test

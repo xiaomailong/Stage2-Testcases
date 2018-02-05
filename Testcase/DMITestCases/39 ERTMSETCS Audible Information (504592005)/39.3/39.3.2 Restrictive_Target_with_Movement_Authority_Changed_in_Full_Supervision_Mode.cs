@@ -25,29 +25,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_36_3_2_Restrictive_Target_with_Movement_Authority_Changed_in_Full_Supervision_Mode : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to Level 1 in SR mode",
+                "ETCS OB enters SR mode in Level 1");
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -59,6 +45,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with constant speed at 20 km/h",
+                "The train can drive forward and all brakes are not applied");
             /*
             Test Step 2
             Action: Drive the train forward with constant speed at 20 km/h
@@ -72,6 +60,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Train runs pass BG1",
+                "Sound Sinfo is played continuously after train runs pass BG1 with verification as follows:-Log FileUse log file to verify that after train pass BG1, train enters FS mode and restrictive target exists all the time when the DMI receives the following:-- EVC-7 with variable [MMI_OBU_TR_M_Mode = 0].- EVC-1 with variable ‘MMI_V_TARGET’ is changed from -1 to 1666 once.- EVC-1 with variable ‘MMI_O_BRAKETARGET’ is changed from -1 to any value and keep changing to lower value all the time");
             /*
             Test Step 3
             Action: Train runs pass BG1
@@ -86,6 +76,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The ‘Sinfo’ sound is played continously");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Train runs pass BG2",
+                "Sound Sinfo is still played continuously after train runs pass BG2 with verification as follows:-Log FileUse log file to verify that after train pass BG2, train is still in FS mode and restrictive target still exists all the time when the DMI receives the following:-- EVC-7 with variable [MMI_OBU_TR_M_Mode = 0].- EVC-1 with variable ‘MMI_V_TARGET’ is changed from 1666 to 416 once.- EVC-1 with variable ‘MMI_O_BRAKETARGET’ is changed to lower value and keep changing to lower value all the time");
             /*
             Test Step 4
             Action: Train runs pass BG2
@@ -99,6 +91,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The ‘Sinfo’ sound is still played continously");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Stop the train", "The train is at standstill");
             /*
             Test Step 5
             Action: Stop the train
@@ -108,6 +101,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer displays 0 km/h.");
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 6

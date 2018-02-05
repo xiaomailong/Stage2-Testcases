@@ -23,32 +23,18 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_22_5_4_Level_Window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Power off the system Configure atpcu configuration file as following (See the instruction in Appendix 2)M_InstalledLevels = 4082NID_NTC_Installe_0 = 1NID_NTC_Installe_1 = 20NID_NTC_Installe_2 = 28NID_NTC_Installe_3 = 9NID_NTC_Installe_4 = 6NID_NTC_Installe_5 = 10NID_NTC_Installe_6 = 22NID_NTC_Installe_7 = 0
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            //  DMI Displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
             // M_InstalledLevels = 4082NID_NTC_Installe_0 = 1NID_NTC_Installe_1 = 20NID_NTC_Installe_2 = 28NID_NTC_Installe_3 = 9
             // NID_NTC_Installe_4 = 6NID_NTC_Installe_5 = 10NID_NTC_Installe_6 = 22NID_NTC_Installe_7 = 0
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on the system and activate the cabin",
+                "DMI displays Driver ID window in SB mode");
             /*
             Test Step 1
             Action: Power on the system and activate the cabin
@@ -65,6 +51,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Enetr Driver ID and skip brake test",
+                "Verify the following information,The level selection window displays 8 folllowing STMs accroding to configuration settingATBTPWS/AWSTBL1+PZB/LZBPZBLZBATC2ASFA");
             /*
             Test Step 2
             Action: Enetr Driver ID and skip brake test
@@ -104,6 +92,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. TPWS/AWS" + Environment.NewLine +
                                 "2. CBTC");
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

@@ -49,8 +49,13 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Driver drives the train forward passing BG1. Then, press the ‘Special’ button.",
+                "DMI still displays in SR mode. Verify that ‘Adhesion’ button is enabled");
             /*
             Test Step 1
             Action: Driver drives the train forward passing BG1. Then, press the ‘Special’ button.
@@ -67,6 +72,9 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Press ‘Adhesion’ button. Then, press ‘Slippery rail’ button and confirm an by pressing the input field.",
+                "DMI displays symbol ST02 in sub-area A4");
             /*
             Test Step 2
             Action: Press ‘Adhesion’ button. Then, press ‘Slippery rail’ button and confirm an by pressing the input field.
@@ -87,6 +95,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_symbol_displayed(this, "Adhesion factor slippery rail", "ST02", "A4", false);
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Simulate the communication loss between ETCS Onboard and DMI",
+                "Adhesion symbol ST02 is removed");
             /*
             Test Step 3
             Action: Simulate the communication loss between ETCS Onboard and DMI
@@ -97,6 +107,8 @@ namespace Testcase.DMITestCases
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
             this.WaitForVerification("Has the \"Slippery rail\" symbol disappeared from the DMI?");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI",
+                "Verify that the Adhesion symbol ST02 is resumed");
             /*
             Test Step 4
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -106,6 +118,9 @@ namespace Testcase.DMITestCases
             DmiActions.Re_establish_communication_EVC_DMI(this);
             DmiExpectedResults.Driver_symbol_displayed(this, "Adhesion factor slippery rail", "ST02", "A4", false);
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Press ‘Special’ button. Press ‘Adhesion’ button. Select and confirm ‘Non slippery rail’ button",
+                "No adhesion factor indication is displayed.");
             /*
             Test Step 5
             Action: Press ‘Special’ button. Press ‘Adhesion’ button. Select and confirm ‘Non slippery rail’ button
@@ -124,6 +139,8 @@ namespace Testcase.DMITestCases
 
             this.WaitForVerification("Has the \"Slippery rail\" symbol disappeared from the DMI?");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Drive the train forward passing BG2",
+                "DMI displays symbol ST02 in sub-area A4");
             /*
             Test Step 6
             Action: Drive the train forward passing BG2
@@ -137,6 +154,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Adhesion factor slippery rail", "ST02", "A4", false);
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Drive the train forward",
+                "No adhesion factor indication is displayed.");
             /*
             Test Step 7
             Action: Drive the train forward
@@ -148,6 +167,7 @@ namespace Testcase.DMITestCases
 
             this.WaitForVerification("Has the \"Slippery rail\" symbol disappeared from the DMI?");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Stop the train", "The Train is at standstill");
             /*
             Test Step 8
             Action: Stop the train
@@ -155,6 +175,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.Stop_the_train(this);
+
+            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 9

@@ -32,16 +32,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_26_1_MMI_Error_Handling : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // System is powered on.
-            DmiActions.Start_ATP();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -55,8 +45,12 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Driver performs SoM to SR mode, level 1",
+                "DMI displays in SR mode, Level 1");
             /*
             Test Step 1          	 	
             Action: Activate cabin A. Driver performs SoM to SR mode, level 1
@@ -70,6 +64,8 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0; // at start
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Driver drives the train forward passing BG1",
+                "DMI changes from SR mode to FS mode, Level 1. The planning area is displayed");
             /*
             Test Step 2
             Action: Driver drives the train forward passing BG1
@@ -87,6 +83,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI displays the planning area");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Increase the train speed until reaching the warning margin",
+                "The over speed warning sound is played");
             /*
             Test Step 3
             Action: Increase the train speed until reaching the warning margin
@@ -100,6 +98,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The warning sound is played");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Simulate the communication loss between DMI and ETCS Onboard",
+                "DMI enters ‘ATP-down’ state. Verify that all information on DMI’s screen is disappeared.The continuous 1000Hz sound is play.DMI displays message ‘ATP Down Alarm’ with yellow flashing frame.Use log file to confirm that DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 5 only once.         ");
             /*
             Test Step 4
             Action: Simulate the communication loss between DMI and ETCS Onboard
@@ -120,6 +120,8 @@ namespace Testcase.DMITestCases
                                 "2. All information on the DMI screen is disappears." + Environment.NewLine +
                                 "3. The 1000Hz sound is played continuously.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Driver acknowledges ‘ATP Down Alarm’ message",
+                "Verify the following information,	The ATP down alarm is removed.The yellow flashing frame is removed but the message ‘ATP Down Alarm’ is still displayed.Use log file to confirm that DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 6 only once.");
             /*
             Test Step 5
             Action: Driver acknowledges ‘ATP Down Alarm’ message
@@ -137,6 +139,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI stops playing the 1000Hz sound." + Environment.NewLine +
                                 "2. DMI still displays the message ‘ATP Down Alarm’, but without a yellow flashing frame.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Re-establish the communication between DMI and ETCS Onboard",
+                "Verify the following information,The message ‘ATP Down Alarm’ is removed.Use log file to confirm that DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 3 every 250ms.The normal operation is resumed");
             /*
             Test Step 6
             Action: Re-establish the communication between DMI and ETCS Onboard
@@ -154,6 +158,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI stops displaying the message ‘ATP Down Alarm’." + Environment.NewLine +
                                 "2. DMI displays as before in FS mode.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Stop the train", "The train is at standstill");
             /*
             Test Step 7
             Action: Stop the train
@@ -165,6 +170,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays speed = 0 km/h");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Simulate the communication loss between DMI and ETCS Onboard",
+                "DMI enters ‘ATP-down’ state with continuous 1000Hz sound");
             /*
             Test Step 8
             Action: Simulate the communication loss between DMI and ETCS Onboard
@@ -177,6 +184,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI enters ‘ATP-Down’ state." + Environment.NewLine +
                                 "2. The 1000Hz sound is played continuously.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Re-establish the communication between DMI and ETCS Onboard",
+                "Verify that if ATP Down is not acknowledged yet, the sound alarm and confirmation button are cleared when the communication is recovered");
             /*
             Test Step 9
             Action: Re-establish the communication between DMI and ETCS Onboard
@@ -189,6 +198,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine + Environment.NewLine +
                                 "1. The confirmation button is cleared." + Environment.NewLine +
                                 "2. DMI stops playing the 1000Hz sound.");
+
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 10

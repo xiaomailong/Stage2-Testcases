@@ -21,29 +21,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_34_1_1_Dialogue_Sequences : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Open defaultValues_default.xml in OTE  then set all value of parameter "TR_OBU_TrainType" to 1 (Now is 2) then you will get the fixed train data entry System is power on
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires a specific configuration - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1",
+                "DMI displays Main window");
             /*
             Test Step 1
             Action: Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
@@ -60,6 +47,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Train data’ button", "DMI displays Train data window");
             /*
             Test Step 2
             Action: Press ‘Train data’ button
@@ -73,6 +61,9 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Train_data_window_displayed(this);
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Select dedicated keyboard button which have different label from an input field without confirmation",
+                "The value of input field is changed refer to pressed button");
             /*
             Test Step 3
             Action: Select dedicated keyboard button which have different label from an input field without confirmation
@@ -84,6 +75,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value pressed.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Select Close button.Then, select Train data button",
+                "DMI displays Train data window.Verify that the train type is not changed to the pressed button from step 3");
             /*
             Test Step 4
             Action: Select Close button.Then, select Train data button
@@ -100,6 +93,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. The train type does not change to the type of the button pressed in Step 3.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Select and confirm dedicated keyboard button which have different label from an input field. Then, press ‘Yes’ button",
+                "DMI displays Train data validation window");
             /*
             Test Step 5
             Action: Select and confirm dedicated keyboard button which have different label from an input field. Then, press ‘Yes’ button
@@ -113,6 +109,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data validation window.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Select and confirm ‘No’ button", "DMI displays Main window");
             /*
             Test Step 6
             Action: Select and confirm ‘No’ button
@@ -123,6 +120,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Main window.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Select Train data button",
+                "DMI displays Train data window.Verify that the train type is not changed to the pressed button from step 5");
             /*
             Test Step 7
             Action: Select Train data button
@@ -140,6 +139,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. Train type is ‘type 1’ and does not change to ‘type 2’ (confirmed in Step 5.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Repeat Step 5.Then, select and confirm ‘Yes’ button.",
+                "DMI displays Main window.");
             /*
             Test Step 8
             Action: Repeat Step 5.Then, select and confirm ‘Yes’ button.
@@ -156,6 +157,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press and confirm the ‘Yes’ button");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Select Train data button",
+                "DMI displays Train data window.Verify that the train type is change to pressed button from step 8.");
             /*
             Test Step 9
             Action: Select Train data button
@@ -171,6 +174,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. Train type changes to ‘type 2’ (confirmed in Step 8).");
+
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 10

@@ -25,31 +25,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_9_11_Hide_PA_Function_configured_STORED_with_re_activate_cabin : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power OFFSet the following tags name in configuration file (See the instruction in Appendix 1)
-            // HIDE_PA_FUNCTION = 2 (‘STORE’ state)HIDE_PA_OS_MODE = 1 (shown)HIDE_PA_SR_MODE = 1 (shown)
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in OS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on the system Activate cabin A",
+                "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Power on the system Activate cabin A
@@ -62,6 +47,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1The Planning area is appeared on DMI");
             /*
             Test Step 2
             Action: Perform SoM to SR mode, level 1
@@ -76,6 +63,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
                                 "2. The Planning Area is displayed.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press Hide PA button",
+                "The Planning area is disappeared from DMI");
             /*
             Test Step 3
             Action: Press Hide PA button
@@ -86,6 +75,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is removed from area D.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Deactive and reacitvate the cabin A",
+                "DMI displays Driver ID window");
             /*
             Test Step 4
             Action: Deactive and reacitvate the cabin A
@@ -98,6 +89,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Perform SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1The Planning area is not appear on DMI");
             /*
             Test Step 5
             Action: Perform SoM to SR mode, level 1
@@ -113,6 +106,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
                                 "2. The Planning Area is not displayed.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press at sensitive area in main area D",
+                "The planning area is reappeared by this activation");
             /*
             Test Step 6
             Action: Press at sensitive area in main area D
@@ -124,6 +119,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is displayed.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Drive the train forward with speed = 30 km/h pass BG1",
+                "Mode changes to FS modeThe Planning area is appeared on DMI");
             /*
             Test Step 7
             Action: Drive the train forward with speed = 30 km/h pass BG1
@@ -135,6 +132,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is still displayed.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Stop the train and then press Hide PA button",
+                "Train is at standstillThe Planning area is disappeared from DMI");
             /*
             Test Step 8
             Action: Stop the train and then press Hide PA button
@@ -147,6 +146,8 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is removed from area D." + Environment.NewLine +
                                 "2. The speed displayed is 30 km/h.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Deactive and reacitvate the cabin A",
+                "DMI displays Driver ID window");
             /*
             Test Step 9
             Action: Deactive and reacitvate the cabin A
@@ -159,6 +160,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Perform SoM to SR mode, level 1",
+                "DMI displays in SR mode, leve1");
             /*
             Test Step 10
             Action: Perform SoM to SR mode, level 1
@@ -172,6 +175,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Drive the train forward with speed = 30 km/h pass BG2",
+                "DMI displays in FS modeThe Planning area is not appear on DMI");
             /*
             Test Step 11
             Action: Drive the train forward with speed = 30 km/h pass BG2
@@ -185,6 +190,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode." + Environment.NewLine +
                                 "2. The Planning Area is not displayed.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press at sensitive area in main area D",
+                "The planning area is reappeared by this activation");
             /*
             Test Step 12
             Action: Press at sensitive area in main area D
@@ -195,6 +202,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is re-displayed.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Pass BG3 and the comfirm OS mode",
+                "Mode chages to OS modeThe Planning area is appeared on DMI");
             /*
             Test Step 13
             Action: Pass BG3 and the comfirm OS mode
@@ -213,6 +222,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in OS mode." + Environment.NewLine +
                                 "2. The Planning Area is displayed.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Stop the train and then press Hide PA button",
+                "Train is at standstillThe Planning area is disappeared from DMI");
             /*
             Test Step 14
             Action: Stop the train and then press Hide PA button
@@ -226,6 +237,8 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is removed from area D." + Environment.NewLine +
                                 "2. The speed displayed is 0 km/h.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Deactive and reacitvate the cabin A",
+                "DMI displays Driver ID window");
             /*
             Test Step 15
             Action: Deactive and reacitvate the cabin A
@@ -238,6 +251,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++, "Perform SoM to SR mode, level 1",
+                "DMI displays in SR mode, leve1");
             /*
             Test Step 16
             Action: Perform SoM to SR mode, level 1
@@ -251,6 +266,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            MakeTestStepHeader(17, UniqueIdentifier++, "Drive the train forward with speed = 30 km/h pass BG4",
+                "OS mode Acknowledgment is requested");
             /*
             Test Step 17
             Action: Drive the train forward with speed = 30 km/h pass BG4
@@ -267,6 +284,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Acknowledgement of OS mode is requested.");
 
+            MakeTestStepHeader(18, UniqueIdentifier++, "Acknowledge OS mode",
+                "Mode chages to OS modeThe Planning area is not appear on DMI");
             /*
             Test Step 18
             Action: Acknowledge OS mode
@@ -280,6 +299,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in OS mode." + Environment.NewLine +
                                 "2. The Planning Area is displayed.");
 
+            MakeTestStepHeader(19, UniqueIdentifier++, "Press at sensitive area in main area D",
+                "The planning area is reappeared by this activation");
             /*
             Test Step 19
             Action: Press at sensitive area in main area D
@@ -289,6 +310,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is re-displayed.");
+
+            MakeTestStepHeader(20, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 20

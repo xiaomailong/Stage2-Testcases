@@ -31,19 +31,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SB(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "At the Main window, press ‘Driver ID’ button",
+                "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: At the Main window, press ‘Driver ID’ button
@@ -63,6 +58,9 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_4_1_1_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716",
+                "The hourglass symbol ST05 is displayed at window title area");
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_1_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -73,6 +71,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 10_4_1_1_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215",
+                "Verify the followin information,(1)     The Driver ID window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 3
             Action: Use the test script file 10_4_1_1_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215
@@ -102,6 +103,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the System info window.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Train running number windowRepeat action step 2-3",
+                "Verify the followin information,(1)    The Train Running Number window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 4
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Train running number windowRepeat action step 2-3
@@ -142,6 +146,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Driver ID window is closed and DMI displays the System info window.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Level windowRepeat action step 2-3",
+                "Verify the followin information,(1)    The Level window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 5
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Level windowRepeat action step 2-3
@@ -206,6 +213,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Level window is closed and DMI displays the System info window.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Train data windowRepeat action step 2-3",
+                "Verify the followin information,(1)    The Train data window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 6
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Train data windowRepeat action step 2-3
@@ -243,6 +253,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Train data window is closed and DMI displays the System info window.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Train data windowEnter and confirm all value of an input fieldsPress on enabled ‘Yes’ button",
+                "DMI displays Train data validation window");
             /*
             Test Step 7
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Train data windowEnter and confirm all value of an input fieldsPress on enabled ‘Yes’ button
@@ -271,6 +284,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train validation window.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Repeat action step 2-3",
+                "Verify the followin information,(1)    The Train data validation window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 8
             Action: Repeat action step 2-3
@@ -289,6 +304,8 @@ namespace Testcase.DMITestCases
             XML_10_4_1_1_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Train Data validation window is closed and DMI displays the System info window.");
+
+            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 9

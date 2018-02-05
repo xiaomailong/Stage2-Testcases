@@ -38,21 +38,16 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, Level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Spec’ button",
+                "The Special window is displayed. Verify that the Close button is always enabled");
             /*
             Test Step 1
             Action: Press ‘Spec’ button
@@ -67,6 +62,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Special window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Close’ button",
+                "The Special window is closed. DMI displays the default window");
             /*
             Test Step 2
             Action: Press ‘Close’ button
@@ -79,6 +76,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Special window and displays the Default window.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press ‘Spec’ button again", "The Special window is displayed");
             /*
             Test Step 3
             Action: Press ‘Spec’ button again
@@ -95,6 +93,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Adhesion’ button",
+                "The Adhesion window is displayed. Verify that the Close button is always enabled");
             /*
             Test Step 4
             Action: Press ‘Adhesion’ button
@@ -108,6 +108,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Adhesion window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify that the Special window is displayed");
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -119,6 +121,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Adhesion window and displays the Special window.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press ‘SR speed/distance’ button",
+                "The SR speed/distance window is displayed. Verify that the Close button is always enabled");
             /*
             Test Step 6
             Action: Press ‘SR speed/distance’ button
@@ -136,6 +140,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the SR speed/distance window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Special window");
             /*
             Test Step 7
             Action: Press ‘Close’ button
@@ -146,6 +151,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the SR speed/distance window and displays the Special window.");
+
+            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 8

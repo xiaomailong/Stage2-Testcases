@@ -21,16 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_33_1_Parent_Child_Relationship : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // System is powered on.
-            DmiActions.Start_ATP();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -44,8 +34,11 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "The Driver ID window is displayed");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -58,6 +51,7 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Settings’ button", "The Settings window is displayed");
             /*
             Test Step 2
             Action: Press ‘Settings’ button
@@ -70,6 +64,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify that the Settings window is closed. The Driver ID window is displayed");
             /*
             Test Step 3
             Action: Press ‘Close’ button
@@ -83,6 +79,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Settings window and displays the Driver ID window.");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘TRN’ button",
+                "The Train Running Number window is displayed");
             /*
             Test Step 4
             Action: Press ‘TRN’ button
@@ -93,6 +91,8 @@ namespace Testcase.DMITestCases
             DmiActions.Display_TRN_Window(this);
             DmiExpectedResults.TRN_window_displayed(this);
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify that the Train Running Number window is closed. The Driver ID window is displayed");
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -106,6 +106,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train Running Number window and displays the Driver ID window.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Enter Driver ID and perform brake test",
+                "The Level window is displayed");
             /*
             Test Step 6
             Action: Enter Driver ID and perform brake test
@@ -122,6 +124,7 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Level_Window(this);
             DmiActions.Delete_Brake_Test_Successful(this, 3);
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Select and confirm Level 1", "The Main window is displayed");
             /*
             Test Step 7
             Action: Select and confirm Level 1
@@ -131,6 +134,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press ‘Driver ID’ button",
+                "The Driver ID window is displayed. The ‘Close’ button is presented as enabled state");
             /*
             Test Step 8
             Action: Press ‘Driver ID’ button
@@ -145,6 +150,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Driver ID window." + Environment.NewLine +
                                 "2. The ‘Close’ button is displayed enabled.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Close the Driver ID window",
+                "Verify that the Driver ID window is closed. The Main window is displayed");
             /*
             Test Step 9
             Action: Close the Driver ID window
@@ -156,6 +163,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Driver ID window and displays the Main window.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Train data’ button",
+                "The Train data window is displayed. ");
             /*
             Test Step 10
             Action: Press ‘Train data’ button
@@ -168,6 +177,8 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Fixed_Train_Data_Window(this);
             DmiExpectedResults.Train_data_window_displayed(this);
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Close the Train data window",
+                "Verify that the Train data window is closed. ");
             /*
             Test Step 11
             Action: Close the Train data window
@@ -181,6 +192,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Main_Window_displayed(this, false);
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press ‘Train data’ button",
+                "The Train data window is displayed");
             /*
             Test Step 12
             Action: Press ‘Train data’ button
@@ -192,6 +205,9 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Fixed_Train_Data_Window(this);
             DmiExpectedResults.Train_data_window_displayed(this);
 
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "If the train data is fixed, re-select the train type and then press ‘Yes’ button.",
+                "The Train data validation window is displayed.");
             /*
             Test Step 13
             Action: If the train data is fixed, re-select the train type and then press ‘Yes’ button.
@@ -211,6 +227,8 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Train_data_validation_Window(this);
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify that the Train data validation window is closed. ");
             /*
             Test Step 14
             Action: Press ‘Close’ button
@@ -225,6 +243,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Main_Window_displayed(this, false);
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Press ‘Level’ button",
+                "The Level window is displayed. The ‘Close’ button is presented as enabled state");
             /*
             Test Step 15
             Action: Press ‘Level’ button
@@ -240,6 +260,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Level window." + Environment.NewLine +
                                 "2. The ‘Close’ button is displayed enabled.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++, "Close the Level window",
+                "Verify that the Level window is closed. The Main window is displayed");
             /*
             Test Step 16
             Action: Close the Level window
@@ -253,6 +275,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Level window and displays the Main window.");
 
+            MakeTestStepHeader(17, UniqueIdentifier++, "Press ‘Train running number’ button",
+                "The Train Running Number window is displayed. The ‘Close’ button is presented as enabled state");
             /*
             Test Step 17
             Action: Press ‘Train running number’ button
@@ -267,6 +291,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Train Running Number window." + Environment.NewLine +
                                 "2. The ‘Close’ button is displayed enabled.");
 
+            MakeTestStepHeader(18, UniqueIdentifier++, "Close the Train Running Number window",
+                "Verify that the Train Running Number window is closed. The Main window is displayed");
             /*
             Test Step 18
             Action: Close the Train Running Number window
@@ -280,6 +306,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the  Train Running Number window and displays the Main window.");
 
+            MakeTestStepHeader(19, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify that the Main window is closed. ");
             /*
             Test Step 19
             Action: Press ‘Close’ button
@@ -292,6 +320,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the  Main window and displays the Default window.");
+
+            MakeTestStepHeader(20, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 20

@@ -20,30 +20,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_1_2_ETCS_Mode_Symbols : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // - Test system is powered on- Cabin is active- Complete the SoM in SR mode, level 1- Force the train into FS mode by moving the train forward passing BG1
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays SL mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward passing BG2", "");
             /*
             Action: Drive the train forward passing BG2
             Expected Result: 
@@ -58,7 +43,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 2
-
+            MakeTestStepHeader(2, UniqueIdentifier++, "Force the train into RV mode by stopping the train", " Verify the following information, Use the log file to confirm that DMI received the EVC - 8 with[MMI_DRIVER_MESSAGE(EVC - 8).MMI_Q_TEXT] = 286 in order to display a symbol ‘ST06’ in sub - area C6");
             /*
             Action: Force the train into RV mode by stopping the train
             Expected Result: Verify the following information,
@@ -74,7 +59,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 3
-
+            MakeTestStepHeader(3, UniqueIdentifier++, "Change the train direction to reverse", "Verify the following information,The acknowledgement for Reversing symbol (MO15) is displayed in area C1.Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 262 in order to display the acknowledgement for Reversing symbol");
             /*
             Action: Change the train direction to reverse
             Expected Result: Verify the following information,The acknowledgement for Reversing symbol (MO15) is displayed in area C1.Use the log file to confirm that DMI received the EVC-8 with [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT] = 262 in order to display the acknowledgement for Reversing symbol
@@ -87,7 +72,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 4
-
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press the symbol ‘MO15’ in area C1", "Verify the following information,The Reversing symbol (M014) is displayed in area B7.");
             /*
             Action: Press the symbol ‘MO15’ in area C1
             Expected Result: Verify the following information,The Reversing symbol (M014) is displayed in area B7.
@@ -108,7 +93,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region  Test Step 5
-
+            MakeTestStepHeader(5, UniqueIdentifier++, "Force the train into SL mode by the steps below:\r\nDeactivate the Cabin\r\nForce the simulation to ‘Sleeping’", "Verify the following information,\r\nUse the log file to confirm that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 5.\r\nNo symbol display in area B7.\r\nAll ETCS related information to the driver is removed and the text “Driver’s cab not active” is displayed in area E5");
             /*
             Action: Force the train into SL mode by the steps below:
             Deactivate the Cabin
@@ -135,7 +120,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 6
-
+            
             /*           
             Action: End of test
             Expected Result: 

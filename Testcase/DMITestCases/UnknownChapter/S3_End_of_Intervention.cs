@@ -28,29 +28,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class S3_End_of_Intervention : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to Level 1 in SR mode",
+                "ETCS OB enters SR mode in Level 1");
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -62,6 +48,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1(this);
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with speed at 40 km/h",
+                "The train can drive forward and all brakes are not applied");
             /*
             Test Step 2
             Action: Drive the train forward with speed at 40 km/h
@@ -73,6 +61,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied(this);
 
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Train runs pass BG1", "ETCS OB enters FS mode in Level 1");
             /*
             Test Step 3
             Action: Train runs pass BG1
@@ -84,6 +73,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1(this);
 
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Accelerate the train with max acceleration (100% throttle) until train speed at 107 km/h",
+                "(1) Use the DMI appearance and log file to verify that train enters intervention status in CSM.DMI Appearance- The DMI displays dark grey colour on CSG from 0 km/h to Vperm.- The DMI displays red colour on CSG from Vperm to Vtrain.Log FileUse log file to verify that the DMI receives EVC-1 with the change value of variable ‘MMI_M_WARNING’ from value 12 to other value.(2) Sound ‘S3_end_of_intervention.wav’ is played once after emergency brake is deactivated with disappearance of symbol ST01.Note The intervention status information is deactivated as soon as there is no more emergency brake command from the speed and monitoring function, refers to section 6.5.7.2.4 in [MMI-ETCS-gen]");
             /*
             Test Step 4
             Action: Accelerate the train with max acceleration (100% throttle) until train speed at 107 km/h
@@ -92,6 +84,7 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Stop the train", "The train is at standstill");
             /*
             Test Step 5
             Action: Stop the train
@@ -103,6 +96,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_train_is_at_standstill(this);
 
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Deactivate cabin A and power off the system",
+                "System is power off and DMI displays ‘No contact with ATP’");
             /*
             Test Step 6
             Action: Deactivate cabin A and power off the system
@@ -114,6 +109,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.System_is_power_off_and_DMI_displays_No_contact_with_ATP(this);
 
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Power on the system and perform SoM to Level 1 in SR mode",
+                "ETCS OB enters SR mode in Level 1");
             /*
             Test Step 7
             Action: Power on the system and perform SoM to Level 1 in SR mode
@@ -125,6 +122,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1(this);
 
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Drive the train forward with speed at 40 km/h",
+                "The train can drive forward and all brakes are not applied");
             /*
             Test Step 8
             Action: Drive the train forward with speed at 40 km/h
@@ -136,6 +135,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied(this);
 
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Train runs pass BG1", "ETCS OB enters FS mode in Level 1");
             /*
             Test Step 9
             Action: Train runs pass BG1
@@ -147,6 +147,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1(this);
 
 
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Accelerate the train with max acceleration (100% throttle) until train speed at 80 km/h.  And wait until emergency brake is applied from ETCS onboard",
+                "(1) Use the DMI appearance and log file to verify that train enters intervention status in TSM.DMI Appearance- The DMI displays yellow colour on CSG from 0 to Vperm.- The DMI displays red colour on CSG from Vperm to Vtrain.Log FileUse log file to verify that the DMI receives EVC-1 with the change value of variable ‘MMI_M_WARNING’ from value 13 to other value.(2)  Sound ‘S3_end_of_intervention.wav’ is played once after emergency brake is deactivated with disappearance of symbol ST01. Note The intervention status information is deactivated as soon as there is no more emergency brake command from the speed and monitoring function, refers to section 6.5.7.5.2 in [MMI-ETCS-gen]");
             /*
             Test Step 10
             Action: Accelerate the train with max acceleration (100% throttle) until train speed at 80 km/h.  And wait until emergency brake is applied from ETCS onboard
@@ -155,6 +158,7 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Stop the train", "The train is at standstill");
             /*
             Test Step 11
             Action: Stop the train
@@ -165,6 +169,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.The_train_is_at_standstill(this);
 
+
+            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 12

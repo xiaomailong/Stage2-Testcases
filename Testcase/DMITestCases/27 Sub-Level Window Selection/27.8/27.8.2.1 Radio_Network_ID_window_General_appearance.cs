@@ -23,28 +23,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_8_2_1_Radio_Network_ID : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 2
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 22_8_2_1_a.xml to send EVC-22 with,MMI_NID_WINDOW = 9MMI_N_NETWORKS = 2MMI_N_CAPTION_NETWORK[0] = 6MMI_X_CAPTION_NETWORK[0][0] = 71MMI_X_CAPTION_NETWORK[0] [1] = 83MMI_X_CAPTION_NETWORK[0] [2] = 77MMI_X_CAPTION_NETWORK[0] [3] = 82MMI_X_CAPTION_NETWORK[0] [4] = 45MMI_X_CAPTION_NETWORK[0] [5] = 65MMI_N_CAPTION_NETWORK[1] = 6MMI_X_CAPTION_NETWORK[1][0] = 71MMI_X_CAPTION_NETWORK[1][1] = 83MMI_X_CAPTION_NETWORK[1][2] = 77MMI_X_CAPTION_NETWORK[1][3] = 82MMI_X_CAPTION_NETWORK[1][4] = 45MMI_X_CAPTION_NETWORK[1][5] = 66",
+                "Verify the following information,DMI does not display Radio Network ID window");
             /*
             Test Step 1
             Action: Use the test script file 22_8_2_1_a.xml to send EVC-22 with,MMI_NID_WINDOW = 9MMI_N_NETWORKS = 2MMI_N_CAPTION_NETWORK[0] = 6MMI_X_CAPTION_NETWORK[0][0] = 71MMI_X_CAPTION_NETWORK[0] [1] = 83MMI_X_CAPTION_NETWORK[0] [2] = 77MMI_X_CAPTION_NETWORK[0] [3] = 82MMI_X_CAPTION_NETWORK[0] [4] = 45MMI_X_CAPTION_NETWORK[0] [5] = 65MMI_N_CAPTION_NETWORK[1] = 6MMI_X_CAPTION_NETWORK[1][0] = 71MMI_X_CAPTION_NETWORK[1][1] = 83MMI_X_CAPTION_NETWORK[1][2] = 77MMI_X_CAPTION_NETWORK[1][3] = 82MMI_X_CAPTION_NETWORK[1][4] = 45MMI_X_CAPTION_NETWORK[1][5] = 66
@@ -58,6 +45,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the Radio Network ID window");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Activate Cabin A", "DMI displays Driver ID window");
             /*
             Test Step 2
             Action: Activate Cabin A
@@ -67,6 +55,9 @@ namespace Testcase.DMITestCases
             DmiActions.Set_Driver_ID(this, "1234");
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 22_8_2_1_b.xml to Send EVC-22 with,MMI_NID_WINDOW = 9MMI_N_NETWORKS = 0",
+                "DMI still displays Driver ID window");
             /*
             Test Step 3
             Action: Use the test script file 22_8_2_1_b.xml to Send EVC-22 with,MMI_NID_WINDOW = 9MMI_N_NETWORKS = 0
@@ -78,6 +69,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the Driver ID window");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Enter Driver ID and perform brake test.Select and confirm Level 2.Press ‘Radio Network ID’ button",
+                "Verify the following information,LayersThe layers of window on half-grid array are displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text “Radio network ID”.Verify that the Radio Network ID window is displayed in main area D, F and G as half-grid array.A data entry window is containing only one input field covers the Main area D, F and G.The following objects are displayed in Radio Network ID window. Enabled Close button (NA11)Window TitleInput FieldInput fieldThe input field is located in main area D and F.For a single input field, the window title is clearly explaining the topic of the input field. The Radio Network ID window is displayed as a single input field with only the data part.KeyboardThe keyboard associated to the Radio Network ID window is displayed as dedicated keyboard.The keyboard is presented below the area of input field.The list of Network ID buttons are corrected refer to received packet EVC-22 as follows,MMI_N_NETWORKS = number of labels (amount of keypad button).MMI_N_CAPTION_NETWORK [x] = number of character in each keypad button.MMI_X_CAPTION_NETWORK [y] = label of characters.Note:- X is index of button.- Y is index of character.The order of each button is displayed corresponse with received packet EVC-22.Packet ReceivingUse the log file to confirm that DMI received packet EVC-22 with variable MMI_NID_WINDOW = 9 and MMI_M_N_NETWORKS != 0.DMI displays Radio Network ID window.General property of windowThe Radio Network ID window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not covering the current window");
             /*
             Test Step 4
             Action: Perform the following procedure,Enter Driver ID and perform brake test.Select and confirm Level 2.Press ‘Radio Network ID’ button
@@ -135,6 +129,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "13. The Default window is not covering the current window.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press and hold the data key up",
+                "Verify the following information,Sound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and its immediately back to ‘Enabled’ state.Pressed key is displayed in an input field after pressing the button.The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour");
             /*
             Test Step 5
             Action: Press and hold the data key up
@@ -149,6 +145,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays the text of the key in black on a Medium-grey background.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Release the pressed button",
+                "Verify the following information,The state of button is changed to ‘Enabled’ state.An input field is used to enter the Radio Network ID.The data value of the input field is aligned to the left of the data area");
             /*
             Test Step 6
             Action: Release the pressed button
@@ -162,6 +160,8 @@ namespace Testcase.DMITestCases
                                 "1. The key is displayed enabled." + Environment.NewLine +
                                 "2. The data input field displays the text of the key in black on a Medium-grey background.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press and hold an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 7
             Action: Press and hold an input field
@@ -173,6 +173,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Slide out an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound");
             /*
             Test Step 8
             Action: Slide out an input field
@@ -187,6 +189,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Slide back into an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 9
             Action: Slide back into an input field
@@ -199,6 +203,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The first data input field is displayed pressed, without a border.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Release the pressed area",
+                "Verify the following information,DMI closes the Radio Network ID window.Use the log file to confirm that DMI sends EVC-112 with the following variables,MMI_M_BUTTONS = 254MMI_N_DATA_ELEMENTS = 1MMI_M_NID_DATA = 3MMI_NID_MN = index of selected network ID (refer to EVC-22 from previous step, the 1st index is start with 0)");
             /*
             Test Step 10
             Action: Release the pressed area
@@ -216,6 +222,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Radio Network ID window.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Press ‘Radio Network ID’ button",
+                "Verify the following information,An input field is used to revalidation the Radio Network ID");
             /*
             Test Step 11
             Action: Press ‘Radio Network ID’ button
@@ -229,6 +237,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value ‘GSMR-A’ for validation.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Confirm the current data without re-entry Radio Network ID",
+                "Verify the following information,DMI closes the Radio Network ID window.Use the log file to confirm that DMI sends EVC-112 with the following variables,MMI_M_BUTTONS = 254MMI_N_DATA_ELEMENTS = 1MMI_M_NID_DATA = 3MMI_NID_MN = index of selected network ID (refer to EVC-22 from previous step, the 1st index is start with 0)");
             /*
             Test Step 12
             Action: Confirm the current data without re-entry Radio Network ID
@@ -244,6 +254,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Radio Network ID window.");
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Radio Network ID’ button.Select the new Radio Network ID.Observe the new entered data on the input field",
+                "Verify the following information,(1)    The current data value in the input field is displayed according to the new selection Radio Network ID");
             /*
             Test Step 13
             Action: Perform the following procedure,Press ‘Radio Network ID’ button.Select the new Radio Network ID.Observe the new entered data on the input field
@@ -257,6 +270,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value ‘GSMR-B’.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Confirm an entered data by pressing an input field",
+                "Verify the following information,(1)   DMI closes the Radio Network ID  window");
             /*
             Test Step 14
             Action: Confirm an entered data by pressing an input field
@@ -268,6 +283,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC contact window.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Press ‘Radio Network ID’ button",
+                "Verify the following information,(1)    The value of input field is changed refer to selected Radio Network ID from step 13");
             /*
             Test Step 15
             Action: Press ‘Radio Network ID’ button
@@ -283,6 +300,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value ‘GSMR-B’ for validation.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays RBC contact window");
             /*
             Test Step 16
             Action: Press ‘Close’ button
@@ -293,6 +311,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC contact window.");
 
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Press ‘Radio Network ID’ button.Then, use the test script file 22_8_2_1_a.xml to send EVC-22",
+                "Verify the following information,The list of netowrk ID is updated refer to received packet EVC-22, there are only 2 buttons ‘GSM-A’ and ’GSM-B’ are displayed in Radio Network ID window");
             /*
             Test Step 17
             Action: Press ‘Radio Network ID’ button.Then, use the test script file 22_8_2_1_a.xml to send EVC-22
@@ -306,6 +327,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Two keys are displayed on the keypad in the Radio Network ID window (for ‘GSMR-A’ and ‘GSMR-B’).");
 
+            MakeTestStepHeader(18, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify the following information,Use the log file to confirm that DMI sent out packet EVC-101 with MMI_M_REQUEST = 61 (Exit RBC Network ID).DMI displays RBC contact window");
             /*
             Test Step 18
             Action: Press ‘Close’ button
@@ -319,6 +342,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC contact window.");
+
+            MakeTestStepHeader(19, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 19
@@ -349,6 +374,7 @@ namespace Testcase.DMITestCases
                     EVC22_MMICurrentRBC.NetworkCaptions.Clear();
                     break;
             }
+
             EVC22_MMICurrentRBC.Send();
         }
 

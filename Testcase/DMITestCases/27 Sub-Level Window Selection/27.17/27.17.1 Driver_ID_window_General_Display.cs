@@ -33,19 +33,15 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, ETCS level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 22_17_a.xml to send EVC-14 withMMI_X_DRIVER_ID = ‘4444’Note: Please wait for 5-10 seconds to make sure that test script is executed completely",
+                "(1) Driver ID window is not displayed");
             /*
             Test Step 1
             Action: Use the test script file 22_17_a.xml to send EVC-14 withMMI_X_DRIVER_ID = ‘4444’Note: Please wait for 5-10 seconds to make sure that test script is executed completely
@@ -60,6 +56,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the Driver ID window");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Activate cabin A and verify the presentation on the DMI screen",
+                "DMI displays the Main window for a few moment prior to the Driver ID window is displayed on the right half part of the window as shown in figure belowLayersThe layers of window on half-grid array is displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text “Driver ID”.Verify that the Driver ID window is displayed in main area D, F and G as half-grid array.The Driver ID window is presented ‘Settings’ button with the symbol SE04 and a ‘Train running number’ button with the label ‘TRN’.A data entry window is containing only one input field covers the Main area D, F and GThe Settings button is positioned in the bottom right corner of area D,F and GThe Train running number button is positioned at left aligned of Settings buttonInput fieldThe input field is located in main area D and F.For a single input field, the window title is clearly explaining the topic of the input field. The Driver ID window is displayed as a single input field with only the data part.KeyboardThe keyboard associated to the Driver ID window is displayed as alphanumeric keyboard.The keyboard is presented below the area of input field.The keyboard contains enabled button for the number <1>, <2/a/b /c>, … , <9/w/x/y/z>, <Delete>(NA21), <0> and disabled <Decimal_Separator>. The labels of the keys shall separate the number from the letters by a space character e.g. '2 abc'. NA21, Delete button.Packet receivingUse the log file to confirm that DMI receives EVC-14 with variable MMI_X_DRIVER_ID = 0 (NULL) and the value of input field is empty.Disabled Close buttonThe disabled ‘Close’ button NA12 is displayed on the Driver ID window");
             /*
             Test Step 2
             Action: Activate cabin A and verify the presentation on the DMI screen
@@ -95,6 +93,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"11. The Driver ID window displays a (disabled) ‘Close’ button, symbol NA12, in the bottom left corner of areas D, F & G.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press TRN button on the Driver ID window",
+                "The Train Runing Number window is displayed. Use the log file to verify that DMI sends out EVC-101 with variable MMI_M_REQUEST = 30");
             /*
             Test Step 3
             Action: Press TRN button on the Driver ID window
@@ -112,6 +112,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train running number window");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Close the Train Running Number window",
+                "The Driver ID window is displayed");
             /*
             Test Step 4
             Action: Close the Train Running Number window
@@ -121,6 +123,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press every buttons on the dedicated keyboard",
+                "The input field displays the number associated to the data key according to the pressings in state Pressed");
             /*
             Test Step 5
             Action: Press every buttons on the dedicated keyboard
@@ -144,6 +148,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234 5678 0’.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Enter the Driver ID with ‘1234567’",
+                "On next activation of a data key of the associated keyboard, the character or value corresponding to this data key shall be added into the Data Area.Number 1234567 displays on the input fieldThe data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.The flashing horizontal-line cursor is always in the next position of the echoed entered-data key in the ‘Selected IF/value of pressed key(s)’ data input field when selected the next character it will be inserted cursor position.An input field is used to enter the Driver ID.The data value of the input field is aligned to the left of the data area");
             /*
             Test Step 6
             Action: Enter the Driver ID with ‘1234567’
@@ -164,6 +170,8 @@ namespace Testcase.DMITestCases
                                 "5. The data input field is used to enter the Driver ID." + Environment.NewLine +
                                 "6. The value in the data input field is left-aligned.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Confirm the Driver ID",
+                "DMI closes the Driver ID window and displays Main window.Use the log file to confirm that DMI sends out  EVC-104 with variable MMI_X_DRIVER_ID = 0x31323334353637000000000000000000.Note: A value of MMI_X_DRIVER_ID shows as hexadecimal value of ASCII which corresponds to its character that displayed in the input field in the Driver ID window");
             /*
             Test Step 7
             Action: Confirm the Driver ID
@@ -177,6 +185,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Driver ID window and displays the Main window.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Perform the remaining part of SoM to enter mode SR, ETCS level 1 and then open the Main window",
+                "DMI displays the Main window.Verify that the Driver ID button is enabled");
             /*
             Test Step 8
             Action: Perform the remaining part of SoM to enter mode SR, ETCS level 1 and then open the Main window
@@ -197,6 +208,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Main window." + Environment.NewLine +
                                 "2. The ‘Driver ID’ button is enabled.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Press Driver ID button and verify the presentation on the DMI screen",
+                "The Driver ID window is displayed with the current Driver ID.1917705651500 Use the log file to confirm that DMI receives EVC-14 with variable MMI_X_DRIVER_ID = 0x31323334353637000000000000000000 and replace the current data value with “1234 567” in input field.Note: A value of MMI_X_DRIVER_ID shows as hexadecimal value of ASCII which corresponds to its character that displayed in the input field in the Driver ID window.An input field is used to revalidation the Driver ID.The following objects are displayed in Driver ID window. Enabled Close button (NA11)Window TitleInput Field");
             /*
             Test Step 9
             Action: Press Driver ID button and verify the presentation on the DMI screen
@@ -227,6 +241,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"7. The Driver ID window displays a (disabled) ‘Close’ button, symbol NA12, in the bottom left corner of areas D, F & G.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press and hold an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 10
             Action: Press and hold an input field
@@ -237,6 +253,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("The data input field is displayed pressed, without a border.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Slide out an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound");
             /*
             Test Step 11
             Action: Slide out an input field
@@ -249,6 +267,8 @@ namespace Testcase.DMITestCases
                                 "1. The data input field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Slide back into an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 12
             Action: Slide back into an input field
@@ -263,6 +283,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Release the pressed area",
+                "DMI closes the Driver ID window and displays Main window. Use the log file to verify that DMI sends out EVC-104 with variable MMI_X_DRIVER_ID = “0x 31323334353637000000000000000000”.Note: A value of MMI_X_DRIVER_ID shows as hexadecimal value of ASCII which corresponds to its character that displayed in the input field in the Driver ID window");
             /*
             Test Step 13
             Action: Release the pressed area
@@ -276,6 +298,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Driver ID window and displays the Main window.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Open the Driver ID window in the Main menu window",
+                "The Driver ID window is displayed.Number 1234567 is still displays on the input field.Use the log file to verify that DMI receives EVC-14 with variable MMI_X_DRIVER_ID = 0x31323334353637000000000000000000.Note: A value of MMI_X_DRIVER_ID shows as hexadecimal value of ASCII which corresponds to its character that displayed in the input field in the Driver ID window");
             /*
             Test Step 14
             Action: Open the Driver ID window in the Main menu window
@@ -301,6 +325,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Driver ID window." + Environment.NewLine +
                                 "2. The data input field still displays ‘1234 567’.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Enter the new Driver ID as ‘987654’ in the input field",
+                "The current data in the input field is replaced by the new entered data from the driver");
             /*
             Test Step 15
             Action: Enter the new Driver ID as ‘987654’ in the input field
@@ -311,6 +337,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘9876 54’.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++, "Confirm an entered data by pressing an input field",
+                "(1) DMI closes the Driver ID window and displays Main window");
             /*
             Test Step 16
             Action: Confirm an entered data by pressing an input field
@@ -322,6 +350,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Driver ID window and displays the Main window.");
 
+            MakeTestStepHeader(17, UniqueIdentifier++, "Press ‘Driver ID’ button",
+                "Verify the following information,(1)    The Driver ID window is displayed with the entered data of the Driver ID from Step 15.Use the log file to confirm that DMI receives EVC-14 with variable MMI_X_DRIVER_ID = 0x39383736353400000000000000000000 and replace the current data value with “9876 54” in input field.Note: A value of MMI_X_DRIVER_ID shows as hexadecimal value of ASCII which corresponds to its character that displayed in the input field in the Driver ID window");
             /*
             Test Step 17
             Action: Press ‘Driver ID’ button
@@ -347,6 +377,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Driver ID window." + Environment.NewLine +
                                 "2. The data input field displays ‘9876 54’.");
 
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Use the test script file 22_17_b.xml to send EVC-14 with,MMI_Q_ADD_ENABLE (#0)= 1MMI_Q_ADD_ENABLE (#1) = 1",
+                "Verify the state of ‘TRN’ button and ‘Settings’ button as follows,‘Settings’ button is enabled.‘TRN’ button is enabled");
             /*
             Test Step 18
             Action: Use the test script file 22_17_b.xml to send EVC-14 with,MMI_Q_ADD_ENABLE (#0)= 1MMI_Q_ADD_ENABLE (#1) = 1
@@ -358,6 +391,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘TRN’ button and ‘Settings’ buttons are displayed enabled.");
 
+            MakeTestStepHeader(19, UniqueIdentifier++,
+                "Use the test script file 22_17_c.xml to send EVC-14 with,MMI_Q_ADD_ENABLE (#0)= 0MMI_Q_ADD_ENABLE (#1) = 0",
+                "Verify the state of ‘TRN’ button and ‘Settings’ button as follows,‘Settings’ button is disabled.‘TRN’ button is disabled");
             /*
             Test Step 19
             Action: Use the test script file 22_17_c.xml to send EVC-14 with,MMI_Q_ADD_ENABLE (#0)= 0MMI_Q_ADD_ENABLE (#1) = 0
@@ -369,6 +405,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘TRN’ button and ‘Settings’ buttons are displayed disabled.");
 
+            MakeTestStepHeader(20, UniqueIdentifier++,
+                "Use the test script file 22_17_d.xml to send EVC-14 with,MMI_Q_ADD_ENABLE (#0)= 0MMI_Q_ADD_ENABLE (#1) = 1",
+                "Verify the state of ‘TRN’ button and ‘Settings’ button as follows,‘Settings’ button is enabled.‘TRN’ button is disabled");
             /*
             Test Step 20
             Action: Use the test script file 22_17_d.xml to send EVC-14 with,MMI_Q_ADD_ENABLE (#0)= 0MMI_Q_ADD_ENABLE (#1) = 1
@@ -381,6 +420,9 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Settings’ buttons is displayed enabled." + Environment.NewLine +
                                 "2. The ‘TRN’ button button is displayed disabled.");
 
+            MakeTestStepHeader(21, UniqueIdentifier++,
+                "Use the test script file 22_17_e.xml to send EVC-14 with,MMI_Q_ADD_ENABLE (#0)= 1MMI_Q_ADD_ENABLE (#1) = 0",
+                "Verify the state of ‘TRN’ button and ‘Settings’ button as follows,‘Settings’ button is disabled.‘TRN’ button is enabled");
             /*
             Test Step 21
             Action: Use the test script file 22_17_e.xml to send EVC-14 with,MMI_Q_ADD_ENABLE (#0)= 1MMI_Q_ADD_ENABLE (#1) = 0
@@ -393,6 +435,8 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Settings’ buttons is displayed disabled." + Environment.NewLine +
                                 "2. The ‘TRN’ button button is displayed enabled.");
 
+            MakeTestStepHeader(22, UniqueIdentifier++, "Close the Driver ID window",
+                "DMI closes the Driver ID window and the Main menu window is displayed.(1)   Use the log file to verify that DMI sends out EVC-101 with variable MMI_M_REQUEST = 34 (Exit Driver Data Entry)");
             /*
             Test Step 22
             Action: Close the Driver ID window
@@ -405,6 +449,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Driver ID window and displays the Main window.");
+
+            MakeTestStepHeader(23, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 23
@@ -461,6 +507,7 @@ namespace Testcase.DMITestCases
                     EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
                     break;
             }
+
             EVC14_MMICurrentDriverID.Send();
         }
 

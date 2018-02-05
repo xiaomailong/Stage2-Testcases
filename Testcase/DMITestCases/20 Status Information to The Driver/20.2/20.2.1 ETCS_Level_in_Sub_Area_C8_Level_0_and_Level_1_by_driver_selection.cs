@@ -60,10 +60,14 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Select and confirm Level 0",
+                "DMI displays Main window in SB mode, Level 0.");
             /*
             Test Step 1
             Action: Select and confirm Level 0
@@ -94,6 +98,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 2
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Level’ button.Then, select and confirm Level 1",
+                "DMI displays Main window in SB mode, Level 1.");
             /*
             Test Step 2
             Action: Press ‘Level’ button.Then, select and confirm Level 1
@@ -126,6 +132,8 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 3
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

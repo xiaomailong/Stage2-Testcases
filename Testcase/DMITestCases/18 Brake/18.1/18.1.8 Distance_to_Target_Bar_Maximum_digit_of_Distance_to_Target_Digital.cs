@@ -35,19 +35,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-
-            // DMI displays in FS mode, Level 1
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1.Then, stop the train",
+                "DMI displays in FS mode, level 1.Verify the following information,(1)   Use the log file to confirm that the distance to target (bar and digital) is calculated from the received packet information EVC-7 and EVC -1 as follows,(EVC-1) MMI_O_BRAKETARGET  – (EVC-7) OBU_TR_O_TRAIN Example: The observation point of the distance target is 4480. [EVC-1.MMI_O_BRAKETARGET = 1000498078] – [EVC-7.OBU_TR_O_TRAIN = 1000050121] = 447,957 cm (4479.57m)(2)   The first digit of distance to target digital in sub-area A2 is not zero. (3)   The distane to target digital is right aligned");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then, stop the train
@@ -58,6 +53,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 30000; // EOA 300m
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000; // at 100,
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+
 
             this.Wait_Realtime(2000);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring;
@@ -70,6 +66,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The digital distance to target  is right aligned.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 13_1_8_a.xml to send EVC-1 with,MMI_O_BRAKETARGET = 1010500000",
+                "Verify the following information,(1)   DMI display the distance to target digital as ‘99999’");
             /*
             Test Step 2
             Action: Use the test script file 13_1_8_a.xml to send EVC-1 with,MMI_O_BRAKETARGET = 1010500000
@@ -80,6 +79,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the digital distance to target  as ‘99999’.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 13_1_8_b.xml to send EVC-1 with,MMI_M_WARNING = 7",
+                "Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.        After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 3
             Action: Use the test script file 13_1_8_b.xml to send EVC-1 with,MMI_M_WARNING = 7
@@ -99,6 +101,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI re-displays the distance to target bar and digital distance to target after 2s.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 13_1_8_c.xml to send EVC-7 with,OBU_TR_M_MODE = 17",
+                "Verify the following information,(1)   The distance to target bar and digital is removed from the DMI.        After test scipt file is executed, the distance to target bar and digital is re-appear refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 4
             Action: Use the test script file 13_1_8_c.xml to send EVC-7 with,OBU_TR_M_MODE = 17
@@ -116,6 +121,8 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI re-displays the distance to target bar and digital distance to target after 2s.");
+
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 5

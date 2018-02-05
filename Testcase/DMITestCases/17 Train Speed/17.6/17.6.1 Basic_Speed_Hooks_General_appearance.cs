@@ -32,21 +32,17 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SH mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Driver drives the train forward passing BG1.Then, stop the train and acknowledge OS mode by pressing sub-area C1",
+                "DMI displays in OS mode, Level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-7 with variable OBU_TR_M_MODE = 1 (On sight).(2)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 2777 (100km/h)MMI_V_TARGET = 694 (25km/h)MMI_M_WARNING not equal to 0,4,8,12 (Supervision is not CSM)(3)   All basic speed hooks are displayed in sub-area B2.(4)   The first hook is displayed overlapping the outer border of the speed dial with white colour at 100 km/h.(5)   The second hook is displayed overlapping the outer border of the speed dial with Medium-grey colour at 25 km/h.(6)   Sound ‘Sinfo’ is played once");
             /*
             Test Step 1
             Action: Driver drives the train forward passing BG1.Then, stop the train and acknowledge OS mode by pressing sub-area C1
@@ -72,6 +68,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "5. Sound ‘Sinfo’ is played once.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Continue to drive the train forward until basic speed hooks are overlapped",
+                "Verify the following information,The Vperm hook (White colour) is overlay the Vtarget hook (Medium grery colour)");
             /*
             Test Step 2
             Action: Continue to drive the train forward until basic speed hooks are overlapped
@@ -84,6 +83,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine + Environment.NewLine +
                                 "1. The Vperm hook (in white) overlays the Vtarget hook (medium-grey)");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Perform the following procedure,Press the 'Main' button.Press and hold 'Shunting' button at least 2 seconds.Release 'Shunting' button",
+                "DMI displays in SH mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-7 with variable OBU_TR_M_MODE = 3 (Shunting).(2)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 833 (30km/h)MMI_M_WARNING = 0 (NoS, Supervision = CSM)(3)   The first hook is displayed overlapping the outer border of the speed dial with white colour at 30 km/h");
             /*
             Test Step 3
             Action: Perform the following procedure,Press the 'Main' button.Press and hold 'Shunting' button at least 2 seconds.Release 'Shunting' button
@@ -103,6 +105,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SH mode, level 1." + Environment.NewLine +
                                 "2. The first hook is displayed overlapping the outer border of the speed dial coloured in white at 30 km/h.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 12_6_1_a.xml to send EVC-1 with,MMI_M_WARNING = 7",
+                "Verify the following information,(1)   The basic speed hook is removed from the DMI.(2)   After test scipt file is executed, the basic speed hook is re-appear refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 4
             Action: Use the test script file 12_6_1_a.xml to send EVC-1 with,MMI_M_WARNING = 7
@@ -124,6 +129,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is re-displayed.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Use the test script file 12_6_1_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17",
+                "Verify the following information,(1)   The basic speed hook is removed from the DMI.(2)   After test script file is executed, the basic speed hook is re-appear refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 5
             Action: Use the test script file 12_6_1_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17
@@ -145,6 +153,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is re-displayed.");
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 6

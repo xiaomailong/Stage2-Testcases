@@ -34,21 +34,16 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in OS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward passing BG1.",
+                "DMI displays LE07 symbol in sub-area C1");
             /*
             Test Step 1
             Action: Drive the train forward passing BG1.
@@ -76,6 +71,9 @@ namespace Testcase.DMITestCases
 
             #region Test Step 2
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Continue to drive the train forward pass BG2.Then, stop the train",
+                "DMI displays in FS mode, Level 1.");
             /*
             Test Step 2
             Action: Continue to drive the train forward pass BG2.Then, stop the train
@@ -95,6 +93,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 3
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press an area C1 for acknowledgement",
+                "Verify the following information,");
             /*
             Test Step 3
             Action: Press an area C1 for acknowledgement
@@ -114,6 +114,8 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 4
+
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 4

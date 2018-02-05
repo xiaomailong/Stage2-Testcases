@@ -33,19 +33,15 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Drive the train forward pass BG1 with speed = 30km/h.Then, stop the train",
+                "DMI displays in FS mode, Level 1");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1 with speed = 30km/h.Then, stop the train
@@ -58,6 +54,9 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 12_5_4_a.xml to send EVC-1 with MMI_M_WARNING = 7",
+                "Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard");
             /*
             Test Step 2
             Action: Use the test script file 12_5_4_a.xml to send EVC-1 with MMI_M_WARNING = 7
@@ -76,6 +75,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 12_5_4_b.xml to send EVC-1 with,MMI_V_TARGET = 11112",
+                "Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard");
             /*
             Test Step 3
             Action: Use the test script file 12_5_4_b.xml to send EVC-1 with,MMI_V_TARGET = 11112
@@ -92,6 +94,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 12_5_4_c.xml to send EVC-1 with,MMI_V_PERMITTED = 11112",
+                "Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard");
             /*
             Test Step 4
             Action: Use the test script file 12_5_4_c.xml to send EVC-1 with,MMI_V_PERMITTED = 11112
@@ -109,6 +114,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Use the test script file 12_5_4_d.xml to send EVC-1 with,MMI_V_INTERVENTION = 11112",
+                "Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard");
             /*
             Test Step 5
             Action: Use the test script file 12_5_4_d.xml to send EVC-1 with,MMI_V_INTERVENTION = 11112
@@ -126,6 +134,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Use the test script file 12_5_4_e.xml to send EVC-1 with,MMI_V_RELEASE = 11112",
+                "Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-1 from ETCS onboard");
             /*
             Test Step 6
             Action: Use the test script file 12_5_4_e.xml to send EVC-1 with,MMI_V_RELEASE = 11112
@@ -144,6 +155,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Use the test script file 12_5_4_f.xml to send EVC-7 with,OBU_TR_M_MODE = 17",
+                "Verify the following information,(1)   The Circular Speed Gauge is removed from sub-area B2.Note: The ciruclar speed guage is re-appear when DMI received packet EVC-7 from ETCS onboard");
             /*
             Test Step 7
             Action: Use the test script file 12_5_4_f.xml to send EVC-7 with,OBU_TR_M_MODE = 17
@@ -159,6 +173,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.The Circular Speed Gauge re-appears in sub-area B2.");
+
+            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 8

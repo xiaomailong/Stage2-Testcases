@@ -31,7 +31,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             //Test system is powered onCabin is activatedLevel ATC - 2 is selected and confirmed.Perform SoM until the train running number is entered.Settings window is openedBrake window is opened
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
@@ -42,21 +41,17 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 22_22_3_a.xmlSend EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 1",
+                "The ‘Brake percentage’ button is enabled");
             /*
             Test Step 1
             Action: Use the test script file 22_22_3_a.xmlSend EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#31) = 1
@@ -70,6 +65,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Brake percentage’ button is displayed enabled (in the Brake window).");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Brake percentage’ button",
+                "DMI displays the Brake percentage window on the right half part of the window.LayersThe layers of window on half-grid array is displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text “Brake percentage”.Verify that the Maintenance password window is displayed in main area D, F and G as half-grid array.A data entry window is containing only one input field covers the Main area D, F and GThe following objects are displayed in Maintenance password window. Enabled Close button (NA11)Window TitleInput FieldInput fieldThe input field is located in main area D and F.Each input field is devided into a Label Area and a Data AreaThe label of input field is ‘Enter brake percentage’.KeyboardThe keyboard associated to the Brake percentage window is displayed as numeric keyboard.The keyboard is presented below the area of input field.The keyboard contains enabled button for the number <1>, <2 >, … , <9 >, <Delete>(NA21), <0> and disabled <Decimal_Separator>.  NA21, Delete button.Echo textAn echo text is composed of Label Part and Data Part.The Label Part of an echo texts is same as The Label area of an input fields.The echo texts are displayed in main area A, B, C and E with same order as their related input fields.The Label part of echo texts are right aligned.The Data part of echo texts are left aligned.The colour of texts in echo texts are grey.The label of first echo field is ‘Original BP’.The label of second echo field is ‘Last measured BP’.The label of third echo field is ‘brake percentage’.Packet transmissionUse the log file to confirm that DMI displays Brake percentage window refer to received packet information [MMI_CURRENT_BRAKE_PERCENTAGE (EVC-50)].The data part of input field and echo text are displayed correspond with the variables in received packet EVC-50 as follows,MMI_M_BP_ORIG = Original BPMMI_M_BP_MEASURED = Last measured BPMMI_M_BP_CURRENT = brake percentageGeneral property of windowThe Brake percentage window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMIAll objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 2
             Action: Press ‘Brake percentage’ button
@@ -113,6 +110,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "10. The Default window does not cover the current window.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press and hold ‘0’ button",
+                "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The Input Field displays the language associated to the data key according to the pressings in state ‘Pressed’.An input field is used to enter the Brake percentage.The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.The data value of the input field is aligned to the left of the data area.Only data field with the ‘Enter brake percentage’ is editable by driver");
             /*
             Test Step 3
             Action: Press and hold ‘0’ button
@@ -130,6 +129,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "5. Only the data input field can be edited.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Released the pressed button",
+                "Verify the following information, The state of button is changed to ‘Enabled’");
             /*
             Test Step 4
             Action: Released the pressed button
@@ -141,6 +142,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The <0> key is displayed enabled.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable",
+                "See the expected results of Step 3 – Step 4 and the following additional information,The pressed key is added in an input field immediately. The cursor is jumped to next position after entered the character immediately");
             /*
             Test Step 5
             Action: Perform action step 3-4 for the ‘1’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable
@@ -309,6 +313,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The <9> key is displayed enabled.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press and hold ‘Del’ button.Note: Stopwatch is required",
+                "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 6
             Action: Press and hold ‘Del’ button.Note: Stopwatch is required
@@ -329,6 +335,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "6. Characters are repeatedly deleted from the end of the data input field while the key is pressed.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Release ‘Del’ button",
+                "Verify the following information, The character is stop removing");
             /*
             Test Step 7
             Action: Release ‘Del’ button
@@ -340,6 +348,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Characters stop being deleted from the end of the data input field.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field",
+                "No number is displayed on the Input Field");
             /*
             Test Step 8
             Action: Press ‘Del’ button on the numeric keyboard until no number is displayed on the Input Field
@@ -347,6 +358,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the <Del> key until the data input field is blank.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Enter the data value with 3 characters",
+                "On next activation of a data key of the associated keyboard, the character or value corresponding to this data key shall be added into the Data Area.The data value is displayed as black colour and the background of the data area is displayed as medium-grey colour.The flashing horizontal-line cursor is always in the next position of the echoed entered-data key in the ‘Selected IF/value of pressed key(s)’ data input field when selected the next character it will be inserted cursor position.An input field is used to enter the brake percentage.The data value of the input field is aligned to the left of the data area");
             /*
             Test Step 9
             Action: Enter the data value with 3 characters
@@ -363,6 +376,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The value is displayed left-aligned in the data area of the data input field.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Delete the old value and enter the value ‘100’ for brake percentage.Then, confirm an entered data by pressing an input field",
+                "Verify the following information,Packet TransmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_BRAKE_PERCENTAGE (EVC-150)] with following variables,MMI_M_BP_CURRENT = 100Use the log file to confirm that the Brake percentage window is closed because of DMI received packet information [MMI_ECHOED_BRAKE_PERCENTAGE (EVC-51)]");
             /*
             Test Step 10
             Action: Delete the old value and enter the value ‘100’ for brake percentage.Then, confirm an entered data by pressing an input field
@@ -381,6 +397,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Brake percentage window.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Press ‘Brake percentage’ button",
+                "DMI displays Brake percentage window.The value of Brake percentage echo text is changed refer to ‘100’ same as entered data");
             /*
             Test Step 11
             Action: Press ‘Brake percentage’ button
@@ -398,6 +416,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Brake percentage window." + Environment.NewLine +
                                 "2. The data input field and the ‘Original BP’ echo text display ‘100’.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Delete the old value and enter the value ‘99’ for brake percentage.Then, press and hold an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 12
             Action: Delete the old value and enter the value ‘99’ for brake percentage.Then, press and hold an input field
@@ -410,6 +431,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed pressed, without a border.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Slide out an input field",
+                "Verify the following information,(1)     The state of an input field is changed to ‘Enabled, the border of button is shown without a sound");
             /*
             Test Step 13
             Action: Slide out an input field
@@ -422,6 +445,8 @@ namespace Testcase.DMITestCases
                                 @"1. The data input field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Slide back into an input field",
+                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 14
             Action: Slide back into an input field
@@ -434,6 +459,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field is displayed pressed, without a border.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Release the pressed area",
+                "An input field is used to revalidate the Brake percentage, DMI displays Brake window");
             /*
             Test Step 15
             Action: Release the pressed area
@@ -446,6 +473,8 @@ namespace Testcase.DMITestCases
                                 @"1. The data input field is re-validated." +
                                 "2. DMI displays the Brake window.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++, "Press ‘Brake percentage’ button",
+                "DMI displays Brake percentage window.(1)   The value of Brake percentage echo text is changed refer to ‘99’ same as entered data");
             /*
             Test Step 16
             Action: Press ‘Brake percentage’ button
@@ -463,6 +492,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Brake percentage window." + Environment.NewLine +
                                 "2. The data input field and the ‘Original BP’ echo text display ‘99’.");
 
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Use the test script file 22_22_3_b.xmlSend EVC-50 with,MMI_M_BP_MEASURED = 255",
+                "Verify the following information,(1)    The value of echo text ‘Last measured BP’ is show as “_ _ _ _”");
             /*
             Test Step 17
             Action: Use the test script file 22_22_3_b.xmlSend EVC-50 with,MMI_M_BP_MEASURED = 255
@@ -474,6 +506,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Last measured BP’ echo text displays ‘____’.");
 
+            MakeTestStepHeader(18, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify the following information,Use the log file to confirm that DMI sent out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 60 (Exit brake percentage).The Brake percentage window is closed. DMI displays Brake window");
             /*
             Test Step 18
             Action: Press ‘Close’ button
@@ -486,6 +520,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI close the Brake percentage window and displays the Brake window.");
+
+            MakeTestStepHeader(19, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 19

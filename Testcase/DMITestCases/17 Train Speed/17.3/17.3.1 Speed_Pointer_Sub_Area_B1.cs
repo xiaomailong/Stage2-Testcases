@@ -18,28 +18,10 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_3_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, level 1
-            //WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-            //                    "1. DMI displays in SR mode, Level 1.");
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             TraceInfo("This is a repeat of TC_12_1_Display_of_Speed_Pointer_and_Speed_Digital." +
@@ -47,6 +29,8 @@ namespace Testcase.DMITestCases
 
             GlobalTestResult = true;
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward, speed up to 25 km/h",
+                "Verify the following information,The speed pointer is displayed in sub-area B1. The speed pointer consists of a needle and a circular part centred in sub-area B1. Both parts are displayed in same colour. The dimension of the speed pointer is presented");
             /*
             Test Step 1
             Action: Drive the train forward, speed up to 25 km/h
@@ -54,12 +38,15 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 5965;   (2) MMI_gen 5968;   
             */
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Stop the train", "The speed pointer is indicated to zero km/h");
             /*
             Test Step 2
             Action: Stop the train
             Expected Result: The speed pointer is indicated to zero km/h
             */
             // Call generic Action Method
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

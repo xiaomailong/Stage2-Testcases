@@ -21,33 +21,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_8_AcclerationDecleration : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Power off test system
-            // Set the following OTE configuration file (OteCfg_PC.cfg):
-            //      - tractionAcceleration 400
-            //      - serviceBrakeDeceleration 400
-            //      - emergencyBrakeDeceleration 400
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             DmiActions.ShowInstruction(this, "THIS TESCASE NEEDS TO BE RUN WITH ETCS AND VSIM");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on the system and activate cabin",
+                "DMI displays in SB mode");
             /*
             Test Step 1
             Action: Power on the system and activate cabin
@@ -55,6 +38,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform Start of Mission to SR mode , eevel 1",
+                "Mode changes to SR mode , Level 1");
             /*
             Test Step 2
             Action: Perform Start of Mission to SR mode , eevel 1
@@ -62,6 +47,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Pass BG0 with MA and Track description",
+                "Mode changes to FS mode");
             /*
             Test Step 3
             Action: Pass BG0 with MA and Track description
@@ -69,6 +56,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Full accelerate the traction (100%) until service brake is applied",
+                "The speedometer movement goes up and down smoothly");
             /*
             Test Step 4
             Action: Full accelerate the traction (100%) until service brake is applied
@@ -76,6 +66,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 68;
             */
 
+
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of Test", "");
 
             /*
             Test Step 5

@@ -39,21 +39,17 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // ETCS-DMI is in the ‘Staff Responsible’ mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Open the ‘Brake percentage’ data entry window from the Special menu",
+                "The ‘Brake percentage’ data entry window appears on ETCS-DMI screen instead of the ‘Special’ menu window");
             /*
             Test Step 1
             Action: Open the ‘Brake percentage’ data entry window from the Special menu
@@ -75,6 +71,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brake percentage window");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Enter “10” (minimum inbound) with the numeric keypad and press the data input field (Accept) in the same screen",
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “10” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-150(2) Use the log file to verify that DMI sends packet EVC-150 with variable:-   MMI_M_BP_CURRENT = 10");
             /*
             Test Step 2
             Action: Enter “10” (minimum inbound) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -89,6 +88,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field displays ‘1’ then ‘10’ (replacing the value ‘40’ as the characters are entered.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Enter “251” (outbound) with the numeric keypad and press the data input field (Accept) in the same screen",
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “251” (previously entered value).EVC-150(3) Use the log file to verify that DMI does not send out packet EVC-150 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 3
             Action: Enter “251” (outbound) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -103,6 +105,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Brake percentage’ echo text displays ‘++++’ in red.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Enter “250” (maximum inbound) with the numeric keypad and press the data input field (Accept) in the same screen",
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “250” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-150(2) Use the log file to verify that DMI sends packet EVC-150 with variable:-   MMI_M_BP_CURRENT = 250");
             /*
             Test Step 4
             Action: Enter “250” (maximum inbound) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -115,6 +120,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘2’ then ‘25’, then ‘250’ (replacing the value ‘251’ as the characters are entered.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "This step is to complete the process of ‘Brake percentage’:- Press the ‘Yes’ button on the ‘Brake percentage’ window.- Validate the data in the data validation window",
+                "1. After pressing the ‘Yes’ button, the data validation window (‘Validate Brake percentage’) appears instead of the ‘Brake percentage’ data entry window. The data part of echo text displays “250” in white.2. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Brake percentage’ window with enabled ‘Brake percentage’ button");
             /*
             Test Step 5
             Action: This step is to complete the process of ‘Brake percentage’:- Press the ‘Yes’ button on the ‘Brake percentage’ window.- Validate the data in the data validation window
@@ -131,6 +139,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with the ‘Brake percentage’ button enabled.");
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 6

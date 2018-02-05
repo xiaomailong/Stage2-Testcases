@@ -347,7 +347,7 @@ namespace Testcase.DMITestCases
         public static void The_hourglass_symbol_ST05_is_displayed_at_window_title_area(SignalPool pool)
         {
             throw new NotImplementedException();
-        }       
+        }
 
         /// <summary>
         /// Description: DMI displays RBC Data window
@@ -1060,7 +1060,7 @@ namespace Testcase.DMITestCases
         public static void DMI_displays_in_OS_mode_Level_1(SignalPool pool)
         {
             throw new NotImplementedException();
-        }        
+        }
 
         /// <summary>
         /// Description: DMI displays in ATB STM mode, Level NTC

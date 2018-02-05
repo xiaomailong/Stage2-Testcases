@@ -55,10 +55,14 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press the 'Start' button",
+                "The acknowledgement for Staff Responsible symbol (MO10) is displayed in sub-area C1");
             /*
             Test Step 1
             Action: Press the 'Start' button
@@ -80,6 +84,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 2
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Use the test script file 15_2_3_a.xml to send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 2
             Action: Use the test script file 15_2_3_a.xml to send EVC-8 with,
@@ -106,6 +112,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 3
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Perform the following procedure,",
+                "DMI displays in SB mode, level 1");
             /*
             Test Step 3
             Action: Perform the following procedure,
@@ -142,6 +150,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 4
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Use the test script file 15_2_3_b.xml to send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 4
             Action: Use the test script file 15_2_3_b.xml to send EVC-8 with,
@@ -167,6 +177,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 5
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "(Continue from step 4) Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 5
             Action: (Continue from step 4) Send EVC-8 with,
@@ -192,6 +204,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 6
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "(Continue from step 5) Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 6
             Action: (Continue from step 5) Send EVC-8 with,
@@ -217,6 +231,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 7
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "(Continue from step 6)Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 7
             Action: (Continue from step 6)Send EVC-8 with,
@@ -242,6 +258,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 8
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "(Continue from step 7) Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 8
             Action: (Continue from step 7) Send EVC-8 with,
@@ -267,6 +285,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 9
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "(Continue from step 8) Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 9
             Action: (Continue from step 8) Send EVC-8 with,
@@ -292,6 +312,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 10
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "(Continue from step 9) Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 10
             Action: (Continue from step 9) Send EVC-8 with,
@@ -317,6 +339,8 @@ namespace Testcase.DMITestCases
 
             #region Test step 11
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "(Continue from step 10)Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 11
             Action: (Continue from step 10)Send EVC-8 with,
@@ -342,6 +366,8 @@ namespace Testcase.DMITestCases
 
             #region Test step 12
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "(Continue from step 11)Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 12
             Action: (Continue from step 11)Send EVC-8 with,
@@ -367,6 +393,8 @@ namespace Testcase.DMITestCases
 
             #region Test step 13
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "(Continue from step 12)Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 13
             Action: (Continue from step 12)Send EVC-8 with,
@@ -392,6 +420,8 @@ namespace Testcase.DMITestCases
 
             #region Test step 14
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "(Continue from step 13)Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 14
             Action: (Continue from step 13)Send EVC-8 with,
@@ -417,6 +447,8 @@ namespace Testcase.DMITestCases
 
             #region Test step 15
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "(Continue from step 14)Send EVC-8 with,",
+                "Verify the following information,");
             /*
             Test Step 15
             Action: (Continue from step 14)Send EVC-8 with,
@@ -441,6 +473,8 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test step 16
+
+            MakeTestStepHeader(16, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 16

@@ -36,19 +36,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Spec’ button",
+                "Verify the following information;(1)   Verify DMI still displays Default window until Special window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 1
             Action: Press ‘Spec’ button
@@ -63,6 +58,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_2_5_a.xml to disable and enable button of the special menu via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result",
+                "Verify the following information;DMI in the entry state of ‘ST05’(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is displayed in area G.10 seconds laterDMI in the exit state of ‘ST05’(4)   The hourglass symbol ST05 is removed.(5)   The state of all buttons is restored according to the last status before script is sent.(6)  The enabled Close button NA11 is displayed in area G");
             /*
             Test Step 2
             Action: Use the test script file 10_2_5_a.xml to disable and enable button of the special menu via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716Note: Stopwatch is required for accuracy of test result
@@ -71,6 +69,9 @@ namespace Testcase.DMITestCases
             */
             XML_10_5_a();
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘Spec’ button Press ‘SR speed/distance’ button",
+                "Verify the following information;(1)   Verify DMI still displays Special window until SR speed/distance window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 3
             Action: Perform the following procedure;Press ‘Spec’ button Press ‘SR speed/distance’ button
@@ -95,6 +96,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Repeat action step 2 with SR speed/distance window",
+                "See the expectation in step 2 and also verify the following information;DMI in the entry state of ‘ST05’(1)   All Input Field are deselected.10 seconds laterDMI in the exit state of ‘ST05’(2)  The input field is stated as follows:The first input field is in the ‘Selected’ state.The all others are in the ‘Not selected’ state");
             /*
             Test Step 4
             Action: Repeat action step 2 with SR speed/distance window
@@ -124,6 +127,9 @@ namespace Testcase.DMITestCases
                                 "5. The first Input Field is selected" + Environment.NewLine +
                                 "6. All other Input Fields are not selected");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (SR speed/distance window) Press ‘close’ button (Special window)",
+                "DMI displays default window");
             /*
             Test Step 5
             Action: Perform the following procedure;Press ‘close’ button (SR speed/distance window) Press ‘close’ button (Special window)
@@ -135,6 +141,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays default window.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Repeat action step 2 with default window",
+                "Verify the following information;(1)   The Main, Override, Data view, Spec and Setting buttons are always enabled");
             /*
             Test Step 6
             Action: Repeat action step 2 with default window
@@ -159,6 +167,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Main, Override, Data view, Spec and Setting buttons are always enabled.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Drive the train forward passing BG1", "");
+
             /*
             Test Step 7
             Action: Drive the train forward passing BG1
@@ -167,6 +177,8 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             //????? More required?
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Stop the train and press the ‘Spec’ button",
+                "DMI displays Special window with enabled Adhesion button");
             /*
             Test Step 8
             Action: Stop the train and press the ‘Spec’ button
@@ -183,6 +195,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. DMI displays the Special window with the Adhesion button enabled.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Press the ‘Adhesion’ button",
+                "Verify the following information;(1)   Verify DMI still displays Special window until Adhesion window is displayed.(2)   Verify the close button is always enabled");
             /*
             Test Step 9
             Action: Press the ‘Adhesion’ button
@@ -196,6 +210,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Repeat action step 2 with Adhesion window",
+                "See the expectation in step 2 and also verify the following information;DMI in the entry state of ‘ST05’(1)   The Input Field is deselected.10 seconds laterDMI in the exit state of ‘ST05’(2)   The input field is in the ‘Selected’ state");
             /*
             Test Step 10
             Action: Repeat action step 2 with Adhesion window
@@ -223,6 +239,8 @@ namespace Testcase.DMITestCases
                                 "3. All buttons are enabled." + Environment.NewLine +
                                 "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected");
+
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 11

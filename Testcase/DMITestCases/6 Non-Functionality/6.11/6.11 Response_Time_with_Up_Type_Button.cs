@@ -38,29 +38,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_11_Response_Time_with_Up_Type_Button : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to Level 1 in SR mode",
+                "ETCS OB enters SR mode in Level 1");
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -89,6 +75,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Verify response time of DMI on actuation of ‘Train data’ button in ‘Main’ window",
+                "Use log file to verify that response time of DMI on actuation of the ‘Train data’ buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:");
             /*
             Test Step 2
             Action: Verify response time of DMI on actuation of ‘Train data’ button in ‘Main’ window
@@ -104,29 +93,38 @@ namespace Testcase.DMITestCases
                                 "Actuation of the ‘Train data’ buttons is not exceeded 130 ms when DMI sends EVC-101");
 
             DmiActions.Display_Fixed_Train_Data_Window(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter FLU and confirm value in each input field." + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Enter FLU and confirm value in each input field." +
+                                             Environment.NewLine +
+                                             "2. Press OK on THIS window.");
 
             DmiActions.Enable_Fixed_Train_Data_Validation(this, Variables.Fixed_Trainset_Captions.FLU);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Yes’ button." + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press ‘Yes’ button." + Environment.NewLine +
+                                             "2. Press OK on THIS window.");
 
             DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
             DmiActions.Display_Train_data_validation_Window(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press ‘Yes’ button." + Environment.NewLine +
-                                "2. Confirmed the selected value by pressing the input field." + Environment.NewLine +
-                                "3. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press ‘Yes’ button." + Environment.NewLine +
+                                             "2. Confirmed the selected value by pressing the input field." +
+                                             Environment.NewLine +
+                                             "3. Press OK on THIS window.");
 
             DmiActions.Display_TRN_Window(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                "1. Enter and confirm Train Running Number." + Environment.NewLine +
-                                "2. Press OK on THIS window.");
+            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Enter and confirm Train Running Number." + Environment.NewLine +
+                                             "2. Press OK on THIS window.");
 
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Verify response time of DMI on actuation of ‘Start’ button in ‘Main’ window",
+                "Use log file to verify that response time of DMI on actuation of the ‘Start’ buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:");
             /*
             Test Step 3
             Action: Verify response time of DMI on actuation of ‘Start’ button in ‘Main’ window
@@ -142,14 +140,18 @@ namespace Testcase.DMITestCases
                                 "Actuation of the ‘Start’ buttons is not exceeded 130 ms when DMI sends EVC-101");
 
             DmiActions.Send_SR_Mode_Ack(this);
-            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK: " + Environment.NewLine + Environment.NewLine +
-                                "1. Press DMI Sub Area C1.");
+            DmiActions.ShowInstruction(this, @"Perform the following action after pressing OK: " + Environment.NewLine +
+                                             Environment.NewLine +
+                                             "1. Press DMI Sub Area C1.");
             DmiExpectedResults.SR_Mode_Ack_pressed_and_hold(this);
 
             DmiActions.Send_SR_Mode(this);
             DmiActions.Send_L1(this);
             DmiActions.Finished_SoM_Default_Window(this);
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Press ‘Data view’ button in sub area F3 and then press ‘Close’ button in ‘Data view’ window",
+                "Use log file to verify that response time of DMI on actuation of the ‘Data view’ buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:");
             /*
             Test Step 4
             Action: Press ‘Data view’ button in sub area F3 and then press ‘Close’ button in ‘Data view’ window
@@ -167,6 +169,9 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press Close Button.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Press SE04 symbol in sub area F5. Then press ‘System Version’ button in ‘Settings’ window",
+                "Use log file to verify that response time of DMI on actuation of the  buttons is not exceeded 130 ms when DMI sends EVC-101 with verification below:");
             /*
             Test Step 5
             Action: Press SE04 symbol in sub area F5. Then press ‘System Version’ button in ‘Settings’ window
@@ -182,7 +187,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Verify the following:" + Environment.NewLine + Environment.NewLine +
                                 "Actuation of the ‘System Version’ buttons is not exceeded 130 ms when DMI sends EVC-101");
-           
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 6
             Action: End of test

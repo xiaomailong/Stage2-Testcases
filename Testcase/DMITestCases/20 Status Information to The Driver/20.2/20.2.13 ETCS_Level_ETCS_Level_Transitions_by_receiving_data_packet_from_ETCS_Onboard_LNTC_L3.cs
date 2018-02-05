@@ -47,10 +47,15 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following action:         Power on the systemActivate the cabin Perform start of mission to ATB STM mode , Level NTC",
+                "DMI displays in ATB STM mode, Level NTC");
             /*
             Test Step 1
             Action: Perform the following action:         Power on the systemActivate the cabin Perform start of mission to ATB STM mode , Level NTC
@@ -71,6 +76,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SN mode, Level NTC");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Drive the train forward with 30 km/h and then pass BG0 with level transition announcement",
+                "DMI displays LE14 symbol in sub-area C1");
             /*
             Test Step 2
             Action: Drive the train forward with 30 km/h and then pass BG0 with level transition announcement
@@ -87,6 +95,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level transition symbol, LE14, in sub-area C1.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Pass the level transition acknowledgement area",
+                "DMI displays LE15 symbol in sub-area C1");
             /*
             Test Step 3
             Action: Pass the level transition acknowledgement area
@@ -101,6 +111,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Level transition symbol, LE15, in sub-area C1.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press acknowledgement LE15 symbol in sub-area C1",
+                "Verify the following information,(1)    DMI replaces LE15 symbol with LE14 in sub-area C1.(2)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 9 (Ack level 3)");
             /*
             Test Step 4
             Action: Press acknowledgement LE15 symbol in sub-area C1
@@ -118,6 +130,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol LE15 and displays the Level transition symbol, LE14, in sub-area C1.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Pass BG1 at level transition border",
+                "Mode changes to FS mode, Level 3");
             /*
             Test Step 5
             Action: Pass BG1 at level transition border
@@ -130,6 +144,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 3.");
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 6

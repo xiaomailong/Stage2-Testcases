@@ -26,15 +26,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_20_3_Drivers_Action_Special_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.Special window is opened.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -48,8 +39,12 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press the ‘SR speed/distance’ button",
+                "Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 13 (Change SR Rules)(2)   The Special window is closed, DMI displays SR speed/distance window");
             /*
             Test Step 1
             Action: Press the ‘SR speed/distance’ button
@@ -72,6 +67,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Special window and displays the SR speed/distance window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press the ‘Close’ button",
+                "Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 12 (Exit Change SR Rules)(2)   The SR speed/distance window is closed, DMI displays Special window");
             /*
             Test Step 2
             Action: Press the ‘Close’ button
@@ -91,6 +88,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the SR speed/distance window and displays the Special window.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Drive the train forward pass BG1.Then, stop the train and press the ‘Special’ button",
+                "DMI displays Special window with enabled Adhesion button");
             /*
             Test Step 3
             Action: Drive the train forward pass BG1.Then, stop the train and press the ‘Special’ button
@@ -103,6 +103,9 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.DMI_displays_Special_window_with_enabled_Adhesion_button(this);
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Press the ‘Adhesion’ button.Then, select and confirm ‘Slippery rail’ button",
+                "Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 11 (Set adhesion coefficient to ‘slippery rail’)(2)   The Adhesion window is closed, DMI displays Special window");
             /*
             Test Step 4
             Action: Press the ‘Adhesion’ button.Then, select and confirm ‘Slippery rail’ button
@@ -119,6 +122,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Adhesion window and displays the Special window.");
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Press the ‘Adhesion’ button.Then, select and confirm ‘Non slippery rail’ button",
+                "DMI displays Special window.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 10 (Restore adhesion coefficient to ‘non-slippery rail’)(2)   The Adhesion window is closed, DMI displays Special window");
             /*
             Test Step 5
             Action: Press the ‘Adhesion’ button.Then, select and confirm ‘Non slippery rail’ button
@@ -135,6 +141,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Adhesion window and displays the Special window.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure,Press and hold ‘Train integrity’ button at least 2 seconds.Release the pressed button",
+                "Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 38 (Start procedure ‘Train Integrity’)(2)   The Special window is closed, DMI displays Default window");
             /*
             Test Step 6
             Action: Perform the following procedure,Press and hold ‘Train integrity’ button at least 2 seconds.Release the pressed button
@@ -149,6 +158,8 @@ namespace Testcase.DMITestCases
             // DMI_RS_ETCS says two packets for the separate button events need to be sent...
             Wait_Realtime(300);
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartProcedureTrainIntegrity;
+
+            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 7

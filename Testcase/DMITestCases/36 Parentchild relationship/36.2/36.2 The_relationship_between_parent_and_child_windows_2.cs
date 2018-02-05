@@ -27,10 +27,6 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-
-            // Test System is power on.Cabin is activated.Driver ID is entered and Brake test is performed.Level 2 is selected and confirmed.
-            DmiActions.Start_ATP();
-
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
 
@@ -43,19 +39,15 @@ namespace Testcase.DMITestCases
             DmiActions.Finished_SoM_Default_Window(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays  in SB mode, Level 2
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure,Press and hold ‘Radio Network ID’ button at least 2 second.Release the pressed area",
+                "DMI displays Radio Network ID window");
             /*
             Test Step 1
             Action: Perform the following procedure,Press and hold ‘Radio Network ID’ button at least 2 second.Release the pressed area
@@ -74,6 +66,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Radio Network ID window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays RBC contact window");
             /*
             Test Step 2
             Action: Press ‘Close’ button
@@ -89,6 +82,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press ‘Enter RBC data’ button", "DMI displays RBC data window");
             /*
             Test Step 3
             Action: Press ‘Enter RBC data’ button
@@ -102,6 +96,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC data window.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays RBC contact window");
             /*
             Test Step 4
             Action: Press ‘Close’ button
@@ -113,6 +108,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Enter RBC data’ button.Enter and confirm the following value,RBC ID = 6996969RBC Phone number = 0031840880100",
+                "DMI displays Main window");
             /*
             Test Step 5
             Action: Perform the following procedure,Press ‘Enter RBC data’ button.Enter and confirm the following value,RBC ID = 6996969RBC Phone number = 0031840880100
@@ -134,6 +132,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Level’ button.Select and confirm Level 2",
+                "DMI displays RBC contact window");
             /*
             Test Step 6
             Action: Perform the following procedure,Press ‘Level’ button.Select and confirm Level 2
@@ -164,6 +165,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Main window");
             /*
             Test Step 7
             Action: Press ‘Close’ button
@@ -175,6 +177,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Close’ button.Press ‘Data view’ button",
+                "DMI displays Data view window");
             /*
             Test Step 8
             Action: Perform the following procedure,Press ‘Close’ button.Press ‘Data view’ button
@@ -191,6 +196,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Default window");
             /*
             Test Step 9
             Action: Press ‘Close’ button
@@ -202,6 +208,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
+
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 10

@@ -31,26 +31,23 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SB(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI is rebooted.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 2_5_1_a.xml to send EVC-0 with,MMI_M_START_REQ = 10 (DMI reboot, Indication error)",
+                "Verify the following information,(1)   DMI is rebooted");
             /*
             Test Step 1
             Action: Use the test script file 2_5_1_a.xml to send EVC-0 with,MMI_M_START_REQ = 10 (DMI reboot, Indication error)
             Expected Result: Verify the following information,(1)   DMI is rebooted
             Test Step Comment: (1) MMI_gen 11439;
             */
+            DmiActions.ShowInstruction(this, @"Press ‘Ok’ to reboot DMI");
 
             #region Send_XML_5_5_1_10_DMI_Test_Specification
 
@@ -63,6 +60,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is rebooted.");
 
+
+            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
             /*
             Test Step 2
             Action: End of test

@@ -42,10 +42,15 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             XML_15_3_1_8();
             // All the following steps are carried out in XML_15_3_1_8.cs
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 15_3_1_8.xml to send EVC-8 with,MMI_Q_TEXT = 584MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 584’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 1
             Action: Use the test script file 15_3_1_8.xml to send EVC-8 with,MMI_Q_TEXT = 584MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -54,6 +59,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 585MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 585’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 2
             Action: Send EVC-8 with,MMI_Q_TEXT = 585MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -62,6 +70,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 586MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 586’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 3
             Action: Send EVC-8 with,MMI_Q_TEXT = 586MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -70,6 +81,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 587MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 587’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 4
             Action: Send EVC-8 with,MMI_Q_TEXT = 587MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -78,6 +92,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 588MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 588’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 5
             Action: Send EVC-8 with,MMI_Q_TEXT = 588MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -86,6 +103,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 589MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 17MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 589’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 6
             Action: Send EVC-8 with,MMI_Q_TEXT = 589MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 17MMI_I_TEXT = 1
@@ -94,6 +114,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 590MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 590’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 7
             Action: Send EVC-8 with,MMI_Q_TEXT = 590MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -102,6 +125,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 591MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 591’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 8
             Action: Send EVC-8 with,MMI_Q_TEXT = 591MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -110,6 +136,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 592MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 592’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 9
             Action: Send EVC-8 with,MMI_Q_TEXT = 592MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -118,6 +147,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 593MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 593’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 10
             Action: Send EVC-8 with,MMI_Q_TEXT = 593MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -126,6 +158,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 594MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 594’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 11
             Action: Send EVC-8 with,MMI_Q_TEXT = 594MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -134,6 +169,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 595MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 595’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 12
             Action: Send EVC-8 with,MMI_Q_TEXT = 595MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -142,6 +180,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 596MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 596’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 13
             Action: Send EVC-8 with,MMI_Q_TEXT = 596MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -150,6 +191,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 597MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 597’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 14
             Action: Send EVC-8 with,MMI_Q_TEXT = 597MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -158,6 +202,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 598MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 598’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 15
             Action: Send EVC-8 with,MMI_Q_TEXT = 598MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -166,6 +213,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 599MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 599’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 16
             Action: Send EVC-8 with,MMI_Q_TEXT = 599MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -174,6 +224,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 600MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 600’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 17
             Action: Send EVC-8 with,MMI_Q_TEXT = 600MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -182,6 +235,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 601MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 601’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 18
             Action: Send EVC-8 with,MMI_Q_TEXT = 601MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -190,6 +246,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(19, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 602MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 602’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 19
             Action: Send EVC-8 with,MMI_Q_TEXT = 602MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -198,6 +257,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(20, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 603MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 603’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 20
             Action: Send EVC-8 with,MMI_Q_TEXT = 603MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -206,6 +268,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(21, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 604MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 604’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 21
             Action: Send EVC-8 with,MMI_Q_TEXT = 604MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -214,6 +279,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(22, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 605MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 605’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 22
             Action: Send EVC-8 with,MMI_Q_TEXT = 605MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -222,6 +290,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(23, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 607MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 607’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 23
             Action: Send EVC-8 with,MMI_Q_TEXT = 607MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -230,6 +301,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(24, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 608MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 608’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 24
             Action: Send EVC-8 with,MMI_Q_TEXT = 608MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -238,6 +312,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(25, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 616MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 616’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 25
             Action: Send EVC-8 with,MMI_Q_TEXT = 616MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -246,6 +323,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(26, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 617MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 617’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 26
             Action: Send EVC-8 with,MMI_Q_TEXT = 617MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -254,6 +334,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(27, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 618MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 618’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 27
             Action: Send EVC-8 with,MMI_Q_TEXT = 618MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -262,6 +345,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(28, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 619MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text message ‘’Fixed Text Message 619’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 28
             Action: Send EVC-8 with,MMI_Q_TEXT = 619MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -270,6 +356,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(29, UniqueIdentifier++,
+                "Send EVC-8 with,MMI_Q_TEXT = 620MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1",
+                "Verifies the display information as follows,The text msage ‘’Fixed Text Message 620’ is display in the area E5.No flashing frame display.There is no sound played");
             /*
             Test Step 29
             Action: Send EVC-8 with,MMI_Q_TEXT = 620MMI_Q_TEXT_CRITERIA = 1MMI_Q_TEXT_CLASS = 1MMI_I_TEXT = 1
@@ -277,6 +366,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 148;         
             */
 
+
+            MakeTestStepHeader(30, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 30

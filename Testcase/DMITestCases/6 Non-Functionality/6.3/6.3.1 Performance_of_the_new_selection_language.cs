@@ -38,20 +38,15 @@ namespace Testcase.DMITestCases
                                              "The aim of this test is to check that the text on sub windows and buttons are presented in Engilsh language. ");
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on DMI and start up the system",
+                "‘Driver’s desk not active’ is displayed on DMI");
             /*
             Test Step 1
             Action: Power on DMI and start up the system
@@ -61,6 +56,7 @@ namespace Testcase.DMITestCases
             //DmiActions.Start_ATP();
             //WaitForVerification("Is ‘Driver’s desk not active’  displayed on DMI?");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Activate cabin A", "The Driver ID window is displayed.");
             /*
             Test Step 2
             Action: Activate cabin A
@@ -76,6 +72,8 @@ namespace Testcase.DMITestCases
             //DmiActions.Send_SB_Mode(this);
             //DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Perform the following procedure,",
+                "The Main window is presented with the text message ‘Brake test in progress’ is displayed as English language");
             /*
             Test Step 3
             Action: Perform the following procedure,
@@ -106,6 +104,8 @@ namespace Testcase.DMITestCases
 
             //DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Enter all sub windows on DMI",
+                "The text on sub windows and buttons are presented in Engilsh language");
             /*
             Test Step 4
             Action: Enter all sub windows on DMI
@@ -118,6 +118,8 @@ namespace Testcase.DMITestCases
             //DmiActions.ShowInstruction(this,"Enter all sub windows on DMI -> This need to be done with the real EVC" + Environment.NewLine + Environment.NewLine +
             //                           "The aim of this test is to check that the text on sub windows and buttons are presented in Engilsh language. ");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Complete start of mission",
+                "The text on winsows, sub windows buttons and text messages are presented in Engilsh language");
             /*
             Test Step 5
             Action: Complete start of mission
@@ -166,6 +168,8 @@ namespace Testcase.DMITestCases
             //DmiActions.Finished_SoM_Default_Window(this);
 
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Power off DMI for 10 min and then power on again",
+                "The default window represents the objects in the language selected by the driver");
             /*
             Test Step 6
             Action: Power off DMI for 10 min and then power on again
@@ -174,6 +178,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Selects ‘Settings’ button  SE 04",
+                "(1) The Settings window is displayed with all button with text and symbolsSE01  SE02 SE 03 (2) The button with text is displayed 2 lines of text and truncated when the text exceeds the button’s width");
             /*
             Test Step 7
             Action: Selects ‘Settings’ button  SE 04
@@ -182,6 +188,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press ‘Language’ icon menu",
+                "The selection language window is displayed with all stored language data for driver to make a new selection");
             /*
             Test Step 8
             Action: Press ‘Language’ icon menu
@@ -190,6 +198,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Change to all stored languges and retest with step 3 to 7",
+                "Verify the following information,(1)   The text on window, sub windows,  buttons and text messages are presented according to selected language.(2)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 29 (Selection of Language)");
             /*
             Test Step 9
             Action: Change to all stored languges and retest with step 3 to 7
@@ -197,6 +207,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 61 (partly:selected languages);MMI_gen 11892 (partly:selected languages);MMI_gen 4368 (partly:selected language);(2) MMI_gen 11470 (partly: Bit # 29);
             */
 
+
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 10

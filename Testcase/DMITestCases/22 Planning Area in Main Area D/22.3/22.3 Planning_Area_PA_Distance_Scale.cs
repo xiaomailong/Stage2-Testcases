@@ -22,29 +22,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_3_Planning_Area_PA_Distance_Scale : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)SPEED_UNIT_TYPE = 0 (Metric, km/h)System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Then, perform SoM in SR mode, Level 1",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 1
             Action: Activate cabin A. Then, perform SoM in SR mode, Level 1
@@ -55,6 +41,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.SR_Mode_displayed(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward passing BG1",
+                "DMI changes from SR mode to FS mode");
             /*
             Test Step 2
             Action: Drive the train forward passing BG1
@@ -64,6 +52,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.FS_mode_displayed(this);
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Stop the train",
+                "The Planning Area is displayed in area DVerify the following points,The scale numbers are displayed in Medium-Grey colour and vertically centred on the distance scale lines.It is presented aligned to the right of Sub-Area D1.There are 9 distance scale lines displayed crossing sub-areas D2 – D7.From the bottom to top each line of distance scale are displayed with following colour,1st, 6th and 9th distance scale line are Medium-GreyOther distance scale line are Dark-greyVerify that the DMI displays the distance ranges from 0 to 4000 meter as default value.The following PA distance scale number are displayed in meter (see comment).0500100020004000At the following PA distance scale number, there are distance scale line displayed.0100200300400500100020004000Note: Need a self calculation for distance scale number in some location which not have distance scale number specify.The position of PASP is consisted with train position refer to PA distance scale number and distance scale line");
             /*
             Test Step 3
             Action: Stop the train
@@ -114,6 +104,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "9. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Scale up’ button",
+                "Verify that the DMI displays the distance ranges from 0 to 2000.The scale numbers are displayed in Medium-Grey colour and vertically centred on the distance scale lines.It is presented aligned to the right of Sub-Area D1.There are 9 distance scale lines displayed crossing sub-areas D2 – D7.From the bottom to top each line of distance scale are displayed with following colour,1st, 6th and 9th distance scale line are Medium-GreyOther distance scale line are Dark-greyThe following PA distance scale number are displayed in meter (see comment).025050010002000At the following PA distance scale number, there are distance scale line displayed.05010015020025050010002000Note: Need a self calculation for distance scale number in some location which not have distance scale number specify.The position of PASP is consisted with train position refer to PA distance scale number and distance scale line");
             /*
             Test Step 4
             Action: Press ‘Scale up’ button
@@ -139,6 +131,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Scale up’ button",
+                "Verify that the DMI displays the distance ranges from 0 to 1000.The scale numbers are displayed in Medium-Grey colour and vertically centred on the distance scale lines.It is presented aligned to the right of Sub-Area D1.There are 9 distance scale lines displayed crossing sub-areas D2 – D7.From the bottom to top each line of distance scale are displayed with following colour,1st, 6th and 9th distance scale line are Medium-GreyOther distance scale line are Dark-greyThe following PA distance scale number are displayed in meter (see comment).01252505001000At the following PA distance scale number, there are distance scale line displayed.02550751001252505001000Note: Need a self calculation for distance scale number in some location which not have distance scale number specify.The position of PASP is consisted with train position refer to PA distance scale number and distance scale line");
             /*
             Test Step 5
             Action: Press ‘Scale up’ button
@@ -164,6 +158,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press ‘Scale down’ button three times",
+                "Verify that the DMI displays the distance ranges from 0 to 8000.The scale numbers are displayed in Medium-Grey colour and vertically centred on the distance scale lines.It is presented aligned to the right of Sub-Area D1.There are 9 distance scale lines displayed crossing sub-areas D2 – D7.From the bottom to top each line of distance scale are displayed with following colour,1st, 6th and 9th distance scale line are Medium-GreyOther distance scale line are Dark-greyThe following PA distance scale number are displayed in meter (see comment).01000200040008000At the following PA distance scale number, there are distance scale line displayed.02004006008001000200040008000Note: Need a self calculation for distance scale number in some location which not have distance scale number specify.The position of PASP is consisted with train position refer to PA distance scale number and distance scale line.Use the log file to confirm that the movement authority is calculated from the received packet information EVC-7 and EVC-4 as follows,(EVC-4) MMI_O_MRSP[0] - (EVC-7) OBU_TR_O_TRAINThe result of calculation is displayed in Meter unit.Example: The observation point of the movement authority is 407. [EVC-4.MMI_O_MRSP[0]= 1000080700] – [EVC-7.OBU_TR_O_TRAIN = 1000040036] = 40664 (406.64 m),");
             /*
             Test Step 6
             Action: Press ‘Scale down’ button three times
@@ -188,6 +184,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press ‘Scale down’ button",
+                "Verify that the DMI displays the distance ranges from 0 to 16000.The scale numbers are displayed in Medium-Grey colour and vertically centred on the distance scale lines.It is presented aligned to the right of Sub-Area D1.There are 9 distance scale lines displayed crossing sub-areas D2 – D7.From the bottom to top each line of distance scale are displayed with following colour,1st, 6th and 9th distance scale line are Medium-GreyOther distance scale line are Dark-greyThe following PA distance scale number are displayed in meter (see comment).020004000800016000At the following PA distance scale number, there are distance scale line displayed.04008001200160020004000800016000Note: Need a self calculation for distance scale number in some location which not have distance scale number specify.The position of PASP is consisted with train position refer to PA distance scale number and distance scale line");
             /*
             Test Step 7
             Action: Press ‘Scale down’ button
@@ -213,6 +211,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press ‘Scale down’ button",
+                "Verify that the DMI displays the distance ranges from 0 to 32000.The scale numbers are displayed in Medium-Grey colour and vertically centred on the distance scale lines.It is presented aligned to the right of Sub-Area D1.There are 9 distance scale lines displayed crossing sub-areas D2 – D7.From the bottom to top each line of distance scale are displayed with following colour,1st, 6th and 9th distance scale line are Medium-GreyOther distance scale line are Dark-greyThe following PA distance scale number are displayed in meter (see comment).0400080001600032000At the following PA distance scale number, there are distance scale line displayed.0800160024003200400080001600032000Note: Need a self calculation for distance scale number in some location which not have distance scale number specify.The position of PASP is consisted with train position refer to PA distance scale number and distance scale line");
             /*
             Test Step 8
             Action: Press ‘Scale down’ button
@@ -237,6 +237,8 @@ namespace Testcase.DMITestCases
                                 "7. Distance scale lines are displayed at PA distance scale values 0, 800, 1600, 2400, 3200, 4000, 8000, 16000, 32000." +
                                 Environment.NewLine +
                                 "8. The position of PASP is consistent with the train position, PA distance scale value and distance scale lines.");
+            MakeTestStepHeader(9, UniqueIdentifier++, "Simulate the communication loss between ETCS Onboard and DMI",
+                "DMI displays the message “ATP Down Alarm” with sound.The PA is removed from DMI");
             /*
             Test Step 9
             Action: Simulate the communication loss between ETCS Onboard and DMI
@@ -250,6 +252,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Alarm’ sound is played." + Environment.NewLine +
                                 "3. DMI stops displaying the Planning Area.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI",
+                "Verify that PA distance scale is not changed the selected range of PA distance scale, still display range as [0..32000]");
             /*
             Test Step 10
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -263,6 +267,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Planning Area" + Environment.NewLine +
                                 "2. The PA distance scale has the range 0-32000m");
 
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Power OFF system.Then, power ON system and repeat action step 1-3",
+                "Verify that the DMI displays the distance ranges from 0 to 4000 meter as default value");
             /*
             Test Step 11
             Action: Power OFF system.Then, power ON system and repeat action step 1-3
@@ -284,6 +291,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the distance range 0 to 4000 m by default.");
+
+            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 12

@@ -32,19 +32,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SB(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "At the Special window, press ‘SR speed/distance’’ button",
+                "DMI displays SR speed/distance window");
             /*
             Test Step 1
             Action: At the Special window, press ‘SR speed/distance’’ button
@@ -58,6 +53,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the SR/speed distance window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_4_1_3_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716",
+                "The hourglass symbol ST05 is displayed at window title area");
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_3_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -67,6 +65,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The hourglass symbol ST05 is displayed in the window title area.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 10_4_1_3_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215",
+                "Verify the followin information,(1)     The SR speed/distance window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 3
             Action: Use the test script file 10_4_1_3_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215
@@ -78,8 +79,18 @@ namespace Testcase.DMITestCases
 
             EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
             {
-                new Variables.DataElement {Identifier = 0, EchoText = "0", QDataCheck = (ushort) Variables.Q_DATA_CHECK.All_checks_passed},
-                new Variables.DataElement {Identifier = 1, EchoText = "0", QDataCheck = (ushort) Variables.Q_DATA_CHECK.All_checks_passed}
+                new Variables.DataElement
+                {
+                    Identifier = 0,
+                    EchoText = "0",
+                    QDataCheck = (ushort) Variables.Q_DATA_CHECK.All_checks_passed
+                },
+                new Variables.DataElement
+                {
+                    Identifier = 1,
+                    EchoText = "0",
+                    QDataCheck = (ushort) Variables.Q_DATA_CHECK.All_checks_passed
+                }
             };
 
             EVC11_MMICurrentSRRules.Send();
@@ -97,6 +108,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The SR speed/distance window is closed and DMI displays the System info window.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,At System info window, press ‘close’ button.Open Adhesion windowRepeat action step 2-3",
+                "Verify the followin information,(1)     The Adhesion window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 4
             Action: Perform the following procedure,At System info window, press ‘close’ button.Open Adhesion windowRepeat action step 2-3
@@ -117,6 +131,8 @@ namespace Testcase.DMITestCases
             XML_10_4_1_3_a_b(msgType.typeb);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Adhesion window is closed and DMI displays the System info window.");
+
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 5

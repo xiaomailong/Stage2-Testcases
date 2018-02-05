@@ -1735,7 +1735,6 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
         }
 
-        
 
         /// <summary>
         /// Description: Drive the train forward pass BG1.Then stop the train

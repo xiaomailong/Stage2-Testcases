@@ -34,7 +34,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened.
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
@@ -46,20 +45,16 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // ETCS-DMI is in the ‘Stand-By’ mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Open the ‘Wheel diameter’ data entry window from the Settings menu",
+                "The ‘Wheel diameter’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window");
             /*
             Test Step 1
             Action: Open the ‘Wheel diameter’ data entry window from the Settings menu
@@ -80,6 +75,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the Settings window and displays the Wheel diameter window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Enter the invalid value with the numeric keypad and, also press the data input fields (Accept) in the same screen, for the following fields below, Wheel diameter 1: 500 Wheel diameter 2: 500 Accuracy: 1",
+                "Use the log file to verify that DMI receives packet EVC-40 with variable:(1) MMI_M_SDU_WHEEL_SIZE_1 = 65530 (Technical Range Check failed)(2) MMI_M_SDU_WHEEL_SIZE_2 = 65530 (Technical Range Check failed)(3) MMI_M_WHEEL_SIZE_ERR = 250 (Technical Range Check failed)(4) MMI_Q_MD_DATASET = 0 (Wheel diameter)Input Field (All)(5) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(6) The ‘Enter’ button associated to the data area of the input field displays the previously entered value:Wheel diameter 1: 500Wheel diameter 2: 500Accuracy: 1Echo Texts (All)(7) The data parts of the echo texts display “++++”.(8) The data parts of the echo texts are coloured red.");
             /*
             Test Step 2
             Action: Enter the invalid value with the numeric keypad and, also press the data input fields (Accept) in the same screen, for the following fields below, Wheel diameter 1: 500 Wheel diameter 2: 500 Accuracy: 1
@@ -117,6 +115,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The data parts of the echo texts display ‘++++’ in red.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Enter the valid value with the numeric keypad and, also press the data input fields (Accept) in the same screen, for the following fields below, Wheel diameter 1: 1000 Wheel diameter 2: 1500 Accuracy: 5Then, Observe the echo texts on the left hand side. Press the ‘Yes’ button.",
+                "The eventually displayed data value in the data area of the input field is replaced by the entered value (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’):Wheel diameter 1: 1000Wheel diameter 2: 1500Accuracy: 5");
             /*
             Test Step 3
             Action: Enter the valid value with the numeric keypad and, also press the data input fields (Accept) in the same screen, for the following fields below, Wheel diameter 1: 1000 Wheel diameter 2: 1500 Accuracy: 5Then, Observe the echo texts on the left hand side. Press the ‘Yes’ button.
@@ -139,6 +140,9 @@ namespace Testcase.DMITestCases
                                 "1. The data input fields display the values ‘1000’, ‘1000’ and ‘5’ in black on a grey background.");
 
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "This step is to complete the process of ‘Wheel diameter’: Press the ‘Yes’ button on the ‘Wheel diameter’ window. Validate the data in the data validation window.",
+                "1. After pressing the ‘Yes’ button, the data validation window (‘Validate Wheel diameter’) appears instead of the ‘Wheel diameter’ data entry window. The data part of echo text displays in white:Wheel diameter 1: 1000Wheel diameter 2: 1500Accuracy: 52. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Wheel diameter’ window with enabled ‘Wheel diameter’ button.");
             /*
             Test Step 4
             Action: This step is to complete the process of ‘Wheel diameter’: Press the ‘Yes’ button on the ‘Wheel diameter’ window. Validate the data in the data validation window.
@@ -164,6 +168,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the Validate Wheel Diameter window and displays the Wheel Diameter data entry window");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_6_3_2_3_2_a.xml EVC-40 MMI_Q_MD_DATASET = 0MMI_M_SDU_WHEEL_SIZE_1 =65530MMI_M_SDU_WHEEL_SIZE_2 = 65530MMI_M_WHEEL_SIZE_ERR = 250",
+                "Input Field (All)(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Texts (All)(2) The data part of the echo text displays “++++”.");
             /*
             Test Step 5
             Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_6_3_2_3_2_a.xml EVC-40 MMI_Q_MD_DATASET = 0MMI_M_SDU_WHEEL_SIZE_1 =65530MMI_M_SDU_WHEEL_SIZE_2 = 65530MMI_M_WHEEL_SIZE_ERR = 250
@@ -189,6 +196,8 @@ namespace Testcase.DMITestCases
                                 "1. The data part of the data input fields display the values entered previously." +
                                 Environment.NewLine +
                                 "2. The echo text values display ‘++++’");
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 6
             Action: End of test

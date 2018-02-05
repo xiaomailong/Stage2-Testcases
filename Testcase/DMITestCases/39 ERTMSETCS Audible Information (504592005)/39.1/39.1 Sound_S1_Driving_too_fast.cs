@@ -34,28 +34,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_36_1_Sound_S1_Driving_too_fast : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to Level 1 in SR mode",
+                "ETCS OB enters SR mode in Level 1");
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -67,6 +53,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with constant speed at 40 km/h",
+                "The train can drive forward and all brakes are not applied");
             /*
             Test Step 2
             Action: Drive the train forward with constant speed at 40 km/h
@@ -77,6 +65,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Train runs pass BG1",
+                "ETCS OB enters FS mode in Level 1            ");
             /*
             Test Step 3
             Action: Train runs pass BG1
@@ -87,6 +77,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Accelerate the train with max acceleration (100% throttle) above permitted speed. ",
+                "(1) Sound ‘S1_toofast.wav’ is played once when over-speed status in CSM supervision is active  ");
             /*
             Test Step 4
             Action: Accelerate the train with max acceleration (100% throttle) above permitted speed. 
@@ -105,6 +98,7 @@ namespace Testcase.DMITestCases
                                 "3. The CSG is coloured Dark-grey up to the speed hook" + Environment.NewLine +
                                 "4. The speed pointer displays 70 km/h and is coloured orange.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Stop the train.", "The train is at standstill.");
             /*
             Test Step 5
             Action: Stop the train.
@@ -116,6 +110,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer displays 0 km/h.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Use test script 36_1_a.xml to send dynamic information via EVC-1 with: MMI_M_WARNING = 8 MMI_V_TRAIN = 2880 MMI_V_PERMITTED = 2777 MMI_V_INTERVENTION = 2929",
+                "Sound ‘S1_toofast.wav’ is played once.");
             /*
             Test Step 6
             Action: Use test script 36_1_a.xml to send dynamic information via EVC-1 with: MMI_M_WARNING = 8 MMI_V_TRAIN = 2880 MMI_V_PERMITTED = 2777 MMI_V_INTERVENTION = 2929
@@ -126,6 +123,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI plays the ‘S1_toofast.wav’ sound once.");
+            MakeTestStepHeader(7, UniqueIdentifier++, "Deactivate cabin A and power off the system.",
+                "System is power off and DMI displays ‘No contact with ATP’.");
             /*
              * 
             Test Step 7
@@ -139,6 +138,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘No contact with ATP’");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Power on the system and perform SoM to Level 1 in SR mode.",
+                "ETCS OB enters SR mode in Level 1.");
             /*
             Test Step 8
             Action: Power on the system and perform SoM to Level 1 in SR mode.
@@ -152,6 +153,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Drive the train forward with speed at 40 km/h.",
+                "The train can drive forward and all brakes are not applied.");
             /*
             Test Step 9
             Action: Drive the train forward with speed at 40 km/h.
@@ -162,6 +165,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Emergency brake’ symbol, ST01, in sub-area C9.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Train runs pass BG1.", "ETCS OB enters FS mode in Level 1.");
             /*
             Test Step 10
             Action: Train runs pass BG1.
@@ -172,6 +176,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1");
 
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Accelerate the train with max acceleration (100% throttle) until speed at 95 km/h.Wait until train enters PIM supervision and then increase train speed above permitted speed.",
+                "(1) Sound ‘S1_toofast.wav’ is played once when over-speed status in PIM supervision is active as figure below.(2) Use log file to verify that train speed is exceeded permitted supervision limit in PIM when DMI receives EVC-1 with variable [MMI_M_WARNING = 10].");
             /*
             Test Step 11
             Action: Accelerate the train with max acceleration (100% throttle) until speed at 95 km/h.Wait until train enters PIM supervision and then increase train speed above permitted speed.
@@ -193,6 +200,7 @@ namespace Testcase.DMITestCases
                                 "3. The CSG is coloured white up to the speed hook" + Environment.NewLine +
                                 "4. The speed pointer displays 102 km/h and is coloured orange.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Stop the train.", "The train is at standstill.");
             /*
             Test Step 12
             Action: Stop the train.
@@ -203,6 +211,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer displays 0 km/h.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Use test script 36_1_b.xml to send dynamic information via EVC-1 with: MMI_M_WARNING = 10 MMI_V_TRAIN = 2806 MMI_V_PERMITTED = 2687 MMI_V_INTERVENTION = 2882",
+                "Sound ‘S1_toofast.wav’ is played once.");
             /*
             Test Step 13
             Action: Use test script 36_1_b.xml to send dynamic information via EVC-1 with: MMI_M_WARNING = 10 MMI_V_TRAIN = 2806 MMI_V_PERMITTED = 2687 MMI_V_INTERVENTION = 2882
@@ -213,6 +224,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI plays the ‘S1_toofast.wav’ sound once.");
+
+            MakeTestStepHeader(14, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 14

@@ -34,21 +34,15 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward", "DMI changes from SR mode to FS mode");
             /*
             Test Step 1
             Action: Drive the train forward
@@ -60,6 +54,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.FS_mode_displayed(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with speed = 140 km/h",
+                "The speed pointer is displayed with speed =140.Verify the following information,Use the log file to confirm that DMI received packet EVC-1 with the following variables,MMI_M_SLIP = 0MMI_M_SLIDE = 0");
             /*
             Test Step 2
             Action: Drive the train forward with speed = 140 km/h
@@ -71,6 +67,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 140 km/h.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 12_12_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0",
+                "Verify the following information,The Slip indication is displayed and shown as arrow pointing clockwise.The colour of Slip indication is displayed as same as speed digital colour. The Slip indication is displayed on speed hub of the speed pointer. DMI plays sound Sinfo once");
             /*
             Test Step 3
             Action: Use the test script file 12_12_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0
@@ -88,6 +87,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. DMI plays sound Sinfo once.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 12_12_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE =1",
+                "Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub");
             /*
             Test Step 4
             Action: Use the test script file 12_12_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE =1
@@ -99,6 +101,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Slip / Slide’ indication is not displayed on the speed hub.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Use the test script file 12_12_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =1",
+                "Verify the following information,The ‘Slip’ indication is displayed on the speed hub as a clockwise arrow");
             /*
             Test Step 5
             Action: Use the test script file 12_12_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =1
@@ -110,6 +115,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Slip’ indication is displayed on the speed hub as a clockwise arrow.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Stop the train", "Train is stand still");
             /*
             Test Step 6
             Action: Stop the train
@@ -119,6 +125,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed is indicated as 0");
+
+            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 7

@@ -21,26 +21,10 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_1_1_ETCS_Mode_Symbols : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // - Test system is powered on- Cabin is active
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SF mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
@@ -233,6 +217,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 10
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Force the train into SH mode by the steps below:",
+                "Verify the following information,");
             /*
             Test Step 10
             Action: Force the train into SH mode by the steps below:
@@ -260,6 +246,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 11
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Force the train into NL mode by the steps below:",
+                "Verify the following information,");
             /*
             Test Step 11
             Action: Force the train into NL mode by the steps below:
@@ -304,6 +292,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 12
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Force the train into SF mode by the steps below:",
+                "Verify the following information,");
             /*
             Test Step 12
             Action: Force the train into SF mode by the steps below:

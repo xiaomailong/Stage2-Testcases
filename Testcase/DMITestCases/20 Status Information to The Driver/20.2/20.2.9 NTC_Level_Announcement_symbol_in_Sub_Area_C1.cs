@@ -44,10 +44,15 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Peform following action:Power ON the systemActivate cabin A  perform Start of Mission to ATB STM until train running number entry",
+                "DMI displays main window");
             /*
             Test Step 1
             Action: Peform following action:Power ON the systemActivate cabin A  perform Start of Mission to ATB STM until train running number entry
@@ -68,6 +73,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press the ‘Start’ button",
+                "The acknowledgement for NTC symbol (MO20) is displayed in area C1");
             /*
             Test Step 2
             Action: Press the ‘Start’ button
@@ -87,6 +94,9 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
 
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 15_2_9_a.xml to send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 0",
+                "Verify the following information,The displays in sub-area C1 is not changed, DMI still displays MO20 symbol");
             /*
             Test Step 3
             Action: Use the test script file 15_2_9_a.xml to send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 1MMI_N_TEXT = 1MMI_X_TEXT = 0
@@ -108,6 +118,7 @@ namespace Testcase.DMITestCases
 
             #endregion
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Confirm NTC", "DMI displays in ATB STM mode, Level NTC");
             /*
             Test Step 4
             Action: Confirm NTC
@@ -119,6 +130,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following: + " + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SN mode, Level NTC");
+
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 5

@@ -32,19 +32,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in OS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1",
+                "DMI displays in FS mode, Level 1");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1
@@ -55,6 +50,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward pass BG2.Then, stop the train",
+                "DMI displays in OS mode, Level 1");
             /*
             Test Step 2
             Action: Drive the train forward pass BG2.Then, stop the train
@@ -70,6 +67,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook appear.Then simulate loss-communication between ETCS onboard and DMI (1 second).Note: Stopwatch is required for accuracy of test result",
+                "DMI displays the  message “ATP Down Alarm” with sound alarm.Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 3
             Action: Press a sensitivity area (areas A1-A4 or B) to make a Basic Speed Hook appear.Then simulate loss-communication between ETCS onboard and DMI (1 second).Note: Stopwatch is required for accuracy of test result
@@ -90,6 +90,9 @@ namespace Testcase.DMITestCases
                                 "4. DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "5. DMI does not display the Digital release speed.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Re-establish communication between ETCS onboard and DMI (in 1 second).Note: Stopwatch is required for accuracy of test result",
+                "DMI displays in OS mode, Level 1.Verify the following information,The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 4
             Action: Re-establish communication between ETCS onboard and DMI (in 1 second).Note: Stopwatch is required for accuracy of test result
@@ -106,6 +109,8 @@ namespace Testcase.DMITestCases
                                 "4. DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "5. DMI does not display the Digital release speed.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press the speedometer once",
+                "Verify the following information,The objects below are displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 5
             Action: Press the speedometer once
@@ -120,6 +125,8 @@ namespace Testcase.DMITestCases
                                 "3. DMI displays the Medium-grey basic speed hook." + Environment.NewLine +
                                 "4. DMI displays the Digital distance to target." + Environment.NewLine +
                                 "5. DMI displays the Digital release speed.");
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 6

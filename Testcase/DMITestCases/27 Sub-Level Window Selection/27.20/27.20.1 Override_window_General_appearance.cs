@@ -39,20 +39,16 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Close’ button.Press ‘Override’ button",
+                "Verify the following information,The ‘EOA’ button is in disable state.Use the log file to confirm that DMI receives EVC-30 with with bit No.9 of variable MMI_Q_REQUEST_ENABLE_64 = 0 (Disable Start Override EOA)");
             /*
             Test Step 1
             Action: Perform the following procedure,Press ‘Close’ button.Press ‘Override’ button
@@ -82,6 +78,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘EOA’ button is disabled");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Close’ button.Press ‘Main’ button", "DMI displays Main window");
             /*
             Test Step 2
             Action: Perform the following procedure,Press ‘Close’ button.Press ‘Main’ button
@@ -98,6 +96,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press ‘Start’ button.Then, acknowledge ‘SR’ mode",
+                "DMI displays Default window in SR mode, Level 1.Use the log file to confirm that DMI receives EVC-30 with with bit No.9 of variable MMI_Q_REQUEST_ENABLE_64 = 1 (Enable Start Override EOA)");
             /*
             Test Step 3
             Action: Press ‘Start’ button.Then, acknowledge ‘SR’ mode
@@ -128,6 +128,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window in SR mode, Level 1.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Override’ button",
+                "DMI displays Override windowVerify the following points,Menu windowThe Override window is displayed in main area D/F/G. The window title is ‘Override’.The following objects are displayed in Main window, Enabled Close button (NA11).Window TitleButton 1 with label ‘EOA’Note: See the position of buttons in picture below,The ‘EOA’ button is in enable state.LayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified areas are drawn as one area.General property of windowThe Override window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI.All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window.Sub-level window covers partially depending on the size of the Sub-Level window. There is no other window is displayed and activated at the same time");
             /*
             Test Step 4
             Action: Press ‘Override’ button
@@ -154,6 +156,8 @@ namespace Testcase.DMITestCases
                                 "9. The Default window does not cover the current window." + Environment.NewLine +
                                 "10. A sub-level window can partially cover another window, depending on its size.Another window cannot be displayed and activated at the same time.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press and hold ‘EOA’ button",
+                "DMI displays the Override window.The sound ‘Click’ is played once.The ‘EOA’ button is shown as the ‘Pressed’ state, the border of button is removed. Use the log file to confirm that DMI sends EVC-101 with variable MMI_M_REQUEST = 7 (Start Override EOA (Pass stop) and MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 5
             Action: Press and hold ‘EOA’ button
@@ -169,6 +173,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Slide out of ‘EOA’ button",
+                "The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 6
             Action: Slide out of ‘EOA’ button
@@ -181,6 +187,8 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘EOA’ button is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Slide back into ‘EOA’ button",
+                "The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 7
             Action: Slide back into ‘EOA’ button
@@ -193,6 +201,8 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘EOA’ button is displayed pressed, without a border." + Environment.NewLine +
                                 "2.No sound is played.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Release ‘EOA’ button",
+                "Verify the following information,DMI displays the ‘Default’ window.Use the log file to confirm that DMI sends EVC-101 with variable MMI_M_REQUEST = 7 (Start Override EOA (Pass stop)) and MMI_T_BUTTONEVENT is not blank.Use the log file to confirm that DMI receives EVC-2 with variable MMI_M_OVERRIDE_EOA = 1 (function is active)  and DMI displays symbol ‘Override’ MO03 in sub-area C7");
             /*
             Test Step 8
             Action: Release ‘EOA’ button
@@ -209,6 +219,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Default window" + Environment.NewLine +
                                 "2. DMI displays the ‘Override’ symbol (MO03) in sub-area C7.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Perform the following procedure, Press ‘Main’ buttonPress and hold ‘Shunting’ button up to 2 secondRelease ‘Shunting’ button",
+                "DMI displays Default window in SH mode, Level 1");
             /*
             Test Step 9
             Action: Perform the following procedure, Press ‘Main’ buttonPress and hold ‘Shunting’ button up to 2 secondRelease ‘Shunting’ button
@@ -232,6 +245,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window in SH mode, Level 1.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Main’ buttonPress and hold ‘Exit Shunting’ button up to 2 secondRelease ‘Exit Shunting’ buttonEnter Driver IDClose the ‘Main’ window",
+                "DMI displays Default window in SB mode, Level 1");
             /*
             Test Step 10
             Action: Perform the following procedure,Press ‘Main’ buttonPress and hold ‘Exit Shunting’ button up to 2 secondRelease ‘Exit Shunting’ buttonEnter Driver IDClose the ‘Main’ window
@@ -248,6 +264,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window in SB mode, Level 1.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Press ‘Override’ button",
+                "Verify the following information,The ‘EOA’ button is in disable state.Use the log file to confirm that DMI receives EVC-30 with with bit No.9 of variable MMI_Q_REQUEST_ENABLE_64 = 0 (Disable Start Override EOA)");
             /*
             Test Step 11
             Action: Press ‘Override’ button
@@ -264,6 +282,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Override window with the ‘EOA’ button displayed disabled.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify the following information,(1)   DMI displays Default window");
             /*
             Test Step 12
             Action: Press ‘Close’ button
@@ -274,6 +294,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
+
+            MakeTestStepHeader(13, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 13

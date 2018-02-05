@@ -27,26 +27,19 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Settings’ button", "DMI displays Settings window");
             /*
             Test Step 1
             Action: Press ‘Settings’ button
@@ -58,6 +51,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Brightness’ button", "DMI displays Brightness window.");
             /*
             Test Step 2
             Action: Press ‘Brightness’ button
@@ -71,6 +65,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press and hold ‘-‘ button in order to decreasing brightness to defined minimum level",
+                "The adjust luminance is used by DMI.");
             /*
             Test Step 3
             Action: Press and hold ‘-‘ button in order to decreasing brightness to defined minimum level
@@ -90,6 +87,7 @@ namespace Testcase.DMITestCases
                 Environment.NewLine +
                 "Verify that the minimum level of bightness is defined as 10.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 4
             Action: Press ‘Close’ button
@@ -100,6 +98,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Driver ID window");
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -110,6 +109,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Perform the following procedure,",
+                "DMI displays Brightness window.");
             /*
             Test Step 6
             Action: Perform the following procedure,
@@ -124,6 +125,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
             WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Press and hold ‘+‘ button in order to increasing brightness to defined maximum level",
+                "The value of an input field is increasing while button is pressed and the brightness is brighter than before pressing button.");
             /*
             Test Step 7
             Action: Press and hold ‘+‘ button in order to increasing brightness to defined maximum level
@@ -139,6 +143,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "- The maximum level of bightness is defined as 100.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Perform the following procedure,",
+                "The brightness is increased from the minimum and the value of and input field is 55 (median value between 10 an 100)");
             /*
             Test Step 8
             Action: Perform the following procedure,
@@ -161,6 +167,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
             WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Repeat action Step 7.Then, confirm entered data by pressing an input fied",
+                "DMI displays Settings window with luminance increased refer to entered data");
             /*
             Test Step 9
             Action: Repeat action Step 7.Then, confirm entered data by pressing an input fied
@@ -175,6 +184,8 @@ namespace Testcase.DMITestCases
             WaitForVerification(
                 @"Confirm that DMI displays Settings window with luminance increased refer to entered data");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Brightness’ button.",
+                "The ‘Brightness’ window is come up with maximum value of the luminance range");
             /*
             Test Step 10
             Action: Press ‘Brightness’ button.
@@ -193,6 +204,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
 
             WaitForVerification(@"Is the Brightness set at its maximum value?");
+
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 11

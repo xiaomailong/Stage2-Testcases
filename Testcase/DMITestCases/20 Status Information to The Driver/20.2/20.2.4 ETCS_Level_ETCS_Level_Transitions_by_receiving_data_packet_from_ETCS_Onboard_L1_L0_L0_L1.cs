@@ -44,9 +44,12 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Acivate cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Acivate cabin A
@@ -61,6 +64,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM in SR mode, Level 1",
+                "DMI displays in SR mode Level 1");
             /*
             Test Step 2
             Action: Perform SoM in SR mode, Level 1
@@ -71,6 +76,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SR_Mode_displayed(this);
             DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C1", false);
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward pass BG1",
+                "DMI displays symbol LE07 in area C1 with flashing yellow frame.");
             /*
             Test Step 3
             Action: Drive the train forward pass BG1
@@ -102,6 +109,8 @@ namespace Testcase.DMITestCases
             // Samson: I don't think that the DMI should send back EVC-152 at this point. 
             // It should wait the driver action ie. it should be sent at next step.
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press an area C1 for acknowledgement",
+                "Verify the following information,");
             /*
             Test Step 4
             Action: Press an area C1 for acknowledgement
@@ -132,6 +141,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_symbol_displayed(this, "Announcement for Level 0", "LE06", "C1", false);
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Drive the train pass a distance to level transition",
+                "Level transition from Level 1 to Level 0.");
             /*
             Test Step 5
             Action: Drive the train pass a distance to level transition
@@ -143,6 +154,8 @@ namespace Testcase.DMITestCases
             DmiActions.Send_L0(this);
             DmiExpectedResults.Driver_symbol_displayed(this, "Level 0", "LE01", "C8", false);
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Drive the train forward pass BG3",
+                "Verify the following information,The symbol LE10 is display in area C1.");
             /*
             Test Step 6
             Action: Drive the train forward pass BG3
@@ -167,6 +180,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_symbol_displayed(this, "Announcement for Level 1", "LE10", "C1", false);
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Drive the train pass a distance to level transition",
+                "Level transition from Level 0 to Level 1.");
             /*
             Test Step 7
             Action: Drive the train pass a distance to level transition
@@ -178,6 +193,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.Send_L1(this);
             DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", false);
+
+            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 8

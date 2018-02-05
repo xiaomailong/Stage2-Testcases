@@ -25,28 +25,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_5_2_PA_Gradient_Profile_Display_of_many_PA_Gradient_Profile : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.The default configuration of PA distance scale is set as [0…4000]
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Then  perform SoM to SR mode, level 1",
+                "DMI displays SR mode, level 1");
             /*
             Test Step 1
             Action: Activate cabin A. Then  perform SoM to SR mode, level 1
@@ -58,6 +44,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward pass BG1.Then, stop the train",
+                "DMI changes from SR to FS mode. The Planning Area is displayed in area D.The order of PA Gradient Profile segments are displayed correctly refer to received EVC-4 packet (see figure in comment),0-250m: Gradient Profile value = 2 (grey colour)251-500m: Gradient Profile value = 5 (grey colour)501-1000m: Gradient Profile value = 20 (grey colour)1001-2000m: Gradient Profile value = 16 (dark-grey colour)2001-4000m: Gradient Profile value = 10 (grey colour)The lower boundary of each PA Gradient are placed in sub-area D5 at following position,0 m250 m500 m1000 m2000 mUse the log file to confirm that DMI receives EVC-4 packet with the following variables,MMI_G_GRADIENT_CURR = 2MMI_N_GRADIENT = 4MMI_G_GRADIENT[0] = 5MMI_G_GRADIENT[1] = 20MMI_G_GRADIENT[2] = -16MMI_G_GRADIENT[3] = 10Note: The first index of parameter is the topmost position in packet EVC-4");
             /*
             Test Step 2
             Action: Drive the train forward pass BG1.Then, stop the train
@@ -105,6 +93,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "13. The gradients are on a scale from 0 to 4000m.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press <Scale Down> button 3 times",
+                "The distance scale is changed to 0-32000 m.The PA Gradient Profiles are displayed within MA (0-8000m), the upper boundary of PA Gradient profile is displayed at the same position of target zero speed (8000m)");
             /*
             Test Step 3
             Action: Press <Scale Down> button 3 times
@@ -116,6 +106,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance scale changes to 0-32000m.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press <Scale Up> button 3 times.Then, drive the train forward",
+                "The PA Gradient Profile segment bars are continuously updated.At the lowest PA Gradient Profile, the lower boundary is stuck to the zero line.The PA Gradient Profile bar is become shorter accordingly");
             /*
             Test Step 4
             Action: Press <Scale Up> button 3 times.Then, drive the train forward
@@ -132,6 +124,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The PA Gradient Profile bar shortens accordingly");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Continue to drive the train forward",
+                "The PA Gradient Profile segment bars are continuously updated.Verify the following information,PA Gradient Profile Segment is moved down to the Zero Line then its change to the next value");
             /*
             Test Step 5
             Action: Continue to drive the train forward
@@ -145,6 +139,8 @@ namespace Testcase.DMITestCases
                                 "2. The upper border of the lowest PA Gradient Profile reaches the zero line." +
                                 Environment.NewLine +
                                 "3. The lower border of the next (second) PA Gradient Profile bar reaches the zero line.");
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 6

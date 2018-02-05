@@ -20,28 +20,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_25_2_Start_up_error_with_MMI_M_START_REQ_2_3_and_4 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Power on test system and start OTE.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // Cabin is inactive and DMI displays the latest message “Incompatible SW versions” in area E5.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use 25_2_a.xml script to simulate the [MMI_START_ATP(EVC-0).MMI_M_START_REQ] = 2",
+                "(1)    DMI displays the message “MMI type not supported” instead of “starting up” in area E5");
             /*
             Test Step 1
             Action: Use 25_2_a.xml script to simulate the [MMI_START_ATP(EVC-0).MMI_M_START_REQ] = 2
@@ -60,6 +47,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays removes the message ‘Starting up’ and displays ‘MMI type not supported’ in area E5.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Restart OTE and ATP again until the message “starting up” is displayed in area E5", "");
+
             /*
             Test Step 2
             Action: Restart OTE and ATP again until the message “starting up” is displayed in area E5
@@ -74,6 +64,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Starting up’ in area E5.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use 25_2_b.xml script to simulate the [MMI_START_ATP(EVC-0).MMI_M_START_REQ] = 3",
+                "(1)    DMI displays the message “Incompatible IF versions” instead of “starting up” in area E5");
             /*
             Test Step 3
             Action: Use 25_2_b.xml script to simulate the [MMI_START_ATP(EVC-0).MMI_M_START_REQ] = 3
@@ -85,6 +78,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays removes the message ‘Starting up’ and displays ‘Incompatible IF versions’ in area E5.");
 
+
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Restart OTE and ATP again until the message “starting up” is displayed in area E5", "");
             /*
             Test Step 4
             Action: Restart OTE and ATP again until the message “starting up” is displayed in area E5
@@ -99,6 +95,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Starting up’ in area E5.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Use 25_2_c.xml script to simulate the [MMI_START_ATP(EVC-0).MMI_M_START_REQ] = 4",
+                "(1)    DMI displays the message “Incompatible SW versions” instead of “starting up” in area E5");
             /*
             Test Step 5
             Action: Use 25_2_c.xml script to simulate the [MMI_START_ATP(EVC-0).MMI_M_START_REQ] = 4
@@ -109,6 +108,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays removes the message ‘Starting up’ and displays ‘Incompatible SW versions’ in area E5.");
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 6

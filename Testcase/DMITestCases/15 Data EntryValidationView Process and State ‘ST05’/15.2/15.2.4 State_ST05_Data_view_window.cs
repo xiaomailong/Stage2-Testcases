@@ -31,19 +31,15 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SB(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure;Press ‘close’ button (Data view window) Press ‘Data View’ button",
+                "Verify the following information;(1)   Verify DMI still displays Default window until Data View window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 1
             Action: Perform the following procedure;Press ‘close’ button (Data view window) Press ‘Data View’ button
@@ -74,6 +70,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. ‘Close’ button is always enabled.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_2_4_a.xml to disable and enable button via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716",
+                "Verify the following information;DMI in the entry state of ‘ST05’(1)   The hourglass symbol ST05 is displayed.(2)   Verify all buttons and the close button is disable.(3)   The disabled Close button NA12 is display in area G.10 seconds laterDMI in the exit state of ‘ST05’(4)   The hourglass symbol ST05 is removed.(5)   The state of all buttons is restored according to the last status before script is sent.(6)   The enabled Close button NA11 is display in area G");
             /*
             Test Step 2
             Action: Use the test script file 10_2_4_a.xml to disable and enable button via EVC-8 withPacket 1 (Entry state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716Packet 2 (Exit state of ‘ST05’)MMI_Q_TEXT_CRITERIA = 4MMI_Q_TEXT = 716
@@ -82,6 +81,8 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             XML_10_2_4_a();
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

@@ -21,30 +21,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_1_3_Planning_Area : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_SR_MODE = 1 (PA will show in SR mode)HIDE_PA_OS_MODE = 1 (PA will show in OS mode)HIDE_PA_LEVEL_1 = 1 (Show PA in the Level 1)HIDE_PA_FUNCTION = 0 (‘ON’ state)System is power ON.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays OS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires a DMI configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -57,6 +42,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the Driver ID window displayed.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Driver performs SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1.Verify that the Planning Area is displayed in area D.The Hide PA button is displayed on the planning area with ‘Scale up’ and ‘Scale Down’ buttons");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -70,6 +57,9 @@ namespace Testcase.DMITestCases
                                 "2. The Hide PA button is displyed in sub area D14." + Environment.NewLine +
                                 "3. The scale Up & Down buttons are displayed in sub area B.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Drive the train forward passing BG1.Then, press an acknowledgement of OS mode symbol in area C1",
+                "DMI displays in OS mode, level 1.Verify that the Planning Area is displayed the planning information in area D.The Hide PA button is displayed on the planning area with ‘Scale up’ and ‘Scale Down’ buttons");
             /*
             Test Step 3
             Action: Drive the train forward passing BG1.Then, press an acknowledgement of OS mode symbol in area C1
@@ -84,6 +74,8 @@ namespace Testcase.DMITestCases
                                 "2. On Sight Mode is displayed." + Environment.NewLine +
                                 "3. The Hide PA button is displayed in sub area D14." + Environment.NewLine +
                                 "4. The scale Up & Down buttons are displayed in sub area B.");
+
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 4

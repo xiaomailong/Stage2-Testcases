@@ -51,9 +51,13 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with speed = 40 km/h pass BG1",
+                "The speed pointer display in orange colour");
             /*
             Test Step 1
             Action: Drive the train forward with speed = 40 km/h pass BG1
@@ -69,7 +73,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Send_FS_Mode(this);
             DmiExpectedResults.FS_mode_displayed(this);
-            
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. Is the speed pointer displaying 40 km/h?" + Environment.NewLine +
@@ -87,6 +91,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 41 km/h?" + Environment.NewLine +
                                 "2. Is the speed pointer orange?");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Increase the train speed to 45 km/h.",
+                "MI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 1250 (45 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION");
             /*
             Test Step 3
             Action: Increase the train speed to 45 km/h.
@@ -101,6 +107,8 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer displaying 45 km/h?" + Environment.NewLine +
                                 "2. Is the speed pointer orange?");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Increase the train speed to 46 km/h",
+                "The train speed is force to decrease because of emergency brake is applied by ETCS onboard.");
             /*
             Test Step 4
             Action: Increase the train speed to 46 km/h
@@ -129,6 +137,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Continue to drive the train forward with speed = 30 km/h.",
+                "Verify the following information,");
             /*
             Test Step 5
             Action: Continue to drive the train forward with speed = 30 km/h.
@@ -154,6 +164,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
+            MakeTestStepHeader(6, UniqueIdentifier++, "Continue the drive the train forward with speed = 30 km/h",
+                "The permitted speed is decreased continuously, ");
             /*
             Test Step 6
             Action: Continue the drive the train forward with speed = 30 km/h
@@ -201,6 +213,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Drive the train with speed = 5 km/h",
+                "Verify the following information,");
             /*
             Test Step 7
             Action: Drive the train with speed = 5 km/h
@@ -218,6 +232,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer yellow?");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Drive the train with speed = 6 km/h",
+                "Verify the following information,");
             /*
             Test Step 8
             Action: Drive the train with speed = 6 km/h
@@ -237,6 +253,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer yellow?");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Stop the train.Then, use the test script file 12_3_2_a.xml to send the following packets,",
+                "DMI displays in FS mode, level 1.");
             /*
             Test Step 9
             Action: Stop the train.Then, use the test script file 12_3_2_a.xml to send the following packets,
@@ -259,6 +278,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode" + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
 
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Use the test script file 12_3_2_b.xml to send the following packets,",
+                "DMI displays in FS mode, level 1.");
             /*
             Test Step 10
             Action: Use the test script file 12_3_2_b.xml to send the following packets,
@@ -280,6 +302,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer white?");
 
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Use the test script file 12_3_2_c.xml to send the following packets,",
+                "DMI displays in FS mode, level 1.");
             /*
             Test Step 11
             Action: Use the test script file 12_3_2_c.xml to send the following packets,
@@ -300,6 +325,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Use the test script file 12_3_2_d.xml to send the following packets,",
+                "DMI displays in FS mode, level 1.");
             /*
             Test Step 12
             Action: Use the test script file 12_3_2_d.xml to send the following packets,
@@ -323,6 +351,9 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer orange?" +
                                 "2. Is sound S2 played while the warning status is active?");
 
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Use the test script file 12_3_2_e.xml to send the following packets,",
+                "DMI displays in FS mode, level 1.");
             /*
             Test Step 13
             Action: Use the test script file 12_3_2_e.xml to send the following packets,
@@ -344,6 +375,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Use the test script file 12_3_2_f.xml to send the following packets,",
+                "DMI displays in FS mode, level 1.");
             /*
             Test Step 14
             Action: Use the test script file 12_3_2_f.xml to send the following packets,
@@ -365,6 +399,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, level 1." + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
+
+            MakeTestStepHeader(15, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 15

@@ -34,19 +34,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, Level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press the ‘EOA’ button",
+                "DMI displays Default window in SR mode, Level 1 with MO03 symbol in sub-area C7.Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 7 (Start Override EOA (Pass stop))(2)   The Override window is closed, DMI displays Default window.(3)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)    MMI_M_DRIVER_ACTION = 14 (Override selected)");
             /*
             Test Step 1
             Action: Press the ‘EOA’ button
@@ -72,6 +67,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI displays symbol MO03 in sub-area C7.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press the ‘Data view’ button",
+                "Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 21 (Start Train Data Veiw)(2)   The Default window is closed, DMI displays Data view window");
             /*
             Test Step 2
             Action: Press the ‘Data view’ button
@@ -99,6 +96,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Default window and displays the Data view window.");
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

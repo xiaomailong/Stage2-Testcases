@@ -33,19 +33,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Close’ button",
+                "DMI displays Default window.Verify the following information,ETSC-DMI using EVC-1 with variable MMI_V_TRAIN = 0 as the train is standstill.The number of the current train speed is displayed in Sub-Area B1.Number 0 is black.The single integer number is aligned right");
             /*
             Test Step 1
             Action: Press ‘Close’ button
@@ -63,6 +58,8 @@ namespace Testcase.DMITestCases
                                 "3. The speed number (0) is in black." + Environment.NewLine +
                                 "3. The single integer number is aligned right.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with speed 50km/h",
+                "Verify the following information,The number of the current train speed is coloured white when the speed pointer is red.The 2-digit interger number is aligned right without leading zeroes.The numbers of the current train speed on Speed hub are displayed by no leading with zero");
             /*
             Test Step 2
             Action: Drive the train forward with speed 50km/h
@@ -81,6 +78,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The current train speed numbers on the Speed hub are displayed with no leading zeroes.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train and decelerate to 40 km/hr through BG1",
+                "Verify the following information,The number of the current train speed is coloured black.The 2-digit interger number is aligned right without leading zeroes");
             /*
             Test Step 3
             Action: Drive the train and decelerate to 40 km/hr through BG1
@@ -95,6 +94,8 @@ namespace Testcase.DMITestCases
                                 "1. The current train speed number is in black." + Environment.NewLine +
                                 "2. The 2-digit speed number is aligned right without leading zeroes.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Drive the train and accelarate the speed to 111 km/hr",
+                "Verify the following information,Three of number 1 (“111”) are displayed in Sub-Area B1, as number 1 has the smallest width");
             /*
             Test Step 4
             Action: Drive the train and accelarate the speed to 111 km/hr
@@ -106,6 +107,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Three '1' digits are displayed in Sub-Area B1");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Drive the train and accelarate the speed to 108 km/hr",
+                "Verify the following information,Even though the numbers are changed (from “111” to “108), the positions of digits remain the same");
             /*
             Test Step 5
             Action: Drive the train and accelarate the speed to 108 km/hr
@@ -117,6 +120,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The digits '108' are displayed in Sub-Area B1 in the same position as the previous speed");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Stop the train", "DMI displays the train speed as zero km/h");
             /*
             Test Step 6
             Action: Stop the train
@@ -127,6 +131,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 0.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Use the test script file 12_4_a.xml to send EVC-1 with,MMI_V_TRAIN = 389 cm/s (14.004 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result",
+                "The speed digital is changed to 15 km/h");
             /*
             Test Step 7
             Action: Use the test script file 12_4_a.xml to send EVC-1 with,MMI_V_TRAIN = 389 cm/s (14.004 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
@@ -149,6 +156,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 15 km/h");
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Use the test script file 12_4_b.xml to send EVC-1 with,MMI_V_TRAIN = 500 cm/s (18.000 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result",
+                "The speed digital is 18 km/h");
             /*
             Test Step 8
             Action: Use the test script file 12_4_b.xml to send EVC-1 with,MMI_V_TRAIN = 500 cm/s (18.000 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
@@ -170,6 +180,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 18 km/h");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Use the test script file 12_4_c.xml to send EVC-1 with,MMI_V_TRAIN = 625 cm/s (22.500 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result",
+                "The speed digital is 23 km/h");
             /*
             Test Step 9
             Action: Use the test script file 12_4_c.xml to send EVC-1 with,MMI_V_TRAIN = 625 cm/s (22.500 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result
@@ -190,6 +203,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed displayed is 23 km/h");
+
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 10

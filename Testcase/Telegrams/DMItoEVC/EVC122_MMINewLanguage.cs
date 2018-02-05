@@ -27,16 +27,14 @@ namespace Testcase.Telegrams.DMItoEVC
 
         public static void CheckNidLanguage()
         {
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1NewLanguage.Value = 0x00;
-
             // Check if telegram received flag has been set.
             if (_pool.SITR.SMDStat.CCUO.ETCS1NewLanguage.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
                 // If check passes
                 if (_pool.SITR.CCUO.ETCS1NewLanguage.MmiNidLanguage.Value.Equals(MMI_NID_LANGUAGE))
                 {
-                    _pool.TraceReport(string.Format("{0} - [MMI_NID_LANGUAGE] = {1}", baseString, MMI_NID_LANGUAGE) + Environment.NewLine +
+                    _pool.TraceReport(string.Format("{0} - [MMI_NID_LANGUAGE] = {1}", baseString, MMI_NID_LANGUAGE) +
+                                      Environment.NewLine +
                                       "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-122
@@ -53,6 +51,9 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
             }
+
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1NewLanguage.Value = 0x00;
         }
 
         /// <summary>

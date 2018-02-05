@@ -20,31 +20,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_1_2_Planning_Area : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_LEVEL_1 = 0 (Not show PA in the Level 1)HIDE_PA_OS_MODE = 0 (PA will not show in OS mode)HIDE_PA_FUNCTION = 0 (‘ON’ state)System is power ON.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in OS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             TraceInfo(
                 "This test case requires a DMI configuration change; See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate Cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate Cabin A
@@ -57,6 +42,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the Driver ID window displayed.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Driver performs SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -86,6 +73,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Touch main area D and please confirm:" + Environment.NewLine + Environment.NewLine +
                                 "1. Planning area is NOT displayed.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Drive train forward pass BG2.Then, press an acknowledgement of OS mode symbol in area C1",
+                "DMI change from FS mode to OS mode");
             /*
             Test Step 5
             Action: Drive train forward pass BG2.Then, press an acknowledgement of OS mode symbol in area C1
@@ -97,6 +87,8 @@ namespace Testcase.DMITestCases
             // Change mode to On Sight
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Touch main area D",
+                "Verify that the Planning Area is not displayed on DMI");
             /*
             Test Step 6
             Action: Touch main area D

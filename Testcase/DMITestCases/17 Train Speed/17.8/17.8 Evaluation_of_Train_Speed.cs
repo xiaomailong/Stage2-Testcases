@@ -38,19 +38,14 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Start ATP without cabin activation",
+                "Verify the following information,(1)    Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = -1.(2)   The following objects are not displayed on the DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance Bar");
             /*
             Test Step 1
             Action: Start ATP without cabin activation
@@ -68,6 +63,8 @@ namespace Testcase.DMITestCases
                                 "5. All hooks" + Environment.NewLine +
                                 "6. Target Distance Bar");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Activate cabin A and perform SoM in SR mode, Level 1",
+                "Verify the following information,(1)   Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = 0.(2)    The Speed pointer, Speed digital, CSG, CSG-Extension, all hooks, Target Distance Bar and Target Distance Digital are diplayed and correspond to the  received packet EVC-1");
             /*
             Test Step 2
             Action: Activate cabin A and perform SoM in SR mode, Level 1
@@ -103,6 +100,8 @@ namespace Testcase.DMITestCases
                                 "6. Target Distance Bar" + Environment.NewLine +
                                 "7. Digital Target Distance");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward pass BG1 with speed = 25 km/h",
+                "Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_TRAIN = 694.(2)    The Speed pointer and Speed digital are diplayed consist with received packet EVC-1.(3)   The Speed Pointer and Speed Digital on DMI screen are correspond with the current train speed");
             /*
             Test Step 3
             Action: Drive the train forward pass BG1 with speed = 25 km/h
@@ -115,6 +114,9 @@ namespace Testcase.DMITestCases
                                 "1. The Speed pointer and Speed digital are displayed." + Environment.NewLine +
                                 "2. The Speed Pointer and Digital Speed on DMI screen show speed at 25 km/h.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 12_8_a.xml to send EVC-1 with, MMI_V_TRAIN = -2",
+                "Verify the following information,(1)   The following objects are not display on DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance BarTarget Distance Digital");
             /*
             Test Step 4
             Action: Use the test script file 12_8_a.xml to send EVC-1 with, MMI_V_TRAIN = -2
@@ -132,6 +134,8 @@ namespace Testcase.DMITestCases
                                 "5. Any hooks" + Environment.NewLine +
                                 "6. Target Distance Bar" + Environment.NewLine +
                                 "7. Digital Target Distance");
+
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 5

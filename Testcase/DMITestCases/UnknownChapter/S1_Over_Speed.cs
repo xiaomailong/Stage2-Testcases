@@ -21,29 +21,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class S1_Over_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to Level 1 in SR mode",
+                "ETCS OB enters SR mode in Level 1");
             /*
             Test Step 1
             Action: Perform SoM to Level 1 in SR mode
@@ -55,6 +41,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.ETCS_OB_enters_SR_mode_in_Level_1(this);
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with constant speed at 40 km/h",
+                "The train can drive forward and all brakes are not applied");
             /*
             Test Step 2
             Action: Drive the train forward with constant speed at 40 km/h
@@ -66,6 +54,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_train_can_drive_forward_and_all_brakes_are_not_applied(this);
 
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Train runs pass BG1 and keep train speed at 40 km/h",
+                "ETCS OB enters FS mode in Level 1");
             /*
             Test Step 3
             Action: Train runs pass BG1 and keep train speed at 40 km/h
@@ -75,6 +65,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.ETCS_OB_enters_FS_mode_in_Level_1(this);
 
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Train enters TSM supervision and the permitted speed is gradually reduced until below the current train speed",
+                "Sound ‘S1_toofast.wav’ is played once when over-speed status in TSM supervision is active as figure below.Use log file to verify that train speed is exceeded permitted supervision limit in TSM when DMI receives EVC-1 with variable [MMI_M_WARNING = 9]");
             /*
             Test Step 4
             Action: Train enters TSM supervision and the permitted speed is gradually reduced until below the current train speed
@@ -83,6 +76,7 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Stop the train", "The train is at standstill");
             /*
             Test Step 5
             Action: Stop the train
@@ -94,6 +88,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_train_is_at_standstill(this);
 
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Use test script 21_1_1.xml to send dynamic information via EVC-1 with:-- MMI_M_WARNING = 9- MMI_V_TRAIN = 1107- MMI_V_PERMITTED = 1101- MMI_V_INTERVENTION = 1242",
+                "Sound ‘S1_toofast.wav’ is played once");
             /*
             Test Step 6
             Action: Use test script 21_1_1.xml to send dynamic information via EVC-1 with:-- MMI_M_WARNING = 9- MMI_V_TRAIN = 1107- MMI_V_PERMITTED = 1101- MMI_V_INTERVENTION = 1242
@@ -103,6 +100,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Sound_S1_toofast_wav_is_played_once(this);
 
+
+            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 7

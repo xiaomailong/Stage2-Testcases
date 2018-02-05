@@ -39,17 +39,10 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             TraceInfo("This test case requires a DMI configuration change;" + Environment.NewLine +
@@ -59,6 +52,8 @@ namespace Testcase.DMITestCases
 
             #region Skipped due to repeated test steps of TC_18_4_1_Geographical_Position
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward past BG1",
+                "The symbol ‘DR03’ displays in sub-area G12");
             /*
             Test Step 1
             Action: Drive the train forward past BG1
@@ -68,6 +63,8 @@ namespace Testcase.DMITestCases
 
             // Call generic Check Results Method
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘DR03’ symbol at sub-area G12",
+                "Use the log file to confirm that DMI sent out only one packet of EVC-101 with variable MMI_M_REQUEST = 8 (Geographical position request)");
             /*
             Test Step 2
             Action: Press ‘DR03’ symbol at sub-area G12
@@ -77,6 +74,8 @@ namespace Testcase.DMITestCases
 
             #endregion
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Perform the following procedure:",
+                "DMI displays in SR mode, Level 1");
             /*
             Test Step 3
             Action: Perform the following procedure:
@@ -89,6 +88,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.SR_Mode_displayed(this);
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Drive the train forward pass BG1",
+                "The symbol ‘DR03’ displays in sub-area G12");
             /*
             Test Step 4
             Action: Drive the train forward pass BG1
@@ -109,6 +110,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Geographical Position", "DR03", "G12", false);
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘DR03’ symbol at sub-area G12",
+                "Use the log file to confirm that DMI sent out packet of EVC-101 with variable MMI_M_REQUEST = 8 (Geographical position request) every 1 second.");
             /*
             Test Step 5
             Action: Press ‘DR03’ symbol at sub-area G12
@@ -147,6 +150,9 @@ namespace Testcase.DMITestCases
 
             #region Skipped due to repeated cycle times not required
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Repeat action step 3-5 for the remaining configuration of cycle time (GEOPOS_REQ_PERIOD = 2 to 10)",
+                "Use the log file to confirm that DMI sent out packet of EVC-101 with variable MMI_M_REQUEST = 8 (Geographical position request) every X second.");
             /*
             Test Step 6
             Action: Repeat action step 3-5 for the remaining configuration of cycle time (GEOPOS_REQ_PERIOD = 2 to 10)
@@ -160,6 +166,8 @@ namespace Testcase.DMITestCases
 
             #endregion
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "De-activate cabin A",
+                "The geographical position in sub-area G12 is removed");
             /*
             Test Step 7
             Action: De-activate cabin A
@@ -170,6 +178,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. There is no symbol displayed in area G12.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press at sub-area G12",
+                "The symbol DR03 is not display in sub-area G12.");
             /*
             Test Step 8
             Action: Press at sub-area G12
@@ -183,6 +193,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. There is no symbol displayed in area G12.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Activate cabin A", "The symbol ‘DR03’ displays in sub-area G12");
             /*
             Test Step 9
             Action: Activate cabin A
@@ -194,6 +205,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Geographical Position", "DR03", "G12", false);
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Simulate loss-communication between ETCS onboard and DMI",
+                "The geographical position in sub-area G12 is removed");
             /*
             Test Step 10
             Action: Simulate loss-communication between ETCS onboard and DMI
@@ -205,6 +218,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. There is no symbol displayed in area G12.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Press at sub-area G12",
+                "The symbol DR03 is not display in sub-area G12.");
             /*
             Test Step 11
             Action: Press at sub-area G12
@@ -217,6 +232,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press at sub-area G12");
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. There is no symbol displayed in area G12.");
+
+            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 12

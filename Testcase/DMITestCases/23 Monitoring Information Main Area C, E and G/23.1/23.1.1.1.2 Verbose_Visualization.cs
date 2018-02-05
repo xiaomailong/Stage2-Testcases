@@ -21,30 +21,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_18_1_1_1_2_Verbose_Visualization : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Setup a verbose visualisation for the radio connection status in configuration file (RADIO_STATUS_VISUAL= 1).System is powered ON.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 2
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate Cabin A",
+                "DMI displays Driver ID window.Verify that sub-area E1 is divided in two areas");
             /*
             Test Step 1
             Action: Activate Cabin A
@@ -60,6 +46,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Driver ID window." + Environment.NewLine +
                                 "2. Sub-area E1 is displayed divided into two areas.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM in SR mode, Level 2",
+                "DMI displays Connection established symbol (ST103) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 568 (ST03 symbol)");
             /*
             Test Step 2
             Action: Perform SoM in SR mode, Level 2
@@ -81,6 +69,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays the ‘Connection established’ symbol (ST03) in the left part of sub-area E1.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward with speed below the permitted speed",
+                "The train is moving forward, position is increase.The speed pointer displays the current speed");
             /*
             Test Step 3
             Action: Drive the train forward with speed below the permitted speed
@@ -94,6 +84,8 @@ namespace Testcase.DMITestCases
                                 "1. The train has moved forward." + Environment.NewLine +
                                 "2. The speed pointer displays the current speed.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Receives FS MA and track description from RBC",
+                "DMI displays in FS mode, Level 2");
             /*
             Test Step 4
             Action: Receives FS MA and track description from RBC
@@ -106,6 +98,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 2");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Receives RBC transition order from RBC",
+                "DMI displays Connection Up with two RBCs symbol (ST03B) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 614.DMI displays Network registered via two modems symbol (ST102) in the right part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 610");
             /*
             Test Step 5
             Action: Receives RBC transition order from RBC
@@ -129,6 +123,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI displays the ‘Network registered via two modems’ symbol (ST03B) in the right part of sub-area E1.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Receive Terminate communication session from RBC",
+                "DMI displays Connection Up symbol (ST103) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 613 (ST03 symbol).DMI displays Network registered via one modem symbol (ST100) in the right part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 609");
             /*
             Test Step 6
             Action: Receive Terminate communication session from RBC
@@ -152,6 +148,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI displays the ‘Network registered via one modem’ symbol (ST100) in the right part of sub-area E1.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Simulate RBC communication loss and wait for a few secondsNote: This simulation is performed automatically by UTT file",
+                "DMI displays Connection Lost/Set-Up failed symbol (ST03C) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 282 (ST04 symbol)");
             /*
             Test Step 7
             Action: Simulate RBC communication loss and wait for a few secondsNote: This simulation is performed automatically by UTT file
@@ -175,6 +174,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays the ‘Connection Lost/Set-Up failed’ symbol (ST03C) in sub-area E1.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Re-establish the radio communication.Note: This simulation is performed automatically by UTT file",
+                "DMI displays Connection established symbol (ST103) in the left part of sub-area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 613");
             /*
             Test Step 8
             Action: Re-establish the radio communication.Note: This simulation is performed automatically by UTT file
@@ -192,6 +194,8 @@ namespace Testcase.DMITestCases
             // Spec says ST03 symbol, Connection established but 613 is ST103 Connection Up: does this make a difference?
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays the ‘Connection Up’ symbol (ST103) in sub-area E1.");
+
+            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 9

@@ -27,28 +27,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_7_2_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "ATP is in SB mode.DMI displays in SB mode");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -62,6 +47,8 @@ namespace Testcase.DMITestCases
                                 "1. ATP is in SB mode." + Environment.NewLine +
                                 "2. DMI displays in SB mode.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Driver performs SoM to SR mode, Level 1",
+                "ATP enters SR mode, Level 1.DMI displays in SR mode");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, Level 1
@@ -79,6 +66,8 @@ namespace Testcase.DMITestCases
                                 "1. ATP enters SR mode, Level 1." + Environment.NewLine +
                                 "2. DMI displays in SR mode.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward passing BG1",
+                "DMI changes mode from SR to FS");
             /*
             Test Step 3
             Action: Drive the train forward passing BG1
@@ -90,6 +79,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI changes mode from SR to FS.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "When the supervision status is RSM",
+                "The Release Speed digital is displayed at sub-area B6");
             /*
             Test Step 4
             Action: When the supervision status is RSM
@@ -101,6 +92,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The digital Release Speed is displayed at sub-area B6.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Stop the train and simulate the communication loss between ETCS Onboard and DMI",
+                "DMI displays the  message “ATP Down Alarm” with sound alarm.Verify that the release speed digital is removed from DMI’s screen. The toggling function is reset to default state");
             /*
             Test Step 5
             Action: Stop the train and simulate the communication loss between ETCS Onboard and DMI
@@ -116,6 +110,8 @@ namespace Testcase.DMITestCases
                                 "2. Digital Release Speed is not displayed. " +
                                 "3. The toggling function is inactive (symbol DR01 is not displayed in area F7.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI",
+                "DMI displays in FS mode and the release speed digital is reappeared. The toggling function is applied");
             /*
             Test Step 6
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -134,6 +130,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Digital Release Speed is not displayed.");
+
+            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 7

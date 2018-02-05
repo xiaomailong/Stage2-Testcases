@@ -29,27 +29,18 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            // Test system is power on.Cabin is activated.
-
-            DmiActions.Start_ATP();
-
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Settings’ button",
+                "DMI displays Settings window.Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 1
             Action: Press ‘Settings’ button
@@ -76,6 +67,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Maintenance’ button",
+                "DMI displays Maintenance password window.Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 2
             Action: Press ‘Maintenance’ button
@@ -89,6 +82,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Maintenance password window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 3
             Action: Press ‘Close’ button
@@ -100,6 +94,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Maintenance password window and displays the Settings window.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password",
+                "DMI displays Maintenance window.Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 4
             Action: Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password
@@ -112,6 +109,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -124,6 +122,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure, Press ‘Close’ button.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Close’ button",
+                "DMI displays Default window");
             /*
             Test Step 6
             Action: Perform the following procedure, Press ‘Close’ button.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Close’ button
@@ -136,14 +137,18 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Confirm driver ID");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
+                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
+                {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
+                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
             EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
                 {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
             EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
                 {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] {Variables.MMI_M_LEVEL_NTC_ID.L1};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
+                {Variables.MMI_M_LEVEL_NTC_ID.L1};
             EVC20_MMISelectLevel.Send();
 
             DmiActions.ShowInstruction(this, "Select and confirm Level 1, then press the ‘Close’ button.");
@@ -151,6 +156,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press ‘Settings’ button",
+                "DMI displays Settings window.Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 7
             Action: Press ‘Settings’ button
@@ -164,6 +171,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays the Default window");
             /*
             Test Step 8
             Action: Press ‘Close’ button
@@ -175,6 +183,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Press ‘Settings’ button", "DMI displays Settings window");
             /*
             Test Step 9
             Action: Press ‘Settings’ button
@@ -186,6 +195,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘System version’ button",
+                "DMI displays System version window");
             /*
             Test Step 10
             Action: Press ‘System version’ button
@@ -196,6 +207,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the System version window.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 11
             Action: Press ‘Close’ button
@@ -207,6 +219,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press ‘Language’ button",
+                "Verify the following information,DMI displays Language window.The ‘Close’ button is enabled");
             /*
             Test Step 12
             Action: Press ‘Language’ button
@@ -219,6 +233,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Language window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 13
             Action: Press ‘Close’ button
@@ -230,6 +245,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Press ‘Language’ button", "DMI displays Language window");
             /*
             Test Step 14
             Action: Press ‘Language’ button
@@ -240,6 +256,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Language window.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Confirm entered data by pressing input field",
+                "DMI displays Settings window");
             /*
             Test Step 15
             Action: Confirm entered data by pressing input field
@@ -251,6 +269,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++, "Press ‘Volume’ button",
+                "Verify the following information,DMI displays Volume window.The ‘Close’ button is enabled");
             /*
             Test Step 16
             Action: Press ‘Volume’ button
@@ -264,6 +284,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Volume window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(17, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 17
             Action: Press ‘Close’ button
@@ -275,6 +296,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(18, UniqueIdentifier++, "Press ‘Volume’ button", "DMI displays Volume window");
             /*
             Test Step 18
             Action: Press ‘Volume’ button
@@ -286,6 +308,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Volume window.");
 
+            MakeTestStepHeader(19, UniqueIdentifier++, "Confirm entered data by pressing input field",
+                "DMI displays Settings window");
             /*
             Test Step 19
             Action: Confirm entered data by pressing input field
@@ -297,6 +321,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(20, UniqueIdentifier++, "Press ‘Brightness’ button",
+                "Verify the following information,DMI displays Brightness window.The ‘Close’ button is enabled");
             /*
             Test Step 20
             Action: Press ‘Brightness’ button
@@ -309,6 +335,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Brightness window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(21, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 21
             Action: Press ‘Close’ button
@@ -320,6 +347,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(22, UniqueIdentifier++, "Press ‘Brightness’ button", "DMI displays Brightness window");
             /*
             Test Step 22
             Action: Press ‘Brightness’ button
@@ -330,6 +358,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Brightness window.");
 
+            MakeTestStepHeader(23, UniqueIdentifier++, "Confirm entered data by pressing input field",
+                "DMI displays Settings window");
             /*
             Test Step 23
             Action: Confirm entered data by pressing input field
@@ -341,6 +371,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(24, UniqueIdentifier++, "Press ‘System version’ button",
+                "DMI displays System version window.Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 24
             Action: Press ‘System version’ button
@@ -354,6 +386,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the System version window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(25, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 25
             Action: Press ‘Close’ button
@@ -366,6 +399,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(26, UniqueIdentifier++, "Press ‘Set VBC’ button",
+                "DMI displays Set VBC window.Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 26
             Action: Press ‘Set VBC’ button
@@ -379,6 +414,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set VBC window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(27, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 27
             Action: Press ‘Close’ button
@@ -390,6 +426,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(28, UniqueIdentifier++,
+                "Perforrm the following procedure,Press ‘Set VBC’ button. Enter the value 65536 and confirm by pressing an input field.Press ‘Yes’ button",
+                "DMI displays Validate Set VBC window. Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 28
             Action: Perforrm the following procedure,Press ‘Set VBC’ button. Enter the value 65536 and confirm by pressing an input field.Press ‘Yes’ button
@@ -412,6 +451,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set VBC validation window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled");
 
+            MakeTestStepHeader(29, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 29
             Action: Press ‘Close’ button
@@ -423,6 +463,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(30, UniqueIdentifier++,
+                "Perform a following procedure,Press ‘Set VBC’ buttonEnter and confirm value 65536At Validate set VBC window, press ‘No’ button and press an input field",
+                "DMI displays Set VBC window");
             /*
             Test Step 30
             Action: Perform a following procedure,Press ‘Set VBC’ buttonEnter and confirm value 65536At Validate set VBC window, press ‘No’ button and press an input field
@@ -439,6 +482,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC window");
 
+            MakeTestStepHeader(31, UniqueIdentifier++,
+                "Perform a following procedure,Enter and confirm value 65536At Validate set VBC window, press ‘Yes’ button and press an input field",
+                "DMI displays Settings window.The ‘Remove VBC’ button is enabled");
             /*
             Test Step 31
             Action: Perform a following procedure,Enter and confirm value 65536At Validate set VBC window, press ‘Yes’ button and press an input field
@@ -471,6 +517,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window." + Environment.NewLine +
                                 "2. The ‘Remove VBC’ button is enabled.");
 
+            MakeTestStepHeader(32, UniqueIdentifier++, "Press ‘Remove VBC’ button",
+                "DMI displays Remove VBC window.Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 32
             Action: Press ‘Remove VBC’ button
@@ -487,6 +535,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Remove VBC window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
 
+            MakeTestStepHeader(33, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 33
             Action: Press ‘Close’ button
@@ -498,6 +547,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(34, UniqueIdentifier++,
+                "Perforrm the following procedure,Enter the value 65536 and confirm by pressing an input field.Press ‘Yes’ button",
+                "DMI displays Validate Remove VBC window. Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 34
             Action: Perforrm the following procedure,Enter the value 65536 and confirm by pressing an input field.Press ‘Yes’ button
@@ -521,6 +573,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Remove VBC validation window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
 
+            MakeTestStepHeader(35, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 35
             Action: Press ‘Close’ button
@@ -532,6 +585,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(36, UniqueIdentifier++,
+                "Perforrm the following procedure,Press ‘Remove VBC’ button. Enter the value 65536 and confirm by pressing an input field.At the Validate remove VBC window, press ‘No’ button and press an input field",
+                "DMI displays Remove VBC window");
             /*
             Test Step 36
             Action: Perforrm the following procedure,Press ‘Remove VBC’ button. Enter the value 65536 and confirm by pressing an input field.At the Validate remove VBC window, press ‘No’ button and press an input field
@@ -550,6 +606,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Remove VBC window.");
 
+            MakeTestStepHeader(37, UniqueIdentifier++,
+                "Perform a following procedure,Enter and confirm value 65536At the Validate remove VBC window, press ‘Yes’ button and press an input field",
+                "DMI displays Settings window.The ‘Remove VBC’ button is disabled");
             /*
             Test Step 37
             Action: Perform a following procedure,Enter and confirm value 65536At the Validate remove VBC window, press ‘Yes’ button and press an input field
@@ -590,6 +649,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window." + Environment.NewLine +
                                 "2. The ‘Remove VBC’ button is disabled.");
 
+            MakeTestStepHeader(38, UniqueIdentifier++, "Press ‘Brake’ button",
+                "DMI displays Brake window.Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 38
             Action: Press ‘Brake’ button
@@ -603,6 +664,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Brake window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
 
+            MakeTestStepHeader(39, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 39
             Action: Press ‘Close’ button
@@ -614,6 +676,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(40, UniqueIdentifier++, "Press ‘System Info’ button",
+                "DMI displays System Info window.Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 40
             Action: Press ‘System Info’ button
@@ -626,6 +690,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the System Info window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
 
+            MakeTestStepHeader(41, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 41
             Action: Press ‘Close’ button
@@ -637,6 +702,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(42, UniqueIdentifier++, "Press ‘Set Clock’ button",
+                "DMI displays Set clock window.Verify the following information,The ‘Close’ button is enabled");
             /*
             Test Step 42
             Action: Press ‘Set Clock’ button
@@ -649,6 +716,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set Clock window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
 
+            MakeTestStepHeader(43, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 43
             Action: Press ‘Close’ button
@@ -660,6 +728,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(44, UniqueIdentifier++,
+                "Press ‘Close’ button.Then, simulate loss-communication between ETCS onboard and DMI",
+                "DMI displays Default window with the  message “ATP Down Alarm” and sound alarm.Verify the following information,The ‘Settings’ button is displays as enabled state in sub-area F5");
             /*
             Test Step 44
             Action: Press ‘Close’ button.Then, simulate loss-communication between ETCS onboard and DMI
@@ -674,6 +745,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI plays the ‘Alarm’ sound");
 
+            MakeTestStepHeader(45, UniqueIdentifier++, "Press ‘Settings’ button",
+                "DMI displays Settings window.Verify the following information,The buttons below are in enabled state,LanguageBrightnessVolumeUse the log file to confirm that DMI does not send out packet EVC-101 and EVC122");
             /*
             Test Step 45
             Action: Press ‘Settings’ button
@@ -689,6 +762,8 @@ namespace Testcase.DMITestCases
                                 "3. The ‘Brightness’ button is enabled." + Environment.NewLine +
                                 "4. The ‘Volume’ button is enabled.");
 
+            MakeTestStepHeader(46, UniqueIdentifier++, "Press ‘Language’ button",
+                "Verify the following information,DMI displays Language window.The ‘Close’ button is enabled.Use the log file to confirm that DMI does not send out packet EVC-101 and EVC122");
             /*
             Test Step 46
             Action: Press ‘Language’ button
@@ -702,6 +777,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Language window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
 
+            MakeTestStepHeader(47, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 47
             Action: Press ‘Close’ button
@@ -712,6 +788,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(48, UniqueIdentifier++, "Press ‘Brightness’ button",
+                "Verify the following information,DMI displays Brightness window.The ‘Close’ button is enabled.Use the log file to confirm that DMI does not send out packet EVC-101 and EVC122");
             /*
             Test Step 48
             Action: Press ‘Brightness’ button
@@ -725,6 +803,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Brightness window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
 
+            MakeTestStepHeader(49, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 49
             Action: Press ‘Close’ button
@@ -735,6 +814,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(50, UniqueIdentifier++, "Press ‘Volume’ button",
+                "Verify the following information,DMI displays Volume window.The ‘Close’ button is enabled.Use the log file to confirm that DMI does not send out packet EVC-101 and EVC122");
             /*
             Test Step 50
             Action: Press ‘Volume’ button
@@ -748,6 +829,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Volume window." + Environment.NewLine +
                                 "2. The ‘Close’ button is enabled.");
 
+            MakeTestStepHeader(51, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Settings window");
             /*
             Test Step 51
             Action: Press ‘Close’ button
@@ -757,6 +839,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
+
+            MakeTestStepHeader(52, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 52

@@ -30,10 +30,6 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            // Test system is powered on.Cabin is activated.SoM is performed in SB mode, Level 1.Main window is closed.
-            DmiActions.Start_ATP();
-
-            // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
 
             // Set driver ID
@@ -61,8 +57,12 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with speed = 10 km/h",
+                "Verify the following information,(1)   The speed pointer is always display in grey colour even runaway movement is detected.(2)   Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 6 (Standby)");
             /*
             Test Step 1
             Action: Drive the train forward with speed = 10 km/h
@@ -74,6 +74,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Stop the train.Then, perform the following procedure,Press on sub-area C9.Press ‘Main’ buttonForce the simulation to ‘Non-leading’Press and hold ‘Non-Leading’ button at least 2 second.Release the pressed button",
+                "DMI displays in NL mode, level 1");
             /*
             Test Step 2
             Action: Stop the train.Then, perform the following procedure,Press on sub-area C9.Press ‘Main’ buttonForce the simulation to ‘Non-leading’Press and hold ‘Non-Leading’ button at least 2 second.Release the pressed button
@@ -95,6 +98,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in NL mode, level 1.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Drive the train with speed = 400 km/h (Maximum speed range of speed dial)",
+                "Verify the following information,(1)   The speed pointer is always display in grey colour..(2)   Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 11 (Non-leading)");
             /*
             Test Step 3
             Action: Drive the train with speed = 400 km/h (Maximum speed range of speed dial)
@@ -106,6 +112,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
+
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 4

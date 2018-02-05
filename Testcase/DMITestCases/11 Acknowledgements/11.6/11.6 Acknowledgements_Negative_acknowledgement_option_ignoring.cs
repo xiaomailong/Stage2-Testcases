@@ -32,19 +32,15 @@ namespace Testcase.DMITestCases
             // System is power on.Cabin is activated.SoM is performed until Level 1 is selected and confirmed.Main window is closed.
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 6_6_a.xml to send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1",
+                "Verify the following information,(1)    DMI displays ST01 symbol with yellow flashing frame in sub-area C9");
             /*
             Test Step 1
             Action: Use the test script file 6_6_a.xml to send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1
@@ -56,6 +52,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ST01 symbol with a yellow flashing frame in sub-area C9.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Press an acknowledgement on sub-area C9.Then, use the test script file 6_6_b.xml to send EVC-8 with,MMI_Q_TEXT = 298MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1",
+                "Verify the following information,(1)    DMI displays DR02 symbol with yes button in area D");
             /*
             Test Step 2
             Action: Press an acknowledgement on sub-area C9.Then, use the test script file 6_6_b.xml to send EVC-8 with,MMI_Q_TEXT = 298MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1
@@ -73,6 +72,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the DR02 symbol and a ‘Yes’ button (to the right) in area D.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press ‘Yes’ button on area D.Then, use the test script file 6_6_c.xml to send EVC-8 with,MMI_Q_TEXT = 263MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1",
+                "Verify the following information,(1)    DMI displays MO10 symbol with yellow flashing frame in sub-area C1");
             /*
             Test Step 3
             Action: Press ‘Yes’ button on area D.Then, use the test script file 6_6_c.xml to send EVC-8 with,MMI_Q_TEXT = 263MMI_Q_TEXT_CRITERIA = 2MMI_I_TEXT = 1
@@ -89,6 +91,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the MO10 symbol with a yellow flashing frame in sub-area C1.");
+
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 4
@@ -127,6 +131,7 @@ namespace Testcase.DMITestCases
                     EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
                     break;
             }
+
             EVC8_MMIDriverMessage.Send();
         }
 

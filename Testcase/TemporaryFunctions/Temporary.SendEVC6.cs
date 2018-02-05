@@ -22,7 +22,8 @@ namespace Testcase.TemporaryFunctions
         ///     <param name="mmiMAltDem">Control variable for alternative train data entry method</param>
         /// </summary>
         public static void SendEVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
-            ushort mmiVMaxTrain, Variables.MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc, Variables.MMI_NID_KEY mmiNidKeyAxleLoad,
+            ushort mmiVMaxTrain, Variables.MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc,
+            Variables.MMI_NID_KEY mmiNidKeyAxleLoad,
             byte mmiMAirtight, Variables.MMI_NID_KEY_Load_Gauge mmiNidKeyLoadGauge,
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA mmiMButtons,
             ushort mmiMTrainsetId,
@@ -61,7 +62,8 @@ namespace Testcase.TemporaryFunctions
 
         {
             // Train data enabled
-            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE =
+                Variables.MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
 
             EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0; // Train length
             EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
@@ -70,7 +72,8 @@ namespace Testcase.TemporaryFunctions
             EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
             EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.NoDedicatedKey; // Axle load category
             EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey; // Loading gauge type of train 
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE =
+                Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey; // Loading gauge type of train 
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS = 0; // No Buttons available
 
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId; // Preselected Trainset ID

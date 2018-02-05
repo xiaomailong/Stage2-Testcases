@@ -34,19 +34,14 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A",
+                "The Driver ID window is displayed cover  the half-grid array in area D, F and G");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -74,6 +69,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Driver ID window as a half-grid array in areas D, F and G.");
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Driver enters the Driver ID",
+                "Verify that the layers on half grid array are displayed as 1. Layer 0: Main area D, F and G2. Layer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.3. Layer -2: Area B3, B4, B5, B6 and B7.4. Each object are follow the dimension and position as example picture in comment.Note: ‘*’ symbol is mean that specified area are drawn as one area");
             /*
             Test Step 2
             Action: Driver enters the Driver ID
@@ -91,6 +88,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. Layer 2 is displayed in areas B3, B4, B5, B6, B7." + Environment.NewLine +
                                 "5. Refer to DMI_RS_ETCS_R4.docx for the presentation of the window.");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Confirm the Driver ID and perform brake test",
+                "DMI displays the message ‘Brake test in progress’");
             /*
             Test Step 3
             Action: Confirm the Driver ID and perform brake test
@@ -107,6 +106,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Brake test in progress’.");
+
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 4

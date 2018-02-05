@@ -33,7 +33,6 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
@@ -42,19 +41,14 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // ETCS-DMI is in the ‘Stand-By’ mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Open the ‘Radar’ data entry window from the Settings menu.",
+                "The ‘Radar’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window.");
             /*
             Test Step 1
             Action: Open the ‘Radar’ data entry window from the Settings menu.
@@ -77,6 +71,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Radar window");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Enter the invalid value with the numeric keypad and, also press the data input fields (Accept) in the same screen, for the following fields below, Radar 1: 20001 Then, Observe the echo texts on the left hand side.",
+                "EVC-40Use the log file to verify that DMI receives packet EVC-40 with variable:(1) MMI_M_PULSE_PER_KM_1 = 4294967290 (Technical Range Check failed)(2) MMI_Q_MD_DATASET = 1 (Radar)Input Field (All)(3) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(4) The ‘Enter’ button associated to the data area of the input field displays the previously entered value:Radar 1: 20001Echo Texts (All)(5) The data parts of the echo texts display “++++”.(6) The data parts of the echo texts are coloured red.");
             /*
             Test Step 2
             Action: Enter the invalid value with the numeric keypad and, also press the data input fields (Accept) in the same screen, for the following fields below, Radar 1: 20001 Then, Observe the echo texts on the left hand side.
@@ -96,6 +93,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The echo texts display ‘++++’ in red.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Enter the valid value with the numeric keypad and, also press the data input fields (Accept) in the same screen, for the following fields below, Radar 1: 85534Then, Observe the echo texts on the left hand side",
+                "Input Field (All)(1) The eventually displayed data value in the data area of the input field is replaced by the entered value (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’):Radar 1: 85534");
             /*
             Test Step 3
             Action: Enter the valid value with the numeric keypad and, also press the data input fields (Accept) in the same screen, for the following fields below, Radar 1: 85534Then, Observe the echo texts on the left hand side
@@ -108,6 +108,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The value ‘85534’ is displayed in the data input field.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "This step is to complete the process of ‘Radar’:Press the ‘Yes’ button on the ‘Radar’ window. Validate the data in the data validation window.",
+                "1. After pressing the ‘Yes’ button, the data validation window (‘Validate Radar’) appears instead of the ‘Radar’ data entry window. The data part of echo text displays in white:Radar 1: 855342. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Radar’ window with enabled ‘Radar’ button.1");
             /*
             Test Step 4
             Action: This step is to complete the process of ‘Radar’:Press the ‘Yes’ button on the ‘Radar’ window. Validate the data in the data validation window.
@@ -132,6 +135,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with the ‘Radar’ button enabled.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_6_5_2_3_2_a.xmlEVC-40MMI_Q_MD_DATASET = 1MMI_M_PULSE_PER_KM_1 = 4294967290",
+                "Input Field (All)(1) The ‘Enter’ button associated to the data area of the input field displays the previously entered value.Echo Texts (All)(2) The data part of the echo text displays “++++”.");
             /*
             Test Step 5
             Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_6_5_2_3_2_a.xmlEVC-40MMI_Q_MD_DATASET = 1MMI_M_PULSE_PER_KM_1 = 4294967290
@@ -154,6 +160,8 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Enter’ button of the data input field displays the previously entered value." +
                                 Environment.NewLine +
                                 @"2. The echo text displayes ‘++++’.");
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 6

@@ -21,36 +21,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_35_2_NTC_System_Status_Messages : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Configure atpcu configuration file as following (See the instruction in Appendix 2)
-            // M_InstalledLevels = 63
-            // NID_NTC_Installe_0 = 1 
-            // (ATB)NID_NTC_Installe_1 = 9 
-            // (PLZB)Q_CustomConfig = 3
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power off
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in PLZB STM mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on the system and activate the cabin",
+                "DMI displays Driver ID window in SB mode");
             /*
             Test Step 1
             Action: Power on the system and activate the cabin
@@ -65,6 +45,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window in SB mode.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following action:Enter Driver IDskip the brake testSelect and comfirm ATB STMSelect Train data",
+                "DMI displays Train data entry window");
             /*
             Test Step 2
             Action: Perform the following action:Enter Driver IDskip the brake testSelect and comfirm ATB STMSelect Train data
@@ -102,6 +85,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data window.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward",
+                "Service brake is applied.The text message “Runaway movement” displays in sub-area E5");
             /*
             Test Step 3
             Action: Drive the train forward
@@ -123,6 +108,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the message ‘Runaway movement’ in sub-area E5." + Environment.NewLine +
                                 "2. DMI displays the ‘Brake intervention symbol’, ST01 in sub-area C9.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Release service brake and complete train data enrty",
+                "DMI displays train running number window");
             /*
             Test Step 4
             Action: Release service brake and complete train data enrty
@@ -141,6 +128,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.TRN_window_displayed(this);
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Turn off STM Simulator and then complete start of mission",
+                "The text message “ATB failed” and “ATB is not avaliable “display in sub-area E5");
             /*
             Test Step 5
             Action: Turn off STM Simulator and then complete start of mission
@@ -153,6 +142,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the messages ‘AWS TPWS failed’ and ‘AWS TPWS is not available’ in sub-area E5.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Restart OTE and STM Simulator",
+                "OTE and STM Simulator are started");
             /*
             Test Step 6
             Action: Restart OTE and STM Simulator
@@ -160,6 +151,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Start up PZLB STM and then ATPCU",
+                "DMI displays Driver ID window in SB mode");
             /*
             Test Step 7
             Action: Start up PZLB STM and then ATPCU
@@ -173,6 +166,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window in SB mode.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Perform start of mission to PLZB STM until train data entry completely",
+                "DMI display PLZB specific data window");
             /*
             Test Step 8
             Action: Perform start of mission to PLZB STM until train data entry completely
@@ -198,6 +194,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Press the ‘Yes’ button to confirm the data.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Enter and confirm PLZB specific data",
+                "DMI displays train running number window");
             /*
             Test Step 9
             Action: Enter and confirm PLZB specific data
@@ -211,6 +209,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train running number window.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Complete start of mission", "DMI displays in PLZB STM mode");
             /*
             Test Step 10
             Action: Complete start of mission
@@ -221,6 +220,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in NTC mode, Level AWS TPWS.");
+
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 11

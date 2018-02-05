@@ -23,15 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_12_2_2_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Power off the system Set the following tags name in configuration file (See the instruction in Appendix 1)SPEED_DIAL_V_MAX = 550SPEED_DIAL_V_TRANS = 100 
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -45,10 +36,14 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on the system and activate the cabin",
+                "DMI displays SB mode");
             /*
             Test Step 1
             Action: Power on the system and activate the cabin
@@ -69,6 +64,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.SB_Mode_displayed(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM to  SR mode, level 1",
+                "Mode changes to SR mode , level 1Verify the following information:The speed dial displays 550 km/h as a mixminum speed");
             /*
             Test Step 2
             Action: Perform SoM to  SR mode, level 1
@@ -84,6 +81,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. The speed dial displays 550 km/h maximum speed");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Change the configuration: SPEED_DIAL_V_MAX  to 200, 300 and 400 then retest with step 1 to 2",
+                "Verify the following information:The speed dial displays the maxinum speed accroding to configuration setting");
             /*
             Test Step 3
             Action: Change the configuration: SPEED_DIAL_V_MAX  to 200, 300 and 400 then retest with step 1 to 2
@@ -170,6 +170,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. The speed dial displays 400 km/h maximum speed");
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 4
             Action: End of test

@@ -23,29 +23,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_22_12_Subcategory_National : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Driver performs SoM in SB mode, level 1",
+                "DMI displays in SB mode, Level 1");
             /*
             Test Step 1
             Action: Activate cabin A. Driver performs SoM in SB mode, level 1
@@ -56,6 +42,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, level 1.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Settings’ button",
+                "The Settings window is displayed all sub-menus.Verify that the button for subcategory National is disabled");
             /*
             Test Step 2
             Action: Press ‘Settings’ button
@@ -68,6 +56,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with all sub-menus." + Environment.NewLine +
                                 "2. The ‘National’ button is displayed disabled.");
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

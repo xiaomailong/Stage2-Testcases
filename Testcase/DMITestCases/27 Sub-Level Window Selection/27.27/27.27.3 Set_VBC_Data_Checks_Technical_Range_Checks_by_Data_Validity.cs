@@ -30,7 +30,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened from the ‘Driver ID’ window.
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
@@ -38,20 +37,15 @@ namespace Testcase.DMITestCases
             EVC14_MMICurrentDriverID.Send();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // 1. ETCS-DMI is in the ‘Start of Mission’ procedure.2. ETCS-DMI is in the ‘Stand-By’ mode.3. VBC code “65536” is stored onboard.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Open the ‘Set VBC’ data entry window from the Settings menu",
+                "The ‘Set VBC’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window");
             /*
             Test Step 1
             Action: Open the ‘Set VBC’ data entry window from the Settings menu
@@ -67,6 +61,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Enter “1” (invalid value) with the numeric keypad and press the data input field (Accept) in the same screen",
+                "EVC-18(1) MMI_Q_DATA_CHECK = 1 in order to indicate the technical range check failure.(2) MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.Input Field(3) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(4) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).Echo Texts(5) The data part of the echo text displays “++++”.(6) The data part of the echo text is coloured red");
             /*
             Test Step 2
             Action: Enter “1” (invalid value) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -89,6 +86,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The echo text displays ‘++++’ in red.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press the data input field once again (Accept) in the same screen",
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field is still coloured grey and its text is black (state ‘Selected IF/data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).EVC-118(3) ETCS-DMI does not send out packet EVC-118 as the ‘Enter’ button is disabled.Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 3
             Action: Press the data input field once again (Accept) in the same screen
@@ -102,6 +102,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The echo text still displays ‘++++’ in red.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Enter “1” (invalid value) with the numeric keypad in the same screen",
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “1” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)");
             /*
             Test Step 4
             Action: Enter “1” (invalid value) with the numeric keypad in the same screen
@@ -113,6 +116,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1’ in black on a Medium-grey background.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press the data input field (Accept)",
+                "EVC-18(1) MMI_Q_DATA_CHECK = 1 in order to indicate the technical range check failure.(2) MMI_M_BUTTONS = 255 (no button) and the 'Yes' button is disabled.Input Field(3) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’)");
             /*
             Test Step 5
             Action: Press the data input field (Accept)
@@ -131,6 +136,9 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Yes’ button is disabled." + Environment.NewLine +
                                 "2. The data input field ‘Enter’ button displays ‘1’ in black on a grey background.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Press the data input field once again (Accept) in the same screen",
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field is still coloured grey and its text is black (state ‘Selected IF/data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “1” (previously entered value).EVC-118(3) ETCS-DMI does not send out packet EVC-118 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 6
             Action: Press the data input field once again (Accept) in the same screen
@@ -144,6 +152,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The echo text still displays ‘++++’ in red.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Enter “65536” (valid value) with the numeric keypad",
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “65536” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’)");
             /*
             Test Step 7
             Action: Enter “65536” (valid value) with the numeric keypad
@@ -156,6 +166,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field now displays ‘65535’.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press the data input field (Accept) in the same screen",
+                "EVC-118(1) ETCS-DMI sends packet EVC-118 with variable:MMI_M_VBC_CODE = 65536 MMI_M_BUTTONS =  254 (BTN_ENTER)EVC-18(2) ETCS-DMI receives packet EVC-18 with variable:MMI_Q_DATA_CHECK = 0 (All checks have passed)MMI_X_TEXT = 54 (“6”)MMI_X_TEXT = 53 (“5”)MMI_X_TEXT = 53 (“5”) MMI_X_TEXT = 51 (“3”) MMI_X_TEXT = 54 (“6”)");
             /*
             Test Step 8
             Action: Press the data input field (Accept) in the same screen
@@ -176,6 +188,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field now displays ‘65535’.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "This step is to complete the process of ‘set VBC’:- Press the ‘Yes’ button on the ‘Set VBC’ window.- Validate the data in the data validation window",
+                "1. After pressing the ‘Yes’ button, the data validation window (‘Validate Set VBC’) appears instead of the ‘Set VBC’ data entry window. The data part of echo text displays “65536” in white.2. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Set VBC’ window with enabled ‘Set VBC’ button");
             /*
             Test Step 9
             Action: This step is to complete the process of ‘set VBC’:- Press the ‘Yes’ button on the ‘Set VBC’ window.- Validate the data in the data validation window
@@ -197,6 +212,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window." + Environment.NewLine +
                                 "2. The ‘Set VBC’ button is displayed enabled.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_27_3_a.xml,EVC-18MMI_Q_DATA_CHECK = 1 (Technical Range Check Failed)",
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field displays previously entered value.Echo Texts(2) The data part of the echo text displays “++++”");
             /*
             Test Step 10
             Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_27_3_a.xml,EVC-18MMI_Q_DATA_CHECK = 1 (Technical Range Check Failed)
@@ -216,6 +234,8 @@ namespace Testcase.DMITestCases
                                 "2. The echo text displays ‘++++’ in red.");
 
             #endregion
+
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 11

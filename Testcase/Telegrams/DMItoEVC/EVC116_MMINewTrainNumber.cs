@@ -29,9 +29,6 @@ namespace Testcase.Telegrams.DMItoEVC
 
         private static void CheckNidOperation(uint nidOperation)
         {
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.Value = 0x00;
-
             // Check if telegram received flag has been set. Allows 20 seconds to enter Train Running Number.
             if (_pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
@@ -40,7 +37,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 // If check passes
                 if (_checkResult)
                 {
-                    _pool.TraceReport(string.Format("{0} - [MMI_NID_OPERATION] = {1}", baseString, nidOperation) + Environment.NewLine +
+                    _pool.TraceReport(string.Format("{0} - [MMI_NID_OPERATION] = {1}", baseString, nidOperation) +
+                                      Environment.NewLine +
                                       "Result: PASSED.");
                 }
                 // Else display the real value extracted from EVC-104
@@ -56,6 +54,9 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
             }
+
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.Value = 0x00;
         }
 
         /// <summary>

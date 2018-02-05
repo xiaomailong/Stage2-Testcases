@@ -33,19 +33,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // Cabin is inactive, DMI displays the message “Driver’s cab not active”
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward and pass BG1.Then, stop the train",
+                "DMI displays in FS mode, Level 1.Verify the following information,The PA Speed Profile Discontinuities symbol are displayed in area D6-D7 and the right half of PA Speed Profile Discontinuities symbol are extended into area D7, a remaining part are covering the right side of area D6.Use the log file to confirm the result of comparision in packet EVC-4 for displaying each PA Speed Profile Discontinuities symbol at sub-area D6-D7 and position for each position of PA Speed Profile Discontinuities from the differentiate of variable [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP] and [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] refer as follows,Speed Profile DiscontinuitiesMMI_V_MRSP[0] < MMI_V_MRSP_CURRPosition [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[0]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 50000 (500m)DMI displays symbol PL22 (a speed decrease) at position 500m. Speed Profile DiscontinuitiesMMI_V_MRSP[0] < MMI_V_MRSP[1]Position[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[1]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 100000 (1000m)DMI displays symbol PL21 (a speed increase) At position 1000m.Speed Profile DiscontinuitiesMMI_V_MRSP[2] = 0 Position[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[2]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 200000 (2000m)DMI displays symbol PL23 (a speed decrease to a target at zero speed).There is no PA Speed Profile Discontinuity symbol displayed beyond position 2000m.(4)   The bottom of horizontal line of each symbol are located at specific location in expected result No.2");
             /*
             Test Step 1
             Action: Drive the train forward and pass BG1.Then, stop the train
@@ -89,6 +84,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "8. DMI displays the decrease to zero target symbol, PL23, at the 2000m position.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward",
+                "Verify the following information,While the train is running forward, each symbol of PA Speed Profile Discontinuities are moving down to the zero line");
             /*
             Test Step 2
             Action: Drive the train forward
@@ -100,6 +97,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the PA Speed Profile Discontinuities closer to the zero line.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Continue to drive the train forward",
+                "Verify the following information,The 1st symbol of PA Speed Profile Discontinuity is removed from are D6-D7 after passed the zero line");
             /*
             Test Step 3
             Action: Continue to drive the train forward
@@ -111,6 +110,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the (first) PA Speed Profile Discontinuity that has passed the zero line.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Drive the train forward and pass BG2",
+                "Verify the following information,(1)   DMI displays symbol PL23 at position 600m and there is no another PA Speed Profile Discontinuity symbol displayed at the position beyond 600m.(2)   A position 200-210m, the 2 symbols of PL22 are drawn. The closest one to the train's current location (0m in distance scale) shall be drawn on top of the other symbols");
             /*
             Test Step 4
             Action: Drive the train forward and pass BG2
@@ -126,6 +127,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The PL22 symbols are displayed at position 200-210m, the nearer one to the zero line is drawn on top of the other.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Stop the train at position around 950m",
+                "Verify the following information,(1)   The symbol PL23 is drawn over the nearest symbol PL22 below.Note: Press ‘Scale up’ or ‘Scale down’ button for easier to verify an expected result");
             /*
             Test Step 5
             Action: Stop the train at position around 950m
@@ -137,6 +140,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PL23 symbol is drawn on top of the (nearest) PL22 symbol. (Note: use the scale up/down buttons to help.)");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Continue to drive the train forward and pass BG3",
+                "Verify the following information,At position 200-210m, The symbol PL 22 is drawn on top of symbol PL 21.A position 1000-1010m, the 2 symbols of PL21 are drawn. The closest one to the train's current location (0m in distance scale) shall be drawn on top of the other symbols.Note: Press ‘Scale up’ or ‘Scale down’ button for easier to verify an expected result");
             /*
             Test Step 6
             Action: Continue to drive the train forward and pass BG3
@@ -150,6 +155,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The two PL21 symbols are displayed at position 1000-1010m (that closer to the zero line is drawn on top of the other).");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Stop the train",
+                "Verify the following information,(1)   The symbol PL23 is drawn over the nearest symbol PL21 below");
             /*
             Test Step 7
             Action: Stop the train
@@ -161,6 +168,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PL23 symbol is drawn on top of the (nearer) PL21 symbol.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Simulate the communication loss between ETCS Onboard and DMI",
+                "DMI displays the  message “ATP Down Alarm” with sound.Verify that the PA Speed Profile segments including their Speed Discontinuity Symbols are removed from DMI");
             /*
             Test Step 8
             Action: Simulate the communication loss between ETCS Onboard and DMI
@@ -174,6 +183,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Alarm’ sound is played." + Environment.NewLine +
                                 "3. The PA Speed Profile segment and the Discontinuity symbols are not displayed.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI",
+                "The PA Speed Profile segments are reappeared");
             /*
             Test Step 9
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -185,6 +196,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The PA Speed Profile segment and the Discontinuity symbols are re-displayed.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Deactive the cabin",
+                "DMI is entered “Idle” state and displays the message “Driver’s cab not active”");
             /*
             Test Step 10
             Action: Deactive the cabin
@@ -196,6 +209,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the message ‘Driver's cab not active’." + Environment.NewLine +
                                 "2. The DMI becomes ‘Idle’.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Simulate the communication loss between ETCS Onboard and DMI",
+                "DMI displays the  message “No connection to the ATP”Verify that the PA Speed Profile segments including their Speed Discontinuity Symbols are removed from DMI");
             /*
             Test Step 11
             Action: Simulate the communication loss between ETCS Onboard and DMI
@@ -208,6 +223,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the message ‘No connection to the ATP’." + Environment.NewLine +
                                 "2. The PA Speed Profile segment and the Discontinuity symbols are not displayed.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI",
+                "DMI displays the message “Driver’s cab not active”");
             /*
             Test Step 12
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -218,6 +235,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Driver's cab not active’.");
+
+            MakeTestStepHeader(13, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 13

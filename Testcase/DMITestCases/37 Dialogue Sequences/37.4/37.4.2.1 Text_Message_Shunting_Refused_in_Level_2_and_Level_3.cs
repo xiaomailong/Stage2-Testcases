@@ -31,9 +31,6 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            // Test system is power onCabin is activatedSoM is performed in SR mode, level 2
-            DmiActions.Start_ATP();
-
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
 
@@ -58,8 +55,13 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button",
+                "DMI displays Main window with text message ‘Shunting refused’ in sub-area E5");
             /*
             Test Step 1
             Action: Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button
@@ -78,6 +80,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the main window with text message ‘Shunting refused’ in sub-area E5.");
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 3",
+                "See the expected results at Step 1");
             /*
             Test Step 2
             Action: Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 3
@@ -105,6 +110,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the main window with text message ‘Shunting refused’ in sub-area E5.");
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

@@ -17,29 +17,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_29_1_Flexible_Train_data_window_General_appearances : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered ON.Cabin is activated.Perform SoM until level 1 until Level 1 is selected and confirmed.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Train Data’ button",
+                "DMI displays Train Data window.Verify the following information,Data Entry WindowThe window title is ‘Train data’.The text label on window title is included with sequence number of the current window (e.g. ‘(1/2)’).The text label of the window title is right aligned.The following objects are displayed in Train data window,  Enabled Close button (NA11) Disabled Previous button (NA19)  Enabled Next button (NA17)Window TitleInput fieldsThe following objects are additionally displayed in Train data window,Yes buttonThe text label ‘Train data entry complete?’Yes button is displayed in Disabled state as follows,Text label is black Background colour is dark-greyThe border colour is medium-grey the same as the input field’s colour.The sensitive area of Yes button is extended from text label ‘Train data Entry complete?’Input fieldsThe input fields are located on Main area D and F.Each input field is devided into a Label Area and a Data Area.The Label Area is presented the topic of the input field.The Label Area text is displayed corresponding to the input field i.e. Train length, Maximum Speed or Train type. The Label Area is placed to the left of The Data Area.The text in the Label Area is aligned to the right.The value of data in the Data Area is aligned to the left.The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.There are only 4 input fields displayed in the first page of window.The first input field is in state ‘Selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.All other input fields are in state ‘Not selected’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is grey.KeyboardThe keyboard associated to selected input field ‘Train category’ is Dedicated keyboard.The key#12 is dedicated to More button NA23 (see pictures below).  NA23, More buttonThe label of key#1 – key#11 are displayed as follows,PASS 1PASS 2PASS 3TILT 1TILT 2TILT 3TILT 4TILT 5TILT 6TILT 7FP1LayersThe level of layers of all area in window are displayed in Layer 0.Echo TextsAn echo text is composed of Label Part and Data Part.The Label Part of an echo texts is same as The Label area of an input fields.The echo texts are displayed in main area A, B, C and E with same order as their related input fields.The Label part of echo text is right aligned.The Data part of echo text is left aligned.The colour of texts in echo texts are grey.Entering CharactersThe cursor is flashed by changing from visible to not visible.The cursor is displayed as horizontal line below the value in the input field.Packet transmissionUse the log file to confirm that DMI received packet information [MMI_CURRENT_TRAIN_DATA (EVC-6)] with following variables,MMIM_N_DATA_ELEMENTS = 0MMI_M_DATA_ENABLE = 32512MMI_M_TRAINSET_ID = 0The following label part of an input fields are displayed in Train data window refer to received packet EVC-6,Page 1Train CategoryTrain LengthBrake PercentageMaximum speedPage 2Axle Load CategoryAirtightLoading GaugeThe ‘Train Type’ input field is not displayed in Train data window.The data part of each input field and echo text are filled according to received packet EVC-6 with following variables,MMI_NID_KEY_TRAIN_CAT = Train categoryMMI_L_TRAIN = LengthMMI_M_BRAKE_PERC = Brake percentageMMI_NID_KEY_AXLE_LOAD = Axle load categoryMMI_M_AIRTIGHT = AirtightMMI_NID_KEY_LOAD_GAUGE = Loading gaugeNote: Press ‘Next’ button to confirm the display of input field in page 2.Do not forget to press ‘Previous’ button after verification is completed.General property of windowThe Train data window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI.All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 1
             Action: Press ‘Train Data’ button
@@ -50,6 +36,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Train Data’ button");
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘More’ button",
+                "Verify the following information,The label of key#1 – key#7 are displayed as follows,FP 2FP 3FP 4FG 1FG 2 FG 3FG 4");
             /*
             Test Step 2
             Action: Press ‘More’ button
@@ -58,6 +46,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press and hold ‘More’ button",
+                "Verify the following information,The state of button is changed to ‘Pressed’, the border of button is removed.The sound ‘Click’ is played once");
             /*
             Test Step 3
             Action: Press and hold ‘More’ button
@@ -70,6 +60,8 @@ namespace Testcase.DMITestCases
                     this);
 
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Slide out the ‘More’ button",
+                "Verify the following information,The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 4
             Action: Slide out the ‘More’ button
@@ -81,6 +73,8 @@ namespace Testcase.DMITestCases
                 .Verify_the_following_information_The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Slide back into the ‘More’ button",
+                "Verify the following information,The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 5
             Action: Slide back into the ‘More’ button
@@ -92,6 +86,8 @@ namespace Testcase.DMITestCases
                 .Verify_the_following_information_The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Release ‘More’ button",
+                "Verify the following information,The state of released button is changed to enabled.The label of keypad is changed to previous page (same as expected result No.21 in step 1)");
             /*
             Test Step 6
             Action: Release ‘More’ button
@@ -100,6 +96,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press and hold ‘PASS 2’ button",
+                "Verify the following information,The state of ‘PASS 2‘ button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The sound ‘Click’ is played once.The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’.The cursor is displayed as horizontal line below the value of the dedicated-keyboard data key in the input field");
             /*
             Test Step 7
             Action: Press and hold ‘PASS 2’ button
@@ -108,6 +106,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Release ‘PASS 2’ button",
+                "Verify the following information,The state of released button is changed to enabled");
             /*
             Test Step 8
             Action: Release ‘PASS 2’ button
@@ -119,6 +119,8 @@ namespace Testcase.DMITestCases
                 .Verify_the_following_information_The_state_of_released_button_is_changed_to_enabled(this);
 
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Perform action step 7-8 for the remaining buttons on keypad",
+                "See the expected results of Step 7 – Step 8");
             /*
             Test Step 9
             Action: Perform action step 7-8 for the remaining buttons on keypad
@@ -128,6 +130,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8(this);
 
 
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Enter value ‘PASS 1’ for train category.Then, confirm an entered data by pressing an input field",
+                "Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Train category’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘Length’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo TextsThe echo text of ‘Train category’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘Length’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with following variablesMMI_NID_KEY_TRAIN_CAT = 3 MMI_N_DATA_ELEMENTS = 1MMI_M_BUTTONS = 254The data part of the echo text of train category is displayed according to [MMI_CURRENT_TRAIN_DATA  (EVC-6)] with the following variables,MMI_NID_DATA = 7 (Train category)MMI_N_TEXT = 6MMI_X_TEXT = “PASS 1”");
             /*
             Test Step 10
             Action: Enter value ‘PASS 1’ for train category.Then, confirm an entered data by pressing an input field
@@ -136,6 +141,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Perform action step 7-8 for the ‘0’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable",
+                "See the expected results of Step 7 – Step 8 and the following additional information,The pressed key is added in an input field immediately. The cursor is jumped to next position after entered the character immediately");
             /*
             Test Step 11
             Action: Perform action step 7-8 for the ‘0’ to ‘9’ buttons.Note: Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable
@@ -144,6 +152,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press and hold ‘Del’ button.Note: Stopwatch is required",
+                "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 12
             Action: Press and hold ‘Del’ button.Note: Stopwatch is required
@@ -158,6 +168,8 @@ namespace Testcase.DMITestCases
                     this);
 
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Release ‘Del’ button",
+                "Verify the following information, The character is stop removing");
             /*
             Test Step 13
             Action: Release ‘Del’ button
@@ -170,6 +182,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Verify_the_following_information_The_character_is_stop_removing(this);
 
 
+            MakeTestStepHeader(14, UniqueIdentifier++,
+                "Enter the value ‘100’ for train length.Then, confirm an entered data by pressing an input field",
+                "Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Length’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘Brake percentage’ is in state ‘selected’ as follows,The background colour of the Data Area is Medium-grey.The colour of data value is black.Echo TextsThe echo text of ‘Length’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘Length’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete buttonPacket transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with the following variables MMI_L_TRAIN = 100MMI_N_DATA_ELEMENTS = 1MMI_M_BUTTONS = 254The data part of the echo text of train category is displayed according to [MMI_CURRENT_TRAIN_DATA  (EVC-6)] with the following variables,MMI_NID_DATA = 8 (Length)MMI_N_TEXT = 3MMI_X_TEXT = “100”");
             /*
             Test Step 14
             Action: Enter the value ‘100’ for train length.Then, confirm an entered data by pressing an input field
@@ -178,6 +193,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Perform action step 11-13 for keypad of the ‘Brake percentage’ input field",
+                "See the expected results of Step 11 – Step 13");
             /*
             Test Step 15
             Action: Perform action step 11-13 for keypad of the ‘Brake percentage’ input field
@@ -187,6 +205,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.See_the_expected_results_of_Step_11_Step_13(this);
 
 
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Enter the value ‘70’ for Brake percentage.Confirm an entered data by pressing an input field",
+                "Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Brake percentage’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘Maximum speed’ is in state ‘selected’ as follows,The background colour of the Data Area is Medium-grey.The colour of data value is black.Echo TextsThe echo text of ‘Brake percentage’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘Maximum speed’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete buttonPacket transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with the following variables MMI_M_BRAKE_PERC = 70MMI_N_DATA_ELEMENTS = 1MMI_M_BUTTONS = 254The data part of the echo text of train category is displayed according to [MMI_CURRENT_TRAIN_DATA  (EVC-6)] with the following variables,MMI_NID_DATA = 9 (Brake percentage)MMI_N_TEXT = 2MMI_X_TEXT = “70”");
             /*
             Test Step 16
             Action: Enter the value ‘70’ for Brake percentage.Confirm an entered data by pressing an input field
@@ -195,6 +216,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Perform action step 11-13 for keypad of the ‘Maximum speed’ input field",
+                "See the expected results of Step 11 – Step 13");
             /*
             Test Step 17
             Action: Perform action step 11-13 for keypad of the ‘Maximum speed’ input field
@@ -204,6 +228,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.See_the_expected_results_of_Step_11_Step_13(this);
 
 
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Enter the value ‘170’ for Maximum speed.Then, confirm an entered data by pressing an input field",
+                "Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Maximum speed’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘Axle load category’ is in state ‘selected’ as follows,The background colour of the Data Area is Medium-grey.The colour of data value is black.Echo TextsThe echo text of ‘Maximum speed’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘Axle load category’ is Dedicated keyboard.The key#12 is dedicated to More button.The label of key#1 – key#11 are displayed as follows,AHS17B1B2C2C3C4D2D3D4D4XLNote: Reference of label of Axle load category is specified in chapter A3.11 [SUBSET-026].Packet transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with the following variables MMI_V_MAXTRAIN = 170 MMI_N_DATA_ELEMENTS = 1MMI_M_BUTTONS = 254The data part of the echo text of train category is displayed according to [MMI_CURRENT_TRAIN_DATA  (EVC-6)] with the following variables,MMI_NID_DATA = 10 (Maximum speed)MMI_N_TEXT = 3MMI_X_TEXT = “170”");
             /*
             Test Step 18
             Action: Enter the value ‘170’ for Maximum speed.Then, confirm an entered data by pressing an input field
@@ -212,6 +239,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(19, UniqueIdentifier++, "Follow Step 2 – Step 6 for the ‘More’ button",
+                "See the expected results of Step 2 – Step 6 with the expected result for the label for keypad as follows,(1)   After ‘More’ button is pressed refer to step 2, The label of key#1 – key#2 are displayed as follows,E4E5Note: Reference of label of Axle load category is specified in chapter A3.11 [SUBSET-026].After ‘More’ button is released refer to step 6, the label of keypard is circularly changed to previous page (same as expected result No.11 in step 18)");
             /*
             Test Step 19
             Action: Follow Step 2 – Step 6 for the ‘More’ button
@@ -220,6 +249,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(20, UniqueIdentifier++,
+                "Perform action step 7-8 for keypad of the ‘Axle Load Category’ input field",
+                "See the expected results of Step 7 – Step 8");
             /*
             Test Step 20
             Action: Perform action step 7-8 for keypad of the ‘Axle Load Category’ input field
@@ -229,6 +261,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8(this);
 
 
+            MakeTestStepHeader(21, UniqueIdentifier++,
+                "Enter the value ‘A’ for Axle Load Category.Then, confirm an entered data by pressing an input field",
+                "Verify the following information,Input fields(1)   The associated ‘Enter’ button is data field itself.(2)   An input field is used to allow the driver to enter data.(3)   The state of ‘Axle load category’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4)   The next input field ‘Airtight’ is in state ‘selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Echo Texts(5)   The echo text of ‘Axle load category’ is changed to white colour.(6)   The value of echo text is changed refer to entered data.Entering Characters(7)   The cursor is displayed as a horizontal line below the position of the next character to be entered.(8)   The cursor is flashed by changing from visible to not visible.Keyboard(9)    The keyboard associated to selected input field ‘Airtight’ is Dedicated keyboard.(10)  The label of each button in keypad are displayed as follows,Key #7 is No buttonKey #8 is Yes buttonPacket transmission(11)  Use the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with the following variables, MMI_NID_KEY_AXLE_LOAD = 21 MMI_N_DATA_ELEMENTS = 1MMI_M_BUTTONS = 254(12)  The data part of the echo text of train category is displayed according to [MMI_CURRENT_TRAIN_DATA  (EVC-6)] with the following variables,MMI_NID_DATA = 11 (Axle Load Category)MMI_N_TEXT = 1MMI_X_TEXT = “A”Navigation button(13)  The state of ‘Previous’ and ‘Next’ button are displayed as follows, ‘Next’ button is disabled, display symbol NA18.2‘Previous’ button is enable, display symbol NA18");
             /*
             Test Step 21
             Action: Enter the value ‘A’ for Axle Load Category.Then, confirm an entered data by pressing an input field
@@ -237,6 +272,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(22, UniqueIdentifier++,
+                "Follow Step 7 – Step 8 for every buttons on the keypad of Airtight",
+                "See the expected results of Step 7 – Step 8");
             /*
             Test Step 22
             Action: Follow Step 7 – Step 8 for every buttons on the keypad of Airtight
@@ -246,6 +284,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8(this);
 
 
+            MakeTestStepHeader(23, UniqueIdentifier++,
+                "Press ‘No’ button on keypad.Then, confirm an entered data by pressing an input field",
+                "Verify the following information,Input fieldsThe associated ‘Enter’ button is data field itself.An input field is used to allow the driver to enter data.The state of ‘Airtight’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.The next input field ‘Loading gauge’ is in state ‘selected’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is grey.Echo TextsThe echo text of ‘Airtight’ is changed to white colour.The value of echo text is changed refer to entered data.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible.KeyboardThe keyboard associated to selected input field ‘Loading gauge’ is Dedicated keyboard.The label of key#1 – key#5 is display as follows,G1GAGBGCOut of GCPacket transmissionUse the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with the following variables,MMI_M_AIRTIGHT = 0 MMI_N_DATA_ELEMENTS = 1MMI_M_BUTTONS = 254The data part of the echo text of train category is displayed according to [MMI_CURRENT_TRAIN_DATA  (EVC-6)] with the following variables,MMI_NID_DATA = 12 (Airtight)MMI_N_TEXT = 2MMI_X_TEXT = “No”");
             /*
             Test Step 23
             Action: Press ‘No’ button on keypad.Then, confirm an entered data by pressing an input field
@@ -254,6 +295,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(24, UniqueIdentifier++,
+                "Follow Step 7 – Step 8 for every buttons on the keypad of Loading Gauge",
+                "See the expected results of Step 7 – Step 8");
             /*
             Test Step 24
             Action: Follow Step 7 – Step 8 for every buttons on the keypad of Loading Gauge
@@ -263,6 +307,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.See_the_expected_results_of_Step_7_Step_8(this);
 
 
+            MakeTestStepHeader(25, UniqueIdentifier++,
+                "Enter value ‘Out of GC’ for Loading gauge.Then, confirm an entered data by pressing an input field",
+                "Verify the following information,Input fields(1) The associated ‘Enter’ button is data field itself.(2) An input field is used to allow the driver to enter data.(3) The state of ‘Loading gauge’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4) There is no input field selected.Echo Texts(5) The echo text of ‘Loading gauge’ is changed to white colour.(6) The value of echo text is changed refer to entered data.Data Entry window(7) The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The colour of border is medium-grey.Packet transmission(8) Use the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with following variablesMMI_NID_KEY_LOAD_GAUGE = 34MMI_N_DATA_ELEMENTS = 1MMI_M_BUTTONS = 254(9) The data part of the echo text of train category is displayed according to [MMI_CURRENT_TRAIN_DATA  (EVC-6)] with the following variables,MMI_NID_DATA = 13 (Loading gauge)MMI_N_TEXT = 9MMI_X_TEXT = “Out of GC”(10)    Use the log file to confirm that DMI received packet EVC-6 with variable MMI_M_BUTTONS = 36 (BTN_YES_DATA_ENTRY_COMPLETE)");
             /*
             Test Step 25
             Action: Enter value ‘Out of GC’ for Loading gauge.Then, confirm an entered data by pressing an input field
@@ -271,6 +318,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(26, UniqueIdentifier++, "Apply the action step 3-6 for ‘Previous’ and ‘Next’ button",
+                "See the expected results of Step 3 – Step 6");
             /*
             Test Step 26
             Action: Apply the action step 3-6 for ‘Previous’ and ‘Next’ button
@@ -279,6 +328,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(27, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Previous’ button.Select ‘Train category’ input field.Press ‘PASS 1’ button.Select ‘Brake percentage’ input field",
+                "Verify the following information,(1)   The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is disabled. (2)   The state of input field ‘Train category’ is changed to ‘Not selected’ as follows,The value of ‘Train category’ input field is removed, display as blank.The background colour of the input field is dark-grey");
             /*
             Test Step 27
             Action: Perform the following procedure,Press ‘Previous’ button.Select ‘Train category’ input field.Press ‘PASS 1’ button.Select ‘Brake percentage’ input field
@@ -287,6 +339,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(28, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Next’ button.Select ‘Loading gauge’ input field.Confirm the value of ‘Loading gauge’ by pressing an input field",
+                "Verify the following information,The state of input field ‘Train category’ is changed to ‘Selected.Entering CharactersThe cursor is displayed as a horizontal line below the position of the next character to be entered.The cursor is flashed by changing from visible to not visible");
             /*
             Test Step 28
             Action: Perform the following procedure,Press ‘Next’ button.Select ‘Loading gauge’ input field.Confirm the value of ‘Loading gauge’ by pressing an input field
@@ -295,6 +350,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(29, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘PASS 1’ button.Confirm the value of ‘Train category’ by pressing an input field",
+                "The state of ‘Yes’ button is changed to enabled");
             /*
             Test Step 29
             Action: Perform the following procedure,Press ‘PASS 1’ button.Confirm the value of ‘Train category’ by pressing an input field
@@ -304,6 +362,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_state_of_Yes_button_is_changed_to_enabled(this);
 
 
+            MakeTestStepHeader(30, UniqueIdentifier++, "Apply the action step 3-6 for ‘Yes’ button",
+                "See the expected results of Step 3 – Step 6 and the following points,DMI displays Train data validation window.Use the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with following variablesMMI_N_DATA_ELEMENTS = 0MMI_M_TRAINSET_ID = 0MMI_M_BUTTONS = 36");
             /*
             Test Step 30
             Action: Apply the action step 3-6 for ‘Yes’ button
@@ -312,6 +372,7 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(31, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Train data window");
             /*
             Test Step 31
             Action: Press ‘Close’ button
@@ -323,6 +384,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Train_data_window_displayed(this);
 
 
+            MakeTestStepHeader(32, UniqueIdentifier++, "Press and hold the Label area of ‘Length’ input field",
+                "Verify the following information,The state of ‘Length’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Length’ input field remains ‘not selected’. The state of ‘Train category’ input field remains ‘selected’.The sound ‘Click’ is played once");
             /*
             Test Step 32
             Action: Press and hold the Label area of ‘Length’ input field
@@ -331,6 +394,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(33, UniqueIdentifier++, "Slide out the Label area of ‘Length’ input field",
+                "Verify the following information,The border of ‘Length’ input field is shown (state ‘Enabled’) without a sound.The state of ‘Length’ input field remains ‘not selected’. The state of ‘Train category’ input field remains ‘selected’");
             /*
             Test Step 33
             Action: Slide out the Label area of ‘Length’ input field
@@ -339,6 +404,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(34, UniqueIdentifier++, "Slide back into the Label area of ‘Length’ input field",
+                "Verify the following information,The state of ‘Length’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Length’ input field remains ‘not selected’. The state of ‘Train category’ input field remains ‘selected’");
             /*
             Test Step 34
             Action: Slide back into the Label area of ‘Length’ input field
@@ -347,6 +414,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(35, UniqueIdentifier++, "Release the pressed area",
+                "Verify the following information,The state of ‘Length’ input field is changed to selected");
             /*
             Test Step 35
             Action: Release the pressed area
@@ -357,6 +426,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
+            MakeTestStepHeader(36, UniqueIdentifier++,
+                "Perform action step 32-35 for the Label area of each input field",
+                "Verify the following information,The state of an input field is changed to ‘selected’ when release the pressed area at the Label area of input field");
             /*
             Test Step 36
             Action: Perform action step 32-35 for the Label area of each input field
@@ -369,6 +441,9 @@ namespace Testcase.DMITestCases
                     this);
 
 
+            MakeTestStepHeader(37, UniqueIdentifier++,
+                "Perform action step 32-35 for the Data area of each input field",
+                "Verify the following information,The state of an input field is changed to ‘selected’ when release the pressed area at the Data area of input field");
             /*
             Test Step 37
             Action: Perform action step 32-35 for the Data area of each input field
@@ -381,6 +456,8 @@ namespace Testcase.DMITestCases
                     this);
 
 
+            MakeTestStepHeader(38, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify the following information, Use the log file to confirm that DMI sent out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 4 (Exit Train Data Entry).Use the log file to confirm that DMI sent out packet [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_NID_WINDOW = 254.The window is closed and the Main window is displayed");
             /*
             Test Step 38
             Action: Press ‘Close’ button
@@ -391,6 +468,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
+            MakeTestStepHeader(39, UniqueIdentifier++,
+                "Press ‘Train data’ button.Then, use the test script file 22_29_1_a.xml to send EVC-6 with,MMI_M_BUTTONS = 36",
+                "DMI displays Train data window.Verify the following information,(1)     The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ still disabled");
             /*
             Test Step 39
             Action: Press ‘Train data’ button.Then, use the test script file 22_29_1_a.xml to send EVC-6 with,MMI_M_BUTTONS = 36
@@ -401,6 +481,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults
                 .Train_data_window_displayed(this);
 
+
+            MakeTestStepHeader(40, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 40

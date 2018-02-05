@@ -94,12 +94,14 @@ namespace Testcase.Telegrams.EVCtoDMI
                 if (k < 10)
                 {
                     _pool.SITR.Client.Write(string.Format("{0}0{1}_EVC20alias1", BaseString, k), evc20Alias1);
-                    _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiMLevelNtcId", BaseString, k), (byte) _mLevelNtcId[k]);
+                    _pool.SITR.Client.Write(string.Format("{0}0{1}_MmiMLevelNtcId", BaseString, k),
+                        (byte) _mLevelNtcId[k]);
                 }
                 else
                 {
                     _pool.SITR.Client.Write(string.Format("{0}{1}_EVC20alias1", BaseString, k), evc20Alias1);
-                    _pool.SITR.Client.Write(string.Format("{0}{1}_MmiMLevelNtcId", BaseString, k), (byte) _mLevelNtcId[k]);
+                    _pool.SITR.Client.Write(string.Format("{0}{1}_MmiMLevelNtcId", BaseString, k),
+                        (byte) _mLevelNtcId[k]);
                 }
             }
         }

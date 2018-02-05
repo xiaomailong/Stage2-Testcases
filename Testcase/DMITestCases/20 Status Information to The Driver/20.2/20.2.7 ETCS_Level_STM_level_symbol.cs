@@ -45,11 +45,15 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A",
+                "DMI displays the default window. The Driver ID window is displayed");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -66,6 +70,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Confirm the Driver ID");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Select ‘TPWS (STM)’ level",
+                "Verify the following information:(1)    The confirmation announcement symbol of SN mode is displayed at sub-area C1 and the driver is required to acknowledge. (Please check MO20 symbol in ‘Comment’ column.)(2)     Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 38 (Level NTC selected)");
             /*
             Test Step 2
             Action: Select ‘TPWS (STM)’ level
@@ -99,6 +105,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 555;
             EVC8_MMIDriverMessage.Send();
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Confirm SN mode",
+                "Verify the following information:(1)    DMI displays the symbol of TPWS STM level in sub-area C8.        The symbol of SN mode is displayed in sub-area B7. (see the example in ‘Comment’ column)(2)   Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 10 (Ack level NTC)");
             /*
             Test Step 3
             Action: Confirm SN mode
@@ -123,6 +131,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays symbol MO19 (SN mode) in sub-area B7." + Environment.NewLine +
                                 "2. DMI displays symbol LE08 (TPWS level) in sub-area C8.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Complete Start of Mission",
+                "DMI displays in SN mode, level STM (TPWS)(1)     Use the log file to confirm that DMI receives packet EVC-30 with the value of following bit in variable MMI_Q_REQUEST_ENABLE_64,Bit #24 = 1 (End of data entry)(2)     Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a) MMI_M_DRIVER_ACTION = 28 (Ack of SN mode)");
             /*
             Test Step 4
             Action: Complete Start of Mission
@@ -138,6 +148,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SN mode, Level STM (TPWS)");
+
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 5

@@ -32,19 +32,14 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A",
+                "DMI displays in SB mode. The Driver ID window is displayed");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -62,6 +57,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Driver performs SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Driver performs SoM to SR mode, level 1
@@ -77,6 +74,9 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.SR_Mode_displayed(this);
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Drive the train forward passing BG1Then drive the train forward with speed = 60 km/h in FS mode",
+                "DMI changes from SR to FS mode.Verify that the distance to target bar is displayed in sub-area A2.The distance to target digital is displayed as numeric in Metric units");
             /*
             Test Step 3
             Action: Drive the train forward passing BG1Then drive the train forward with speed = 60 km/h in FS mode
@@ -104,6 +104,8 @@ namespace Testcase.DMITestCases
                                 "2. The distance to target bar is displayed in sub-area A2." + Environment.NewLine +
                                 "3. The digital distance to target is displayed as a number in metric units.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Drive the train forward passing BG2",
+                "DMI remains displays in FS mode");
             /*
             Test Step 4
             Action: Drive the train forward passing BG2
@@ -114,6 +116,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the FS mode symbol (MO11) in area B7");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Simulate a communication loss between ETCS Onboard and DMI",
+                "DMI displays the  message “ATP Down Alarm” with sound alarm.Verify that the distance to target digital is removed from DMI’s screen. The toggling function is disabled");
             /*
             Test Step 5
             Action: Simulate a communication loss between ETCS Onboard and DMI
@@ -128,6 +132,8 @@ namespace Testcase.DMITestCases
                                 "3. The digital distance to target is removed from sub-area A2." + Environment.NewLine +
                                 "4. The toggling function is disabled.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI",
+                "DMI displays in FS mode. Verify that the distance to target digital is resumed");
             /*
             Test Step 6
             Action: Re-establish the communication between ETCS onboard and DMI
@@ -140,6 +146,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the FS mode symbol (MO11) in area B7" + Environment.NewLine +
                                 "2. The digital distance to target is displayed");
+
+            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 7

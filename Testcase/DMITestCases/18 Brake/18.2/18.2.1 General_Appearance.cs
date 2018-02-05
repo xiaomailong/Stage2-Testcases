@@ -33,18 +33,15 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Force the train roll away by moving of speed with ‘Neutral’ direction throughout the test step 2, 3, 4 and 5",
+                "");
 
             /*
             Test Step 1
@@ -52,6 +49,8 @@ namespace Testcase.DMITestCases
             Expected Result: 
             */
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Wait until a runaway movement is detected",
+                "Verify the following information,The symbol ‘ST01’ is displayed when packet [MMI_DRIVER_MESSAGE (EVC-8)] is received with variable [MMI_DRIVER_MESSAGE (EVC-8).MMI_Q_TEXT]= 260Note: Use the log file to verify a received packet EVC-8.The symbol ‘ST01’ is displayed in sub-area C9A flashing frame is only surrounded in the sub-area C9");
             /*
             Test Step 2
             Action: Wait until a runaway movement is detected
@@ -66,6 +65,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol ST01 in sub-area C9 in a yellow flashing frame.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press sub-area E1 (below ST01 symbol)",
+                "Verify the following information,The sub-area E1 can be acknowledged as sensitive areaThe symbol ‘ST01’ is removed from the sub-area C9.Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 16 (Brake release acknowledgement)");
             /*
             Test Step 3
             Action: Press sub-area E1 (below ST01 symbol)
@@ -81,6 +82,9 @@ namespace Testcase.DMITestCases
                                 "1. Sub-area E1 can be acknowledged as sensitive area." + Environment.NewLine +
                                 "2. DMI stops displaying symbol ST01");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Wait until a runaway movement is detected, and the symbol ST01 is displayed again.Then, press sub-area C8 (above ST01 symbol)",
+                "Verify the following information,The sub-area C8 can be acknowledged as sensitive areaThe symbol ‘ST01’ is removed from the sub-area C9");
             /*
             Test Step 4
             Action: Wait until a runaway movement is detected, and the symbol ST01 is displayed again.Then, press sub-area C8 (above ST01 symbol)
@@ -98,6 +102,9 @@ namespace Testcase.DMITestCases
                                 "1. Sub-area C8 can be acknowledged as sensitive area." + Environment.NewLine +
                                 "2. DMI stops displaying symbol ST01");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Wait until a runaway movement is detected, and the symbol ST01 is displayed again.Then, press sub-area C9 (ST01 symbol)",
+                "Verify the following information,The sub-area C9 can be acknowledged as sensitive areaThe symbol ‘ST01’ is removed from the sub-area C9");
             /*
             Test Step 5
             Action: Wait until a runaway movement is detected, and the symbol ST01 is displayed again.Then, press sub-area C9 (ST01 symbol)
@@ -114,12 +121,18 @@ namespace Testcase.DMITestCases
                                 "1. Sub-area C9 can be acknowledged as sensitive area." + Environment.NewLine +
                                 "2. DMI stops displaying symbol ST01");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Stop the train from runway by dropping the train’s speed to zero", "");
+
             /*
             Test Step 6
             Action: Stop the train from runway by dropping the train’s speed to zero
             Expected Result: 
             */
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1",
+                "Verifies that the following information,The symbol ST01 is displayed in sub-area C9 with yellow flashing frame.A yellow flashing frame is surrounded in the related object (sub-area C9) and sound Sinfo is played");
             /*
             Test Step 7
             Action: Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1
@@ -133,6 +146,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI plays sound ‘Sinfo’");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press on sub-area E1 (below ST01 symbol)",
+                "Verify the following information,The sub-area E1 can be acknowledged as sensitive areaThe flashing frame belonging to the acknowledgement is disappearedThe symbol ‘ST01’ is still displayed.When the driver carries out an acknowledgement, the DMI will send [MMI_DRIVER_MESSAGE_ACK (EVC-111)] for pressed and released event with [MMI_DRIVER_MESSAGE (EVC-8).MMI_I_TEXT] and [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK]Note: For pressed and released event, the DMI will send variable [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 1, and then send [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 0");
             /*
             Test Step 8
             Action: Press on sub-area E1 (below ST01 symbol)
@@ -156,6 +171,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI still displays symbol ST01");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Press on sub-area E1 (below ST01 symbol)",
+                "Verify the following information,Touch sensitive areas of the acknowledgement is removed.Note: DMI will not send the packet [MMI_DRIVER_MESSAGE_ACK (EVC-111)] when there is no detection of acknowledgement");
             /*
             Test Step 9
             Action: Press on sub-area E1 (below ST01 symbol)
@@ -176,6 +193,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The touch-sensitive area in sub-area E1 is removed.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1",
+                "Verify the following information, (1)   Sound Sinfo is played");
             /*
             Test Step 10
             Action: This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1
@@ -188,6 +208,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI plays sound ‘Sinfo’");
 
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1Then, press at sub-area C8 (above ST01 symbol)",
+                "Verify the following information, The sub-area C8 can be acknowledged as sensitive areaThe flashing frame belonging to the acknowledgement is disappearedThe symbol ‘ST01’ is still displayed.When the driver carries out an acknowledgement, the DMI will send [MMI_DRIVER_MESSAGE_ACK (EVC-111)] for pressed and released event with [MMI_DRIVER_MESSAGE (EVC-8).MMI_I_TEXT] and [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK]Note: For pressed and released event, the DMI will send variable [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 1, and then send [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 0");
             /*
             Test Step 11
             Action: Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1Then, press at sub-area C8 (above ST01 symbol)
@@ -212,6 +235,10 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI still displays symbol ST01");
 
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1",
+                "");
+
             /*
             Test Step 12
             Action: This step is to clear the symbol ‘ST01’ after verification of the previous step.Use the test script file 13_2_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 1
@@ -219,6 +246,9 @@ namespace Testcase.DMITestCases
             */
             XML_13_2_1(msgType.typeb);
 
+            MakeTestStepHeader(13, UniqueIdentifier++,
+                "Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1Then, press at sub-area C9 (ST01 symbol)",
+                "Verify the following information,The sub-area C9 can be acknowledged as sensitive areaThe flashing frame belonging to the acknowledgement is disappearedThe symbol ‘ST01’ is still displayed.When the driver carries out an acknowledgement, the DMI will send [MMI_DRIVER_MESSAGE_ACK (EVC-111)] for pressed and released event with [MMI_DRIVER_MESSAGE (EVC-8).MMI_I_TEXT] and [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK]Note: For pressed and released event, the DMI will send variable [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 1, and then send [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_ACK] = 1 with  [MMI_DRIVER_MESSAGE_ACK (EVC-111).MMI_Q_BUTTON] = 0");
             /*
             Test Step 13
             Action: Use the test script file 13_2_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT = 260MMI_I_TEXT = 1Then, press at sub-area C9 (ST01 symbol)
@@ -244,6 +274,8 @@ namespace Testcase.DMITestCases
                                 "2. The yellow flashing frame surrounding the ST01 symbol is removed." +
                                 Environment.NewLine +
                                 "3. DMI still displays symbol ST01");
+
+            MakeTestStepHeader(14, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 14

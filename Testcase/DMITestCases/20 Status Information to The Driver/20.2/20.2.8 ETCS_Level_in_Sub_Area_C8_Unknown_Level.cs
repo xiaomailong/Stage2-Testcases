@@ -43,9 +43,14 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 15_2_8_a.xml to send EVC-7 with,OBU_TR_M_Level =  15",
+                "Verify the following information,(1)   No symbol displays in sub-area C8");
             /*
             Test Step 1
             Action: Use the test script file 15_2_8_a.xml to send EVC-7 with,OBU_TR_M_Level =  15
@@ -75,6 +80,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI does not display a symbol in sub-area C8.");
 
             #endregion
+
+            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 2

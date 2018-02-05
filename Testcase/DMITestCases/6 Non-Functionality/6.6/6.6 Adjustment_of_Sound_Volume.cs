@@ -36,20 +36,14 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // Cabin A is deactivated.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -62,6 +56,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Settings’ button",
+                "The Settings window is presented with all sub-menus");
             /*
             Test Step 2
             Action: Press ‘Settings’ button
@@ -73,6 +69,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.DMI_displays_Settings_window(this);
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press ‘Volume’ button", "Verify the following information,");
             /*
             Test Step 3
             Action: Press ‘Volume’ button
@@ -85,6 +82,9 @@ namespace Testcase.DMITestCases
             WaitForVerification(
                 "The Volume window is presented to the driver to adjust the DMI acoustic and the Volume window is displayed with the default volume as 70.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Adjust acoustic volume by press and hold ‘-‘ button to the minimum level in order to decrease the acoustic volume",
+                "The adjusted acoustic volume is used by DMI.");
             /*
             Test Step 4
             Action: Adjust acoustic volume by press and hold ‘-‘ button to the minimum level in order to decrease the acoustic volume
@@ -101,6 +101,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("The adjusted acoustic volume is used by DMI." + Environment.NewLine +
                                 "Verify that the minimum level of the volume is 10, as defined in the precondition and the ‘Click’ sound is lower and lower(never quiet)");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press an input field to confirm adjusted volume",
+                "The Settings window is displayed. ");
             /*
             Test Step 5
             Action: Press an input field to confirm adjusted volume
@@ -117,6 +119,7 @@ namespace Testcase.DMITestCases
             WaitForVerification(
                 "Verify that the acoustic sound from driver clicking button remains as a minimum level that was adjusted.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Close the Settings window", "Verify the following information,");
             /*
             Test Step 6
             Action: Close the Settings window
@@ -130,6 +133,9 @@ namespace Testcase.DMITestCases
             WaitForVerification(
                 "The acoustic sound from driver clicking button remains as a minimum level that was adjusted");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Simulate the communication lost between ETCS Onboard and DMI by unplugging the MVB cable",
+                "DMI displays the message ‘ATP Down Alarm’ with sound alarm.");
             /*
             Test Step 7
             Action: Simulate the communication lost between ETCS Onboard and DMI by unplugging the MVB cable
@@ -143,6 +149,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Is the DMI displaying the message ‘ATP Down Alarm’ with sound alarm.");
             WaitForVerification("Is the sound played at maximum volume 100%");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI.",
+                "Cabin A is deactivated");
             /*
             Test Step 8
             Action: Re-establish the communication between ETCS onboard and DMI.
@@ -154,6 +162,9 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Cab_deactivated(this);
 
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Repeat step 1-8 with press and hold ‘+’ button to the maximum level instead",
+                "Verify the following points,");
             /*
             Test Step 9
             Action: Repeat step 1-8 with press and hold ‘+’ button to the maximum level instead
@@ -165,6 +176,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this,
                 @"Repeat step 1-8 with press and hold ‘+’ button to the maximum level instead");
+
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 10

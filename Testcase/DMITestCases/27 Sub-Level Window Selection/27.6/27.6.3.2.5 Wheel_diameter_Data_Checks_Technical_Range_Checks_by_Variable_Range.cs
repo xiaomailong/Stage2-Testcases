@@ -35,7 +35,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened.
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
@@ -45,20 +44,17 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // ETCS-DMI is in the ‘Stand-By’ mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Open the ‘Wheel diameter’ data entry window from the Settings menu",
+                "The ‘Wheel diameter’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window");
             /*
             Test Step 1
             Action: Open the ‘Wheel diameter’ data entry window from the Settings menu
@@ -74,6 +70,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Wheel Diameter window.");
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Enter the minimum inbound values with the numeric keypad and press the data input field (Accept) in the same screen, for the following fields below, Wheel diameter 1: 500Wheel diameter 2: 500Accuracy: 0",
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by the previously entered values (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’):Wheel diameter 1: 500Wheel diameter 2: 500Accuracy: 0EVC-140(2) Use the log file to verify that DMI sends packet EVC-140 with variable:-   MMI_M_SDU_WHEEL_SIZE_1 = 500-   MMI_M_SDU_WHEEL_SIZE_2 = 500-   MMI_M_WHEEL_SIZE_ERR = 0-   MMI_Q_MD_DATASET = 0 (Wheel diameter)");
             /*
             Test Step 2
             Action: Enter the minimum inbound values with the numeric keypad and press the data input field (Accept) in the same screen, for the following fields below, Wheel diameter 1: 500Wheel diameter 2: 500Accuracy: 0
@@ -100,6 +99,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The values entered are displayed in black on a Medium-grey background.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Enter the outbound value with the numeric keypad and press the data input field (Accept) in the same screen, for the following fields below, Wheel diameter 1: 1501Wheel diameter 2: 499Accuracy: 33",
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays the previously entered value:Wheel diameter 1: 1501Wheel diameter 2: 499Accuracy: 33EVC-140(3) Use the log file to verify that DMI does not send out packet EVC-140 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 3
             Action: Enter the outbound value with the numeric keypad and press the data input field (Accept) in the same screen, for the following fields below, Wheel diameter 1: 1501Wheel diameter 2: 499Accuracy: 33
@@ -126,6 +128,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The echo texts corresponding to the values entered display ‘++++’ in red.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Enter the maximum inbound values with the numeric keypad and press the data input field (Accept) in the same screen, for the following fields below, Wheel diameter 1: 1500Wheel diameter 2: 1500Accuracy: 32Then, press the ‘Yes’ button",
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by the entered value (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’):Wheel diameter 1: 1500Wheel diameter 2: 1500Accuracy: 32EVC-140(2) Use the log file to verify that DMI sends packet EVC-140 with variable: -   MMI_M_SDU_WHEEL_SIZE_1 = 1500-   MMI_M_SDU_WHEEL_SIZE_2 = 1500-   MMI_M_WHEEL_SIZE_ERR = 32-   MMI_Q_MD_DATASET = 0 (Wheel diameter)");
             /*
             Test Step 4
             Action: Enter the maximum inbound values with the numeric keypad and press the data input field (Accept) in the same screen, for the following fields below, Wheel diameter 1: 1500Wheel diameter 2: 1500Accuracy: 32Then, press the ‘Yes’ button
@@ -145,6 +150,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The values entered are displayed selected.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "This step is to complete the process of ‘Wheel diameter’:- Press the ‘Yes’ button on the ‘Wheel diameter’ window.- Validate the data in the data validation window",
+                "1. After pressing the ‘Yes’ button, the data validation window (‘Validate Wheel diameter’) appears instead of the ‘Wheel diameter’ data entry window. The data part of echo text displays in white:Wheel diameter 1: 1500Wheel diameter 2: 1500Accuracy: 322. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Wheel diameter’ window with enabled ‘Wheel diameter’ button");
             /*
             Test Step 5
             Action: This step is to complete the process of ‘Wheel diameter’:- Press the ‘Yes’ button on the ‘Wheel diameter’ window.- Validate the data in the data validation window
@@ -177,6 +185,8 @@ namespace Testcase.DMITestCases
             // Don't understand the spec here...
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the Validate Wheel Diameter window and displays the Maintenance window with the ‘Wheel Diameter’ button enabled.");
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 6

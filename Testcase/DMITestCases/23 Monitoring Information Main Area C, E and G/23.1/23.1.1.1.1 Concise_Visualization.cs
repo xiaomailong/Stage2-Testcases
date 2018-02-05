@@ -22,30 +22,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_18_1_1_1_1_Concise_Visualization : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Setup a concise visualisation for the radio connection status in configuration file (RADIO_STATUS_VISUAL= 0).System is powered ON.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate Cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate Cabin A
@@ -58,6 +43,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Enter Driver ID",
+                "No symbol display in sub area E1.Use the log file to confirm that there is no packet information EVC-8 with variable MMI_Q_TEXT = 282 (ST04 symbol) and MMI_Q_TEXT = 568 (ST03 symbol) send to DMI");
             /*
             Test Step 2
             Action: Enter Driver ID
@@ -69,6 +56,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. No symbol is displayed in sub-area E1");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Perform SoM in SR mode, Level 2",
+                "DMI displays Connection established symbol (ST03) in sub area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 568 (ST03 symbol)");
             /*
             Test Step 3
             Action: Perform SoM in SR mode, Level 2
@@ -120,6 +109,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays the ‘Connection established’ symbol (ST03) in sub-area E1.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Drive the train forward with speed below the permitted speed",
+                "The train is moving forward, position is increase.The speed pointer displays the current speed");
             /*
             Test Step 4
             Action: Drive the train forward with speed below the permitted speed
@@ -133,6 +124,8 @@ namespace Testcase.DMITestCases
                                 "1. The train has moved forward." + Environment.NewLine +
                                 "2. The speed pointer displays the current speed.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Receives FS MA and track description from RBC",
+                "DMI displays in FS mode, Level 2");
             /*
             Test Step 5
             Action: Receives FS MA and track description from RBC
@@ -145,6 +138,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 2");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Simulate RBC communication loss and wait for a few secondsNote: This simulation is perform automatically by UTT file",
+                "DMI displays Connection Lost/Set-Up failed symbol (ST04) in sub area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 282 (ST04 symbol)");
             /*
             Test Step 6
             Action: Simulate RBC communication loss and wait for a few secondsNote: This simulation is perform automatically by UTT file
@@ -164,6 +160,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays the ‘Connection Lost/Set-Up failed’ symbol (ST04) in sub-area E1.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Re-establish the radio communication.Note: This simulation is perform automatically by UTT file",
+                "DMI displays Connection established symbol (ST03) in sub area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 613");
             /*
             Test Step 7
             Action: Re-establish the radio communication.Note: This simulation is perform automatically by UTT file
@@ -182,6 +181,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays the ‘Connection established’ symbol (ST03) in sub-area E1.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Perform the following procedure,Stop the trainDe-activate Cabin A.Activate Cabin A",
+                "The symbol in sub area E1 is removed");
             /*
             Test Step 8
             Action: Perform the following procedure,Stop the trainDe-activate Cabin A.Activate Cabin A
@@ -195,6 +197,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI does not display the ‘Connection established’ symbol (ST04) in sub-area E1.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Use the test script file 18_1_1_1_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 610",
+                "No symbol display in sub area E1");
             /*
             Test Step 9
             Action: Use the test script file 18_1_1_1_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 610
@@ -206,6 +211,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI does not display a symbol in sub-area E1.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "(Continue from step 9) Send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 609",
+                "No symbol display in sub area E1");
             /*
             Test Step 10
             Action: (Continue from step 9) Send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 609
@@ -221,6 +229,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI does not display a symbol in sub-area E1.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Use the test script file 18_1_1_1_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 614",
+                "DMI displays Connection established symbol (ST03) in sub area E1");
             /*
             Test Step 11
             Action: Use the test script file 18_1_1_1_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 614
@@ -231,6 +242,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays the ‘Connection established with two RBCs’ symbol (ST03B) in sub-area E1.");
+
+            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 12

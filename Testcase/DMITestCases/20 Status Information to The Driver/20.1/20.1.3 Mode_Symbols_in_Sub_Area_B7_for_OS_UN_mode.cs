@@ -30,17 +30,10 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, Level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
             #region Test Step 1
@@ -49,7 +42,7 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
-            
+
             DmiActions.Activate_Cabin_1(this);
             DmiExpectedResults.Cabin_A_is_activated(this);
 
@@ -102,6 +95,7 @@ namespace Testcase.DMITestCases
 
             #region Test Step 4
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Train data’ button", "DMI displays Train data window");
             /*
             Test Step 4
             Action: Press ‘Train data’ button
@@ -117,6 +111,9 @@ namespace Testcase.DMITestCases
 
             #region Test Step 5
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Enter and confirm value in each input field.Then, press ‘Yes’ button",
+                "DMI displays Train data validation window");
             /*
             Test Step 5
             Action: Enter and confirm value in each input field.Then, press ‘Yes’ button
@@ -139,6 +136,9 @@ namespace Testcase.DMITestCases
 
             #region Test Step 6
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Press ‘Yes’ button.Then, confirmed selected value by pressing an input field",
+                "DMI displays Train Running Number window");
             /*
             Test Step 6
             Action: Press ‘Yes’ button.Then, confirmed selected value by pressing an input field
@@ -156,6 +156,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 7
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Enter and confirm Train running number",
+                "DMI displays Main window");
             /*
             Test Step 7
             Action: Enter and confirm Train running number
@@ -171,6 +173,7 @@ namespace Testcase.DMITestCases
 
             #region Test Step 8
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press ‘Start’ button", "Verify the following information,");
             /*
             Test Step 8
             Action: Press ‘Start’ button
@@ -194,6 +197,7 @@ namespace Testcase.DMITestCases
 
             #region Test Step 9
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Acknowledge UN mode", "Verify the following information,");
             /*
             Test Step 9
             Action: Acknowledge UN mode
@@ -222,6 +226,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 10
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Perform the following procedure:",
+                "DMI displays Default window in SR mode, Level 1.");
             /*
             Test Step 10
             Action: Perform the following procedure:
@@ -321,6 +327,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 11
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Drive the train forward passing BG1",
+                "Verify the following information,");
             /*
             Test Step 11
             Action: Drive the train forward passing BG1
@@ -346,6 +354,7 @@ namespace Testcase.DMITestCases
 
             #region Test Step 12
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Acknowledge OS mode", "Verify the following information,");
             /*
             Test Step 12
             Action: Acknowledge OS mode
@@ -367,6 +376,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 13
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Stop the train.Then, press ‘Over-ride’ button",
+                "When the train is stopped, EOA button is enabled");
             /*
             Test Step 13
             Action: Stop the train.Then, press ‘Over-ride’ button
@@ -389,6 +400,7 @@ namespace Testcase.DMITestCases
 
             #region Test Step 14
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Press ‘EOA’ button", "Verify the following information, ");
             /*
             Test Step 14
             Action: Press ‘EOA’ button
@@ -411,6 +423,8 @@ namespace Testcase.DMITestCases
             #endregion
 
             #region Test Step 15
+
+            MakeTestStepHeader(15, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 15

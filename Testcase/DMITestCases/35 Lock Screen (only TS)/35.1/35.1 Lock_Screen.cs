@@ -21,17 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_32_1_Lock_Screen : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.
-            DmiActions.Start_ATP();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -45,8 +34,13 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Perform the following procedure,Activate Cabin A.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Train data button.Enter and confirm all data. Then, press ‘Yes’ button.Press ‘Yes’ button and Confirm entered data by pressing an input field.Enter and confirm Train running numberPress ‘Close’ button",
+                "DMI displays Default window in SB mode and Level 1");
             /*
             Test Step 1
             Action: Perform the following procedure,Activate Cabin A.Enter Driver ID and perform brake test.Select and confirm Level 1.Press ‘Train data button.Enter and confirm all data. Then, press ‘Yes’ button.Press ‘Yes’ button and Confirm entered data by pressing an input field.Enter and confirm Train running numberPress ‘Close’ button
@@ -117,6 +111,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, Level 1.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "The train is at standstill. Press ’Settings’ button",
+                "The speed pointer is indicated to position 0 km/h.The Settings menu is displayed with enabled ’Lock Screen’ button");
             /*
             Test Step 2
             Action: The train is at standstill. Press ’Settings’ button
@@ -130,6 +126,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays speed = 0 km/h." + Environment.NewLine +
                                 "2. DMI displays the Settings menu with the ‘Lock Screen’ button enabled.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press ‘Lock Screen’ button",
+                "Verify the following information,The ‘Lock Screen’ function is activated.The activation of this function is clearly visualised and displayed as countdown. This function has a maximum duration of 10s, The countdown is start from 10 to 0.Note: Text “Screen locked for X” disappears when X=0.DMI plays Sinfo sound when the countdown text is “Screen locked for 1”.DMI displays Settings window when the Lock Screen function is deactivated");
             /*
             Test Step 3
             Action: Press ‘Lock Screen’ button
@@ -147,6 +145,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. After 10s the Lock Screen function is deactivated and DMI displays the Settings window");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press ‘Close’ button on Settings window",
+                "DMI displays Default window");
             /*
             Test Step 4
             Action: Press ‘Close’ button on Settings window
@@ -157,6 +157,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Press ‘Main’ button and select ‘Start’ button. Then, acknowledge SR mode",
+                "DMI displays in SR mode and Level 1");
             /*
             Test Step 5
             Action: Press ‘Main’ button and select ‘Start’ button. Then, acknowledge SR mode
@@ -182,6 +185,8 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press ‘Settings menu’ button and select ‘Lock Screen’ button",
+                "The ‘Lock Screen’ is activated");
             /*
             Test Step 6
             Action: Press ‘Settings menu’ button and select ‘Lock Screen’ button
@@ -192,6 +197,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Lock Screen’ function is activated.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Drive the train forward with speed = 40km/h",
+                "Verify the following information,Verify that DMI displays the default window after 1 second from the speed digital increased.The sound ‘Sinfo’ is played");
             /*
             Test Step 7
             Action: Drive the train forward with speed = 40km/h
@@ -205,6 +212,8 @@ namespace Testcase.DMITestCases
                                 "1. Note that the speed registered is 40 km/h and after 1s DMI displays the Default window." +
                                 Environment.NewLine +
                                 "2. DMI plays the Sinfo sound.");
+
+            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 8

@@ -46,20 +46,15 @@ namespace Testcase.DMITestCases
             DmiActions.Finished_SoM_Default_Window(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "At the RBC contact window, press ‘RBC Data’ button",
+                "DMI displays RBC Data window");
             /*
             Test Step 1
             Action: At the RBC contact window, press ‘RBC Data’ button
@@ -83,6 +78,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Data window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 10_4_1_5_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716",
+                "The hourglass symbol ST05 is displayed at window title area");
             /*
             Test Step 2
             Action: Use the test script file 10_4_1_5_a.xml to send EVC-8 withMMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 716
@@ -95,6 +93,9 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 10_4_1_5_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215",
+                "Verify the followin information,(1)     The RBC Data window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 3
             Action: Use the test script file 10_4_1_5_b.xml to send EVC-24 withMMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215
@@ -105,6 +106,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The RBC Data window is closed and DMI displays the System info window");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,At System info window, press ‘close’ button.Press and hold ‘Radio network ID’ button at least 2 seconds.Release the pressed area.Repeat action step 2-3",
+                "Verify the followin information,(1)    The Radio Network ID window is closed, DMI displays System info window after received packet EVC-24");
             /*
             Test Step 4
             Action: Perform the following procedure,At System info window, press ‘close’ button.Press and hold ‘Radio network ID’ button at least 2 seconds.Release the pressed area.Repeat action step 2-3
@@ -138,6 +142,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Radio Network ID window is closed and DMI displays the System info window");
+
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 5

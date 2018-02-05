@@ -31,20 +31,16 @@ namespace Testcase.DMITestCases
             //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 15_1_7_a.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 17 (“Not used”)",
+                "Verify the following information,");
             /*
             Test Step 1
             Action: Use the test script file 15_1_7_a.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 17 (“Not used”)
@@ -54,6 +50,9 @@ namespace Testcase.DMITestCases
             */
             XML_15_1_7(msgType.typea);
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 15_1_7_b.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 127 (“Not used”)",
+                "Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 2
             Action: Use the test script file 15_1_7_b.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 127 (“Not used”)
@@ -63,6 +62,9 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typeb);
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 15_1_7_c.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 129 (“Not used”)",
+                "Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 3
             Action: Use the test script file 15_1_7_c.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 129 (“Not used”)
@@ -72,6 +74,9 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typec);
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Use the test script file 15_1_7_d.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 255 (“Not used”)",
+                "Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 4
             Action: Use the test script file 15_1_7_d.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 255 (“Not used”)
@@ -81,6 +86,9 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typed);
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Use the test script file 15_1_7_e.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 18 (“Not used”)",
+                "Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 5
             Action: Use the test script file 15_1_7_e.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 18 (“Not used”)
@@ -90,6 +98,9 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typee);
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Use the test script file 15_1_7_f.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 126 (“Not used”)",
+                "Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 6
             Action: Use the test script file 15_1_7_f.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 126 (“Not used”)
@@ -99,6 +110,9 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typef);
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Use the test script file 15_1_7_g.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 130 (“Not used”)",
+                "Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 7
             Action: Use the test script file 15_1_7_g.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 130 (“Not used”)
@@ -108,6 +122,9 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typeg);
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Use the test script file 15_1_7_h.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 254 (“Not used”)",
+                "Verify the following information,(1)   There is no symbol displayed on sub-area B7");
             /*
             Test Step 8
             Action: Use the test script file 15_1_7_h.xml to send EVC-7 with, MMI_OBU_TR_M_MODE = 254 (“Not used”)
@@ -116,6 +133,8 @@ namespace Testcase.DMITestCases
             */
 
             XML_15_1_7(msgType.typeh);
+
+            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 9
@@ -193,6 +212,7 @@ namespace Testcase.DMITestCases
                     SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMMode.Value = 254;
                     break;
             }
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "There is no symbol displayed on sub-area B7.");
         }

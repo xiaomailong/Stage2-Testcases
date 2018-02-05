@@ -30,25 +30,19 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use test script file 22_6_2_a.xml to disable wheel diameter and doppler by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 0MMI_Q_REQUEST_ENABLE_64 (#30) = 0",
+                "Verify the following information,DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#29) = 0 in order to disable wheel diameter.DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#30) = 0 in order to disable doppler.The ‘Maintenance’ button is disabled");
             /*
             Test Step 1
             Action: Use test script file 22_6_2_a.xml to disable wheel diameter and doppler by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 0MMI_Q_REQUEST_ENABLE_64 (#30) = 0
@@ -62,6 +56,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is disabled");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use test script file 22_6_2_b.xml to enable wheel diameter by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 1MMI_Q_REQUEST_ENABLE_64 (#30) = 0",
+                "Verify the following information, DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#29) = 1 in order to enable wheel diameter.DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#30) = 0 in order to disable doppler.The ‘Maintenance’ button is enabled");
             /*
             Test Step 2
             Action: Use test script file 22_6_2_b.xml to enable wheel diameter by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 1MMI_Q_REQUEST_ENABLE_64 (#30) = 0
@@ -73,6 +70,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is enabled");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password",
+                "Verify the following information,The Wheel diameter button is enabled.The Radar button is disabled");
             /*
             Test Step 3
             Action: Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password
@@ -86,6 +86,9 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Wheel diameter’ button is enabled" + Environment.NewLine +
                                 "2. The ‘Radar’ button is disabled");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Return to the Setting window by pressing Close’ button.Use test script file 22_6_2_a.xml to disable wheel diameter and doppler by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 0MMI_Q_REQUEST_ENABLE_64 (#30) = 0",
+                "The ‘Maintenance’ button is disabled");
             /*
             Test Step 4
             Action: Perform the following procedure,Return to the Setting window by pressing Close’ button.Use test script file 22_6_2_a.xml to disable wheel diameter and doppler by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 0MMI_Q_REQUEST_ENABLE_64 (#30) = 0
@@ -98,6 +101,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is disabled");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Use test script file 22_6_2_c.xml to enable doppler by sendingSend EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 0MMI_Q_REQUEST_ENABLE_64 (#30) = 1",
+                "Verify the following information,DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#29) = 0 in order to disable wheel diameter.DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#30) = 1 in order to enable doppler.The ‘Maintenance’ button is enabled");
             /*
             Test Step 5
             Action: Use test script file 22_6_2_c.xml to enable doppler by sendingSend EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 0MMI_Q_REQUEST_ENABLE_64 (#30) = 1
@@ -109,6 +115,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is enabled");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password",
+                "Verify the following information,The Wheel diameter button is disabled.The Radar button is enabled");
             /*
             Test Step 6
             Action: Perform the following procedure,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password
@@ -122,6 +131,9 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Wheel diameter’ button is disabled" + Environment.NewLine +
                                 "2. The ‘Radar’ button is enabled");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Perform the following procedure,Return to the Setting window by pressing Close’ button.Use test script file 22_6_2_a.xml to disable wheel diameter and doppler by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 0MMI_Q_REQUEST_ENABLE_64 (#30) = 0",
+                "The ‘Maintenance’ button is disabled");
             /*
             Test Step 7
             Action: Perform the following procedure,Return to the Setting window by pressing Close’ button.Use test script file 22_6_2_a.xml to disable wheel diameter and doppler by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 0MMI_Q_REQUEST_ENABLE_64 (#30) = 0
@@ -134,6 +146,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is disabled");
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Use test script file 22_6_2_d.xml to enable wheel diameter and doppler by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 1MMI_Q_REQUEST_ENABLE_64 (#30) = 1",
+                "Verify the following information,DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#29) = 1 in order to enable wheel diameter.DMI received the EVC-30 with [MMI_ENABLE_REQUEST (EVC-30).MMI_Q_REQUEST_ENABLE_64] (#30) = 1 in order to enabled doppler.The ‘Maintenance’ button is enabled");
             /*
             Test Step 8
             Action: Use test script file 22_6_2_d.xml to enable wheel diameter and doppler by sending EVC-30 with,MMI_NID_WINDOW = 4MMI_Q_REQUEST_ENABLE_64 (#29) = 1MMI_Q_REQUEST_ENABLE_64 (#30) = 1
@@ -145,6 +160,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Maintenance’ button is enabled");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Perform the following procedures,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password",
+                "Verify the following information,Menu windowThe window title is ‘Maintenance’.The Maintenance window is in the D, F and G area.The following objects are display in Maintenance window. Enabled Close button (NA11)Window TitleButton 1 with label ‘Wheel diameter’Button 2 with label ‘Radar’Note: See the position of buttons in picture below,The state of each button in Brake window are displayed correctly as follows,Wheel diameter = EnableRadar = EnableLayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.General property of windowThe Maintenance window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");
             /*
             Test Step 9
             Action: Perform the following procedures,Press ‘Maintenance’ button.Enter the Maintenance window by entering the password same as a value in tag ‘PASS_CODE_MTN’ of the configuration file and confirming the password
@@ -173,6 +191,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "12. The Default window is not displayed covering the Maintenance window.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press and hold ‘Wheel diameter’ button",
+                "Verify the following information,The sound ‘Click’ played once.The ‘Wheel diameter’ button is shown as pressed state, the border of button is removed");
             /*
             Test Step 10
             Action: Press and hold ‘Wheel diameter’ button
@@ -186,6 +206,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Slide out ‘Wheel diameter’ button",
+                "The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 11
             Action: Slide out ‘Wheel diameter’ button
@@ -199,6 +221,8 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Wheel diameter’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Slide back into ‘Wheel diameter’ button",
+                "The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 12
             Action: Slide back into ‘Wheel diameter’ button
@@ -212,6 +236,8 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Wheel diameter’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Release ‘Wheel diameter’ button",
+                "Verify the following information,DMI displays Wheel diameter windowUse the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 53 (Change Wheel diameter)");
             /*
             Test Step 13
             Action: Release ‘Wheel diameter’ button
@@ -229,6 +255,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Wheel diameter window.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays the Maintenance window");
             /*
             Test Step 14
             Action: Press ‘Close’ button
@@ -240,6 +267,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Maintenance window.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Follow action step 10 – step 14 for ‘Radar’ button",
+                "See the expected results of Step 10 – Step 14 and the following additional information,DMI displays Radar window refer to released button from action step 13.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 52 (Change Radar)");
             /*
             Test Step 15
             Action: Follow action step 10 – step 14 for ‘Radar’ button
@@ -286,6 +315,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Maintenance window.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify the following information, (1)   DMI displays Setting window");
             /*
             Test Step 16
             Action: Press ‘Close’ button
@@ -298,6 +329,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
 
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Press the ‘Maintenance’ window.Then, follow action step 10 – step 13 ‘Close’ button",
+                "See the expected results of Step 10 – Step 13 and the following additional information,DMI displays Settings window");
             /*
             Test Step 17
             Action: Press the ‘Maintenance’ window.Then, follow action step 10 – step 13 ‘Close’ button
@@ -334,6 +368,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
+            MakeTestStepHeader(18, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 18
             Action: End of test
@@ -523,6 +559,7 @@ namespace Testcase.DMITestCases
                     */
                     break;
             }
+
             EVC30_MMIRequestEnable.Send();
         }
 

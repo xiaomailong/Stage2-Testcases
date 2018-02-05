@@ -67,19 +67,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SH mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with the permitted speed",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 1
             Action: Drive the train forward with the permitted speed
@@ -88,6 +83,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "DMI displays in SR mode, level 1");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Pass BG1 with Pkt 12, 21, and 27",
+                "DMI displays in FS mode, level 1");
             /*
             Test Step 2
             Action: Pass BG1 with Pkt 12, 21, and 27
@@ -97,6 +94,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "DMI displays in FS mode, level 1");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Pass BG2 with packet 79 Geographical position",
+                "Verify the Geographical Position indicator");
             /*
             Test Step 3
             Action: Pass BG2 with packet 79 Geographical position
@@ -123,6 +122,9 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Geographical Position", "DR03", "G12", false);
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function",
+                "Verify the Geographical Position indicator.");
             /*
             Test Step 4
             Action: Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function
@@ -153,6 +155,9 @@ namespace Testcase.DMITestCases
                                 string.Format("2. The geographical position value = {0}.",
                                     EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS));
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and",
+                "(1) The grey background colour in previous step is replaced by symbol ‘DR03’ in sub-area G12");
             /*
             Test Step 5
             Action: Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and
@@ -166,6 +171,9 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Geographical Position", "DR03", "G12", false);
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Stop the train, the driver presses the symbol of Geographical Position at sub-area G12 again.",
+                "The Geographical Position is displayed with valid value of the train position.");
             /*
             Test Step 6
             Action: Stop the train, the driver presses the symbol of Geographical Position at sub-area G12 again.
@@ -188,6 +196,8 @@ namespace Testcase.DMITestCases
                                 string.Format("2. The geographical position value = {0}.",
                                     EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS));
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Start driving the train forward",
+                "Verify that the last status of geographical position is not changed.");
             /*
             Test Step 7
             Action: Start driving the train forward
@@ -201,6 +211,9 @@ namespace Testcase.DMITestCases
                                 "1. The geographical position value is still equal to" +
                                 string.Format(" {0}.", EVC5_MMIGeoPosition.MMI_M_ABSOLUTPOS));
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and",
+                "The grey background colour in previous step is replaced by symbol ‘DR03’ in sub-area G12");
             /*
             Test Step 8
             Action: Press on the ‘DR03’ symbol on sub-area G12 to toggle off the Geographical Position function and
@@ -215,6 +228,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
                                 "1. The grey background of the geographical position is replaced by symbol DR03");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Pass BG3 with the new Geographical position",
+                "The symbol ‘DR03’ remains in sub-area G12");
             /*
             Test Step 9
             Action: Pass BG3 with the new Geographical position
@@ -226,6 +241,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
                                 "1. The DR03 symbol is still displayed in sub-area G12");
 
+            MakeTestStepHeader(10, UniqueIdentifier++,
+                "Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and",
+                "Verify the Geographical Position indicator");
             /*
             Test Step 10
             Action: Press on the ‘DR03’ symbol, on sub-area G12 to toggle on the Geographical Position function and
@@ -244,6 +262,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
                                 "1. A number in the format nnnn_ddd is displayed in black on a grey background in sub-area G12");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Perform the following procedure",
+                "DMI displays in SH mode, level 1.");
             /*
             Test Step 11
             Action: Perform the following procedure
@@ -265,6 +285,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. There is no symbol displayed in area G12.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Perform the following procedure:",
+                "DMI displays in SR mode, Level 1");
             /*
             Test Step 12
             Action: Perform the following procedure:
@@ -281,6 +303,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Pass BG4 with the new Geographical position",
+                "The symbol ‘DR03’ displays in sub-area G12");
             /*
             Test Step 13
             Action: Pass BG4 with the new Geographical position
@@ -291,6 +315,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.Driver_symbol_displayed(this, "Geographical Position", "DR03", "G12", false);
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Perform the following procedure:",
+                "Verify that the symbol of Geographical Position at sub-area G12 is not displayed.");
             /*
             Test Step 14
             Action: Perform the following procedure:
@@ -310,6 +336,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following: " + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the DR03 symbol in sub-area G12" + Environment.NewLine +
                                 "2. Sub-area G12 is not sensitive for toggling on/off");
+
+            MakeTestStepHeader(15, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 15

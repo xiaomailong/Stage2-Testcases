@@ -27,28 +27,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_1_1_Planning_Area : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -63,6 +48,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the Driver ID window displayed.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Perform SoM to SR mode, level 1
@@ -77,6 +64,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Does the DMI show Staff Responsible Mode.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward passing BG1",
+                "DMI remain displays in SR mode, level 1. Verify that the Planning area is not displayed in main area D");
             /*
             Test Step 3
             Action: Drive the train forward passing BG1
@@ -88,6 +77,8 @@ namespace Testcase.DMITestCases
                                 "1. Does the DMI show Staff Responsible Mode." + Environment.NewLine +
                                 "2. Confirm that the planning area IS NOT displayed.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Drive the train forward passing BG2",
+                "DMI changes from SR mode to FS mode.");
             /*
             Test Step 4
             Action: Drive the train forward passing BG2
@@ -109,6 +100,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Does the DMI show Full Supervision Mode." + Environment.NewLine +
                                 "2. Confirm that the planning area IS displayed.");
+
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 5

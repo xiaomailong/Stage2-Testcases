@@ -22,29 +22,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class NACKACK_Buttons : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Change the background-colour of the style below in gen_buttonStyle_type_4.xml to be #BF0002,STYLE class="normal" STYLE class="flash"System is powered onCabin is activatedPerform SoM until level 1 is selected and confirmedMain window is closed.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Use the test script file 6_4_a.xml to send EVC-8 with,MMI_I_TEXT = 1MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 2MMI_Q_TEXT_CLASS = 1",
+                "DMI displays the text message ‘Brake test aborted, perform new Test?’ with an acknowledgement option in sub-area E5-E9.Verify the following information,(1)  The ‘ACK’ button is labelled with text ‘ACK in yellow colour.(2)  The 'NACK' button is labelled with text 'NACK' in yellow colour.(3)   The background colour of both button 'ACK' and 'NACK' are red");
             /*
             Test Step 1
             Action: Use the test script file 6_4_a.xml to send EVC-8 with,MMI_I_TEXT = 1MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 2MMI_Q_TEXT_CLASS = 1
@@ -53,6 +40,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press and hold 'NACK' button",
+                "Verify the following information,(1)   The sound ‘Click’ played once.(2)   The 'NACK' button is shown as pressed state, the border of button is removed.(3)   Use the log file to confirm that DMI send EVC-111 with variable MMI_Q_BUTTON = 1 (Pressed) and MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 2
             Action: Press and hold 'NACK' button
@@ -61,6 +50,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Slide out 'NACK' button",
+                "The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 3
             Action: Slide out 'NACK' button
@@ -71,6 +62,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_border_of_the_button_is_shown_state_Enabled_without_a_sound(this);
 
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Slide back into 'NACK' button",
+                "The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 4
             Action: Slide back into 'NACK' button
@@ -81,6 +74,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_button_is_back_to_state_Pressed_without_a_sound(this);
 
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Release the 'NACK' button",
+                "Verify the following information,(1)    The Ack-buttons with yellow flashing frame and text message is disappear.(2)   Use the log file to confirm that DMI send EVC-111 with variable MMI_Q_BUTTON = 0 (Released) and MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 5
             Action: Release the 'NACK' button
@@ -89,6 +84,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Use the test script file 6_4_a.xml to send EVC-8.Then, perform action step 2-5 for 'ACK' button",
+                "See the expected results of Step 2 – Step 5");
             /*
             Test Step 6
             Action: Use the test script file 6_4_a.xml to send EVC-8.Then, perform action step 2-5 for 'ACK' button
@@ -97,6 +95,9 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Use the test script file 6_4_b.xml to send EVC-8 with,MMI_I_TEXT = 1MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT_CLASS = 1",
+                "Verify the following information,(1)   DMI displays the text message ‘Brake test aborted, perform new Test?’ with a yellow flashing frame around sub-area E5-E9");
             /*
             Test Step 7
             Action: Use the test script file 6_4_b.xml to send EVC-8 with,MMI_I_TEXT = 1MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 0MMI_Q_TEXT_CLASS = 1
@@ -105,6 +106,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press and hold sub-area E5",
+                "Verify the following information,(1)   The sound ‘Click’ played once.(2)   The sub-area E5 is shown as pressed state, the border of button is removed.(3)   Use the log file to confirm that DMI send EVC-101 with variable MMI_Q_BUTTON = 1 (Pressed) and MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 8
             Action: Press and hold sub-area E5
@@ -113,6 +116,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Slide out sub-area E5",
+                "The border of the sub-area E5 is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 9
             Action: Slide out sub-area E5
@@ -121,6 +126,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Slide back into sub-area E5",
+                "The sub-area E5 is back to state ‘Pressed’ without a sound");
             /*
             Test Step 10
             Action: Slide back into sub-area E5
@@ -129,6 +136,8 @@ namespace Testcase.DMITestCases
             */
 
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Release the pressed area",
+                "Verify the following information,(1)   The yellow flashing frame is removed, DMI still display text message 'Brake test aborted, perform new Test?' in sub-area E5.(2)   Use the log file to confirm that DMI send EVC-101 with variable MMI_Q_BUTTON = 0 (Released) and MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 11
             Action: Release the pressed area
@@ -138,6 +147,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Release the pressed area");
 
+
+            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 12

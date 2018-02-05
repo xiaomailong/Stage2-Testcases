@@ -21,29 +21,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_2_1_Planning_Area : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -56,6 +41,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM in SR mode, Level 1",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Perform SoM in SR mode, Level 1
@@ -70,6 +57,8 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SR_Mode_displayed(this);
 
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Driver drives the train passing BG1",
+                "DMI changes from SR mode to FS mode.Verify the order (background to fore ground) for each objects in PA as follows,PASPPA Distance ScaleIndication MarkerPA Track Condition, Gradient profile and Speed DiscontinuitiesHide/Show and Zoom PA buttons.Note: The object which have a lower order (i.e. PASP) cannot overlap the higher order object");
             /*
             Test Step 3
             Action: Driver drives the train passing BG1
@@ -87,6 +76,8 @@ namespace Testcase.DMITestCases
                 "4. PA Track Condition, Gradient Profile and Speed Discontinuities." + Environment.NewLine +
                 "5. Hide/Show and Zoom PA buttons." + Environment.NewLine +
                 "6. An object in the background of another object does not overlap it." + Environment.NewLine);
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+
             /*
             Test Step 4
             Action: End of test

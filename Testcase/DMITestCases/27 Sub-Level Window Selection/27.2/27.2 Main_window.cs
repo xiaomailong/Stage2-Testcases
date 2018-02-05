@@ -37,20 +37,15 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in NL mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Enter and confirm the Train running number",
+                "DMI displays Main window.Use the log file to confirm that DMI received packet EVC-30 with the variable MMI_Q_REQUEST_ENABLE_64 (#0) = 1 (Enable Start) and the ‘Start’ button is enabled.The Main window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons in Main window are presented within the same layer.The Default window is not displayed and covered the current window.Sub-level window covers partially depending on the size of the Sub-Level window. There is no other window is displayed and activated at the same time");
             /*
             Test Step 1
             Action: Enter and confirm the Train running number
@@ -75,6 +70,8 @@ namespace Testcase.DMITestCases
                                 "4. The Default window does not cover the current window." + Environment.NewLine +
                                 "5. A sub-level window can partially cover another window, depending on its size. Another window cannot be displayed and activated at the same time.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press and hold ‘Start’ button",
+                "Verify the following points,The sound ‘Click’ played once.The ‘Start’ button is shown as ‘Pressed’ state, the border of button is removed");
             /*
             Test Step 2
             Action: Press and hold ‘Start’ button
@@ -87,6 +84,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Start’ button pressed, without a border." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Slide out of ‘Start’ button",
+                "The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 3
             Action: Slide out of ‘Start’ button
@@ -99,6 +98,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Start’ button enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Slide back into ‘Start’ button",
+                "The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 4
             Action: Slide back into ‘Start’ button
@@ -112,6 +113,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Start’ button pressed." + Environment.NewLine +
                                 "2. No sound is played.");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Release ‘Start’ button",
+                "Verify the following points,DMI displays Default window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 9 (Start)");
             /*
             Test Step 5
             Action: Release ‘Start’ button
@@ -125,6 +128,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Acknowledge ‘SR’ mode.Then, press ‘Main’ button",
+                "DMI displays Main window.Verify the following points,Menu windowThe Main window is displayed in main area D/F/G.The window title is ‘Main’.The following objects are display in Main window, Enabled Close button (NA11)Window TitleButton 1 with label ‘Start’Button 2 with label ‘Driver ID’Button 3 with label ‘Train data’ Button 5 with label ‘Level’Button 6 with label ‘Train running number’Button 7 with label ‘Shunting’Button 8 with label ‘Non-Leading’Button 9 with label ‘Maintain shunting’Note: See the position of buttons in picture below,LayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area");
             /*
             Test Step 6
             Action: Acknowledge ‘SR’ mode.Then, press ‘Main’ button
@@ -171,6 +176,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "17. The following screen areas are in Layer 2: B3, B4, B5, B6, B7");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Follow action step 2 – step 5. Then, close an opened window respectively for the following button.‘Driver ID’ button.‘Level’ button.‘Train data’ button.‘Train running number’ button",
+                "See the expected results of Step 2 – Step 5 and the following additional information,DMI displays corresponding window refer to released button.Use the log file to confirm that DMI sends out the packet EVC-101 with variable according to the actuated buttons,Driver ID buttonMMI_M_REQUEST= 20 (Change Driver Identity)Level buttonMMI_M_REQUEST = 27 (Change Level or Inhibit status)Train data buttonMMI_M_REQUEST = 3 (Start Train data entry)Train running number buttonMMI_M_REQUEST = 30 (Change Train running Number)");
             /*
             Test Step 7
             Action: Follow action step 2 – step 5. Then, close an opened window respectively for the following button.‘Driver ID’ button.‘Level’ button.‘Train data’ button.‘Train running number’ button
@@ -333,6 +341,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press ‘Shunting’ button",
+                "Verify the following information,The ‘Shunting’ button becomes state ‘Pressed’, then state ‘Enabled’ once the button is immediately released.DMI still displays the Main window.The ‘Click’ sound is played once.Use the log file to confirm that DMI sends EVC-101 twice with different value of MMI_T_BUTTONEVENT and MMI_Q_BUTTON (1 = pressed, 0 = released)");
             /*
             Test Step 8
             Action: Press ‘Shunting’ button
@@ -352,6 +362,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Press and hold ‘Shunting’ button for 2s.Note: Stopwatch is required for accuracy of test result",
+                "Verify the following information,While press and hold button less than 2 secThe ‘Click’ sound is played once.The state of button is changed to ‘Pressed’.The state ‘pressed’ and ‘enabled’ are switched repeatly while button is pressed. Use the log file to confirm that DMI sends EVC-101 with variable MMI_T_BUTTONEVENT and MMI_Q_BUTTON = 1 (pressed).While press and hold button over 2 secThe state of button is changed to ‘Pressed’ and without toggle");
             /*
             Test Step 9
             Action: Press and hold ‘Shunting’ button for 2s.Note: Stopwatch is required for accuracy of test result
@@ -369,6 +382,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. After 2s, the ‘Shunting’ button is displayed pressed with no toggling.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Slide out from the “Shunting” button",
+                "Verify the following information,The ‘Shunting’ button turns to the ‘Enabled’ state without a sound");
             /*
             Test Step 10
             Action: Slide out from the “Shunting” button
@@ -381,6 +396,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Shunting’ button enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Slide back to the “Shunting” button and hold it for 1 seconds. Then, slide out again.Note: Stopwatch is required for accuracy of test result",
+                "Verify the following information,The ‘Shunting’ button turns to the ‘Enabled’ state without a sound");
             /*
             Test Step 11
             Action: Slide back to the “Shunting” button and hold it for 1 seconds. Then, slide out again.Note: Stopwatch is required for accuracy of test result
@@ -396,6 +414,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the ‘Train Shunting’ button enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Slide back to the “Shunting” button and hold it for 2 seconds.Note: Stopwatch is required for accuracy of test result",
+                "While press and hold button less than 2 secThe state ‘pressed’ and ‘enabled’ are switched repeatly while button is pressed without a sound. While press and hold button over 2 secThe state of button is changed to ‘Pressed’ and without toggle");
             /*
             Test Step 12
             Action: Slide back to the “Shunting” button and hold it for 2 seconds.Note: Stopwatch is required for accuracy of test result
@@ -411,6 +432,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. After 2s, the ‘Shunting’ button is displayed pressed with no toggling.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Release ‘Shunting’ button",
+                "DMI displays Default window in SH mode, Level 1.Verify the following information,Use the log file to confirm that DMI sends EVC-101 with the following variable,MMI_Q_BUTTON = 0 (Released) MMI_M_REQUEST = 1 (Start Shunting) MMI_T_BUTTONEVENT is not blank.Use the log file to confirm that DMI receives EVC-7 with variable OBU_TR_M_MODE = 3 (SH – Shunting)");
             /*
             Test Step 13
             Action: Release ‘Shunting’ button
@@ -426,6 +449,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window in SH mode, Level 1.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Press ‘Main’ button",
+                "Verify the following information,The ‘Shunting’ button is replaced with the ‘Exit Shunting’ button.Use the log file to confirm that DMI receives EVC-30 with the following value in variable MMI_Q_REQUEST_ENABLE_64MMI_Q_REQUEST_ENABLE_64 (#0) = 0 (Start)MMI_Q_REQUEST_ENABLE_64 (#1) = 1 (Driver ID)MMI_Q_REQUEST_ENABLE_64 (#2) = 0 (Train Data)MMI_Q_REQUEST_ENABL15E_64 (#3) = 0 (Level)MMI_Q_REQUEST_ENABLE_64 (#4) = 0 (Train running number)MMI_Q_REQUEST_ENABLE_64 (#5) = 0 (Shunting)MMI_Q_REQUEST_ENABLE_64 (#6) = 1 (Exit Shunting)MMI_Q_REQUEST_ENABLE_64 (#7) = 0 (Non-Leading)MMI_Q_REQUEST_ENABLE_64 (#8) = 0 (Maintain Shunting)The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Start’ buttonThe ‘Train data’ buttonThe ‘Level’ buttonThe ‘Train running number’ buttonThe ‘Non-Leading’ buttonThe ‘Maintain Shunting’ button");
             /*
             Test Step 14
             Action: Press ‘Main’ button
@@ -447,6 +472,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "   with a border and Dark-grey text");
 
+            MakeTestStepHeader(15, UniqueIdentifier++,
+                "Simulate the ‘Passive-Shunting’ signal by activating the ‘Passive-Shunting’ checkbox on OTE",
+                "Verify the following information,The state of ‘Maintain Shunting’ button is changed to enabled.Use the log file to confirm that DMI receives EVC-30 with the MMI_Q_REQUEST_ENABLE_64 (#8) = 1 (Maintain Shunting)");
             /*
             Test Step 15
             Action: Simulate the ‘Passive-Shunting’ signal by activating the ‘Passive-Shunting’ checkbox on OTE
@@ -467,6 +495,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Maintain shunting’ button enabled.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Perform action follow step 8 – step 14 for the ‘Maintain Shunting’ button",
+                "See the expected results of Step 8 – Step 14 and the following additional information,DMI displays Default window after button is released from action step 13.Use the log file to confirm that DMI sends EVC-101 with the following variable,MMI_Q_BUTTON = 0 (Released) MMI_M_REQUEST = 14 (Continue shunting on desk closure) MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 16
             Action: Perform action follow step 8 – step 14 for the ‘Maintain Shunting’ button
@@ -560,6 +591,9 @@ namespace Testcase.DMITestCases
                                 "2. DMI displays the ‘Start’, ‘Train data’, ‘Level’, ‘Train running number’, ‘Shunting’ and ‘Maintain shunting’ buttons" +
                                 Environment.NewLine +
                                 "   with a border and Dark-grey text");
+            MakeTestStepHeader(17, UniqueIdentifier++,
+                "Perform action follow step 8 – step 13 for the ‘Exit Shunting’ button",
+                "See the expected results of Step 8 – Step 13 and the following additional information,DMI displays Driver ID window in SB mode, Level 1.Use the log file to confirm that DMI sends EVC-101 with the following variable,MMI_Q_BUTTON = 0 (Released) MMI_M_REQUEST = 2 (Exit Shunting)MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 17
             Action: Perform action follow step 8 – step 13 for the ‘Exit Shunting’ button
@@ -630,6 +664,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window in SH mode, Level 1.");
 
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Perform the following procedure,Enter Driver IDSelect and confirm Level 1. Note: If Level window is display",
+                "DMI displays Main window.Verify the following information,Use the log file to confirm that DMI receives EVC-30 with the following value in variable MMI_Q_REQUEST_ENABLE_64MMI_Q_REQUEST_ENABLE_64 (#0) = 0 (Start)MMI_Q_REQUEST_ENABLE_64 (#1) = 1 (Driver ID)MMI_Q_REQUEST_ENABLE_64 (#2) = 1 (Train data)MMI_Q_REQUEST_ENABLE_64 (#3) = 1 (Level)MMI_Q_REQUEST_ENABLE_64 (#4) = 1 (Train running number)MMI_Q_REQUEST_ENABLE_64 (#5) = 1 (Shunting)MMI_Q_REQUEST_ENABLE_64 (#6) = 0 (Exit Shunting)MMI_Q_REQUEST_ENABLE_64 (#7) = 0 (Non-Leading)MMI_Q_REQUEST_ENABLE_64 (#8) = 0 (Maintain Shunting)");
             /*
             Test Step 18
             Action: Perform the following procedure,Enter Driver IDSelect and confirm Level 1. Note: If Level window is display
@@ -676,6 +713,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
 
+            MakeTestStepHeader(19, UniqueIdentifier++,
+                "Simulates the ‘Non-leading’ signal by activating the ‘Non-leading’ checkbox on OTE",
+                "Verify the following information,The state of ‘Non-leading’ button is changed to enabled.Use the log file to confirm that DMI receives EVC-30 with the MMI_Q_REQUEST_ENABLE_64 (#7) = 1 (Non-Leading)");
             /*
             Test Step 19
             Action: Simulates the ‘Non-leading’ signal by activating the ‘Non-leading’ checkbox on OTE
@@ -702,6 +742,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Non-leading’ button enabled.");
 
+            MakeTestStepHeader(20, UniqueIdentifier++,
+                "Perform action follow step 8 – step 14 for the ‘Non-leading’ button",
+                "See the expected results of Step 8 – Step 14 and the following additional information,DMI displays Default window after button is released from action step 13.Use the log file to confirm that DMI sends EVC-101 with the following variable,MMI_Q_BUTTON = 0 (Released) MMI_M_REQUEST = 5 (Start Non-Leading) MMI_T_BUTTONEVENT is not blank");
             /*
             Test Step 20
             Action: Perform action follow step 8 – step 14 for the ‘Non-leading’ button
@@ -794,6 +837,9 @@ namespace Testcase.DMITestCases
                                 "   with a border and Dark-grey text");
             */
 
+            MakeTestStepHeader(21, UniqueIdentifier++,
+                "Remove the ‘Non-leading’ signal by de-activating the ‘Non-leading’ checkbox on OTE.Then, perform the following procedure,Enter Driver IDSelect and confirm Level 1. Note: If Level window is display",
+                "DMI displays Main window.Verify the following information,Use the log file to confirm that DMI receives EVC-30 with the MMI_Q_REQUEST_ENABLE_64 (#7) = 0 (Non-Leading)The state of ‘Non-leading’ button is disabled");
             /*
             Test Step 21
             Action: Remove the ‘Non-leading’ signal by de-activating the ‘Non-leading’ checkbox on OTE.Then, perform the following procedure,Enter Driver IDSelect and confirm Level 1. Note: If Level window is display
@@ -841,6 +887,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window" +
                                 "2. The ‘Non-leading’ button is disabled.");
+            MakeTestStepHeader(22, UniqueIdentifier++,
+                "Use the test script file 7_1_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 (#1) = 0MMI_NID_WINDOW = 1",
+                "Verify that the ‘Drive ID’ button is disabled");
             /*
             Test Step 22
             Action: Use the test script file 7_1_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 (#1) = 0MMI_NID_WINDOW = 1
@@ -852,6 +901,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Driver ID’ button is disabled.");
 
+            MakeTestStepHeader(23, UniqueIdentifier++,
+                "Use the test script file 7_1_b.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 (#1) = 1MMI_NID_WINDOW = 1",
+                "Verify that the ‘Drive ID’ button is enabled");
             /*
             Test Step 23
             Action: Use the test script file 7_1_b.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE_64 (#1) = 1MMI_NID_WINDOW = 1
@@ -863,6 +915,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Driver ID’ button is enabled.");
 
+            MakeTestStepHeader(24, UniqueIdentifier++, "Follow action step 2 – step 5 for the ‘Close’ button",
+                "See the expected results of Step 2 – Step 5 and the following additional information,  (1) DMI displays Default window refer to released button");
             /*
             Test Step 24
             Action: Follow action step 2 – step 5 for the ‘Close’ button
@@ -897,6 +951,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
+
+            MakeTestStepHeader(25, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 25
@@ -991,6 +1047,7 @@ namespace Testcase.DMITestCases
                           EVC30_MMIRequestEnable.EnabledRequests.EnableBrakePercentage);
                     break;
             }
+
             EVC30_MMIRequestEnable.Send();
         }
 

@@ -32,7 +32,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened from the ‘Driver ID’ window.
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
@@ -40,19 +39,15 @@ namespace Testcase.DMITestCases
             EVC14_MMICurrentDriverID.Send();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // 1. ETCS-DMI is in the ‘Start of Mission’ procedure2. ETCS-DMI is in the ‘Stand-By’ mode.3. VBC code “16777215” is stored onboard.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Press the ‘Settings’ button located on the ‘Driver ID’ window.Then, open the ‘Set VBC’ data entry window from the Settings menu",
+                "The ‘Set VBC’ data entry window appears on ETCS-DMI screen instead of the ‘Settings’ menu window");
             /*
             Test Step 1
             Action: Press the ‘Settings’ button located on the ‘Driver ID’ window.Then, open the ‘Set VBC’ data entry window from the Settings menu
@@ -68,6 +63,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set VBC window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Enter “0” (minimum inbound) with the numeric keypad and press the data input field (Accept) in the same screen",
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “0” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-118(2) Use the log file to verify that DMI sends packet EVC-118 with variable:MMI_M_VBC_CODE = 0 MMI_M_BUTTONS =  254 (BTN_ENTER)EVC-18 (3) Use the log file to verify that DMI receives packet EVC-18 with variable:MMI_Q_DATA_CHECK = 0 (All checks have passed)-      MMI_X_TEXT = 48 (“0”)");
             /*
             Test Step 2
             Action: Enter “0” (minimum inbound) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -88,6 +86,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘0’.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Enter “16777216” (outbound) with the numeric keypad and press the data input field (Accept) in the same screen",
+                "Input Field(1) The ‘Enter’ button associated to the data area of the input field is coloured grey and its text is black (state ‘Selected IF/Data value’).(2) The ‘Enter’ button associated to the data area of the input field displays “16777216” (previously entered value).EVC-118(3) Use the log file to verify that DMI does not send out packet EVC-118 as the ‘Enter’ button is disabled. Echo Texts(4) The data part of the echo text displays “++++”.(5) The data part of the echo text is coloured red");
             /*
             Test Step 3
             Action: Enter “16777216” (outbound) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -106,6 +107,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The echo text displays ‘++++’ in red.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Enter “16777215” (maximum inbound) with the numeric keypad and press the data input field (Accept) in the same screen",
+                "Input Field(1) The eventually displayed data value in the data area of the input field is replaced by “16777215” (character or value corresponding to the activated data key - state ‘Selected IF/value of pressed key(s)’).EVC-118(2) Use the log file to verify that DMI sends packet EVC-118 with variable:MMI_M_VBC_CODE = 16777215MMI_M_BUTTONS =  254 (BTN_ENTER)EVC-18(3) Use the log file to verify that DMI receives packet EVC-18 with variable:MMI_Q_DATA_CHECK = 0MMI_X_TEXT = 49 (“1”)MMI_X_TEXT = 54 (“6”)MMI_X_TEXT = 55 (“7”)MMI_X_TEXT = 55 (“7”)MMI_X_TEXT = 55 (“7”)MMI_X_TEXT = 50 (“2”)MMI_X_TEXT = 49 (“1”)-      MMI_X_TEXT = 53 (“5”)");
             /*
             Test Step 4
             Action: Enter “16777215” (maximum inbound) with the numeric keypad and press the data input field (Accept) in the same screen
@@ -126,6 +130,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘16777215’ (in black on a Medium-grey bakground).");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "This step is to complete the process of ‘set VBC’:- Press the ‘Yes’ button on the ‘Set VBC’ window.- Validate the data in the data validation window",
+                "1. After pressing the ‘Yes’ button, the data validation window (‘Validate Set VBC’) appears instead of the ‘Set VBC’ data entry window. The data part of echo text displays “65536” in white.2. After the data area of the input field containing “Yes” is pressed, the data validation window disappears and returns to the parent window (‘Settings’ window) of ‘Set VBC’ window with enabled ‘Set VBC’ button");
             /*
             Test Step 5
             Action: This step is to complete the process of ‘set VBC’:- Press the ‘Yes’ button on the ‘Set VBC’ window.- Validate the data in the data validation window
@@ -145,6 +152,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window." + Environment.NewLine +
                                 "2. The ‘Set VBC’ button is displayed enabled.");
+
+            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 6

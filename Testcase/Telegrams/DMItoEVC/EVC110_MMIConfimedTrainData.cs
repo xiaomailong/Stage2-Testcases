@@ -36,9 +36,6 @@ namespace Testcase.Telegrams.DMItoEVC
 
         public static void CheckConfirmedTrainData()
         {
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1ConfirmedTrainData.Value = 0x00;
-
             // Check if telegram received flag has been set. Allows 20 seconds to enter train data.
             if (_pool.SITR.SMDStat.CCUO.ETCS1ConfirmedTrainData.WaitForCondition(Is.Equal, 1, 20000, 100))
             {
@@ -73,7 +70,8 @@ namespace Testcase.Telegrams.DMItoEVC
                 // Else display the real value extracted from EVC-110 and EVC-6 bit inverted
                 else
                 {
-                    _pool.TraceError(string.Format("{0} ({1} bit-inverted):", baseString, baseString1) + Environment.NewLine +
+                    _pool.TraceError(string.Format("{0} ({1} bit-inverted):", baseString, baseString1) +
+                                     Environment.NewLine +
                                      "MMI_V_MAXTRAIN_R = " +
                                      _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiVMaxtrainR.Value + Environment.NewLine +
                                      "MMI_L_TRAIN_R = " + _pool.SITR.CCUO.ETCS1ConfirmedTrainData.MmiLTrainR.Value +
@@ -102,6 +100,9 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, baseString);
             }
+
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1ConfirmedTrainData.Value = 0x00;
         }
     }
 }

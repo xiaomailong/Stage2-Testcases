@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
             pool.TraceInfo(string.Format("This test case is not required since it tests the same interfaces as TC {0}",
                                testcaseId) +
                            string.Format(" in section {0} of the specification.", sectionNumber));
-        } 
+        }
 
         /// <summary>
         /// Prompt for verification of symbol displayed on the DMI.
@@ -59,11 +59,10 @@ namespace Testcase.DMITestCases
         }
 
         public static void Driver_symbol_deleted(SignalPool pool, string symbolName, string symbolNumber,
-           string symbolArea)
+            string symbolArea)
         {
-
-                pool.WaitForVerification(string.Format("Is the {0} symbol ({1}) ", symbolName, symbolNumber) +
-                                         string.Format("removed from area {0}?", symbolArea));
+            pool.WaitForVerification(string.Format("Is the {0} symbol ({1}) ", symbolName, symbolNumber) +
+                                     string.Format("removed from area {0}?", symbolArea));
         }
 
         public static void TAF_ack_pressed_and_released(SignalPool pool)
@@ -71,7 +70,8 @@ namespace Testcase.DMITestCases
             EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
             EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrackAheadFreeConfirmation;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrackAheadFreeConfirmation;
         }
 
         /// <summary>
@@ -160,8 +160,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void LS_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK =
-                EVC102_MMIStatusReport.MMI_M_MODE_READBACK.LimitedSupervision;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK =
+            //    EVC102_MMIStatusReport.MMI_M_MODE_READBACK.LimitedSupervision;
             Driver_symbol_displayed(pool, "Limited Supervision mode", "MO21", "B7", false);
         }
 
@@ -281,7 +282,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void TR_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
             Driver_symbol_displayed(pool, "Trip mode", "MO04", "B7", false);
         }
 
@@ -326,7 +328,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void PT_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.PostTrip;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.PostTrip;
             Driver_symbol_displayed(pool, "Post Trip mode", "MO06", "B7", false);
         }
 
@@ -337,7 +340,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void RV_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Reversing;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Reversing;
             Driver_symbol_displayed(pool, "Reversing mode", "MO14", "B7", false);
         }
 
@@ -348,7 +352,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void UN_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Unfitted;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Unfitted;
             Driver_symbol_displayed(pool, "Unfitted mode", "MO16", "B7", false);
         }
 
@@ -481,7 +486,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SH_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Shunting;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Shunting;
             Driver_symbol_displayed(pool, "Shunting mode", "MO01", "B7", false);
         }
 
@@ -547,7 +553,8 @@ namespace Testcase.DMITestCases
         {
             pool.WaitForVerification("Is the Driver Id window displayed?");
             Driver_symbol_displayed(pool, "Stand By Mode", "MO13", "B7", false);
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
         }
 
         public static void Default_Window_Displayed(SignalPool pool)
@@ -588,7 +595,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void NL_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.NonLeading;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.NonLeading;
             Driver_symbol_displayed(pool, "Non-leading mode", "MO12", "B7", false);
         }
 
@@ -599,7 +607,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SF_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.SystemFailure;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.SystemFailure;
             Driver_symbol_displayed(pool, "System failure mode", "MO18", "B7", false);
         }
 
@@ -787,7 +796,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Cabin_A_is_activated(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
         }
 
         /// <summary>
@@ -797,7 +807,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Cabin_B_is_activated(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin2Active;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin2Active;
         }
 
         /// <summary>
@@ -807,7 +818,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Cab_deactivated(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
         }
 
         /// <summary>
@@ -943,8 +955,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK =
-                EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
+            // EVC102 feedback is cuurently not supported
+            //EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK =
+            //    EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
             Driver_symbol_displayed(pool, "Staff Responsible mode", "MO9", "B7", false);
         }
 
@@ -963,8 +976,9 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void FS_mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK =
-                EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK =
+            //    EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
             Driver_symbol_displayed(pool, "FS mode", "MO11", "B7", false);
         }
 
@@ -975,7 +989,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void OS_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.OnSight;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.OnSight;
             Driver_symbol_displayed(pool, "OS mode", "MO07", "B7", false);
         }
 
@@ -990,7 +1005,8 @@ namespace Testcase.DMITestCases
         {
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine +
                                              Environment.NewLine +
-                                             string.Format("1. Select and enter \"{0}\".", trainsetSelected.ToString()));
+                                             string.Format("1. Select and enter \"{0}\".",
+                                                 trainsetSelected.ToString()));
 
             EVC107_MMINewTrainData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_TRAIN_DATA.BTN_ENTER;
             EVC107_MMINewTrainData.TrainsetSelected = trainsetSelected;
@@ -1003,7 +1019,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         /// <param name="pool">The SignalPool</param>
         /// <param name="trainsetSelected">Number of the fixed trainset selected</param>
-        public static void Fixed_Train_Data_validated(SignalPool pool, Variables.Fixed_Trainset_Captions trainsetSelected)
+        public static void Fixed_Train_Data_validated(SignalPool pool,
+            Variables.Fixed_Trainset_Captions trainsetSelected)
         {
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine +
                                              Environment.NewLine +
@@ -1077,7 +1094,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SB_Mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
+            // EVC102 feedback is cuurently not supported
+            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
             Driver_symbol_displayed(pool, "Stand By mode", "MO13", "B7", false);
         }
 
@@ -1182,7 +1200,7 @@ namespace Testcase.DMITestCases
             //TODO
             // Need to implement a flexible way to check for the time entered by the user.
             // Use the below method with some clever trick.
-                //  EVC109_MMISetTimeMMI.Check_MMI_Set_Time(DateTime.Now,1);
+            //  EVC109_MMISetTimeMMI.Check_MMI_Set_Time(DateTime.Now,1);
         }
 
         /// <summary>

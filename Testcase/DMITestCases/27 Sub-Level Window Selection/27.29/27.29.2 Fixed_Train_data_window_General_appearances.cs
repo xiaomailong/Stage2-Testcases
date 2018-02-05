@@ -40,21 +40,16 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Train Data’ button",
+                "DMI displays Train Data window.Verify the following information,Data Entry Window(1)   The window title is ‘Train data’.(2)   The text label of the window title is right aligned.(3)   The following objects are displayed in Train data window,  Enabled Close button (NA11)Window TitleInput fields(4)   The following objects are additionally displayed in Train data window,Yes buttonThe text label ‘Train data entry complete?’(5)   Yes button is displayed in Disabled state as follows,Text label is black Background colour is dark-greyThe border colour is medium-grey the same as the input field’s colour.(6)   The sensitive area of Yes button is extended from text label ‘Train data Entry complete?’Input fields(7)   The input fields are located on Main area D and F.(8)   Each input field is devided into a Label Area and a Data Area.(9)   The Label Area is presented give the topic of the input field.(10)  The Label Area text is displayed corresponding to the input field i.e. Train type. (11) The Label Area is placed to the left of The Data Area.(12)  The text in the Label Area is aligned to the right.(13)  The value of data in the Data Area is aligned to the left.(14)  The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.(15)  There are only 1 input field that displayed in the window.(16)  The first input field is in state ‘Selected’ as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.Keyboard(17)  The keyboard associated to selected input field ‘Train Type’ is Dedicated keyboard with each key label giving the name of the train type.Layers(18) The level of layers of all area in window are displayed in Layer 0.Echo Texts(19)  An echo text is composed of Label Part and Data Part.(20)  The Label Part of an echo texts is same as The Label area of an input fields.(21)  The echo texts are displayed in main area A, B, C and E with same order as their related input fields.(22)  The Label part of echo text is right aligned.(23)  The Data part of echo text is left aligned.(24)  The colour of texts in echo texts are grey.Entering Characters(25)  The cursor is flashed by changing from visible to not visible.(26)  The cursor is displayed as horizontal line below the value in the input field.Packet transmission(27)  Use the log file to confirm that DMI received packet information [MMI_CURRENT_TRAIN_DATA (EVC-6)] with following variables,MMIM_N_DATA_ELEMENTS = 0MMI_M_DATA_ENABLE (bit #0) = 1MMI_M_TRAINSET_ID = 1-9(28)  An amount of keypad buttons is corresponding with value of MMI_N_TRAINSETS in received packet EVC-6.(29)  There is only ‘Train Type’ input field displays in Train data window.(30)  The label of each button on keypad are corresponding with each index of MMI_X_CAPTION_TRAINSET in received packet EVC-6.(31) The data value of an input field is displayed same as the label on keypad button refer to an index in the value MMI_N_TRAINSET_ID.(e.g. MMI_N_TRAINSET_ID = 3 is mean to label of keypad#3, see picture below).General property of window(32) The Train data window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI.(33) All objects, text messages and buttons are presented within the same layer.(34) The Default window is not displayed and covered the current window");
             /*
             Test Step 1
             Action: Press ‘Train Data’ button
@@ -110,6 +105,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "20. The Default window does not cover the current window.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press and hold the button on keypad",
+                "Verify the following information,(1)   The state of ‘PASS 2‘ button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.(2)   The sound ‘Click’ is played once.(3)   The Input Field displays the value associated to the data key according to the pressings in state ‘Pressed’.(4)   The cursor is displayed as horizontal line below the value of the dedicated-keyboard data key in the input field");
             /*
             Test Step 2
             Action: Press and hold the button on keypad
@@ -126,6 +123,8 @@ namespace Testcase.DMITestCases
                                 "3. The data input field displays the value for key #1" + Environment.NewLine +
                                 "4. The cursor is displayed after the value in the data input field");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Release pressed button",
+                "Verify the following information,(1)   The state of released button is changed to enabled");
             /*
             Test Step 3
             Action: Release pressed button
@@ -138,6 +137,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The key is displayed enabled.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Perform action step 2-3 for the remaining buttons on keypad",
+                "See the expected results of Step 2 – Step 3");
             /*
             Test Step 4
             Action: Perform action step 2-3 for the remaining buttons on keypad
@@ -175,6 +176,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The key is displayed enabled.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Press the keypad#1 (see picture below)Then, confirm an entered data by pressing an input field",
+                "Verify the following information,Input fields(1) The associated ‘Enter’ button is data field itself.(2) An input field is used to allow the driver to enter data.(3) The state of ‘Train Set’ input field is changed to ‘accepted’ as follows,The background colour of the Data Area is dark-grey.The colour of data value is white.(4) There is no input field selected.Echo Texts(5) The echo text of ‘Train Set’ is changed to white colour.(6) The value of echo text is changed refer to entered data.Data Entry window(7) The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ is enabled as follows,The background colour of the Data Area is medium-grey.The colour of data value is black.The colour of border is medium-grey.Packet transmission(8) Use the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with following variablesMMI_M_TRAINSET_ID = 1MMI_N_DATA_ELEMENTS = 1MMI_M_BUTTONS = 254(9) The data part of the echo text of train category is displayed according to [MMI_CURRENT_TRAIN_DATA  (EVC-6)] with the following variables,MMI_NID_DATA = 6 (Train Data Set Identifier)MMI_N_TEXT = Character lengthMMI_X_TEXT = Selected button(10)   Use the log file to confirm that DMI received packet EVC-6 with variable MMI_M_BUTTONS = 36 (BTN_YES_DATA_ENTRY_COMPLETE)");
             /*
             Test Step 5
             Action: Press the keypad#1 (see picture below)Then, confirm an entered data by pressing an input field
@@ -204,6 +208,8 @@ namespace Testcase.DMITestCases
                                 "6. The echo text displays the value in the data input field." + Environment.NewLine +
                                 @"7. The ‘Yes’ button is enabled, with black text on a Medium-grey background and a Medium-grey border.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press and hold ‘Yes’ button",
+                "Verify the following information,(1)   The state of button is changed to ‘Pressed’, the border of button is removed.(2)   The sound ‘Click’ is played once");
             /*
             Test Step 6
             Action: Press and hold ‘Yes’ button
@@ -216,6 +222,8 @@ namespace Testcase.DMITestCases
                                 "1. The key is displayed pressed, without a border." + Environment.NewLine +
                                 @"2. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Slide out the ‘Yes’ button",
+                "Verify the following information,(1)   The border of the button is shown (state ‘Enabled’) without a sound");
             /*
             Test Step 7
             Action: Slide out the ‘Yes’ button
@@ -228,6 +236,8 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Yes’ button is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Slide back into the ‘Yes’ button",
+                "Verify the following information,(1)   The button is back to state ‘Pressed’ without a sound");
             /*
             Test Step 8
             Action: Slide back into the ‘Yes’ button
@@ -240,6 +250,8 @@ namespace Testcase.DMITestCases
                                 "1. The ‘Yes’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Release ‘Yes’ button",
+                "Verify the following information,(1)   DMI displays Train data validation window.(2)   Use the log file to confirm that DMI sent out packet [MMI_NEW_TRAIN_DATA (EVC-107)] with following variablesMMI_N_DATA_ELEMENTS = 0MMI_M_TRAINSET_ID = 1MMI_M_BUTTONS = 36");
             /*
             Test Step 9
             Action: Release ‘Yes’ button
@@ -256,6 +268,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Train data validation window.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Train data window");
             /*
             Test Step 10
             Action: Press ‘Close’ button
@@ -265,6 +278,9 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Train_data_window_displayed(this);
 
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Confirm the current data without re-entry by pressing an input field",
+                "The state of train type input field is changed to ‘Selected’");
             /*
             Test Step 11
             Action: Confirm the current data without re-entry by pressing an input field
@@ -276,6 +292,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed ‘Selected’.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Press and hold the Label area of ‘Train type’ input field",
+                "Verify the following information,(1)   The state of ‘Train type’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Train type’ input field remains ‘accepted’. (2)   The sound ‘Click’ is played once");
             /*
             Test Step 12
             Action: Press and hold the Label area of ‘Train type’ input field
@@ -291,6 +309,8 @@ namespace Testcase.DMITestCases
                                 @"2. The data input field stays ‘Accepted’." + Environment.NewLine +
                                 @"3. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Slide out the Label area of ‘Train type’ input field",
+                "Verify the following information,(1)   The border of ‘Train type’ input field is shown (state ‘Enabled’) without a sound.The state of ‘Train type’ input field remains ‘accepted’");
             /*
             Test Step 13
             Action: Slide out the Label area of ‘Train type’ input field
@@ -304,6 +324,8 @@ namespace Testcase.DMITestCases
                                 "2. No sound is played." + Environment.NewLine +
                                 @"3. The data input field stays ‘Accepted’.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Slide back into the Label area of ‘Train type’ input field",
+                "Verify the following information,(1)   The state of ‘Train type’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Train type’ input field remains ‘accepted’");
             /*
             Test Step 14
             Action: Slide back into the Label area of ‘Train type’ input field
@@ -318,6 +340,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The data input field stays ‘Accepted’.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Release the pressed area",
+                "Verify the following information,(1)   The state of ‘Train type’ input field is changed to selected");
             /*
             Test Step 15
             Action: Release the pressed area
@@ -334,6 +358,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field is displayed ‘Selected’.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++,
+                "Confirm the current data without re-entry by pressing an input field.Then, perform action step 12-15 for the Data area of each input field",
+                "Verify the following information,(1)   The state of an input field is changed to ‘selected’ when release the pressed area at the Data area of input field");
             /*
             Test Step 16
             Action: Confirm the current data without re-entry by pressing an input field.Then, perform action step 12-15 for the Data area of each input field
@@ -349,6 +376,8 @@ namespace Testcase.DMITestCases
 
             // One data input field: nothing to repeat
 
+            MakeTestStepHeader(17, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify the following information, (1)   Use the log file to confirm that DMI sent out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 4 (Exit Train Data Entry).(2)   Use the log file to confirm that DMI sent out packet [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_NID_WINDOW = 254.(3)   The window is closed and the Main window is displayed");
             /*
             Test Step 17
             Action: Press ‘Close’ button
@@ -369,6 +398,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Train data window is closed and the DMI displays the Main window.");
 
+            MakeTestStepHeader(18, UniqueIdentifier++,
+                "Press ‘Train data’ button.Then, use the test script file 22_29_2_b.xml to send EVC-6 with,MMI_M_BUTTONS = 36",
+                "DMI displays Train data window.Verify the following information,(1)     The state of ‘Yes’ button below text label ‘Train data Entry is complete?’ still disabled");
             /*
             Test Step 18
             Action: Press ‘Train data’ button.Then, use the test script file 22_29_2_b.xml to send EVC-6 with,MMI_M_BUTTONS = 36
@@ -383,6 +415,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Train data window" + Environment.NewLine +
                                 @"2. The ‘Yes’ button displyed below the ‘Train data entry complete?’ label is disabled.");
 
+            MakeTestStepHeader(19, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Main window");
             /*
             Test Step 19
             Action: Press ‘Close’ button
@@ -393,6 +426,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window");
 
+            MakeTestStepHeader(20, UniqueIdentifier++,
+                "Use the test script file 22_29_2_a.xml to send EVC-6 with,MMI_M_DATA_ENABLE = 1MMI_N_TRAINSETS = 10MMI_N_CAPTION_TRAINSET = 1 for every indexEach index of MMI_X_CAPTION_TRAINSET are set as following value,ABCDEFGHIJ",
+                "Verify the following information,(1)   DMI displays Train data window with only 9 buttons of keypad that all labels correspond with received packet EVC-20.OR(1)   DMI does not display Train data window because of the value of MMI_N_TRAINSETS is invalid");
             /*
             Test Step 20
             Action: Use the test script file 22_29_2_a.xml to send EVC-6 with,MMI_M_DATA_ENABLE = 1MMI_N_TRAINSETS = 10MMI_N_CAPTION_TRAINSET = 1 for every indexEach index of MMI_X_CAPTION_TRAINSET are set as following value,ABCDEFGHIJ
@@ -403,6 +439,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the Train data window.");
+
+            MakeTestStepHeader(21, UniqueIdentifier++, "End ot Test", "");
 
             /*
             Test Step 21

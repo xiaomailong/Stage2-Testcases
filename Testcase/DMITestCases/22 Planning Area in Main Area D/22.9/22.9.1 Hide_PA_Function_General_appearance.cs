@@ -36,21 +36,15 @@ namespace Testcase.DMITestCases
             DmiActions.Start_ATP();
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -62,6 +56,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window .");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1");
             /*
             Test Step 2
             Action: Perform SoM to SR mode, level 1
@@ -76,6 +72,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward with speed = 40 km/h pass BG1",
+                "DMI displays in FS mode, level 1. The Planning area is displayed the planning information in main area D");
             /*
             Test Step 3
             Action: Drive the train forward with speed = 40 km/h pass BG1
@@ -89,6 +87,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The Planning Area is displayed in area D.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Press the ‘NA01’ symbol in sub-area D14",
+                "Verify the following information, The Planning area is disappeared from DMI.Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard");
             /*
             Test Step 4
             Action: Press the ‘NA01’ symbol in sub-area D14
@@ -106,6 +106,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is removed from area D.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press at sensitive area in main area D",
+                "Verify the following information, When driver presses main area D in sensitive area. The planning area is reappeared by this activation.NA01 symbol is still display in sub-area D14.All objects on the Planning area is updated according to the packet that sent from ETCS OB.Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard");
             /*
             Test Step 5
             Action: Press at sensitive area in main area D
@@ -125,6 +127,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The PA is updated.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Press the ‘NA01’ symbol in sub-area D14",
+                "Verify the following information, (1)   The Planning area is disappeared from DMI.(2)   Use log file to verify tha DMI still received packet EVC-4 from ETCS Onboard");
             /*
             Test Step 6
             Action: Press the ‘NA01’ symbol in sub-area D14
@@ -140,6 +144,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is removed from area D.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Press at sensitive area in main area D to display the Planning area",
+                "The Planning area is reappeared in area D.Verify the following information, (1)   Use the log file to confirm that all objects on the Planning area are updated according to the received packet EVC-4 from ETCS Onboard");
             /*
             Test Step 7
             Action: Press at sensitive area in main area D to display the Planning area
@@ -155,6 +162,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The PA is updated.");
+
+            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 8

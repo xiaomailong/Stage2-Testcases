@@ -34,24 +34,18 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
             DmiActions.ShowInstruction(this, "THIS TESCASE TO BE SKIPPED??");
-            DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, level 2.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
         }
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM in SR mode, Level 2",
+                "RCI logs the concerned activities as specified in the precondition");
             /*
             Test Step 1
             Action: Perform SoM in SR mode, Level 2
@@ -61,6 +55,9 @@ namespace Testcase.DMITestCases
             DmiActions.Perform_SoM_in_SR_mode_Level_2(this);
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Observe the timestamps in RCI log and calculate the average differentiation of the response time of the incoming data and ETCS-DMI update in:- The MVB port- The ETCS-DMI screen",
+                "(1) Use the RCI log to confirm the  (average) response time differentiation of the incoming data (message) and when related visualization is updated on ETCS-DMI screen (tupdatedDMI – tinMVB) is less than 130 ms");
             /*
             Test Step 2
             Action: Observe the timestamps in RCI log and calculate the average differentiation of the response time of the incoming data and ETCS-DMI update in:- The MVB port- The ETCS-DMI screen
@@ -68,6 +65,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3216; MMI_gen 88 (partly: ETCS BA);
             */
 
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

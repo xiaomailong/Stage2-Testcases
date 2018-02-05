@@ -19,29 +19,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class Symbol_in_Level_0_and_Level_1 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered onCabin is activatedDriver ID is enteredLevel 0 is selected and confirmed
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SH mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
 
+            MakeTestStepHeader(1, UniqueIdentifier++,
+                "Enter SH mode by performing the procedure below,Press and hold ‘Shunting’ button at least 2 secondsRelease ‘Shunting’ button",
+                "Verify the following information,Use the log file to confirm that DMI receives EVC-7 with variable OBU_TR_M_MODE = 3 (SH – Shunting).The symbol MO01 is display in area B7.DMI closes Main window and returns to the Default window");
             /*
             Test Step 1
             Action: Enter SH mode by performing the procedure below,Press and hold ‘Shunting’ button at least 2 secondsRelease ‘Shunting’ button
@@ -54,6 +41,9 @@ namespace Testcase.DMITestCases
                     this);
 
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 1",
+                "See the expected results at Step 1");
             /*
             Test Step 2
             Action: Re-validate the step1 by re-starting OTE Simulator and starting the precondition with ETCS level 1
@@ -62,6 +52,8 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             DmiExpectedResults.See_the_expected_results_at_Step_1(this);
 
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

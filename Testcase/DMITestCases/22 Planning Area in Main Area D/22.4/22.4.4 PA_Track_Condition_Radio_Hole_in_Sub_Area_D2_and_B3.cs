@@ -45,21 +45,16 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays FS mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with speed = 20 km/h",
+                "The speed pointer is indicated as 20  km/h");
             /*
             Test Step 1
             Action: Drive the train forward with speed = 20 km/h
@@ -70,6 +65,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27",
+                "Mode changes to FS mode , L1");
             /*
             Test Step 2
             Action: Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27
@@ -80,12 +78,17 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Continue to drive the train forward pass BG1 with Track condition Pkt 68:D_TRACKCOND = 200L_TRACKCOND = 200M_TRACKCOND = 4(Radio Hole)",
+                "Mode remins in FS mode");
             /*
             Test Step 3
             Action: Continue to drive the train forward pass BG1 with Track condition Pkt 68:D_TRACKCOND = 200L_TRACKCOND = 200M_TRACKCOND = 4(Radio Hole)
             Expected Result: Mode remins in FS mode
             */
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Enter Anouncement of Track condition “Radio Hole”",
+                "Verify the following information(1)   DMI displays PL10 symbol in sub-area D2");
             /*
             Test Step 4
             Action: Enter Anouncement of Track condition “Radio Hole”
@@ -111,6 +114,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol PL10 in sub-area D2.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Stop the train",
+                "Verify the following information(1)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 4MMI_Q_TRACKCOND_STEP = 0 or 1MMI_O_TRACKCOND_START - OBU_TR_O_TRAIN (EVC-7)  =  Remaining distance from PL10 symbol in sub-area D2 to the first distance scale line (zero line)(2)    The bottom of PL10 symbol is displayed with the correct position in the PA distance scale refer to the result of calculation from expected result (1)");
             /*
             Test Step 5
             Action: Stop the train
@@ -128,6 +133,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The bottom of the PL10 symbol is displayed at ~150.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Drive the train forward with speed = 20 km/h",
+                "The speed pointer is indicated as 20  km/h");
             /*
             Test Step 6
             Action: Drive the train forward with speed = 20 km/h
@@ -138,6 +145,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Stop the train when the TC12 symbol displays in sub-area B3",
+                "Verify the following information(1)   DMI displays TC12 symbol in sub-area B3.(2)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_M_TRACkCOND_TYPE = 4MMI_Q_TRACKCOND_STEP = 1MMI_Q_TRACKCOND_ACTION_START = 1");
             /*
             Test Step 7
             Action: Stop the train when the TC12 symbol displays in sub-area B3
@@ -153,6 +162,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The TC12 symbol is displayed in sub-area B3.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Drive the train forward with speed = 20 km/h",
+                "The speed pointer is indicated as 20  km/h");
             /*
             Test Step 8
             Action: Drive the train forward with speed = 20 km/h
@@ -163,6 +174,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Stop the train when the track condition symbol has been removed from sub-area B3",
+                "Verify the following information(1)    Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = Same value with expected result No.2 of step 7");
             /*
             Test Step 9
             Action: Stop the train when the track condition symbol has been removed from sub-area B3
@@ -175,6 +189,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The TC12 symbol is removed from sub-area B3.");
+
+            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 10

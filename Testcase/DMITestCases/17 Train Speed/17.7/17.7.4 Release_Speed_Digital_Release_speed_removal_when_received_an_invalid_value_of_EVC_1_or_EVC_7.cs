@@ -32,19 +32,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1.Then, stop the train",
+                "DMI displays in FS mode, level 1");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then, stop the train
@@ -61,6 +56,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Use the test script file 12_7_4_a.xml to send EVC-1 with,MMI_M_WARNING = 7",
+                "Verify the following information,(1)   The release speed in sub-area B2 and B6 are removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 are re-appear refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 2
             Action: Use the test script file 12_7_4_a.xml to send EVC-1 with,MMI_M_WARNING = 7
@@ -76,6 +74,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speed in sub-area B2 and B6 are re-displayed");
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 12_7_4_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17",
+                "Verify the following information,(1)   The release speed are sub-area B2 and B6 is removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 is are re-appear refer to received packet EVC-7 from ETCS Onboard");
             /*
             Test Step 3
             Action: Use the test script file 12_7_4_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17
@@ -91,6 +92,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speeds in sub-area B2 and B6 are re-displayed.");
+
+            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 4

@@ -27,31 +27,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_29_3_UTC_time_and_offset_timeBy_VAP_acting_as_NTP_server : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // 1.  Power off test system 2.  Set the following tags name in configuration file (See the instruction in Appendix 1)
-            // CLOCK_TIME_SOURCE =  5 (by VAP)
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays SR mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Power on test system and activate the cabin A (MMI 1)",
+                "DMI displays SB mode");
             /*
             Test Step 1
             Action: Power on test system and activate the cabin A (MMI 1)
@@ -63,6 +48,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, Level 1.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM to L1, SR mode", "Mode changes to SR mode");
             /*
             Test Step 2
             Action: Perform SoM to L1, SR mode
@@ -79,6 +65,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Use the test script file 29_3_1.xml to send packet EVC-TBD with,MMI_T_UTC = 946728000(2000-01-01,12:00:00)MMI_T_Zone_OFFSET =+5",
+                "Verify the following information:(1) DMI time is updated only its offset time");
             /*
             Test Step 3
             Action: Use the test script file 29_3_1.xml to send packet EVC-TBD with,MMI_T_UTC = 946728000(2000-01-01,12:00:00)MMI_T_Zone_OFFSET =+5
@@ -90,6 +79,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI just changes the local time displayed, adjusted by the offset time (+ 1 1/4 h)");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Select ‘Settings’ button and press ‘Set clock’ button",
+                "Verify the following information:The set clock window is opened(1) The DMI date (yyyy-mm-dd) shall not be changed by test script");
             /*
             Test Step 4
             Action: Select ‘Settings’ button and press ‘Set clock’ button
@@ -102,6 +93,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set clock window." + Environment.NewLine +
                                 "2. The date displayed is unchanged.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Use the test script file 29_3_2.xml to send packet EVC-TBD with,MMI_T_UTC = 946771200(2000-01-02,12:00:00)MMI_T_Zone_OFFSET =-5",
+                "Verify the following information:(1) DMI time is updated only its offset time");
             /*
             Test Step 5
             Action: Use the test script file 29_3_2.xml to send packet EVC-TBD with,MMI_T_UTC = 946771200(2000-01-02,12:00:00)MMI_T_Zone_OFFSET =-5
@@ -115,6 +109,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI just changes the local time displayed, adjusted by the offset time (- 1 1/4 h)");
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Select ‘Settings’ button and press ‘Set clock’ button.Then, observe information that will display on the Set clock window",
+                "Verify the following information:The set clock window is opened(1) The DMI date (yyyy-mm-dd) is not be changed by test script");
             /*
             Test Step 6
             Action: Select ‘Settings’ button and press ‘Set clock’ button.Then, observe information that will display on the Set clock window
@@ -127,6 +124,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set clock window." + Environment.NewLine +
                                 "2. The date displayed is unchanged.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Restart OTE and DMI then retest step1 to to 6 with cabin B (MMI 2)",
+                "Same as the test result in step 1 to 6");
             /*
             Test Step 7
             Action: Restart OTE and DMI then retest step1 to to 6 with cabin B (MMI 2)
@@ -191,6 +191,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Set clock window." + Environment.NewLine +
                                 "2. The date displayed is unchanged.");
+
+            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 8

@@ -33,19 +33,14 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, Level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Override’ button",
+                "The Override window is displayed. Verify that the Close button is always enabled");
             /*
             Test Step 1
             Action: Press ‘Override’ button
@@ -58,6 +53,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Override window is displayed with the ‘Close’ button enabled.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘Close’ button",
+                "The Override window is closed. DMI displays the default window");
             /*
             Test Step 2
             Action: Press ‘Close’ button
@@ -67,6 +64,8 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
+
+            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 3

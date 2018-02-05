@@ -34,9 +34,6 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static void CheckTelegram()
         {
-            // Reset telegram received flag in RTSim
-            _pool.SITR.SMDStat.CCUO.ETCS1StartMmi.Value = 0x00;
-
             // Check if telegram received flag has been set. Allows 10 seconds.
             if (_pool.SITR.SMDStat.CCUO.ETCS1StartMmi.WaitForCondition(Is.Equal, 1, 10000, 100))
             {
@@ -83,6 +80,9 @@ namespace Testcase.Telegrams.DMItoEVC
             {
                 DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, BaseString);
             }
+
+            // Reset telegram received flag in RTSim
+            _pool.SITR.SMDStat.CCUO.ETCS1StartMmi.Value = 0x00;
         }
 
         /// <summary>
@@ -101,10 +101,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// </summary>
         public static uint MMI_M_IF_VER
         {
-            set
-            {
-                _mIfVer = value;
-            }
+            set { _mIfVer = value; }
         }
 
         /// <summary>

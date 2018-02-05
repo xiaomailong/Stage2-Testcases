@@ -22,16 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_2_3_Frozen_Displays : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // Test system is power on.            
-            DmiActions.Start_ATP();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -45,8 +35,12 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. Then, perform SoM to SR mode, level 1",
+                "DMI displays in SR mode, level 1.Verify the following information,The local time is displayed in form of ‘hh:mm:ss’ with flashing colons at sub-area G13");
             /*
             Test Step 1
             Action: Activate cabin A. Then, perform SoM to SR mode, level 1
@@ -70,6 +64,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SR mode, Level 1." + Environment.NewLine +
                                 "2. The local time is displayed in ‘hh:mm:ss’ format with flashing colons at sub-area G13");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Spec’ button.Press ‘Close’ button on Spedical window",
+                "The Default window is displayed.Verify the following information,The local time is displayed in form of ‘hh:mm:ss’ with flashing colons at sub-area G13");
             /*
             Test Step 2
             Action: Perform the following procedure,Press ‘Spec’ button.Press ‘Close’ button on Spedical window
@@ -82,6 +79,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Default window." + Environment.NewLine +
                                 "2. The local time is displayed in ‘hh:mm:ss’ format with flashing colons at sub-area G13");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Settings’ button.Press ‘Close’ button on Settings window",
+                "The Default window is displayed.Verify the following information,The local time is displayed in form of ‘hh:mm:ss’ with flashing colons at sub-area G13");
             /*
             Test Step 3
             Action: Perform the following procedure,Press ‘Settings’ button.Press ‘Close’ button on Settings window
@@ -95,6 +95,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Default window." + Environment.NewLine +
                                 "2. The local time is displayed in ‘hh:mm:ss’ format with flashing colons at sub-area G13");
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Main’ button.Press ‘Close’ button on Main window",
+                "The Default window is displayed.Verify the following information,The local time is displayed in form of ‘hh:mm:ss’ with flashing colons at sub-area G13");
             /*
             Test Step 4
             Action: Perform the following procedure,Press ‘Main’ button.Press ‘Close’ button on Main window
@@ -107,6 +110,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window." + Environment.NewLine +
                                 "2. The local time is displayed in ‘hh:mm:ss’ format with flashing colons at sub-area G13");
+
+            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 5

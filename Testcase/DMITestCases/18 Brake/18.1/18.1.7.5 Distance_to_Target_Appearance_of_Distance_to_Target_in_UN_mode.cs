@@ -35,19 +35,14 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in UN mode, level 0
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM in UN mode, level 0",
+                "DMI displays in UN mode, level 0Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-7: OBU_TR_M_MODE = 4 (UN mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)");
             /*
             Test Step 1
             Action: Perform SoM in UN mode, level 0
@@ -66,6 +61,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
+
+            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 2

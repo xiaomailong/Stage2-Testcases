@@ -32,21 +32,16 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SB(this);
         }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Enter and confirm all data in Train data window",
+                "Verify the following information,Use the log file to co");
             /*
             Test Step 1
             Action: Enter and confirm all data in Train data window
@@ -75,6 +70,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "8. The echo text is displayed in areas A, B, C and E.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Press ‘No’ button",
+                "The value of input field is changed refer to selected button");
             /*
             Test Step 2
             Action: Press ‘No’ button
@@ -86,6 +83,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field displays ‘No’");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Confirm entered data by pressing an input field",
+                "Verify the following information,DMI displays Train data window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 4 (Exit Train data)");
             /*
             Test Step 3
             Action: Confirm entered data by pressing an input field
@@ -99,6 +98,9 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Train_data_window_displayed(this);
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Perform the following procedure,Enter and confirm all data in Train data window.Press ‘Yes’ button",
+                "DMI displays Train data validation window");
             /*
             Test Step 4
             Action: Perform the following procedure,Enter and confirm all data in Train data window.Press ‘Yes’ button
@@ -111,6 +113,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press ‘Close’ button",
+                "Verify the following information,DMI displays Main window.Use the log file to confirm that DMI sends out the packet [MMI_DRIVER_REQUEST (EVC-101)] with variable [MMI_DRIVER_REQUEST (EVC-101).MMI_M_REQUEST] = 4 (Exit Train data)");
             /*
             Test Step 5
             Action: Press ‘Close’ button
@@ -128,6 +132,9 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. DMI displays the Main window");
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Train data’ button.Enter and confirm all data in Train data window.Press ‘Yes’ button",
+                "DMI displays Train data validation window");
             /*
             Test Step 6
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and confirm all data in Train data window.Press ‘Yes’ button
@@ -144,6 +151,8 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Train_data_validation_window_displayed(this);
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Press ‘Yes’ button",
+                "The value of input field is changed refer to selected button");
             /*
             Test Step 7
             Action: Press ‘Yes’ button
@@ -155,6 +164,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The data input field displays ‘Yes’.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Confirm entered data by pressing an input field",
+                "DMI displays Train Running Number window.Verify the following information,The Train data validation is closed.Use the log file to confirm that DMI sends out the packet [MMI_CONFIRMED_TRAIN DATA (EVC-110)] with variable based on confirmed data");
             /*
             Test Step 8
             Action: Confirm entered data by pressing an input field
@@ -173,6 +184,9 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Confirm the data");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Perform the following procedure,Press ‘Train data’ button.Enter and confirm all data in Train data window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI",
+                "DMI displays Default window with the  message “ATP Down Alarm” and sound alarm");
             /*
             Test Step 9
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and confirm all data in Train data window.Press ‘Yes’ button.Then, Simulate loss-communication between ETCS onboard and DMI
@@ -192,6 +206,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The ‘Alarm’ sound is played.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Re-establish communication between ETCS onboard and DMI",
+                "Verify the following informaiton,All buttons except ‘No’ button are disabled.The state of ‘No’ button is enabled.The disabled button are shown as a button is state ‘enabled’ with text label in dark-grey");
             /*
             Test Step 10
             Action: Re-establish communication between ETCS onboard and DMI
@@ -203,6 +219,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. All buttons are disabled, with dark-grey labels." + Environment.NewLine +
                                 @"2.  The <No> key is enabled.");
+
+            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 11

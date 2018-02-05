@@ -21,30 +21,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_7_3_2_Entering_Characters : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.
-            DmiActions.Start_ATP();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A",
+                "DMI displays Driver ID window.Verify the following information,The flashing horizontal-line cursor is always flashed in the next position of the echoed entered-data key in the ‘Selected IF/value of pressed key(s)’ data input field when selected the next character it will be inserted cursor position");
             /*
             Test Step 1
             Action: Activate cabin A
@@ -62,6 +46,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Driver ID window." + Environment.NewLine +
                                 "2. A flashing underscore is displayed as a cursor in the data input field (at the left side).");
 
+            MakeTestStepHeader(2, UniqueIdentifier++,
+                "Press the data key which have only single character once.Note: This step is for testing ‘1’ and ‘0’ button",
+                "Verify the following information,The pressed key is added in an input field immediately.The cursor is jumped to next position after entered the character immediately");
             /*
             Test Step 2
             Action: Press the data key which have only single character once.Note: This step is for testing ‘1’ and ‘0’ button
@@ -80,6 +67,9 @@ namespace Testcase.DMITestCases
                                 "1. The data input field immediately displays ‘10’." + Environment.NewLine +
                                 "2. A flashing underscore is displayed after the ‘0’ in the data input field.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++,
+                "Press and hold the data key which have only single character.Note: This step is for testing ‘1’ and ‘0’ button.Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable",
+                "Verify the following information,Sound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.Pressed key is added in an input field after pressing the button");
             /*
             Test Step 3
             Action: Press and hold the data key which have only single character.Note: This step is for testing ‘1’ and ‘0’ button.Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable
@@ -99,6 +89,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press the <Del> key until the input field is blank");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Released the pressed button",
+                "Verify the following information, The character is stop adding");
             /*
             Test Step 4
             Action: Released the pressed button
@@ -111,6 +103,8 @@ namespace Testcase.DMITestCases
                                 "1. The data input field displays a series of ‘0’ characters." + Environment.NewLine +
                                 "2. After releasing the key, no more ‘0’ characters are added to the data input field.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++, "Press and hold ‘Del’ button.Note: Stopwatch is required",
+                "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.The last character is removed from an input field after pressing the button.While press and hold button over 1.5 secThe state ‘pressed’ and ‘released’ are switched repeatly while button is pressed and the characters are removed from an input field repeatly refer to pressed state.The sound ‘Click’ is played repeatly while button is pressed");
             /*
             Test Step 5
             Action: Press and hold ‘Del’ button.Note: Stopwatch is required
@@ -129,6 +123,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "5. The ‘Click’ sound is played repeatedly while the key is pressed and characters are deleted repeatedly from the end of the data input field.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Release ‘Del’ button",
+                "Verify the following information, The character is stop removing");
             /*
             Test Step 6
             Action: Release ‘Del’ button
@@ -140,6 +136,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Characters stop being deleted from the end of the data input field.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Press the data key which have various characters once.Note: This step is for testing ‘2’-‘9’ button.Stopwatch is required",
+                "Verify the following information,The first character of the data key is added on an input field immediately. The cursor is jumped to next position after entered the character after 2 seconds");
             /*
             Test Step 7
             Action: Press the data key which have various characters once.Note: This step is for testing ‘2’-‘9’ button.Stopwatch is required
@@ -204,6 +203,9 @@ namespace Testcase.DMITestCases
                                 @"1. The data input field immediately displays ‘2345 6789’." + Environment.NewLine +
                                 @"2. After 2s the cursor is re-displayed after the ‘9’");
 
+            MakeTestStepHeader(8, UniqueIdentifier++,
+                "Press the same data key repeatly within these 2 seconds.Then, verify the displayed information at an input field while pressing button",
+                "Verify the following information,The next character of the same data key is selected and displayed on an input field refer to the label of pressed button and wrap-around.For example, the single character is displayed at input field with following step ‘2’ -> ‘a’ -> ‘b’ -> ‘c’ -> ‘2’");
             /*
             Test Step 8
             Action: Press the same data key repeatly within these 2 seconds.Then, verify the displayed information at an input field while pressing button
@@ -289,6 +291,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The data input field displays ‘9’, ‘w’, ‘x’, ‘y’, ‘z’, then ‘9’, ‘w’, and so on, as the key is re-pressed.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Press and hold the same data key.Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required.Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable",
+                "Verify the following information,While press and hold button less than 1.5 secSound ‘Click’ is played once.The state of button is changed to ‘Pressed’ and immediately back to ‘Enabled’ state.Pressed key is added in an input field after pressing the button.While press and hold button over 1.5 secThe next character of the same data key is selected and displayed on an input field refer to the label ot pressed button and wrap-around.For example, the single character is displayed at input field with following step ‘2’ -> ‘a’ -> ‘b’ -> ‘c’ -> ‘2’");
             /*
             Test Step 9
             Action: Press and hold the same data key.Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required.Press the ‘Del’ button to delete an information when entered data is out of input field range is acceptable
@@ -377,6 +382,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The data input field displays ‘9’, ‘w’, ‘x’, ‘y’, ‘z’, then ‘9’, ‘w’, and so on, as the key is re-pressed.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Released the pressed button",
+                "Verify the following information, The character is stop changing");
             /*
             Test Step 10
             Action: Released the pressed button
@@ -388,6 +395,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field stops changing the value for the <9> key in the data input field.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++,
+                "Press the data key which have various characters once.After passed 2 seconds, press the same data key.Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required",
+                "Verify the following information, An entered data are separated as 2 characters, for example ‘22’");
             /*
             Test Step 11
             Action: Press the data key which have various characters once.After passed 2 seconds, press the same data key.Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required
@@ -449,6 +459,9 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘99’.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++,
+                "Press data key and then another data key within 2 seconds, for example 2 then 3Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required",
+                "Verify the following information, The selected characters are added on an input field.The horizontal line cursor is forced to jump to next position directly");
             /*
             Test Step 12
             Action: Press data key and then another data key within 2 seconds, for example 2 then 3Note: This step is for testing ‘’2’-‘9’ button.Stopwatch is required
@@ -462,6 +475,8 @@ namespace Testcase.DMITestCases
                                 "1. The data input field displays ‘24’." + Environment.NewLine +
                                 "2. The cursor moves to the right of the character just entered immediately after the key is pressed.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Enter the data value with 5 characters",
+                "Verify the following information,The 5 characters are added on an input field as one group. (e.g. ‘12345')");
             /*
             Test Step 13
             Action: Enter the data value with 5 characters
@@ -474,6 +489,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘12345’.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Continue to enter the 6th character",
+                "Verify the following information,The fifth character is shown after a gap of fourth character, separated as 2 groups (e.g. 1234 56)");
             /*
             Test Step 14
             Action: Continue to enter the 6th character
@@ -485,6 +502,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234 56’.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Continue to enter the new value more than 8 characters",
+                "Verify the following information,The data value is separated as 2 lines. In each line is displayed only 8 characters");
             /*
             Test Step 15
             Action: Continue to enter the new value more than 8 characters
@@ -495,6 +514,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays ‘1234 5612’ and ‘3456’ (over 2 lines).");
+
+            MakeTestStepHeader(16, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 16

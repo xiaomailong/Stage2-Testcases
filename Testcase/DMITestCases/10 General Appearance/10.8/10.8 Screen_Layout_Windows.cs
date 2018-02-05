@@ -21,16 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_5_8_Screen_Layout_Windows : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Power on the system.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Start_ATP();
-        }
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec
@@ -44,8 +34,11 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. ", "The Driver ID window is displayed. ");
             /*
             Test Step 1
             Action: Activate cabin A. 
@@ -63,6 +56,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Driver ID window." + Environment.NewLine +
                                 "2. All objects, text messages and buttons are displayed in the same layer.");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Enter the Driver ID. ", "The Level window is displayed.");
             /*
             Test Step 2
             Action: Enter the Driver ID. 
@@ -76,7 +70,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4354;MMI_gen 4351;
             */
             // Brake test checks are done in section 27.22: irrelevant here
-            DmiActions.ShowInstruction(this, "Enter the Driver ID (and confirm).");
+            DmiActions.ShowInstruction(this, "Enter the Driver ID (and confirm). Then Press ok.");
 
             DmiActions.Request_Brake_Test(this);
             DmiActions.ShowInstruction(this, "Perform Brake Test");
@@ -96,6 +90,8 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. All objects, text messages and buttons are displayed in the same layer.");
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Confirm level 1 and Select ‘Train data’ button",
+                "The Train data window is displayed.");
             /*
             Test Step 3
             Action: Confirm level 1 and Select ‘Train data’ button
@@ -131,6 +127,8 @@ namespace Testcase.DMITestCases
                                 "6. The Sub-Level window is on layer more raised than its parent and, depending on its size, may totally cover its parent" +
                                 "7. The ‘Next’ and/or ‘Previous’ button is enabled. Scrolling between windows is not circular.");
 
+            MakeTestStepHeader(4, UniqueIdentifier++, "Confirm and Validate Train data.",
+                "The Train Running Number window is displayed.");
             /*
             Test Step 4
             Action: Confirm and Validate Train data.
@@ -146,16 +144,17 @@ namespace Testcase.DMITestCases
 
             DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
-                                  Environment.NewLine +
-                                  "1. Press ‘Yes’ button." + Environment.NewLine +
-                                  "2. Confirmed the selected value by pressing the input field." + Environment.NewLine +
-                                  "3. Press OK on THIS window.");
+                                             Environment.NewLine +
+                                             "1. Press ‘Yes’ button." + Environment.NewLine +
+                                             "2. Confirmed the selected value by pressing the input field." +
+                                             Environment.NewLine +
+                                             "3. Press OK on THIS window.");
 
             DmiActions.Display_Train_data_validation_Window(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
-                                  Environment.NewLine +
-                                  "1. Press ‘Yes’ button." + Environment.NewLine +
-                                  "2. Confirmed the selected value by pressing the input field.");
+                                             Environment.NewLine +
+                                             "1. Press ‘Yes’ button." + Environment.NewLine +
+                                             "2. Confirmed the selected value by pressing the input field.");
 
             DmiActions.Display_TRN_Window(this);
 
@@ -163,6 +162,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Train Running Number window." + Environment.NewLine +
                                 "2. All objects, text messages and buttons are displayed in the same layer.");
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Enter and confirm the train running number. Then close the Main window",
+                "The Default window is displayed.");
             /*
             Test Step 5
             Action: Enter and confirm the train running number. Then close the Main window
@@ -191,6 +193,8 @@ namespace Testcase.DMITestCases
                                 "4. The Default window does not display the window topic." + Environment.NewLine +
                                 "5. The Default window does not cover any other window.");
 
+            MakeTestStepHeader(6, UniqueIdentifier++, "Then press and hold the Main menu button",
+                "DMI still displays the default window.");
             /*
             Test Step 6
             Action: Then press and hold the Main menu button
@@ -206,6 +210,8 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Main menu’ button is displayed pressed." + Environment.NewLine +
                                 "3. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(7, UniqueIdentifier++, "Slide out of the ‘Main menu’ button",
+                "DMI still displays the default window");
             /*
             Test Step 7
             Action: Slide out of the ‘Main menu’ button
@@ -219,6 +225,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI still displays the default window." + Environment.NewLine +
                                 @"2. The ‘Main menu’ button is displayed enabled.");
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Slide back into the ‘Main menu’ button",
+                "DMI still displays default window");
             /*
             Test Step 8
             Action: Slide back into the ‘Main menu’ button
@@ -235,6 +243,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Main menu’ button is displayed pressed." + Environment.NewLine +
                                 @"3. The ‘Click’ sound is not played.");
 
+            MakeTestStepHeader(9, UniqueIdentifier++, "Release the ‘Main menu’ button",
+                "DMI displays sub-menu of the Main window");
             /*
             Test Step 9
             Action: Release the ‘Main menu’ button
@@ -248,6 +258,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the sub-menu of the Main window.");
 
+            MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays the default window");
             /*
             Test Step 10
             Action: Press ‘Close’ button
@@ -261,6 +272,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
+            MakeTestStepHeader(11, UniqueIdentifier++, "Press and hold the Special button",
+                "DMI still displays the default window");
             /*
             Test Step 11
             Action: Press and hold the Special button
@@ -276,6 +289,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Special’ button is displayed pressed" + Environment.NewLine +
                                 @"3. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(12, UniqueIdentifier++, "Slide out of Special button",
+                "DMI still displays the default window");
             /*
             Test Step 12
             Action: Slide out of Special button
@@ -289,6 +304,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI still displays the default window." + Environment.NewLine +
                                 @"2. The ‘Special’ button is displayed enabled.");
 
+            MakeTestStepHeader(13, UniqueIdentifier++, "Slide back into ‘Special menu’ button",
+                "DMI still displays the default window");
             /*
             Test Step 13
             Action: Slide back into ‘Special menu’ button
@@ -305,6 +322,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Special’ button is displayed pressed." + Environment.NewLine +
                                 @"3. The ‘Click’ sound is not played.");
 
+            MakeTestStepHeader(14, UniqueIdentifier++, "Release ‘Special menu’ button",
+                "DMI displays sub-menu of Special window");
             /*
             Test Step 14
             Action: Release ‘Special menu’ button
@@ -318,6 +337,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the sub-menu of the Special window.");
 
+            MakeTestStepHeader(15, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays the default window");
             /*
             Test Step 15
             Action: Press ‘Close’ button
@@ -331,6 +351,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI  displays the default window.");
 
+            MakeTestStepHeader(16, UniqueIdentifier++, "Press and hold the ‘Settings menu’ button",
+                "DMI still displays the default window");
             /*
             Test Step 16
             Action: Press and hold the ‘Settings menu’ button
@@ -347,6 +369,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Settings menu’ button is displayed pressed" + Environment.NewLine +
                                 @"3. The ‘Click’ sound is played once.");
 
+            MakeTestStepHeader(17, UniqueIdentifier++, "Slide out of the ‘Setting menu’ button",
+                "DMI still displays the default window");
             /*
             Test Step 17
             Action: Slide out of the ‘Setting menu’ button
@@ -361,6 +385,8 @@ namespace Testcase.DMITestCases
                                 "1. DMI still displays the default window." + Environment.NewLine +
                                 @"2. The ‘Settings menu’ button is displayed enabled.");
 
+            MakeTestStepHeader(18, UniqueIdentifier++, "Slide back into the ‘Settings menu’ button",
+                "DMI still displays the default window");
             /*
             Test Step 18
             Action: Slide back into the ‘Settings menu’ button
@@ -379,6 +405,8 @@ namespace Testcase.DMITestCases
                                 @"2. The ‘Settings menu’ button is displayed pressed." + Environment.NewLine +
                                 @"3. The ‘Click’ sound is not played.");
 
+            MakeTestStepHeader(19, UniqueIdentifier++, "Release the ‘Settings menu’ button",
+                "DMI displays all sub-menus of Setting window");
             /*
             Test Step 19
             Action: Release the ‘Settings menu’ button
@@ -390,6 +418,8 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays all the sub-menus of the Settings window.");
+
+            MakeTestStepHeader(20, UniqueIdentifier++, "End of test", "");
 
             /*
             Test Step 20
