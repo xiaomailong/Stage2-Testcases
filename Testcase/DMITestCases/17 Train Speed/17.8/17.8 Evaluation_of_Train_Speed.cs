@@ -26,23 +26,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_8_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // ?? Need to switch off/on
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered on. ATP is still not start.
-            DmiActions.Start_ATP();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Start ATP without cabin activation",
                 "Verify the following information,(1)    Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = -1.(2)   The following objects are not displayed on the DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance Bar");

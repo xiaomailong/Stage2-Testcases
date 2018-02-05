@@ -38,6 +38,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            StartUp();
+
             MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A. ", "The Driver ID window is displayed. ");
             /*
             Test Step 1
@@ -47,7 +49,6 @@ namespace Testcase.DMITestCases
             All objects, text messages and buttons are presented within the same layer
             Test Step Comment: MMI_gen 4351;
             */
-            DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);

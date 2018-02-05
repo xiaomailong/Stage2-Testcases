@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
             Action: Power On the system
             Expected Result: The DMI displays the default window
             */
-            DmiActions.Start_ATP();
+            StartUp();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
@@ -47,7 +47,6 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A and Perform SoM to SR mode, Level 1
             Expected Result: The DMI displays in SR mode, level 1
             */
-            DmiActions.Activate_Cabin_1(this);
             DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =

@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window.Verify that sub-area E1 is divided in two areas
             Test Step Comment: (1) MMI_gen 7527 (partly: divided in two areas);          MMI_gen 11459 (partly: verbose visualisation);
             */
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
             EVC14_MMICurrentDriverID.Send();

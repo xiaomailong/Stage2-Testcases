@@ -23,21 +23,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_7_3_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on. Cabin is activated. SoM is performed in SR mode, level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Drive the train forward pass BG1.Then, press an acknowledgement of OS mode in sub-area C1",

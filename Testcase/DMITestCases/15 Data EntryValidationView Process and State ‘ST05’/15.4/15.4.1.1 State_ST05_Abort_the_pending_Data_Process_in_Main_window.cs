@@ -21,21 +21,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_10_4_1_1_State_ST05 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // Test system is powered onCabin is activeSoM is performed until level 1 is selected and confirmed.
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "At the Main window, press ‘Driver ID’ button",
                 "DMI displays Driver ID window");

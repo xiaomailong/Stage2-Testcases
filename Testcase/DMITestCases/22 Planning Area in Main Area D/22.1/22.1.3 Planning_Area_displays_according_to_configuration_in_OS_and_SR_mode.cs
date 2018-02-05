@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call Generic Action Method
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
             // Check Results
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9446 (partly: NEGATIVE, inactive);
             */
             // Make sure that cabin is not active
-            DmiActions.Start_ATP();
+            StartUp();
             XML_22_8_3_1(msgType.typea);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

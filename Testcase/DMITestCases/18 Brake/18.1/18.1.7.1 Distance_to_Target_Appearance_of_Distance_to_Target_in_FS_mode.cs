@@ -26,21 +26,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_13_1_7_1_Brake : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // System is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1",
                 "DMI displays in FS mode, level 1Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-1: MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)MMI_O_BRAKETARGET = -1 (Default) EVC-7: OBU_TR_M_MODE = 0 (FS mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2");

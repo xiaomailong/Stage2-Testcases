@@ -23,25 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_34_4_2_2_Dialogue_Sequences : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
-
-            // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
-
-            // Set to level 2
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-
-            // Enable standard buttons including Start, and display Default window.
-            DmiActions.Finished_SoM_Default_Window(this);
-        }
 
         public override void PostExecution()
         {
@@ -60,6 +41,17 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            // Set train running number, cab 1 active, and other defaults
+            StartUp();
+
+            // Set driver ID
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            // Set to level 2
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
+
+            // Enable standard buttons including Start, and display Default window.
+            DmiActions.Finished_SoM_Default_Window(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button",

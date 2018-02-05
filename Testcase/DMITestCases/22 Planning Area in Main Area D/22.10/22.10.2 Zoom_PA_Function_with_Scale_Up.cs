@@ -34,8 +34,7 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

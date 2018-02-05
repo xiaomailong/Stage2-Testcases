@@ -26,25 +26,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_6_7_Acknowledgements : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // 1. System is power on.2. Configuration with Level STM-ATB (STM ID = 1).3. Set language to English.
-            // ?? Set config file?? Language??     
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+
+            DmiActions.Set_Driver_ID(this, "1234");
+
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to Level STM-ATB in SN mode",
                 "ETCS OB enters Level STM-ATB, SN mode");

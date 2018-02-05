@@ -21,32 +21,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_15_2_8_ETCS_Level : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.Cabin is activated.SoM is performed until level 1 is selected and confirm.Main window is closed.
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            StartUp();
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use the test script file 15_2_8_a.xml to send EVC-7 with,OBU_TR_M_Level =  15",

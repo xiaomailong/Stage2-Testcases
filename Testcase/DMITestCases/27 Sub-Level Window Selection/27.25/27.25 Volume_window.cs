@@ -21,27 +21,18 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_25_Volume_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered onCabin is activeSettings window is opened
-            DmiActions.Activate_Cabin_1(this);
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default; // Settings
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Volume;
-            EVC30_MMIRequestEnable.Send();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            // Test system is powered onCabin is activeSettings window is opened
+            StartUp();
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default; // Settings
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Volume;
+            EVC30_MMIRequestEnable.Send();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Volume’ button",
                 "DMI displays the Volume window on the right half part of the window.LayersThe layers of window on half-grid array is displayed as followsLayer 0: Main-Area D, F, G, Y and Z.Layer -1: A1, A2+A3*, A4, B*, C1, C2+C3+C4*, C5, C6, C7, C8, C9, E1, E2, E3, E4, E5-E9*Layer -2: B3, B4, B5, B6, B7Note: ‘*’ symbol is mean that specified areas are drawn as one area.Data Entry windowThe window title is displayed with text “Volume”.Verify that the Volume window is displayed in main area D, F and G as half-grid array.A data entry window is contains only one input field that covers the Main area D, F and G.The following objects are displayed in Volume window. Enabled Close button (NA11)Window TitleInput FieldInput fieldThe input field is located in main area D and F.For a single input field, the window title is clearly explaining the topic of the input field. The Volume window is displayed as a single input field with only the data part.KeyboardThe keyboard associated to the Volume window is displayed as dedicated keyboard.The keyboard is presented below the area of input field.General property of windowThe Volume window is presented with objects and buttons which is the one of several levels and allocated to areas of DMIAll objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");

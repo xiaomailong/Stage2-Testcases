@@ -22,22 +22,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_35_1_ERTMSETCS_System_Status_Messages : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power onSoM is performed until Level 1 is confirmed and the ‘Main’ window is closed.
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            // System is power onSoM is performed until Level 1 is confirmed and the ‘Main’ window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Force the train roll away by moving of speed with ‘Neutral’ direction",

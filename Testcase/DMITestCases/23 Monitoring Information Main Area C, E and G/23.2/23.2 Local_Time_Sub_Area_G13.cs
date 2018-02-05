@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
             Expected Result: The driver message “Driver’s cab not active” displays on the DMI screen with timestamp on the left. Use the log file to confirm the timestamp is equal to MMI_T_UTC + MMI_T_ZONE_OFFSET from EVC-3
             Test Step Comment: (1) MMI_gen 176 (partly: derived time)
             */
-            DmiActions.Start_ATP();
+            StartUp();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Driver’s cab not active’, with a timestamp to the left.");

@@ -40,9 +40,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             // Call generic Action Method
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
             // Call generic Check Results Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

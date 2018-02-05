@@ -22,18 +22,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_10_4_1_5_State_ST05 : TestcaseBase
     {
-        public override void PreExecution()
+
+        public override bool TestcaseEntryPoint()
         {
-            // Pre-conditions from TestSpec:
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
+            // Testcase entrypoint
 
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered onCabin is activeSoM is performed until level 2 is selected and confirmed.
-            DmiActions.Start_ATP();
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
@@ -44,13 +40,6 @@ namespace Testcase.DMITestCases
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
-        }
-
-        public override bool TestcaseEntryPoint()
-        {
-            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
-            // Testcase entrypoint
 
 
             MakeTestStepHeader(1, UniqueIdentifier++, "At the RBC contact window, press ‘RBC Data’ button",

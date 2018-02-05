@@ -23,17 +23,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_2_2_ETCS_Level : TestcaseBase
     {
-        public override void PreExecution()
+
+        public override bool TestcaseEntryPoint()
         {
-            // Pre-conditions from TestSpec:
-            // System is power on.Cabin is activated.Driver ID is entered.Brake test is performed.
-
-            base.PreExecution();
-
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-
-            DmiActions.Activate_Cabin_1(this);
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
+            // Testcase entrypoint
+            StartUp();
 
             DmiActions.Display_Driver_ID_Window(this);
             DmiActions.Set_Driver_ID(this, "1234");
@@ -48,22 +44,6 @@ namespace Testcase.DMITestCases
                                              "1. Perform Brake Test");
 
             DmiActions.Display_Level_Window(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 3.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
-        public override bool TestcaseEntryPoint()
-        {
-            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
-            // Testcase entrypoint
 
             #region Test step 1
 

@@ -42,8 +42,7 @@ namespace Testcase.DMITestCases
             Action: Power on test system and activate the cabin A (MMI 1)
             Expected Result: DMI displays SB mode
             */
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, Level 1.");

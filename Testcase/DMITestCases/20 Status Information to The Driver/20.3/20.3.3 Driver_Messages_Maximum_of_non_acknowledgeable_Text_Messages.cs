@@ -21,32 +21,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_3_3_Driver_Messages : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is power onPerform SoM until Level 1 is selected and confirmed.Main window is closed.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // DMI is power on.Cabin A is activated.SoM is perform until Level 1 is selected and confirmed.Main window is closed.
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SB mode, level 1
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-
+            StartUp();
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use the test script file 15_3_3_a.xml to send multiple packets EVC-8 with the following value,Common variablesMMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT_CLASS = 1The order of MMI_Q_TEXT value in each packetMMI_Q_TEXT = 0MMI_Q_TEXT = 1MMI_Q_TEXT = 267MMI_Q_TEXT = 268MMI_Q_TEXT = 269MMI_Q_TEXT = 274MMI_Q_TEXT = 275MMI_Q_TEXT = 280MMI_Q_TEXT = 290MMI_Q_TEXT = 292MMI_Q_TEXT = 296MMI_Q_TEXT = 299MMI_Q_TEXT = 305MMI_Q_TEXT = 310MMI_Q_TEXT = 315MMI_Q_TEXT = 316MMI_Q_TEXT = 320MMI_Q_TEXT = 321MMI_Q_TEXT = 514MMI_Q_TEXT = 515MMI_Q_TEXT = 516MMI_Q_TEXT = 520MMI_Q_TEXT = 521MMI_Q_TEXT = 524MMI_Q_TEXT = 526MMI_Q_TEXT = 527MMI_Q_TEXT = 531MMI_Q_TEXT = 532MMI_Q_TEXT = 533MMI_Q_TEXT = 536MMI_Q_TEXT = 540MMI_Q_TEXT = 552MMI_Q_TEXT = 554MMI_Q_TEXT = 560MMI_Q_TEXT = 563MMI_Q_TEXT = 572MMI_Q_TEXT = 606MMI_Q_TEXT = 580MMI_Q_TEXT = 581MMI_Q_TEXT = 582MMI_Q_TEXT = 621MMI_Q_TEXT = 622MMI_Q_TEXT = 701MMI_Q_TEXT = 702MMI_Q_TEXT = 703MMI_Q_TEXT = 706MMI_Q_TEXT = 711MMI_Q_TEXT = 712MMI_Q_TEXT = 713MMI_Q_TEXT = 714Note: MMI_I_TEXT is unique",

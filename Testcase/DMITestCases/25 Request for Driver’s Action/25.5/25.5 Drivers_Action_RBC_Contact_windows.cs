@@ -27,24 +27,17 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_25_5_Drivers_Action_RBC_Contact_windows : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered on.Cabin is activated.SoM is performed until level 2 is selected and confirmed.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered on.Cabin is activated.SoM is performed until level 2 is selected and confirmed.
-            DmiActions.Complete_SoM_L1_SB(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            // Test system is powered on.Cabin is activated.SoM is performed until level 2 is selected and confirmed.
+            StartUp();
+            DmiActions.Complete_SoM_L1_SB(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,a)   Press and hold the ‘Radio Network ID’ button at least 2 seconds. Then, release the pressed button.b)  Press the ‘Close’ button.c)   Press the ‘Enter RBC Data’ button.d)   Press the ‘Close’ button",

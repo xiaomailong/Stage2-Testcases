@@ -22,18 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_11_Handle_at_least_31_PA_Speed_Profile_Segments : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Train length = 100 mSet the following tags name in configuration file (See the instruction in Appendix 1)
-            // SPEED_DIAL_V_MAX = 400SPEED_DIAL_V_TRAINs = 100
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.
-            DmiActions.Start_ATP();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -48,7 +36,7 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

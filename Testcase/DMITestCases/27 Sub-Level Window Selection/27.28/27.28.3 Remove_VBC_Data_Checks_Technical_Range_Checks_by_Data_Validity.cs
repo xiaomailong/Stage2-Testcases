@@ -26,18 +26,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_28_3_Remove_VBC_Data_Checks_Technical_Range_Checks_by_Data_Validity : TestcaseBase
     {
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-
-            // 1. ETCS-DMI is in the ‘Start of Mission’ procedure.2. ETCS-DMI is in the ‘Stand-By’ mode.3. VBC code “65536” is not stored onboard.
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -45,6 +33,9 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            // 1. ETCS-DMI is in the ‘Start of Mission’ procedure.2. ETCS-DMI is in the ‘Stand-By’ mode.3. VBC code “65536” is not stored onboard.
+            StartUp();
+            DmiActions.Set_Driver_ID(this, "1234");
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Press the ‘Settings’ button located on the ‘Driver ID’ window.Then, open the ‘Remove VBC’ data entry window from the Settings menu",

@@ -22,24 +22,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_16_2_TAF_Question_Box : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)HIDE_PA_OS_MODE = 1 (PA will show in OS mode)System is power on.Cabin is activate.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Start_ATP();
-
-            DmiActions.Activate_Cabin_1(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform SoM to SR mode, level 2.Then, drive the train forward with speed = 30km/h",

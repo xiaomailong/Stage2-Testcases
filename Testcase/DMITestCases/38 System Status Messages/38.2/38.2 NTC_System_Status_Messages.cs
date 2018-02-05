@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window in SB mode
             */
             DmiActions.ShowInstruction(this, "Power on the system");
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC14_MMICurrentDriverID.Send();

@@ -21,15 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_22_20_2_Override_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Activate_Cabin_1(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -43,6 +34,7 @@ namespace Testcase.DMITestCases
             Action: Press ‘Enter RBC Data’ button
             Expected Result: DMI displays RBC Data window
             */
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.ShowInstruction(this, "Confirm the Driver ID");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;

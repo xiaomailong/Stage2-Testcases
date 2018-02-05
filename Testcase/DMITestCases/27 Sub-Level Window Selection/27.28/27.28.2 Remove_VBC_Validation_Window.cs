@@ -29,9 +29,7 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            // System is powered ON.Cabin is activated.Perform SoM until Level 1 is selected and confirmed.
-            // The VBC code “65536” is stored on ETCS. (See the information in the “Data View” menu)Settings window is opened.Remove VBC window is opened.
-            DmiActions.Complete_SoM_L1_SB(this);
+
         }
 
         public override bool TestcaseEntryPoint()
@@ -39,6 +37,11 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            // System is powered ON.Cabin is activated.Perform SoM until Level 1 is selected and confirmed.
+            // The VBC code “65536” is stored on ETCS. (See the information in the “Data View” menu)Settings window is opened.Remove VBC window is opened.
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,Enter and confirm value ‘65536’ at input field.Press ‘Yes’ button",

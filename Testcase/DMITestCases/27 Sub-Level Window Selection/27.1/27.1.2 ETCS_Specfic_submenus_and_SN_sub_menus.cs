@@ -23,19 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_1_2_Sub_Level_Window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            //Set the following tags name in configuration file(See the instruction in Appendix 2)
-            // Q_CustomConfig = 3 M_InstalledLevels = 31 NID_NTC_Installed_0 = 9 M_DefalutLevels = 31 NID_NTC_Default_0 = 9
-
-            // The system is powered ON
-            DmiActions.Start_ATP();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -52,7 +39,7 @@ namespace Testcase.DMITestCases
             Action: Activate cabin and perform start of mission to PLZB STM
             Expected Result: DMI displays in PLZB STM mode
             */
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;

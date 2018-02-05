@@ -22,22 +22,17 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_23_Switchable_train_data_entry : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered on.Cabin is activated.SoM is performed until Level 1 is selcted and confirmed.
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            // Test system is powered on.Cabin is activated.SoM is performed until Level 1 is selcted and confirmed.
+            DmiActions.Complete_SoM_L1_SB(this);
+
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Train data’ button",
                 "The Train data window is displayed as  Flexible train data entry or Fixed train data entry.Verify the following information,The Train data window is presented an enabled ‘switch’ button.The ‘switch’ button is located in the bottom right corner of D/F/G area.The label of ‘switch’ button is displayed correctly refer to the type of displayed window as follows,Flexible Train DataThe label of switch button is presented with text ‘Select type’. Fixed Train DataThe label of switch button is presented with text ‘Enter data’.Use the log file to confirm that DMI receives packet EVC-6 with variable MMI_M_ALT_DEM = 1 (switchable)");

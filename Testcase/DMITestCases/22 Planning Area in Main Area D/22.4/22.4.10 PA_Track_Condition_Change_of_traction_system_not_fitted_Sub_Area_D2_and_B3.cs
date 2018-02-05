@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             //Test system is power on.SoM is performed in SR mode, level 1.
-            DmiActions.Complete_SoM_L1_SR(this);
+
         }
 
         public override bool TestcaseEntryPoint()
@@ -50,6 +50,9 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
+
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 

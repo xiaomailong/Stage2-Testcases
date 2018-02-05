@@ -39,6 +39,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7373;
             */
             // tested elsewhere: force SoM
+            StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 

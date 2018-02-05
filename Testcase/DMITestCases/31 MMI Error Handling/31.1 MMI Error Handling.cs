@@ -57,6 +57,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, Level 1
             Test Step Comment: 
             */
+            StartUp();
             DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

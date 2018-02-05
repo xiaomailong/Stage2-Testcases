@@ -22,22 +22,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_22_5_1_Level_Window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Use the ATP config editor to set the following parameters as follows (See the instruction in Appendix 2),M_InstalledLevels = 15M_DefaultLevels = 15Test system is power on.Cabin is activated.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-
-            DmiActions.Activate_Cabin_1(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
+
+            StartUp();
+
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");

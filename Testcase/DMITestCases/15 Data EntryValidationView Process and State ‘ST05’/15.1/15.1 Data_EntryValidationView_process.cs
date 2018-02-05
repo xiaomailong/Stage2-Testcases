@@ -26,21 +26,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_10_1_Data_EntryValidationView_process : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            // Test system is powered on. Cabin is inactive
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Settings menu’ button",
                 "Settings menu window is displayed");

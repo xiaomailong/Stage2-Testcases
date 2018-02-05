@@ -21,14 +21,24 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_3_6_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
+
+        public override void PostExecution()
         {
-            // Pre-conditions from TestSpec:
+            // Post-conditions from TestSpec
+            // DMI displays in SH mode, level 1
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays in SH mode, Level 1.");
 
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
+            // Call the TestCaseBase PostExecution
+            base.PostExecution();
+        }
 
-            DmiActions.Activate_Cabin_1(this);
+        public override bool TestcaseEntryPoint()
+        {
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
+            // Testcase entrypoint
+            StartUp();
 
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
@@ -49,24 +59,7 @@ namespace Testcase.DMITestCases
             // Set to level 1 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
-        }
 
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SH mode, level 1
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in SH mode, Level 1.");
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
-        public override bool TestcaseEntryPoint()
-        {
-            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
-            // Testcase entrypoint
 
             EVC7_MMIEtcsMiscOutSignals.Initialise(this);
 

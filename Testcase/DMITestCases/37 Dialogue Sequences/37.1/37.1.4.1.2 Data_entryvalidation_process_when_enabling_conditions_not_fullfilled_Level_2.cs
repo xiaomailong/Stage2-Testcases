@@ -22,16 +22,7 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_34_1_4_2_Dialogue_Sequences : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered on Cabin A is activated.Enter Driver ID and perform brake test.Level is entered and confirmed.
 
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override void PostExecution()
         {
@@ -49,6 +40,9 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,Press ‘Level’ button.Enter and confirm Level 2.Press ‘RBC data’ button",

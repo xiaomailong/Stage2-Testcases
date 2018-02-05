@@ -24,23 +24,18 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_8_1_4_RBC_Data_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
 
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Start of Mission’ procedure is performed until level 2 is selected.4. RBC Data window is opened.
-            DmiActions.Complete_SoM_L1_SB(this);
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Start of Mission’ procedure is performed until level 2 is selected.4. RBC Data window is opened.
+            DmiActions.Complete_SoM_L1_SB(this);
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Enter valid values with the numeric keypad and press the data input field (Accept) in the same screen.RBC ID6996969RBC phone number0031840880100",

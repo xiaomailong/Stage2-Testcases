@@ -57,21 +57,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_18_4_1_Geographical_Position : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered on. Cabin is active. Perform a complete SoM to enter SR mode, ETCS level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with the permitted speed",
                 "DMI displays in SR mode, level 1");

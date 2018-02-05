@@ -22,16 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_18_7_Tunnel_stopping_area_track_condition : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is power on.SoM is performed in SR mode, Level 1.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -39,6 +29,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1",
                 "DMI displays in FS mode, Level 1");

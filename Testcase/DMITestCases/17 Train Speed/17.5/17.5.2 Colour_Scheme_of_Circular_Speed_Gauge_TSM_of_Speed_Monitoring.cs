@@ -21,15 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_5_2_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // System is power on.Cabin is activated.SoM is performed in SR mode, Level 1
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override void PostExecution()
         {
@@ -47,6 +38,8 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1 with speed = 30km/h",
                 "DMI displays in FS mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode).(2)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 11 (Status=Nos, Supervision=TSM).MMI_V_TARGET =  278 (10 km/h)(3)   At range 0-10km/h, CSG is dark-grey colour.(4)   at range above 11km/h, CSG is white colour");

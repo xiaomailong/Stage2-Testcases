@@ -22,22 +22,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_21_Settings_Window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered on Cabin A is activated.
-            DmiActions.Activate_Cabin_1(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
 
             TraceInfo("This test case may require a DMI configuration change - " +
                       "System info may not be disabled/enabled by text). If this is not done manually, the test may fail!");

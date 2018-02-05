@@ -21,28 +21,19 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_14_System_Version_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered ON.Cabin is activated.Settings window is opened.
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
-
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion;
-            EVC30_MMIRequestEnable.Send();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            // Test system is powered ON.Cabin is activated.Settings window is opened.
+            StartUp();
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.SystemVersion;
+            EVC30_MMIRequestEnable.Send();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘System version’ button",
                 "Verify the following information,The System version window is displayed.Use the log file to confirm that DMI received packet EVC-34.Data View WindowThe Data view window is covered in main area D, F and G.LayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Z, YLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.LabelThe data view text is composed of a Label Part and Data Part. The labels of data view items are right aligned.The data of data view items are left aligned.Data view text colour is grey.The window title is displayed with text ‘System version’.Data View ItemsDMI displays the following information respectively:Operated system versionThe following objects are displayed in Data View window Enabled Close button (NA11)Window titleGeneral property of windowThe System version window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI.All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");

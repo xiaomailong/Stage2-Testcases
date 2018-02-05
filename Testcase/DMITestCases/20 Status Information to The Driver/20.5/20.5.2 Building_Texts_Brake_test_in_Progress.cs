@@ -26,28 +26,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_4_2_Adhesion_Factor : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // The system is powered OFF.
-            // The default language is English
-            // Set the following tags name in configuration file
-            // (see the instruction in Appendix 1 and change configuration file to Language_mgr.xml)
-            // Replace English text with Russian text
-            // <ENG>Brake Test in Progress</ENG> to <ENG>Выполнение опробования тормозов</ENG>
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SN mode, Level STM-ATB.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -65,10 +43,7 @@ namespace Testcase.DMITestCases
             Action: Power on the system and activate cabin
             Expected Result: DMI displays the Driver ID window
             */
-            DmiActions.Start_ATP();
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             // In SoM, ERA_ERTMS says the driver ID button is pressed to display the window 
             EVC30_MMIRequestEnable.SendBlank();

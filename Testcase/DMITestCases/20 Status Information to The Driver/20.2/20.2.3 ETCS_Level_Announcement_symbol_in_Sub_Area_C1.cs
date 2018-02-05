@@ -21,17 +21,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_2_3_ETCS_Level : TestcaseBase
     {
-        public override void PreExecution()
+
+        public override bool TestcaseEntryPoint()
         {
-            // Pre-conditions from TestSpec:
-            // System is power ON.Cabin is activated.SoM is perform until train running number is entered.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Start_ATP();
-
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
+            // Testcase entrypoint
+            StartUp();
 
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
@@ -42,23 +38,6 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, Level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
-        public override bool TestcaseEntryPoint()
-        {
-            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
-            // Testcase entrypoint
-
             #region Test Step 1
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press the 'Start' button",

@@ -24,27 +24,17 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_22_20_1_Override_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered on.The cabin is activated.SoM is performed until Train Running number is confirmed.
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
-
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            // Test system is powered on.The cabin is activated.SoM is performed until Train Running number is confirmed.
+            StartUp();
 
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,Press ‘Close’ button.Press ‘Override’ button",

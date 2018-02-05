@@ -32,7 +32,7 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // Test system is powered on.Activate Cabin A.SoM is completed in SR mode, Level 1.
-            DmiActions.Complete_SoM_L1_SR(this);
+
         }
 
         public override bool TestcaseEntryPoint()
@@ -40,6 +40,9 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward passing BG1",
                 "DMI changes from SR mode to FS mode, Level 1");

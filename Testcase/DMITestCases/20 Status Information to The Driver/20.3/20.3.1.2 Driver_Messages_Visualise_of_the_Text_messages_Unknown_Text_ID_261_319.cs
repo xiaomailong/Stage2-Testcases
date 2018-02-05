@@ -27,7 +27,7 @@ namespace Testcase.DMITestCases
 
             // Call the TestCaseBase PreExecution
             base.PreExecution();
-            DmiActions.Complete_SoM_L1_SB(this);
+
         }
 
         public override void PostExecution()
@@ -44,6 +44,8 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SB(this);
 
             // All the following tests are done in XML_15_3_1_2.cs
             MakeTestStepHeader(1, UniqueIdentifier++,

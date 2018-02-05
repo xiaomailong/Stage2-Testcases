@@ -28,26 +28,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_15_6_Level_Crossing_not_protected_Indication : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Test system is powered on.
-            // Activate Cabin A
-            // SoM in performed in SR mode, Level 1.
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in FS mode, level 1.
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -55,6 +35,9 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);D:
+          
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward past BG1",
                 "DMI displays in FS mode, Level 1.");
             /*

@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
             Expected Result: ‘Driver’s desk not active’ is displayed on DMI in Deutsch language
             */
 
-            DmiActions.Start_ATP();
+            StartUp();
             WaitForVerification("‘Driver’s desk not active’ is displayed on DMI in Deutsch language");
 
             MakeTestStepHeader(2, UniqueIdentifier++, "Activate cabin A", "DMI displays the Driver ID window.");

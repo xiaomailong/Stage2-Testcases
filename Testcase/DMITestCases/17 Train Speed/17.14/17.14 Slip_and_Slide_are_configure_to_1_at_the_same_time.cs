@@ -22,21 +22,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_12_14_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)
-            // SLIP_SPEEDMETER = 1; SLIDE_SPEEDMETER = 1;
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
+
+            StartUp();
+
+            DmiActions.Complete_SoM_L1_SR(this);
+
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");

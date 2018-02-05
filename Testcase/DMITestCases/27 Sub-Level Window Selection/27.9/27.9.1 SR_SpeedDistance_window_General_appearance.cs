@@ -29,6 +29,7 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use the test script file 22_9_1_a.xml to send EVC-11,MMI_N_DATA_ELEMENTS = 0MMI_V_STFF = 100MMI_L_STFF = 100000",

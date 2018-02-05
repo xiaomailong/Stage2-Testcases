@@ -22,26 +22,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_9_12_Hide_PA_Function_with_the_occupied_by_system_outside_ETCS : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Use the ATP config editor to set the following parameters as follows (See the instruction in Appendix 2),
-            // M_InstalledLevels = 31
-            // NID_NTC_Installed_0 = 1 
-            // (ATB)M_DefaultLevels = 31
-            // NID_NTC_Default_0 = 1 (ATB)
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is power on.Cabin is activated.SoM is performed in SR mode, level 1
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
+
+            // Test system is power on.Cabin is activated.SoM is performed in SR mode, level 1
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
+
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");

@@ -38,6 +38,8 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A. Then  perform SoM to SR mode, level 1
             Expected Result: DMI displays SR mode, level 1
             */
+
+            StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

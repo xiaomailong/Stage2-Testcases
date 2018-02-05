@@ -21,25 +21,19 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_22_2_Brake_test_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is powered ON.Cabin is activated.SoM is performed until Level 1 is selcted and confirmed.Settings window is opened.Brake button is enabled.Brake window is opened.
-            DmiActions.Complete_SoM_L1_SB(this);
-            EVC30_MMIRequestEnable.SendBlank();
-            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings window
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest;
-            EVC30_MMIRequestEnable.Send();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            // System is powered ON.Cabin is activated.SoM is performed until Level 1 is selcted and confirmed.Settings window is opened.Brake button is enabled.Brake window is opened.
+            StartUp();
+            DmiActions.Complete_SoM_L1_SB(this);
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings window
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.StartBrakeTest;
+            EVC30_MMIRequestEnable.Send();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Test’ button",
                 "DMI displays Brake test window.Verifies the following information,Menu windowThe Brake Test window is displayed in main area D/F/G.The window title is ‘Brake test’.The following objects are displayed in Main window, Enabled Close button (NA11)Window TitleButton 1 with label ‘ETCS’Note: See the position of buttons in picture below,LayersThe level of layers in each area of window as follows,Layer 0: Area D,F,GLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.General property of windowThe Brake Test window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI.All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");

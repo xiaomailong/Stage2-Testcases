@@ -23,13 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_26_System_info_window : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -44,7 +37,7 @@ namespace Testcase.DMITestCases
             Action: Activate Cabin A
             Expected Result: DMI displays Driver ID window
             */
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
 
             DmiExpectedResults.Driver_ID_window_displayed(this);

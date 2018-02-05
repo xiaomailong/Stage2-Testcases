@@ -39,6 +39,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays SR mode, level 1
             */
             // force: tested elsewhere...
+            StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

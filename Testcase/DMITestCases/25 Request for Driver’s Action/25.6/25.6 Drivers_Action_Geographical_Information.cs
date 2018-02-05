@@ -23,15 +23,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_25_6_Drivers_Action_Geographical_Information : TestcaseBase
     {
-        public override void PreExecution()
+
+        public override bool TestcaseEntryPoint()
         {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
+            // Testcase entrypoint
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.SendBlank();
@@ -41,14 +40,6 @@ namespace Testcase.DMITestCases
                                                                Variables.standardFlags;
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Default;
             EVC30_MMIRequestEnable.Send();
-        }
-
-        public override bool TestcaseEntryPoint()
-        {
-            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
-            // Testcase entrypoint
-
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1",
                 "The symbol ‘DR03’ is displayed in sub-area G12");

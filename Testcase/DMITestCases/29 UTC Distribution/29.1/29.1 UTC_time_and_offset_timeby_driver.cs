@@ -40,8 +40,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Power up the system");
 
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

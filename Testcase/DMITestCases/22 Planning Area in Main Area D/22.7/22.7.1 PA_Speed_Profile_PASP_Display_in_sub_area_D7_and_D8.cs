@@ -26,6 +26,8 @@ namespace Testcase.DMITestCases
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
+
+            StartUp();
             // Testcase entrypoint
             TraceInfo("This test case may require an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");

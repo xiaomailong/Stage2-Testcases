@@ -36,7 +36,7 @@ namespace Testcase.DMITestCases
             Action: Activate Cabin A
             Expected Result: DMI displays Driver ID window
             */
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
             EVC14_MMICurrentDriverID.Send();

@@ -53,8 +53,7 @@ namespace Testcase.DMITestCases
             Expected Result: ETCS OB enters SR mode in Level 1
             */
 
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             DmiActions.Set_Driver_ID(this, "1234");
             DmiActions.Send_SB_Mode(this);

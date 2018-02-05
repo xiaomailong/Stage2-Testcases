@@ -23,25 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_3_9_Train_Speed : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Activate_Cabin_1(this);
-
-            // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
-
-            // Set to level 1 and SR mode
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-
-            // Do we need to close any open windows?
-            // EVC30_MMIRequestEnable.SendBlank();
-        }
 
         public override void PostExecution()
         {
@@ -60,6 +41,17 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+
+            // Set driver ID
+            DmiActions.Set_Driver_ID(this, "1234");
+
+            // Set to level 1 and SR mode
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
+            // Do we need to close any open windows?
+            // EVC30_MMIRequestEnable.SendBlank();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with speed = 10 km/h",
                 "Verify the following information,(1)   The speed pointer is always display in grey colour even runaway movement is detected.(2)   Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 6 (Standby)");

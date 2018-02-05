@@ -21,23 +21,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_13_1_1_Brake : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Set the following tags name in configuration file (See the instruction in Appendix 1)   SPEED_UNIT_TYPE = 0 (meter)System is power on.
-
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            DmiActions.Start_ATP();
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A",
                 "DMI displays in SB mode, level 1. The Driver ID window is displayed");

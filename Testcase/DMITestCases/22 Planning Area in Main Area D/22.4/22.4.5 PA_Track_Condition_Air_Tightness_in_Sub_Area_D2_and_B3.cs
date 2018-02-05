@@ -24,32 +24,13 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_4_5_PA_Track_Condition_Air_Tightness_in_Sub_Area_D2_and_B3 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Configure atpcu configuration file as following:
-            // 
-            // T_Panto_Down = 100        
-            // T_MainSwitch_Off = 100
-            // T_Airtight_Close =100
-            // T_Inhib_RBBrake = 100
-            // T_ Inhib_ECBrake = 100
-            // T_ Inhib_MSBrake = 100
-            // T_Change_TractionSyst = 100
-            // T_Allowed_CurrentConsump = 100 
-            // T_StationPlatform = 100
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is power on.SoM is performed in SR mode, level 1.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");

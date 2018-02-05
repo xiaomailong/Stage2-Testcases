@@ -22,23 +22,16 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_6_2_Acknowledgements : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // System is powered onCabin is activatedPerform SoM until level 1 is selected and confirmedMain window is closed.
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
 
+            // System is powered onCabin is activatedPerform SoM until level 1 is selected and confirmedMain window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use the test script file 6_2_a.xml to send EVC-8 with,MMI_Q_TEXT = 280MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1",

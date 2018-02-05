@@ -50,6 +50,7 @@ namespace Testcase.DMITestCases
             Action: Perform SoM to L1, SR mode
             Expected Result: Mode changes to SR mode , L1
             */
+            StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
 
             EVC30_MMIRequestEnable.SendBlank();

@@ -29,9 +29,7 @@ namespace Testcase.DMITestCases
             // Call the TestCaseBase PreExecution
             base.PreExecution();
 
-            // Test system is powered ON.Cabin is activated.Settings window is opened.
-            // The VBC code “65536” is stored on ETCS. (See the information in the “Data View” menu)
-            DmiActions.Complete_SoM_L1_SB(this);
+
         }
 
         public override bool TestcaseEntryPoint()
@@ -39,6 +37,11 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+
+            StartUp();
+            // Test system is powered ON.Cabin is activated.Settings window is opened.
+            // The VBC code “65536” is stored on ETCS. (See the information in the “Data View” menu)
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Remove VBC’ button",
                 "DMI displays Remove VBC window.Verify the following information,Data Entry WindowThe window title is ‘Remove VBC’.The text label of the window title is right aligned.The following objects are displayed in Remove VBC window,  Enabled Close button (NA11)Window TitleInput fieldsThe following objects are additionally displayed in Remove VBC window,Yes buttonThe text label ‘Remove VBC Entry complete?’Yes button is displayed in Disabled state as follows,Text label is black Background colour is dark-greyThe border colour is medium-grey the same as the input field’s colour.The sensitive area of Yes button is extended from text label ‘Remove VBC Entry complete?’Input fieldsThe input fields are located on Main area D and F.Each input field is devided into a Label Area and a Data Area.The Label Area is give the topic of the input field.The Label Area text is displayed corresponding to the input field as ‘VBC code’.The Label Area is placed to the left of The Data Area.The text in the Label Area is aligned to the right.The value of data in the Data Area is aligned to the left.The text colour of the Label Area is grey and the background colour of the Label Area is dark-grey.There are only single input fields displayed in the window.The first input field is in state ‘Selected’ as follows,The background colour of the Data Area is medium-grey.KeyboardThe keyboard associated to selected input field ‘Remove VBC’ is Numeric keyboard.The keyboard contains enabled button for the number <1> to <9>, <Delete>(NA21) , <0> and disabled <Decimal_Separator>. NA21, Delete button.LayersThe level of layers of all areas in window are in Layer 0.Echo TextsThe Label Part of an echo texts is same as The Label area of an input fields.The echo texts are displayed in main area A, B, C and E with same order as their related input fields.The Label part of echo text is right aligned.The colour of texts in echo texts are grey.Entering CharactersThe cursor is flashed by changing from visible to not visible.The cursor is displayed as horizontal line below the value in the input field.Packet transmissionUse the log file to confirm that DMI sent out packet information [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 24 (Start Remove VBC).Use the log file to confirm that DMI received packet information [MMI_REMOVE_VBC (EVC-19)] with MMI_N_VBC = 0.General property of windowThe Remove VBC window is presented with objects, text messages and buttons which is the one of several levels and allocated to areas of DMI. All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window");

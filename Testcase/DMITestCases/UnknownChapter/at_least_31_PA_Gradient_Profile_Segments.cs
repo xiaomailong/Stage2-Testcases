@@ -32,7 +32,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
             // Call generic Action Method
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed(this);
 

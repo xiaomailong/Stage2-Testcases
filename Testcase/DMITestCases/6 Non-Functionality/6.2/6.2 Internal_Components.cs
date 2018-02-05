@@ -44,8 +44,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays the default window. The Driver ID window is displayed
             */
 
-            DmiActions.Start_ATP();
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
 
             DmiExpectedResults.Driver_ID_window_displayed(this);

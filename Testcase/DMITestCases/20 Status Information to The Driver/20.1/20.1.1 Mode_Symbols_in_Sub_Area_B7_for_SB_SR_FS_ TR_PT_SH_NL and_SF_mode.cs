@@ -38,11 +38,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11084 (par tly: current ETCS mode);
                                (2) MMI_gen 110 (partly: MO13);
             */
-
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
-            EVC0_MMIStartATP.Send();
-
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);

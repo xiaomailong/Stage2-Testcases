@@ -28,22 +28,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_29_2_Fixed_Train_data_window_General_appearances : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Open defaultValues_default.xml in OTE then set all value of parameter "TR_OBU_TrainType" to 1
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is powered ON.Cabin is activated.Perform SoM until until Level 1 is selected and confirmed.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
+
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");

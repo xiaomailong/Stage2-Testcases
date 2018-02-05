@@ -21,14 +21,15 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_33_3_Parent_Child_Relationship : TestcaseBase
     {
-        public override void PreExecution()
+
+        public override bool TestcaseEntryPoint()
         {
-            // Pre-conditions from TestSpec:
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
+            // Testcase entrypoint
 
             // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
@@ -37,13 +38,7 @@ namespace Testcase.DMITestCases
             //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
             DmiActions.Finished_SoM_Default_Window(this);
-        }
 
-        public override bool TestcaseEntryPoint()
-        {
-            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
-            // Testcase entrypoint
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,Press and hold ‘Radio Network ID’ button at least 2 second.Release the pressed area",

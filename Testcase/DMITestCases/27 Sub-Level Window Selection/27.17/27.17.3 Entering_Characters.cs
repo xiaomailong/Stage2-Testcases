@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window.Verify the following information,The flashing horizontal-line cursor is always flashed in the next position of the echoed entered-data key in the ‘Selected IF/value of pressed key(s)’ data input field when selected the next character it will be inserted cursor position
             Test Step Comment: (1) MMI_gen 8033 (partly: MMI_gen 4689, MMI_gen 4690, MMI_gen 4691 (partly: flashing));
             */
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
             EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = (EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS) 0;

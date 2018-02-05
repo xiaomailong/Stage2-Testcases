@@ -51,6 +51,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 0;
             // Testcase entrypoint
 
+            StartUp();
+
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use the test script file 5_12_3_a.xml  to send multiple packets EVC-8 with the following value,Common variableMMI_Q_TEXT_CLASS = 1MMI_Q_TEXT_CRITERIA =3The order of MMI_Q_TEXT value in each packetMMI_Q_TEXT = 267MMI_Q_TEXT = 560MMI_Q_TEXT = 268MMI_Q_TEXT = 274MMI_Q_TEXT = 275MMI_Q_TEXT = 290MMI_Q_TEXT = 292MMI_Q_TEXT = 296MMI_Q_TEXT = 310MMI_Q_TEXT = 299",
                 "DMI displays the following messages in sub-area E5-E9 are correct refer to following message respectively,Balise read errorTrackside malfunctionCommunication errorEntering FSEntering OSSH refusedSH request failedTrackside not compatibleTrain data changedTrain is rejectedNote: The new text message is displayed in sub-area E5, old text messages are moved down automatically.Verify the following information,(1)   The disabled ‘Up’ button is displayed as NA15 symbol in sub-area E10.(2)   The enabled ‘Down’ button is displayed as NA14 symbol in sub-area E11");

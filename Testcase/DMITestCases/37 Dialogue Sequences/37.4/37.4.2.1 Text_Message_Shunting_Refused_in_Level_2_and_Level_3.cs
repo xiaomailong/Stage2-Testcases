@@ -24,15 +24,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_34_4_2_1_Dialogue_Sequences : TestcaseBase
     {
-        public override void PreExecution()
+
+        public override bool TestcaseEntryPoint()
         {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
+            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
+            UniqueIdentifier = 0;
+            // Testcase entrypoint
             // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
+            StartUp();
 
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
@@ -42,22 +41,6 @@ namespace Testcase.DMITestCases
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
-        }
-
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-            // DMI displays in SR mode, level 3
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-        }
-
-        public override bool TestcaseEntryPoint()
-        {
-            // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
-            // Testcase entrypoint
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Enter SH mode by performing the procedure below,Press ‘Main’ buttonPress and hold ‘Shunting’ button at least 2 seconds.Release ‘Shunting’ button",

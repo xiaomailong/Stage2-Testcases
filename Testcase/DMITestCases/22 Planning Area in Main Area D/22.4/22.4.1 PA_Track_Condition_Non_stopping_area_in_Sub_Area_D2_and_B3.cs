@@ -24,26 +24,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_4_1_PA_Track_Condition_Non_stopping_area_in_Sub_Area_D2_and_B3 : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-            // Configure atpcu configuration file as following:
-            // TC_T_Panto_Down = 100
-            // TC_T_MainSwitch_Off = 100
-            // TC_T_Airtight_Close =100
-            // TC_T_Inhib_RBBrake = 100
-            // TC_T_ Inhib_ECBrake = 100
-            // TC_T_ Inhib_MSBrake = 100
-            // TC_T_Change_TractionSyst = 100
-            // TC_T_Allowed_CurrentConsump = 100
-            // TC_T_StationPlatform = 100
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Test system is power on.SoM is performed in SR mode, level 1.
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
@@ -52,6 +32,9 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
                       "See Precondition requirements. If this is not done manually, the test may fail!");
+
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with speed = 20 km/h",
                 "The speed pointer is indicated as 20  km/h");

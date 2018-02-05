@@ -26,22 +26,14 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_20_3_Drivers_Action_Special_window : TestcaseBase
     {
-        public override void PostExecution()
-        {
-            // Post-conditions from TestSpec
-
-            // Call the TestCaseBase PostExecution
-            base.PostExecution();
-
-            // DMI displays in SR mode, Level 1
-            DmiActions.Complete_SoM_L1_SR(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+            DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press the ‘SR speed/distance’ button",
                 "Verify the following information,(1)    Use the log file to confirm that DMI sends out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 13 (Change SR Rules)(2)   The Special window is closed, DMI displays SR speed/distance window");

@@ -25,27 +25,19 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_6_4_Acknowledgements : TestcaseBase
     {
-        public override void PreExecution()
-        {
-            // Pre-conditions from TestSpec:
-
-            // Call the TestCaseBase PreExecution
-            base.PreExecution();
-
-            // Change the background-colour of the style below in gen_buttonStyle_type_4.xml to be #BF0002, STYLE class="normal", STYLE class="flash"
-
-            // System is powered on
-            // Cabin is activated
-            // Perform SoM until level 1 is selected and confirmed
-            // Main window is closed.
-            DmiActions.Complete_SoM_L1_SB(this);
-        }
 
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
+            StartUp();
+
+            // System is powered on
+            // Cabin is activated
+            // Perform SoM until level 1 is selected and confirmed
+            // Main window is closed.
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Use the test script file 6_4_a.xml to send EVC-8 with ",
                 "DMI displays the text message ‘Brake test aborted, perform new Test?’ with an acknowledgement option in sub-area E5-E9.");
