@@ -38,6 +38,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 1
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A",
+                "DMI displays in SB mode. The Driver ID window is displayed");
             /*           
             Action: Activate cabin A
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
@@ -54,6 +56,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 2
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Enter Driver ID and perform brake test",
+                "DMI displays Level window");
             /*           
             Action: Enter Driver ID and perform brake test
             Expected Result: DMI displays Level window
@@ -79,6 +83,7 @@ namespace Testcase.DMITestCases
 
             #region Test Step 3
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Select and confirm Level 0", "DMI displays Main window");
             /*
             Action: Select and confirm Level 0
             Expected Result: DMI displays Main window.

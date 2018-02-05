@@ -29,6 +29,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 1
 
+            MakeTestStepHeader(1, UniqueIdentifier++, "Verify mode symbol in sub-area B7",
+                "The Stand By symbol (MO13) is displayed in area B7");
             /*           
             Action: Verify mode symbol in sub-area B7
             Expected Result: Verify the following information,Use the log file to verify that DMI received the EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 6 
@@ -49,6 +51,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 2
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM in Level1 until the ‘Start’ button is pressed",
+                "The acknowledgement for Staff Responsible symbol (MO10) is displayed in area C1.");
             /*
             Action: Perform SoM in Level1 until the ‘Start’ button is pressed
             Expected Result: Verify the following information,The acknowledgement for Staff Responsible symbol (MO10) is displayed in area C1.
@@ -66,6 +70,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 3
 
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press the symbol MO10 in sub-area C1",
+                "The symbol MO10 is disappear from sub-area C1 and re-appear again.");
             /*
             Action: Press the symbol MO10 in sub-area C1
             Expected Result: Verify the following information,The symbol MO10 is disappear from sub-area C1 and re-appear again.
@@ -86,6 +92,9 @@ namespace Testcase.DMITestCases
 
             #region Test Step 4
 
+            MakeTestStepHeader(4, UniqueIdentifier++,
+                "Press the symbol MO10 in sub-area C1 for 2 second or upper.Then, release the pressed area",
+                "The symbol ‘MO10’ is displayed as a Safe Delay-Type button");
             /*
             Action: Press the symbol MO10 in sub-area C1 for 2 second or upper.Then, release the pressed area
             Expected Result: Verify the following information,While the MO10 is pressed, the opacity of the symbol is decreased to 50%
@@ -110,6 +119,9 @@ namespace Testcase.DMITestCases
 
             #region Test Step 5
 
+            MakeTestStepHeader(5, UniqueIdentifier++,
+                "Force the train into FS mode by moving the train forward passing BG1",
+                "The Full Supervision symbol (MO11) is displayed in area B7");
             /*
             Action: Force the train into FS mode by moving the train forward passing BG1
             Expected Result: Verify the following information, 
@@ -128,6 +140,9 @@ namespace Testcase.DMITestCases
 
             #region Test Step 6
 
+            MakeTestStepHeader(6, UniqueIdentifier++,
+                "Force the train into TR mode by moving the train forward to position of EOA",
+                "The Trip symbol (MO04) is displayed in area B7");
             /*
             Action: Force the train into TR mode by moving the train forward to position of EOA
             Expected Result: Verify the following information,
@@ -148,6 +163,9 @@ namespace Testcase.DMITestCases
 
             #region Test Step 7
 
+            MakeTestStepHeader(7, UniqueIdentifier++,
+                "Perform the following procedure, Wait until the train is stopped.Stop the train(set speed to 0 and set direction to neutral) Press at sub - area C9",
+                "The acknowledgement for Trip symbol (MO05) is displayed in area C1");
             /*
             Action: Perform the following procedure,
             Wait until the train is stopped. Stop the train (set speed to 0 and set direction to neutral)
@@ -171,6 +189,8 @@ namespace Testcase.DMITestCases
 
             #region Test Step 8
 
+            MakeTestStepHeader(8, UniqueIdentifier++, "Press the symbol ‘MO05’ in sub-area C1",
+                "The Post trip symbol (MO06) is displayed in area B7");
             /*
             Action: Press the symbol ‘MO05’ in sub-area C1
             Expected Result: Verify the following information,
@@ -190,6 +210,9 @@ namespace Testcase.DMITestCases
 
             #region Test Step 9
 
+            MakeTestStepHeader(9, UniqueIdentifier++,
+                "Force the train into SR mode by the steps below: Press ‘Main’ button. Press ‘Start’ button ie.EVC - 152[MMI_DRIVER_ACTION.MMI_M_DRIVER_ACTION] = 19(Start selected) is received. Acknowledge SR mode",
+                "");
             /*
             Action: Force the train into SR mode by the steps below:
             Press ‘Main’ button.      
