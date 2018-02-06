@@ -447,7 +447,7 @@ namespace Testcase.DMITestCases
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;
             EVC2_MMIStatus.MMI_M_OVERRIDE_EOA = false;
             EVC2_MMIStatus.Send();
-            pool.Wait_Realtime(2000);
+            pool.Wait_Realtime(5000);
         }
 
         /// <summary>
@@ -479,7 +479,7 @@ namespace Testcase.DMITestCases
 
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
             EVC2_MMIStatus.Send();
-            pool.Wait_Realtime(2000);
+            pool.Wait_Realtime(5000);
         }
 
         /// <summary>
@@ -1629,7 +1629,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_train_forward_passing_BG1(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.TraceInfo("Drive train forward passing BG1 - " +
+                      "not valid in static testing");
         }
 
         /// <summary>
@@ -1655,7 +1656,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_the_train_forward_pass_BG1(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.TraceInfo("Drive train forward passing BG1 - " +
+                      "not valid in static testing");
         }
 
         /// <summary>
@@ -1666,7 +1668,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Force_train_forward_overpassing_EOA(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.TraceInfo("Drive train forward passing EOA - " +
+                      "not valid in static testing");
         }
 
         /// <summary>
@@ -1685,7 +1688,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_the_train_forward(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.TraceInfo("Drive train forward - " +
+                      "not valid in static testing");
         }
 
         /// <summary>
