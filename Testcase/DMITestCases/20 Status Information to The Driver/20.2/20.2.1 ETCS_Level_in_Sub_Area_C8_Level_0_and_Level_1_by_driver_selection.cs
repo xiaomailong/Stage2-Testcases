@@ -22,7 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_2_1_ETCS_Level : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -44,6 +43,7 @@ namespace Testcase.DMITestCases
                                              "1. Perform Brake Test");
 
             DmiActions.Display_Level_Window(this);
+
             #region Test Step 1
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Select and confirm Level 0",

@@ -23,7 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_1_2_Sub_Level_Window : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors

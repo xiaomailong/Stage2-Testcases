@@ -23,7 +23,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_9_1_Hide_PA_Function_General_appearance : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors

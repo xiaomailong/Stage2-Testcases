@@ -37,7 +37,7 @@ namespace Testcase.DMITestCases
 
         public override bool TestcaseEntryPoint()
         {
-           StartUp();
+            StartUp();
 
             UniqueIdentifier = 0;
 

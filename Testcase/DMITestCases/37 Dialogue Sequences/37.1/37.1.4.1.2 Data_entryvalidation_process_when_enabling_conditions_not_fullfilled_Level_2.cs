@@ -22,8 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_34_1_4_2_Dialogue_Sequences : TestcaseBase
     {
-
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec

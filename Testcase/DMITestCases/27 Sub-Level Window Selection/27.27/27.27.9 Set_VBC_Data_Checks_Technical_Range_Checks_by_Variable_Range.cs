@@ -25,7 +25,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_27_9_Set_VBC_Data_Checks_Technical_Range_Checks_by_Variable_Range : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors

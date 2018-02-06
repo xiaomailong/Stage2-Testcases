@@ -20,7 +20,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L0_UN(SignalPool pool)
         {
             // Set train running number, cab 1 active, and other defaults
-            ((TestcaseBase)pool).StartUp();
+            ((TestcaseBase) pool).StartUp();
 
             // Set driver ID
             Set_Driver_ID(pool, "1234");
@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L1_SB(SignalPool pool)
         {
             // Set train running number, cab 1 active, and other defaults
-            ((TestcaseBase)pool).StartUp();
+            ((TestcaseBase) pool).StartUp();
 
             // Set driver ID
             Set_Driver_ID(pool, "1234");
@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L1_FS(SignalPool pool)
         {
             // Set train running number, cab 1 active, and other defaults
-            ((TestcaseBase)pool).StartUp();
+            ((TestcaseBase) pool).StartUp();
 
             // Set driver ID
             Set_Driver_ID(pool, "1234");
@@ -1308,7 +1308,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Perform_SoM_in_SR_mode_Level_1(SignalPool pool)
         {
-            ((TestcaseBase)pool).StartUp();
+            ((TestcaseBase) pool).StartUp();
 
             Set_Driver_ID(pool, "1234");
             Send_SB_Mode(pool);
@@ -1370,7 +1370,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Perform_SoM_in_SR_mode_Level_2(SignalPool pool)
         {
-            ((TestcaseBase)pool).StartUp();
+            ((TestcaseBase) pool).StartUp();
 
             Set_Driver_ID(pool, "1234");
             Send_SB_Mode(pool);
@@ -1630,7 +1630,7 @@ namespace Testcase.DMITestCases
         public static void Drive_train_forward_passing_BG1(SignalPool pool)
         {
             pool.TraceInfo("Drive train forward passing BG1 - " +
-                      "not valid in static testing");
+                           "not valid in static testing");
         }
 
         /// <summary>
@@ -1657,7 +1657,7 @@ namespace Testcase.DMITestCases
         public static void Drive_the_train_forward_pass_BG1(SignalPool pool)
         {
             pool.TraceInfo("Drive train forward passing BG1 - " +
-                      "not valid in static testing");
+                           "not valid in static testing");
         }
 
         /// <summary>
@@ -1669,7 +1669,7 @@ namespace Testcase.DMITestCases
         public static void Force_train_forward_overpassing_EOA(SignalPool pool)
         {
             pool.TraceInfo("Drive train forward passing EOA - " +
-                      "not valid in static testing");
+                           "not valid in static testing");
         }
 
         /// <summary>
@@ -1689,7 +1689,7 @@ namespace Testcase.DMITestCases
         public static void Drive_the_train_forward(SignalPool pool)
         {
             pool.TraceInfo("Drive train forward - " +
-                      "not valid in static testing");
+                           "not valid in static testing");
         }
 
         /// <summary>

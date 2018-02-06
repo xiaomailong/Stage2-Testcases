@@ -21,7 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_12_3_3_Train_Speed : TestcaseBase
     {
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec

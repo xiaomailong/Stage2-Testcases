@@ -24,7 +24,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_17_4_1_PA_Track_Condition_Non_stopping_area_in_Sub_Area_D2_and_B3 : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors

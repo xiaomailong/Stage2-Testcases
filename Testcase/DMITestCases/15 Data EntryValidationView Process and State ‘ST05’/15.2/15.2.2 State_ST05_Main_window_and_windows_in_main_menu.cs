@@ -31,7 +31,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_10_2_2_State_ST05 : TestcaseBase
     {
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec

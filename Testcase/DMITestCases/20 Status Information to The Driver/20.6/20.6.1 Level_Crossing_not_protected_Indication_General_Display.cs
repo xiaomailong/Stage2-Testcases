@@ -28,7 +28,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_15_6_Level_Crossing_not_protected_Indication : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -36,8 +35,9 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             StartUp();
-            DmiActions.Complete_SoM_L1_SR(this);D:
-          
+            DmiActions.Complete_SoM_L1_SR(this);
+            D:
+
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward past BG1",
                 "DMI displays in FS mode, Level 1.");
             /*

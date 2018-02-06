@@ -42,7 +42,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             //Test system is power on.SoM is performed in SR mode, level 1.
-
         }
 
         public override bool TestcaseEntryPoint()

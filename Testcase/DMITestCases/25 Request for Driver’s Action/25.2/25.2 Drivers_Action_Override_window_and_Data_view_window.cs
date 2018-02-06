@@ -31,7 +31,6 @@ namespace Testcase.DMITestCases
             base.PreExecution();
 
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, Level 1.Override window is opened.
-
         }
 
         public override bool TestcaseEntryPoint()

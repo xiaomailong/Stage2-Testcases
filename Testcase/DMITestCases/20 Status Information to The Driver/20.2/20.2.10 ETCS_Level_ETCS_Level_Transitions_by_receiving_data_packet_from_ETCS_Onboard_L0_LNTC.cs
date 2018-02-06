@@ -25,7 +25,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_2_10_ETCS_Level : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -42,7 +41,7 @@ namespace Testcase.DMITestCases
             Action: Perform the following action:         Power on the systemActivate the cabin Perform start of mission to Unfitted mode , Level 0
             Expected Result: DMI displays Unfitted mode, Level 0
             */
-            
+
             StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
             // Skip brake test...

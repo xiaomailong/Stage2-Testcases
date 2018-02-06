@@ -22,7 +22,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_7_2_Sub_Level_Window : TestcaseBase
     {
-
         public override void PostExecution()
         {
             // Post-conditions from TestSpec

@@ -21,7 +21,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_15_2_3_ETCS_Level : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -38,6 +37,7 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
 
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
+
             #region Test Step 1
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press the 'Start' button",

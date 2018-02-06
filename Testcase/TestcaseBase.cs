@@ -100,7 +100,6 @@ namespace Testcase
             EVC150_MMINewBrakePercentage.Initialise(this);
             EVC151_MMIConfirmedBrakePercentage.Initialise(this);
             EVC152_MMIDriverAction.Initialise(this);
-
         }
 
         /// <summary>
@@ -186,11 +185,11 @@ namespace Testcase
                 TraceInfo(result);
             }
         }
-        
+
         public void WaitForAck(BaseSignal smdStat)
         {
             bool waitForSignal = this.WaitForSignal(smdStat, 3, WaitForAckTimeout);
-            if(!waitForSignal)
+            if (!waitForSignal)
                 TraceError("Ack for MD was not received!");
             smdStat.Value = 0;
         }

@@ -25,7 +25,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_6_Adjustment_of_Sound_Volume : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
@@ -40,7 +39,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
 
-           StartUp();
+            StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
 
             DmiExpectedResults.Driver_ID_window_displayed(this);

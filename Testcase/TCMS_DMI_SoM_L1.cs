@@ -7,7 +7,6 @@ using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
 {
-
     /// <summary>
     /// TCMS_DMI_SoM_L1
     /// 

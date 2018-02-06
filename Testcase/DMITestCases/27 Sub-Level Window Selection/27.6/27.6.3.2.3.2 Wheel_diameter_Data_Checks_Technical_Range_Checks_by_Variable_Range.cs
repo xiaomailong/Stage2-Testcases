@@ -26,7 +26,6 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_ID_22_6_2_3_2_Wheel_diameter : TestcaseBase
     {
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors

@@ -25,8 +25,6 @@ namespace Testcase.DMITestCases
     public class
         TC_ID_17_4_12_PA_Track_Condition_Change_of_traction_system_AC_15_KV_16_7_Hz_Sub_Area_D2_and_B3 : TestcaseBase
     {
-
-
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
