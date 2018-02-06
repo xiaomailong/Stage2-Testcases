@@ -9,6 +9,9 @@ using Testcase.DMITestCases;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
+using BT_CSB_Tools.SignalPoolGenerator.Signals;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
+using BT_RTSIMClient;
 
 #endregion
 
@@ -20,6 +23,11 @@ namespace Testcase
 
         public string CurrentTestStepIdentifier;
         public Dictionary<string, bool> TestStepResults = new Dictionary<string, bool>();
+
+        /// <summary>
+        /// When sending Message Data with ack, wait this long for the ack before timing out
+        /// </summary>
+        public const int WaitForAckTimeout = 3000;
 
         public override void PreExecution()
         {
@@ -177,6 +185,14 @@ namespace Testcase
                 TraceReport("Expected Result");
                 TraceInfo(result);
             }
+        }
+        
+        public void WaitForAck(BaseSignal smdStat)
+        {
+            bool waitForSignal = this.WaitForSignal(smdStat, 3, WaitForAckTimeout);
+            if(!waitForSignal)
+                TraceError("Ack for MD was not received!");
+            smdStat.Value = 0;
         }
     }
 }

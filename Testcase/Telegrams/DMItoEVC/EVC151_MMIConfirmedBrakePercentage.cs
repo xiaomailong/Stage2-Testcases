@@ -9,7 +9,7 @@ namespace Testcase.Telegrams.DMItoEVC
     {
         private const string BASE_STRING = "DMI->ETCS: EVC-151 [MMI_CONFIRMED_BRAKE_PERCENTAGE]";
 
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
 
         public static byte MMI_M_BP_ORIG { get; set; }
@@ -21,7 +21,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-151 MMI_CONFIRMED_BRAKE_PERCENTAGE
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDStat.CCUO.ETCS1ConfirmedBrakePercentage.Value = 0x00;

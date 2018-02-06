@@ -15,7 +15,7 @@ namespace Testcase.Telegrams.DMItoEVC
     {
         private const string BaseString = "DMI->ETCS: EVC-141 [MMI_CONFIRMED_MAINTENANCE_DATA]";
 
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static ushort _wheelSize1;
         private static ushort _wheelSize2;
         private static byte _wheelSizeError;
@@ -28,7 +28,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-141 MMI_CONFIRMED_MAINTENANCE_DATA
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDStat.CCUO.ETCS1NewMaintenanceData.Value = 0x00;

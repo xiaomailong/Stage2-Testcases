@@ -13,14 +13,14 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC13_MMIDataView
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         const string BaseString = "ETCS1_DataView_EVC13DataViewSub";
 
         /// <summary>
         /// Initialise EVC-13 MMI Data View telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             MMI_M_VBC_CODE = new List<byte>();
@@ -118,7 +118,8 @@ namespace Testcase.Telegrams.EVCtoDMI
                 (ushort) (424 + MMI_M_VBC_CODE.Count * 32 + Trainset_Caption.Length * 16 + Network_Caption.Length + 8);
 
             // Send dynamic telegram
-            _pool.SITR.SMDCtrl.ETCS1.DataView.Value = 0x0009;
+            _pool.SITR.SMDCtrl.ETCS1.DataView.Value = 0x000A;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.DataView);
         }
 
         /// <summary>

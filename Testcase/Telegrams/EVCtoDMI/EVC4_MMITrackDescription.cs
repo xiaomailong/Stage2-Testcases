@@ -14,13 +14,13 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC4_MMITrackDescription
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         /// <summary>
         /// Initialise EVC-4 MMI_Track_Descriptions telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -87,7 +87,8 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             _pool.TraceInfo("ETCS->DMI: EVC-4 (MMI_TRACK_DESCRIPTIONS)");
             _pool.TraceInfo(string.Format("EVC-4: Number of track descriptions = {0}", numberOfTrackDescriptions));
-            _pool.SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x9;
+            _pool.SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0xA;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.TrackDescription);
         }
 
         /// <summary>

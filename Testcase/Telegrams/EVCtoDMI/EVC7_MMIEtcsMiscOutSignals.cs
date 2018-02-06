@@ -12,7 +12,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC7_MMIEtcsMiscOutSignals
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static byte _trainEBTestInProgress;
         private static byte _trainEBStatus;
         private static byte _radioStatusInformation;
@@ -25,7 +25,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise EVC-7 MMI ETCS Misc Out Signals telegram
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 

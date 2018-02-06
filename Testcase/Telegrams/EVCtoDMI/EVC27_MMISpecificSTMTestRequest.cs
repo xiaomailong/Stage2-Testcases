@@ -17,7 +17,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC27_MMISpecificSTMTestRequest
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         // List of text characters in text message
         private static List<char> _stmXTextList;
@@ -75,7 +75,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise EVC-27 MMI Specific STM Test Request telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _stmXTextList = new List<char>();
@@ -119,7 +119,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.SpecificStmTestRequest.MmiLPacket.Value = (ushort) messageSize;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.SpecificStmTestRequest.Value = 0x0009;
+            _pool.SITR.SMDCtrl.ETCS1.SpecificStmTestRequest.Value = 0x000A;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SpecificStmTestRequest);
         }
 
         /// <summary>

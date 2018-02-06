@@ -8,7 +8,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC33_MMIAdditionalOrder
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static byte _mmiQTrackCondAction;
         private static byte _mmiQTrackCondStep;
 
@@ -16,7 +16,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise EVC-33 MMI_Additional_Order telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -51,7 +51,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.TraceInfo(string.Format("EVC-33: MMI_M_TRACKCOND_TYPE = {0}", MMI_M_TRACKCOND_TYPE));
             _pool.TraceInfo(string.Format("EVC-33: MMI_Q_TRACKCOND_STEP = {0}", _mmiQTrackCondStep));
             _pool.TraceInfo(string.Format("EVC-33: MMI_Q_TRACKCOND_ACTION = {0}", _mmiQTrackCondAction));
-            _pool.SITR.SMDCtrl.ETCS1.AdditionalOrder.Value = 1;
+            _pool.SITR.SMDCtrl.ETCS1.AdditionalOrder.Value = 3;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.AdditionalOrder);
         }
 
         /// <summary>

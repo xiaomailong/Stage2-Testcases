@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC111_MMIDriverMessageAck
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static uint _timeStamp;
         private static byte _mmiIText;
         private static MMI_Q_ACK _mmiQAck;
@@ -24,7 +24,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-111 MMI_Driver_Message_Ack telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDStat.CCUO.ETCS1DriverMessageAck.Value = 0;

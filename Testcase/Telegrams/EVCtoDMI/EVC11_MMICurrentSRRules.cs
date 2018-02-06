@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
 using CL345;
 
 #endregion
@@ -19,13 +20,13 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC11_MMICurrentSRRules
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         /// <summary>
         /// Initialise EVC-6 MMI Current Train Data telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             DataElements = new List<Variables.DataElement>();
@@ -56,7 +57,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set the total length of the packet (adding MMI_M_BUTTONS length)
             _pool.SITR.ETCS1.CurrentSrRules.MmiLPacket.Value = Convert.ToUInt16((int) totalSizeCounter + 8);
 
-            _pool.SITR.SMDCtrl.ETCS1.CurrentSrRules.Value = 0x09;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentSrRules.Value = 0x0A;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.CurrentSrRules);
         }
 
         /// <summary>

@@ -14,7 +14,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC109_MMISetTimeMMI
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
         private const string BaseString = "DMI->ETCS: EVC-109 [MMI_SET_TIME_MMI]";
 
@@ -22,7 +22,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-109 MMI_SET_TIME_MMI.
         /// </summary>
         /// <param name="pool">SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDStat.CCUO.ETCS1SetTimeMmi.Value = 0x00;

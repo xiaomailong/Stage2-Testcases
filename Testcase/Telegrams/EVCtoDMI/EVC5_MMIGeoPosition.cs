@@ -7,13 +7,13 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC5_MMIGeoPosition
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         /// <summary>
         /// Initialise an instance of telegram EVC-5 telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -56,7 +56,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             _pool.TraceInfo("ETCS->DMI: EVC-5 (MMI_GEO_POSITION) Absolute Postion = {0}, Relative Position = {1}",
                 MMI_M_ABSOLUTPOS, MMI_M_RELATIVPOS);
-            _pool.SITR.SMDCtrl.ETCS1.GeoPosition.Value = 1;
+            _pool.SITR.SMDCtrl.ETCS1.GeoPosition.Value = 3;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.GeoPosition);
         }
     }
 }

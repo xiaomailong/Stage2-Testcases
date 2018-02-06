@@ -17,7 +17,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC20_MMISelectLevel
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static Variables.MMI_Q_LEVEL_NTC_ID[] _qLevelNtcId;
         private static Variables.MMI_M_CURRENT_LEVEL[] _mCurrentLevel;
         private static Variables.MMI_M_LEVEL_FLAG[] _mLevelFlag;
@@ -31,7 +31,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise EVC-20 MMI Select Level telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -113,7 +113,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             SetLevelInfoK();
             _pool.SITR.ETCS1.SelectLevel.MmiLPacket.Value = (ushort) (56 + (_nLevels * 16));
-            _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x0009;
+            _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x000A;
+            _pool.WaitForAck(_pool.SITR.SMDCtrl.ETCS1.SelectLevel);
         }
 
         /// <summary>

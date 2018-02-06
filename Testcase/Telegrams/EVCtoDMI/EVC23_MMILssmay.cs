@@ -11,13 +11,13 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC23_MMILssma
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         /// <summary>
         /// Initialise EVC-23 MMI LSSMA telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -45,7 +45,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.Lssma.Value = 0x0001;
+            _pool.SITR.SMDCtrl.ETCS1.Lssma.Value = 0x0003;
+            _pool.WaitForAck(_pool.SITR.SMDCtrl.ETCS1.Lssma);
         }
     }
 }

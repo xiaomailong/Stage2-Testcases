@@ -10,7 +10,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC102_MMIStatusReport
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
         private static MMI_M_MODE_READBACK _mModeReadBack;
         private static MMI_M_MMI_STATUS _mMmiStatus;
@@ -21,7 +21,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-102 MMI_Status_Report telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDCtrl.ETCS1.Status.Value = 0x0001;

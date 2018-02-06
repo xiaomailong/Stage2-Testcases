@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC104_MMINewDriverData
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
         private static string _xDriverId;
         private const string BaseString = "DMI->ETCS: EVC-104 [MMI_NEW_DRIVER_DATA]";
@@ -20,7 +20,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-104 MMI_New_Driver_Data.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.Value = 0x00;

@@ -9,7 +9,7 @@ namespace Testcase.Telegrams.DMItoEVC
 {
     public static class EVC123_MMISpecificSTMDataToSTM
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         private static EVC123_StmData _stmData;
 
@@ -20,7 +20,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC107 MMI_New_Train_Data telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 

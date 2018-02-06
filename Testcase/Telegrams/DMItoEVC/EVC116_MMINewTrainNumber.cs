@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC116_MMINewTrainNumber
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
         private static uint _nidOperation;
         const string baseString = "DMI->ETCS: EVC-116 [MMI_NEW_TRAIN_NUMBER]";
@@ -20,7 +20,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-116 MMI_New_Train_Number.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDStat.CCUO.ETCS1NewTrainNumber.Value = 0x00;

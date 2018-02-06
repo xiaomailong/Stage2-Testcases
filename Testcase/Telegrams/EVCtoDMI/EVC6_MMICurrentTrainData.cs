@@ -14,7 +14,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC6_MMICurrentTrainData
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static int _trainsetid;
         private static int _maltdem;
         private const string BaseString = "ETCS1_CurrentTrainData_EVC06CurrentTrainDataSub";
@@ -23,7 +23,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise an instance of EVC-6 MMI Current Train Data telegram.
         /// </summary>
         /// <param name="pool">SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             TrainSetCaptions = new List<string>();
@@ -94,7 +94,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.CurrentTrainData.MmiLPacket.Value = totalSizeCounter;
 
             // Send the telegram
-            _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x0009;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentTrainData.Value = 0x000A;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.CurrentTrainData);
         }
 
         // Set the value for an instance of EVC-6 Current Train Data telegram WITHOUT SENDING IT!

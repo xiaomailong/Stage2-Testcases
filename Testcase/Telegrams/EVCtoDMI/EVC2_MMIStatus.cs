@@ -12,7 +12,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC2_MMIStatus
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static byte _mmiMAdhesion; // Adhesion can only be set by trackside for Crossrail project
         private static Variables.MMI_M_ACTIVE_CABIN _mmiMActiveCabin;
         private static bool _mmiMOverrideEoa;
@@ -21,7 +21,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise EVC-2 MMI Status telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -111,7 +111,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             _pool.TraceInfo("ETCS->DMI: EVC-2 (MMI_STATUS)");
-            _pool.SITR.SMDCtrl.ETCS1.Status.Value = 0x0001;
+            _pool.SITR.SMDCtrl.ETCS1.Status.Value = 0x0003;
+            _pool.WaitForAck(_pool.SITR.SMDCtrl.ETCS1.Status);
         }
     }
 }

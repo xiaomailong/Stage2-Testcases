@@ -13,7 +13,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC8_MMIDriverMessage
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static MMI_Q_TEXT_CLASS _mmiQTextClass;
         private static ushort _mmiQTextCriteria;
         private const string baseString = "ETCS1_DriverMessage_EVC08DriverMessageSub";
@@ -22,7 +22,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise dynamic EVC-8 MMI Driver Message telegram.
         /// </summary>
         /// <param name="pool">SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -48,7 +48,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x0009;
+            _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x000A;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.DriverMessage);
         }
 
         /// <summary>

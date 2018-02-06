@@ -17,7 +17,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC1_MMIDynamic
     {
-        private static SignalPool _pool; // Signal pool
+        private static TestcaseBase _pool; // Signal pool
         private static byte _mmiMSlip; // Slip status
         private static byte _mmiMSlide; // Slide status
         private static MMI_M_WARNING _mmiMWarning; // Warning/indication status
@@ -26,7 +26,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise EVC-1 MMI Dynamic telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 

@@ -9,14 +9,14 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC32_MMITrackConditions
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static byte _evc32Alias1;
 
         /// <summary>
         /// Initialise EVC-32 MMI_Track_Conditions telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -90,7 +90,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.TraceInfo("ETCS->DMI: EVC-32 (MMI_TRACK_CONDITIONS)");
             _pool.TraceInfo(string.Format("EVC-32: MMI_Q_TRACKCOND_UPDATE = {0}", MMI_Q_TRACKCOND_UPDATE));
             _pool.TraceInfo(string.Format("EVC-32: Number of track conditions = {0}", numberOfTrackConditions));
-            _pool.SITR.SMDCtrl.ETCS1.TrackConditions.Value = 0x9;
+            _pool.SITR.SMDCtrl.ETCS1.TrackConditions.Value = 0xA;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.TrackConditions);
         }
 
         /// <summary>

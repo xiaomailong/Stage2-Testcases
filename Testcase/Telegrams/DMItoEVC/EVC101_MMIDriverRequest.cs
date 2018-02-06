@@ -12,7 +12,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC101_MMIDriverRequest
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
         private static Variables.MMI_M_REQUEST _mRequest;
         private static byte _qButton;
@@ -22,7 +22,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-101 MMI_Driver_Request telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDStat.CCUO.ETCS1DriverRequest.Value = 0x00;

@@ -12,13 +12,13 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC41_MMIEchoedMaintenanceData
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         /// <summary>
         /// Initialise EVC-41 MMI_Echoed_Maintenance_Data telegram.
         /// </summary>
         /// <param name="pool">Signal Pool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -32,7 +32,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.EchoedMaintenanceData.Value = 0x0001;
+            _pool.SITR.SMDCtrl.ETCS1.EchoedMaintenanceData.Value = 0x0003;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.EchoedMaintenanceData);
         }
 
         /// <summary>

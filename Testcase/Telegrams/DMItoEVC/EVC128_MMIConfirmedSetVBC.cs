@@ -13,14 +13,14 @@ namespace Testcase.Telegrams.DMItoEVC
     {
         private const string BaseString = "DMI->ETCS: EVC-128 [MMI_CONFIRMED_SET_VBC]";
 
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static uint _vbcCode;
 
         /// <summary>
         /// Initialise EVC-128 MMI_Confirmed_Set_VBC
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDStat.CCUO.ETCS1ConfirmedSetVbc.Value = 0x00;

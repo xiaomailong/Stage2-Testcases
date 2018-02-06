@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC100_MMIStartMmi
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
         private static uint _mIfVer;
         private static uint _mSwVer;
@@ -22,7 +22,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-110 MMI_Start_Mmi.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDStat.CCUO.ETCS1StartMmi.Value = 0x00;

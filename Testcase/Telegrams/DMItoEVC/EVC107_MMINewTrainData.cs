@@ -15,7 +15,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC107_MMINewTrainData
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
         private static Variables.Fixed_Trainset_Captions _trainsetSelected;
         private static ushort _nDataElements;
@@ -29,7 +29,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC107 MMI New Train Data telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewTrainData.Value = 0x0009;

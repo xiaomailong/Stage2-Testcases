@@ -16,13 +16,13 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC3_MMISetTimeATP
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         /// <summary>
         /// Initialise EVC-3 MMI Set Time ATP telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -63,7 +63,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.TraceInfo(
                 string.Format("ETCS->DMI: EVC-3 (MMI_SET_TIME_ATP) UTC Time = {0}, Time offset = {1}", MMI_T_UTC,
                     MMI_T_ZONE_OFFSET));
-            _pool.SITR.SMDCtrl.ETCS1.SetTimeATP.Value = 0x0001;
+            _pool.SITR.SMDCtrl.ETCS1.SetTimeATP.Value = 0x0003;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SetTimeATP);
         }
     }
 }

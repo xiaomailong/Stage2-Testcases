@@ -12,7 +12,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC106_MMINewSrRules
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
         private static byte _nidData;
 
@@ -23,7 +23,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-106 MMI_New_Sr_Rules telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             MMI_NID_DATA = new List<byte>();

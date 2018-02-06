@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC118_MMINewSetVbc
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
         private static uint _mVDCCode;
 
@@ -21,7 +21,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-118 MMI_New_Set_Vbc telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewSetVbc.Value = 0x0001;

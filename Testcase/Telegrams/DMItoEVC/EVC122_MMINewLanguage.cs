@@ -11,14 +11,14 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC122_MMINewLanguage
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         const string baseString = "DMI->ETCS: EVC-122 [MMI_NEW_LANGUAGE]";
 
         /// <summary>
         /// Initialise EVC-122 MMI_New_Language.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDStat.CCUO.ETCS1NewLanguage.Value = 0x00;

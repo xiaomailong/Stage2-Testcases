@@ -12,7 +12,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC121_MMINewLevel
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
         private static ushort _nLevels;
         private static byte _mLevelNtcId;
@@ -28,7 +28,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-121 MMI_New_Level telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewLevel.Value = 0x0009;

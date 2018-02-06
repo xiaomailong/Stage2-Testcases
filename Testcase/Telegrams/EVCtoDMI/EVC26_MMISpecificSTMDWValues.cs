@@ -18,7 +18,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC26_MMISpecificSTMDWValues
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static byte _evc26Alias1;
         private const ushort MMI_M_PACKET_bits = 16;
         private const ushort MMI_L_PACKET_bits = 16;
@@ -56,7 +56,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise EVC-26 MMI Specific STM DW Values telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _evc26Alias1 = 0x00;
@@ -173,7 +173,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.SpecificStmDwValue.MmiLPacket.Value = totalSizeCounter;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDwValue.Value = 0x0009;
+            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDwValue.Value = 0x000A;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SpecificStmDwValue);
         }
 
         /// <summary>

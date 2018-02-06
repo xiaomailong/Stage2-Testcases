@@ -7,7 +7,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC34_MMISystemVersion
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static byte _systemVersionX = 0;
         private static byte _systemVersionY = 0;
 
@@ -15,7 +15,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise an instance of EVC-34 telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -67,7 +67,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.SystemVersion.Value = 1;
+            _pool.SITR.SMDCtrl.ETCS1.SystemVersion.Value = 3;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SystemVersion);
         }
     }
 }

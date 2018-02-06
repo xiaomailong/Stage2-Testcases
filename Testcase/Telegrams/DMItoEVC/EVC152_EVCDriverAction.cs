@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC152_MMIDriverAction
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static MMI_M_DRIVER_ACTION _driverAction;
         private static bool _checkResult;
         const string baseString = "DMI->ETCS: EVC-152 [MMI_DRIVER_ACTION] - MMI_M_DRIVER_ACTION";
@@ -20,7 +20,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-152 MMI_Driver_Action telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDCtrl.CCUO.ETCS1DriverAction.Value = 0x0001;

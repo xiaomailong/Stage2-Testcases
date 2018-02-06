@@ -17,7 +17,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC22_MMICurrentRBC
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static uint _nidC = Variables.NidC;
         private static uint _nidRbc;
         private const string BaseString = "ETCS1_CurrentRbcData_EVC22CurrentRbcDataSub";
@@ -26,7 +26,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// Initialise EVC-22 MMI Current RBC Data telegram
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -100,7 +100,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.CurrentRbcData.MmiLPacket.Value = totalSizeCounter;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x0009;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentRbcData.Value = 0x000A;
+            _pool.WaitForAck(_pool.SITR.SMDCtrl.ETCS1.CurrentRbcData);
         }
 
         /// <summary>

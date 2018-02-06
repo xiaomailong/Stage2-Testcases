@@ -14,14 +14,14 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC24_MMISystemInfo
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private const string BaseString = "ETCS1_SystemInfo_EVC24SystemInfoSub";
 
         /// <summary>
         /// Initialise EVC-24 MMI System Info telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             MMI_NID_NTC = new List<byte>();
@@ -72,7 +72,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.SystemInfo.MmiLPacket.Value = (ushort) (240 + MMI_NID_NTC.Count * 16);
 
             // Send telegram
-            _pool.SITR.SMDCtrl.ETCS1.SystemInfo.Value = 0x0009;
+            _pool.SITR.SMDCtrl.ETCS1.SystemInfo.Value = 0x000A;
+            _pool.WaitForAck(_pool.SITR.SMDCtrl.ETCS1.SystemInfo);
         }
 
         /// <summary>

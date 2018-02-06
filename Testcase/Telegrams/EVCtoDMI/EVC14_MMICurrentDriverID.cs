@@ -12,13 +12,13 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC14_MMICurrentDriverID
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         /// <summary>
         /// Initialise EVC-14 MMI Current Driver ID telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -88,7 +88,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.CurrentDriverId.Value = 0x0001;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentDriverId.Value = 0x0003;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.CurrentDriverId);
         }
     }
 }

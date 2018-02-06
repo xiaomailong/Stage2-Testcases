@@ -11,7 +11,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// </summary>
     public static class EVC119_MMINewRemoveVbc
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static bool _checkResult;
 
         static string baseString0 = "DMI->ETCS: EVC-119 [MMI_NEW_REMOVE_VBC]";
@@ -20,7 +20,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Initialise EVC-119 MMI_New_Remove_Vbc telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewRemoveVbc.Value = 0x0001;

@@ -19,7 +19,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC18_MMISetVBC
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
         private static uint _nidVbcmk;
         private static uint _tVbc;
         private static string _echoText;
@@ -31,7 +31,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// (VBC = Virtual Balise Cover)
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -53,7 +53,8 @@ namespace Testcase.Telegrams.EVCtoDMI
                 _pool.SITR.ETCS1.SetVbc.MmiLPacket.Value = 64;
 
                 // Send non-dynamic packet to display Set VBC screen
-                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x0001;
+                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x0003;
+                _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SetVbc);
             }
             else
             {
@@ -80,7 +81,8 @@ namespace Testcase.Telegrams.EVCtoDMI
                 _pool.SITR.ETCS1.SetVbc.MmiLPacket.Value = totalSizeCounter;
 
                 // Send dynamic packet.
-                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x0009;
+                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x000A;
+                _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SetVbc);
             }
         }
 

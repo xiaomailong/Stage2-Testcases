@@ -11,13 +11,13 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC0_MMIStartATP
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         /// <summary>
         /// Initialise EVC-0 MMI Start ATP telegram.
         /// </summary>
         /// <param name="pool">The SignalPool</param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -39,12 +39,14 @@ namespace Testcase.Telegrams.EVCtoDMI
                 case EVC0Type.GoToIdle:
                     _pool.TraceInfo("ETCS->DMI: EVC-0 (MMI_START_ATP) \"Go to Idle state\"");
                     _pool.SITR.ETCS1.StartAtp.MmiMStartReq.Value = 1;
-                    _pool.SITR.SMDCtrl.ETCS1.StartAtp.Value = 0x0001;
+                    _pool.SITR.SMDCtrl.ETCS1.StartAtp.Value = 0x0003;
+                    _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.StartAtp);
                     break;
                 case EVC0Type.VersionInfo:
                     _pool.TraceInfo("ETCS->DMI: EVC-0 (MMI_START_ATP) \"Version info request\"");
                     _pool.SITR.ETCS1.StartAtp.MmiMStartReq.Value = 0;
-                    _pool.SITR.SMDCtrl.ETCS1.StartAtp.Value = 0x0001;
+                    _pool.SITR.SMDCtrl.ETCS1.StartAtp.Value = 0x0003;
+                    _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.StartAtp);
                     break;
             }
         }

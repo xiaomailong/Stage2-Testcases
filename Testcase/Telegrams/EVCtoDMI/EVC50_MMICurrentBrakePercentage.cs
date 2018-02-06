@@ -9,13 +9,13 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public static class EVC50_MMICurrentBrakePercentage
     {
-        private static SignalPool _pool;
+        private static TestcaseBase _pool;
 
         /// <summary>
         /// Initialise EVC-50 MMI_Current_Brake_Percentage telegram.
         /// </summary>
         /// <param name="pool"></param>
-        public static void Initialise(SignalPool pool)
+        public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
 
@@ -29,7 +29,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.CurrentBrakePercentage.Value = 1;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentBrakePercentage.Value = 3;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.CurrentBrakePercentage);
         }
 
         /// <summary>
