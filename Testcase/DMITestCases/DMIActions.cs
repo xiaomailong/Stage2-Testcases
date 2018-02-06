@@ -440,7 +440,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Activate_Cabin_1(SignalPool pool)
         {
-            RigControl.ActivateCab1(pool);
+            RigControl.SetMCSState(pool, 1, RigControl.CabState.Forward);
 
             EVC2_MMIStatus.TrainRunningNumber = 1;
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
@@ -457,7 +457,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Activate_Cabin_2(SignalPool pool)
         {
-            RigControl.ActivateCab2(pool);
+            RigControl.SetMCSState(pool, 2, RigControl.CabState.Forward);
 
             EVC2_MMIStatus.TrainRunningNumber = 1;
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin2Active;
@@ -468,14 +468,14 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Activate cabin 2
+        /// Description: Deactivate cabins
         /// Used in:
         ///     Step 12 in TC-ID: 15.1.1 in 20.1.1
         ///     Step 10 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
         public static void Deactivate_Cabin(SignalPool pool)
         {
-            RigControl.DeActivateBothCabs(pool);
+            RigControl.SetMCSState(pool, 1, RigControl.CabState.Shutdown);
 
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
             EVC2_MMIStatus.Send();

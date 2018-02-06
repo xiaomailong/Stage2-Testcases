@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Perform the following actions: " + Environment.NewLine +
                                              Environment.NewLine +
                                              "Press OK on THIS window to deactivate cab and finish test.");
-            RigControl.DeActivateBothCabs(this);
+            RigControl.SetMCSState(this, 1, RigControl.CabState.Shutdown);
         }
 
         public override bool TestcaseEntryPoint()
@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Perform the following actions: " + Environment.NewLine +
                                              Environment.NewLine +
                                              "Press OK on THIS window to activate cab and start test.");
-            RigControl.ActivateCab1(this);
+            RigControl.SetMCSState(this, 1, RigControl.CabState.Forward);
 
             DmiExpectedResults.Cabin_A_is_activated(this);
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
