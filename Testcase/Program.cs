@@ -30,7 +30,7 @@ namespace Testcase
             }
             else
             {
-                TestcaseRunner.AddTestcase(typeof(TC_ID_10_2_3_State_ST05));
+                TestcaseRunner.AddTestcase(typeof(TC_ID_10_4_1_4_State_ST05));
                 //TestcaseRunner.AddTestcase(typeof(TestcaseBase));
                 TestcaseRunner.RunTestcases(args);
             }
