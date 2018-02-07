@@ -19,9 +19,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L0_UN(SignalPool pool)
         {
-            // Set train running number, cab 1 active, and other defaults
-            ((TestcaseBase) pool).StartUp();
-
             // Set driver ID
             Set_Driver_ID(pool, "1234");
 
@@ -40,9 +37,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L1_SB(SignalPool pool)
         {
-            // Set train running number, cab 1 active, and other defaults
-            ((TestcaseBase) pool).StartUp();
-
             // Set driver ID
             Set_Driver_ID(pool, "1234");
 
@@ -61,9 +55,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L1_FS(SignalPool pool)
         {
-            // Set train running number, cab 1 active, and other defaults
-            ((TestcaseBase) pool).StartUp();
-
             // Set driver ID
             Set_Driver_ID(pool, "1234");
 
@@ -82,9 +73,6 @@ namespace Testcase.DMITestCases
         /// <param name="pool">Signal pool</param>
         public static void Complete_SoM_L1_SR(SignalPool pool)
         {
-            // Set train running number, cab 1 active, and other defaults
-            ((TestcaseBase) pool).StartUp();
-
             // Set driver ID
             Set_Driver_ID(pool, "1234");
 
@@ -1308,8 +1296,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Perform_SoM_in_SR_mode_Level_1(SignalPool pool)
         {
-            ((TestcaseBase) pool).StartUp();
-
             Set_Driver_ID(pool, "1234");
             Send_SB_Mode(pool);
             ShowInstruction(pool, "Enter and confirm Driver ID");
@@ -1370,8 +1356,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Perform_SoM_in_SR_mode_Level_2(SignalPool pool)
         {
-            ((TestcaseBase) pool).StartUp();
-
             Set_Driver_ID(pool, "1234");
             Send_SB_Mode(pool);
             ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine +
