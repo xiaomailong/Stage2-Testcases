@@ -70,7 +70,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             _pool.SITR.ETCS1.NtcDeSelect.MmiLPacket.Value = (ushort) (56 + _nNidNtc * 8);
-            _pool.SITR.SMDCtrl.ETCS1.NtcDeSelect.Value = 0x0A;
+            _pool.SITR.SMDCtrl.ETCS1.NtcDeSelect.Value = 0x000B;
             _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.NtcDeSelect);
         }
 

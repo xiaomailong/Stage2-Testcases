@@ -87,7 +87,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             _pool.TraceInfo("ETCS->DMI: EVC-4 (MMI_TRACK_DESCRIPTIONS)");
             _pool.TraceInfo(string.Format("EVC-4: Number of track descriptions = {0}", numberOfTrackDescriptions));
-            _pool.SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0xA;
+            _pool.SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x000B;
             _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.TrackDescription);
         }
 

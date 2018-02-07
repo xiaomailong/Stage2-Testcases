@@ -141,7 +141,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.EchoedTrainData.MmiLPacket.Value = totalSizeCounter;
 
             // Send dynamic telegram
-            _pool.SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x000A;
+            _pool.SITR.SMDCtrl.ETCS1.EchoedTrainData.Value = 0x000B;
             _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.EchoedTrainData);
         }
 

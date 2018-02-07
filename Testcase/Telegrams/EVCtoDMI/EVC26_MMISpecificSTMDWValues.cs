@@ -173,7 +173,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.SpecificStmDwValue.MmiLPacket.Value = totalSizeCounter;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDwValue.Value = 0x000A;
+            _pool.SITR.SMDCtrl.ETCS1.SpecificStmDwValue.Value = 0x000B;
             _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SpecificStmDwValue);
         }
 

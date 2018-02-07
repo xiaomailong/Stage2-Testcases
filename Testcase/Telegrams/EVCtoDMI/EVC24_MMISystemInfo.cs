@@ -72,8 +72,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.SystemInfo.MmiLPacket.Value = (ushort) (240 + MMI_NID_NTC.Count * 16);
 
             // Send telegram
-            _pool.SITR.SMDCtrl.ETCS1.SystemInfo.Value = 0x000A;
-            _pool.WaitForAck(_pool.SITR.SMDCtrl.ETCS1.SystemInfo);
+            _pool.SITR.SMDCtrl.ETCS1.SystemInfo.Value = 0x000B;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SystemInfo);
         }
 
         /// <summary>

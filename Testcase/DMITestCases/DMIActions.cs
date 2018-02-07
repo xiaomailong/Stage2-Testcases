@@ -430,6 +430,7 @@ namespace Testcase.DMITestCases
         {
             RigControl.SetMCSState(pool, 1, RigControl.CabState.Forward);
 
+            pool.Wait_Realtime(500);
             EVC2_MMIStatus.TrainRunningNumber = 1;
             EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
             EVC2_MMIStatus.MMI_M_ADHESION = 0x0;

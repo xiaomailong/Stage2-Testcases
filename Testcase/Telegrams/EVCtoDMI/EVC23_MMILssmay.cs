@@ -46,7 +46,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Send()
         {
             _pool.SITR.SMDCtrl.ETCS1.Lssma.Value = 0x0003;
-            _pool.WaitForAck(_pool.SITR.SMDCtrl.ETCS1.Lssma);
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.Lssma);
         }
     }
 }

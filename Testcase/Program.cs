@@ -30,7 +30,7 @@ namespace Testcase
             }
             else
             {
-                TestcaseRunner.AddTestcase(typeof(TC_ID_6_1_Acknowledgements));
+                TestcaseRunner.AddTestcase(typeof(TC_ID_5_12_2_Navigation_Buttons));
                 //TestcaseRunner.AddTestcase(typeof(TestcaseBase));
                 TestcaseRunner.RunTestcases(args);
             }

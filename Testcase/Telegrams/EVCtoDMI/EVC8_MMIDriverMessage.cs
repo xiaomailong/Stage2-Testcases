@@ -48,7 +48,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x000A;
+            _pool.SITR.SMDCtrl.ETCS1.DriverMessage.Value = 0x000B;
             _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.DriverMessage);
         }
 

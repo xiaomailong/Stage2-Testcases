@@ -113,8 +113,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             SetLevelInfoK();
             _pool.SITR.ETCS1.SelectLevel.MmiLPacket.Value = (ushort) (56 + (_nLevels * 16));
-            _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x000A;
-            _pool.WaitForAck(_pool.SITR.SMDCtrl.ETCS1.SelectLevel);
+            _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x000B;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SelectLevel);
         }
 
         /// <summary>

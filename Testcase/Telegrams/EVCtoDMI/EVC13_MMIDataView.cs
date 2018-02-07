@@ -118,7 +118,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 (ushort) (424 + MMI_M_VBC_CODE.Count * 32 + Trainset_Caption.Length * 16 + Network_Caption.Length + 8);
 
             // Send dynamic telegram
-            _pool.SITR.SMDCtrl.ETCS1.DataView.Value = 0x000A;
+            _pool.SITR.SMDCtrl.ETCS1.DataView.Value = 0x000B;
             _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.DataView);
         }
 

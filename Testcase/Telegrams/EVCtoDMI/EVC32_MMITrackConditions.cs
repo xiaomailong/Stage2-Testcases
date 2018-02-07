@@ -90,7 +90,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.TraceInfo("ETCS->DMI: EVC-32 (MMI_TRACK_CONDITIONS)");
             _pool.TraceInfo(string.Format("EVC-32: MMI_Q_TRACKCOND_UPDATE = {0}", MMI_Q_TRACKCOND_UPDATE));
             _pool.TraceInfo(string.Format("EVC-32: Number of track conditions = {0}", numberOfTrackConditions));
-            _pool.SITR.SMDCtrl.ETCS1.TrackConditions.Value = 0xA;
+            _pool.SITR.SMDCtrl.ETCS1.TrackConditions.Value = 0x000B;
             _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.TrackConditions);
         }
 

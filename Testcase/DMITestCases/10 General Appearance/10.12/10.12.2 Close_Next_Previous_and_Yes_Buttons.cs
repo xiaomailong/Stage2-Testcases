@@ -27,9 +27,11 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 0;
             // Testcase entrypoint
-            StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Activate cabin A", "DMI displays Driver ID window.");
+
+            StartUp();
+
             /*
             Test Step 1
             Action: Activate cabin A

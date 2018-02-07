@@ -112,7 +112,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             _pool.TraceInfo("ETCS->DMI: EVC-2 (MMI_STATUS)");
             _pool.SITR.SMDCtrl.ETCS1.Status.Value = 0x0003;
-            _pool.WaitForAck(_pool.SITR.SMDCtrl.ETCS1.Status);
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.Status);
         }
     }
 }

@@ -81,7 +81,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 _pool.SITR.ETCS1.SetVbc.MmiLPacket.Value = totalSizeCounter;
 
                 // Send dynamic packet.
-                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x000A;
+                _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x000B;
                 _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SetVbc);
             }
         }

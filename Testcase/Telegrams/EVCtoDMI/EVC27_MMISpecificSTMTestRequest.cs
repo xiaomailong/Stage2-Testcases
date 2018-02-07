@@ -119,7 +119,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.SpecificStmTestRequest.MmiLPacket.Value = (ushort) messageSize;
 
             // Send dynamic packet
-            _pool.SITR.SMDCtrl.ETCS1.SpecificStmTestRequest.Value = 0x000A;
+            _pool.SITR.SMDCtrl.ETCS1.SpecificStmTestRequest.Value = 0x000B;
             _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SpecificStmTestRequest);
         }
 

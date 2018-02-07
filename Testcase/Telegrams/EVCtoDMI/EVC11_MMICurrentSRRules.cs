@@ -57,7 +57,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set the total length of the packet (adding MMI_M_BUTTONS length)
             _pool.SITR.ETCS1.CurrentSrRules.MmiLPacket.Value = Convert.ToUInt16((int) totalSizeCounter + 8);
 
-            _pool.SITR.SMDCtrl.ETCS1.CurrentSrRules.Value = 0x0A;
+            _pool.SITR.SMDCtrl.ETCS1.CurrentSrRules.Value = 0x000B;
             _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.CurrentSrRules);
         }
 
