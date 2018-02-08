@@ -28,7 +28,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
+            UniqueIdentifier = 26100;
             // Testcase entrypoint
             // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Settings’ window is opened from the ‘Driver ID’ window.
             StartUp();
