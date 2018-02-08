@@ -25,7 +25,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
+            UniqueIdentifier = 25874;
 
             // Configure atpcu configuration file as following (See the instruction in Appendix 2)M_InstalledLevels = 31NID_NTC_Installe_0 = 22 (ATC-2)
             //Test system is powered on.Cabin is activated.Level ATC-2 is selected and confirmed.SoM is performed until train running number is entered.Settings window is opened.Brake button is enabled.Brake Percentage button is enabled.Brake Percentage window is opened.

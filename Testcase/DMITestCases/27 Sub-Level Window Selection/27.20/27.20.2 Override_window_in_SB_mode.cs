@@ -24,7 +24,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
+            UniqueIdentifier = 25749;
             // Testcase entrypoint
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Enter RBC Data’ button", "DMI displays RBC Data window");
