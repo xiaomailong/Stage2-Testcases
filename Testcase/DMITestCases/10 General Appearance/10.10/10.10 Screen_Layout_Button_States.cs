@@ -39,10 +39,10 @@ namespace Testcase.DMITestCases
         {
             StartUp();
 
-            UniqueIdentifier = 0;
+            UniqueIdentifier = 20666;
 
             // Testcase entrypoint
-
+            
             MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM until train running number is entered",
                 "DMI displays Main window with enabled ‘Start’ button");
             /*

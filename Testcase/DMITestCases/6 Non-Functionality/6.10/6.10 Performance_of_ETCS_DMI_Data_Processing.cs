@@ -24,7 +24,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
+            UniqueIdentifier = 20453;
             // Testcase entrypoint
             DmiActions.ShowInstruction(this, "THIS TESCASE TO BE SKIPPED??");
             StartUp();

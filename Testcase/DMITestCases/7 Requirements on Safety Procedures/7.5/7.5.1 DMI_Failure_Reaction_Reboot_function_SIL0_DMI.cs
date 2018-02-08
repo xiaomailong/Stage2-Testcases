@@ -24,7 +24,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
+            UniqueIdentifier = 20506;
             // Testcase entrypoint
             StartUp();
             // -   System is power on.-   Cabin is activated.-   SoM is perform until level 1 is selected and confirmed.
