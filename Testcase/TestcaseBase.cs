@@ -29,6 +29,11 @@ namespace Testcase
         /// </summary>
         public const int WaitForAckTimeout = 3000;
 
+        /// <summary>
+        /// The TCMS version being tested
+        /// </summary>
+        public Version TCMSVersion = new Version(6, 2, 0 ,0);
+
         public override void PreExecution()
         {
             // Pre-test configuration.
@@ -36,6 +41,8 @@ namespace Testcase
             // Subscribe to logging events
             Logger.LoggingEvent += Logger_LoggingEvent;
 
+            // Record the version tested
+            TraceInfo("TCMS Version " + TCMSVersion);
 
             // Initialise instance of all telegrams
             TraceInfo("Initialise default telegram values.");
