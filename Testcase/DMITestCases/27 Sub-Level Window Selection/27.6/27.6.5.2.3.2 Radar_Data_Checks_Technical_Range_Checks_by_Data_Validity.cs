@@ -147,7 +147,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. The echo text displayes ‘++++’.");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

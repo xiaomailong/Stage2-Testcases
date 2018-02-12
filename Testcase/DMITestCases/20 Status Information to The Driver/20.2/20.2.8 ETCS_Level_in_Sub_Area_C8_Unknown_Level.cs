@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
 
             #endregion
 
-            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 2

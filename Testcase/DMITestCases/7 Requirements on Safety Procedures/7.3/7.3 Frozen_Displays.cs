@@ -111,7 +111,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Default window." + Environment.NewLine +
                                 "2. The local time is displayed in ‘hh:mm:ss’ format with flashing colons at sub-area G13");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 5

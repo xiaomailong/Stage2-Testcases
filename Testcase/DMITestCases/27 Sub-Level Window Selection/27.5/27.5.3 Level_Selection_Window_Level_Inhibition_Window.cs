@@ -723,7 +723,7 @@ namespace Testcase.DMITestCases
                                 "2. The ‘L inh’ button in area G3 is displayed disabled." + Environment.NewLine +
                                 "3. The data input field is blank.");
 
-            MakeTestStepHeader(21, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 21

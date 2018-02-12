@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
                                 "2. Between 0 - 10km/h, CSG is dark-grey in colour." + Environment.NewLine +
                                 "3. Above 11 km/h, CSG is white in colour.");
 
-            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 2

@@ -391,7 +391,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes symbol TC02 and displays symbol LX01 in sub-area B3.");
 
-            MakeTestStepHeader(13, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 13

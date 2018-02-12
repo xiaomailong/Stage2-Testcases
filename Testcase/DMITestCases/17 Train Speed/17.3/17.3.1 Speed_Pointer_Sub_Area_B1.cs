@@ -47,7 +47,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

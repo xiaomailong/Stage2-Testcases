@@ -219,7 +219,7 @@ namespace Testcase.DMITestCases
                                 "5. The first Input Field is selected." + Environment.NewLine +
                                 "6. All other Input Fields are not selected");
 
-            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 8

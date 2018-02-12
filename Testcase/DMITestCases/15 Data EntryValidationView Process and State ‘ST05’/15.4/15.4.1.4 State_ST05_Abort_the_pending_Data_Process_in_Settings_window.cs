@@ -550,7 +550,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The Brake Percentage validation window is closed and DMI displays the System info window.");
 
-            MakeTestStepHeader(16, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 16

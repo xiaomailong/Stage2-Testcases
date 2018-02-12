@@ -243,7 +243,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine +
                                 "1. DMI displays the ‘Connection established with two RBCs’ symbol (ST03B) in sub-area E1.");
 
-            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 12

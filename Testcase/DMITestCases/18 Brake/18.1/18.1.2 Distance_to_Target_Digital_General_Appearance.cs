@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
             WaitForVerification(
                 "Is the Trip mode symbol (M004)deleted and replaced by Post Trip mode symbol (MO06) in DMI area B7");
 
-            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 4

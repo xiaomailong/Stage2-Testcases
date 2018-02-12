@@ -92,7 +92,7 @@ namespace Testcase.DMITestCases
                                 "1. TPWS/AWS" + Environment.NewLine +
                                 "2. CBTC");
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

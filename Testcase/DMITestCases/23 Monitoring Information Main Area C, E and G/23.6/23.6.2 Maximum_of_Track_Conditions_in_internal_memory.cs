@@ -703,7 +703,7 @@ Test Step Comment: (1) MMI_gen 10465 (partly: TC35); MMI_gen 662 (partly: TC35);
             Test Step Comment: (1) MMI_gen 10465 (partly: TC37); MMI_gen 662 (partly: TC37);
             */
 
-            MakeTestStepHeader(63, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 63

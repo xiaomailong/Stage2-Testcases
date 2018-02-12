@@ -137,7 +137,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"3. The ‘click’ sound is played repeatedly while the ‘Up’ button is pressed.");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 5

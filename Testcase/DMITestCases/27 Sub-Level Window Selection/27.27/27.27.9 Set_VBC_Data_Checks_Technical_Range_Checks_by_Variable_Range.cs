@@ -145,7 +145,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window." + Environment.NewLine +
                                 "2. The ‘Set VBC’ button is displayed enabled.");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"2. If the ‘switch’ button displayed ‘Enter data’ before being pressed it now displays ‘Select type’.");
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

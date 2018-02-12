@@ -194,7 +194,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification(@"Is the Brightness set at its maximum value?");
 
-            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 11

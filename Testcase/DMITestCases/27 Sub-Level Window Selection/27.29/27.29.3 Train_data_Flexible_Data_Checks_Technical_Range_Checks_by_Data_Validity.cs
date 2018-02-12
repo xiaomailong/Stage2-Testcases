@@ -232,7 +232,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            MakeTestStepHeader(15, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 15

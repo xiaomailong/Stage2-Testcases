@@ -165,7 +165,7 @@ namespace Testcase.DMITestCases
             DmiActions.Re_establish_communication_between_ETCS_onboard_and_DMI(this);
 
 
-            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 11

@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer displaying 40 km/h?" + Environment.NewLine +
                                 "2. Sound S2 is muted.");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 5

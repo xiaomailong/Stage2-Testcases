@@ -358,7 +358,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "1. The planning area is displayed.");
 
-            MakeTestStepHeader(21, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 21

@@ -443,7 +443,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in LS mode, level 1." + Environment.NewLine +
                                 "2. Is the speed pointer red?");
 
-            MakeTestStepHeader(25, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 25

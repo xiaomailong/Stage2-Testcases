@@ -276,7 +276,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The ‘No’ button is enabled.");
 
-            MakeTestStepHeader(14, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 14

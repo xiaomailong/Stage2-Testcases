@@ -641,7 +641,7 @@ namespace Testcase.DMITestCases
                                 "3. DMI does not display the Digital distance to target." + Environment.NewLine +
                                 "4. DMI does not display the Digital release speed.");
 
-            MakeTestStepHeader(26, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 26

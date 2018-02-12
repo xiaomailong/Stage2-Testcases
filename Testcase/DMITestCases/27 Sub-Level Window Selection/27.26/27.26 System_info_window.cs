@@ -267,7 +267,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "   ‘Radio modem 1’; ‘Radio modem 2’ ‘DRU’; ‘Euroloop BTM(s)’.");
 
-            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 12

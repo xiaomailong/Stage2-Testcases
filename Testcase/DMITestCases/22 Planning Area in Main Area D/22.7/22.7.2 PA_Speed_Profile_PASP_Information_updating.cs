@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
                                 "2. The PA Gradient Profile value displayed is ‘10’." + Environment.NewLine +
                                 "3. Sub-areas D7 and D8 are displayed with a PASP-dark background.");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 5

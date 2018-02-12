@@ -611,7 +611,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI stops displaying symbol MO17 in sub-area C1.");
 
-            MakeTestStepHeader(22, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
             /*
             Test Step 22
             Action: End of test

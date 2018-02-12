@@ -271,7 +271,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The flashing yellow frame around sub-areas E5-E9 is removed.");
 
-            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 12

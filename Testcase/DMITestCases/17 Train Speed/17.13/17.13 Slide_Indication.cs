@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
 
             // ?? according to reference RS_ETC_R4 conditions are met for displaying slide indication and sounding Sinfo because slide is displayed
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

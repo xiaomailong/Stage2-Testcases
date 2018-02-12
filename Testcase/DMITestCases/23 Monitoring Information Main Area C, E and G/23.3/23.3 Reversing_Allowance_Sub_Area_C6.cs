@@ -121,7 +121,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in RV mode" + Environment.NewLine + Environment.NewLine +
                                 "2. DMI displays symbol M014 in sub-area B7");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 5

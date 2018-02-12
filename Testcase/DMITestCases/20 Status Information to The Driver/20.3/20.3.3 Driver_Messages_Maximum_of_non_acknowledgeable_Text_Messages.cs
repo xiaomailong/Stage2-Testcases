@@ -825,7 +825,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the text message ‘ATP Down Alarm’." + Environment.NewLine +
                                 "2. A sound alarm is played." + Environment.NewLine +
                                 "3. The non-acknowledgeable message list is flushed, no driver messages are displayed in areas E5-E9.");
-            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 10

@@ -61,7 +61,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The colons in the time are displayed flashing (shown/hidden).");
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

@@ -448,7 +448,7 @@ namespace Testcase.DMITestCases
                                 "9. ‘Non Leading’ button is disabled." + Environment.NewLine +
                                 "10. ‘Maintain Shunting’ button is disabled.");
 
-            MakeTestStepHeader(20, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 20

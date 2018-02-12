@@ -483,7 +483,7 @@ namespace Testcase.DMITestCases
                 .Train_data_window_displayed(this);
 
 
-            MakeTestStepHeader(40, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 40

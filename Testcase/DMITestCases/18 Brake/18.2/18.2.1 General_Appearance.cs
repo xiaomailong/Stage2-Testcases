@@ -277,7 +277,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. DMI still displays symbol ST01");
 
-            MakeTestStepHeader(14, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 14

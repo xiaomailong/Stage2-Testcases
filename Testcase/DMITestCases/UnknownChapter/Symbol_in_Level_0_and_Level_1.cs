@@ -53,7 +53,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.See_the_expected_results_at_Step_1(this);
 
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

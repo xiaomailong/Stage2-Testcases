@@ -171,7 +171,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.The_train_is_at_standstill(this);
 
 
-            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 12

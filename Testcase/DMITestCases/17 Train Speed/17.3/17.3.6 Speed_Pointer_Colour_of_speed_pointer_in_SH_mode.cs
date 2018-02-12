@@ -147,7 +147,7 @@ namespace Testcase.DMITestCases
                                 "1. Has the speed decreased to 30 km/h" + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

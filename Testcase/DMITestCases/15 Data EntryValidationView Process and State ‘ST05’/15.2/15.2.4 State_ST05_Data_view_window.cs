@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
             // Call generic Check Results Method
             XML_10_2_4_a();
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

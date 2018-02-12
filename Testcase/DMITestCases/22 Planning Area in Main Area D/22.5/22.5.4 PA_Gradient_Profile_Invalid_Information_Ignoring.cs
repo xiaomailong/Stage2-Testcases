@@ -204,7 +204,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7260 (partly: 2nd   bullet);    
             */
 
-            MakeTestStepHeader(16, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 16

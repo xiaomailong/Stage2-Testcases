@@ -318,7 +318,7 @@ namespace Testcase.DMITestCases
                                 "2. The ‘No’ button is displayed enabled." + Environment.NewLine +
                                 "3. Disabled buttons have Dark-grey labels.");
 
-            MakeTestStepHeader(14, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 14

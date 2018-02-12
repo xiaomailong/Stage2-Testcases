@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is re-displayed in area D." + Environment.NewLine +
                                 "2. The PA is updated.");
 
-            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 8

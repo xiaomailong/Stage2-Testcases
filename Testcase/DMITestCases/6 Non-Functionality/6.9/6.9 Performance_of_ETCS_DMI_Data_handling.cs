@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

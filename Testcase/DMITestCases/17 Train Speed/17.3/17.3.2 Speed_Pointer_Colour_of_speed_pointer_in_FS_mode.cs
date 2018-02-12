@@ -388,7 +388,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, level 1." + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
 
-            MakeTestStepHeader(15, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 15

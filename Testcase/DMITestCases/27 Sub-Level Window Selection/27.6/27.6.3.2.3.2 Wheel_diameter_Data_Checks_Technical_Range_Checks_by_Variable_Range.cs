@@ -186,7 +186,7 @@ namespace Testcase.DMITestCases
                                 "1. The data part of the data input fields display the values entered previously." +
                                 Environment.NewLine +
                                 "2. The echo text values display ‘++++’");
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

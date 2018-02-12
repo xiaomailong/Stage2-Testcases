@@ -177,7 +177,7 @@ namespace Testcase.DMITestCases
                                 "1. The Planning Area is not displayed in area D." + Environment.NewLine +
                                 "2. The ‘Hide PA’ button is not displayed in area D.");
 
-            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 11

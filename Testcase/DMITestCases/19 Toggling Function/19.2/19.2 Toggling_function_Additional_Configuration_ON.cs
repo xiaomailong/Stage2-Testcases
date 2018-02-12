@@ -594,7 +594,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. The Digital release speed does not change (stays invisible)");
 
-            MakeTestStepHeader(25, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 25

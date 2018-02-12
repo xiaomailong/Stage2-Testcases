@@ -99,7 +99,7 @@ namespace Testcase.DMITestCases
                                 "1. Does the DMI show Full Supervision Mode." + Environment.NewLine +
                                 "2. Confirm that the planning area IS displayed.");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 5

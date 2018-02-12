@@ -141,7 +141,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "3. The lower border of the next (second) PA Gradient Profile bar reaches the zero line.");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

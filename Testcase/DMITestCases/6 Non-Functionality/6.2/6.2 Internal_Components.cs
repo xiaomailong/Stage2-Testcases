@@ -181,7 +181,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Select the icon of ‘Set Clock’ button");
             WaitForVerification("The Set Clock window is displayed." + Environment.NewLine +
                                 "Verify that the new offset time has been stored on DMI for 48 hrs.");
-            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 10

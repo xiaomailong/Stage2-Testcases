@@ -142,7 +142,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the FS mode symbol (MO11) in area B7" + Environment.NewLine +
                                 "2. The digital distance to target is displayed");
 
-            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 7

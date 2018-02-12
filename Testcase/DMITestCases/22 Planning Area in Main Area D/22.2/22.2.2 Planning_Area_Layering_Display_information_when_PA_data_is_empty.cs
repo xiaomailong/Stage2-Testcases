@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
                                 "1. PA Distance Scale." + Environment.NewLine +
                                 "2. PASP (in the PASP-dark-colour");
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

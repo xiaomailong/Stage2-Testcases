@@ -75,7 +75,7 @@ namespace Testcase.DMITestCases
                                     "3. No sound is played.");
             }
 
-            MakeTestStepHeader(32, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 32
