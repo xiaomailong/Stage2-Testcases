@@ -293,7 +293,7 @@ namespace Testcase.Telegrams.EVCtoDMI
     }
 
     /// <summary>
-    /// MMI_Q_TEX_CLASS enum
+    /// MMI_Q_TEXT_CLASS enum
     /// </summary>
     public enum MMI_Q_TEXT_CLASS : byte
     {
