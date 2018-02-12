@@ -24,7 +24,7 @@ namespace Testcase.DMITestCases
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
-            UniqueIdentifier = 0;
+            UniqueIdentifier = 21916;
             // Testcase entrypoint
 
             StartUp();
@@ -37,12 +37,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode. The Driver ID window is displayed
             */
 
-
+            DmiActions.Set_Driver_ID(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
-            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
-                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC14_MMICurrentDriverID.Send();
 
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);

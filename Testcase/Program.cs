@@ -30,7 +30,7 @@ namespace Testcase
             }
             else
             {
-                TestcaseRunner.AddTestcase(typeof(TC_12_3_3_Train_Speed));
+                TestcaseRunner.AddTestcase(typeof(TC_13_1_7_6_Brake));
                 //TestcaseRunner.AddTestcase(typeof(TestcaseBase));
                 TestcaseRunner.RunTestcases(args);
             }
