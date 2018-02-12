@@ -69,6 +69,8 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer displaying 40 km/h?" + Environment.NewLine +
                                 "3. Is the speed pointer grey?");
 
+            MakeTestStepHeader(2, UniqueIdentifier++, "Increase the train speed to 41 km/h.",
+                "The speed pointer display in orange colour.");
             /*
             Test Step 2
             Action: Increase the train speed to 41 km/h
@@ -81,6 +83,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer displaying 41 km/h?" + Environment.NewLine +
                                 "2. Is the speed pointer orange?");
+
             MakeTestStepHeader(3, UniqueIdentifier++, "Increase the train speed to 45 km/h.",
                 "MI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 1250 (45 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION");
             /*
@@ -107,7 +110,7 @@ namespace Testcase.DMITestCases
             Before train speed is decreased
             (1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
             MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN = 1278 (46 km/h) which greater than MMI_V_INTERVENTION
-            (2)   The speed pointer display in red colourAfter train speed is decreased
+            (2)   The speed pointer display in red colour after train speed is decreased
             (3)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
             MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN is lower than MMI_V_INTERVENTION
             (4)   The speed pointer display in grey colour
@@ -119,8 +122,6 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
-
-            DmiActions.Apply_Brakes(this);
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
@@ -137,7 +138,7 @@ namespace Testcase.DMITestCases
             While the train is moving
             (1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
             MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM) while the value of MMI_V_TRAIN is greater than MMI_V_TARGET
-            (2)    The speed pointer display in white colourWhen the train is stopped
+            (2)    The speed pointer display in white colour when the train is stopped
             (3)    Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
             MMI_M_WARNING = 11 (Status = NoS, Supervision = TSM) while the value of MMI_V_TRAIN is lower than or same as MMI_V_TARGET
             (4)   The speed pointer display in grey colour
@@ -145,6 +146,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 25;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer white?");
@@ -153,7 +155,9 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Is the speed pointer grey?");
+                                "1. Is the speed pointer white?");
+
+
             MakeTestStepHeader(6, UniqueIdentifier++, "Continue the drive the train forward with speed = 30 km/h",
                 "The permitted speed is decreased continuously, ");
             /*
@@ -165,7 +169,7 @@ namespace Testcase.DMITestCases
             While the train speed < permitted speed
             (1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
             MMI_M_WARNING = 1 (Status = IndS, Supervision = TSM) while the value of MMI_V_TRAIN is lower than MMI_V_PERMITTED and MMI_V_TRAIN is greater than MMI_V_TARGET
-            (2)   The speed pointer display in yellow colourWhile the train speed > permitted speed 
+            (2)   The speed pointer display in yellow colour while the train speed > permitted speed 
             (3)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
             MMI_M_WARNING = 9 (Status = OvS and IndS, Supervision = TSM) while the value of MMI_V_TRAIN is greater than MMI_V_PERMITTED
             MMI_M_WARNING = 5 (Status = WaS and IndS, Supervision = TSM) while the value of MMI_V_TRAIN is greater than MMI_V_PERMITTED
@@ -179,7 +183,6 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             EVC1_MMIDynamic.MMI_V_TARGET_KMH = 25;
 
-            // ?? Send
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer yellow?");
 
@@ -193,8 +196,6 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
-
-            DmiActions.Apply_Brakes(this);
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 20;
@@ -215,7 +216,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to release speed MMI_V_RELEASE, FS mode in RSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, FS mode in RSM supervision);
             */
             // Call generic Action Method
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 4;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 5;
 
@@ -236,15 +237,12 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_M_WARNING =
                 MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 6;
-            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 20;
-            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 6;
-            EVC1_MMIDynamic.MMI_V_PERMITTED_MPH = 20;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer yellow?");
 
             MakeTestStepHeader(9, UniqueIdentifier++,
-                "Stop the train.Then, use the test script file 12_3_2_a.xml to send the following packets,",
+                "Stop the train. Then, use the test script file 12_3_2_a.xml to send the following packets,",
                 "DMI displays in FS mode, level 1.");
             /*
             Test Step 9
@@ -415,9 +413,6 @@ namespace Testcase.DMITestCases
 
         private void XML_12_3_2(msgType type)
         {
-            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63; // All validity bits set
-
             if (type == msgType.typea)
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
@@ -477,8 +472,6 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
                 EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-                SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63; // All validity bits set
             }
             else if (type == msgType.typec)
             {
@@ -511,8 +504,6 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
                 EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
             }
             else if (type == msgType.typed)
             {
@@ -543,8 +534,6 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
                 EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
             }
             else if (type == msgType.typee)
             {
@@ -575,8 +564,6 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
                 EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
             }
             else if (type == msgType.typef)
             {
@@ -608,8 +595,6 @@ namespace Testcase.DMITestCases
                 EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
                 EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
             }
         }
 
