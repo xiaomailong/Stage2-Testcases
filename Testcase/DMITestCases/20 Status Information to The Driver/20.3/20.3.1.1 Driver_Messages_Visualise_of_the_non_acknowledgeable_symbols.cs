@@ -47,7 +47,13 @@ namespace Testcase.DMITestCases
                                 MMI_gen 1699 (partly: non-acknowledgement, symbol);
             */
 
-            XML_15_3_1_1(msgType.typea); // Continue to step 20 after this. All interim steps are inside the XML class.
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Brake Intervention", "ST01", "C9", false);
 
             MakeTestStepHeader(2, UniqueIdentifier++,
                 "(Continue from step 1)Send EVC-8 with,MMI_Q_TEXT = 286MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 2",
@@ -59,6 +65,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 3005 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol);
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 286;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Reversing permitted", "ST06", "C6", false);
 
             MakeTestStepHeader(3, UniqueIdentifier++,
                 "(Continue from step 2)Send EVC-8 with,MMI_Q_TEXT = 298MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 3",
@@ -70,6 +83,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 3005 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol);
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Track Ahead Free", "DR02", "D", false);
 
             MakeTestStepHeader(4, UniqueIdentifier++,
                 "(Continue from step 3)Send EVC-8 with,MMI_Q_TEXT = 710MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4",
@@ -81,6 +101,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 3005 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol);
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 710;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "#3 (Train divided)", "DR02", "C1", false);
 
             MakeTestStepHeader(5, UniqueIdentifier++,
                 "(Continue from step 4)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 0MMI_I_TEXT = 4",
@@ -92,6 +119,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "0"; // Level 0
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 0 announcement", "LE06", "C1", false);
 
             MakeTestStepHeader(6, UniqueIdentifier++,
                 "(Continue from step 5)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 1MMI_I_TEXT = 4",
@@ -103,6 +138,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "1"; // Level 1
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1 announcement", "LE10", "C1", false);
 
             MakeTestStepHeader(7, UniqueIdentifier++,
                 "(Continue from step 6)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 2MMI_I_TEXT = 4",
@@ -114,6 +157,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "2"; // Level 2
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 2 announcement", "LE12", "C1", false);
 
             MakeTestStepHeader(8, UniqueIdentifier++,
                 "(Continue from step 7)Send EVC-8 with,MMI_Q_TEXT = 276MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 3MMI_I_TEXT = 4",
@@ -125,6 +176,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
+            EVC8_MMIDriverMessage.PlainTextMessage = "3"; // Level 3
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 3 announcement", "LE14", "C1", false);
 
             MakeTestStepHeader(9, UniqueIdentifier++,
                 "(Continue from step 8)Send EVC-8 with,MMI_Q_TEXT = 259MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4",
@@ -135,6 +194,15 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    DMI displays MO08 symbol in sub-area C1 without yellow flashing frame
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
+
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for On Sight", "MO08", "C1",
+                false);
 
 
             MakeTestStepHeader(10, UniqueIdentifier++,
@@ -147,6 +215,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Reversing", "MO15", "C1",
+                false);
 
             MakeTestStepHeader(11, UniqueIdentifier++,
                 "(Continue from step 10)Send EVC-8 with,MMI_Q_TEXT = 263MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4",
@@ -158,6 +234,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Staff Responsible", "MO10",
+                "C1", false);
 
             MakeTestStepHeader(12, UniqueIdentifier++,
                 "(Continue from step 11)Send EVC-8 with,MMI_Q_TEXT = 264MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4",
@@ -169,6 +253,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Unfitted", "MO17", "C1",
+                false);
 
             MakeTestStepHeader(13, UniqueIdentifier++,
                 "(Continue from step 12)Send EVC-8 with,MMI_Q_TEXT = 265MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4",
@@ -180,6 +272,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 265;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Shunting", "MO02", "C1",
+                false);
 
             MakeTestStepHeader(14, UniqueIdentifier++,
                 "(Continue from step 13)Send EVC-8 with,MMI_Q_TEXT = 266MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4",
@@ -191,6 +291,13 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Trip", "MO05", "C1", false);
 
             MakeTestStepHeader(15, UniqueIdentifier++,
                 "(Continue from step 14)Send EVC-8 with,MMI_Q_TEXT = 709MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 4",
@@ -202,6 +309,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Limited Supervision", "MO22",
+                "C1", false);
 
             MakeTestStepHeader(16, UniqueIdentifier++,
                 "(Continue from step 15)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 0MMI_I_TEXT = 4",
@@ -213,6 +328,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
+            EVC8_MMIDriverMessage.PlainTextMessage = "0"; // Level 0
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 0 announcement", "LE07", "C1", false);
 
             MakeTestStepHeader(17, UniqueIdentifier++,
                 "(Continue from step 16)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 1MMI_I_TEXT = 4",
@@ -224,6 +347,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
+            EVC8_MMIDriverMessage.PlainTextMessage = "1"; // Level 1
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1 announcement", "LE11", "C1", false);
 
             MakeTestStepHeader(18, UniqueIdentifier++,
                 "(Continue from step 17)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 2MMI_I_TEXT = 4",
@@ -235,6 +366,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
+            EVC8_MMIDriverMessage.PlainTextMessage = "2"; // Level 2
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 2 announcement", "LE13", "C1", false);
 
             MakeTestStepHeader(19, UniqueIdentifier++,
                 "(Continue from step 18)Send EVC-8 with,MMI_Q_TEXT = 257MMI_Q_TEXT_CRITERIA = 3MMI_N_TEXT = 1MMI_X_TEXT = 3MMI_I_TEXT = 4",
@@ -246,6 +385,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7022 (partly: exclude radio connection symbols);  MMI_gen 1699 (partly: non-acknowledgement, symbol); MMI_gen 147 (partly: symbol, remove the same index, MMI_gen 144 (partly: symbol, the same index); MMI_gen 3005 (partly: exclude radio connection symbols); 
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
+            EVC8_MMIDriverMessage.PlainTextMessage = "3"; // Level 3
+            EVC8_MMIDriverMessage.Send();
+
+            DmiExpectedResults.Driver_symbol_displayed(this, "Level 0 announcement", "LE15", "C1", false);
 
             MakeTestStepHeader(20, UniqueIdentifier++,
                 "Press ‘Main’ button.Then, use the test script file 15_3_1_1_b.xml to Send EVC-8 with,MMI_Q_TEXT = 716MMI_Q_TEXT_CRITERIA = 3MMI_I_TEXT = 5",
@@ -258,7 +405,15 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, "Please press the \"Main\" button on the DMI.");
-            XML_15_3_1_1(msgType.typeb);
+
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification(
+                "Is the ST05 symbol displayed in the window title area without a flashing yellow frame?");
 
             MakeTestStepHeader(21, UniqueIdentifier++,
                 "Use the test script file 15_3_1_1_c.xml to send EVC-8 with,MMI_Q_TEXT_CRITERIA = 4MMI_I_TEXT = 5",
@@ -269,7 +424,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The symbol ST05 is removed from window title area
             Test Step Comment: (1) MMI_gen 144 (partly: Symbols, removed by Q_TEXT_CRITERIA);
             */
-            XML_15_3_1_1(msgType.typec);
+
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 0;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Has the ST05 symbol been removed from the window title area?");
 
             MakeTestStepHeader(22, UniqueIdentifier++, "End of test", "");
 
@@ -282,230 +444,5 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
-
-        #region Send_XML_15_3_1_1_DMI_Test_Specification
-
-        enum msgType
-        {
-            typea,
-            typeb,
-            typec
-        }
-
-        private void XML_15_3_1_1(msgType type)
-        {
-            switch (type)
-            {
-                case msgType.typea:
-                    // Step 1
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Brake Intervention", "ST01", "C9", false);
-
-                    // Step 2
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 286;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Reversing permitted", "ST06", "C6", false);
-
-                    // Step 3
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Track Ahead Free", "DR02", "D", false);
-
-                    // Step 4
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 710;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "#3 (Train divided)", "DR02", "C1", false);
-
-                    // Step 5
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "0"; // Level 0
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Level 0 announcement", "LE06", "C1", false);
-
-                    // Step 6
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "1"; // Level 1
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Level 1 announcement", "LE10", "C1", false);
-
-                    // Step 7
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "2"; // Level 2
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Level 2 announcement", "LE12", "C1", false);
-
-                    // Step 8
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "3"; // Level 3
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Level 3 announcement", "LE14", "C1", false);
-
-                    // Step 9
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for On Sight", "MO08", "C1",
-                        false);
-
-                    // Step 10
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Reversing", "MO15", "C1",
-                        false);
-
-                    // Step 11
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Staff Responsible", "MO10",
-                        "C1", false);
-
-                    // Step 12
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 264;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Unfitted", "MO17", "C1",
-                        false);
-
-                    // Step 13
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 265;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Shunting", "MO02", "C1",
-                        false);
-
-                    // Step 14
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Trip", "MO05", "C1", false);
-
-                    // Step 15
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 709;
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Acknowledgement for Limited Supervision", "MO22",
-                        "C1", false);
-
-                    // Step 16
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "0"; // Level 0
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Level 0 announcement", "LE07", "C1", false);
-
-                    // Step 17
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "1"; // Level 1
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Level 1 announcement", "LE11", "C1", false);
-
-                    // Step 18
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "2"; // Level 2
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Level 2 announcement", "LE13", "C1", false);
-
-                    // Step 19
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
-                    EVC8_MMIDriverMessage.PlainTextMessage = "3"; // Level 3
-                    EVC8_MMIDriverMessage.Send();
-
-                    DmiExpectedResults.Driver_symbol_displayed(this, "Level 0 announcement", "LE15", "C1", false);
-                    break;
-                case msgType.typeb:
-                    // Step 20
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 716;
-                    EVC8_MMIDriverMessage.Send();
-
-                    WaitForVerification(
-                        "Is the ST05 symbol displayed in the window title area without a flashing yellow frame?");
-                    break;
-                case msgType.typec:
-                    // Step 20
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-                    EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 0;
-                    EVC8_MMIDriverMessage.Send();
-
-                    WaitForVerification("Has the ST05 symbol been removed from the window title area?");
-                    break;
-            }
-        }
-
-        #endregion
     }
 }
