@@ -52,6 +52,10 @@ namespace Testcase.DMITestCases
                 307, 308, 309, 311, 312, 313, 314, 317, 318, 319
             };
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+
             int teststep = 1;
             foreach (int textId in text_ids)
             {
@@ -61,10 +65,6 @@ namespace Testcase.DMITestCases
                     "Verifies the display information as follows,\r\nThe text message ‘’Fixed Text Message " + textId +
                     "’ is display in the area E5.\r\nNo flashing frame display.\r\nThere is no sound played");
 
-
-                EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
-                EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
                 EVC8_MMIDriverMessage.MMI_Q_TEXT = (ushort) textId;
                 EVC8_MMIDriverMessage.Send();
 

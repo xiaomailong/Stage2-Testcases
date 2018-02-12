@@ -433,7 +433,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Has the ST05 symbol been removed from the window title area?");
 
-            MakeTestStepHeader(22, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 22

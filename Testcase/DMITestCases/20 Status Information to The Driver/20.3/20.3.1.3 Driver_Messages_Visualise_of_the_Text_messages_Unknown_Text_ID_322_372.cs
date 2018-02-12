@@ -25,7 +25,8 @@ namespace Testcase.DMITestCases
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 22635;
-            // Testcase entrypoint
+
+
             StartUp();
             DmiActions.Complete_SoM_L1_SB(this);
 
@@ -36,6 +37,10 @@ namespace Testcase.DMITestCases
                 364, 365, 366, 367, 368, 369, 370, 371, 372
             };
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+
             int teststep = 1;
             foreach (var textId in text_ids)
             {
@@ -45,9 +50,6 @@ namespace Testcase.DMITestCases
                     "Verifies the display information as follows, The text message ‘’Fixed Text Message " + textId +
                     "’ is display in the area E5. No flashing frame display. There is no sound played");
 
-                EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-                EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
-                EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
                 EVC8_MMIDriverMessage.MMI_Q_TEXT = (ushort) textId;
                 EVC8_MMIDriverMessage.Send();
 

@@ -32,32 +32,30 @@ namespace Testcase.DMITestCases
             // There is a conflict between xml and spec: xml step 2 tests MMI_Q_TEXT = 624 which is not an invalid value. There are 36 steps in the xml
             // and 35 in the spec. Xml step 2 is omitted as per spec.
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
 
             int teststep = 1;
-            for (int i = 640; i <= 673; i++)
+            for (var textId = 623; textId <= 673; textId++)
             {
-                MakeTestStepHeader(teststep, UniqueIdentifier++,
-                    "Send EVC-8 with MMI_Q_TEXT = 623, MMI_Q_TEXT_CRITERIA = 1, MMI_Q_TEXT_CLASS = 1, MMI_I_TEXT = 1",
-                    "Verifies the display information as follows,The text message ‘’Fixed Text Message " + i +
-                    "’ is display in the area E5.No flashing frame display.There is no sound played");
-                EVC8_MMIDriverMessage.MMI_Q_TEXT = (ushort) i;
+                MakeTestStepHeader(teststep++, UniqueIdentifier++,
+                    "Send EVC-8 with MMI_Q_TEXT = " + textId +
+                    ", MMI_Q_TEXT_CRITERIA = 1, MMI_Q_TEXT_CLASS = 1, MMI_I_TEXT = 1",
+                    "Verifies the display information as follows, The text message ‘’Fixed Text Message " + textId +
+                    "’ is display in the area E5. No flashing frame display. There is no sound played");
+
+                EVC8_MMIDriverMessage.MMI_Q_TEXT = (ushort) textId;
                 EVC8_MMIDriverMessage.Send();
 
                 WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                    "1. The text message ‘Fixed Text Message " + i + "’ is displayed in area E5." +
+                                    "1. The text message ‘Fixed Text Message " + textId + "’ is displayed in area E5." +
                                     Environment.NewLine +
                                     "2. No flashing frame is displayed" + Environment.NewLine +
                                     "3. No sound is played.");
             }
 
-
-            TraceHeader("Test Step " + teststep);
-            TraceReport("Action");
-            TraceInfo("End of test");
-
+            TraceHeader("End of test");
 
             return GlobalTestResult;
         }
