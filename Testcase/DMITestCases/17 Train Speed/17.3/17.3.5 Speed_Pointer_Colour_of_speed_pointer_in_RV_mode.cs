@@ -100,7 +100,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, RV mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 139;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 5;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -154,8 +154,8 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer red?");
 
             // ETCS will decrease speed
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 9;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 4;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
