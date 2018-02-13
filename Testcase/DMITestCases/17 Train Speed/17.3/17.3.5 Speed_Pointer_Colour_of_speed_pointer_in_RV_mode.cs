@@ -1,4 +1,5 @@
 using System;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
@@ -41,25 +42,25 @@ namespace Testcase.DMITestCases
             StartUp();
             DmiActions.Complete_SoM_L1_FS(this);
 
-            /// No intervention speed described here: comment is that it is less than 11, presumably 10...
+            // No intervention speed described here: comment is that it is less than 11, presumably 10...
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 10;
 
-            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1.Then stop the train",
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1. Then stop the train",
                 "DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6");
             /*
             Test Step 1
-            Action: Drive the train forward pass BG1.Then stop the train
+            Action: Drive the train forward past BG1. Then stop the train
             Expected Result: DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 286;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1.DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6.");
+                                "1. DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6.");
 
             EVC1_MMIDynamic.MMI_V_TRAIN = 0; // Set speed to zero
 
@@ -68,25 +69,27 @@ namespace Testcase.DMITestCases
                                 "1. Speed is displayed at 0 km/h.");
 
             MakeTestStepHeader(2, UniqueIdentifier++,
-                "Perform the following procedure,Chage the train direction to reverseAcknowledge RV mode by pressing the symbol in sub-area C1",
+                "Perform the following procedure, Change the train direction to reverse. Acknowledge RV mode by pressing the symbol in sub-area C1",
                 "DMI displays in RV mode, Level 1");
             /*
             Test Step 2
-            Action: Perform the following procedure,Chage the train direction to reverseAcknowledge RV mode by pressing the symbol in sub-area C1
+            Action: Perform the following procedure, Change the train direction to reverse Acknowledge RV mode by pressing the symbol in sub-area C1
             Expected Result: DMI displays in RV mode, Level 1
             */
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 262;
             EVC8_MMIDriverMessage.Send();
+
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
 
             WaitForVerification(
                 "Change the train direction to reverse and acknowledge RV mode by pressing the symbol in sub-area C1." +
                 Environment.NewLine +
                 "Then check the following:" + Environment.NewLine + Environment.NewLine +
-                "1.DMI displays in RV mode, Level 1.");
+                "1. DMI displays in RV mode, Level 1.");
 
             MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train with speed = 5 km/h",
                 "Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,(EVC-7) OBU_TR_M_MODE = 14 (Reversing)(EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)(EVC-1) MMI_V_PERMITTED = 139 (5km/h)(2)   The speed pointer display in grey colour");
@@ -98,6 +101,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 139;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
@@ -117,7 +121,7 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer orange?");
 
             MakeTestStepHeader(5, UniqueIdentifier++,
-                "Increase the train speed to 10 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]",
+                "Increase the train speed to 10 km/h. Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]",
                 "Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 4 (Status = WaS, Supervision = CSM) while the value of MMI_V_TRAIN = 278 (10 km/h) which greater than MMI_V_PERMITTED but lower than MMI_V_INTERVENTION(2)   The speed pointer display in orange colour");
             /*
             Test Step 5
@@ -136,17 +140,20 @@ namespace Testcase.DMITestCases
             /*
             Test Step 6
             Action: Increase the train speed to 11 km/h
-            Expected Result: The train speed is force to decrease because of emergency brake is applied by ETCS onboard.Verify the following information,Before train speed is decreased(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN = 306 (11 km/h) which greater than MMI_V_INTERVENTION(2)   The speed pointer display in red colourAfter train speed is decreased(3)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN is lower than MMI_V_INTERVENTION(4)   The speed pointer display in grey colour
+            Expected Result: The train speed is force to decrease because of emergency brake is applied by ETCS onboard.Verify the following information,Before train speed is decreased(1)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN = 306 (11 km/h) which greater than MMI_V_INTERVENTION
+              (2)   The speed pointer display in red colour after train speed is decreased
+              (3)   Use the log file to confirm that DMI received the packet information EVC-1 with the following condition,
+                    MMI_M_WARNING = 12 (Status = IntS, Supervision = CSM) while the value of MMI_V_TRAIN is lower than MMI_V_INTERVENTION
+              (4)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, RV mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);(3) MMI_gen 6299 (partly: MMI_M_WARNING, RV mode in CSM supervision);(4) MMI_gen 6299 (partly: colour of speed pointer, RV mode in CSM supervision);
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN = 306;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 11;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
             // ETCS will decrease speed
-            DmiActions.Apply_Brakes(this);
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 9;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
