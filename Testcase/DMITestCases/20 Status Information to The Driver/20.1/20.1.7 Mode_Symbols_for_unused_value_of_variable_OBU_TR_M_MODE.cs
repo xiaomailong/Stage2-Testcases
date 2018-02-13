@@ -175,7 +175,7 @@ namespace Testcase.DMITestCases
             SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0;
             SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0;
             SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0;
-            SITR.Client.Write("ETCS1_EtcsMiscOutSignals_SDT_UDV", 0);
+            SITR.Client.Write("ETCS1_EtcsMiscOutSignals_SDT_Trailer_SDT_UDV", 0);
             switch (type)
             {
                 case msgType.typea:

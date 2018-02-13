@@ -384,7 +384,7 @@ namespace Testcase.DMITestCases
             };
 
             var textLabel = new Label() {Left = 50, Top = 20, Text = text};
-            var textBox = new TextBox() {Left = 50, Top = 50, Width = 400};
+            var textBox = new TextBox() {Left = 50, Top = 150, Width = 400};
             var confirmation = new Button()
             {
                 Text = "Ok",
@@ -1707,7 +1707,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_train_forward_passing_BG2(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.TraceInfo("Drive train forward - " + "not valid in static testing");
         }
 
         /// <summary>
@@ -1719,7 +1719,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_the_train_forward_pass_BG3(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.TraceInfo("Driving train past BG3 - " + "not valid in static testing");
         }
 
         /// <summary>
@@ -1730,7 +1730,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Drive_the_train_pass_a_distance_to_level_transition(SignalPool pool)
         {
-            throw new NotImplementedException();
+            pool.TraceInfo("Driving train through a level transition - " + "not valid in static testing");
         }
 
         /// <summary>
