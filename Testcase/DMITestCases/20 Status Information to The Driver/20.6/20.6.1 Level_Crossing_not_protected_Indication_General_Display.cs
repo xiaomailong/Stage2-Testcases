@@ -36,7 +36,6 @@ namespace Testcase.DMITestCases
 
             StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
-            D:
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward past BG1",
                 "DMI displays in FS mode, Level 1.");
