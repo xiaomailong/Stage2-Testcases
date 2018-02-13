@@ -15,10 +15,12 @@ namespace Testcase.DMITestCases
     /// 
     /// Scenario:
     /// 1.Drive the train forward with specify speed. Then, verify the colour of speed pointer refer to received packet EVC-1 and EVC-7.
-    /// 2.Use the test script file to send EVC-1 and EVC-7 with specify value. Then, verify the colour of speed pointer.Note: Tester need to execute script file repeatly due to the packet will be interrupted by dynamic packet EVC-1 and EVC-7 which send from ETCS onboard.
+    /// 2.Use the test script file to send EVC-1 and EVC-7 with specify value. Then, verify the colour of speed pointer.
+    /// Note: Tester need to execute script file repeatly due to the packet will be interrupted by dynamic packet EVC-1 and EVC-7 which send from ETCS onboard.
     /// 
     /// Used files:
-    /// 12_3_4_a.xml, 12_3_4_b.xml, 12_3_4_c.xml, 12_3_4_d.xml, 12_3_4_e.xml, 12_3_4_f.xml, 12_3_4_g.xml, 12_3_4_h.xml, 12_3_4_i.xml, 12_3_4_j.xml, 12_3_4_k.xml, 12_3_4_l.xml, 12_3_4_m.xml, 12_3_4_n.xml
+    /// 12_3_4_a.xml, 12_3_4_b.xml, 12_3_4_c.xml, 12_3_4_d.xml, 12_3_4_e.xml, 12_3_4_f.xml, 12_3_4_g.xml,
+    /// 12_3_4_h.xml, 12_3_4_i.xml, 12_3_4_j.xml, 12_3_4_k.xml, 12_3_4_l.xml, 12_3_4_m.xml, 12_3_4_n.xml
     /// </summary>
     public class TC_12_3_4_Train_Speed : TestcaseBase
     {
@@ -42,13 +44,12 @@ namespace Testcase.DMITestCases
             // Set driver ID
             DmiActions.Set_Driver_ID(this, "1234");
 
-            // Set to level 1 and UN mode
+            // Set to level 0 and UN mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Unfitted;
 
             // Enable standard buttons including Start, and display Default window.
             DmiActions.Finished_SoM_Default_Window(this);
-
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with speed = 100 km/h",
                 "DMI displays in UN mode, level 0.");
@@ -58,10 +59,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0.
             Verify the following information,
             (1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,
-            (EVC-7) 
-            OBU_TR_M_MODE = 4 (Unfitted)
+            (EVC-7) OBU_TR_M_MODE = 4 (Unfitted)
             (EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)
-            (EVC-1) MMI_V_PERMITTED = 2778 (100km/h)
+            (EVC-1) MMI_V_PERMITTED = 2778 (100 km/h)
             (2)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, UN mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, UN mode in CSM supervision);
             */
@@ -160,6 +160,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in UN mode, level 0." + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
+
             MakeTestStepHeader(6, UniqueIdentifier++,
                 "Use the test script file 12_3_4_b.xml to send the following packets,",
                 "DMI displays in UN mode, level 0.");
@@ -334,6 +335,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in UN mode, level 0." + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
+
+
             MakeTestStepHeader(13, UniqueIdentifier++,
                 "Use the test script file 12_3_4_i.xml to send the following packets,",
                 "DMI displays in UN mode, level 0.");
@@ -386,7 +389,7 @@ namespace Testcase.DMITestCases
 
             MakeTestStepHeader(15, UniqueIdentifier++,
                 "Use the test script file 12_3_4_k.xml to send the following packets,EVC-1MMI_M_WARNING = 9MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 4",
-                "DMI displays in UN mode, level 0.Verify the following information,(1)   The speed pointer display in orange colour");
+                "DMI displays in UN mode, level 0.Verify the following the speed pointer display in orange colour");
             /*
             Test Step 15
             Action: Use the test script file 12_3_4_k.xml to send the following packets,EVC-1MMI_M_WARNING = 9MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 4
@@ -557,15 +560,12 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
             EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
-
 
             switch (type)
             {
                 case msgType.typea:
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring; // 2
-                    EVC1_MMIDynamic.MMI_V_TRAIN = 0;
+                    EVC1_MMIDynamic.MMI_V_TRAIN = 972;
 
                     break;
                 case msgType.typeb:
