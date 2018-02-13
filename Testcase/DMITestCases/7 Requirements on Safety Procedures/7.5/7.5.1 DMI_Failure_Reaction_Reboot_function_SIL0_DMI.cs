@@ -53,7 +53,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI is rebooted.");
 
 
-            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
             /*
             Test Step 2
             Action: End of test

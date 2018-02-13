@@ -128,7 +128,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance to target bar is not displayed in sub-area A3.");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

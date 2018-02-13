@@ -241,7 +241,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SR_Mode_displayed(this);
             DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
-            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 12

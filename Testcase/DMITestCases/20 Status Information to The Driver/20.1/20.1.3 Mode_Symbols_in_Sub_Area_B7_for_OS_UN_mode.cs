@@ -419,7 +419,7 @@ namespace Testcase.DMITestCases
 
             #region Test Step 15
 
-            MakeTestStepHeader(15, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 15

@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
                 "4. PA Track Condition, Gradient Profile and Speed Discontinuities." + Environment.NewLine +
                 "5. Hide/Show and Zoom PA buttons." + Environment.NewLine +
                 "6. An object in the background of another object does not overlap it." + Environment.NewLine);
-            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 4

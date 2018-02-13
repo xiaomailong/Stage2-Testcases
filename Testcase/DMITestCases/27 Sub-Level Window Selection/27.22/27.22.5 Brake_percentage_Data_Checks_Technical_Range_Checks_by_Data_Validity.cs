@@ -219,7 +219,7 @@ namespace Testcase.DMITestCases
                                 @"1. The ‘Enter’ button of the data input field displays ‘40’." + Environment.NewLine +
                                 "2. The echo text for ‘Brake percentage’ displays ‘++++’ in red.");
 
-            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 11

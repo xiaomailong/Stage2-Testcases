@@ -119,7 +119,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI does not display the message ‘Brake Test in Progress’ because " +
                                 "the display text is Russian and English is the current language.");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 5

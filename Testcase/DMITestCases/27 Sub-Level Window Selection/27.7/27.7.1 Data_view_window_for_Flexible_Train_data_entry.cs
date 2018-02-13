@@ -239,7 +239,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "DMI displays the Default window.");
 
-            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 10

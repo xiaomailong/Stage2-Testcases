@@ -200,7 +200,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Speed pointer displays ‘0’ km/h.");
 
-            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 10

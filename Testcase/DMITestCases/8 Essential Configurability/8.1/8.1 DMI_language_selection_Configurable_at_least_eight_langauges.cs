@@ -253,7 +253,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            MakeTestStepHeader(19, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 19

@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
                                 "6. Target Distance Bar" + Environment.NewLine +
                                 "7. Digital Target Distance");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 5

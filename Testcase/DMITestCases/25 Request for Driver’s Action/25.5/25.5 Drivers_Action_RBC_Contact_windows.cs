@@ -200,7 +200,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the RBC Contact window and displays the Main window.");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 5

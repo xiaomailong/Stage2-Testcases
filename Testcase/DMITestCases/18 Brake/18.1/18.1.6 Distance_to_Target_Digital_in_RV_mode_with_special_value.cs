@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in RV mode, level 1." + Environment.NewLine +
                                 "2. The  infinity symbol ‘∞’ is displayed for digital distance to target in sub-area A2, horizontally and vertically centered.");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

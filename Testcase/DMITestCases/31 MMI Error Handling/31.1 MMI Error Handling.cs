@@ -200,7 +200,7 @@ namespace Testcase.DMITestCases
                                 "1. The confirmation button is cleared." + Environment.NewLine +
                                 "2. DMI stops playing the 1000Hz sound.");
 
-            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 10

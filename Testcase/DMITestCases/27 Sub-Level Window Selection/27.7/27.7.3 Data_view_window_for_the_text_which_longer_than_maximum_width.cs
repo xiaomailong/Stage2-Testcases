@@ -84,7 +84,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "   with the second line truncated at the maximum width of the data part.");
 
-            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 2

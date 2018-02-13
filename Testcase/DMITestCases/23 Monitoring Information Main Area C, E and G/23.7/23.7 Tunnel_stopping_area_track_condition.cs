@@ -343,7 +343,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays symbol TC37 in sub-area C2.");
 
-            MakeTestStepHeader(15, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 15

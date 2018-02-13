@@ -148,7 +148,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the pressed area");
 
 
-            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 12

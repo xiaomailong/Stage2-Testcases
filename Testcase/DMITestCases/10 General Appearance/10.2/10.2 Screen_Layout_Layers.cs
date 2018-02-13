@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "8. The following screen areas are in Layer 2: B3, B4, B5, B6, B7");
 
-            MakeTestStepHeader(2, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 2

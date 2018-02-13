@@ -1089,7 +1089,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Wheel diameter window and displays the Maintenance window.");
 
-            MakeTestStepHeader(28, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 28

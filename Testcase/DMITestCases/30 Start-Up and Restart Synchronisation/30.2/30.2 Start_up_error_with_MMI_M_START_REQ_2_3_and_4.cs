@@ -109,7 +109,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays removes the message ‘Starting up’ and displays ‘Incompatible SW versions’ in area E5.");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

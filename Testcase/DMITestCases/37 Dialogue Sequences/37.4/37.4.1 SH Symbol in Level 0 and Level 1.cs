@@ -94,7 +94,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the symbol M001 in area B7." + Environment.NewLine +
                                 "2. DMI closes Main window and displays the Default window.");
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

@@ -176,7 +176,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays Train data window." + Environment.NewLine +
                                 "2. Train type changes to ‘type 2’ (confirmed in Step 8).");
 
-            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 10

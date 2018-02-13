@@ -233,7 +233,7 @@ namespace Testcase.DMITestCases
                                 "4. ‘Close’ button NA11 is displayed enabled in area G." + Environment.NewLine +
                                 "5. The Input Field is selected");
 
-            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 11

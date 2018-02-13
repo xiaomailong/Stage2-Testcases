@@ -213,7 +213,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI plays the Sinfo sound.");
 
-            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 8

@@ -360,7 +360,7 @@ namespace Testcase.DMITestCases
                                 "2. The ‘Alarm’ sound is played." + Environment.NewLine +
                                 "3. DMI does not display the track condition symbols.");
 
-            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 8

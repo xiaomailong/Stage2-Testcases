@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
             */
             XML_10_2_3_a();
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

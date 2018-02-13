@@ -175,7 +175,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the Validate Wheel Diameter window and displays the Maintenance window with the ‘Wheel Diameter’ button enabled.");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

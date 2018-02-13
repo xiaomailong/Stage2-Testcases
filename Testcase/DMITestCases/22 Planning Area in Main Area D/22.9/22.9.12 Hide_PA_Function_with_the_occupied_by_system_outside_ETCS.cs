@@ -82,7 +82,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in SN mode, Level AWS TPWS." + Environment.NewLine +
                                 "2. The Planning Area is removed from area D.");
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

@@ -185,7 +185,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "4. Sound S2 is muted because Warning Status is deactivated.");
 
-            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 7

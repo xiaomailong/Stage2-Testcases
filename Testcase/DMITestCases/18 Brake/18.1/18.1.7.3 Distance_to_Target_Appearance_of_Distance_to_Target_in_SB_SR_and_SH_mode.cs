@@ -182,7 +182,7 @@ namespace Testcase.DMITestCases
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

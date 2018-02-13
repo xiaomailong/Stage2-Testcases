@@ -141,7 +141,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI still displays symbol ST01 but removes the yellow flashing frame" +
                                 Environment.NewLine +
                                 "2. DMI displays the message ‘Runaway movement’ with a yellow flashing frame in sub-area E5");
-            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 8

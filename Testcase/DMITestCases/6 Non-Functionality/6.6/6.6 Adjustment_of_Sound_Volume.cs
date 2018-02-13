@@ -166,7 +166,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Repeat step 1-8 with press and hold ‘+’ button to the maximum level instead");
 
-            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 10

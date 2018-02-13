@@ -125,7 +125,7 @@ namespace Testcase.DMITestCases
 
             XML_15_1_7(msgType.typeh);
 
-            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 9

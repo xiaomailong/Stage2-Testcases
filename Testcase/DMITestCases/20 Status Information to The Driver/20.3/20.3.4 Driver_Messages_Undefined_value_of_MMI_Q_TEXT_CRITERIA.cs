@@ -43,6 +43,15 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7040 (partly: text message, decision path is not affected, Note 1 under MMI_gen 7040: CRITERIA = 5));
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 5;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 527;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the driver message ‘Brake Test aborted, perform new Test?’ in sub-area E5 without yellow flashing frame");
+
             MakeTestStepHeader(2, UniqueIdentifier++,
                 "(Continue from step 1)Send EVC-8 with,MMI_Q_TEXT = 259MMI_Q_TEXT_CRITERIA = 5MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 2",
                 "Verify the following information,(1)    DMI displays the Symbol MO08 in sub-area C1 without yellow flashing frame");
@@ -53,6 +62,14 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7040 (partly: symbol, decision path is not affected, Note 1 and Note 2 under MMI_gen 7040: CRITERIA = 5); MMI_gen 1699 (partly: The Driver message is displayed as a symbol); MMI_gen 147 (partly: driver message is a symbol, MMI_gen 3005);
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 5;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
+            EVC8_MMIDriverMessage.Send();
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Symbol MO08 in sub-area C1 without yellow flashing frame");
 
             MakeTestStepHeader(3, UniqueIdentifier++,
                 "(Continue from step 1)Send EVC-8 with,MMI_Q_TEXT = 263MMI_Q_TEXT_CRITERIA = 2MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 2",
@@ -64,8 +81,16 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7040 (partly: symbol, decision path is not affected, Note 2 under MMI_gen 7040: CRITERIA = 2); MMI_gen 1699 (partly: The Driver message is displayed as a symbol); MMI_gen 147 (partly: driver message is a symbol, MMI_gen 3005);
             */
 
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
+            EVC8_MMIDriverMessage.Send();
 
-            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI displays the Symbol MO10 in sub-area C1 without yellow flashing frame");
+
+            TraceHeader("End of test");
 
             /*
             Test Step 4
@@ -76,42 +101,5 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
-
-        #region Send_XML_15_3_4_DMI_Test_Specification
-
-        private void XML_15_3_4()
-        {
-            // Step 1
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.AuxiliaryInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 5;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 527;
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the driver message ‘Brake Test aborted, perform new Test?’ in sub-area E5 without yellow flashing frame");
-
-            // Step 2
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 5;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 259;
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Symbol MO08 in sub-area C1 without yellow flashing frame");
-
-            // Step 3
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 263;
-            EVC8_MMIDriverMessage.Send();
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Symbol MO10 in sub-area C1 without yellow flashing frame");
-        }
-
-        #endregion
     }
 }

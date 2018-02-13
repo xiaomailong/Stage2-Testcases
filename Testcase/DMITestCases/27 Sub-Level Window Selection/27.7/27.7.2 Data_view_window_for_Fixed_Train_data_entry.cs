@@ -255,7 +255,7 @@ namespace Testcase.DMITestCases
                 "1. On page 1, DMI displays information on Driver ID." + Environment.NewLine +
                 "2. On page 2, DMI displays information on Radio Network ID and RBC Phone Number.");
 
-            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 9

@@ -254,7 +254,7 @@ namespace Testcase.DMITestCases
                                 "2. The <No> key is displayed enabled." + Environment.NewLine +
                                 "3. The text of all disabled button and keys labels is in dark-grey.");
 
-            MakeTestStepHeader(11, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 11

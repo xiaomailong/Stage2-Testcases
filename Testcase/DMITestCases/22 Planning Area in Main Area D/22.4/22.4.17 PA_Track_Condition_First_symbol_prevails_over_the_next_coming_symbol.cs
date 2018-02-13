@@ -145,7 +145,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays track condition symbol ‘Non-stopping area’, TC10, over symbol ‘Non-stopping area’, TC35.");
 
-            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 7

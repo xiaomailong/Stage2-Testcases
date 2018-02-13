@@ -47,7 +47,7 @@ namespace Testcase.DMITestCases
             DmiActions.Stop_the_train(this);
 
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

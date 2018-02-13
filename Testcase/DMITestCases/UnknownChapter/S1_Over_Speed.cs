@@ -102,7 +102,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Sound_S1_toofast_wav_is_played_once(this);
 
 
-            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 7

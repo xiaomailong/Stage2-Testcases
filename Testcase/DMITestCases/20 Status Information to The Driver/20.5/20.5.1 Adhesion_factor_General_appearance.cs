@@ -159,7 +159,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Stop_the_train(this);
 
-            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 9

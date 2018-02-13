@@ -522,7 +522,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. DMI displays the Medium-grey basic speed hook for 10s then removes it.");
 
-            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 12

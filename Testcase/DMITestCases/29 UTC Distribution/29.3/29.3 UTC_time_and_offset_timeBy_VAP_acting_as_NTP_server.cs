@@ -191,7 +191,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Set clock window." + Environment.NewLine +
                                 "2. The date displayed is unchanged.");
 
-            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 8

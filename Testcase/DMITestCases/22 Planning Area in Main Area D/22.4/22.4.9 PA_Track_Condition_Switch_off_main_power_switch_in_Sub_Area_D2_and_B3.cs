@@ -228,7 +228,7 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
-            MakeTestStepHeader(13, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 13

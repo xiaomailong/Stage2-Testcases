@@ -150,7 +150,7 @@ namespace Testcase.DMITestCases
                                 "1. Planning Information is removed." + Environment.NewLine +
                                 "2. The ‘Scale Up’ and ‘Scale Down’ buttons are removed.");
 
-            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 9

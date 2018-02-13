@@ -195,7 +195,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed disabled");
 
-            MakeTestStepHeader(9, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 9

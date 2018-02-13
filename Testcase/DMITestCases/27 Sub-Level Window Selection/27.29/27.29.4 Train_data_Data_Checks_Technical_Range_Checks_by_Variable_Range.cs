@@ -237,7 +237,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "2. The ‘Train data’ button is displayed enabled.");
 
-            MakeTestStepHeader(8, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 8

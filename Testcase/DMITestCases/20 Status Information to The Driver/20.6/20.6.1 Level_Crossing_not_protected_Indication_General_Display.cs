@@ -230,7 +230,7 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
             this.WaitForVerification("Have all three LX symbols re-appeared on the DMI?");
 
-            MakeTestStepHeader(12, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 12

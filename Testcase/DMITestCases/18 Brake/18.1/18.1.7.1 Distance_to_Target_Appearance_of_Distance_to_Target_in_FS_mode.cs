@@ -159,7 +159,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The distance to target bar is displayed in sub-area A3." + Environment.NewLine +
                                 "2. The digital distance to target is displayed in sub-area A2.");
-            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 7

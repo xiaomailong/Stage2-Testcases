@@ -146,7 +146,7 @@ namespace Testcase.DMITestCases
                                 "2. The local time is displayed as ‘2017-11-29: 11:59:59’." + Environment.NewLine +
                                 "3. The UTC time is displayed as  ‘2017-11-29: 02:59:59’.");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

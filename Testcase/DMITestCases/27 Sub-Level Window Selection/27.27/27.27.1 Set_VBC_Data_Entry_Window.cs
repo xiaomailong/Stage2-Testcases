@@ -542,7 +542,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
 
 
-            MakeTestStepHeader(21, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 21

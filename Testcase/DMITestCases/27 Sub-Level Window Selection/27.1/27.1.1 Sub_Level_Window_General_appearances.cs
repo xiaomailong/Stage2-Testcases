@@ -551,7 +551,7 @@ namespace Testcase.DMITestCases
                                 "3. DMI does not display the ‘Data View’ button." + Environment.NewLine +
                                 "4. DMI still displays the ‘Settings’ button.");
 
-            MakeTestStepHeader(36, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 36

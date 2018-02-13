@@ -187,7 +187,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Verify the following:" + Environment.NewLine + Environment.NewLine +
                                 "Actuation of the ‘System Version’ buttons is not exceeded 130 ms when DMI sends EVC-101");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

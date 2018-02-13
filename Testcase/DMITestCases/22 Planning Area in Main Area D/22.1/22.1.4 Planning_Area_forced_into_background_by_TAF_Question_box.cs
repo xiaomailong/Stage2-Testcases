@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
 
             //{TraceInfo("The DMI driver action to confirm TAF is INCORRECT");}
 
-            MakeTestStepHeader(7, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 7

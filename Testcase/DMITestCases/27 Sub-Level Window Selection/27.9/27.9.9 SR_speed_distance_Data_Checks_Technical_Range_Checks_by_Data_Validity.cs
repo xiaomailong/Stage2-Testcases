@@ -323,7 +323,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 @"3. The echo text for SR speed still displays ‘++++’.");
 
-            MakeTestStepHeader(13, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 13

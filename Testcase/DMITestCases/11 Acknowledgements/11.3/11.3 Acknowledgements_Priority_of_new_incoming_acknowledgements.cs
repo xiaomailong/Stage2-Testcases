@@ -502,7 +502,7 @@ namespace Testcase.DMITestCases
                                 "1. All acknowledgement messages are removed from the list." + Environment.NewLine +
                                 "2. DMI displays the Default window with the message ‘ATP Down Alarm’ without a yellow flashing frame in sub-area E5.");
 
-            MakeTestStepHeader(23, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 23

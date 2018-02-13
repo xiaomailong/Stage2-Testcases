@@ -589,7 +589,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The speed decrease to zero target symbol, PL23, is displayed in the Planning Area.");
 
-            MakeTestStepHeader(38, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 38

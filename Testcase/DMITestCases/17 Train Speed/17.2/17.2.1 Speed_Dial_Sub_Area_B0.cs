@@ -173,7 +173,7 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine +
                                 "6. The scaling numbers are positioned at the end of the related indicator line towards the centre of B0.");
 
-            MakeTestStepHeader(6, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 6

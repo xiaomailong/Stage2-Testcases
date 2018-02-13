@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The PA Gradient Profiles are re-displayed.");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 5

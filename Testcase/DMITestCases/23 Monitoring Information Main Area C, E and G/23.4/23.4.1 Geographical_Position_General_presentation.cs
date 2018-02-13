@@ -329,7 +329,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI removes the DR03 symbol in sub-area G12" + Environment.NewLine +
                                 "2. Sub-area G12 is not sensitive for toggling on/off");
 
-            MakeTestStepHeader(15, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 15

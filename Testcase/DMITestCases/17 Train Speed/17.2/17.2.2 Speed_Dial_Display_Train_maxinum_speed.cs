@@ -173,7 +173,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, level 1." + Environment.NewLine +
                                 "2. The speed dial displays 400 km/h maximum speed");
-            MakeTestStepHeader(4, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 4

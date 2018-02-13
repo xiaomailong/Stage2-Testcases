@@ -661,7 +661,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Override window." + Environment.NewLine +
                                 "2. The ‘Close’ button in the Override window is enabled.");
 
-            MakeTestStepHeader(24, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 24

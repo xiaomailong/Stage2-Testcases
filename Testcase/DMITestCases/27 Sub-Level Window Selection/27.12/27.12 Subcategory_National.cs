@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window with all sub-menus." + Environment.NewLine +
                                 "2. The ‘National’ button is displayed disabled.");
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 3

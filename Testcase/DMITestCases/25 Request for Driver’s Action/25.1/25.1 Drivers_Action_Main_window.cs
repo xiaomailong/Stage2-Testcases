@@ -336,7 +336,7 @@ namespace Testcase.DMITestCases
                 EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.NonLeadingSelected;
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartNonLeading;
 
-            MakeTestStepHeader(10, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 10

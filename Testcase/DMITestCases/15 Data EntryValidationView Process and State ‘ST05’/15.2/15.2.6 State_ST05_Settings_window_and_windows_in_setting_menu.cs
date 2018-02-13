@@ -1081,7 +1081,7 @@ namespace Testcase.DMITestCases
                                 "2. The hourglass symbol ST05 is removed." + Environment.NewLine +
                                 "3. The ‘Close’ button NA11 is displayed enabled in area G.");
 
-            MakeTestStepHeader(44, UniqueIdentifier++, "End of test", "");
+            TraceHeader("End of test");
 
             /*
             Test Step 44
