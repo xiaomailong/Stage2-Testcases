@@ -1,4 +1,5 @@
 using System;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -52,11 +53,11 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward pass BG1. Then, press an acknowledgement of LS mode in sub-area C1
             Expected Result: DMI displays in LS mode, level 1
             */
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 2778;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 100;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
             DmiActions.Send_LS_Mode_Ack(this);
-            DmiExpectedResults.LS_Mode_Ack_pressed_and_released(this);
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.LimitedSupervisionModeAck;
 
             DmiActions.Send_LS_Mode(this);
             DmiExpectedResults.LS_Mode_displayed(this);
@@ -136,12 +137,12 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
-            DmiActions.Apply_Brakes(this);
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 99;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Has the speed decreased to 99 km/h?" + Environment.NewLine +
-                                "2. Is the speed pointer grey?");
+                                "1. Is the speed pointer grey?");
+
+
             MakeTestStepHeader(6, UniqueIdentifier++,
                 "Stop the train.Then, use the test script file 12_3_7_a.xml to send the following packets,",
                 "DMI displays in LS mode, level 1.");

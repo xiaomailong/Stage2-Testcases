@@ -132,7 +132,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 100;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 99;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 105;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

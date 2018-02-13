@@ -122,7 +122,7 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer red?");
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 39;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Has the speed reduced to 40 km/h?" + Environment.NewLine +

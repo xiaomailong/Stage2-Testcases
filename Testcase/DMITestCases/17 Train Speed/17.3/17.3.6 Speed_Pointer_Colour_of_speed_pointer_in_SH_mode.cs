@@ -135,7 +135,7 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 29;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 
