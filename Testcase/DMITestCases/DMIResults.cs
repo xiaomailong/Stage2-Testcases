@@ -989,7 +989,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void OS_Mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is cuurently not supported
+            // EVC102 feedback is currently not supported
             // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.OnSight;
             Driver_symbol_displayed(pool, "OS mode", "MO07", "B7", false);
         }
