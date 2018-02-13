@@ -32,7 +32,6 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SB(this);
 
             // These steps are carried out in XML_15_3_4.cs
-            XML_15_3_4();
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Use the test script file 15_3_4.xml to send EVC-8 with,MMI_Q_TEXT = 527MMI_Q_TEXT_CRITERIA = 5MMI_Q_TEXT_CLASS = 0MMI_I_TEXT = 1",
                 "Verify the following information,(1)    DMI displays the driver message ‘Brake Test aborted, perform new Test?’ in sub-area E5 without yellow flashing frame");
