@@ -65,7 +65,7 @@ namespace Testcase.DMITestCases
             (2)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, UN mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, UN mode in CSM supervision);
             */
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 2778;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 100;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 100;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 105;
 
@@ -137,6 +137,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
+
             MakeTestStepHeader(5, UniqueIdentifier++, "Stop the train.", "DMI displays in UN mode, level 0.");
             /*
             Test Step 5
@@ -388,7 +389,7 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer yellow?");
 
             MakeTestStepHeader(15, UniqueIdentifier++,
-                "Use the test script file 12_3_4_k.xml to send the following packets,EVC-1MMI_M_WARNING = 9MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 4",
+                "Use the test script file 12_3_4_k.xml to send the following packets,EVC-1 MMI_M_WARNING = 9 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1139 EVC-7 OBU_TR_M_MODE = 4",
                 "DMI displays in UN mode, level 0.Verify the following the speed pointer display in orange colour");
             /*
             Test Step 15

@@ -55,7 +55,7 @@ namespace Testcase.DMITestCases
             (2)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, SR mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, SR mode in CSM supervision);
             */
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
 
@@ -122,7 +122,6 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer red?");
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
