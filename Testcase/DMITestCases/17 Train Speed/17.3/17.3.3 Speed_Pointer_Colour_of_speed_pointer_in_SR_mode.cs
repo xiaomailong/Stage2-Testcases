@@ -121,7 +121,6 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
-            DmiActions.Apply_Brakes(this);
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
@@ -129,6 +128,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Has the speed reduced to 40 km/h?" + Environment.NewLine +
                                 "2. Is the speed pointer grey?");
+
+
             MakeTestStepHeader(5, UniqueIdentifier++, "Stop the train.", "DMI displays in SR mode, level 1.");
             /*
             Test Step 5
@@ -179,7 +180,7 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer white?");
 
             MakeTestStepHeader(7, UniqueIdentifier++,
-                "Use the test script file 12_3_3_c.xml to send the following packets,EVC-1MMI_M_WARNING = 10MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 2",
+                "Use the test script file 12_3_3_c.xml to send the following packets,EVC-1 MMI_M_WARNING = 10 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1139 EVC-7 OBU_TR_M_MODE = 2",
                 "DMI displays in SR mode, level 1.");
             /*
             Test Step 7
@@ -245,7 +246,7 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer red?");
 
             MakeTestStepHeader(10, UniqueIdentifier++,
-                "Use the test script file 12_3_3_f.xml to send the following packets,EVC-1MMI_M_WARNING = 14MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 2",
+                "Use the test script file 12_3_3_f.xml to send the following packets,EVC-1 MMI_M_WARNING = 14 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1111 EVC-7 OBU_TR_M_MODE = 2",
                 "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in white colour");
             /*
             Test Step 10
@@ -360,7 +361,7 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer yellow?");
 
             MakeTestStepHeader(15, UniqueIdentifier++,
-                "Use the test script file 12_3_3_k.xml to send the following packets,EVC-1MMI_M_WARNING = 9MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 2",
+                "Use the test script file 12_3_3_k.xml to send the following packets,EVC-1 MMI_M_WARNING = 9 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1139 EVC-7 OBU_TR_M_MODE = 2",
                 "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in orange colour");
             /*
             Test Step 15
@@ -375,7 +376,7 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer orange?");
 
             MakeTestStepHeader(16, UniqueIdentifier++,
-                "Use the test script file 12_3_3_l.xml to send the following packets,EVC-1MMI_M_WARNING = 5MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1250EVC-7OBU_TR_M_MODE = 2",
+                "Use the test script file 12_3_3_l.xml to send the following packets,EVC-1 MMI_M_WARNING = 5 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1250 EVC-7 OBU_TR_M_MODE = 2",
                 "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in orange colour");
             /*
             Test Step 16
@@ -390,7 +391,7 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer orange?");
 
             MakeTestStepHeader(17, UniqueIdentifier++,
-                "Use the test script file 12_3_3_m.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1277EVC-7OBU_TR_M_MODE = 2",
+                "Use the test script file 12_3_3_m.xml to send the following packets,EVC-1 MMI_M_WARNING = 13 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1277 EVC-7 OBU_TR_M_MODE = 2",
                 "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in red colour");
             /*
             Test Step 17
@@ -406,7 +407,7 @@ namespace Testcase.DMITestCases
 
 
             MakeTestStepHeader(18, UniqueIdentifier++,
-                "Use the test script file 12_3_3_n.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 2",
+                "Use the test script file 12_3_3_n.xml to send the following packets,EVC-1 MMI_M_WARNING = 13 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1111 EVC-7 OBU_TR_M_MODE = 2",
                 "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in yellow colour");
             /*
             Test Step 18
@@ -421,7 +422,7 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer yellow?");
 
             MakeTestStepHeader(19, UniqueIdentifier++,
-                "Use the test script file 12_3_3_o.xml to send the following packets,EVC-1MMI_M_WARNING = 13MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1083EVC-7OBU_TR_M_MODE = 2",
+                "Use the test script file 12_3_3_o.xml to send the following packets,EVC-1 MMI_M_WARNING = 13 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1083 EVC-7O BU_TR_M_MODE = 2",
                 "DMI displays in SR mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour");
             /*
             Test Step 19
@@ -442,7 +443,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
@@ -494,105 +494,101 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
             EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
-
-
+            
             switch (type)
             {
                 case msgType.typea:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring; // 2
                     EVC1_MMIDynamic.MMI_V_TRAIN = 972;
-
                     break;
+
                 case msgType.typeb:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_PreIndication_Monitoring; // 2
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
-
                     break;
+
                 case msgType.typec:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring; // 10
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
-
                     break;
+
                 case msgType.typed:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_PreIndication_Monitoring; // 6
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1250;
-
                     break;
+
                 case msgType.typee:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring; // 14
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1277;
-
                     break;
+
                 case msgType.typef:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring; // 14
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
-
                     break;
+
                 case msgType.typeg:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_PreIndication_Monitoring; // 14
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1000;
-
                     break;
+
                 case msgType.typeh:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring; // 11
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1000;
-
                     break;
+
                 case msgType.typei:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Target_Speed_Monitoring; // 11
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
-
                     break;
+
                 case msgType.typej:
 
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring; // 1
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
-
                     break;
+
                 case msgType.typek:
 
                     EVC1_MMIDynamic.MMI_M_WARNING =
                         MMI_M_WARNING.Overspeed_Status_Indication_Status_Target_Speed_Monitoring; // 9
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1139;
-
                     break;
+
                 case msgType.typel:
 
                     EVC1_MMIDynamic.MMI_M_WARNING =
                         MMI_M_WARNING.Warning_Status_Indication_Status_Target_Speed_Monitoring; // 5
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1250;
-
                     break;
+
                 case msgType.typem:
                     EVC1_MMIDynamic.MMI_M_WARNING =
                         MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring; // 13
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1277;
-
                     break;
+
                 case msgType.typen:
 
                     EVC1_MMIDynamic.MMI_M_WARNING =
                         MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring; // 13
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1111;
-
                     break;
+
                 case msgType.typeo:
 
                     EVC1_MMIDynamic.MMI_M_WARNING =
                         MMI_M_WARNING.Intervention_Status_Indication_Status_Target_Speed_Monitoring; // 13
                     EVC1_MMIDynamic.MMI_V_TRAIN = 1083;
-
                     break;
             }
         }
