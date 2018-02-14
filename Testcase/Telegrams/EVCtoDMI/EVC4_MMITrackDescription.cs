@@ -102,7 +102,10 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 if (value > 11111)
-                    throw new ArgumentOutOfRangeException("Speed must be less than 11111 cm/s!");
+                {
+                    _pool.TraceWarning("Speed is greater than 11111 cm/.");
+                    _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = value;
+                }
 
                 else
                     _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = value;
@@ -122,7 +125,10 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 if (value > 400)
-                    throw new ArgumentOutOfRangeException("Speed must be less than 400 km/h!");
+                {
+                    _pool.TraceWarning("Speed entered is greater than 400 km/h.");
+                    _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = (short)(value / Variables.CmSToKmH);
+                }
 
                 else
                     _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = (short) (value / Variables.CmSToKmH);
@@ -142,8 +148,11 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 if (value > 248)
-                    throw new ArgumentOutOfRangeException("Speed must be less than 248 mph!");
-
+                {
+                    _pool.TraceWarning("Speed entered is greater than 248 mph.");
+                    _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = (short)(value / Variables.CmSToMph);
+                }
+                    
                 else
                     _pool.SITR.ETCS1.TrackDescription.MmiVMrspCurr.Value = (short) (value / Variables.CmSToMph);
             }
@@ -228,8 +237,10 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 if (value > 400)
-                    throw new ArgumentOutOfRangeException("Speed must be less than 400 km/h!");
-
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                    
                 else if (value <= 0)
                     _mmiVMrsp = value;
 
@@ -262,7 +273,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 if (value > 248)
-                    throw new ArgumentOutOfRangeException("Speed must be less than 248 mph!");
+                    throw new ArgumentOutOfRangeException();
 
                 else if (value <= 0)
                     _mmiVMrsp = value;

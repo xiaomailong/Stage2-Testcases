@@ -48,8 +48,7 @@ namespace Testcase.DMITestCases
                                                                EVC30_MMIRequestEnable.EnabledRequests.DriverID |
                                                                EVC30_MMIRequestEnable.EnabledRequests.TrainData |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Level |
-                                                               EVC30_MMIRequestEnable.EnabledRequests
-                                                                   .TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Shunting |
                                                                EVC30_MMIRequestEnable.EnabledRequests.MaintainShunting |
                                                                EVC30_MMIRequestEnable.EnabledRequests.NonLeading;
@@ -59,13 +58,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
 
-
-            EVC7_MMIEtcsMiscOutSignals.Initialise(this);
-
-            EVC1_MMIDynamic.Initialise(this);
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 35;
-            //?? Send
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,Press and hold ‘Shunting’ button at least 2 seconds.Release the pressed button",
@@ -91,7 +84,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received the packet information EVC-1 and EVC-7 with following variables,(EVC-7) OBU_TR_M_MODE = 3 (Shunting)(EVC-1) MMI_M_WARNING = 0 (Status = NoS, Supervision = CSM)(EVC-1) MMI_V_PERMITTED = 833 (30 km/h)(2)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, SH mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, SH mode in CSM supervision);
             */
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 30;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             // ?? Send
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -142,10 +135,9 @@ namespace Testcase.DMITestCases
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
 
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 29;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Has the speed decreased to 30 km/h" + Environment.NewLine +
-                                "2. Is the speed pointer grey?");
+                                "1. Is the speed pointer grey?");
 
             TraceHeader("End of test");
 

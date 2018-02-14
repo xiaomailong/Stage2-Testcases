@@ -1,4 +1,5 @@
 using System;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -53,7 +54,9 @@ namespace Testcase.DMITestCases
             // EVC30_MMIRequestEnable.SendBlank();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with speed = 10 km/h",
-                "Verify the following information,(1)   The speed pointer is always display in grey colour even runaway movement is detected.(2)   Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 6 (Standby)");
+                "Verify the following information," +
+                "(1) The speed pointer is always display in grey colour even runaway movement is detected." +
+                "(2) Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 6 (Standby)");
             /*
             Test Step 1
             Action: Drive the train forward with speed = 10 km/h
@@ -66,14 +69,15 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer grey?");
 
             MakeTestStepHeader(2, UniqueIdentifier++,
-                "Stop the train.Then, perform the following procedure,Press on sub-area C9.Press ‘Main’ buttonForce the simulation to ‘Non-leading’Press and hold ‘Non-Leading’ button at least 2 second.Release the pressed button",
-                "DMI displays in NL mode, level 1");
+                "Stop the train. Press ‘Main’ button." +
+                "Press and hold ‘Non-Leading’ button for at least 2 second and then release.",
+                "DMI displays in NL mode, level 1.");
             /*
             Test Step 2
             Action: Stop the train.Then, perform the following procedure,Press on sub-area C9.Press ‘Main’ buttonForce the simulation to ‘Non-leading’Press and hold ‘Non-Leading’ button at least 2 second.Release the pressed button
             Expected Result: DMI displays in NL mode, level 1
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 0;
 
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
@@ -81,17 +85,21 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.Send();
 
             DmiActions.ShowInstruction(this,
-                "Press on sub-area B7. Press ‘Main’ button. Force the simulation to ‘Non-leading’" +
-                Environment.NewLine +
-                "Press and hold ‘Non - Leading’ button at least 2 second. Release the pressed button");
+                "Press on sub-area B7. Press ‘Main’ button." + Environment.NewLine +
+                "Press and hold ‘Non - Leading’ button at least 2 seconds and then release.");
+
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.NonLeadingSelected;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in NL mode, level 1.");
 
             MakeTestStepHeader(3, UniqueIdentifier++,
-                "Drive the train with speed = 400 km/h (Maximum speed range of speed dial)",
-                "Verify the following information,(1)   The speed pointer is always display in grey colour..(2)   Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 11 (Non-leading)");
+                "Drive the train with speed = 110 mph (Maximum speed range of speed dial)",
+                "Verify the following information," +
+                "(1) The speed pointer is always display in grey colour." +
+                "(2) Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 11 (Non-leading)");
             /*
             Test Step 3
             Action: Drive the train with speed = 400 km/h (Maximum speed range of speed dial)
@@ -99,7 +107,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, NL mode);(2) MMI_gen 6299 (partly: OBU_TR_M_MODE);
             */
 
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 400;
+            EVC1_MMIDynamic.MMI_V_TRAIN_MPH = 110;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");

@@ -1,4 +1,5 @@
 using System;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -56,8 +57,10 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
+            DmiActions.ShowInstruction(this, "Acknowledge OS mode after clicking OK.");
             DmiActions.Send_OS_Mode_Ack(this);
-            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
 
             DmiActions.Send_OS_Mode(this);
             DmiExpectedResults.OS_Mode_displayed(this);
@@ -75,7 +78,7 @@ namespace Testcase.DMITestCases
             (2)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE, MMI_M_WARNING, train speed in relation to permitted speed MMI_V_PERMITTED, OS mode in CSM supervision);(2) MMI_gen 6299 (partly: colour of speed pointer, OS mode in CSM supervision);
             */
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 30;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -98,6 +101,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
+
             MakeTestStepHeader(4, UniqueIdentifier++,
                 "Increase the train speed to 35 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]",
                 "Verify the following information,");
@@ -131,9 +135,8 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer red?");
 
-            DmiActions.Apply_Brakes(this);
             MakeTestStepHeader(6, UniqueIdentifier++,
-                "Stop the train.Then, use the test script file 12_3_8_a.xml to send the following packets,EVC-1MMI_M_WARNING = 2MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 972EVC-7OBU_TR_M_MODE = 1",
+                "Stop the train.Then, use the test script file 12_3_8_a.xml to send the following packets,EVC-1 MMI_M_WARNING = 2 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 972 EVC-7 OBU_TR_M_MODE = 1",
                 "DMI displays in OS mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour");
             /*
             Test Step 6
@@ -152,7 +155,7 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer grey?");
 
             MakeTestStepHeader(7, UniqueIdentifier++,
-                "Use the test script file 12_3_8_b.xml to send the following packets,EVC-1MMI_M_WARNING = 2MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 1",
+                "Use the test script file 12_3_8_b.xml to send the following packets,EVC-1 MMI_M_WARNING = 2 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1111 EVC-7 OBU_TR_M_MODE = 1",
                 "DMI displays in OS mode, level 1.Verify the following information,(1)   The speed pointer display in white colour");
             /*
             Test Step 7
@@ -166,7 +169,7 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer white?");
 
             MakeTestStepHeader(8, UniqueIdentifier++,
-                "Use the test script file 12_3_8_c.xml to send the following packets,EVC-1MMI_M_WARNING = 10MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1139EVC-7OBU_TR_M_MODE = 1",
+                "Use the test script file 12_3_8_c.xml to send the following packets,EVC-1 MMI_M_WARNING = 10 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1139 EVC-7 OBU_TR_M_MODE = 1",
                 "DMI displays in OS mode, level 1.Verify the following information,(1)   The speed pointer display in orange colour");
             /*
             Test Step 8

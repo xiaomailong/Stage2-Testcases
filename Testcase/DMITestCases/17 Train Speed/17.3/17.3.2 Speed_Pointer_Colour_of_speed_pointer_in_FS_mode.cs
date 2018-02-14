@@ -124,7 +124,7 @@ namespace Testcase.DMITestCases
                                 "1. Is the speed pointer red?");
 
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 39;
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer grey?");
 
@@ -313,6 +313,7 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the speed pointer orange?");
+
             MakeTestStepHeader(12, UniqueIdentifier++,
                 "Use the test script file 12_3_2_d.xml to send the following packets,",
                 "DMI displays in FS mode, level 1.");
@@ -478,7 +479,9 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                 EVC1_MMIDynamic.MMI_M_SLIP = 0;
 
-                // Spec says 10: Overspeed_Status_PreIndication_Monitoring, xml 2: Normal_Status_PreIndication_Monitoring: spec preferred
+                // Spec says 10: Overspeed_Status_PreIndication_Monitoring,
+                // xml says 2: Normal_Status_PreIndication_Monitoring
+                // spec preferred
                 EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_PreIndication_Monitoring; // 10
                 EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                 EVC1_MMIDynamic.MMI_V_TRAIN = 1139;

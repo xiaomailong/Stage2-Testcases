@@ -35,7 +35,9 @@ namespace Testcase.DMITestCases
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Perform the following procedure,Press ‘Train data’ button.Enter and validate all train data.Enter the train running number",
-                "DMI displays Main window in SB mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 6 (Standby mode).(2)    The CSG is still not displayed on DMI");
+                "DMI displays Main window in SB mode, Level 1.Verify the following information," +
+                "(1) Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 6 (Standby mode)." +
+                "(2) The CSG is still not displayed on DMI");
             /*
             Test Step 1
             Action: Perform the following procedure,Press ‘Train data’ button.Enter and validate all train data.Enter the train running number
@@ -45,8 +47,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.TrainData |
-                                                               EVC30_MMIRequestEnable.EnabledRequests
-                                                                   .TrainRunningNumber |
+                                                               EVC30_MMIRequestEnable.EnabledRequests.TrainRunningNumber |
                                                                EVC30_MMIRequestEnable.EnabledRequests.Start;
             EVC30_MMIRequestEnable.Send();
 
@@ -88,8 +89,10 @@ namespace Testcase.DMITestCases
                                 "1, The CSG is still not displayed on DMI.");
 
             MakeTestStepHeader(2, UniqueIdentifier++,
-                "Perform the following procedure,Press ‘Start’ button.Press and hold sub-area C1 up to 2 second.Release the pressed area",
-                "DMI displays Default window in SR mode, Level 1.Verify the following information,(1)     Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 2 (Staff Responsible mode)(2)    The CSG is still not displayed on DMI");
+                "Perform the following procedure,Press ‘Start’ button. Press and hold sub-area C1 up to 2 seconds. Release the pressed area",
+                "DMI displays Default window in SR mode, Level 1.Verify the following information," +
+                "(1) Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 2 (Staff Responsible mode)" +
+                "(2) The CSG is still not displayed on DMI");
             /*
             Test Step 2
             Action: Perform the following procedure,Press ‘Start’ button.Press and hold sub-area C1 up to 2 second.Release the pressed area
@@ -104,13 +107,18 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window in SR mode, Level 1.");
 
-            DmiActions.ShowInstruction(this, "Press and hold sub-area C1 for up to 2s, then release the pressed area.");
+            DmiActions.ShowInstruction(this, "Press and hold sub-area C1 for up to 2 seconds, then release.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "The CSG is still not displayed on DMI.");
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward pass BG1 with speed = 30km/h",
-                "DMI displays in FS mode, Level 1.Verify the following information,(1)    The CSG is displays in sub-area B2.(2)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode).(3)   Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_PERMITTED = 4166 (150 km/h)(4)   All section of CSG (0km/h – 150 km/h) is dark-grey colour.(5)   At Permitted speed, The CSG is display a Hook covering the outer border of Speed Dial and The upper limit of Hook is placed at 150 km/h");
+            MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward pass BG1 with speed = 30 km/h",
+                "DMI displays in FS mode, Level 1.Verify the following information," +
+                "(1) The CSG is displays in sub-area B2." +
+                "(2) Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode)." +
+                "(3) Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_PERMITTED = 4166 (150 km/h)" +
+                "(4) All sections of CSG (0 km/h – 150 km/h) is dark-grey colour." +
+                "(5) At Permitted speed, The CSG is display a Hook covering the outer border of Speed Dial and The upper limit of Hook is placed at 150 km/h");
             /*
             Test Step 3
             Action: Drive the train forward pass BG1 with speed = 30km/h
@@ -124,12 +132,15 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1." + Environment.NewLine +
                                 "2. The CSG is displayed in sub-area B2." + Environment.NewLine +
-                                "3. All sections of CSG(0 km/h – 150 km/h) are dark-grey in colour." +
-                                Environment.NewLine +
+                                "3. All sections of CSG (0 km/h – 150 km/h) are dark-grey in colour." + Environment.NewLine +
                                 "4. The CSG displays a Hook covering the outer border of Speed Dial and the upper limit of the Hook is placed at 150 km/h.");
 
             MakeTestStepHeader(4, UniqueIdentifier++, "Continue to drive the train forward with speed = 151 km/h",
-                "Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 8 (Status=OvS, Supervision=CSM).MMI_V_INTERVENTION > 4166 (150 km/h)(2)   The CSG at 0-150 km/h is dark-grey colour.(3)   The CSG at beyond 150km/h is orange colour.(4)   The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook");
+                "Verify the following information," +
+                "(1) Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 8 (Status=OvS, Supervision=CSM). MMI_V_INTERVENTION > 4166 (150 km/h)" +
+                "(2) The CSG at 0-150 km/h is dark-grey colour." +
+                "(3) The CSG at beyond 150km/h is orange colour." +
+                "(4) The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook");
             /*
             Test Step 4
             Action: Continue to drive the train forward with speed = 151 km/h
@@ -139,15 +150,20 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 151;
             EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 155;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Overspeed_Status_Ceiling_Speed_Monitoring;
-            // ?? Send
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The CSG between 0 and 150 km/h is dark-grey in colour." + Environment.NewLine +
-                                "2. The CSG beyond 150km/h is orange in colour." + Environment.NewLine +
-                                "3. The CSG between the Hook (Vperm = 150 km/h) and Vsbi has a hook of the same width.");
+                                "2. The CSG beyond 150 km/h is orange in colour." + Environment.NewLine +
+                                "3. The CSG between the Hook (Vperm = 150 km/h) and Vintervention has a hook of the same width.");
 
             MakeTestStepHeader(5, UniqueIdentifier++,
                 "Continue to drive the train forward with speed = 155 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]",
-                "Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 4 (Status=WaS, Supervision=CSM).(2)   The CSG at 0-150 km/h is dark-grey colour.(3)   The CSG at beyond 150km/h is orange colour.(4)   The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook.(5)   Sound S2 is played continuously while the Warning Status is active");
+                "Verify the following information," +
+                "(1) Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 4 (Status=WaS, Supervision=CSM)." +
+                "(2) The CSG at 0-150 km/h is dark-grey colour." +
+                "(3) The CSG at beyond 150km/h is orange colour." +
+                "(4) The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook." +
+                "(5) Sound S2 is played continuously while the Warning Status is active");
             /*
             Test Step 5
             Action: Continue to drive the train forward with speed = 155 km/h.Note: dV_warning_max is defined in chapter 3 of [SUBSET-026]
@@ -155,9 +171,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_M_WARNING, MMI_V_INTERVEN); MMI_gen 6310 (partly: supervision status, intervention speed);(2) MMI_gen 972 (partly: FS mode, CSM, 0km/h <= CSG <= Vperm);(3) MMI_gen 972 (partly: FS mode, CSM, Vperm <= CSG <= Vsbi );(4) MMI_gen 1155 (partly: Warning);(5)   MMI_gen 5774; MMI_gen 11921 (partly: MMI_M_WARNING = 4);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 155;
-
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Warning_Status_Ceiling_Speed_Monitoring;
-            // ?? Send
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The CSG at 0-150 km/h is dark-grey in colour." + Environment.NewLine +
@@ -168,7 +182,12 @@ namespace Testcase.DMITestCases
 
             MakeTestStepHeader(6, UniqueIdentifier++,
                 "Drive the train forward with speed greater than MMI_V_INTERVENTION from step 4",
-                "Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 12 (Status=IntS, Supervision=CSM).(2)   The CSG at 0-150 km/h is dark-grey colour.(3)   The CSG at beyond 150km/h is red colour.(4)   The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook.(5) Sound S2 is muted because of Warning Stauts is deactive");
+                "Verify the following information," +
+                "(1) Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 12 (Status=IntS, Supervision=CSM)." +
+                "(2) The CSG at 0-150 km/h is dark-grey colour." +
+                "(3) The CSG at beyond 150 km/h is red colour." +
+                "(4) The CSG between the hook (Vperm = 150 km/h) and Vsbi is have a same width with hook." +
+                "(5) Sound S2 is muted because of Warning Stauts is deactive");
             /*
             Test Step 6
             Action: Drive the train forward with speed greater than MMI_V_INTERVENTION from step 4
@@ -177,7 +196,7 @@ namespace Testcase.DMITestCases
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 157;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
-            // ?? Send
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The CSG at 0-150 km/h is dark-grey in colour." + Environment.NewLine +
                                 "2. The CSG beyond 150 km/h is red in colour." + Environment.NewLine +
