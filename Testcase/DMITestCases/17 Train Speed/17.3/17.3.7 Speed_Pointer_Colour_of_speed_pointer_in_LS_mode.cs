@@ -56,6 +56,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 100;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
+            DmiActions.ShowInstruction(this, "Acknowledge the Limited Supervision icon after clicking OK.");
             DmiActions.Send_LS_Mode_Ack(this);
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.LimitedSupervisionModeAck;
 
@@ -178,7 +179,7 @@ namespace Testcase.DMITestCases
                 "DMI displays in LS mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour");
             /*
             Test Step 7 indicated as 6
-            Action: Use the test script file 12_3_7_b.xml to send the following packets,EVC-1MMI_M_WARNING = 2MMI_V_PERMITTED = 1111MMI_V_TARGET = 1083MMI_V_INTERVENTION = 1250MMI_V_TRAIN = 1111EVC-7OBU_TR_M_MODE = 12
+            Action: Use the test script file 12_3_7_b.xml to send the following packets,EVC-1 MMI_M_WARNING = 2 MMI_V_PERMITTED = 1111 MMI_V_TARGET = 1083 MMI_V_INTERVENTION = 1250 MMI_V_TRAIN = 1111 EVC-7 OBU_TR_M_MODE = 12
             Expected Result: DMI displays in LS mode, level 1.Verify the following information,(1)   The speed pointer display in grey colour
             Test Step Comment: (1) MMI_gen 6299 (partly: colour of speed pointer, LS mode in PIM supervision);
             */
@@ -507,8 +508,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
             EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-            //_pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            //_pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
+
             switch (type)
             {
                 case msgType.typea:
