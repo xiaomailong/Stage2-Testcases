@@ -60,7 +60,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6307 (partly: Speed pointer has the red colour);      (2) MMI_gen 1279 (partly: right most sub-area, 2 digit, integer, no zeroes)(3) MMI_gen 4244;
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Ceiling_Speed_Monitoring;
-            //EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
+            EVC1_MMIDynamic.MMI_V_INTERVENTION_KMH = 45;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40; // Implied but not stated
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 50;
 
@@ -125,7 +125,8 @@ namespace Testcase.DMITestCases
                                 "1. The speed displayed is 0.");
 
             MakeTestStepHeader(7, UniqueIdentifier++,
-                "Use the test script file 12_4_a.xml to send EVC-1 with,MMI_V_TRAIN = 389 cm/s (14.004 km/h)Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result",
+                "Use the test script file 12_4_a.xml to send EVC-1 with,MMI_V_TRAIN = 389 cm/s (14.004 km/h)" +
+                "Note: The result of test script file may interrupted by ATP-CU, need to execute test script file repeatly to see the result",
                 "The speed digital is changed to 15 km/h");
             /*
             Test Step 7
@@ -233,15 +234,15 @@ namespace Testcase.DMITestCases
             switch (type)
             {
                 case msgType.typea:
-                    EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 15;
+                    EVC1_MMIDynamic.MMI_V_TRAIN = 389;
 
                     break;
                 case msgType.typeb:
-                    EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 18;
+                    EVC1_MMIDynamic.MMI_V_TRAIN = 500;
 
                     break;
                 case msgType.typec:
-                    EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 23;
+                    EVC1_MMIDynamic.MMI_V_TRAIN = 625;
 
                     break;
             }
