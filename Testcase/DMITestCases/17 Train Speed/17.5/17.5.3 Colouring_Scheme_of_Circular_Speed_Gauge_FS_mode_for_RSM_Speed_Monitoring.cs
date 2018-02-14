@@ -28,31 +28,38 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
             StartUp();
 
-            DmiActions.Complete_SoM_L1_SR(this);
+            DmiActions.Complete_SoM_L1_FS(this);
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-
-            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1 with speed = 30km/h",
-                "DMI displays in FS mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode).(2)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 3 (Status=IndS, Supervision=RSM).MMI_V_RELEASE =  1388 (50 km/h)(3)   All section of CSG is yellow colour");
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1 with speed = 30 km/h",
+                "DMI displays in FS mode, Level 1. Verify the following information," +
+                "(1) Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode)." +
+                "(2) Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 3 (Status = IndS, Supervision = RSM). MMI_V_RELEASE = 1388 (50 km/h)" +
+                "(3) All section of CSG is yellow colour");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1 with speed = 30km/h
-            Expected Result: DMI displays in FS mode, Level 1.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode).(2)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 3 (Status=IndS, Supervision=RSM).MMI_V_RELEASE =  1388 (50 km/h)(3)   All section of CSG is yellow colour
+            Expected Result: DMI displays in FS mode, Level 1. Verify the following information,
+            (1) Use the log file to confirm that DMI received packet EVC-7 with variable OBU_TR_M_MODE = 0 (Full Supervision mode).
+            (2) Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 3 (Status = IndS, Supervision = RSM). MMI_V_RELEASE = 1388 (50 km/h)
+            (3) All section of CSG is yellow colour
             Test Step Comment: (1) MMI_gen 972 (partly: OBU_TR_M_MODE); MMI_gen 6310 (partly: mode);(2) MMI_gen 972 (partly: MMI_V_RELEASE); MMI_gen 6310 (partly: release speed); MMI_gen 5902 (partly: MMI_M_WARNING = 3);(3) MMI_gen 972 (partly: FS mode, RSM, IndS,  Vtarget <= CSG <= Vperm); MMI_gen 1182 (partly: Vrelease);
             */
+
             // Doc says TARGET to PERM is yellow in this mode but medium-grey from 0 to release! Bad test?
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 20;
+            EVC1_MMIDynamic.MMI_V_TARGET = 0;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
-            EVC1_MMIDynamic.MMI_V_RELEASE = 1388;
-            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 40;
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 50;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 160;  // Script tdg file sets limit at 300 km/h
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, level 1." + Environment.NewLine +
                                 "2. All sections of CSG are in yellow");
 
             MakeTestStepHeader(2, UniqueIdentifier++, "Continue to drive the train forward with speed = 51 km/h",
-                "Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 15 (Status=IntS and Inds, Supervision=RSM).(2)   All section of CSG is yellow colour");
+                "Verify the following information," +
+                "(1) Use the log file to confirm that DMI received packet EVC-1 with following variables, MMI_M_WARNING = 15 (Status=IntS and Inds, Supervision=RSM)." +
+                "(2) All section of CSG is yellow colour");
             /*
             Test Step 2
             Action: Continue to drive the train forward with speed = 51 km/h
@@ -60,11 +67,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 972 (partly: MMI_V_RELEASE); MMI_gen 6310 (partly: release speed); MMI_gen 5902 (partly: MMI_M_WARNING = 15);(2) MMI_gen 972 (partly: FS mode, RSM, IntS, Vtarget <= CSG <= Vperm); MMI_gen 1182 (partly: Vrelease);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 51;
-            EVC1_MMIDynamic.MMI_M_WARNING =
-                MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
-            // ?? Send
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Intervention_Status_Indication_Status_Release_Speed_Monitoring;
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. All sections of CSG are in yellow");
+                                "1. All sections of CSG are in yellow.");
 
             TraceHeader("End of test");
 
