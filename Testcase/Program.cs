@@ -30,7 +30,8 @@ namespace Testcase
             }
             else
             {
-                TestcaseRunner.AddTestcase(typeof(TC_13_1_7_6_Brake));
+                TestcaseRunner.AddTestcase(typeof(TC_ID_17_6_2_PA_Speed_Profile_Discontinuity_Information_updating));
+                
                 //TestcaseRunner.AddTestcase(typeof(TestcaseBase));
                 TestcaseRunner.RunTestcases(args);
             }
