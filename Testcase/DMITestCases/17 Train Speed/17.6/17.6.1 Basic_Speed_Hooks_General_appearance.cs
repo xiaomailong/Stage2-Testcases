@@ -30,26 +30,35 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
 
             // Testcase entrypoint
-            TraceInfo("This test case requires an ATP configuration change - " +
-                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Driver drives the train forward passing BG1.Then, stop the train and acknowledge OS mode by pressing sub-area C1",
-                "DMI displays in OS mode, Level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-7 with variable OBU_TR_M_MODE = 1 (On sight).(2)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 2777 (100km/h)MMI_V_TARGET = 694 (25km/h)MMI_M_WARNING not equal to 0,4,8,12 (Supervision is not CSM)(3)   All basic speed hooks are displayed in sub-area B2.(4)   The first hook is displayed overlapping the outer border of the speed dial with white colour at 100 km/h.(5)   The second hook is displayed overlapping the outer border of the speed dial with Medium-grey colour at 25 km/h.(6)   Sound ‘Sinfo’ is played once");
+                "DMI displays in OS mode, Level 1.Verify the following information," +
+                "(1)   Use the log file to confirm that DMI received packet information EVC-7 with variable OBU_TR_M_MODE = 1 (On sight)." +
+                "(2)   Use the log file to confirm that DMI received packet information EVC-1 with following variables, MMI_V_PERMITTED = 2777 (100 km/h) MMI_V_TARGET = 694 (25 km/h)MMI_M_WARNING not equal to 0,4,8,12 (Supervision is not CSM)" +
+                "(3)   All basic speed hooks are displayed in sub-area B2." +
+                "(4)   The first hook is displayed overlapping the outer border of the speed dial with white colour at 100 km/h." +
+                "(5)   The second hook is displayed overlapping the outer border of the speed dial with Medium-grey colour at 25 km/h." +
+                "(6)   Sound ‘Sinfo’ is played once");
             /*
             Test Step 1
             Action: Driver drives the train forward passing BG1.Then, stop the train and acknowledge OS mode by pressing sub-area C1
-            Expected Result: DMI displays in OS mode, Level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-7 with variable OBU_TR_M_MODE = 1 (On sight).(2)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 2777 (100km/h)MMI_V_TARGET = 694 (25km/h)MMI_M_WARNING not equal to 0,4,8,12 (Supervision is not CSM)(3)   All basic speed hooks are displayed in sub-area B2.(4)   The first hook is displayed overlapping the outer border of the speed dial with white colour at 100 km/h.(5)   The second hook is displayed overlapping the outer border of the speed dial with Medium-grey colour at 25 km/h.(6)   Sound ‘Sinfo’ is played once
+            Expected Result: DMI displays in OS mode, Level 1. Verify the following information,
+            (1)   Use the log file to confirm that DMI received packet information EVC-7 with variable OBU_TR_M_MODE = 1 (On sight).
+            (2)   Use the log file to confirm that DMI received packet information EVC-1 with following variables, MMI_V_PERMITTED = 2777 (100 km/h) MMI_V_TARGET = 694 (25 km/h)MMI_M_WARNING not equal to 0,4,8,12 (Supervision is not CSM)
+            (3)   All basic speed hooks are displayed in sub-area B2.
+            (4)   The first hook is displayed overlapping the outer border of the speed dial with white colour at 100 km/h.
+            (5)   The second hook is displayed overlapping the outer border of the speed dial with Medium-grey colour at 25 km/h.
+            (6)   Sound ‘Sinfo’ is played once
             Test Step Comment: (1) MMI_gen 6332 (partly: OBU_TR_M_MODE);(2) MMI_gen 6332 (partly: MMI_V_PERMITTED, MMI_V_TARGET, MMI_M_WARNING); MMI_gen 6456 (partly: Permitted Speed changes, Target Speed changes, OS mode, Not CSM);(3) MMI_gen 6322; MMI_gen 6456 (partly: toggle on);(4) MMI_gen 6332 (partly: colour and appearance, OS mode, not CSM); MMI_gen 6329 (partly: outer border of the speed dial);(5) MMI_gen 6332 (partly: colour and appearance, OS mode, not CSM); MMI_gen 6330 (partly: outer border of the speed dial);(6) MMI_gen 6456 (partly: sound Sinfo); MMI_gen 9516 (partly: toggling function of basic speed hooks with PS and TS); MMI_gen 12025 (partly: toggling function of basic speed hooks with PS and TS);
             */
             // V_TARGET, V_PERMITTED on
-            SITR.ETCS1.Dynamic.EVC01Validity2.Value |= (0x3 << 12);
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 2777;
-            EVC1_MMIDynamic.MMI_V_TARGET = 694;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring; // Not 0, 4, 8, 12
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 2777;     // 100 km/h
+            EVC1_MMIDynamic.MMI_V_TARGET = 694;         // 25 km/h
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring; // Not 0, 4, 8, 12
 
 
             WaitForVerification("Check  the following:" + Environment.NewLine + Environment.NewLine +
@@ -70,19 +79,25 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Vperm hook (White colour) is overlay the Vtarget hook (Medium grery colour)
             Test Step Comment: MMI_gen 9972;    
             */
-            EVC1_MMIDynamic.MMI_V_TARGET = 2777;
+            EVC1_MMIDynamic.MMI_V_TARGET = 2777;    // 100 km/h
 
             WaitForVerification("Wait until the basic speed hooks overlap, then check the following:" +
                                 Environment.NewLine + Environment.NewLine +
                                 "1. The Vperm hook (in white) overlays the Vtarget hook (medium-grey)");
 
             MakeTestStepHeader(3, UniqueIdentifier++,
-                "Perform the following procedure,Press the 'Main' button.Press and hold 'Shunting' button at least 2 seconds.Release 'Shunting' button",
-                "DMI displays in SH mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-7 with variable OBU_TR_M_MODE = 3 (Shunting).(2)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 833 (30km/h)MMI_M_WARNING = 0 (NoS, Supervision = CSM)(3)   The first hook is displayed overlapping the outer border of the speed dial with white colour at 30 km/h");
+                "Perform the following procedure,Press the 'Main' button.Press and hold 'Shunting' button at least 2 seconds. Release 'Shunting' button",
+                "DMI displays in SH mode, level 1.Verify the following information," +
+                "(1) Use the log file to confirm that DMI received packet information EVC-7 with variable OBU_TR_M_MODE = 3 (Shunting)." +
+                "(2) Use the log file to confirm that DMI received packet information EVC-1 with following variables, MMI_V_PERMITTED = 833 (30 km/h) MMI_M_WARNING = 0 (NoS, Supervision = CSM)" +
+                "(3) The first hook is displayed overlapping the outer border of the speed dial with white colour at 30 km/h");
             /*
             Test Step 3
             Action: Perform the following procedure,Press the 'Main' button.Press and hold 'Shunting' button at least 2 seconds.Release 'Shunting' button
-            Expected Result: DMI displays in SH mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-7 with variable OBU_TR_M_MODE = 3 (Shunting).(2)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 833 (30km/h)MMI_M_WARNING = 0 (NoS, Supervision = CSM)(3)   The first hook is displayed overlapping the outer border of the speed dial with white colour at 30 km/h
+            Expected Result: DMI displays in SH mode, level 1.Verify the following information,
+            (1) Use the log file to confirm that DMI received packet information EVC-7 with variable OBU_TR_M_MODE = 3 (Shunting).
+            (2) Use the log file to confirm that DMI received packet information EVC-1 with following variables, MMI_V_PERMITTED = 833 (30 km/h) MMI_M_WARNING = 0 (NoS, Supervision = CSM)
+            (3) The first hook is displayed overlapping the outer border of the speed dial with white colour at 30 km/h
             Test Step Comment: (1) MMI_gen 6332 (partly: OBU_TR_M_MODE);(2) MMI_gen 6332 (partly: MMI_V_PERMITTED, MMI_M_WARNING);(3) MMI_gen 6322; MMI_gen 6332 (partly: colour and appearance, SH mode, CSM); MMI_gen 6329 (partly: outer border of the speed dial);
             */
 
@@ -91,7 +106,7 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Shunting;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 883;
+            EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
             EVC1_MMIDynamic.MMI_V_TARGET = 800;
 
             WaitForVerification("Check  the following:" + Environment.NewLine + Environment.NewLine +
@@ -100,7 +115,9 @@ namespace Testcase.DMITestCases
 
             MakeTestStepHeader(4, UniqueIdentifier++,
                 "Use the test script file 12_6_1_a.xml to send EVC-1 with,MMI_M_WARNING = 7",
-                "Verify the following information,(1)   The basic speed hook is removed from the DMI.(2)   After test scipt file is executed, the basic speed hook is re-appear refer to received packet EVC-1 from ETCS Onboard");
+                "Verify the following information," +
+                "(1) The basic speed hook is removed from the DMI." +
+                "(2) After test scipt file is executed, the basic speed hook  re-appears refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 4
             Action: Use the test script file 12_6_1_a.xml to send EVC-1 with,MMI_M_WARNING = 7
@@ -119,16 +136,24 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
             EVC1_MMIDynamic.MMI_V_RELEASE = 555;
 
+            // Reset validity bits
+            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800; // 51200 in decimal
+            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0xff00; // 65280 in decimal
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is re-displayed.");
 
             MakeTestStepHeader(5, UniqueIdentifier++,
                 "Use the test script file 12_6_1_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17",
-                "Verify the following information,(1)   The basic speed hook is removed from the DMI.(2)   After test script file is executed, the basic speed hook is re-appear refer to received packet EVC-1 from ETCS Onboard");
+                "Verify the following information," +
+                "(1) The basic speed hook is removed from the DMI." +
+                "(2) After test script file is executed, the basic speed hook is re-appear refer to received packet EVC-1 from ETCS Onboard");
             /*
             Test Step 5
             Action: Use the test script file 12_6_1_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17
-            Expected Result: Verify the following information,(1)   The basic speed hook is removed from the DMI.(2)   After test script file is executed, the basic speed hook is re-appear refer to received packet EVC-1 from ETCS Onboard
+            Expected Result: Verify the following information,
+            (1) The basic speed hook is removed from the DMI.
+            (2) After test script file is executed, the basic speed hook is re-appear refer to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6452 (partly: OBU_TR_M_MODE is invalid);(2) MMI_gen 6452 (partly: toggle function is reset to default state);
             */
             XML_12_6_1(msgType.typeb);
@@ -143,6 +168,10 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
             EVC1_MMIDynamic.MMI_V_RELEASE = 555;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 10002000;
+
+            // Reset validity bits
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x7c88; // All validity bits set
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xfc00; // All validity bits set
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is re-displayed.");
@@ -183,12 +212,10 @@ namespace Testcase.DMITestCases
                     EVC1_MMIDynamic.MMI_O_IML = 0;
                     EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
 
-                    //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                    //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
-                    //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                    //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
-
+                    SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
+                    SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
                     break;
+
                 case msgType.typeb:
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EBTestInProgress = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
@@ -206,9 +233,8 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
 
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x1000;
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x1;
-
+                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x0008;     // Bit-inverse of 4096
+                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x8000;     // Bit inverse of 1
                     break;
             }
         }
