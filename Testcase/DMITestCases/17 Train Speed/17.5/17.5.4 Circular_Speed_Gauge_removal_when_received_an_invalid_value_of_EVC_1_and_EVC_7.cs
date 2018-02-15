@@ -231,8 +231,7 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_O_IML = 0x3b9b4523;             // 1000031523
                 EVC1_MMIDynamic.MMI_V_INTERVENTION = 4658;
 
-                SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800;
-                SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0xff00;        
+                EVC1_MMIDynamic.SetValidityBits(true); 
             }
 
             switch (type)

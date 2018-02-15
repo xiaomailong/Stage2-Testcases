@@ -230,9 +230,8 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_V_RELEASE = EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 0;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
-            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x01;
-            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x01;
-
+            EVC1_MMIDynamic.SetValidityBits(true, false, false, true, false, false, false, false, false, false, false);
+            
             switch (packetSelector)
             {
                 case msgType.typeA:

@@ -125,8 +125,7 @@ namespace Testcase.DMITestCases
 
         private void XML_12_15(msgType type)
         {
-            //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-            //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            //EVC1_MMIDynamic.SetValidityBits(false);
 
             if (type == msgType.typea)
             {

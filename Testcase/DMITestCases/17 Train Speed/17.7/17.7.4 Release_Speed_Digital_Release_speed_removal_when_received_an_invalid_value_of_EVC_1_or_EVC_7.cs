@@ -83,8 +83,7 @@ namespace Testcase.DMITestCases
             XML_12_7_4(msgType.typeb);
 
             // Reset EVC-1 validity bits
-            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800; // 51200 in decimal
-            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0xff00; // 65280 in decimal
+            EVC1_MMIDynamic.SetValidityBits(true);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speeds in sub-area B2 and B6 are removed from the DMI.");
@@ -135,8 +134,7 @@ namespace Testcase.DMITestCases
                     EVC1_MMIDynamic.MMI_O_IML = 0;
                     EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
 
-                    SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                    SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+                    EVC1_MMIDynamic.SetValidityBits(false);
 
                     break;
 

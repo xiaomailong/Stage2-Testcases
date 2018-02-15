@@ -41,8 +41,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value =
                 -1; // No restrictive discontinuity of the static speed profile
             _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = -1; // Spare
-            _pool.SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800; // 51200 in decimal
-            _pool.SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0xff00; // 65280 in decimal
+            SetValidityBits(true);
             _pool.SITR.ETCS1.Dynamic.EVC01SSW1.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.Dynamic.EVC01SSW2.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.Dynamic.EVC01SSW3.Value = 0x8000; // 32768 in decimal
@@ -443,6 +442,50 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void MmiOImlSpare()
         {
             _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = -1;
+        }
+
+        /// <summary>
+        /// Sets all validity bits of EVC 1 to valid or invalid
+        /// </summary>
+        /// <param name="valid"></param>
+        public static void SetValidityBits(bool valid)
+        {
+            SetValidityBits(valid, valid, valid, valid, valid, valid, valid, valid, valid, valid, valid);
+        }
+
+        public static void SetValidityBits(bool slip, bool slide, bool warning, bool vtrain, bool atrain, bool vtarget,
+            bool vpermitted, bool vrelease, bool braketarget, bool iml, bool vintervention)
+        {
+            ushort val1 = 0;
+            ushort val2 = 0;
+
+            if (slip)
+                val1 += 1 << 15;
+            if (slide)
+                val1 += 1 << 14;
+            if (warning)
+                val1 += 1 << 11;
+
+            _pool.SITR.ETCS1.Dynamic.EVC01Validity1.Value = val1;
+
+            if (vtrain)
+                val2 += 1 << 15;
+            if (atrain)
+                val2 += 1 << 14;
+            if (vtarget)
+                val2 += 1 << 13;
+            if (vpermitted)
+                val2 += 1 << 12;
+            if (vrelease)
+                val2 += 1 << 11;
+            if (braketarget)
+                val2 += 1 << 10;
+            if (iml)
+                val2 += 1 << 9;
+            if (vintervention)
+                val2 += 1 << 8;
+
+            _pool.SITR.ETCS1.Dynamic.EVC01Validity2.Value = val2;
         }
     }
 

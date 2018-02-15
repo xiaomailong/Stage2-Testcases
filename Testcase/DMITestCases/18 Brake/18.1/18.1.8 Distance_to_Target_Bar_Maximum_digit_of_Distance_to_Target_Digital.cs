@@ -139,8 +139,7 @@ namespace Testcase.DMITestCases
             switch (type)
             {
                 case msgType.typea:
-                    //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                    //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+                    //EVC1_MMIDynamic.SetValidityBits(false);
 
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                     EVC1_MMIDynamic.MMI_M_SLIP = 1;
@@ -156,8 +155,7 @@ namespace Testcase.DMITestCases
                     break;
 
                 case msgType.typeb:
-                    //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-                    //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+                    //EVC1_MMIDynamic.SetValidityBits(false);
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                     EVC1_MMIDynamic.MMI_M_SLIP = 1;
                     // DMI not responsive to this so chose another mode that removes distance to target items

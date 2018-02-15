@@ -126,8 +126,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_O_IML = 0;
             EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
 
-            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+            EVC1_MMIDynamic.SetValidityBits(false);
 
             switch (type)
             {
