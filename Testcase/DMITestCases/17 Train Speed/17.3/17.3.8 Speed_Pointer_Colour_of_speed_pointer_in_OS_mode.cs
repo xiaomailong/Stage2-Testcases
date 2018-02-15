@@ -468,8 +468,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 255;
             EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000000000;
-            //_pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            //_pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
+            //EVC7_MMIEtcsMiscOutSignals.SetValidityBits(true);
 
             switch (type)
             {
