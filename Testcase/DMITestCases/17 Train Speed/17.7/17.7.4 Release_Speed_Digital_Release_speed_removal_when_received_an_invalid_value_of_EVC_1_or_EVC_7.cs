@@ -31,31 +31,30 @@ namespace Testcase.DMITestCases
             StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
 
-            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1.Then, stop the train",
+            MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1. Then, stop the train",
                 "DMI displays in FS mode, level 1");
             /*
             Test Step 1
             Action: Drive the train forward pass BG1.Then, stop the train
             Expected Result: DMI displays in FS mode, level 1
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
-            // Simulate the train moving so the 'stop' should be discernible
-            this.Wait_Realtime(5000);
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
-            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 20;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode, Level 1.");
 
             MakeTestStepHeader(2, UniqueIdentifier++,
-                "Use the test script file 12_7_4_a.xml to send EVC-1 with,MMI_M_WARNING = 7",
-                "Verify the following information,(1)   The release speed in sub-area B2 and B6 are removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 are re-appear refer to received packet EVC-1 from ETCS Onboard");
+                "Use the test script file 12_7_4_a.xml to send EVC-1 with, MMI_M_WARNING = 7",
+                "Verify the following information," +
+                "(1) The release speed in sub-area B2 and B6 are removed from the DMI." +
+                "(2) After test scipt file is executed, the release speed in sub-area B2 and B6 re-appear according to received packet EVC-1 from ETCS Onboard.");
             /*
             Test Step 2
-            Action: Use the test script file 12_7_4_a.xml to send EVC-1 with,MMI_M_WARNING = 7
-            Expected Result: Verify the following information,(1)   The release speed in sub-area B2 and B6 are removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 are re-appear refer to received packet EVC-1 from ETCS Onboard
+            Action: Use the test script file 12_7_4_a.xml to send EVC-1 with, MMI_M_WARNING = 7
+            Expected Result: Verify the following information,
+            (1) The release speed in sub-area B2 and B6 are removed from the DMI.
+            (2) After test scipt file is executed, the release speed in sub-area B2 and B6 re-appear according to received packet EVC-1 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6587 (partly: MMI_M_WARNING is invalid);(2) MMI_gen 6587 (partly: toggle function is reset to default state);
             */
             XML_12_7_4(msgType.typea);
@@ -67,21 +66,34 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speed in sub-area B2 and B6 are re-displayed");
+
             MakeTestStepHeader(3, UniqueIdentifier++,
-                "Use the test script file 12_7_4_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17",
-                "Verify the following information,(1)   The release speed are sub-area B2 and B6 is removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 is are re-appear refer to received packet EVC-7 from ETCS Onboard");
+                "Use the test script file 12_7_4_b.xml to send EVC-7 with, OBU_TR_M_MODE = 17",
+                "Verify the following information," +
+                "(1) The release speed are sub-area B2 and B6 is removed from the DMI." +
+                "(2) After test scipt file is executed, the release speed in sub-area B2 and B6 re-appear according to received packet EVC-7 from ETCS Onboard.");
             /*
             Test Step 3
             Action: Use the test script file 12_7_4_b.xml to send EVC-7 with,OBU_TR_M_MODE = 17
-            Expected Result: Verify the following information,(1)   The release speed are sub-area B2 and B6 is removed from the DMI.(2)   After test scipt file is executed, the release speed in sub-area B2 and B6 is are re-appear refer to received packet EVC-7 from ETCS Onboard
+            Expected Result: Verify the following information,
+            (1) The release speed are sub-area B2 and B6 is removed from the DMI.
+            (2) After test scipt file is executed, the release speed in sub-area B2 and B6 re-appear according to received packet EVC-7 from ETCS Onboard
             Test Step Comment: (1) MMI_gen 6587 (partly: OBU_TR_M_MODE is invalid);(2) MMI_gen 6587 (partly: toggle function is reset to default state);
             */
             XML_12_7_4(msgType.typeb);
+
+            // Reset EVC-1 validity bits
+            SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0xc800; // 51200 in decimal
+            SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0xff00; // 65280 in decimal
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speeds in sub-area B2 and B6 are removed from the DMI.");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            // Reset EVC-7 validity bits
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x7c88;
+            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xfc00;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speeds in sub-area B2 and B6 are re-displayed.");
@@ -125,10 +137,9 @@ namespace Testcase.DMITestCases
 
                     SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
                     SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
-                    //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                    //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
 
                     break;
+
                 case msgType.typeb:
 
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EBTestInProgress = 0;
@@ -146,8 +157,8 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
 
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x1000;
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x1; // All validity bits set
+                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x0008;     // Bit-inverse of 4096
+                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x8000;     // Bit-inverse of 1
 
                     break;
             }
