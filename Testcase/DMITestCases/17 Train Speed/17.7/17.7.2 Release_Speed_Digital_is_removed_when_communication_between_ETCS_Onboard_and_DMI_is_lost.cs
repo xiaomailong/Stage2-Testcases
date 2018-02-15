@@ -8,7 +8,8 @@ namespace Testcase.DMITestCases
     /// 17.7.2 Release Speed Digital is removed when communication between ETCS Onboard and DMI is lost
     /// TC-ID: 12.7.2
     /// 
-    /// This test case verifies the appearance of the Release Speed digital while the communication between ETCS Onboard and DMI is lost. After the communication is re-established, the Release Speed digital shall display on DMI according to [MMI-ETCS-gen]
+    /// This test case verifies the appearance of the Release Speed digital while the communication between ETCS Onboard and DMI is lost.
+    /// After the communication is re-established, the Release Speed digital shall display on DMI according to [MMI-ETCS-gen]
     /// 
     /// Tested Requirements:
     /// MMI_gen 6588 (partly: Release speed removal); MMI_gen 6589 (partly: Release speed re-appeared);
@@ -55,14 +56,8 @@ namespace Testcase.DMITestCases
             Action: Driver performs SoM to SR mode, Level 1
             Expected Result: ATP enters SR mode, Level 1.DMI displays in SR mode
             */
-            // Steps tested elsewhere: force SoM
-
-            DmiActions.Set_Driver_ID(this, "1234");
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
-            DmiActions.Finished_SoM_Default_Window(this);
-
+            DmiActions.Complete_SoM_L1_SR(this);
+            
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. ATP enters SR mode, Level 1." + Environment.NewLine +
                                 "2. DMI displays in SR mode.");
@@ -75,7 +70,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes mode from SR to FS
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI changes mode from SR to FS.");
@@ -88,36 +83,35 @@ namespace Testcase.DMITestCases
             Expected Result: The Release Speed digital is displayed at sub-area B6
             */
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Release_Speed_Monitoring;
-            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 20;
+            EVC1_MMIDynamic.MMI_V_RELEASE_MPH = 20;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The digital Release Speed is displayed at sub-area B6.");
+                                "1. The digital Release Speed (20 mph) is displayed at sub-area B6.");
 
             MakeTestStepHeader(5, UniqueIdentifier++,
                 "Stop the train and simulate the communication loss between ETCS Onboard and DMI",
-                "DMI displays the  message “ATP Down Alarm” with sound alarm.Verify that the release speed digital is removed from DMI’s screen. The toggling function is reset to default state");
+                "DMI displays the message “ATP Down Alarm” with sound alarm. Verify that the release speed digital is removed from DMI’s screen. The toggling function is reset to default state");
             /*
             Test Step 5
             Action: Stop the train and simulate the communication loss between ETCS Onboard and DMI
-            Expected Result: DMI displays the  message “ATP Down Alarm” with sound alarm.Verify that the release speed digital is removed from DMI’s screen. The toggling function is reset to default state
+            Expected Result: DMI displays the message “ATP Down Alarm” with sound alarm.Verify that the release speed digital is removed from DMI’s screen. The toggling function is reset to default state
             Test Step Comment: MMI_gen 6588 (partly: Release speed removal);
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
+            EVC1_MMIDynamic.MMI_V_TRAIN = 0;
             DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the  message “ATP Down Alarm” with sound alarm." +
-                                Environment.NewLine +
+                                "1. DMI displays the  message “ATP Down Alarm” with sound alarm." + Environment.NewLine +
                                 "2. Digital Release Speed is not displayed. " +
-                                "3. The toggling function is inactive (symbol DR01 is not displayed in area F7.");
+                                "3. FOR SOFT KEY SCREEN TYPE ONLY: The toggling function is inactive (symbol DR01 is NOT displayed in area F7.)");
 
             MakeTestStepHeader(6, UniqueIdentifier++, "Re-establish the communication between ETCS onboard and DMI",
-                "DMI displays in FS mode and the release speed digital is reappeared. The toggling function is applied");
+                "DMI displays in FS mode and the release speed digital re-appear. The toggling function is applied");
             /*
             Test Step 6
             Action: Re-establish the communication between ETCS onboard and DMI
-            Expected Result: DMI displays in FS mode and the release speed digital is reappeared. The toggling function is applied
-            Test Step Comment: MMI_gen 6589 (partly: Release speed re-appeared);    
+            Expected Result: DMI displays in FS mode and the release speed digital is re-appear. The toggling function is applied
+            Test Step Comment: MMI_gen 6589 (partly: Release speed re-appear);    
             */
             // Call generic Action Method
             DmiActions.Re_establish_communication_EVC_DMI(this);
@@ -125,7 +119,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in FS mode." + Environment.NewLine +
                                 "2. Digital Release Speed is re-displayed" + Environment.NewLine +
-                                "3. Toggling function is active (symbol DR01 is displayed in area F7.");
+                                "3. FOR SOFT KEY SCREEN TYPE ONLY: Toggling function is active (symbol DR01 is displayed in area F7.)");
 
             DmiActions.ShowInstruction(this, "Press in area F7 to activate the toggling function");
 
