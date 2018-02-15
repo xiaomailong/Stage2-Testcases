@@ -35,45 +35,40 @@ namespace Testcase.DMITestCases
             StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Start ATP without cabin activation",
-                "Verify the following information,(1)    Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = -1.(2)   The following objects are not displayed on the DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance Bar");
+                "Verify the following information," +
+                "(1) Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = -1." +
+                "(2) The following objects are not displayed on the DMI, Speed Pointer Speed Digital CSG, speed hooks, Target Distance Bar");
             /*
             Test Step 1
             Action: Start ATP without cabin activation
-            Expected Result: Verify the following information,(1)    Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = -1.(2)   The following objects are not displayed on the DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance Bar
+            Expected Result: Verify the following information,
+            (1) Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = -1.
+            (2) The following objects are not displayed on the DMI, Speed Pointer Speed Digital CSG CSG-Extension All hooks Target Distance Bar
             Test Step Comment: (1) MMI_gen 1086 (partly: received MMI_V_TRAIN equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN equal -1); MMI_gen 1275 (partly: received invalid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: when MMI_V_TRAIN equal -1);  MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN equal -1); MMI_gen 1275 (partly: when MMI_V_TRAIN is invalid); 
             */
             EVC1_MMIDynamic.MMI_V_TRAIN = -1;
 
-            WaitForVerification("Check that the following objects are not displayed on the DMI:" + Environment.NewLine +
+            WaitForVerification("Check that the following objects are NOT displayed on the DMI:" + Environment.NewLine +
                                 Environment.NewLine +
                                 "1. Speed Pointer." + Environment.NewLine +
                                 "2. Speed Digital" + Environment.NewLine +
                                 "3. CSG" + Environment.NewLine +
-                                "4. CSG - Extension" + Environment.NewLine +
-                                "5. All hooks" + Environment.NewLine +
-                                "6. Target Distance Bar");
+                                "4. Speed hooks" + Environment.NewLine +
+                                "5. Target Distance Bar");
 
             MakeTestStepHeader(2, UniqueIdentifier++, "Activate cabin A and perform SoM in SR mode, Level 1",
-                "Verify the following information,(1)   Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = 0.(2)    The Speed pointer, Speed digital, CSG, CSG-Extension, all hooks, Target Distance Bar and Target Distance Digital are diplayed and correspond to the  received packet EVC-1");
+                "Verify the following information," +
+                "(1) Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = 0." +
+                "(2) The Speed pointer, Speed digital, CSG, speed hooks, Target Distance Bar and Target Distance Digital are diplayed and correspond to the received packet EVC-1");
             /*
             Test Step 2
             Action: Activate cabin A and perform SoM in SR mode, Level 1
-            Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = 0.(2)    The Speed pointer, Speed digital, CSG, CSG-Extension, all hooks, Target Distance Bar and Target Distance Digital are diplayed and correspond to the  received packet EVC-1
+            Expected Result: Verify the following information,
+            (1) Use the log file to confirm that DMI receives packet EVC-1 with variable MMI_V_TRAIN = 0.
+            (2)  The Speed pointer, Speed digital, CSG, speed hooks, Target Distance Bar and Target Distance Digital are diplayed and correspond to the received packet EVC-1
             Test Step Comment: (1) MMI_gen 1086 (partly: negative case - received MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - received valid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - when MMI_V_TRAIN is valid);
             */
-            // Set train running number, cab 1 active, and other defaults
-            DmiActions.Activate_Cabin_1(this);
-
-            // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
-
-            // Set to level 1 and SR mode
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
-
-            // Enable standard buttons including Start, and display Default window.
-            DmiActions.Finished_SoM_Default_Window(this);
+            DmiActions.Complete_SoM_L1_SR(this);
 
             EVC1_MMIDynamic.MMI_V_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TARGET = 200;
@@ -85,17 +80,22 @@ namespace Testcase.DMITestCases
                                 "1. The Speed pointer" + Environment.NewLine +
                                 "2. Speed digital" + Environment.NewLine +
                                 "3. CSG" + Environment.NewLine +
-                                "4. CSG-Extension" + Environment.NewLine +
-                                "5. All hooks" + Environment.NewLine +
-                                "6. Target Distance Bar" + Environment.NewLine +
-                                "7. Digital Target Distance");
+                                "4. Speed hooks" + Environment.NewLine +
+                                "5. Target Distance Bar" + Environment.NewLine +
+                                "6. Digital Target Distance");
 
             MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward pass BG1 with speed = 25 km/h",
-                "Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_TRAIN = 694.(2)    The Speed pointer and Speed digital are diplayed consist with received packet EVC-1.(3)   The Speed Pointer and Speed Digital on DMI screen are correspond with the current train speed");
+                "Verify the following information," +
+                "(1) Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_TRAIN = 694." +
+                "(2) The Speed pointer and Speed digital are diplayed consist with received packet EVC-1." +
+                "(3) The Speed Pointer and Speed Digital on DMI screen are correspond with the current train speed");
             /*
             Test Step 3
             Action: Drive the train forward pass BG1 with speed = 25 km/h
-            Expected Result: Verify the following information,(1)   Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_TRAIN = 694.(2)    The Speed pointer and Speed digital are diplayed consist with received packet EVC-1.(3)   The Speed Pointer and Speed Digital on DMI screen are correspond with the current train speed
+            Expected Result: Verify the following information,
+            (1) Use the log file to confirm that DMI received packet EVC-1 with variable MMI_V_TRAIN = 694.
+            (2) The Speed pointer and Speed digital are diplayed consist with received packet EVC-1.
+            (3) The Speed Pointer and Speed Digital on DMI screen are correspond with the current train speed
             Test Step Comment: (1) MMI_gen 1086 (partly: negative case - received MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: received MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - received valid MMI_V_TRAIN);(2) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN greater than -1); MMI_gen 1275 (partly: negative case - when MMI_V_TRAIN is valid);(3) MMI_gen 1277;
             */
             EVC1_MMIDynamic.MMI_V_TRAIN = 694;
@@ -106,12 +106,14 @@ namespace Testcase.DMITestCases
 
             MakeTestStepHeader(4, UniqueIdentifier++,
                 "Use the test script file 12_8_a.xml to send EVC-1 with, MMI_V_TRAIN = -2",
-                "Verify the following information,(1)   The following objects are not display on DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance BarTarget Distance Digital");
+                "Verify the following information," +
+                "(1) The following objects are not display on DMI, Speed Pointer Speed Digital, CSG, speed hooks Target Distance Bar Target Distance Digital");
             /*
             Test Step 4
             Action: Use the test script file 12_8_a.xml to send EVC-1 with, MMI_V_TRAIN = -2
-            Expected Result: Verify the following information,(1)   The following objects are not display on DMI,Speed PointerSpeed DigitalCSGCSG-ExtensionAll hooksTarget Distance BarTarget Distance Digital
-            Test Step Comment: (1) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: negative case - when MMI_DYNAMIC not elder than 600ms and MMI_V_TRAIN not greater than and equal -1); MMI_gen 1275;
+            Expected Result: Verify the following information,
+            (1) The following objects are not display on DMI, Speed Pointer Speed Digital, CSG, Speed hooks Target Distance Bar Target Distance Digital
+            Test Step Comment: (1) MMI_gen 1086 (partly: negative case - when MMI_V_TRAIN not equal -1); MMI_gen 1268 (partly: negative case - when MMI_DYNAMIC not elder than 600 ms and MMI_V_TRAIN not greater than and equal -1); MMI_gen 1275;
             */
             XML_12_8();
 
@@ -120,10 +122,9 @@ namespace Testcase.DMITestCases
                                 "1. The Speed pointer" + Environment.NewLine +
                                 "2. Speed digital" + Environment.NewLine +
                                 "3. CSG" + Environment.NewLine +
-                                "4. CSG-Extension" + Environment.NewLine +
-                                "5. Any hooks" + Environment.NewLine +
-                                "6. Target Distance Bar" + Environment.NewLine +
-                                "7. Digital Target Distance");
+                                "4. Speed hooks" + Environment.NewLine +
+                                "5. Target Distance Bar" + Environment.NewLine +
+                                "6. Digital Target Distance");
 
             TraceHeader("End of test");
 
@@ -140,20 +141,17 @@ namespace Testcase.DMITestCases
 
         private void XML_12_8()
         {
-            EVC1_MMIDynamic.MMI_M_SLIDE = 1;
-            EVC1_MMIDynamic.MMI_M_SLIP = 1;
+            EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+            EVC1_MMIDynamic.MMI_M_SLIP = 0;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
-            EVC1_MMIDynamic.MMI_V_TRAIN = -1; // value in xml file is out of range so send this
+            EVC1_MMIDynamic.MMI_V_TRAIN = 11115; // value in xml file is out of range so send this
             EVC1_MMIDynamic.MMI_V_TARGET = 1111;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 1111;
             EVC1_MMIDynamic.MMI_V_RELEASE = 555;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
             EVC1_MMIDynamic.MMI_O_IML = 0;
             EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
-            //SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
-            //SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
         }
 
         #endregion
