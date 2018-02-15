@@ -67,37 +67,6 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
-            // or, if this is really needed:
-            /*
-            DmiActions.Display_Driver_ID_Window(this);
-            DmiActions.Set_Driver_ID(this, "1234");
-            DmiActions.Send_SB_Mode(this);
-            DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
-
-            DmiActions.Request_Brake_Test(this);
-            DmiActions.ShowInstruction(this, "Perform Brake Test");
-
-            DmiActions.Display_Level_Window(this);
-            DmiActions.ShowInstruction(this, "Select and enter Level 2");
-            DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
-            DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
-            DmiActions.Display_Train_Data_Window(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                  "1. Enter and confirm value in each input field." + Environment.NewLine +
-                                  "2. Press ‘Yes’ button.");
-            DmiActions.Display_Train_data_validation_Window(this);
-            DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine + Environment.NewLine +
-                                             @"1. Press ‘Yes’ button." + Environment.NewLine +
-                                             "2. Confirmed the selected value by pressing the input field.");
-            DmiActions.Display_TRN_Window(this);
-            DmiActions.ShowInstruction(this, "Enter and confirm Train Running Number");
-            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
-            DmiActions.ShowInstruction(this, @"Press ‘Start’ button");
-            DmiActions.Send_SR_Mode_Ack(this);
-            DmiActions.ShowInstruction(this, "Press and hold DMI Sub Area C1");
-            DmiActions.Send_SR_Mode(this);
-            DmiActions.Finished_SoM_Default_Window(this);
-            */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 0;
 
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -131,7 +100,7 @@ namespace Testcase.DMITestCases
             Action: Receives FS MA and track description from RBC
             Expected Result: DMI displays in FS mode, Level 2
             */
-            // No display changes noted so ignoring any update of track, et c.
+            // No display changes noted so ignoring any update of track, etc.
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
@@ -139,19 +108,19 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays in FS mode, Level 2");
 
             MakeTestStepHeader(6, UniqueIdentifier++,
-                "Simulate RBC communication loss and wait for a few secondsNote: This simulation is perform automatically by UTT file",
-                "DMI displays Connection Lost/Set-Up failed symbol (ST04) in sub area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 282 (ST04 symbol)");
+                "Simulate RBC communication loss and wait for a few seconds" +
+                "Note: This simulation is perform automatically by UTT file",
+                "DMI displays Connection Lost/Set-Up failed symbol (ST04) in sub area E1." +
+                "Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE. MMI_Q_TEXT = 282 (ST04 symbol)");
             /*
             Test Step 6
-            Action: Simulate RBC communication loss and wait for a few secondsNote: This simulation is perform automatically by UTT file
+            Action: Simulate RBC communication loss and wait for a few seconds
+            Note: This simulation is perform automatically by UTT file
             Expected Result: DMI displays Connection Lost/Set-Up failed symbol (ST04) in sub area E1.Use the log file to confirm that DMI receives packet information EVC-8 with variable MMI_DRIVER_MESSAGE.MMI_Q_TEXT = 282 (ST04 symbol)
             Test Step Comment: (1) MMI_gen 2576 (partly: concise visualisation, connection lost); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: concise visualisation); MMI_gen 7022 (partly: Radio connection symbols); MMI_gen 3005 (partly: Radio connection symbols);
             */
-            DmiActions.Simulate_communication_loss_EVC_DMI(this);
 
-            Wait_Realtime(2000);
-
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 282;
@@ -171,7 +140,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 613;
@@ -179,7 +148,7 @@ namespace Testcase.DMITestCases
 
             // Spec says ST03 symbol, Connection established but 613 is ST103 Connection Up
             WaitForVerification("Check the following:" + Environment.NewLine +
-                                "1. DMI displays the ‘Connection established’ symbol (ST03) in sub-area E1.");
+                                "1. DMI displays the ‘Connection established’ symbol (ST103) in sub-area E1. (Not shown in ERA015560 standard)");
 
             MakeTestStepHeader(8, UniqueIdentifier++,
                 "Perform the following procedure,Stop the trainDe-activate Cabin A.Activate Cabin A",
@@ -198,11 +167,11 @@ namespace Testcase.DMITestCases
                                 "1. DMI does not display the ‘Connection established’ symbol (ST04) in sub-area E1.");
 
             MakeTestStepHeader(9, UniqueIdentifier++,
-                "Use the test script file 18_1_1_1_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 610",
+                "Use the test script file 18_1_1_1_1_a.xml to send EVC-8 with, MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 610",
                 "No symbol display in sub area E1");
             /*
             Test Step 9
-            Action: Use the test script file 18_1_1_1_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 610
+            Action: Use the test script file 18_1_1_1_1_a.xml to send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 610
             Expected Result: No symbol display in sub area E1
             Test Step Comment: MMI_gen 2576 (partly: concise visualisation, Network registered via two modems); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: concise visualisation);
             */
@@ -212,7 +181,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI does not display a symbol in sub-area E1.");
 
             MakeTestStepHeader(10, UniqueIdentifier++,
-                "(Continue from step 9) Send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 609",
+                "(Continue from step 9) Send EVC-8 with, MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 609",
                 "No symbol display in sub area E1");
             /*
             Test Step 10
@@ -220,7 +189,7 @@ namespace Testcase.DMITestCases
             Expected Result: No symbol display in sub area E1
             Test Step Comment: MMI_gen 2576 (partly: concise visualisation, Network registered via one modems); MMI_gen 1855 (partly: connection established);  MMI_gen 11459 (partly: concise visualisation); 
             */
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 5;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 609;
@@ -230,7 +199,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI does not display a symbol in sub-area E1.");
 
             MakeTestStepHeader(11, UniqueIdentifier++,
-                "Use the test script file 18_1_1_1_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3MMI_Q_TEXT = 614",
+                "Use the test script file 18_1_1_1_1_b.xml to send EVC-8 with,MMI_Q_TEXT_CLASS = 1 MMI_Q_TEXT_CRITERIA = 3 MMI_Q_TEXT = 614",
                 "DMI displays Connection established symbol (ST03) in sub area E1");
             /*
             Test Step 11
@@ -259,7 +228,7 @@ namespace Testcase.DMITestCases
 
         private void XML_18_1_1_1_1_a()
         {
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 4;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 610;
@@ -269,7 +238,7 @@ namespace Testcase.DMITestCases
 
         private void XML_18_1_1_1_1_b()
         {
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 6;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 614;
