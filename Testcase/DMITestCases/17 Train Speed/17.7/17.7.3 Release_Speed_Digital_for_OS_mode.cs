@@ -1,4 +1,5 @@
 using System;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -47,39 +48,48 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.Send();
 
             DmiActions.ShowInstruction(this, "Acknowledge OS mode in sub-area C1");
+
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
-            WaitForVerification("Acknowledge OS mode in sub-area C1 and check the following:" + Environment.NewLine +
+            WaitForVerification("Check the following:" + Environment.NewLine +
                                 Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1.");
 
 
             MakeTestStepHeader(2, UniqueIdentifier++, "Driving the train with speed equal to 30 km/h",
-                "When a Release speed exists, verify the following information,(1)   DMI displays the release speed digital in sub-area B6.(2)   Sound 'Sinfo' is played once.(3)   Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows,EVC-7: OBU_TR_M_MODE = 1 (OS Mode) EVC-1: MMI_V_RELEASE = 1111 (~40 km/h) EVC-1: MMI_M_WARNING != 0, 4, 8, 12 (Not CSM)");
+                "When a Release speed exists, verify the following information," +
+                "(1) DMI displays the release speed digital in sub-area B6." +
+                "(2) Sound 'Sinfo' is played once." +
+                "(3) Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows, EVC-7: OBU_TR_M_MODE = 1 (OS Mode) EVC-1: MMI_V_RELEASE = 1111 (~40 km/h) EVC-1: MMI_M_WARNING != 0, 4, 8, 12 (Not CSM)");
             /*
             Test Step 2
             Action: Driving the train with speed equal to 30 km/h
-            Expected Result: When a Release speed exists, verify the following information,(1)   DMI displays the release speed digital in sub-area B6.(2)   Sound 'Sinfo' is played once.(3)   Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows,EVC-7: OBU_TR_M_MODE = 1 (OS Mode) EVC-1: MMI_V_RELEASE = 1111 (~40 km/h) EVC-1: MMI_M_WARNING != 0, 4, 8, 12 (Not CSM)
+            Expected Result: When a Release speed exists, verify the following information,
+            (1) DMI displays the release speed digital in sub-area B6.
+            (2) Sound 'Sinfo' is played once.
+            (3) Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows, EVC-7: OBU_TR_M_MODE = 1 (OS Mode) EVC-1: MMI_V_RELEASE = 1111 (~40 km/h) EVC-1: MMI_M_WARNING != 0, 4, 8, 12 (Not CSM)
             Test Step Comment: (1) MMI_gen 6586 (partly: toggle on);(2) MMI_gen 6586 (partly: sound Sinfo); MMI_gen 9516 (partly: toggling function of release speed digital); MMI_gen 12025 (partly: toggling function of release speed digital);(3) MMI_gen 6586 (partly: Release speed changes); MMI_gen 6468 (partly: OS);
             */
-            // EVC7_MMIEtcsMiscOutSignals Send
             EVC1_MMIDynamic.MMI_V_RELEASE = 1111;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
-            EVC1_MMIDynamic.MMI_M_WARNING =
-                MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring; // not 0, 4, 8, 12(Not CSM)
-            // ?? Send
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring; // not 0, 4, 8, 12 (Not CSM)
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the digital release speed in sub-area B6." + Environment.NewLine +
                                 "2. Sound 'Sinfo' is played once.");
 
             MakeTestStepHeader(3, UniqueIdentifier++,
-                "Use the test script file 12_7_3_a.xml to send EVC-1 with,MMI_V_RELEASE = 11112",
-                "Verify the following information,(1)   Tthe release speed digital in sub-area B6 is removed");
+                "Use the test script file 12_7_3_a.xml to send EVC-1 with, MMI_V_RELEASE = 11112",
+                "Verify the following information," +
+                "(1) The release speed digital in sub-area B6 is removed");
             /*
             Test Step 3
             Action: Use the test script file 12_7_3_a.xml to send EVC-1 with,MMI_V_RELEASE = 11112
-            Expected Result: Verify the following information,(1)   Tthe release speed digital in sub-area B6 is removed
+            Expected Result: Verify the following information,
+            (1) The release speed digital in sub-area B6 is removed
             Test Step Comment: (1) MMI_gen 11112;
             */
             XML_12_7_3();
@@ -116,8 +126,6 @@ namespace Testcase.DMITestCases
 
             SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
             SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
-            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-            //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63;   // All validity bits set
         }
 
         #endregion
