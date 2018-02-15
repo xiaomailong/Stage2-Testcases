@@ -172,8 +172,7 @@ namespace Testcase.DMITestCases
                     break;
 
                 case msgType.typec:
-                    //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4096;         // bit 12 MMI_OBU_TR_M_Level
-                    //SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 1;            // bit 0  MMI_OBU_TR_M_Mode
+                    //EVC7_MMIEtcsMiscOutSignals.SetValidityBits(false, false, false, false, false, false, true, true, false, false, false, false, false);
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EBTestInProgress = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_RadioStatus = 0;

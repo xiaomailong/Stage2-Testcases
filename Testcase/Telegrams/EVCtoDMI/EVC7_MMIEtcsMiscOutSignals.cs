@@ -38,8 +38,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = 255; // No STM
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = 2880; // 48 hours
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 1000000000; // Initial position
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x7c88; // All validity bits set
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xfc00; // All validity bits set
+            SetValidityBits(true);
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW3.Value = 0x8000; // 32768 in decimal
@@ -350,6 +349,55 @@ namespace Testcase.Telegrams.EVCtoDMI
             NoPower = 16,
             Invalid = 17,
             Unknown = 128
+        }
+
+        /// <summary>
+        /// Sets all validity bits of EVC 7 to valid or invalid
+        /// </summary>
+        /// <param name="valid"></param>
+        public static void SetValidityBits(bool valid)
+        {
+            SetValidityBits(valid, valid, valid, valid, valid, valid, valid, valid, valid, valid, valid, valid, valid);
+        }
+
+        public static void SetValidityBits(bool ebinprogress, bool ebstatus, bool radiostatus, bool hsenabled,
+            bool daenabled, bool braketeststatus,
+            bool mlevel, bool mmode, bool adhesion, bool stmhs, bool stmda, bool braketesttimeout, bool otrain)
+        {
+            ushort val1 = 0;
+            ushort val2 = 0;
+
+            if (ebinprogress)
+                val1 += 1 << 14;
+            if (ebstatus)
+                val1 += 1 << 13;
+            if (radiostatus)
+                val1 += 1 << 12;
+            if (hsenabled)
+                val1 += 1 << 11;
+            if (daenabled)
+                val1 += 1 << 10;
+            if (braketeststatus)
+                val1 += 1 << 7;
+            if (mlevel)
+                val1 += 1 << 3;
+
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = val1;
+
+            if (mmode)
+                val2 += 1 << 15;
+            if (adhesion)
+                val2 += 1 << 14;
+            if (stmhs)
+                val2 += 1 << 13;
+            if (stmda)
+                val2 += 1 << 12;
+            if (braketesttimeout)
+                val2 += 1 << 11;
+            if (otrain)
+                val2 += 1 << 10;
+
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = val2;
         }
     }
 }

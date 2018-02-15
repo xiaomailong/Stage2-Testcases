@@ -281,8 +281,7 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 46;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 1000010000;
 
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0xfc88; // Bit-reverse of 4415 as set by xml file
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xfc00; // Bit-reverse of 63 as set by xml file
+                    EVC7_MMIEtcsMiscOutSignals.SetValidityBits(true);
 
                     break;
             }

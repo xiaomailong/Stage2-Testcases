@@ -54,8 +54,8 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
 
-            // XML has validity1 0x1000 (4096) which is bit 12 (MMI_OBU_TR_EBTestInProgress) and validity2 0x0001; (MMI_OBU_TR_M_Mode)
-            this.SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x0100;
+            // TODO decipher what this comment means: XML has validity1 0x1000 (4096) which is bit 12 (MMI_OBU_TR_EBTestInProgress) and validity2 0x0001; (MMI_OBU_TR_M_Mode)
+            EVC7_MMIEtcsMiscOutSignals.SetValidityBits(true);
 
             WaitForVerification("Check the following: + " + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display a symbol in sub-area C8.");

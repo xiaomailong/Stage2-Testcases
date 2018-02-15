@@ -169,8 +169,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 10002000;
 
             // Reset validity bits
-            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x7c88; // All validity bits set
-            SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0xfc00; // All validity bits set
+            EVC7_MMIEtcsMiscOutSignals.SetValidityBits(true);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The basic speed hook is re-displayed.");
@@ -231,8 +230,7 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
 
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 0x0008;     // Bit-inverse of 4096
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 0x8000;     // Bit inverse of 1
+                    EVC7_MMIEtcsMiscOutSignals.SetValidityBits(false, false, false, false, false, false, true, true, false, false, false, false, false);
                     break;
             }
         }
