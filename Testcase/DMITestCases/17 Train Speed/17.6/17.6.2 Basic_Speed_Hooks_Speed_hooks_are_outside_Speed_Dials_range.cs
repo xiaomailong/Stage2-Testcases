@@ -31,20 +31,22 @@ namespace Testcase.DMITestCases
 
             DmiActions.Complete_SoM_L1_SR(this);
 
-            // Set up from config to set range of speed dial ??
-
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Driver drives the train forward passing BG1.Then, stop the train and acknowledge OS mode by pressing area C1",
-                "DMI displays in OS mode, Level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 4166 (150km/h)MMI_V_TARGET = 4027 (145km/h)(2)   All basic speed hooks are not displays in sub-area B2");
+                "DMI displays in OS mode, Level 1. Verify the following information," +
+                "(1) Use the log file to confirm that DMI received packet information EVC-1 with following variables, MMI_V_PERMITTED = 4166 (150 km/h) MMI_V_TARGET = 4027 (145 km/h)" +
+                "(2) All basic speed hooks are not displays in sub-area B2");
             /*
             Test Step 1
             Action: Driver drives the train forward passing BG1.Then, stop the train and acknowledge OS mode by pressing area C1
-            Expected Result: DMI displays in OS mode, Level 1.Verify the following information,(1)   Use the log file to confirm that DMI received packet information EVC-1 with following variables,MMI_V_PERMITTED = 4166 (150km/h)MMI_V_TARGET = 4027 (145km/h)(2)   All basic speed hooks are not displays in sub-area B2
+            Expected Result: DMI displays in OS mode, Level 1.Verify the following information,
+            (1) Use the log file to confirm that DMI received packet information EVC-1 with following variables, MMI_V_PERMITTED = 4166 (150 km/h) MMI_V_TARGET = 4027 (145 km/h)
+            (2) All basic speed hooks are not displays in sub-area B2
             Test Step Comment: (1) MMI_gen 6331 (partly: outside the Speed Dial’s maximum speed);(2) MMI_gen 6331 (partly: not to be shown);
             */
 
-            EVC1_MMIDynamic.MMI_V_PERMITTED = 4166;
-            EVC1_MMIDynamic.MMI_V_TARGET = 4027;
+            EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 300;  // Outside the DMI speed dial range
+            EVC1_MMIDynamic.MMI_V_TARGET_KMH = 250;     // Outside the DMI speed dial range
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -62,8 +64,9 @@ namespace Testcase.DMITestCases
                                 "2. No basic speed hooks are displayed in sub-area B2.");
 
             MakeTestStepHeader(2, UniqueIdentifier++,
-                "Use the test script file 12_6_2_a.xml to send EVC-1 with,MMI_V_TARGET = 65535MMI_V_PERMITTED = 0",
-                "Verify the following information,(1)   There is only white basic speed hook displays at 0 km/h");
+                "Use the test script file 12_6_2_a.xml to send EVC-1 with, MMI_V_TARGET = 65535 MMI_V_PERMITTED = 0",
+                "Verify the following information," +
+                "(1) There is only white basic speed hook displays at 0 km/h");
             /*
             Test Step 2
             Action: Use the test script file 12_6_2_a.xml to send EVC-1 with,MMI_V_TARGET = 65535MMI_V_PERMITTED = 0
@@ -79,7 +82,7 @@ namespace Testcase.DMITestCases
                 "1. Only a white basic speed hook is displayed at 0 km/h.");
 
             MakeTestStepHeader(3, UniqueIdentifier++,
-                "Use the test script file 12_6_2_b.xml to send EVC-1 with,MMI_V_TARGET = 0MMI_V_PERMITTED = 65535",
+                "Use the test script file 12_6_2_b.xml to send EVC-1 with, MMI_V_TARGET = 0 MMI_V_PERMITTED = 65535",
                 "Verify the following information,(1)   There is only medium grey basic speed hook displays at 0 km/h");
             /*
             Test Step 3
@@ -125,24 +128,19 @@ namespace Testcase.DMITestCases
 
             SITR.ETCS1.Dynamic.EVC01Validity1.Value = 0x0;
             SITR.ETCS1.Dynamic.EVC01Validity2.Value = 0x0;
+
             switch (type)
             {
                 case msgType.typea:
-                    EVC1_MMIDynamic.MMI_V_TARGET =
-                        11112; // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
+                    // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead
+                    EVC1_MMIDynamic.MMI_V_TARGET = 11112;
                     EVC1_MMIDynamic.MMI_V_PERMITTED = 0;
-
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity1.Value = 4415; // All validity bits set
-                    SITR.ETCS1.EtcsMiscOutSignals.EVC7Validity2.Value = 63; // All validity bits set
-
                     break;
+
                 case msgType.typeb:
-
+                    // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
+                    EVC1_MMIDynamic.MMI_V_PERMITTED = 11112;
                     EVC1_MMIDynamic.MMI_V_TARGET = 0;
-                    EVC1_MMIDynamic.MMI_V_PERMITTED =
-                        11112; // unsigned short value in xml is 65535 => -1 short : breaks in EVC1..Send(); using high value instead 
-
-
                     break;
             }
         }
