@@ -91,11 +91,16 @@ namespace Testcase.DMITestCases
             */
             XML_12_12(msgType.typeb);
 
+            // Test verification has been copied from TC_12_13 to check for Slide indicator since global configuration
+            // for slip/slide is not set on Crossrail DMI.
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Slip/Slide’ indication is not displayed on the speed hub.");
+                                "1. The Slide indication is displayed and shown as arrow pointing counterclockwise." + Environment.NewLine +
+                                "2. The Slide indication and digital speed are displayed in the same colour." + Environment.NewLine +
+                                "3. The Slide indication is displayed on the speed hub of the speed pointer." + Environment.NewLine +
+                                "4. DMI plays sound Sinfo once.");
 
             MakeTestStepHeader(5, UniqueIdentifier++,
-                "Use the test script file 12_12_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =1",
+                "Use the test script file 12_12_c.xml to send EVC-1 with, MMI_M_SLIP = 1 MMI_M_SLIDE = 1",
                 "Verify the following information,The ‘Slip’ indication is displayed on the speed hub as a clockwise arrow");
             /*
             Test Step 5

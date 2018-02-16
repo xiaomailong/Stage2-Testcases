@@ -27,9 +27,9 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 21834;
 
-            StartUp();
-
-            DmiActions.Complete_SoM_L1_SR(this);
+            // StartUp();
+            // 
+            // DmiActions.Complete_SoM_L1_SR(this);
 
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
@@ -42,11 +42,12 @@ namespace Testcase.DMITestCases
             Action: Driver the train forward
             Expected Result: DMI changes from SR mode to FS mode
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+            TraceInfo("This test is a repeat of a previous test case. Step skipped.");
+            // EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            // EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
             // Call generic Check Results Method
-            DmiExpectedResults.FS_mode_displayed(this);
+            // DmiExpectedResults.FS_mode_displayed(this);
 
             MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with speed = 140 km/h",
                 "The speed pointer is displayed with speed =140");
@@ -55,10 +56,11 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward with speed = 140 km/h
             Expected Result: The speed pointer is displayed with speed =140
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 140;
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The speed pointer is displayed with speed = 140 km/h.");
+            TraceInfo("This test is a repeat of a previous test case. Step skipped.");
+            // EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 140;
+            // 
+            // WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            //                     "1. The speed pointer is displayed with speed = 140 km/h.");
 
             MakeTestStepHeader(3, UniqueIdentifier++,
                 "Use the test script file 12_14_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0",
@@ -68,10 +70,11 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 12_14_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0
             Expected Result: The Slip indication is displayed and shown as arrow pointing clockwise
             */
-            XML_12_14(msgType.typea);
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Slip indication is displayed and shown as arrow pointing clockwise.");
+            TraceInfo("This test is a repeat of a previous test case. Step skipped.");
+            // XML_12_14(msgType.typea);
+            // 
+            // WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            //                     "1. The Slip indication is displayed and shown as arrow pointing clockwise.");
 
             MakeTestStepHeader(4, UniqueIdentifier++,
                 "Use the test script file 12_14_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE = 1",
@@ -81,10 +84,11 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 12_14_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE = 1
             Expected Result: The Slide indication is displayed and shown as arrow pointing counterclockwise
             */
-            XML_12_14(msgType.typeb);
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Slide indication is displayed and shown as arrow pointing clockwise.");
+            TraceInfo("This test is a repeat of a previous test case. Step skipped.");
+            // XML_12_14(msgType.typeb);
+            // 
+            // WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            //                     "1. The Slide indication is displayed and shown as arrow pointing clockwise.");
 
             MakeTestStepHeader(5, UniqueIdentifier++,
                 "Use the test script file 12_14_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 1",
@@ -95,10 +99,11 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Slip indication is displayed and shown as arrow pointing clockwise
             Test Step Comment: (1) MMI_gen 1693;
             */
-            XML_12_14(msgType.typec);
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. (1)	The Slip indication is displayed and shown as arrow pointing clockwise.");
+            TraceInfo("This test is a repeat of a previous test case. Step skipped.");
+            // XML_12_14(msgType.typec);
+            // 
+            // WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            //                     "1. (1)	The Slip indication is displayed and shown as arrow pointing clockwise.");
 
             TraceHeader("End of test");
 
