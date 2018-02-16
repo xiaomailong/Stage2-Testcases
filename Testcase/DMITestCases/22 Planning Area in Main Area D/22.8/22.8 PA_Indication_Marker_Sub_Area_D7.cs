@@ -230,7 +230,7 @@ namespace Testcase.DMITestCases
                 EVC1_MMIDynamic.MMI_V_RELEASE = EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 0;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 0;
-            EVC1_MMIDynamic.SetValidityBits(true, false, false, true, false, false, false, false, false, false, false);
+            EVC1_MMIDynamic.SetValidityBits(true);
             
             switch (packetSelector)
             {
