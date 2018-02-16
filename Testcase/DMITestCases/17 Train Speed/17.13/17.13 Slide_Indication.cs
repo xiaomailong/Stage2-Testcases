@@ -27,9 +27,9 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 21818;
 
-            StartUp();
+            // StartUp();
 
-            DmiActions.Complete_SoM_L1_SR(this);
+            // DmiActions.Complete_SoM_L1_SR(this);
 
             // Testcase entrypoint
             TraceInfo("This test case requires an ATP configuration change - " +
@@ -42,11 +42,13 @@ namespace Testcase.DMITestCases
             Action: Driver the train forward
             Expected Result: DMI changes from SR mode to FS mode
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+
+            TraceInfo("This test is a repeat of a previous test case. Step skipped.");
+            // EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            // EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
 
             // Call generic Check Results Method
-            DmiExpectedResults.FS_mode_displayed(this);
+            // DmiExpectedResults.FS_mode_displayed(this);
 
             MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward with speed = 140 km/h",
                 "The speed pointer is displayed with speed =140.Verify the following information,Use the log file to confirm that DMI receives EVC-1 with following variables,MMI_M_SLIPE = 0MMI_M_SLIDE = 0");
@@ -56,11 +58,13 @@ namespace Testcase.DMITestCases
             Expected Result: The speed pointer is displayed with speed =140.Verify the following information,Use the log file to confirm that DMI receives EVC-1 with following variables,MMI_M_SLIPE = 0MMI_M_SLIDE = 0
             Test Step Comment: (1) MMI_gen 1694 (partly: slip is not set), MMI_gen 1695 (partly: slide is not set), MMI_gen 1692 (partly: ETC speed, slide);
             */
-            EVC1_MMIDynamic.MMI_M_SLIP = EVC1_MMIDynamic.MMI_M_SLIDE = 0;
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 140;
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The speed pointer is displayed with speed = 140.");
+            TraceInfo("This test is a repeat of a previous test case. Step skipped.");
+            // EVC1_MMIDynamic.MMI_M_SLIP = EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+            // EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 140;
+
+            // WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            //                     "1. The speed pointer is displayed with speed = 140.");
 
             MakeTestStepHeader(3, UniqueIdentifier++,
                 "Use the test script file 12_13_a.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE =1",
@@ -71,15 +75,16 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The Slide indication is displayed and shown as arrow pointing counterclockwise.The colour of Slide indication is black as same as speed digital colour.The Slide indication is displayed on speed hub of the speed pointer.DMI plays sound Sinfo once
             Test Step Comment: (1) MMI_gen 1079 (partly: slide, presented),   MMI_gen 1695(partly: slide is set), MMI_gen 1694(partly: slip is not set), MMI_gen 1692 (partly: ETC speed, slide);   (2) MMI_gen 7013(partly: slide);(3) MMI_gen 1696(partly: slide);(4) MMI_gen 7012(partly: slide); MMI_gen 9516 (partly: slide indication); MMI_gen 12025 (partly: slide indication);
             */
-            XML_12_13(msgType.typea);
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The Slide indication is displayed and shown as arrow pointing counterclockwise." +
-                                Environment.NewLine +
-                                "2. The Slide indication and digital speed are in black." + Environment.NewLine +
-                                "3. The Slide indication is displayed on the speed hub of the speed pointer." +
-                                Environment.NewLine +
-                                "4. DMI plays sound Sinfo once.");
+            TraceInfo("This test is a repeat of a previous test case. Step skipped.");
+            // XML_12_13(msgType.typea);
+            // 
+            // WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            //                     "1. The Slide indication is displayed and shown as arrow pointing counterclockwise." +
+            //                     Environment.NewLine +
+            //                     "2. The Slide indication and digital speed are in black." + Environment.NewLine +
+            //                     "3. The Slide indication is displayed on the speed hub of the speed pointer." +
+            //                     Environment.NewLine +
+            //                     "4. DMI plays sound Sinfo once.");
 
             MakeTestStepHeader(4, UniqueIdentifier++,
                 "Use the test script file 12_13_b.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =0",
@@ -90,11 +95,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub. Sound Sinfo is not played
             Test Step Comment: (1) MMI_gen 1079 (partly: slide, presented),   MMI_gen 1694(partly: slip is set), MMI_gen 1695(partly: slide is not set), MMI_gen 1692 (partly: ETC speed);   (2) MMI_gen 7012(partly: no indication)
             */
-            XML_12_13(msgType.typeb);
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Slip / Slide’ indication is not displayed on the speed hub." +
-                                Environment.NewLine +
-                                "2. Sound Sinfo is not played.");
+            TraceInfo("This test is a repeat of a previous test case. Step skipped.");
+
+            // XML_12_13(msgType.typeb);
+            // WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            //                     "1. The ‘Slip / Slide’ indication is not displayed on the speed hub." +
+            //                     Environment.NewLine +
+            //                     "2. Sound Sinfo is not played.");
 
             MakeTestStepHeader(5, UniqueIdentifier++,
                 "Use the test script file 12_13_c.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE =1",
@@ -105,15 +112,13 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub. Sound Sinfo is not played
             Test Step Comment: (1) MMI_gen 1079 (partly: slide, presented),   MMI_gen 1694(partly: slip is set), MMI_gen 1695(partly: slide is set), MMI_gen 1693 (partly: under configuration), MMI_gen 1692 (partly: ETC speed);(2) MMI_gen 7012(partly: no indication);
             */
-            XML_12_13(msgType.typec);
+            TraceInfo("This test is a repeat of a previous test case. Step skipped.");
+            // XML_12_13(msgType.typec);
 
-            // Test spec says this:
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Slip / Slide’ indication is not displayed on the speed hub." +
-                                Environment.NewLine +
-                                "2. Sound Sinfo is not played.");
-
-            // ?? according to reference RS_ETC_R4 conditions are met for displaying slide indication and sounding Sinfo because slide is displayed
+            // WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            //                     "1. The ‘Slip / Slide’ indication is not displayed on the speed hub." +
+            //                     Environment.NewLine +
+            //                     "2. Sound Sinfo is not played.");
 
             TraceHeader("End of test");
 
