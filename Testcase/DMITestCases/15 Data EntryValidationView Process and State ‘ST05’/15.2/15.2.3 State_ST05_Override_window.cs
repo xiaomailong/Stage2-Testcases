@@ -4,6 +4,8 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.DMITestCases
 {
     /// <summary>
+    /// Updated to DMI Test Spec 4.4 by JS at 2018-02-16
+    /// 
     /// 15.2.3 State 'ST05': Override window
     /// TC-ID: 10.2.3
     /// 
@@ -31,15 +33,15 @@ namespace Testcase.DMITestCases
             DmiActions.Complete_SoM_L1_SR(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++,
-                "Perform the following procedure;Press ‘close’ button (Main menu window)Press ‘Override’ button",
+                "Press ‘Override’ button",
                 "Verify the following information;(1)   Verify DMI still displays Default window until Override window is displayed.(2)   Verify the close button is always enable");
             /*
             Test Step 1
-            Action: Perform the following procedure;Press ‘close’ button (Main menu window)Press ‘Override’ button
+            Action: Perform the following procedure;Press ‘Override’ button
             Expected Result: Verify the following information;(1)   Verify DMI still displays Default window until Override window is displayed.(2)   Verify the close button is always enable
             Test Step Comment: (1) MMI_gen 8859 (partly: Override window);(2) MMI_gen 5646 (partly: always enable, Override window);
             */
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button in the Main window. Press ‘Override’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Override’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays Default window until Override window is displayed." +

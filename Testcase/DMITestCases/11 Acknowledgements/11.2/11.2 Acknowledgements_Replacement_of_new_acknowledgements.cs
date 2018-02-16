@@ -5,6 +5,8 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.DMITestCases
 {
     /// <summary>
+    /// Updated to DMI Test Spec 4.4 by JS at 2018-02-16
+    /// 
     /// 11.2 Acknowledgements: Replacement of new acknowledgements
     /// TC-ID: 6.2
     /// 
@@ -40,7 +42,12 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 6_2_a.xml to send EVC-8 with,MMI_Q_TEXT = 280MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
             Expected Result: DMI displays the text message ‘Emergency stop’ in sub-area E5 with yellow flashing frame
             */
-            XML_6_2(msgType.typea);
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.PlainTextMessage = "";
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 280;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Emergency stop’ in sub-area E5 with a yellow flashing frame.");
@@ -87,7 +94,10 @@ namespace Testcase.DMITestCases
             Action: Use the test script file 6_2_b.xml to send EVC-8 with,MMI_Q_TEXT = 1MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
             Expected Result: DMI displays the text message 'Acknowledgement' in sub-area E5 with yellow flashing frame
             */
-            XML_6_2(msgType.typeb);
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 1;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Acknowledgement’ in sub-area E5 with a yellow flashing frame.");
@@ -100,12 +110,8 @@ namespace Testcase.DMITestCases
             Action: (Continue from step 4)Send EVC-8 with,MMI_Q_TEXT = 260MMI_Q_TEXT_CRITERIA = 0MMI_I_TEXT = 2
             Expected Result: The acknowledgement in sub-area E5 is disappeared, DMI displays ST01 symbol with yellow flashing frame in sub-area C9 instead
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.Send();
-
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 0;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 260;
             EVC8_MMIDriverMessage.Send();
@@ -114,15 +120,17 @@ namespace Testcase.DMITestCases
                                 "1. DMI stops displaying the message ‘Acknowledgement’ in sub-area E5 and displays symbol ST01 with a yellow flashing frame in sub-area C9.");
 
             MakeTestStepHeader(6, UniqueIdentifier++,
-                "Use the test script file 6_2_c.xml to send EVC-8 with,MMI_Q_TEXT = 269MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1",
-                "Verify the following information,(1)    DMI still displays ST01 symbol in sub-area C9");
+                "Use the test script file 6_2_c.xml to send EVC-8 with,MMI_Q_TEXT = 269MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 2",
+                "DMI still displays ST01 symbol in sub-area C9");
             /*
             Test Step 6
-            Action: Use the test script file 6_2_c.xml to send EVC-8 with,MMI_Q_TEXT = 269MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 1
-            Expected Result: Verify the following information,(1)    DMI still displays ST01 symbol in sub-area C9
-            Test Step Comment: (1) MMI_gen 7036 (partly: focus shall not move);
+            Action: Use the test script file 6_2_c.xml to send EVC-8 with,MMI_Q_TEXT = 269MMI_Q_TEXT_CRITERIA = 1MMI_I_TEXT = 2
+            Expected Result: DMI still displays ST01 symbol in sub-area C9
+            Test Step Comment:
             */
-            XML_6_2(msgType.typec);
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT = 269;
+            EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays symbol ST01 in sub-area C9.");
@@ -141,6 +149,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI still displays symbol ST01 but removes the yellow flashing frame" +
                                 Environment.NewLine +
                                 "2. DMI displays the message ‘Runaway movement’ with a yellow flashing frame in sub-area E5");
+
             TraceHeader("End of test");
 
             /*
@@ -151,38 +160,5 @@ namespace Testcase.DMITestCases
 
             return GlobalTestResult;
         }
-
-        #region Send_XML_6_2_DMI_Test_Specification
-
-        enum msgType
-        {
-            typea,
-            typeb,
-            typec
-        }
-
-        private void XML_6_2(msgType type)
-        {
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.PlainTextMessage = "";
-            switch (type)
-            {
-                case msgType.typea:
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 280;
-                    break;
-                case msgType.typeb:
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 1;
-                    break;
-                case msgType.typec:
-                    EVC8_MMIDriverMessage.MMI_Q_TEXT = 269;
-                    break;
-            }
-
-            EVC8_MMIDriverMessage.Send();
-        }
-
-        #endregion
     }
 }

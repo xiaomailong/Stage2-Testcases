@@ -1,3 +1,5 @@
+using BT_CSB_Tools;
+
 namespace Testcase.DMITestCases
 {
     /// <summary>
@@ -9,7 +11,7 @@ namespace Testcase.DMITestCases
     /// The data range and interface comply with the data information in [VSIS_gen].
     /// 
     /// Tested Requirements:
-    /// MMI_gen 89; MMI_gen 87;
+    /// MMI_gen 89; 
     /// 
     /// Scenario:
     /// Connect RCI and start RCI logging
@@ -23,8 +25,11 @@ namespace Testcase.DMITestCases
     /// </summary>
     public class TC_1_8_Performance_of_ETCS_DMI_Data_handling : TestcaseBase
     {
+        // TODO this entire testcase needs to be rewritten to work on the TCMS DMI
         public override bool TestcaseEntryPoint()
         {
+            throw new TestcaseException("This testcase only works on RCS DMI, needs to be rewritten");
+
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 20437;
             // Testcase entrypoint

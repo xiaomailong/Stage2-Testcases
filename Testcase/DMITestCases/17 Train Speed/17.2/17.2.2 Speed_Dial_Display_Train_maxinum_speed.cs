@@ -68,11 +68,11 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SB_Mode_displayed(this);
 
             MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM to  SR mode, level 1",
-                "Mode changes to SR mode , level 1Verify the following information:The speed dial displays 550 km/h as a mixminum speed");
+                "Mode changes to SR mode , level 1Verify the following information:The speed dial displays 550 km/h as a maximum speed");
             /*
             Test Step 2
             Action: Perform SoM to  SR mode, level 1
-            Expected Result: Mode changes to SR mode , level 1Verify the following information:The speed dial displays 550 km/h as a mixminum speed
+            Expected Result: Mode changes to SR mode , level 1Verify the following information:The speed dial displays 550 km/h as a maximum speed
             Test Step Comment: MMI_gen 67 (partly:550 km/h);
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
@@ -90,7 +90,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 3
             Action: Change the configuration: SPEED_DIAL_V_MAX  to 200, 300 and 400 then retest with step 1 to 2
-            Expected Result: Verify the following information:The speed dial displays the maxinum speed accroding to configuration setting
+            Expected Result: Verify the following information:The speed dial displays the maximum speed according to configuration setting
             Test Step Comment: MMI_gen 67 (partly: configure lower values);
             */
             DmiActions.ShowInstruction(this,

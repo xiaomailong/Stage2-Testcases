@@ -6,6 +6,7 @@ using Testcase.Telegrams.EVCtoDMI;
 namespace Testcase.DMITestCases
 {
     /// <summary>
+    /// Updated to DMI Test Spec 4.4 by JS 2018-02-16
     /// 10.10 Screen Layout: Button States
     /// TC-ID: 5.10
     /// 
@@ -20,7 +21,7 @@ namespace Testcase.DMITestCases
     /// 3.Verify that the disable buttons shall be shown as a enable button with text label in dark gray. 
     /// 
     /// Used files:
-    /// 5_10_a.xml, 5_10.tdg, 5_10.utt
+    /// 5_10_a.xml, 5_10_b.xml, 5_10_c.xml, 5_10_d.xml, 5_10_e.xml, 5_10.tdg, 5_10.utt
     /// </summary>
     public class TC_ID_5_10_Screen_Layout_Button_States : TestcaseBase
     {
@@ -389,7 +390,7 @@ namespace Testcase.DMITestCases
                 "The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Wheel diameter’ buttonThe ‘Radar’ button");
             /*
             Test Step 7
-            Action: Press Setting menu and select Maintenace button and passward. The  run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#29) = 0         (#30) = 0
+            Action: Press Setting menu and select Maintenace button and passward. The  run test script 5_10_b.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#29) = 0         (#30) = 0
             Expected Result: The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Wheel diameter’ buttonThe ‘Radar’ button
             Test Step Comment: MMI_gen 4377 (partly: Mainteance window);
             */
@@ -604,12 +605,12 @@ namespace Testcase.DMITestCases
 
 
             MakeTestStepHeader(15, UniqueIdentifier++,
-                "Pass BG2 with pkt 79 Geographical position then Run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#23) = 0",
-                "The following button is shown with a border and its text is coloured Dark-Grey:The ‘Geographical        position’ button");
+                "Pass BG2 with pkt 79 Geographical position then send EVC-30 with MMI_Q_REQUEST_ENABLE (#23) = 0",
+                "buttonThe DR03 symbol is disappear from sub-area G12.");
             /*
             Test Step 15
-            Action: Pass BG2 with pkt 79 Geographical position then Run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#23) = 0
-            Expected Result: The following button is shown with a border and its text is coloured Dark-Grey:The ‘Geographical        position’ button
+            Action: Pass BG2 with pkt 79 Geographical position then Run test script 5_10_c.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#23) = 0
+            Expected Result: buttonThe DR03 symbol is disappear from sub-area G12.
             Test Step Comment: MMI_gen 4377 (partly: Geographical position);
             */
 
@@ -690,11 +691,11 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SB_Mode_displayed(this);
 
             MakeTestStepHeader(18, UniqueIdentifier++,
-                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 2Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#19) = 0         (#20) = 0         (#21) = 0         (#22) = 0",
+                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 2Then run test script 5_10_d.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#19) = 0         (#20) = 0         (#21) = 0         (#22) = 0",
                 "The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Contract last window’ buttonThe ‘Use short number’ buttonThe ‘Enter RBC data’ buttonThe ‘Radio Network ID’ button");
             /*
             Test Step 18
-            Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 2Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#19) = 0         (#20) = 0         (#21) = 0         (#22) = 0
+            Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 2Then run test script 5_10_d.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#19) = 0         (#20) = 0         (#21) = 0         (#22) = 0
             Expected Result: The following buttons are shown with a border and its text is coloured Dark-Grey:The ‘Contract last window’ buttonThe ‘Use short number’ buttonThe ‘Enter RBC data’ buttonThe ‘Radio Network ID’ button
             Test Step Comment: MMI_gen 4377 (partly: RBC data window);
             */
@@ -787,11 +788,11 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.SB_Mode_displayed(this);
 
             MakeTestStepHeader(20, UniqueIdentifier++,
-                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level STM PLZBEnter train data entry and comfirm Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#24) = 0",
+                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level STM PLZBEnter train data entry and comfirm Then run test script 5_10_e.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#24) = 0",
                 "The following button is shown with a border and its text is coloured Dark-Grey:The ‘End of data entry’ button");
             /*
             Test Step 20
-            Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level STM PLZBEnter train data entry and comfirm Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#24) = 0
+            Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level STM PLZBEnter train data entry and comfirm Then run test script 5_10_e.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#24) = 0
             Expected Result: The following button is shown with a border and its text is coloured Dark-Grey:The ‘End of data entry’ button
             */
 
@@ -893,11 +894,11 @@ namespace Testcase.DMITestCases
 
 
             MakeTestStepHeader(22, UniqueIdentifier++,
-                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testAt the Main window, press ‘Close’ buttonPress ‘Settings’ buttonPress ‘Brake’ button.Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE(#28) = 0",
+                "Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testAt the Main window, press ‘Close’ buttonPress ‘Settings’ buttonPress ‘Brake’ button.Then run test script 5_10_b.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE(#28) = 0",
                 "The following button is shown with a border and its text is coloured Dark-Grey:The ‘Brake test’ button");
             /*
             Test Step 22
-            Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testAt the Main window, press ‘Close’ buttonPress ‘Settings’ buttonPress ‘Brake’ button.Then run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE(#28) = 0
+            Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testAt the Main window, press ‘Close’ buttonPress ‘Settings’ buttonPress ‘Brake’ button.Then run test script 5_10_b.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE(#28) = 0
             Expected Result: The following button is shown with a border and its text is coloured Dark-Grey:The ‘Brake test’ button
             Test Step Comment: MMI_gen 4377 (partly: Start Brake Test button);
             */

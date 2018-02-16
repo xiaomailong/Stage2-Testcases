@@ -12,7 +12,7 @@ namespace Testcase.DMITestCases
     /// This test case verifies the different format of presentation including with position of confirm buttons and the format of packet sending/receiving between Data entry windows and Data validation windows.
     /// 
     /// Tested Requirements:
-    /// MMI_gen 3203; MMI_gen 3226; MMI_gen 3205; MMI_gen 3390; MMI_gen 3391;
+    /// MMI_gen 3203; MMI_gen 3226; MMI_gen 3205; MMI_gen 3391 (partly: Fonts);
     /// 
     /// Scenario:
     /// 1.The format of presentation and packet sending/receiving in Wheel diameter window, Wheel diameter validaiton window, Radar window and Radar validation window are verified (Maintenance Data Entry and Maintenance Data Validation).
@@ -49,8 +49,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Wheel diameter window.
             Verify the following information,
             (1)    Use the log file to confirm that DMI received packet EVC-40 with variable MMI_Q_MD_DATASET = 0 from ETCS Onboard.
-            (2)   The format of presentation in Wheel diameter window is presented as an Input Fields
-            Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);(2)  MMI_gen 3390 (partly: Maintenance Data entry);
+            Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this,
@@ -79,10 +78,8 @@ namespace Testcase.DMITestCases
             (1)   Use the log file to confirm that DMI sent out packet EVC-140 variable based on confirmed data and MMI_Q_MD_DATASET = 0 to ETCS Onboard.
             (2)   Use the log file to confirm that DMI received packet EVC-41 with variable MMI_Q_MD_DATASET = 0 from ETCS Onboard.
             (3)   The position of ‘Yes’ button on Wheel diameter validation window is located at the different location of ‘Yes’ button on Wheel diameter window.
-            (4)   The format of presentation in Wheel diameter validation window is difference from Wheel diameter window as follows,           
-                  -   The data pending for confirmation of Wheel diameter validation window is presented as echo texts.
-            (5)   The presentation of echo text in Wheel diameter validation window is located at the difference location of an Input Fields in Wheel diameter window
-            Test Step Comment: (1) MMI_gen 3203 (Maintenance Data Entry);(2) MMI_gen 3226 (partly: Maintenance Data Validation);(3) MMI_gen 3205 (partly: Maintenance Data Entry and Validation);(4) MMI_gen 3390 (partly: Maintenance Validation);(5) MMI_gen 3391 (partly: Maintenance Data Entry and Validation);
+            (4)   The fonts of echo texts for Wheel diameter validation window is different with Wheel diameter window
+            Test Step Comment: (1) MMI_gen 3203 (Maintenance Data Entry);(2) MMI_gen 3226 (partly: Maintenance Data Validation);(3) MMI_gen 3205 (partly: Maintenance Data Entry and Validation);(4) MMI_gen 3391 (partly: Maintenance Data Entry and Validation, Fonts);
             */
             DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button");
 
@@ -130,8 +127,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Radar window.
             Verify the following information,
             (1)   Use the log file to confirm that DMI received packet EVC-40 with variable MMI_Q_MD_DATASET = 1 from ETCS Onboard.
-            (2)   The format of presentation in Radar window is presented as an Input Fields
-            Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);(2)  MMI_gen 3390 (partly: Maintenance Data entry);
+            Test Step Comment: (1) MMI_gen 3226 (partly: Maintenance Data Entry);
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Radar’ button");
@@ -156,10 +152,8 @@ namespace Testcase.DMITestCases
             (1)   Use the log file to confirm that DMI sent out packet EVC-140 variable based on confirmed data and MMI_Q_MD_DATASET = 1 to ETCS Onboard.
             (2)   Use the log file to confirm that DMI received packet EVC-41 with variable MMI_Q_MD_DATASET = 1 from ETCS Onboard.
             (3)   The position of ‘Yes’ button on Radar validation window is located at the different location of ‘Yes’ button on Radar window.
-            (4)   The format of presentation in Radar validation window is difference from Radar window as follows,           
-                  -   The data pending for confirmation of Radar validation window is presented as echo texts.
-            (5)   The presentation of echo text in Radar validation window is located at the difference location of an Input Fields in Radar window
-            Test Step Comment: (1) MMI_gen 3203 (Maintenance Data Entry);(2) MMI_gen 3226 (partly: Maintenance Data Validation);(3) MMI_gen 3205 (partly: Maintenance Data Entry and Validation);(4) MMI_gen 3390 (partly: Maintenance Validation);(5) MMI_gen 3391 (partly: Maintenance Data Entry and Validation);
+            (4)   The fonts of echo texts for Radar validation window is different with Radar window
+            Test Step Comment: (1) MMI_gen 3203 (Maintenance Data Entry);(2) MMI_gen 3226 (partly: Maintenance Data Validation);(3) MMI_gen 3205 (partly: Maintenance Data Entry and Validation);(4) MMI_gen 3391 (partly: Maintenance Data Entry and Validation, Fonts);
             */
             DmiActions.ShowInstruction(this, @"Accept the values of all Input Fields as shown. Press the ‘Yes’ button");
 
@@ -206,8 +200,8 @@ namespace Testcase.DMITestCases
             /*
             Test Step 7
             Action: Press ‘Set VBC’ button
-            Expected Result: DMI displays Set VBC window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-18 from ETCS Onboard.(2)   The format of presentation in Set VBC window is presented as an Input Field
-            Test Step Comment: (1) MMI_gen 3226 (partly: Set VBC Data Entry);(2)  MMI_gen 3390 (partly: Set VBC Data entry);
+            Expected Result: DMI displays Set VBC window.Verify the following information,(1)    Use the log file to confirm that DMI received packet EVC-18 from ETCS Onboard.
+            Test Step Comment: (1) MMI_gen 3226 (partly: Set VBC Data Entry);
             */
             // Call generic Action Method
             EVC18_MMISetVBC.MMI_N_VBC = 0;
@@ -225,8 +219,8 @@ namespace Testcase.DMITestCases
             /*
             Test Step 8
             Action: Enter and confirm the value ‘65536’ at an Input Field.Then, press ‘Yes’ button
-            Expected Result: DMI displays Radar validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-118 to ETCS Onboard.(2)    Use the log file to confirm that DMI received packet EVC-28 from ETCS Onboard.(3)   The position of ‘Yes’ button on Set VBC validation window is located at the different location of ‘Yes’ button on Set VBC window.(4)   The format of presentation in Set VBC validation window is difference from Set VBC window as follows,           -   The data pending for confirmation of Set VBC validation window is presented as echo texts.(5)   The presentation of echo text in Set VBC validation window is located at the difference location of an Input Fields in Set VBC window
-            Test Step Comment: (1) MMI_gen 3203 (Set VBC Data Entry);(2) MMI_gen 3226 (partly: Set VBC Data Validation);(3) MMI_gen 3205 (partly: Set VBC Data Entry and Validation);(4) MMI_gen 3390 (partly: Set VBC Validation);(5) MMI_gen 3391 (partly: Set VBC Data Entry and Validation);
+            Expected Result: DMI displays Radar validation window.Verify the following information,(1)    Use the log file to confirm that DMI sent out packet EVC-118 to ETCS Onboard.(2)    Use the log file to confirm that DMI received packet EVC-28 from ETCS Onboard.(3)   The position of ‘Yes’ button on Set VBC validation window is located at the different location of ‘Yes’ button on Set VBC window.(4)   The fonts of echo texts for Set VBC validation window is difference Set VBC window
+            Test Step Comment: (1) MMI_gen 3203 (Set VBC Data Entry);(2) MMI_gen 3226 (partly: Set VBC Data Validation);(3) MMI_gen 3205 (partly: Set VBC Data Entry and Validation);(4) MMI_gen 3391 (partly: Set VBC Data Entry and Validation, Fonts);
             */
 
             // Test spec says Radar validation window but message means that Set RBC Validation window would be displayed...

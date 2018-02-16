@@ -408,6 +408,7 @@ namespace Testcase.DMITestCases
         /// MMI_gen 244-- 	If the ETCS-MMI is in “active” state and [EVC-1] is lost*, the MMI shall enter “ATP-Down” state...
         /// Used in:
         ///     Step 6 in TC-ID: 1.6 in 6.6
+        ///     Step 3 in TC-ID: 12.3 in 17.3.1
         /// </summary>
         public static void Force_Loss_Communication(SignalPool pool)
         {
