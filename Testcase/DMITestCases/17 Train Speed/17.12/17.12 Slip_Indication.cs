@@ -64,7 +64,7 @@ namespace Testcase.DMITestCases
                                 "1. The speed pointer is displayed with speed = 140 km/h.");
 
             MakeTestStepHeader(3, UniqueIdentifier++,
-                "Use the test script file 12_12_a.xml to send EVC-1 with,MMI_M_SLIP = 1MMI_M_SLIDE = 0",
+                "Use the test script file 12_12_a.xml to send EVC-1 with, MMI_M_SLIP = 1 MMI_M_SLIDE = 0",
                 "Verify the following information,The Slip indication is displayed and shown as arrow pointing clockwise.The colour of Slip indication is displayed as same as speed digital colour. The Slip indication is displayed on speed hub of the speed pointer. DMI plays sound Sinfo once");
             /*
             Test Step 3
@@ -81,7 +81,7 @@ namespace Testcase.DMITestCases
                                 "4. DMI plays sound Sinfo once.");
 
             MakeTestStepHeader(4, UniqueIdentifier++,
-                "Use the test script file 12_12_b.xml to send EVC-1 with,MMI_M_SLIP = 0MMI_M_SLIDE =1",
+                "Use the test script file 12_12_b.xml to send EVC-1 with, MMI_M_SLIP = 0 MMI_M_SLIDE = 1",
                 "Verify the following information,The ‘Slip/Slide’ indication is not displayed on the speed hub");
             /*
             Test Step 4
@@ -141,9 +141,6 @@ namespace Testcase.DMITestCases
 
         private void XML_12_12(msgType type)
         {
-            // XML script files specify validity bits to be all 0.
-            // This would defeat purpose of test hence they have not been set to 0
-
             if (type == msgType.typea)
             {
                 EVC1_MMIDynamic.MMI_M_SLIDE = 0;
