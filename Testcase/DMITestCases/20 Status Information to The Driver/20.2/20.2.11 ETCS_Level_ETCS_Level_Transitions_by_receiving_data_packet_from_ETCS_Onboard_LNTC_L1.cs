@@ -35,18 +35,17 @@ namespace Testcase.DMITestCases
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
             MakeTestStepHeader(1, UniqueIdentifier++,
-                "Perform the following action:         Power on the systemActivate the cabin Perform start of mission to ATB STM mode , Level NTC",
+                "Perform the following action: Power on the system. Activate the cabin. Perform start of mission to ATB STM mode, Level NTC",
                 "DMI displays in ATB STM mode, Level NTC");
             /*
             Test Step 1
-            Action: Perform the following action:         Power on the systemActivate the cabin Perform start of mission to ATB STM mode , Level NTC
+            Action: Perform the following action: Power on the systemActivate the cabin Perform start of mission to ATB STM mode , Level NTC
             Expected Result: DMI displays in ATB STM mode, Level NTC
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, "Power on the system");
-
             StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
             DmiActions.Finished_SoM_Default_Window(this);
@@ -66,7 +65,7 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.PlainTextMessage = "0";
+            EVC8_MMIDriverMessage.PlainTextMessage = "1";
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
             EVC8_MMIDriverMessage.Send();
 
@@ -81,6 +80,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays LE11 symbol in sub-area C1
             Test Step Comment: MMI_gen 9431 (partly: LE11); 
             */
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
             EVC8_MMIDriverMessage.Send();
 
@@ -97,6 +97,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press in sub-area C1 to confirm transition to Level");
 
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
             EVC8_MMIDriverMessage.Send();
 
