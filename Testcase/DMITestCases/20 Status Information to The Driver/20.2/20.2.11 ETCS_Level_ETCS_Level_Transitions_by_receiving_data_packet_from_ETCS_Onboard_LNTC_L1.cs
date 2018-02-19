@@ -62,7 +62,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays LE10 symbol in sub-area C1
             Test Step Comment: MMI_gen 9430 (partly:Negative LE10); 
             */
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.PlainTextMessage = "1";
@@ -80,7 +80,10 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays LE11 symbol in sub-area C1
             Test Step Comment: MMI_gen 9431 (partly: LE11); 
             */
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 2;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
             EVC8_MMIDriverMessage.Send();
 
@@ -97,7 +100,6 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press in sub-area C1 to confirm transition to Level");
 
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
             EVC8_MMIDriverMessage.Send();
 
@@ -111,6 +113,9 @@ namespace Testcase.DMITestCases
             Action: Pass BG1 at level transition border
             Expected Result: Mode changes to FS mode, Level 1
             */
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
+            EVC8_MMIDriverMessage.Send();
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
