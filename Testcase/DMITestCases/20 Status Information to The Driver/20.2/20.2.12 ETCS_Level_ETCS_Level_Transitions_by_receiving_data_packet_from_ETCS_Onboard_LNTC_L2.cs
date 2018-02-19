@@ -35,19 +35,16 @@ namespace Testcase.DMITestCases
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
             MakeTestStepHeader(1, UniqueIdentifier++,
-                "Perform the following action:         Power on the systemActivate the cabin Perform start of mission to ATB STM mode , Level NTC",
+                "Perform the following action: Power on the systemActivate the cabin Perform start of mission to ATB STM mode, Level NTC",
                 "DMI displays in ATB STM mode, Level NTC");
             /*
             Test Step 1
-            Action: Perform the following action:         Power on the systemActivate the cabin Perform start of mission to ATB STM mode , Level NTC
+            Action: Perform the following action: Power on the systemActivate the cabin Perform start of mission to ATB STM mode, Level NTC
             Expected Result: DMI displays in ATB STM mode, Level NTC
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, "Power on the system");
-
             StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
-            // Skip brake test...
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
@@ -62,11 +59,11 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays LE12 symbol in sub-area C1
             Test Step Comment: MMI_gen 9430 (partly:Negative LE12); ;
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
+
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
+            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.PlainTextMessage = "2";
             EVC8_MMIDriverMessage.Send();
 
@@ -81,6 +78,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays LE13 symbol in sub-area C1
             Test Step Comment: MMI_gen 9431 (partly: LE13); 
             */
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 2;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 257;
             EVC8_MMIDriverMessage.Send();
 
@@ -95,6 +93,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    DMI replaces LE13 symbol with LE12 in sub-area C1.(2)     Use the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 8 (Ack level 2)
             Test Step Comment: (1) MMI_gen 9431 (partly: LE12);(2) MMI_gen 11470 (partly: Bit #8);
             */
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 3;
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 276;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.PlainTextMessage = "2";
@@ -121,7 +120,6 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
             EVC8_MMIDriverMessage.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
