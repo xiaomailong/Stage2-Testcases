@@ -412,7 +412,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Force_Loss_Communication(SignalPool pool)
         {
-            EVC1_MMIDynamic.ForceComunicationLoss(pool);
+            EVC1_MMIDynamic.ForceCommunicationLoss(pool);
             pool.Wait_Realtime(1000);
         }
 

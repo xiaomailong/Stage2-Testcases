@@ -59,7 +59,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// MMI_gen 244-- 	If the ETCS-MMI is in “active” state and [EVC-1] is lost*, the MMI shall enter “ATP-Down” state...
         /// </summary>
         /// <param name="pool"></param>
-        public static void ForceComunicationLoss(SignalPool pool)
+        public static void ForceCommunicationLoss(SignalPool pool)
         {
             _pool.SITR.STGCtrl.ETCS1.Dynamic.Force(0x0000);
         }
