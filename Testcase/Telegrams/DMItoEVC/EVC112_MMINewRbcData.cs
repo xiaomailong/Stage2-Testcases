@@ -18,7 +18,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static uint[] _nidRadio;
 
         static string baseString0 = "DMI->ETCS: EVC-112 [MMI_NEW_RBC_DATA]";
-        static string baseString1 = "CCUO_ETCS1NewRbcData_EVC112NewRbcDataSub0";
+        static string baseString1 = "CCUO_ETCS1NewRbcData_EVC112NewRbcDataSub";
 
         /// <summary>
         /// Initialise EVC-112 MMI_New_Rbc_Data telegram.
