@@ -30,7 +30,7 @@ namespace Testcase
             }
             else
             {
-                TestcaseRunner.AddTestcase(typeof(TC_ID_22_8_1_1_RBC_Data_window));
+                TestcaseRunner.AddTestcase(typeof(TC_ID_22_8_3_1_RBC_Contact_window));
             
                 //TestcaseRunner.AddTestcase(typeof(TC_ID_15_2_12_ETCS_Level));
                 

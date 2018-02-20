@@ -93,7 +93,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Number of data elements to enter
             _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            totalSizeCounter = Variables.PopulateDataElements(string.Format("{0}21", BaseString), totalSizeCounter,
+            totalSizeCounter = Variables.PopulateDataElements(string.Format("{0}2", BaseString), totalSizeCounter,
                 DataElements, _pool);
 
             // Set packet length

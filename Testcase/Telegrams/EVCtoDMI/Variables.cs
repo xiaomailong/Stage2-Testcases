@@ -50,7 +50,10 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                     // Create a string of two characters for charIndex left padded with 0 if needed.
                     var temp = charIndex.ToString("00") + "_MmiXText";
-                    _pool.SITR.Client.Write(varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) + temp, character);
+
+                    // Signal name requires "1" prepended to string version of charIndex
+                    string signal = varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) + "1" + temp;
+                    _pool.SITR.Client.Write(signal, character);
 
                     /*
                     if (charIndex < 10 && charArray.Length > 10)
