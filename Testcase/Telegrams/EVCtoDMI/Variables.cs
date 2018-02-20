@@ -7,9 +7,8 @@ namespace Testcase.Telegrams.EVCtoDMI
     public static class Variables
     {
         /// <summary>
-        /// This populates the Data Elements of EVC-6, 11, and 22
+        /// This populates the Data Elements of EVC-6 and EVC-11
         /// 
-        /// Note: EVC-22 captions must be limited to 10 chars compared to the 16 allowed in the VSIS.
         /// </summary>
         /// <param name="baseString">The base RTSIM signal name to use</param>
         /// <param name="totalSizeCounter">Counter for total size of telegram</param>
@@ -49,26 +48,13 @@ namespace Testcase.Telegrams.EVCtoDMI
                     var character = charArray[charIndex];
 
                     // Create a string of two characters for charIndex left padded with 0 if needed.
-                    var temp = charIndex.ToString("00") + "_MmiXText";
+                    var temp = charIndex + "_MmiXText";
 
                     // Signal name requires "1" prepended to string version of charIndex
                     string signal = varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) + "1" + temp;
-                    _pool.SITR.Client.Write(signal, character);
 
-                    /*
-                    if (charIndex < 10 && charArray.Length > 10)
-                    {
-                        _pool.SITR.Client.Write(
-                            varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) +
-                            string.Format("10{0}_MmiXText", charIndex), character);
-                    }
-                    else
-                    {
-                        _pool.SITR.Client.Write(
-                            varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) +
-                            string.Format("1{0}_MmiXText", charIndex), character);
-                    }
-                    */
+                    // Write signal name
+                    _pool.SITR.Client.Write(signal, character);
 
                     // Increment packet by size of one character
                     totalSizeCounter += 8;

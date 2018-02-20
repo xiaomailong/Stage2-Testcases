@@ -93,7 +93,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Number of data elements to enter
             _pool.SITR.ETCS1.CurrentRbcData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
-            totalSizeCounter = Variables.PopulateDataElements(string.Format("{0}2", BaseString), totalSizeCounter,
+            totalSizeCounter = PopulateDataElements(string.Format("{0}2", BaseString), totalSizeCounter,
                 DataElements, _pool);
 
             // Set packet length
@@ -256,9 +256,17 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// EVC-22 Button type to be shown in RBC Data window
+        /// 
+        /// Values:
+        /// BTN_RADIO_NETWORK_ID = 24,
+        /// BTN_YES_DATA_ENTRY_COMPLETE = 36,
+        /// BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
+        /// BTN_ENTER = 254,
+        /// NoButton = 255
         /// </summary>
         public enum EVC22BUTTONS : byte
         {
+            BTN_RADIO_NETWORK_ID = 24,
             BTN_YES_DATA_ENTRY_COMPLETE = 36,
             BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
             BTN_ENTER = 254,
@@ -275,5 +283,61 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// List of DataElements
         /// </summary>
         public static List<Variables.DataElement> DataElements { get; set; }
+
+        /// <summary>
+        /// This populates the Data Elements
+        /// 
+        /// </summary>
+        /// <param name="baseString">The base RTSIM signal name to use</param>
+        /// <param name="totalSizeCounter">Counter for total size of telegram</param>
+        /// <param name="dataElements">Data elements to be checked and verified by the EVC</param>
+        /// <param name="_pool">The SignalPool</param>
+        /// <returns></returns>
+        private static ushort PopulateDataElements(string baseString, ushort totalSizeCounter,
+            List<Variables.DataElement> dataElements, SignalPool _pool)
+        {
+            // Populate the data elements array
+            for (int tdeIndex = 0; tdeIndex < dataElements.Count; tdeIndex++)
+            {
+                var trainDataElement = dataElements[tdeIndex];
+
+                string varNamestring = baseString + tdeIndex + "_";
+
+                var charArray = trainDataElement.EchoText.ToCharArray();
+
+                if (charArray.Length > 10)
+                    throw new ArgumentOutOfRangeException(charArray.ToString(),
+                        "Too many characters in the caption string!");
+
+                // Set identifier
+                _pool.SITR.Client.Write(varNamestring + "MmiNidData", (byte)trainDataElement.Identifier);
+
+                // Set data check result
+                _pool.SITR.Client.Write(varNamestring + "MmiQDataCheck", (byte)trainDataElement.QDataCheck);
+
+                // Set number of chars
+                _pool.SITR.Client.Write(varNamestring + "MmiNText", (ushort)charArray.Length);
+
+                totalSizeCounter += 32;
+
+                // Populate the array
+                for (int charIndex = 0; charIndex < charArray.Length; charIndex++)
+                {
+                    var character = charArray[charIndex];
+
+                    // Create a string of two characters for charIndex left padded with 0 if needed.
+                    var temp = charIndex.ToString("00") + "_MmiXText";
+
+                    // Signal name requires "1" prepended to string version of charIndex
+                    string signal = varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) + "1" + temp;
+                    _pool.SITR.Client.Write(signal, character);
+
+                    // Increment packet by size of one character
+                    totalSizeCounter += 8;
+                }
+            }
+
+            return totalSizeCounter;
+        }
     }
 }
