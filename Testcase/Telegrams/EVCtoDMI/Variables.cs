@@ -52,10 +52,9 @@ namespace Testcase.Telegrams.EVCtoDMI
                     var temp = charIndex.ToString("00") + "_MmiXText";
 
                     // Signal name requires "1" prepended to string version of charIndex
-                    string signal = varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) + "1" + temp;
-                    _pool.SITR.Client.Write(signal, character);
-
-                    /*
+                    //string signal = varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) + "1" + temp;
+                    //_pool.SITR.Client.Write(signal, character);
+                                        
                     if (charIndex < 10 && charArray.Length > 10)
                     {
                         _pool.SITR.Client.Write(
@@ -68,8 +67,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                             varNamestring + baseString.Substring(baseString.LastIndexOf('_') + 1) +
                             string.Format("1{0}_MmiXText", charIndex), character);
                     }
-                    */
-
+                    
                     // Increment packet by size of one character
                     totalSizeCounter += 8;
                 }
