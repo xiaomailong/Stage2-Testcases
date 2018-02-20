@@ -36,16 +36,31 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
 
             MakeTestStepHeader(1, UniqueIdentifier++,
-                "Perform the following procedure, Force the simulation to ‘Non-leadingPress and hold ‘Non-leading’ button at least 2 second.Release the pressed button",
-                "DMI displays in NL mode, level 0Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-7: OBU_TR_M_MODE = 11 (NL mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)");
+                "Perform the following procedure, Force the simulation to ‘Non-leading. Press and hold ‘Non-leading’ button at least 2 seconds. Release the pressed button",
+                "DMI displays in NL mode, level 0" +
+                "Verify the following information" +
+                "(1) Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-7: OBU_TR_M_MODE = 11 (NL mode)" +
+                "(2) The distance to target bar is not display in sub-area A3." +
+                "(3) The distance to target digital is not display in sub-area A2." +
+                "(4) Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)");
             /*
             Test Step 1
-            Action: Perform the following procedure, Force the simulation to ‘Non-leadingPress and hold ‘Non-leading’ button at least 2 second.Release the pressed button
-            Expected Result: DMI displays in NL mode, level 0Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-7: OBU_TR_M_MODE = 11 (NL mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
+            Action: Perform the following procedure, Force the simulation to ‘Non-leadingPress and hold ‘Non-leading’ button at least 2 second. Release the pressed button
+            Expected Result: DMI displays in NL mode, level 0
+            Verify the following information
+            (1) Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-7: OBU_TR_M_MODE = 11 (NL mode)
+            (2) The distance to target bar is not display in sub-area A3.
+            (3) The distance to target digital is not display in sub-area A2.
+            (4) Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
             Test Step Comment: (1) MMI_gen 107 (partly: OBU_TR_M_MODE, NL mode); MMI_gen 2567 (partly: OBU_TR_M_MODE, NL mode);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, NL mode);(3) MMI_gen 2567 (partly: Table 38, NL mode); MMI_gen 6774 (partly: not be shown);(4) MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);
             */
+
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags | EVC30_MMIRequestEnable.EnabledRequests.NonLeading;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this,
-                "Force the simulation to ‘Non-leading’. Press and hold ‘Non-leading’ button at least 2s. Release the ‘Non-leading’ button.");
+                "Force the simulation to ‘Non-leading’. Press and hold ‘Non-leading’ button at least 2 s. Release the ‘Non-leading’ button.");           
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NonLeading;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = -1;
@@ -64,7 +79,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
