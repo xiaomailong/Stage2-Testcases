@@ -71,7 +71,12 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
 
             Variables.DataElement dataElement =
-                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Speed, EchoText = "1", QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed};
+                new Variables.DataElement
+                {
+                    Identifier = Variables.MMI_NID_DATA.SR_Speed,
+                    EchoText = "1",
+                    QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed
+                };
 
             List<Variables.DataElement> dataElements = new List<Variables.DataElement> {dataElement};
 
@@ -173,7 +178,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press in the SR speed data input field to accept the value");
 
-            dataElement.QDataCheck = 0;
+            dataElement.QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed;
             dataElement.EchoText = "40";
 
             EVC106_MMINewSrRules.MMI_V_STFF = 40;
@@ -350,21 +355,41 @@ namespace Testcase.DMITestCases
             switch (type)
             {
                 case msgType.typea:
-                    //some values taken from xml file not spec where different
+                    
+                    EVC11_MMICurrentSRRules.MMI_L_STFF = 100000;
+                    EVC11_MMICurrentSRRules.MMI_V_STFF = 100;
+                    EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
                     EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
                     {
-                        new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Distance, EchoText = "", QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed}
+                        new Variables.DataElement
+                        {
+                            Identifier = Variables.MMI_NID_DATA.SR_Distance,
+                            EchoText = "",
+                            QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed
+                        }
                     };
+
                     EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
+
                     break;
 
                 case msgType.typeb:
-                    //some values taken from xml file not spec where different
+                    
                     EVC11_MMICurrentSRRules.MMI_L_STFF = 100000;
                     EVC11_MMICurrentSRRules.MMI_V_STFF = 100;
-                    EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_LEVEL;
+                    EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
                     EVC11_MMICurrentSRRules.DataElements =
-                        new List<Variables.DataElement> {new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Distance, QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed } };
+                        new List<Variables.DataElement>
+                        {
+                            new Variables.DataElement
+                            {
+                                Identifier = Variables.MMI_NID_DATA.SR_Speed,
+                                QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed,
+                                EchoText = ""
+                            }
+
+                        };
+
                     break;
             }
 
