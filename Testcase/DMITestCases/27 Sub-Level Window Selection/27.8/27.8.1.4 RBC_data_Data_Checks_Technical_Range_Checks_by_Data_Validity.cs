@@ -1,4 +1,5 @@
 using System;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -31,29 +32,36 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             StartUp();
-            // 1. The test environment is powered on.2. The cabin is activated.3. The ‘Start of Mission’ procedure is performed until level 2 is selected.4. RBC Data window is opened.
+            // 1. The test environment is powered on.
+            // 2. The cabin is activated.
+            // 3. The ‘Start of Mission’ procedure is performed until level 2 is selected.
+            // 4. RBC Data window is opened.
             DmiActions.Complete_SoM_L1_SB(this);
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
 
             MakeTestStepHeader(1, UniqueIdentifier++,
-                "Enter valid values with the numeric keypad and press the data input field (Accept) in the same screen.RBC ID6996969RBC phone number0031840880100",
+                "Enter valid values with the numeric keypad and press the data input field (Accept) in the same screen. RBC ID6996969RBC phone number 0031840880100",
                 "The ‘Yes’ button is enabled");
             /*
             Test Step 1
-            Action: Enter valid values with the numeric keypad and press the data input field (Accept) in the same screen.RBC ID6996969RBC phone number0031840880100
+            Action: Enter valid values with the numeric keypad and press the data input field (Accept) in the same screen.
+                    RBC ID6996969
+                    RBC phone number 0031840880100
             Expected Result: The ‘Yes’ button is enabled
             */
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.EnterRBCData;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags;
             EVC30_MMIRequestEnable.Send();
 
             // Force the RBC Contact window
-            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
             EVC22_MMICurrentRBC.Send();
 
             DmiActions.ShowInstruction(this, @"Press the ‘RBC Data’ button.");
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartRBCdataEntry;
 
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
@@ -98,6 +106,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 "Using the numeric keypad, enter the (valid) value ‘6996969’ for ‘RBC ID’ and confirm the entered data by pressing the data input field");
 
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
+            EVC22_MMICurrentRBC.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The ‘Yes’ button is displayed enabled");
 
@@ -118,7 +130,7 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Yes’ button is displayed disabled");
+                                "1. The ‘Yes’ button is not displayed");
 
             MakeTestStepHeader(5, UniqueIdentifier++,
                 "Enter “0031840880100” (valid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen",
@@ -128,11 +140,14 @@ namespace Testcase.DMITestCases
             Action: Enter “0031840880100” (valid value) for RBC phone number with the numeric keypad and press the data input field (Accept) in the same screen
             Expected Result: The ‘Yes’ button is enabled
             */
-            DmiActions.ShowInstruction(this,
-                "Using the numeric keypad, enter the (valid) value ‘0031840880100’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Yes’ button is displayed enabled");
+            // Toggling of Yes button has already been tested.
+
+            //DmiActions.ShowInstruction(this,
+            //    "Using the numeric keypad, enter the (valid) value ‘0031840880100’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
+
+            //WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            //                    "1. The ‘Yes’ button is displayed enabled");
 
             MakeTestStepHeader(6, UniqueIdentifier++,
                 "This step is to complete the process of ‘RBC data’:- Press the ‘Yes’ button on the ‘RBC data’ window",
@@ -155,27 +170,30 @@ namespace Testcase.DMITestCases
             Expected Result: The ‘Yes’ button is enabled
             Test Step Comment: Note: This is a temporary approach for non-support test environment on the data checks.
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘RBC Data’ button.");
 
-            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
-            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
-            EVC22_MMICurrentRBC.Send();
+            // Toggling of Yes button has already been tested.
 
-            DmiActions.ShowInstruction(this,
-                "On the numeric keypad: enter the value ‘6996969’ for ‘RBC ID’ and confirm the entered data by pressing the data input field;" +
-                Environment.NewLine +
-                "                       enter the value ‘0031840880100’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
+            //DmiActions.ShowInstruction(this, @"Press the ‘RBC Data’ button.");
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Yes’ button is displayed enabled");
+            //EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            //EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
+            //EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
+            //EVC22_MMICurrentRBC.Send();
+
+            //DmiActions.ShowInstruction(this,
+            //    "On the numeric keypad: enter the value ‘6996969’ for ‘RBC ID’ and confirm the entered data by pressing the data input field;" +
+            //    Environment.NewLine +
+            //    "                       enter the value ‘0031840880100’ for ‘RBC phone number’ and confirm the entered data by pressing the data input field");
+
+            //WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+            //                    "1. The ‘Yes’ button is displayed enabled");
 
             MakeTestStepHeader(8, UniqueIdentifier++,
-                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_8_1_4_a.xmlEVC-22MMI_M_BUTTONS = 255 (No button)",
+                "Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_8_1_4_a.xml EVC-22 MMI_M_BUTTONS = 255 (No button)",
                 "EVC-22(1) The 'Yes' button is disabled");
             /*
             Test Step 8
-            Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_8_1_4_a.xmlEVC-22MMI_M_BUTTONS = 255 (No button)
+            Action: Send the data of ‘Technical Range Check’ failure to ETCS-DMI by 22_8_1_4_a.xml EVC-22 MMI_M_BUTTONS = 255 (No button)
             Expected Result: EVC-22(1) The 'Yes' button is disabled
             Test Step Comment: Requirements:MMI_gen 9467;Note: This is a temporary approach for non-support test environment on the data checks.
             */
@@ -193,7 +211,7 @@ namespace Testcase.DMITestCases
             #endregion
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The ‘Yes’ button is displayed disabled");
+                                "1. The ‘Yes’ button is not displayed");
 
             TraceHeader("End of test");
 
