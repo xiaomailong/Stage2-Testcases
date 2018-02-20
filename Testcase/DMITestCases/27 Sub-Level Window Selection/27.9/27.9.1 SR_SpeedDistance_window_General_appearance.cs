@@ -62,7 +62,6 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press the ‘Spec’ button, then press the ‘SR speed/distance’ button");
 
-            EVC11_MMICurrentSRRules.DataElements = null;
             EVC11_MMICurrentSRRules.MMI_L_STFF = 100000;
             EVC11_MMICurrentSRRules.MMI_V_STFF = 100;
             EVC11_MMICurrentSRRules.Send();
