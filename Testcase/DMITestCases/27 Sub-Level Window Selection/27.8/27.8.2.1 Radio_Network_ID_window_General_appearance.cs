@@ -30,8 +30,8 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
 
             MakeTestStepHeader(1, UniqueIdentifier++,
-                "Use the test script file 22_8_2_1_a.xml to send EVC-22 with,MMI_NID_WINDOW = 9MMI_N_NETWORKS = 2MMI_N_CAPTION_NETWORK[0] = 6MMI_X_CAPTION_NETWORK[0][0] = 71MMI_X_CAPTION_NETWORK[0] [1] = 83MMI_X_CAPTION_NETWORK[0] [2] = 77MMI_X_CAPTION_NETWORK[0] [3] = 82MMI_X_CAPTION_NETWORK[0] [4] = 45MMI_X_CAPTION_NETWORK[0] [5] = 65MMI_N_CAPTION_NETWORK[1] = 6MMI_X_CAPTION_NETWORK[1][0] = 71MMI_X_CAPTION_NETWORK[1][1] = 83MMI_X_CAPTION_NETWORK[1][2] = 77MMI_X_CAPTION_NETWORK[1][3] = 82MMI_X_CAPTION_NETWORK[1][4] = 45MMI_X_CAPTION_NETWORK[1][5] = 66",
-                "Verify the following information,DMI does not display Radio Network ID window");
+                "Use the test script file 22_8_2_1_a.xml to send EVC-22 with, MMI_NID_WINDOW = 9 MMI_N_NETWORKS = 2 MMI_N_CAPTION_NETWORK[0] = 6 MMI_X_CAPTION_NETWORK[0][0] = 71MMI_X_CAPTION_NETWORK[0] [1] = 83 MMI_X_CAPTION_NETWORK[0] [2] = 77 MMI_X_CAPTION_NETWORK[0] [3] = 82 MMI_X_CAPTION_NETWORK[0] [4] = 45 MMI_X_CAPTION_NETWORK[0] [5] = 65 MMI_N_CAPTION_NETWORK[1] = 6 MMI_X_CAPTION_NETWORK[1][0] = 71 MMI_X_CAPTION_NETWORK[1][1] = 83 MMI_X_CAPTION_NETWORK[1][2] = 77 MMI_X_CAPTION_NETWORK[1][3] = 82 MMI_X_CAPTION_NETWORK[1][4] = 45 MMI_X_CAPTION_NETWORK[1][5] = 66",
+                "Verify the following information, DMI does not display Radio Network ID window");
             /*
             Test Step 1
             Action: Use the test script file 22_8_2_1_a.xml to send EVC-22 with,MMI_NID_WINDOW = 9MMI_N_NETWORKS = 2MMI_N_CAPTION_NETWORK[0] = 6MMI_X_CAPTION_NETWORK[0][0] = 71MMI_X_CAPTION_NETWORK[0] [1] = 83MMI_X_CAPTION_NETWORK[0] [2] = 77MMI_X_CAPTION_NETWORK[0] [3] = 82MMI_X_CAPTION_NETWORK[0] [4] = 45MMI_X_CAPTION_NETWORK[0] [5] = 65MMI_N_CAPTION_NETWORK[1] = 6MMI_X_CAPTION_NETWORK[1][0] = 71MMI_X_CAPTION_NETWORK[1][1] = 83MMI_X_CAPTION_NETWORK[1][2] = 77MMI_X_CAPTION_NETWORK[1][3] = 82MMI_X_CAPTION_NETWORK[1][4] = 45MMI_X_CAPTION_NETWORK[1][5] = 66
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
             MakeTestStepHeader(3, UniqueIdentifier++,
-                "Use the test script file 22_8_2_1_b.xml to Send EVC-22 with,MMI_NID_WINDOW = 9MMI_N_NETWORKS = 0",
+                "Use the test script file 22_8_2_1_b.xml to Send EVC-22 with, MMI_NID_WINDOW = 9 MMI_N_NETWORKS = 0",
                 "DMI still displays Driver ID window");
             /*
             Test Step 3
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags | EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
             EVC30_MMIRequestEnable.Send();
 
             // via RBC contact window
@@ -96,11 +96,11 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Radio Network ID’ button");
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
+            EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSM-A", "GSM-B"};
             EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>
             {
-                new Variables.DataElement {Identifier = 0, QDataCheck = 23, EchoText = "23"},
-                new Variables.DataElement {Identifier = 1, QDataCheck = 24, EchoText = "24"}
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.RadioNetworkID, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = "GSM-A"},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.RadioNetworkID, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = "GSM-B"}
             };
             EVC22_MMICurrentRBC.Send();
 
@@ -364,14 +364,26 @@ namespace Testcase.DMITestCases
 
         private void XML_22_8_2_1(msgType type)
         {
-            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             switch (type)
             {
                 case msgType.typea:
-                    EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
+                    //EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
+                    EVC22_MMICurrentRBC.NID_RBC = 1234;
+                    EVC22_MMICurrentRBC.MMI_NID_RADIO = (305463295 << 32) & 4294967295;
+                    EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+                    EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
+                    EVC22_MMICurrentRBC.Send();
+
                     break;
+
                 case msgType.typeb:
-                    EVC22_MMICurrentRBC.NetworkCaptions.Clear();
+                    //EVC22_MMICurrentRBC.NetworkCaptions.Clear();
+                    EVC22_MMICurrentRBC.NID_RBC = 1234;
+                    EVC22_MMICurrentRBC.MMI_NID_RADIO = 0xffffffffffffffff;
+                    EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+                    EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
+                    EVC22_MMICurrentRBC.Send();
                     break;
             }
 

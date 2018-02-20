@@ -74,9 +74,87 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public class DataElement
         {
-            public ushort Identifier { get; set; } // Identifier of a data set
-            public ushort QDataCheck { get; set; } // Result of data check
+            public MMI_NID_DATA Identifier { get; set; } // Identifier of a data set
+            public Q_DATA_CHECK QDataCheck { get; set; } // Result of data check
             public string EchoText { get; set; } // Echo text of data
+        }
+
+        /// <summary>
+        /// The identity of an data entry element (MMI_NID_DATA)
+        /// 
+        /// Values:
+        /// 0 = "Train running number"
+        /// 1 = "ERTMS/ETCS Level"
+        /// 2 = "Driver ID"
+        /// 3 = "Radio network ID"
+        /// 4 = "RBC ID"
+        /// 5 = "RBC phone number"
+        /// 6 = "Train Type (Train Data Set Identifier)"
+        /// 7 = "Train category"
+        /// 8 = "Length"
+        /// 9 = "Brake percentage"
+        /// 10 = "Maximum speed"
+        /// 11 = "Axle load category"
+        /// 12 = "Airtight"
+        /// 13 = "Loading gauge"
+        /// 14 = "Operated system version"
+        /// 15 = "SR Speed"
+        /// 16 = "SR Distance"
+        /// 17 = "Adhesion"
+        /// 18 = "Set VBC code"
+        /// 19 = "Remove VBC code"
+        /// 20..254 = "spare"
+        /// 255 = "no specific data element defined"
+        /// 
+        /// Note: the definition is according to preliminary SubSet-121 'NID_DATA' definition.
+        /// </summary>
+        public enum MMI_NID_DATA : byte
+        {
+            TrainRunningNumber = 0,
+            ERTMS_ETCS_Level = 1,
+            DriverID = 2,
+            RadioNetworkID = 3,
+            RBC_ID = 4,
+            RBCPhoneNumber = 5,
+            TrainType_TrainDataSetIdentifier = 6,
+            TrainCategory = 7,
+            Length = 8,
+            BrakePercentage = 9,
+            MaximumSpeed = 10,
+            AxleLoadCategory = 11,
+            Airtight = 12,
+            LoadingGauge = 13,
+            OperatedSystemVersion = 14,
+            SR_Speed = 15,
+            SR_Distance = 16,
+            Adhesion = 17,
+            SetVBCCode = 18,
+            RemoveVBCCode = 19,
+            Spare = 20,
+            NoSpecificDataElementDefined = 255
+        }
+
+        /// <summary>
+        /// This universal data check result variable provides control information
+        /// how to display the related train data element in Echo Text/Data Entry Fields.
+        /// Affected Echo Text/Data Entry Fields are indicated by MMI_NID_DATA
+        /// 
+        /// Values:
+        /// 0 = "All checks have passed"
+        /// 1 = "Technical Range Check failed"
+        /// 2 = "Technical Resolution Check failed"
+        /// 3 = "Technical Cross Check failed"
+        /// 4 = "Operational Range Check failed"
+        /// 5 = "Operational Cross Check failed"
+        /// </summary>
+        public enum Q_DATA_CHECK : byte
+        {
+            All_checks_passed = 0,
+            Technical_Range_Check_failed = 1,
+            Technical_Resolution_Check_failed = 2,
+            Technical_Cross_Check_failed = 3,
+            Operational_Range_Check_failed = 4,
+            Operational_Cross_Check_failed = 5
         }
 
         /// <summary>
@@ -413,29 +491,6 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             Disabled = 0x00,
             Enabled = 0x80
-        }
-
-        /// <summary>
-        /// This universal data check result variable provides control information
-        /// how to display the related train data element in Echo Text/Data Entry Fields.
-        /// Affected Echo Text/Data Entry Fields are indicated by MMI_NID_DATA
-        /// 
-        /// Values:
-        /// 0 = "All checks have passed"
-        /// 1 = "Technical Range Check failed"
-        /// 2 = "Technical Resolution Check failed"
-        /// 3 = "Technical Cross Check failed"
-        /// 4 = "Operational Range Check failed"
-        /// 5 = "Operational Cross Check failed"
-        /// </summary>
-        public enum Q_DATA_CHECK : byte
-        {
-            All_checks_passed = 0,
-            Technical_Range_Check_failed = 1,
-            Technical_Resolution_Check_failed = 2,
-            Technical_Cross_Check_failed = 3,
-            Operational_Range_Check_failed = 4,
-            Operational_Cross_Check_failed = 5
         }
 
         /// <summary>

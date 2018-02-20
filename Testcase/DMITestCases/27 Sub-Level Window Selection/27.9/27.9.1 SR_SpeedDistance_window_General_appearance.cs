@@ -384,14 +384,14 @@ namespace Testcase.DMITestCases
                 "Delete the value in the SR speed data input field, enter the value ‘40’ and confirm by pressing in the data input field");
 
             EVC106_MMINewSrRules.MMI_V_STFF = 40;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {15};
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> {Variables.MMI_NID_DATA.SR_Speed};
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.NoButton;
             EVC106_MMINewSrRules.CheckPacketContent();
 
             List<Variables.DataElement> dataElements = new List<Variables.DataElement>
             {
-                new Variables.DataElement {Identifier = 15, EchoText = "40", QDataCheck = 1},
-                new Variables.DataElement {Identifier = 16, EchoText = "", QDataCheck = 1}
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Speed, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = "40" },
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Distance, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""}
             };
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
@@ -653,7 +653,7 @@ namespace Testcase.DMITestCases
                 "Delete the value in the SR distance data input field, enter the value ‘1000’ and confirm by pressing in the data input field");
 
             EVC106_MMINewSrRules.MMI_V_STFF = 1000;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {16};
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> { Variables.MMI_NID_DATA.SR_Distance};
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
 

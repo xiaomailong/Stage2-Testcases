@@ -26,7 +26,7 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
-            MMI_NID_DATA = new List<byte>();
+            MMI_NID_DATA = new List<Variables.MMI_NID_DATA>();
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewSrRules.Value = 0x0009;
             _pool.SITR.SMDStat.CCUO.ETCS1NewSrRules.Value = 0x00;
         }
@@ -185,6 +185,6 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 
         /// Note: the definition is according to preliminary SubSet-121 'NID_DATA' definition.
         /// </summary>
-        public static List<byte> MMI_NID_DATA { get; set; }
+        public static List<Variables.MMI_NID_DATA> MMI_NID_DATA { get; set; }
     }
 }

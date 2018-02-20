@@ -1082,8 +1082,8 @@ namespace Testcase.DMITestCases
                     EVC22_MMICurrentRBC.MMI_NID_RADIO = 0x5678ffffffffffff;
                     EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>
                     {
-                        new Variables.DataElement {Identifier = 0, QDataCheck = 4, EchoText = "\0x1\0x30"},
-                        new Variables.DataElement {Identifier = 1, QDataCheck = 5, EchoText = "\0x1\0x30"}
+                        new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.RBC_ID, QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed, EchoText = "0"},
+                        new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.RBCPhoneNumber, QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed, EchoText = "0"}
                     };
                     break;
             }

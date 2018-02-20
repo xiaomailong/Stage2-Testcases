@@ -69,9 +69,12 @@ namespace Testcase.DMITestCases
                 @"Enter the (invalid) value ‘1’ in the SR speed data input field and press in the data input field to accept the valu.");
 
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
+
             Variables.DataElement dataElement =
-                new Variables.DataElement {Identifier = 15, EchoText = "1", QDataCheck = 1};
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Speed, EchoText = "1", QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed};
+
             List<Variables.DataElement> dataElements = new List<Variables.DataElement> {dataElement};
+
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
 
@@ -174,7 +177,7 @@ namespace Testcase.DMITestCases
             dataElement.EchoText = "40";
 
             EVC106_MMINewSrRules.MMI_V_STFF = 40;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {15};
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> {Variables.MMI_NID_DATA.SR_Speed};
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
 
@@ -194,10 +197,10 @@ namespace Testcase.DMITestCases
             */
             // Repeat Step 2 for SR distance
             DmiActions.ShowInstruction(this,
-                @"Enter the (invalid) value ‘1’ in the SR distance data input field and press in the data input field to accept the valu.");
+                @"Enter the (invalid) value ‘1’ in the SR distance data input field and press in the data input field to accept the value.");
 
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
-            dataElement.Identifier = 16;
+            dataElement.Identifier = Variables.MMI_NID_DATA.SR_Distance;
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -253,12 +256,12 @@ namespace Testcase.DMITestCases
 
             // Repeat Step 8 for SR distance
             dataElement.EchoText = "10000";
-            dataElement.Identifier = 16;
+            dataElement.Identifier = Variables.MMI_NID_DATA.SR_Distance;
             EVC11_MMICurrentSRRules.Send();
 
 
             EVC106_MMINewSrRules.MMI_V_STFF = 10000;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {16};
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> { Variables.MMI_NID_DATA.SR_Distance };
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
 
@@ -276,7 +279,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Yes’ button");
 
             // Add a data element for correct SR speed
-            dataElements.Add(new Variables.DataElement {Identifier = 15, EchoText = "40", QDataCheck = 1});
+            dataElements.Add(new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Speed, EchoText = "40", QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed});
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -350,17 +353,18 @@ namespace Testcase.DMITestCases
                     //some values taken from xml file not spec where different
                     EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
                     {
-                        new Variables.DataElement {Identifier = 16, EchoText = "", QDataCheck = 1}
+                        new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Distance, EchoText = "", QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed}
                     };
                     EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.No_Button;
                     break;
+
                 case msgType.typeb:
                     //some values taken from xml file not spec where different
                     EVC11_MMICurrentSRRules.MMI_L_STFF = 100000;
                     EVC11_MMICurrentSRRules.MMI_V_STFF = 100;
                     EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_LEVEL;
                     EVC11_MMICurrentSRRules.DataElements =
-                        new List<Variables.DataElement> {new Variables.DataElement {Identifier = 15, QDataCheck = 1}};
+                        new List<Variables.DataElement> {new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Distance, QDataCheck = Variables.Q_DATA_CHECK.Technical_Range_Check_failed } };
                     break;
             }
 

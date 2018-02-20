@@ -74,13 +74,13 @@ namespace Testcase.DMITestCases
             {
                 new Variables.DataElement
                 {
-                    Identifier = 0,
+                    Identifier = Variables.MMI_NID_DATA.TrainRunningNumber,
                     EchoText = "0",
                     QDataCheck = (ushort) Variables.Q_DATA_CHECK.All_checks_passed
                 },
                 new Variables.DataElement
                 {
-                    Identifier = 1,
+                    Identifier = Variables.MMI_NID_DATA.ERTMS_ETCS_Level,
                     EchoText = "0",
                     QDataCheck = (ushort) Variables.Q_DATA_CHECK.All_checks_passed
                 }

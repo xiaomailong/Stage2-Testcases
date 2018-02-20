@@ -105,8 +105,8 @@ namespace Testcase.DMITestCases
 
             EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
             {
-                new Variables.DataElement {Identifier = 15, EchoText = "40", QDataCheck = 0},
-                new Variables.DataElement {Identifier = 16, EchoText = "500", QDataCheck = 0}
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Speed, EchoText = "40", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Distance, EchoText = "500", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed}
             };
             EVC11_MMICurrentSRRules.Send();
 

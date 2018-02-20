@@ -67,8 +67,8 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
             EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>
             {
-                new Variables.DataElement {Identifier = 0, QDataCheck = 23, EchoText = ""},
-                new Variables.DataElement {Identifier = 1, QDataCheck = 24, EchoText = ""}
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.RadioNetworkID, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = "GSMR-A"},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.RadioNetworkID, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = "GSMR-B"}
             };
             EVC22_MMICurrentRBC.Send();
 

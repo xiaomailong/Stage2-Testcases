@@ -71,13 +71,13 @@ namespace Testcase.DMITestCases
                 @"Enter the value ‘0’ in the SR speed data input field and press in the data input field to accept the value.");
 
             EVC106_MMINewSrRules.MMI_V_STFF = 0;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {15};
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> { Variables.MMI_NID_DATA.SR_Speed, Variables.MMI_NID_DATA.SR_Distance };
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
             List<Variables.DataElement> dataElements = new List<Variables.DataElement>
             {
-                new Variables.DataElement {Identifier = 15, EchoText = "0", QDataCheck = 0,},
-                new Variables.DataElement {Identifier = 16, EchoText = "", QDataCheck = 0}
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Speed, EchoText = "0", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed,},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Distance, EchoText = "", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed}
             };
             EVC11_MMICurrentSRRules.DataElements = dataElements;
             EVC11_MMICurrentSRRules.Send();
@@ -115,7 +115,7 @@ namespace Testcase.DMITestCases
                 @"Enter the value ‘600’ in the SR speed data input field and press in the data input field to accept the value.");
 
             EVC106_MMINewSrRules.MMI_V_STFF = 600;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {15};
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> { Variables.MMI_NID_DATA.SR_Speed };
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
 
@@ -136,7 +136,7 @@ namespace Testcase.DMITestCases
                 @"Enter the value ‘0’ in the SR speed data input field and press in the data input field to accept the valu.");
 
             EVC106_MMINewSrRules.MMI_V_STFF = 0;
-            EVC106_MMINewSrRules.MMI_NID_DATA = new List<byte> {16};
+            EVC106_MMINewSrRules.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> { Variables.MMI_NID_DATA.SR_Distance };
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
             EVC106_MMINewSrRules.CheckPacketContent();
 
@@ -171,9 +171,10 @@ namespace Testcase.DMITestCases
 
             EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
             {
-                new Variables.DataElement {Identifier = 15, EchoText = "600", QDataCheck = 1},
-                new Variables.DataElement {Identifier = 16, EchoText = "100000", QDataCheck = 1}
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Speed, EchoText = "600", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Distance, EchoText = "100000", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed}
             };
+
             EVC11_MMICurrentSRRules.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

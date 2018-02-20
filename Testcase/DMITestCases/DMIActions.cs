@@ -930,17 +930,17 @@ namespace Testcase.DMITestCases
             {
                 new Variables.DataElement
                 {
-                    Identifier = 6,
-                    QDataCheck = 0,
+                    Identifier = Variables.MMI_NID_DATA.TrainType_TrainDataSetIdentifier,
+                    QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed,
                     EchoText = Enum.GetName(typeof(Variables.Fixed_Trainset_Captions), trainsetSelected)
                 }
             };
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID, 0, 0,
-                Variables.MMI_NID_KEY.NoDedicatedKey, 0, Variables.MMI_NID_KEY.NoDedicatedKey, 0,
-                Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey,
-                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                Convert.ToUInt16((byte) (trainsetSelected)), 0, new string[] { }, dataElements);
+            Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID, 0, 0,
+                    Variables.MMI_NID_KEY.NoDedicatedKey, 0, Variables.MMI_NID_KEY.NoDedicatedKey, 0,
+                    Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey,
+                    EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
+                    Convert.ToUInt16((byte) trainsetSelected), 0, new string[] { }, dataElements);
         }
 
         /// <summary>
@@ -953,14 +953,14 @@ namespace Testcase.DMITestCases
         {
             Variables.DataElement[] dataElements = new Variables.DataElement[8]
             {
-                new Variables.DataElement {Identifier = 6, QDataCheck = 0, EchoText = ""},
-                new Variables.DataElement {Identifier = 9, QDataCheck = 0, EchoText = ""},
-                new Variables.DataElement {Identifier = 10, QDataCheck = 0, EchoText = ""},
-                new Variables.DataElement {Identifier = 11, QDataCheck = 0, EchoText = ""},
-                new Variables.DataElement {Identifier = 12, QDataCheck = 0, EchoText = ""},
-                new Variables.DataElement {Identifier = 13, QDataCheck = 0, EchoText = ""},
-                new Variables.DataElement {Identifier = 7, QDataCheck = 0, EchoText = ""},
-                new Variables.DataElement {Identifier = 8, QDataCheck = 0, EchoText = ""}
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.TrainType_TrainDataSetIdentifier, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.BrakePercentage, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.MaximumSpeed, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.AxleLoadCategory, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.Airtight, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.LoadingGauge, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.TrainCategory, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.Length, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""}
             };
 
             DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.NONE, 0, 0,
