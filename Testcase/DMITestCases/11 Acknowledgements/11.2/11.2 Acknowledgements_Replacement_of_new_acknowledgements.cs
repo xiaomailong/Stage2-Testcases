@@ -141,7 +141,7 @@ namespace Testcase.DMITestCases
 
             MakeTestStepHeader(7, UniqueIdentifier++, "Press an acknowledgement in sub-area C9",
                 "Verify the following information," +
-                "(1) There is only the yellow flashing frame around ST01 symbol is removed." +
+                "(1) The yellow flashing frame around ST01 symbol is removed." +
                 "(2) DMI displays text message ‘Runaway movement’ with yellow flashing frame in sub-area E5");
             /*
             Test Step 7
@@ -154,7 +154,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Acknowledge by pressing in sub-area C9");
 
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
-                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.BrakeReleaseAck;
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.FixedTextInformationAck;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays symbol ST01 but removes the yellow flashing frame" +
