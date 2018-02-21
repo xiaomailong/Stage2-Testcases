@@ -1,4 +1,5 @@
 using System;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -35,7 +36,6 @@ namespace Testcase.DMITestCases
             */
             StartUp();
             DmiActions.Set_Driver_ID(this, "1234");
-            DmiActions.ShowInstruction(this, "Confirm the Driver ID");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
@@ -49,6 +49,8 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.Send();
 
             DmiActions.ShowInstruction(this, "Press the ‘Enter RBC Data’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartRBCdataEntry;
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10; // RBC data
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
@@ -68,10 +70,14 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 "Enter and confirm the following values: RBC ID = 6996969, RBC Phone number = 0031840880100, then, press the ‘Yes’ button");
 
+            EVC112_MMINewRbcData.MMI_NID_RADIO = 0031840880100;
+            EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC112_MMINewRbcData.CheckPacketContent();
+
             // Need to close RBC Contact window
-            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-            EVC22_MMICurrentRBC.NetworkCaptions.Clear();
-            EVC22_MMICurrentRBC.Send();
+            EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Main;
+            EVC30_MMIRequestEnable.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
@@ -85,7 +91,6 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window with enabled ‘Start’ button
             */
             DmiActions.ShowInstruction(this, "Press the ‘Train data’ button");
-
 
             DmiActions.Send_EVC6_MMICurrentTrainData_FixedDataEntry(this, new[] {"FLU", "RLU", "Rescue"}, 2);
 
