@@ -40,6 +40,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.SMDCtrl.ETCS1.SetVbc.Value = 0x0008;
 
             MMI_N_VBC = 0;
+            ECHO_TEXT = "";
         }
 
         /// <summary>
@@ -129,8 +130,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 if (value > 63)
                 {
-                    throw new ArgumentOutOfRangeException("NID_VBCMK",
-                        "Virtual Balise Cover marker must be less than 64.");
+                    throw new ArgumentOutOfRangeException();
                 }
                 else
                 {
