@@ -211,7 +211,7 @@ namespace Testcase.DMITestCases
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_ORIG = 50;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_MEASURED = 255;
             EVC50_MMICurrentBrakePercentage.MMI_M_BP_CURRENT = 251;
-            EVC20_MMISelectLevel.Send();
+            EVC50_MMICurrentBrakePercentage.Send();
 
             #endregion
 
