@@ -24,8 +24,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
-            MMI_NID_NTC = new List<byte>{20, 50};
-            MMI_NID_STMSTATE = new List<byte>{6, 6};
+            MMI_NID_NTC = new List<byte>();
+            MMI_NID_STMSTATE = new List<byte>();
 
             // set default values
             _pool.SITR.SMDCtrl.ETCS1.SystemInfo.Value = 0x0008;
