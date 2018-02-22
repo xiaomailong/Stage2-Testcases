@@ -41,6 +41,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.SMDCtrl.ETCS1.RemoveVbc.Value = 0x0008;
 
             MMI_N_VBC = 0;
+            ECHO_TEXT = "";
         }
 
         /// <summary>
