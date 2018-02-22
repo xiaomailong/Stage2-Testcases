@@ -203,7 +203,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// line for which the train requires NTC support (via e.g. STM or standalone system).
         /// (The definition of this variable is done by ERA ref [ETCS_VARIABLES])
         /// 
-        /// Note: Refer to[ETCS_VARIABLES].
+        /// Values:
+        /// 20 = AWS/TPWS
+        /// 50 = CBTC
+        /// 
+        /// Note: Refer to [ETCS_VARIABLES].
         /// Values not yet assigned to a dedicated NTC shall be handled as Not Defined.
         /// In case of an insertion of text instead of values of MMI_NID_NTC (e.g. text messages)
         /// undefined values shall lead to text string ‘<Unknown>’.
