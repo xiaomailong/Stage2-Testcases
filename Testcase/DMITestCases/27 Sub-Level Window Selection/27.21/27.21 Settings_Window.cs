@@ -31,6 +31,7 @@ namespace Testcase.DMITestCases
 
             TraceInfo("This test case may require a DMI configuration change - " +
                       "System info may not be disabled/enabled by text). If this is not done manually, the test may fail!");
+
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Settings’ button",
                 "DMI displays Settings window.Verify the following points,Menu windowsThe Settings window is displayed in main area D/F/G.The window title is ‘Settings’.The following objects are displayed Main window, Enabled Close button (NA11)Window TitleButton 1 with Symbol SE03 for Language Button 2 with Symbol SE02 for VolumeButton 3 with SE01 for BrightnessButton 4 with label ‘System version’Button 5 with label ‘Set VBC’Button 6 with label ‘Remove VBC’Note: See the position of buttons in picture below,The state of each button in Special window are displayed correctly as follows,Language = EnableVolume = EnableBrightness = EnableSystem version = EnableSet VBC = EnableRemove VBC = DisableSet clock = EnableThe other additional buttons from list above also display in this window (e.g. Maintenance, Brake, System Info, etc.).LayersThe level of layers in each area of window as follows,Layer 0: Area D, F, G, E10, E11, Y, and ZLayer -1: Area A1, (A2+A3)*, A4, B*, C1, (C2+C3+C4)*, C5, C6, C7, C8, C9, E1, E2, E3, E4, (E5-E9)*.Layer -2: Area B3, B4, B5, B6 and B7.Note: ‘*’ symbol is mean that specified area are drawn as one area.Packet transmissionUse the log file to confirm that DMI receives EVC-30 with following value in each bit of variable MMI_Q__REQUEST_ENABLE_64,Bit #13 = 1 (Language)Bit #14 = 1 (Volume)Bit #15 = 1 (Brightness)Bit #16 = 1 (System version)Bit #17 = 1 (Set VBC)Bit #18 = 0 (Remove VBC)Bit #25 or Bit #26 = 1 (Set Clock)And the buttons are enabled according to bit value = 1. General property of windowThe Settings window is presented with objects and buttons which is the one of several levels and allocated to areas of DMI..All objects, text messages and buttons are presented within the same layer.The Default window is not displayed and covered the current window.Sub-level window covers partially depending on the size of the Sub-Level window. There is no other window is displayed and activated at the same time");
             /*
@@ -267,8 +268,11 @@ namespace Testcase.DMITestCases
             // Repeat Step 5 for System version
             DmiActions.ShowInstruction(this, @"Release the ‘System version’ button");
 
-            EVC34_MMISystemVersion.Send();
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.SystemVersionRequest;
+
+            EVC34_MMISystemVersion.SYSTEM_VERSION_X = 1;
+            EVC34_MMISystemVersion.SYSTEM_VERSION_Y = 2;
+            EVC34_MMISystemVersion.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the System version window.");
@@ -567,9 +571,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-            EVC19_MMIRemoveVBC.MMI_N_VBC = 1;
-            EVC19_MMIRemoveVBC.MMI_Q_DATA_CHECK = Variables.Q_DATA_CHECK.All_checks_passed;
-            EVC19_MMIRemoveVBC.Send();
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitRemoveVBC;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
