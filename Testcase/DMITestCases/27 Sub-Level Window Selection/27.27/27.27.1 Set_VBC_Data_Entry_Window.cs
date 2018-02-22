@@ -442,8 +442,6 @@ namespace Testcase.DMITestCases
                                    MMI_gen 9902; 
                                    MMI_gen 5387 (partly: transmission);
             */
-            DmiActions.Confirm_an_entered_data_Then_apply_the_action_step_2_3_for_Yes_button(this);
-
 
             MakeTestStepHeader(13, UniqueIdentifier++, "Press ‘Close’ button", "DMI displays Set VBC window");
             /*
