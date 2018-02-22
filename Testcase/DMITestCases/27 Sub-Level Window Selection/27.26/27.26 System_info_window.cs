@@ -51,6 +51,8 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
 
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Settings;
+
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.Settings; // Settings window
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
@@ -65,9 +67,9 @@ namespace Testcase.DMITestCases
             EVC24_MMISystemInfo.MMI_T_TIMEOUT_BTM = 1421078220;
             EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 1401638220;
             EVC24_MMISystemInfo.MMI_M_ETC_VER = 16755215;
-            EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 236;
-            EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 65535; // ?? undefined
-            EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248; // ?? undefined
+            EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 236;   // 1110 1100
+            EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 65535; // 0xffff
+            EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248; // 1111 1000
             EVC24_MMISystemInfo.MMI_NID_NTC = new List<byte> {20};
             EVC24_MMISystemInfo.MMI_NID_STMSTATE = new List<byte> {7}; // Data Available (DA)
 
@@ -202,7 +204,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Settings window");
 
             MakeTestStepHeader(9, UniqueIdentifier++,
-                "Use the test script file 22_26_a.xml to send EVC-30 withMMI_Q_REQUEST_ENABLE_64 (#32) = 0",
+                "Use the test script file 22_26_a.xml to send EVC-30 with MMI_Q_REQUEST_ENABLE_64 (#32) = 0",
                 "Verify that ‘System info’ button is disabled");
             /*
             Test Step 9
@@ -223,15 +225,16 @@ namespace Testcase.DMITestCases
             Expected Result: Use the log file to verify that there is no packet information EVC-101 with MMI_M_REQUEST = 29 sent from DMI to ETCS
             Test Step Comment: MMI_gen 1552 (partly:pressed disabled button);
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘System info’ button");
+            // There should be no button to press, and this test does not check log files.
 
             MakeTestStepHeader(11, UniqueIdentifier++,
-                "Use the test script file 22_26_b.xml to send EVC-30 withMMI_Q_REQUEST_ENABLE_64 (#32) = 1Then, send EVC-24 with MMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215",
-                "Verify the state of ‘System info’ button is enabled.DMI displays System info window after received packet EVC-24.The Data part of Data view text is able to display multiples value in same label (see the value of hardware configuration are splitted to be a multiple lines).Verify the display information are displayed correctly refer to received packet as follows,MMI Product version = 255.170.15Vehicle ID = 1234Brake configuration is display only the following items,SB availableSB as RTWRelease TCO @BRTCO feedback OKSoft isolation allowedHardware configuration is display only the following items,MMI 1MMI 2Redundant MMI 1Redundant MMI 2BTM antenna 1BTM antenna 2Radio modem 1Radio modem 2DRUEuroloop BTM(s)");
+                "Use the test script file 22_26_b.xml to send EVC-30 with MMI_Q_REQUEST_ENABLE_64 (#32) = 1" +
+                "Then, send EVC-24 with MMI_NID_ENGINE_1 = 1234 MMI_M_BRAKE_CONFIG = 55 MMI_M_AVAIL_SERVICES = 65535 MMI_M_ETC_VER = 16755215",
+                "Verify the state of ‘System info’ button is enabled. DMI displays System info window after received packet EVC-24.The Data part of Data view text is able to display multiples value in same label (see the value of hardware configuration are splitted to be a multiple lines). Verify the display information are displayed correctly refer to received packet as follows,MMI Product version = 255.170.15 Vehicle ID = 1234 Brake configuration is display only the following items, SB available SB as RTWRelease TCO @BRTCO feedback OK Soft isolation allowed Hardware configuration is displayed only the following items, MMI 1MMI 2 Redundant MMI 1 Redundant MMI 2 BTM antenna 1 BTM antenna 2 Radio modem 1 Radio modem 2 DRUEuroloop BTM(s)");
             /*
             Test Step 11
-            Action: Use the test script file 22_26_b.xml to send EVC-30 withMMI_Q_REQUEST_ENABLE_64 (#32) = 1Then, send EVC-24 with MMI_NID_ENGINE_1 = 1234MMI_M_BRAKE_CONFIG = 55MMI_M_AVAIL_SERVICES = 65535MMI_M_ETC_VER = 16755215
-            Expected Result: Verify the state of ‘System info’ button is enabled.DMI displays System info window after received packet EVC-24.The Data part of Data view text is able to display multiples value in same label (see the value of hardware configuration are splitted to be a multiple lines).Verify the display information are displayed correctly refer to received packet as follows,MMI Product version = 255.170.15Vehicle ID = 1234Brake configuration is display only the following items,SB availableSB as RTWRelease TCO @BRTCO feedback OKSoft isolation allowedHardware configuration is display only the following items,MMI 1MMI 2Redundant MMI 1Redundant MMI 2BTM antenna 1BTM antenna 2Radio modem 1Radio modem 2DRUEuroloop BTM(s)
+            Action: Use the test script file 22_26_b.xml to send EVC-30 with MMI_Q_REQUEST_ENABLE_64 (#32) = 1 Then, send EVC-24 with MMI_NID_ENGINE_1 = 1234 MMI_M_BRAKE_CONFIG = 55 MMI_M_AVAIL_SERVICES = 65535 MMI_M_ETC_VER = 16755215
+            Expected Result: Verify the state of ‘System info’ button is enabled. DMI displays System info window after received packet EVC-24. The Data part of Data view text is able to display multiples value in same label (see the value of hardware configuration are splitted to be a multiple lines). Verify the display information are displayed correctly refer to received packet as follows, MMI Product version = 255.170.15 Vehicle ID = 1234 Brake configuration is display only the following items, SB available SB as RTWRelease TCO @BRTCO feedback OK Soft isolation allowed Hardware configuration is display only the following items, MMI 1 MMI 2 Redundant MMI 1 Redundant MMI 2 BTM antenna 1 BTM antenna 2 Radio modem 1 Radio modem 2 DRUEuroloop BTM(s)
             Test Step Comment: (1) MMI_gen 1551 (partly: enabling); (2) MMI_gen 2463 (partly: open System info window);(3) MMI_gen 11902 (partly:MMI_gen 7510);      (4) MMI_gen 2463 (partly: presentation of data); MMI_gen 11695; MMI_gen 11902 (partly: MMI_gen 5336 (partly: valid));
             */
             XML_22_26(msgType.typeb);
@@ -245,8 +248,8 @@ namespace Testcase.DMITestCases
             EVC24_MMISystemInfo.MMI_T_TIMEOUT_TBSW = 1401638220;
             EVC24_MMISystemInfo.MMI_M_ETC_VER = 16755215;
             EVC24_MMISystemInfo.MMI_M_BRAKE_CONFIG = 236;
-            EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 65535; // ?? undefined
-            EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248; // ?? undefined
+            EVC24_MMISystemInfo.MMI_M_AVAIL_SERVICES = 65535; // 0xffff
+            EVC24_MMISystemInfo.MMI_M_LEVEL_INST = 248; // 0b1111_1000
             EVC24_MMISystemInfo.MMI_NID_NTC = new List<byte> {20};
             EVC24_MMISystemInfo.MMI_NID_STMSTATE = new List<byte> {7}; // Data Available (DA)
 
@@ -293,6 +296,7 @@ namespace Testcase.DMITestCases
             switch (type)
             {
                 case msgType.typea:
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = false;
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
                                                                        EVC30_MMIRequestEnable.EnabledRequests
@@ -300,8 +304,11 @@ namespace Testcase.DMITestCases
                                                                        EVC30_MMIRequestEnable.EnabledRequests
                                                                            .SystemVersion |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.SetVBC;
+
                     break;
+
                 case msgType.typeb:
+                    EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_LOW = true;
                     EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language |
                                                                        EVC30_MMIRequestEnable.EnabledRequests.Volume |
                                                                        EVC30_MMIRequestEnable.EnabledRequests
