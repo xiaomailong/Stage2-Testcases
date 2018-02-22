@@ -24,8 +24,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
-            MMI_NID_NTC = new List<byte>();
-            MMI_NID_STMSTATE = new List<byte>();
+            MMI_NID_NTC = new List<byte>{20, 50};
+            MMI_NID_STMSTATE = new List<byte>{6, 6};
 
             // set default values
             _pool.SITR.SMDCtrl.ETCS1.SystemInfo.Value = 0x0008;
@@ -54,18 +54,9 @@ namespace Testcase.Telegrams.EVCtoDMI
                 var _nidStmState = MMI_NID_STMSTATE[nidNtcIndex];
 
                 // Set the value on EVC-24 packet according to the NIDNTC index
-                if (nidNtcIndex < 10)
-                {
-                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiNidNtc", BaseString, nidNtcIndex), _nidNtc);
-                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiNidStmstate", BaseString, nidNtcIndex),
-                        _nidStmState);
-                }
-                else
-                {
-                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiNidNtc", BaseString, nidNtcIndex), _nidNtc);
-                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiNidStmstate", BaseString, nidNtcIndex),
-                        _nidStmState);
-                }
+                _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiNidNtc", BaseString, nidNtcIndex), _nidNtc);
+                _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiNidStmstate", BaseString, nidNtcIndex), _nidStmState);
+                
             }
 
             // Set the total length of the packet
