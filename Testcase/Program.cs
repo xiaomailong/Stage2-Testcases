@@ -30,7 +30,7 @@ namespace Testcase
             }
             else
             {
-                TestcaseRunner.AddTestcase(typeof(TC_ID_8_2_1_Layers));
+                TestcaseRunner.AddTestcase(typeof(TC_34_6_Dialogue_Sequences));
             
                 //TestcaseRunner.AddTestcase(typeof(TC_ID_15_2_12_ETCS_Level));
                 
