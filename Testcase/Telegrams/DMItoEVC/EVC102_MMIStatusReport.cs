@@ -30,7 +30,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static void CheckActiveCabin(Variables.MMI_M_ACTIVE_CABIN mActiveCabin)
         {
             // Get EVC102_alias_1_B0
-            byte evc102Alias1B0 = _pool.SITR.CCUO.ETCS1StatusReport.EVC102alias1B0.Value;
+            byte evc102Alias1B0 = _pool.SITR.CCUS.ETCS1StatusReport.EVC102alias1B0.Value;
 
             // Extract MMI_M_ACTIVE_CABIN (4th and 5th bits according to VSIS 2.9)
             byte mmiMActiveCabin = (byte) ((evc102Alias1B0 & 0x30) >> 4); // xxxx xxxx -> 00xx 0000 -> 0000 00xx
@@ -60,7 +60,7 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             // Check MMI_M_MODE_READBACK value
             _checkResult =
-                _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.WaitForCondition(Is.Equal, (byte) mModeReadBack,
+                _pool.SITR.CCUS.ETCS1StatusReport.MmiMModeReadback.WaitForCondition(Is.Equal, (byte) mModeReadBack,
                     5000, 20);
 
             // If passed
@@ -74,7 +74,7 @@ namespace Testcase.Telegrams.DMItoEVC
             else
             {
                 // Get current mode
-                byte currentMode = _pool.SITR.CCUO.ETCS1StatusReport.MmiMModeReadback.Value;
+                byte currentMode = _pool.SITR.CCUS.ETCS1StatusReport.MmiMModeReadback.Value;
 
                 _pool.TraceError(string.Format("{0} - MMI_M_MODE_READBACK = \"{1}\"", BaseString, mModeReadBack) +
                                  Environment.NewLine +
@@ -87,7 +87,7 @@ namespace Testcase.Telegrams.DMItoEVC
         private static void CheckMmiStatus()
         {
             // Get EVC102_alias_1_B1
-            byte evc102Alias1B1 = _pool.SITR.CCUO.ETCS1StatusReport.EVC102alias1B1.Value;
+            byte evc102Alias1B1 = _pool.SITR.CCUS.ETCS1StatusReport.EVC102alias1B1.Value;
 
             // Extract MMI_M_MM_STATUS (upper 4 bits according to VSIS 2.9)
             byte mmiMStatus = (byte) ((evc102Alias1B1 & 0xf0) >> 4); // xxxx xxxx -> xxxx 0000 -> 0000 xxxx

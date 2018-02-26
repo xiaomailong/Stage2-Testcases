@@ -1,20 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<TestInfoXml>
-  <Asv>ASV</Asv>
-  <Project>Class 345 DMI Testing version 6.2</Project>
-  <Tester>Signalling Integration Team (Ricky Morris)</Tester>
-  <Rack>Signalling Integration Test Rig VCS 10</Rack>
-  <Logpath>C:\Users\VCS10\Dropbox\Logs and Results</Logpath>
-  <Logwindow>True</Logwindow>
-  <LogWindowAutoClose>True</LogWindowAutoClose>
-  <LogSizeMaximum>2000MB</LogSizeMaximum>
-  <LogEntriesMaximum>20000</LogEntriesMaximum>
-  <UCpath>c:\</UCpath>
-  <Configuration>R6 Unit Test TCMS, 2018-01-30 11:08:45</Configuration>
-  <ManualTest>True</ManualTest>
-  <DefaultResult>Yes</DefaultResult>
-  <HideConsoleWindow>False</HideConsoleWindow>
-  <LogDirectlyToDisk>False</LogDirectlyToDisk>
-  <ValidationMode>False</ValidationMode>
+<?xml version="1.0" encoding="utf-8" ?>
+ <TestInfoXml>
+	<Project>Class 345 DMI Testing version 6.2</Project>
+	<Asv>ASV</Asv>
+	<Configuration>R6 Unit Test TCMS, 2018-02-22 14:01:45</Configuration>
+	<Rack>Signalling Integration Test Rig VCS 10</Rack>
+	<Tester>Signalling Integration Team (Ricky Morris)</Tester>
+	<Logpath>C:\Users\VCS10\Dropbox\Logs and Results</Logpath>
+	<Logwindow>True</Logwindow>
+	<LogWindowAutoClose>False</LogWindowAutoClose>
+	<LogSizeMaximum>200MB</LogSizeMaximum>
+	<LogEntriesMaximum>20000</LogEntriesMaximum>
+	<LogDirectlyToDisk>False</LogDirectlyToDisk>
+	<HideConsoleWindow>False</HideConsoleWindow>
+	<UCpath>c:\</UCpath>
+	<ManualTest>True</ManualTest>
+	<DefaultResult>Yes</DefaultResult>
+	<ValidationMode>False</ValidationMode>
+	<CustomProperties>
+<!-- 
+    <XSLFile>C:\FILE\TO\CUSTOM.xsl</XSLFile>    
+    <DisableKeepAlive>False</DisableKeepAlive>
+    <DisableRespondenceTracker>False</DisableRespondenceTracker>
+    <FailedTestcaseRetryCount>3</FailedTestcaseRetryCount>
+    <TraceReferencedAssemblyVersions>False</TraceReferencedAssemblyVersions>
+    <TraceUnReferencedAssemblyVersions>False</TraceUnReferencedAssemblyVersions>
+-->
+	</CustomProperties> 
 </TestInfoXml>
