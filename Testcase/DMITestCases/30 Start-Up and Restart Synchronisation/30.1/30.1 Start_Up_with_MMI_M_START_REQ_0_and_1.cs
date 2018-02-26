@@ -43,7 +43,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information:(1)    DMI is in isolation state and keeps all specific ATP indications extinguished. The text “No contact with ATP” is presented in area E5
             Test Step Comment: (1) MMI_gen 233; MMI_gen 1074;
             */
-            DmiActions.ShowInstruction(this, "Power on the test system");
+            StartUp();
+
+            DmiActions.Force_Loss_Communication(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI is isolated and all ATP indications are off." + Environment.NewLine +
@@ -55,24 +57,20 @@ namespace Testcase.DMITestCases
             /*
             Test Step 2
             Action: Establish the communication between ETCS Onboard and DMI with start of ATP.Ensure that the ‘Sleeping’ is selected on OTE Simulator
-            Expected Result: Verify the following information:(1)    Use the log file to verify packet that DMI receives and sends out as following:DMI receives packet EVC-0 with variable [MMI_M_START_REQ] = 0.No ATP related information on DMI screen, except the text “starting up” in area E5.DMI sends out [MMI_START_MMI (EVC-100)] with all corresponding data.(2)    Use the log file to verify packet that DMI receives and sends out with variables and value as following:DMI receives packet EVC-0 with variable [MMI_M_START_REQ] = 1.The text “starting up” in area E5 is removed.DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 2 (Idle) to the ETC/ATP at least each 250ms regardless of the status of the cabin activation.No mode information in area B7.No ETCS related information on DMI screen, except the text “Driver's cab not active” in area E5.No button corresponds to driver’s request on DMI screen.(3)    When DMI receives MMI_M_START_REQ = 1,  use the log file to confirm that DMI receives packet EVC-1 with cylical update of variable SDT_SSC32 (Counter)
+            Expected Result: Verify the following information:
+            (1) Use the log file to verify packet that DMI receives and sends out as following:DMI receives packet EVC-0 with variable [MMI_M_START_REQ] = 0.No ATP related information on DMI screen, except the text “starting up” in area E5.DMI sends out [MMI_START_MMI (EVC-100)] with all corresponding data.
+            (2) Use the log file to verify packet that DMI receives and sends out with variables and value as following:DMI receives packet EVC-0 with variable [MMI_M_START_REQ] = 1.The text “starting up” in area E5 is removed.DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 2 (Idle) to the ETC/ATP at least each 250ms regardless of the status of the cabin activation.No mode information in area B7.No ETCS related information on DMI screen, except the text “Driver's cab not active” in area E5.No button corresponds to driver’s request on DMI screen.
+            (3) When DMI receives MMI_M_START_REQ = 1,  use the log file to confirm that DMI receives packet EVC-1 with cylical update of variable SDT_SSC32 (Counter)
             Test Step Comment: (1) MMI_gen 235;(2) MMI_gen 237; MMI_gen 238 (partly: in sleeping mode, MMI_gen 11280); MMI_gen 3424; MMI_gen 11430;(3) MMI_gen 11906;
             */
-            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
-            EVC0_MMIStartATP.Send();
-
             DmiActions.Re_establish_communication_EVC_DMI(this);
 
-            EVC100_MMIStartMmi.MMI_M_START_STATUS = 0; // OK
-
-            // Checking the EVC100 packet is questionable: the i/f and system version may change. May need to add CheckStatus call
+            EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.VersionInfo;
+            EVC0_MMIStartATP.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the message ‘Starting up’ in area E5." + Environment.NewLine +
                                 "2. DMI displays no other information relating to ATP.");
-
-            // How to do this?
-            DmiActions.ShowInstruction(this, "Select ‘Sleeping’ mode");
 
             /* This is what spec says, but send 0 first seems to be needed
             EVC0_MMIStartATP.Evc0Type = EVC0_MMIStartATP.EVC0Type.GoToIdle;
@@ -80,9 +78,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Start_ATP();
 
-            // Spec says DMI sends this out every 250 ms so wait to ensure that packet is sent
-            Wait_Realtime(250);
             EVC102_MMIStatusReport.Check_MMI_M_MMI_STATUS = EVC102_MMIStatusReport.MMI_M_MMI_STATUS.StatusIdle;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Sleeping;
+            EVC2_MMIStatus.MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.NoCabinActive;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the message ‘Starting up’ and displays ‘Driver's cab not active’ in area E5." +
@@ -91,14 +89,15 @@ namespace Testcase.DMITestCases
                                 "3. No other ETCS information or driver request buttons are displayed.");
 
             MakeTestStepHeader(3, UniqueIdentifier++, "Deselect the ‘Sleeping’ on the OTE Simulator",
-                "Verify the following information:(1)    In “Idle” state, the following actions are carried out: DMI displays a current mode in area B7.No ETCS related information on DMI screen, except the text “Driver's cab not active” in area E5.No button corresponds to driver’s request on DMI screen except Settings button");
+                "Verify the following information:(1) In “Idle” state, the following actions are carried out: DMI displays a current mode in area B7.No ETCS related information on DMI screen, except the text “Driver's cab not active” in area E5.No button corresponds to driver’s request on DMI screen except Settings button");
             /*
             Test Step 3
             Action: Deselect the ‘Sleeping’ on the OTE Simulator
             Expected Result: Verify the following information:(1)    In “Idle” state, the following actions are carried out: DMI displays a current mode in area B7.No ETCS related information on DMI screen, except the text “Driver's cab not active” in area E5.No button corresponds to driver’s request on DMI screen except Settings button
             Test Step Comment: (1) MMI_gen 238 (partly: not in sleeping mode, MMI_gen 11280), MMI_gen 3424;
             */
-            DmiActions.ShowInstruction(this, "De-select ‘Sleeping’ mode");
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays ‘Driver's cab not active’ in area E5." + Environment.NewLine +
@@ -119,6 +118,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays ‘No connection to the ATP’ in area E5." + Environment.NewLine +
                                 "2. No other ATP information is displayed.");
+
             MakeTestStepHeader(5, UniqueIdentifier++,
                 "Re-establish the communication between ETCS Onboard and DMI with start of ATP",
                 "Verify the following information:(1)    DMI remains in “idle” state. Use the log file to confirm packet that DMI sends out or updates variables and value below: DMI sends out [MMI_STATUS_REPORT (EVC-102).MMI_M_MMI_STATUS] = 2 (Idle) to the ETC/ATP at least each 250ms.DMI sends out and updated value [MMI_STATUS_REPORT (EVC-102). SDT_SSC32] to the ETC/ATP at least each 250ms");
