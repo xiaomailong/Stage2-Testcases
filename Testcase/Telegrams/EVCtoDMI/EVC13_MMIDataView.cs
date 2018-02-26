@@ -24,6 +24,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             _pool = pool;
             MMI_M_VBC_CODE = new List<byte>();
+            Trainset_Caption = "";
+            Network_Caption = "";
 
             // Set as dynamic
             _pool.SITR.SMDCtrl.ETCS1.DataView.Value = 0x0008;
@@ -103,12 +105,12 @@ namespace Testcase.Telegrams.EVCtoDMI
                 // Set the value on EVC-13 packet according to the Network caption digit index
                 if (digitIndex < 10)
                 {
-                    _pool.SITR.Client.Write(string.Format("{0}30{1}_MmiXCaptionTrainset", BaseString, digitIndex),
+                    _pool.SITR.Client.Write(string.Format("{0}30{1}_MmiXCaptionNetwork", BaseString, digitIndex),
                         _xCaptionNetwork);
                 }
                 else
                 {
-                    _pool.SITR.Client.Write(string.Format("{0}3{1}_MmiXCaptionTrainset", BaseString, digitIndex),
+                    _pool.SITR.Client.Write(string.Format("{0}3{1}_MmiXCaptionNetwork", BaseString, digitIndex),
                         _xCaptionNetwork);
                 }
             }
