@@ -146,12 +146,13 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 613;
             EVC8_MMIDriverMessage.Send();
 
-            // Spec says ST03 symbol, Connection established but 613 is ST103 Connection Up
+            // Concise configuration used by Crossrail maps 613 to 568.
+            // Test changed to look for indicator 568.
             WaitForVerification("Check the following:" + Environment.NewLine +
-                                "1. DMI displays the ‘Connection established’ symbol (ST103) in sub-area E1. (Not shown in ERA015560 standard)");
+                                "1. DMI displays the ‘Connection established’ symbol (ST03) in sub-area E1.");
 
             MakeTestStepHeader(8, UniqueIdentifier++,
-                "Perform the following procedure,Stop the trainDe-activate Cabin A.Activate Cabin A",
+                "Perform the following procedure, Stop the train De-activate Cabin A. Activate Cabin A",
                 "The symbol in sub area E1 is removed");
             /*
             Test Step 8
@@ -209,8 +210,10 @@ namespace Testcase.DMITestCases
             */
             XML_18_1_1_1_1_b();
 
+            // Concise configuration used by Crossrail maps 614 to 568.
+            // Test changed to look for indicator 568.
             WaitForVerification("Check the following:" + Environment.NewLine +
-                                "1. DMI displays the ‘Connection established with two RBCs’ symbol (ST03B) in sub-area E1.");
+                                "1. DMI displays the ‘Connection established’ symbol (ST03) in sub-area E1.");
 
             TraceHeader("End of test");
 
