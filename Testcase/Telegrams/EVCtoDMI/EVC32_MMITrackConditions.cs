@@ -13,9 +13,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static byte _evc32Alias1;
 
         /// <summary>
-        /// Initialise EVC-32 MMI_Track_Conditions telegram.
+        /// Initialise EVC-32 MMI Track Conditions telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The Signal Pool</param>
         public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
@@ -65,7 +65,6 @@ namespace Testcase.Telegrams.EVCtoDMI
                     _pool.SITR.Client.Write(string.Format("{0}0{1}_EVC32alias2", baseString, k),
                         TrackConditions[k].EVC_32_ALIAS_2);
                 }
-
                 else
                 {
                     _pool.SITR.Client.Write(string.Format("{0}{1}_MmiOTrackcondAnnounce", baseString, k),
@@ -90,6 +89,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.TraceInfo("ETCS->DMI: EVC-32 (MMI_TRACK_CONDITIONS)");
             _pool.TraceInfo(string.Format("EVC-32: MMI_Q_TRACKCOND_UPDATE = {0}", MMI_Q_TRACKCOND_UPDATE));
             _pool.TraceInfo(string.Format("EVC-32: Number of track conditions = {0}", numberOfTrackConditions));
+
             _pool.SITR.SMDCtrl.ETCS1.TrackConditions.Value = 0x000B;
             _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.TrackConditions);
         }
@@ -155,8 +155,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static void SetAlias2()
         {
-            _evc32Alias2 = (byte) (_mmiQTrackcondStep << 4 | _mmiQTrackcondActionStart << 3 |
-                                   _mmiQTrackcondActionEnd << 2);
+            _evc32Alias2 = (byte) (_mmiQTrackcondStep << 4 | _mmiQTrackcondActionStart << 3 | _mmiQTrackcondActionEnd << 2);
         }
 
         /// <summary>
