@@ -65,15 +65,15 @@ namespace Testcase.Telegrams.DMItoEVC
                 }
 
                 // Compare number of data element.                
-                if (_pool.SITR.CCUO.ETCS1NewSrRules.MmiNDataElements.Value.Equals(MMI_NID_DATA.Count))
+                if (_pool.SITR.CCUO.ETCS1NewSrRules.MmiNDataElements.Value.Equals((ushort)MMI_NID_DATA.Count))
                 {
-                    // if comparaison matches
+                    // if comparison matches
                     _pool.TraceReport("MMI_N_DATA_ELEMENTS = \"" + MMI_NID_DATA.Count + "\" Result: PASSED.");
 
                     for (var _nidDataIndex = 0; _nidDataIndex < MMI_NID_DATA.Count; _nidDataIndex++)
                     {
-                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1,
-                            _nidDataIndex));
+                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1, _nidDataIndex));
+                        
                         // Compare each data element
                         _checkResult = _nidData.Equals(MMI_NID_DATA[_nidDataIndex]);
 
