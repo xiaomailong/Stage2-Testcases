@@ -52,15 +52,7 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             for (var k = 0; k < _nNidNtc; k++)
             {
-                // Populate telegram with dynamic fields
-                if (k < 10)
-                {
-                    _pool.SITR.Client.Write("ETCS1_NtcDeSelect_EVC31NtcDeSelectSub0" + k + "_MmiNidNtc", _nidNtc[k]);
-                }
-                else
-                {
-                    _pool.SITR.Client.Write("ETCS1_NtcDeSelect_EVC31NtcDeSelectSub" + k + "_MmiNidNtc", _nidNtc[k]);
-                }
+                _pool.SITR.Client.Write("ETCS1_NtcDeSelect_EVC31NtcDeSelectSub" + k + "_MmiNidNtc", _nidNtc[k]);
             }
         }
 
