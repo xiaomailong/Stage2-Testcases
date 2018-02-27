@@ -21,13 +21,13 @@ namespace Testcase.Telegrams.DMItoEVC
         static string baseString1 = "CCUO_ETCS1NewRbcData_EVC112NewRbcDataSub";
 
         /// <summary>
-        /// Initialise EVC-112 MMI_New_Rbc_Data telegram.
+        /// Initialise EVC-112 MMI New RBC Data telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">The SignalPool</param>
         public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
-            MMI_NID_DATA = new List<byte>();
+            MMI_NID_DATA = new List<Variables.MMI_NID_DATA>();
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewRbcData.Value = 0x0009;
             _pool.SITR.SMDStat.CCUO.ETCS1NewRbcData.Value = 0x00;
         }
@@ -73,9 +73,9 @@ namespace Testcase.Telegrams.DMItoEVC
                 }
 
                 // Compare number of data element.                
-                if (_pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value.Equals(MMI_NID_DATA.Count))
+                if (_pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value.Equals((ushort)MMI_NID_DATA.Count))
                 {
-                    // if comparaison matches
+                    // If comparison matches
                     _pool.TraceReport("MMI_N_DATA_ELEMENTS = \"" + MMI_NID_DATA.Count + "\" Result: PASSED.");
 
                     for (var _nidDataIndex = 0; _nidDataIndex < MMI_NID_DATA.Count; _nidDataIndex++)
@@ -85,7 +85,7 @@ namespace Testcase.Telegrams.DMItoEVC
                         // Compare each data element
                         _checkResult = _nidData.Equals(MMI_NID_DATA[_nidDataIndex]);
 
-                        //if comparaison matches
+                        // If comparaison matches
                         if (_checkResult)
                         {
                             _pool.TraceReport(
@@ -212,6 +212,6 @@ namespace Testcase.Telegrams.DMItoEVC
         /// 
         /// Note: the definition is according to preliminary SubSet-121 'NID_DATA' definition.
         /// </summary>
-        public static List<byte> MMI_NID_DATA { get; set; }
+        public static List<Variables.MMI_NID_DATA> MMI_NID_DATA { get; set; }
     }
 }

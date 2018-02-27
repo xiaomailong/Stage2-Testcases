@@ -155,8 +155,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Release the ‘Enter RBC data’ button");
 
             // Spec says button type = 23 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte>();
-            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<Variables.MMI_NID_DATA>();
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC112_MMINewRbcData.CheckPacketContent();
 
             EVC30_MMIRequestEnable.SendBlank();
@@ -395,7 +395,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Release the ‘Contact last RBC’ button");
 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte>();
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<Variables.MMI_NID_DATA>();
             EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
             EVC112_MMINewRbcData.CheckPacketContent();
 

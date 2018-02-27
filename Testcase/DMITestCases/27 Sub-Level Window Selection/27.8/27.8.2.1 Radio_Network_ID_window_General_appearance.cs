@@ -86,10 +86,10 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_NID_WINDOW = EVC30_MMIRequestEnable.WindowID.No_window_specified;
-            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags | EVC30_MMIRequestEnable.EnabledRequests.RadioNetworkID;
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags;
             EVC30_MMIRequestEnable.Send();
 
-            // via RBC contact window
+            // Display RBC contact window
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
             EVC22_MMICurrentRBC.Send();
 
@@ -102,6 +102,7 @@ namespace Testcase.DMITestCases
                 new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.RadioNetworkID, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = "GSM-A"},
                 new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.RadioNetworkID, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = "GSM-B"}
             };
+
             EVC22_MMICurrentRBC.Send();
 
 
@@ -140,13 +141,12 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press and hold a key on the keypad");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The key is displayed pressed and immediately re-displayed enabled." +
-                                Environment.NewLine +
+                                "1. The key is displayed pressed and immediately re-displayed enabled." + Environment.NewLine +
                                 "2. The ‘Click’ sound is played once." + Environment.NewLine +
                                 "3. The data input field displays the text of the key in black on a Medium-grey background.");
 
             MakeTestStepHeader(6, UniqueIdentifier++, "Release the pressed button",
-                "Verify the following information,The state of button is changed to ‘Enabled’ state.An input field is used to enter the Radio Network ID.The data value of the input field is aligned to the left of the data area");
+                "Verify the following information, The state of button is changed to ‘Enabled’ state. An input field is used to enter the Radio Network ID. The data value of the input field is aligned to the left of the data area");
             /*
             Test Step 6
             Action: Release the pressed button
@@ -161,7 +161,8 @@ namespace Testcase.DMITestCases
                                 "2. The data input field displays the text of the key in black on a Medium-grey background.");
 
             MakeTestStepHeader(7, UniqueIdentifier++, "Press and hold an input field",
-                "Verify the following information,(1)    The state of an input field is changed to ‘Pressed’, the border of button is removed");
+                "Verify the following information," +
+                "(1) The state of an input field is changed to ‘Pressed’, the border of button is removed");
             /*
             Test Step 7
             Action: Press and hold an input field
@@ -181,12 +182,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,(1)    The state of an input field is changed to ‘Enabled, the border of button is shown without a sound
             Test Step Comment: (1) MMI_gen 9390 (partly: Radio Network ID window);
             */
-            DmiActions.ShowInstruction(this,
-                "Whilst keeping the first data input field pressed, drag it out of its area");
+            DmiActions.ShowInstruction(this, "Whilst keeping the first data input field pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. The first data input field is displayed enabled, with a border." +
-                                Environment.NewLine +
+                                "1. The first data input field is displayed enabled, with a border." + Environment.NewLine +
                                 "2. No sound is played.");
 
             MakeTestStepHeader(9, UniqueIdentifier++, "Slide back into an input field",
@@ -214,7 +213,7 @@ namespace Testcase.DMITestCases
             // ?? Confirm
             DmiActions.ShowInstruction(this, @"Release the first data input field");
 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> {3};
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> { Variables.MMI_NID_DATA.RadioNetworkID };
             EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
             EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
             EVC112_MMINewRbcData.CheckPacketContent();
@@ -242,12 +241,12 @@ namespace Testcase.DMITestCases
             /*
             Test Step 12
             Action: Confirm the current data without re-entry Radio Network ID
-            Expected Result: Verify the following information,DMI closes the Radio Network ID window.Use the log file to confirm that DMI sends EVC-112 with the following variables,MMI_M_BUTTONS = 254MMI_N_DATA_ELEMENTS = 1MMI_M_NID_DATA = 3MMI_NID_MN = index of selected network ID (refer to EVC-22 from previous step, the 1st index is start with 0)
+            Expected Result: Verify the following information,DMI closes the Radio Network ID window.Use the log file to confirm that DMI sends EVC-112 with the following variables, MMI_M_BUTTONS = 254 MMI_N_DATA_ELEMENTS = 1 MMI_M_NID_DATA = 3 MMI_NID_MN = index of selected network ID (refer to EVC-22 from previous step, the 1st index is start with 0)
             Test Step Comment: (1) MMI_gen 9449 (partly: closed); MMI_gen 8044 (partly: MMI_gen 4682, MMI_gen 4681 (partly: accept the entered value), MMI_gen 4684 (partly: terminated));(2) MMI_gen 9449 (partly: EVC-112); MMI_gen 8046 (partly: revalidation); MMI_gen 8044 (partly: MMI_gen 4682, MMI_gen 4681 (partly: accept the entered value));
             */
             DmiActions.ShowInstruction(this, "Confirm the current data without re-entering the Radio Network ID");
 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> {3};
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> { Variables.MMI_NID_DATA.RadioNetworkID };
             EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
             EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
             EVC112_MMINewRbcData.CheckPacketContent();
@@ -265,7 +264,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press ‘Radio Network ID’ button. Press the second key.");
 
-            EVC22_MMICurrentRBC.Send(); // hopefully, the same as before
+            EVC22_MMICurrentRBC.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The data input field displays the value ‘GSMR-B’.");
@@ -364,26 +363,26 @@ namespace Testcase.DMITestCases
 
         private void XML_22_8_2_1(msgType type)
         {
-            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
+            EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
+
             switch (type)
             {
                 case msgType.typea:
-                    //EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSMR-A", "GSMR-B"};
-                    EVC22_MMICurrentRBC.NID_RBC = 1234;
-                    EVC22_MMICurrentRBC.MMI_NID_RADIO = (305463295 << 32) & 4294967295;
-                    EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-                    EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
-                    EVC22_MMICurrentRBC.Send();
+                    EVC22_MMICurrentRBC.NetworkCaptions = new List<string> {"GSM-A", "GSM-B"};
+                    EVC22_MMICurrentRBC.NID_RBC = 0;
+                    EVC22_MMICurrentRBC.MMI_NID_RADIO = 0;
+                    EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+                    EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_RADIO_NETWORK_ID;
 
                     break;
 
                 case msgType.typeb:
-                    //EVC22_MMICurrentRBC.NetworkCaptions.Clear();
-                    EVC22_MMICurrentRBC.NID_RBC = 1234;
-                    EVC22_MMICurrentRBC.MMI_NID_RADIO = 0xffffffffffffffff;
-                    EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-                    EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
-                    EVC22_MMICurrentRBC.Send();
+                    EVC22_MMICurrentRBC.NetworkCaptions.Clear();
+                    EVC22_MMICurrentRBC.NID_RBC = 0;
+                    EVC22_MMICurrentRBC.MMI_NID_RADIO = 0;
+                    EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
+                    EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_RADIO_NETWORK_ID;
+
                     break;
             }
 

@@ -386,7 +386,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Delete the old value and enter ‘6996969’ for RBC ID, then confirm by pressing in the data input field");
 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> {4};
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> { Variables.MMI_NID_DATA.RBC_ID };
             EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
             EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
             EVC112_MMINewRbcData.CheckPacketContent();
@@ -735,7 +735,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Release the ‘Yes’ button");
 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> {4};
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> { Variables.MMI_NID_DATA.RBC_ID };
             EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
             EVC112_MMINewRbcData.MMI_NID_RADIO = 0x0031840880100FFF;
@@ -1002,7 +1002,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Confirm the (blank) value of RBC Phone number by pressing its data input field");
 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<byte> {5};
+            EVC112_MMINewRbcData.MMI_NID_DATA = new List<Variables.MMI_NID_DATA> { Variables.MMI_NID_DATA.RBCPhoneNumber };
             EVC112_MMINewRbcData.MMI_NID_RADIO = 0xffffffffffffffff;
             EVC112_MMINewRbcData.CheckPacketContent();
 
