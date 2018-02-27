@@ -60,7 +60,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 {
                     _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiOMrsp", baseString, k),
                         TrackDescriptions[k].MMI_O_MRSP);
-                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiVMprs", baseString, k),
+                    _pool.SITR.Client.Write(string.Format("{0}10{1}_MmiVMrsp", baseString, k),
                         TrackDescriptions[k].MMI_V_MRSP);
                     _pool.SITR.Client.Write(string.Format("{0}20{1}_MmiOGradient", baseString, k),
                         TrackDescriptions[k].MMI_O_GRADIENT);
@@ -72,7 +72,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 {
                     _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiOMrsp", baseString, k),
                         TrackDescriptions[k].MMI_O_MRSP);
-                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiVMprs", baseString, k),
+                    _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiVMrsp", baseString, k),
                         TrackDescriptions[k].MMI_V_MRSP);
                     _pool.SITR.Client.Write(string.Format("{0}2{1}_MmiOGradient", baseString, k),
                         TrackDescriptions[k].MMI_O_GRADIENT);
