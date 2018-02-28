@@ -20,7 +20,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_7_4.tdg, 12_7_4_a.xml, 12_7_4_b.xml
     /// </summary>
-    public class TC_12_7_4_Train_Speed : TestcaseBase
+    public class TC_ID_12_7_4_Train_Speed : TestcaseBase
     {
         public override bool TestcaseEntryPoint()
         {
@@ -122,22 +122,16 @@ namespace Testcase.DMITestCases
                 case msgType.typea:
 
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
-                    EVC1_MMIDynamic.MMI_M_SLIP = 1;
+                    EVC1_MMIDynamic.MMI_M_SLIP = 0;
                     EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare; // 7
                     EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                     EVC1_MMIDynamic.MMI_V_TRAIN = 100;
                     EVC1_MMIDynamic.MMI_V_TARGET = 1111;
                     EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
                     EVC1_MMIDynamic.MMI_V_RELEASE = 555;
-                    EVC1_MMIDynamic.MMI_O_BRAKETARGET = 10002000;
-                    EVC1_MMIDynamic.MMI_O_IML = 0;
+                    EVC1_MMIDynamic.MMI_O_BRAKETARGET = (int) Variables.BitReverser32(41561, 15265);
+                    EVC1_MMIDynamic.MMI_O_IML = (int)Variables.BitReverser32(17699, 15259);
                     EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
-
-                    EVC1_MMIDynamic.SetValidityBits(false);
-
-                    break;
-
-                case msgType.typeb:
 
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EBTestInProgress = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
@@ -146,15 +140,44 @@ namespace Testcase.DMITestCases
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
                         EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
-                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100; // "Spare"
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100;
                     EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 0;
                     EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 0;
                     EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
                     EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
 
-                    EVC7_MMIEtcsMiscOutSignals.SetValidityBits(false, false, false, false, false, false, true, true, false, false, false, false, false);
+                    break;
+
+                case msgType.typeb:
+
+                    EVC1_MMIDynamic.MMI_M_SLIDE = 0;
+                    EVC1_MMIDynamic.MMI_M_SLIP = 0;
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 7
+                    EVC1_MMIDynamic.MMI_A_TRAIN = 0;
+                    EVC1_MMIDynamic.MMI_V_TRAIN = 100;
+                    EVC1_MMIDynamic.MMI_V_TARGET = 1111;
+                    EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
+                    EVC1_MMIDynamic.MMI_V_RELEASE = 555;
+                    EVC1_MMIDynamic.MMI_O_BRAKETARGET = (int)Variables.BitReverser32(41561, 15265);
+                    EVC1_MMIDynamic.MMI_O_IML = (int)Variables.BitReverser32(17699, 15259);
+                    EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
+
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EBTestInProgress = 0;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_EB_Status = 0;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_RadioStatus = 0;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_HS_ENABLED = 0;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_STM_DA_ENABLED = 0;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BrakeTest_Status =
+                        EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_BRAKETEST_STATUS.BrakeTestNotInProgress;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Invalid;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_ADHESION = 100;
+                    EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_HS = 0;
+                    EVC7_MMIEtcsMiscOutSignals.OBU_TR_NID_STM_DA = 0;
+                    EVC7_MMIEtcsMiscOutSignals.BRAKE_TEST_TIMEOUT = 0;
+                    EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000000;
 
                     break;
             }
