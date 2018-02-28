@@ -1085,6 +1085,33 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// Bit-reverses a 32-bit number made up of 2 16-bit numbers
+        /// </summary>
+        /// <param name="highbyte"></param>
+        /// <param name="lowbyte"></param>
+        /// <returns></returns>
+        public static uint BitReverser32(UInt16 highbyte, UInt16 lowbyte)
+        {
+            UInt32 highbyte32 = highbyte;
+            highbyte32 <<= 16;
+
+            UInt32 lowbyte32 = lowbyte;
+
+            uint intToBeReversed =  highbyte32 | lowbyte32;
+
+            uint y = 0;
+
+            for (int i = 0; i < 32; i++)
+            {
+                y <<= 1;
+                y |= intToBeReversed & 1;
+                intToBeReversed >>= 1;
+            }
+
+            return y;
+        }
+
+        /// <summary>
         /// Bit-reverses a 16-bit number
         /// </summary>
         /// <param name="intToBeReversed"></param>
