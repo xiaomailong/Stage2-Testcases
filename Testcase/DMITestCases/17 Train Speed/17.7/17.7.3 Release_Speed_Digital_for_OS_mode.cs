@@ -22,7 +22,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_7_3.tdg, 12_7_3_a.xml
     /// </summary>
-    public class TC_12_7_3_Train_Speed : TestcaseBase
+    public class TC_ID_12_7_3_Train_Speed : TestcaseBase
     {
         public override bool TestcaseEntryPoint()
         {
@@ -41,6 +41,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in OS mode, level 1
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 5;
+
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -49,8 +50,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Acknowledge OS mode in sub-area C1");
 
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
-                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
@@ -73,7 +73,7 @@ namespace Testcase.DMITestCases
             (3) Use the log file to confirm that the appearance of the release speed digital is controlled by data packet from ETCS Onboard as follows, EVC-7: OBU_TR_M_MODE = 1 (OS Mode) EVC-1: MMI_V_RELEASE = 1111 (~40 km/h) EVC-1: MMI_M_WARNING != 0, 4, 8, 12 (Not CSM)
             Test Step Comment: (1) MMI_gen 6586 (partly: toggle on);(2) MMI_gen 6586 (partly: sound Sinfo); MMI_gen 9516 (partly: toggling function of release speed digital); MMI_gen 12025 (partly: toggling function of release speed digital);(3) MMI_gen 6586 (partly: Release speed changes); MMI_gen 6468 (partly: OS);
             */
-            EVC1_MMIDynamic.MMI_V_RELEASE = 1111;
+            EVC1_MMIDynamic.MMI_V_RELEASE_KMH = 40;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 30;
             EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Indication_Status_Target_Speed_Monitoring; // not 0, 4, 8, 12 (Not CSM)
 
@@ -87,7 +87,7 @@ namespace Testcase.DMITestCases
                 "(1) The release speed digital in sub-area B6 is removed");
             /*
             Test Step 3
-            Action: Use the test script file 12_7_3_a.xml to send EVC-1 with,MMI_V_RELEASE = 11112
+            Action: Use the test script file 12_7_3_a.xml to send EVC-1 with, MMI_V_RELEASE = 11112
             Expected Result: Verify the following information,
             (1) The release speed digital in sub-area B6 is removed
             Test Step Comment: (1) MMI_gen 11112;
@@ -113,18 +113,18 @@ namespace Testcase.DMITestCases
         private void XML_12_7_3()
         {
             EVC1_MMIDynamic.MMI_M_SLIDE = 0;
-            EVC1_MMIDynamic.MMI_M_SLIP = 1;
-            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Spare; // 7
+            EVC1_MMIDynamic.MMI_M_SLIP = 0;
+            EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 0
             EVC1_MMIDynamic.MMI_A_TRAIN = 0;
             EVC1_MMIDynamic.MMI_V_TRAIN = 100;
             EVC1_MMIDynamic.MMI_V_TARGET = 1111;
             EVC1_MMIDynamic.MMI_V_PERMITTED = 833;
             EVC1_MMIDynamic.MMI_V_RELEASE = 11112;
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = 10002000;
-            EVC1_MMIDynamic.MMI_O_IML = 0;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET = (int)Variables.BitReverser32(41561, 15265);
+            EVC1_MMIDynamic.MMI_O_IML = (int)Variables.BitReverser32(17699, 15259);
             EVC1_MMIDynamic.MMI_V_INTERVENTION = 0;
 
-            EVC1_MMIDynamic.SetValidityBits(false);
+            EVC1_MMIDynamic.SetValidityBits(true);
         }
 
         #endregion
