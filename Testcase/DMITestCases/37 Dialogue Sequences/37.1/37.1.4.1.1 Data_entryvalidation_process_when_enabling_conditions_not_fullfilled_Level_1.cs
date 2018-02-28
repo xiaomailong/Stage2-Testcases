@@ -19,7 +19,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class TC_34_1_4_Dialogue_Sequences : TestcaseBase
+    public class TC_ID_34_1_4_Dialogue_Sequences : TestcaseBase
     {
         public override bool TestcaseEntryPoint()
         {
