@@ -52,6 +52,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press the ‘Special’ button, then press the ‘SR speed/distance’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ChangeSRrules;
+
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_CLOSE;
             EVC11_MMICurrentSRRules.Send();
 
@@ -69,6 +70,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitChangeSRrules;
+
             EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
             {
                 new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Speed, EchoText = "0", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed},
