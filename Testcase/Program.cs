@@ -30,7 +30,7 @@ namespace Testcase
             }
             else
             {
-                TestcaseRunner.AddTestcase(typeof(TC_34_6_Dialogue_Sequences));
+                TestcaseRunner.AddTestcase(typeof(TC_1_1_Properties_of_each_Display_Units_Screen));
             
                 //TestcaseRunner.AddTestcase(typeof(TC_ID_15_2_12_ETCS_Level));
                 
