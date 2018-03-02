@@ -60,8 +60,7 @@ namespace Testcase.Telegrams.DMItoEVC
         {
             // Check MMI_M_MODE_READBACK value
             _checkResult =
-                _pool.SITR.CCUS.ETCS1StatusReport.MmiMModeReadback.WaitForCondition(Is.Equal, (byte) mModeReadBack,
-                    5000, 20);
+                _pool.SITR.CCUS.ETCS1StatusReport.MmiMModeReadback.WaitForCondition(Is.Equal, (byte) mModeReadBack, 5000, 100);
 
             // If passed
             if (_checkResult)
