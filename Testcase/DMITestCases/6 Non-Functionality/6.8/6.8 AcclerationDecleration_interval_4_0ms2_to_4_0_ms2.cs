@@ -22,7 +22,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 1_8.tdg
     /// </summary>
-    public class TC__ID_1_8_AcclerationDecleration : TestcaseBase
+    public class TC_ID_1_8_AcclerationDeceleration : TestcaseBase
     {
         public override bool TestcaseEntryPoint()
         {
