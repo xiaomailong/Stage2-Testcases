@@ -20,6 +20,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static TestcaseBase _pool; // Signal pool
         private static byte _mmiMSlip; // Slip status
         private static byte _mmiMSlide; // Slide status
+        private static byte _mmiQFullWindow;    // Allow display of full window
         private static MMI_M_WARNING _mmiMWarning; // Warning/indication status
 
         /// <summary>
@@ -49,9 +50,8 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         private static void SetAlias()
         {
-            byte mmiMWarning = (byte) _mmiMWarning;
-
-            _pool.SITR.ETCS1.Dynamic.EVC1alias1.Value = (byte) (_mmiMSlip << 7 | _mmiMSlide << 6 | mmiMWarning);
+            _pool.SITR.ETCS1.Dynamic.EVC1alias1.Value = (byte) (_mmiMSlip << 7 | _mmiMSlide << 6 | _mmiQFullWindow << 5
+                                                                | (byte)_mmiMWarning);
         }
 
         /// <summary>
@@ -116,6 +116,24 @@ namespace Testcase.Telegrams.EVCtoDMI
             set
             {
                 _mmiMSlide = value;
+                SetAlias();
+            }
+        }
+
+        /// <summary>
+        /// Allow display of full window
+        /// 
+        /// Values:
+        /// 0 = "Full screen windows disabled" (DEFAULT)
+        /// 1 = "Full screen windows enabled"
+        /// </summary>
+        public static byte MMI_Q_FULL_WINDOW
+        {
+            get { return _mmiQFullWindow; }
+
+            set
+            {
+                _mmiQFullWindow = value;
                 SetAlias();
             }
         }
@@ -450,11 +468,26 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// <param name="valid"></param>
         public static void SetValidityBits(bool valid)
         {
-            SetValidityBits(valid, valid, valid, valid, valid, valid, valid, valid, valid, valid, valid);
+            SetValidityBits(valid, valid, valid, valid, valid, valid, valid, valid, valid, valid, valid, valid);
         }
 
-        public static void SetValidityBits(bool slip, bool slide, bool warning, bool vtrain, bool atrain, bool vtarget,
-            bool vpermitted, bool vrelease, bool braketarget, bool iml, bool vintervention)
+        /// <summary>
+        /// Set individual validity bits as required
+        /// </summary>
+        /// <param name="slip"></param>
+        /// <param name="slide"></param>
+        /// <param name="fullwindow"></param>
+        /// <param name="warning"></param>
+        /// <param name="vtrain"></param>
+        /// <param name="atrain"></param>
+        /// <param name="vtarget"></param>
+        /// <param name="vpermitted"></param>
+        /// <param name="vrelease"></param>
+        /// <param name="braketarget"></param>
+        /// <param name="iml"></param>
+        /// <param name="vintervention"></param>
+        public static void SetValidityBits(bool slip, bool slide, bool fullwindow, bool warning, bool vtrain, bool atrain,
+            bool vtarget, bool vpermitted, bool vrelease, bool braketarget, bool iml, bool vintervention)
         {
             ushort val1 = 0;
             ushort val2 = 0;
@@ -463,6 +496,8 @@ namespace Testcase.Telegrams.EVCtoDMI
                 val1 += 1 << 15;
             if (slide)
                 val1 += 1 << 14;
+            if (fullwindow)
+                val1 += 1 << 13;
             if (warning)
                 val1 += 1 << 11;
 
