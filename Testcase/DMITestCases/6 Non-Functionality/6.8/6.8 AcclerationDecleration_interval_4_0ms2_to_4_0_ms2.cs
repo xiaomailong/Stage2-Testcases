@@ -1,3 +1,6 @@
+using Testcase.Telegrams.EVCtoDMI;
+using System;
+
 namespace Testcase.DMITestCases
 {
     /// <summary>
@@ -19,15 +22,13 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 1_8.tdg
     /// </summary>
-    public class TC_1_8_AcclerationDecleration : TestcaseBase
+    public class TC__ID_1_8_AcclerationDecleration : TestcaseBase
     {
         public override bool TestcaseEntryPoint()
         {
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 20422;
             // Testcase entrypoint
-
-            DmiActions.ShowInstruction(this, "THIS TESCASE NEEDS TO BE RUN WITH ETCS AND VSIM");
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Power on the system and activate cabin",
                 "DMI displays in SB mode");
@@ -38,7 +39,7 @@ namespace Testcase.DMITestCases
             */
 
 
-            MakeTestStepHeader(2, UniqueIdentifier++, "Perform Start of Mission to SR mode , eevel 1",
+            MakeTestStepHeader(2, UniqueIdentifier++, "Perform Start of Mission to SR mode , level 1",
                 "Mode changes to SR mode , Level 1");
             /*
             Test Step 2
@@ -55,17 +56,40 @@ namespace Testcase.DMITestCases
             Expected Result: Mode changes to FS mode
             */
 
+            DmiActions.Complete_SoM_L1_FS(this);
+
+            DmiExpectedResults.FS_mode_displayed(this);
 
             MakeTestStepHeader(4, UniqueIdentifier++,
                 "Full accelerate the traction (100%) until service brake is applied",
                 "The speedometer movement goes up and down smoothly");
+
+            for (short i = 0; i < 4020; i += 130)     // 4020 is just under 90 mph
+                // Train speed increases by 130 cm per 300 ms when acceleration is 4 m/s/s
+            {
+                EVC1_MMIDynamic.MMI_V_TRAIN = i;
+                Wait_Realtime(300);     // Cycle time of EVC-1 is 300 ms
+            }
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Did the speed needle increase smoothly from 0 to approximately 90 mph?");
+
+            for (short i = 4020; i > 0; i -= 130)     // 4020 is just under 90 mph
+                // Train speed decreases by 130 cm per 300 ms when deceleration is 4 m/s/s
+            {
+                EVC1_MMIDynamic.MMI_V_TRAIN = i;
+                Wait_Realtime(300);     // Cycle time of EVC-1 is 300 ms
+            }
+
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. Did the speed needle decrease smoothly from 90 to almost 0 mph?");
+
             /*
             Test Step 4
             Action: Full accelerate the traction (100%) until service brake is applied
             Expected Result: The speedometer movement goes up and down smoothly
             Test Step Comment: MMI_gen 68;
             */
-
 
             MakeTestStepHeader(5, UniqueIdentifier++, "End of Test", "");
 
@@ -74,7 +98,6 @@ namespace Testcase.DMITestCases
             Action: End of Test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
