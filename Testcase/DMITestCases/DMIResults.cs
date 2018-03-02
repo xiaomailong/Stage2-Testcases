@@ -976,9 +976,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void FS_mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is cuurently not supported
-            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK =
-            //    EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK =
+            EVC102_MMIStatusReport.MMI_M_MODE_READBACK.FullSupervision;
             Driver_symbol_displayed(pool, "FS mode", "MO11", "B7", false);
         }
 
