@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
  <TestInfoXml>
-	<Project>Class 345 DMI Testing version 6.2</Project>
+	<Project>Class 345 DMI Testing version 7.1.0.1</Project>
 	<Asv>ASV</Asv>
-	<Configuration>R6 Unit Test TCMS, 2018-02-22 14:01:45</Configuration>
+	<Configuration>VCS10 Unit Test TCMS, 2018-02-22 14:01:45</Configuration>
 	<Rack>Signalling Integration Test Rig VCS 10</Rack>
 	<Tester>Signalling Integration Team (Ricky Morris)</Tester>
 	<Logpath>C:\Users\VCS10\Dropbox\Logs and Results</Logpath>
 	<Logwindow>True</Logwindow>
-	<LogWindowAutoClose>False</LogWindowAutoClose>
+	<LogWindowAutoClose>True</LogWindowAutoClose>
 	<LogSizeMaximum>200MB</LogSizeMaximum>
 	<LogEntriesMaximum>20000</LogEntriesMaximum>
 	<LogDirectlyToDisk>False</LogDirectlyToDisk>

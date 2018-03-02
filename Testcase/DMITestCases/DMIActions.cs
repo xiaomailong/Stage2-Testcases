@@ -1533,7 +1533,11 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Deactivate_and_activate_cabin(SignalPool pool)
         {
-            throw new NotImplementedException();
+            // Deactivates Cabin 1 - not supplied as a parameter but implicit in context of caller.
+            Deactivate_Cabin(pool);
+
+            // Then reactivate cabin 1.
+            Activate_Cabin_1(pool);
         }
 
         /// <summary>
