@@ -24,7 +24,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// N/A
     /// </summary>
-    public class TC_1_3_1_Performance_of_the_new_selection_language : TestcaseBase
+    public class TC_ID_1_3_1_Performance_of_the_new_selection_language : TestcaseBase
     {
         public override void PreExecution()
         {
