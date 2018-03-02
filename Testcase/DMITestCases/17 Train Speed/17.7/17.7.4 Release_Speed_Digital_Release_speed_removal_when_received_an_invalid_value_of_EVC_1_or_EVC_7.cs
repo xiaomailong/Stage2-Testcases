@@ -82,16 +82,10 @@ namespace Testcase.DMITestCases
             */
             XML_12_7_4(msgType.typeb);
 
-            // Reset EVC-1 validity bits
-            EVC1_MMIDynamic.SetValidityBits(true);
-
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speeds in sub-area B2 and B6 are removed from the DMI.");
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-
-            // Reset EVC-7 validity bits
-            EVC7_MMIEtcsMiscOutSignals.SetValidityBits(true);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. The release speeds in sub-area B2 and B6 are re-displayed.");
@@ -154,7 +148,7 @@ namespace Testcase.DMITestCases
 
                     EVC1_MMIDynamic.MMI_M_SLIDE = 0;
                     EVC1_MMIDynamic.MMI_M_SLIP = 0;
-                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring; // 7
+                    EVC1_MMIDynamic.MMI_M_WARNING = MMI_M_WARNING.Normal_Status_Ceiling_Speed_Monitoring;
                     EVC1_MMIDynamic.MMI_A_TRAIN = 0;
                     EVC1_MMIDynamic.MMI_V_TRAIN = 100;
                     EVC1_MMIDynamic.MMI_V_TARGET = 1111;
