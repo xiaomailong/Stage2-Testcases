@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             // Call generic Check Results Method
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);

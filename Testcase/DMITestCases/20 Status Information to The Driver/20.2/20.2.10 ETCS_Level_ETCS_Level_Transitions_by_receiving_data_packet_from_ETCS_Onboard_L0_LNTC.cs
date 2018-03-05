@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
             */
 
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             // Skip brake test...
             // Set to level 0 and UN mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;

@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             // Call generic Check Results Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the Driver ID window displayed.");

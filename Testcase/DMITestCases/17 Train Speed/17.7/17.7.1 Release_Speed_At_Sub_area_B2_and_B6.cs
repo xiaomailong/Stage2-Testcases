@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             StartUp();
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SB mode, level 1." + Environment.NewLine +

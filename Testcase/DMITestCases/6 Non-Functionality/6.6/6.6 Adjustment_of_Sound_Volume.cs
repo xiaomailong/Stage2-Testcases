@@ -40,7 +40,7 @@ namespace Testcase.DMITestCases
             */
 
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 

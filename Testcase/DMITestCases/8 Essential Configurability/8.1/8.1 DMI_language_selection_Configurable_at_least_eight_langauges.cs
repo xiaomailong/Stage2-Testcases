@@ -57,7 +57,7 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiActions.Send_SB_Mode(this);
 
             WaitForVerification("The window headline of the Driver ID window is displayed in Deutsch language");

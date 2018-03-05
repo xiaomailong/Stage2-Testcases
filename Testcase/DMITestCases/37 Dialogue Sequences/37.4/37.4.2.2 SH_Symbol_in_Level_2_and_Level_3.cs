@@ -44,7 +44,7 @@ namespace Testcase.DMITestCases
             StartUp();
 
             // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             // Set to level 2
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
@@ -86,7 +86,7 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
 
             // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             // Set to level 1 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;

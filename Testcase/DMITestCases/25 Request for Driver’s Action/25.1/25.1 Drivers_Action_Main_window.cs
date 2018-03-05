@@ -35,7 +35,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 24551;
             // Testcase entrypoint
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
             MakeTestStepHeader(1, UniqueIdentifier++,
@@ -280,7 +280,7 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Enter Driver IDSelect and confirm Level 1. Note: If Level window is display
             Expected Result: DMI displays Main window in SB mode, Level 1
             */
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.ShowInstruction(this, "Enter Driver ID");
 

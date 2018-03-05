@@ -33,7 +33,7 @@ namespace Testcase.DMITestCases
             StartUp();
 
             // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             // Set to level 1
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
@@ -76,7 +76,7 @@ namespace Testcase.DMITestCases
             // Set train running number, cab 1 active, and other defaults
             DmiActions.Activate_Cabin_1(this);
             // Set driver ID
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             // Set to level 3 and SH mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L3;
 

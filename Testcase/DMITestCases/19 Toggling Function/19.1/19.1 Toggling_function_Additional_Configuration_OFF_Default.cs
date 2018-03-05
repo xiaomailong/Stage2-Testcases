@@ -136,7 +136,7 @@ namespace Testcase.DMITestCases
             Wait_Realtime(5000);
             DmiActions.Activate_Cabin_1(this);
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);

@@ -170,7 +170,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Confirm the Driver ID");
 
-            EVC104_MMINewDriverData.Check_X_DRIVER_ID = "1234567";
+            EVC104_MMINewDriverData.Check_Entered_MMI_X_DRIVER_ID = "1234567";
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Driver ID window and displays the Main window.");
@@ -283,7 +283,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Release the data input field");
 
-            EVC104_MMINewDriverData.Check_X_DRIVER_ID = "1234567";
+            EVC104_MMINewDriverData.Check_Entered_MMI_X_DRIVER_ID = "1234567";
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Driver ID window and displays the Main window.");

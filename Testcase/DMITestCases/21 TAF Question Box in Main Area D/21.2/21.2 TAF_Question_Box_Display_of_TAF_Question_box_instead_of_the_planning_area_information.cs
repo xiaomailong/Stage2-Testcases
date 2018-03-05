@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 2
             */
             // The above steps are done in 21.1 so not repeating set in SoM level 2
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;

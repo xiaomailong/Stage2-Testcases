@@ -43,7 +43,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4392 (partly: bullet e, delete NA21); MMI_gen 4440 (partly: delete, enabled);(2) MMI_gen 4440 (partly: other navigation buttons); MMI_gen 4396 (partly: close, NA12); MMI_gen 4392 (partly: bullet a, close button);  MMI_gen 4395 (partly: close button, disabled);
             */
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this);
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
@@ -79,7 +79,7 @@ namespace Testcase.DMITestCases
                 The sound ‘Click’ is played repeatly while button is pressed
             Test Step Comment: (1) MMI_gen 4393 (partly: delete, MMI_gen 4384 (partly: sound ‘Click’));(2) MMI_gen 4393 (partly: MMI_gen 4384 (partly: Change to state ‘Pressed’ and immediately back to state ‘Enabled’));(3) MMI_gen 4393 (partly: delete, MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));(4) MMI_gen 4393 (partly: delete, MMI_gen 4386 (partly: visual of repeat function));(5) MMI_gen 4393 (partly: delete, MMI_gen 4386 (partly: audible of repeat function));
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Delete’ button then release the button within 1.5s");
+            DmiActions.ShowInstruction(this, @"Press the ‘Delete’ button.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘click’ sound is played once." + Environment.NewLine +
@@ -88,17 +88,16 @@ namespace Testcase.DMITestCases
                                 @"3. The last character (‘8’) of the Driver ID is deleted from the Input field");
 
 
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Delete’ button for 2s");
+            DmiActions.ShowInstruction(this, @"Press and hold the ‘Delete’ button for at least 2 seconds.");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Delete’ button is displayed pressed and immediately changed to enabled repeatedly." +
+                                @"1. The ‘Delete’ button is displayed pressed and immediately changed to enabled, repeatedly." +
                                 Environment.NewLine +
-                                "2. Characters are repeatedly deleted from the end of the Input field" +
+                                "2. Characters are repeatedly deleted from the end of the Input field." +
                                 Environment.NewLine +
-                                @"3. The ‘click’ sound is played repeatedly while the ‘Delete’ button is pressed.");
+                                @"3. The ‘click’ sound is played repeatedly while the ‘Delete’ button is held.");
 
-            MakeTestStepHeader(4, UniqueIdentifier++, "Release the pressed button",
-                "Verify the following information,");
+            MakeTestStepHeader(4, UniqueIdentifier++, "Release the pressed button", "Verify the following information,");
             /*
             Test Step 4
             Action: Release the pressed button
@@ -106,13 +105,12 @@ namespace Testcase.DMITestCases
             The state of pressed button is changed to ‘Enabled’ state
             Test Step Comment: (1) MMI_gen 4393 (partly: delete, MMI_gen 4384 (partly: ETCS-MMI’s function associated to the button));
             */
-            DmiActions.ShowInstruction(this, "Release the pressed button");
+            DmiActions.ShowInstruction(this, "Release the 'Delete' button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Delete’ button is displayed enabled.");
 
-            MakeTestStepHeader(5, UniqueIdentifier++, "Perform the following procedure,",
-                "DMI displays the Main window");
+            MakeTestStepHeader(5, UniqueIdentifier++, "Perform the following procedure,", "DMI displays the Main window");
             /*
             Test Step 5
             Action: Perform the following procedure,
@@ -150,10 +148,10 @@ namespace Testcase.DMITestCases
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ChangeDriverIdentity;
 
-            DmiActions.Set_Driver_ID(this, EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID);
+            DmiActions.Display_Driver_ID_Window(this, EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Driver ID  window." + Environment.NewLine +
+                                "1. DMI displays the Driver ID window." + Environment.NewLine +
                                 @"2. The ‘Close’ button NA11 is displayed enabled in area G.");
             MakeTestStepHeader(7, UniqueIdentifier++, "Perform the following procedure,",
                 "DMI displays the first page of  the  train data entry.");
@@ -162,7 +160,7 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,
             Press ‘Close’ button.
             Press ‘Train data’ button
-            Expected Result: DMI displays the first page of  the  train data entry.
+            Expected Result: DMI displays the first page of the train data entry.
             The enabled Close button NA 11 is display in area G.
             The enabled Next button NA17 is display in area G.
             The disabled Previous button NA19 is display in area G
@@ -175,6 +173,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
             DmiActions.Display_Fixed_Train_Data_Window(this);
+
             DmiExpectedResults.Train_data_window_displayed(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +

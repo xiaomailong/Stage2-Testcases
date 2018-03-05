@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
             StartUp();
             DmiExpectedResults.Cabin_A_is_activated(this);
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.Driver_ID_window_displayed_in_SB_mode(this);
 
@@ -243,7 +243,7 @@ namespace Testcase.DMITestCases
             DmiActions.Activate_Cabin_1(this);
 
             DmiActions.Display_Driver_ID_Window(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiActions.Send_SB_Mode(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                              Environment.NewLine +

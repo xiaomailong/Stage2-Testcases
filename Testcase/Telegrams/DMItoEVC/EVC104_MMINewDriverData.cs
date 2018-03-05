@@ -14,7 +14,7 @@ namespace Testcase.Telegrams.DMItoEVC
     {
         private static TestcaseBase _pool;
         private static bool _checkResult;
-        private static string _xDriverId;
+        private static string _mmiXDriverId;
         private const string BaseString = "DMI->ETCS: EVC-104 [MMI_NEW_DRIVER_DATA]";
 
         /// <summary>
@@ -73,12 +73,12 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Note 2: If Driver ID is shorter than 16 characters the free characters will be filled with null characters.
         /// Note 3: If Driver ID is 16 characters there will be no null character in the string.
         /// </summary>
-        public static string Check_X_DRIVER_ID
+        public static string Check_Entered_MMI_X_DRIVER_ID
         {
             set
             {
-                _xDriverId = value;
-                CheckXDriverId(_xDriverId);
+                _mmiXDriverId = value;
+                CheckXDriverId(_mmiXDriverId);
             }
         }
 
@@ -93,7 +93,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Note 2: If Driver ID is shorter than 16 characters the free characters will be filled with null characters.
         /// Note 3: If Driver ID is 16 characters there will be no null character in the string.
         /// </summary>
-        public static string Get_X_DRIVER_ID
+        public static string Get_Entered_MMI_X_DRIVER_ID
         {
             get
             {
@@ -102,13 +102,16 @@ namespace Testcase.Telegrams.DMItoEVC
 
                 if (_pool.SITR.SMDStat.CCUO.ETCS1NewDriverData.WaitForCondition(Is.Equal, 1, 20000, 100))
                 {
-                    _xDriverId = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;
-                    return _xDriverId;
+                    _mmiXDriverId = _pool.SITR.CCUO.ETCS1NewDriverData.MmiXDriverId.Value;
+
+                    EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = _mmiXDriverId;
+
+                    return _mmiXDriverId;
                 }
                 else
                 {
                     DmiExpectedResults.DMItoEVC_Telegram_Not_Received(_pool, BaseString);
-                    return null;
+                    return "";
                 }
             }
         }

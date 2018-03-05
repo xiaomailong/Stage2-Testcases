@@ -52,7 +52,7 @@ namespace Testcase.DMITestCases
             Action: Perform SoM to L1, SR mode
             Expected Result: Mode changes to SR mode , L1
             */
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
 
             // Skip brake test

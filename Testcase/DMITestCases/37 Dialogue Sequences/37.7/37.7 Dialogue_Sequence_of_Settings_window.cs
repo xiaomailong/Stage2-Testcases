@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
             // Ignore brake test
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiActions.ShowInstruction(this, @"Confirm driver ID");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;

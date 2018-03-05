@@ -47,7 +47,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Default window in SB mode and Level 1
             */
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.Send_SB_Mode(this);
             DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");

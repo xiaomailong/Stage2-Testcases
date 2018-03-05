@@ -29,7 +29,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
             // Test system is powered onCabin is activeSoM is performed until the train data validated.
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             DmiActions.Display_Main_Window_with_Start_button_enabled(this);
 

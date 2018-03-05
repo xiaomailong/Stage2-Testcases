@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
 
-            //DmiActions.Set_Driver_ID(this, "1234"); (optionnal?)
+            //DmiActions.Display_Driver_ID_Window(this, "1234"); (optionnal?)
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Settings window and displays the Driver ID window.");
@@ -100,7 +100,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
-            //DmiActions.Set_Driver_ID(this, "1234"); (optionnal?)
+            //DmiActions.Display_Driver_ID_Window(this, "1234"); (optionnal?)
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI closes the Train Running Number window and displays the Driver ID window.");
@@ -143,7 +143,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Driver ID’ button");
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window." + Environment.NewLine +

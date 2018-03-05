@@ -34,7 +34,7 @@ namespace Testcase.DMITestCases
 
             // 1. ETCS-DMI is in the ‘Start of Mission’ procedure.2. ETCS-DMI is in the ‘Stand-By’ mode.3. VBC code “65536” is not stored onboard.
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             MakeTestStepHeader(1, UniqueIdentifier++,
                 "Press the ‘Settings’ button located on the ‘Driver ID’ window.Then, open the ‘Remove VBC’ data entry window from the Settings menu",

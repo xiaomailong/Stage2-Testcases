@@ -20,7 +20,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L0_UN(SignalPool pool)
         {
             // Set driver ID
-            Set_Driver_ID(pool, "1234");
+            Display_Driver_ID_Window(pool, "1234");
 
             // Set to level 0 and UN mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L1_SB(SignalPool pool)
         {
             // Set driver ID
-            Set_Driver_ID(pool, "1234");
+            Display_Driver_ID_Window(pool, "1234");
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L1_FS(SignalPool pool)
         {
             // Set driver ID
-            Set_Driver_ID(pool, "1234");
+            Display_Driver_ID_Window(pool, "1234");
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L1_SR(SignalPool pool)
         {
             // Set driver ID
-            Set_Driver_ID(pool, "1234");
+            Display_Driver_ID_Window(pool, "1234");
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
@@ -102,10 +102,22 @@ namespace Testcase.DMITestCases
         /// Set Driver ID string
         /// </summary>
         /// <param name="pool">Signal pool</param>
-        /// <param name="driverId"></param>
-        public static void Set_Driver_ID(SignalPool pool, string driverId)
+        /// <param name="driverId">Set and display the current driver ID</param>
+        public static void Display_Driver_ID_Window(SignalPool pool, string driverId)
         {
             EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = driverId;
+            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
+                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
+            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
+            EVC14_MMICurrentDriverID.Send();
+        }
+
+        /// <summary>
+        /// Bring up Driver ID window
+        /// </summary>
+        /// <param name="pool">Signal pool</param>
+        public static void Display_Driver_ID_Window(SignalPool pool)
+        {
             EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
                                                         EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
             EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
@@ -877,21 +889,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Driver Id Window sent to be displayed on th DMI
-        /// Used in:
-        ///     Step 11 in TC-ID: 15.1.1 in 20.1.1
-        /// </summary>
-        /// <param name="pool">Signal pool</param>
-        public static void Display_Driver_ID_Window(SignalPool pool)
-        {
-            EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE = EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.Settings |
-                                                        EVC14_MMICurrentDriverID.MMI_Q_ADD_ENABLE_BUTTONS.TRN;
-            EVC14_MMICurrentDriverID.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "";
-            EVC14_MMICurrentDriverID.Send();
-        }
-
-        /// <summary>
         /// Description: Level Window sent to be displayed on th DMI
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.3 in 20.1.3
@@ -911,9 +908,6 @@ namespace Testcase.DMITestCases
         public static void Display_Fixed_Train_Data_Window(SignalPool pool)
         {
             Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, new[] {"FLU", "RLU", "Rescue"}, 15);
-
-            // Keep this line below please. Work in progress..
-            //Send_EVC6_MMICurrentTrainData_FixedDataEntry(pool, paramEvc6FixedTrainsetCaptions, 15);
         }
 
         /// <summary>
@@ -1298,7 +1292,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Perform_SoM_in_SR_mode_Level_1(SignalPool pool)
         {
-            Set_Driver_ID(pool, "1234");
+            Display_Driver_ID_Window(pool, "1234");
             Send_SB_Mode(pool);
             ShowInstruction(pool, "Enter and confirm Driver ID");
 
@@ -1358,7 +1352,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void Perform_SoM_in_SR_mode_Level_2(SignalPool pool)
         {
-            Set_Driver_ID(pool, "1234");
+            Display_Driver_ID_Window(pool, "1234");
             Send_SB_Mode(pool);
             ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                   Environment.NewLine +

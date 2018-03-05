@@ -30,7 +30,7 @@ namespace Testcase.DMITestCases
             // Testcase entrypoint
             // Test system is powered on.Cabin is activated.SoM is performed in SR mode, level 1.
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Start |

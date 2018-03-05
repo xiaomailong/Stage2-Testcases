@@ -644,7 +644,7 @@ namespace Testcase.DMITestCases
                                              Environment.NewLine +
                                              "1. Enter and validate Driver ID");
 
-            string driverIdInput = EVC104_MMINewDriverData.Get_X_DRIVER_ID;
+            string driverIdInput = EVC104_MMINewDriverData.Get_Entered_MMI_X_DRIVER_ID;
             pool.WaitForVerification(string.Format("Is \"{0}\" the Driver ID you entered?", driverIdInput));
         }
 

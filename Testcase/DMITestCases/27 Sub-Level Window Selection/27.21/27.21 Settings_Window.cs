@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8465 (partly: MMI_gen 7909);(2) MMI_gen 8466; MMI_gen 4360 (partly: window title);(3) MMI_gen 8645 (partly: MMI_gen 4556 (partly: Close button, Window Title));    MMI_gen 8467 (partly: touch screen, button with label, Language, Volume, Brightness, System version, Set VBC, Remove VBC); MMI_gen 4392 (partly: [Close] NA11);                   (4) MMI_gen 11545 (partly: EVC-30, enabling #13, #14, #15, #16, #17, #25 or #26, disabling #18); (5) MMI_gen 8469; (6) MMI_gen 8645 (partly: MMI_gen 4630, MMI gen 5944 (partly: touch screen));(7) MMI_gen11545 (partly: enabling buttons, disabling ‘remove vbc’ button, EVC-30); MMI_gen 1088 (Partly, Bit #13 to #18 and #25 to #26)            (8) MMI_gen 4350;(9) MMI_gen 4351;(10) MMI_gen 4353;(11) MMI_gen 4354;
             */
             /* This may be required
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiActions.ShowInstruction(this, "Confirm the Driver ID");
 */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;

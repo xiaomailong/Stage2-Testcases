@@ -31,7 +31,7 @@ namespace Testcase.DMITestCases
             StartUp();
 
             DmiActions.Display_Driver_ID_Window(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiActions.Send_SB_Mode(this);
             DmiActions.ShowInstruction(this, @"Perform the following action within 3 seconds after pressing OK : " +
                                              Environment.NewLine + Environment.NewLine +

@@ -509,7 +509,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Activate_Cabin_1(this);
             DmiActions.Re_establish_communication_EVC_DMI(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
             EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>

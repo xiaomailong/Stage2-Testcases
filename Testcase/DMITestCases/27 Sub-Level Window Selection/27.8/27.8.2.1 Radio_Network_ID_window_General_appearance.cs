@@ -52,7 +52,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiExpectedResults.Driver_ID_window_displayed(this);
 
             MakeTestStepHeader(3, UniqueIdentifier++,
@@ -79,7 +79,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8044 (partly: MMI_gen 5189 (partly: touch screen), MMI_gen 5944 (partly: touch screen));(2) MMI_gen 8045;(3) MMI_gen 8044 (partly: half grid array);(4) MMI_gen 8044 (partly: MMI_gen 4640 (partly: only data area), MMI_gen 4720, MMI_gen 4889 (partly: merge label and data));(5) MMI_gen 8044 (party: MMI_gen 4722 (partly: Table 12 <Close> button, Window title, Input field)); MMI_gen 4392 (partly: [Close] NA11);(6) MMI_gen 8044 (partly: MMI_gen 4637 (partly: Main-areas D and F));(7) MMI_gen 8044 (partly: note under the MMI_gen 9412);(8) MMI_gen 8044 (partly: single input field, only data part);(9) MMI_gen 8047 (partly: keyboard); MMI_gen 8044 (partly: MMI_gen 4912);(10) MMI_gen 8044 (partly: MMI_gen 4678);(11) MMI_gen 9465; MMI_gen 8047 (partly: list of available); MMI_gen 9981; (12) MMI_gen 9448 (partly: EVC-22);(13) MMI_gen 9448 (partly: Open Radio Network ID window);(14) MMI_gen 4350;(15) MMI_gen 4351;(16) MMI_gen 4353;
             */
             // These steps are tested elsewhere so just force the window
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.ShowInstruction(this, "Confirm Driver ID");
 

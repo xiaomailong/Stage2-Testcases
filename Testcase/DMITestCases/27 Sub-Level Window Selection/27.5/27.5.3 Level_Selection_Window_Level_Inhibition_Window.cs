@@ -44,7 +44,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 1784 (partly: NEGATIVE, condition is not fulfilled);(2) MMI_gen 1784 (partly: NEGATIVE, 1st bullet);
             */
             // Call generic Action Method
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.ShowInstruction(this, "Enter Driver ID");
 

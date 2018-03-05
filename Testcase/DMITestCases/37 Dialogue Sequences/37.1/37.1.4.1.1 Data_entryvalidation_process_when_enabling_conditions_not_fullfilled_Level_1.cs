@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             DmiActions.ShowInstruction(this, @"Press ‘Driver ID’ button");
-            DmiActions.Set_Driver_ID(this, "");
+            DmiActions.Display_Driver_ID_Window(this, "");
 
             DmiExpectedResults.Driver_ID_window_displayed(this);
 

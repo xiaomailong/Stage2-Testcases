@@ -52,7 +52,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Main window with enabled ‘Start’ button
             */
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiActions.Send_SB_Mode(this);
             DmiActions.Send_L1(this);
             DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
@@ -380,7 +380,7 @@ namespace Testcase.DMITestCases
             Wait_Realtime(5000);
             DmiActions.Activate_Cabin_1(this);
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
@@ -395,7 +395,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4377 (partly: Mainteance window);
             */
 
-            DMITestCases.DmiActions.ShowInstruction(this,
+            DmiActions.ShowInstruction(this,
                 "Press Setting menu and select Maintenance button and password");
             DmiActions.Open_the_Settings_window(this);
             EVC30_MMIRequestEnable.SendBlank();
@@ -458,7 +458,7 @@ namespace Testcase.DMITestCases
             Wait_Realtime(5000);
             DmiActions.Activate_Cabin_1(this);
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
@@ -685,7 +685,7 @@ namespace Testcase.DMITestCases
             Wait_Realtime(5000);
             DmiActions.Activate_Cabin_1(this);
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
@@ -782,7 +782,7 @@ namespace Testcase.DMITestCases
             Wait_Realtime(5000);
             DmiActions.Activate_Cabin_1(this);
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
@@ -798,7 +798,7 @@ namespace Testcase.DMITestCases
 
             // Test says do all this: but tested elsewhere (activating cabin cannot be done by driver)
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiActions.Send_SB_Mode(this);
             DmiActions.ShowInstruction(this, "Enter and confirm Driver ID");
 
@@ -887,7 +887,7 @@ namespace Testcase.DMITestCases
             Wait_Realtime(5000);
             DmiActions.Activate_Cabin_1(this);
 
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
@@ -904,7 +904,7 @@ namespace Testcase.DMITestCases
             */
 
             // Test says active cabin (It is) and do brake test: as before ignore
-            DMITestCases.DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Main window.");
+            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Main window.");
 
 
             EVC30_MMIRequestEnable.SendBlank();
@@ -947,7 +947,7 @@ namespace Testcase.DMITestCases
                                                                    .EnableBrakePercentage;
             EVC30_MMIRequestEnable.Send();
 
-            DMITestCases.DmiActions.ShowInstruction(this,
+            DmiActions.ShowInstruction(this,
                 @"Press the ‘Settings’ button, then press the ‘Brake’ button");
 
             DmiActions.Open_the_Settings_window(this);
@@ -956,11 +956,9 @@ namespace Testcase.DMITestCases
                                 Environment.NewLine + Environment.NewLine +
                                 @"1. The ‘Brake test’ button.");
 
-
             TraceHeader("Test Step 23");
             TraceReport("Action");
             TraceInfo("End of test");
-
 
             return GlobalTestResult;
         }

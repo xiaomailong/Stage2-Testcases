@@ -306,7 +306,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.ShowInstruction(this,
                 @"Press the ‘Maintenance’ button and enter ‘4444’ for the password, then confirm by pressing the data input field");
@@ -328,7 +328,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
 
@@ -349,7 +349,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.Start_ATP();
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.ShowInstruction(this,
                 @"Press the ‘Settings’ button, then the Maintenance button. Enter ‘999999999’ for the password, then confirm by pressing the data input field");

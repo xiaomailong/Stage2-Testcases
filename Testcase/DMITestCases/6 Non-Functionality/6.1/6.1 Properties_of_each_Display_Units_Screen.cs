@@ -25,7 +25,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 20336;
             // Testcase entrypoint
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             DmiActions.Send_SB_Mode(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Settings’ button", "DMI displays Settings window");

@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
@@ -83,7 +83,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Deactivate_Cabin(this);
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
@@ -154,7 +154,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Deactivate_Cabin(this);
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");
@@ -245,7 +245,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.Deactivate_Cabin(this);
             DmiActions.Activate_Cabin_1(this);
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID window.");

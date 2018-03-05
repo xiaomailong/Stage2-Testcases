@@ -41,7 +41,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SB mode, level 1.Verify the following information(1)    Use the log file to confirm that DMI receives the following packets information with a specific value,  EVC-7: OBU_TR_M_MODE = 6 (SB mode) (2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SB mode); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, SB mode);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, SB mode);(3) MMI_gen 2567 (partly: Table 38, SB mode); MMI_gen 6774 (partly: not be shown);(4) MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);
             */
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.ShowInstruction(this, "Enter Driver ID. Skip brake test");
 

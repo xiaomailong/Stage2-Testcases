@@ -42,7 +42,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Power on the system");
 
             StartUp();
-            DmiActions.Set_Driver_ID(this, "1234");
+            DmiActions.Display_Driver_ID_Window(this, "1234");
             // Skip brake test, train data entry
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
             EVC30_MMIRequestEnable.SendBlank();
