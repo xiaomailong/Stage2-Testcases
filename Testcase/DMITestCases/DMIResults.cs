@@ -955,9 +955,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is cuurently not supported
-            //EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK =
-            //    EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StaffResponsible;
             Driver_symbol_displayed(pool, "Staff Responsible mode", "MO9", "B7", false);
         }
 
@@ -976,7 +973,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void FS_mode_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_STATUS = EVC102_MMIStatusReport.MMI_M_MODE_STATUS.ModePresentationPassed_SIL2;
             Driver_symbol_displayed(pool, "FS mode", "MO11", "B7", false);
         }
 
@@ -987,8 +983,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void OS_Mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is currently not supported
-            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.OnSight;
             Driver_symbol_displayed(pool, "OS mode", "MO07", "B7", false);
         }
 
@@ -1092,8 +1086,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SB_Mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is cuurently not supported
-            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
             Driver_symbol_displayed(pool, "Stand By mode", "MO13", "B7", false);
         }
 
