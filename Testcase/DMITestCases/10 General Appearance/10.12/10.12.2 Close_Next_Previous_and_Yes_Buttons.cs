@@ -1,5 +1,6 @@
 using System;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
 
 
 namespace Testcase.DMITestCases
@@ -147,7 +148,9 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Press the ‘Driver ID’ button");
 
-            DmiActions.Set_Driver_ID(this, Telegrams.DMItoEVC.EVC104_MMINewDriverData.Get_X_DRIVER_ID);
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ChangeDriverIdentity;
+
+            DmiActions.Set_Driver_ID(this, EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Driver ID  window." + Environment.NewLine +
