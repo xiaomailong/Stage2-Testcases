@@ -25,6 +25,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set default values
             _pool.SITR.ETCS1.CurrentDriverId.MmiMPacket.Value = 14;
             _pool.SITR.ETCS1.CurrentDriverId.MmiLPacket.Value = 176;
+            MMI_X_DRIVER_ID = "";
         }
 
         /// <summary>
