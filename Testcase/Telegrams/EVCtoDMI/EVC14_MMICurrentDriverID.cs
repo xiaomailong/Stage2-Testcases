@@ -81,6 +81,8 @@ namespace Testcase.Telegrams.EVCtoDMI
 
                 _pool.SITR.ETCS1.CurrentDriverId.MmiXDriverId.Value = value;
             }
+
+            get { return _pool.SITR.ETCS1.CurrentDriverId.MmiXDriverId.Value; }
         }
 
         /// <summary>

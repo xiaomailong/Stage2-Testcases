@@ -2,6 +2,7 @@
 using CL345;
 using Testcase.DMITestCases;
 using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
+using Testcase.Telegrams.EVCtoDMI;
 
 
 namespace Testcase.Telegrams.DMItoEVC
@@ -41,6 +42,7 @@ namespace Testcase.Telegrams.DMItoEVC
                     _pool.TraceReport(string.Format("{0} - MMI_X_DRIVER_ID = {1}", BaseString, xDriverId) +
                                       Environment.NewLine +
                                       "Result = PASSED.");
+                    EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = xDriverId;
                 }
                 // Else display the real value extracted from EVC-104
                 else
