@@ -156,7 +156,7 @@ namespace Testcase.DMITestCases
             // Spec says mode (and status: interpreted here as cabin status) are reported each 1.5s so allow another 1.25s
             Wait_Realtime(1250);
             EVC102_MMIStatusReport.Check_MMI_M_ACTIVE_CABIN = Variables.MMI_M_ACTIVE_CABIN.Cabin1Active;
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.StandBy;
+            EVC102_MMIStatusReport.Check_MMI_M_MODE_STATUS = EVC102_MMIStatusReport.MMI_M_MODE_STATUS.ModePresentationPassed_SIL2;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays all ATP relevant information.");

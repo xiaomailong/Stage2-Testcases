@@ -54,7 +54,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SL_Mode_NOT_displayed(SignalPool pool)
         {
-            EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Sleeping;
             pool.WaitForVerification("Is there NO symbol displayed in area B7?");
         }
 

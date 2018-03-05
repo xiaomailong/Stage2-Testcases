@@ -13,20 +13,25 @@ namespace Testcase.Telegrams.DMItoEVC
         private static TestcaseBase _pool;
         private static bool _checkResult;
         private static MMI_M_MODE_READBACK _mModeReadBack;
+        private static MMI_M_MODE_STATUS _mModeStatus;
         private static MMI_M_MMI_STATUS _mMmiStatus;
         private static Variables.MMI_M_ACTIVE_CABIN _mActiveCabin;
         private const string BaseString = "DMI->ETCS: Check EVC-102 [MMI_STATUS_REPORT]";
 
         /// <summary>
-        /// Initialise EVC-102 MMI_Status_Report telegram.
+        /// Initialise EVC-102 MMI Status Report telegram.
         /// </summary>
-        /// <param name="pool"></param>
+        /// <param name="pool">SignalPool</param>
         public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
             _pool.SITR.SMDCtrl.ETCS1.Status.Value = 0x0001;
         }
 
+        /// <summary>
+        /// Checks whether the correct cabin is active
+        /// </summary>
+        /// <param name="mActiveCabin"></param>
         private static void CheckActiveCabin(Variables.MMI_M_ACTIVE_CABIN mActiveCabin)
         {
             // Get EVC102_alias_1_B0
@@ -56,6 +61,10 @@ namespace Testcase.Telegrams.DMItoEVC
             }
         }
 
+        /// <summary>
+        /// Checks the MMI_M_MODE_READBACK value (NOT USED in Crossrail SIL2 DMI)
+        /// </summary>
+        /// <param name="mModeReadBack"></param>
         private static void CheckModeReadBack(MMI_M_MODE_READBACK mModeReadBack)
         {
             // Check MMI_M_MODE_READBACK value
@@ -83,6 +92,42 @@ namespace Testcase.Telegrams.DMItoEVC
             }
         }
 
+        /// <summary>
+        /// Checks whether the current MMI_M_MODE_STATUS is correct
+        /// </summary>
+        /// <param name="mModeStatus"></param>
+        private static void CheckModeStatus(MMI_M_MODE_STATUS mModeStatus)
+        {
+            // Get EVC102_alias_1_B0
+            byte evc102Alias1B0 = _pool.SITR.CCUS.ETCS1StatusReport.EVC102alias1B0.Value;
+
+            // Extract MMI_M_MODE_STATUS (6th and 7th bits according to VSIS 2.11)
+            byte mmiMModeStatus = (byte)((evc102Alias1B0 & 0xC0) >> 6); // xxxx xxxx -> xx00 0000 -> 0000 00xx
+
+            // Check MMI_M_MODE_STATUS value
+            _checkResult = mmiMModeStatus.Equals((byte) mModeStatus);
+
+            // If passed
+            if (_checkResult)
+            {
+                _pool.TraceReport(string.Format("{0} - MMI_M_MODE_STATUS = \"{1}\"", BaseString, mModeStatus) +
+                                  Environment.NewLine +
+                                  "Result: PASSED.");
+            }
+            // Display the real value extracted from EVC-102 [MMI_STATUS_REPORT.MMI_M_MODE_STATUS]
+            else
+            {
+                _pool.TraceError(string.Format("{0} - MMI_M_MODE_STATUS = \"{1}\"", BaseString, mModeStatus) +
+                                 Environment.NewLine +
+                                 "Result: FAILED!" + Environment.NewLine +
+                                 string.Format("Current mode status = {0} - ", mmiMModeStatus) +
+                                    Enum.GetName(typeof(MMI_M_MODE_STATUS), mmiMModeStatus));
+            }
+        }
+
+        /// <summary>
+        /// Checks whether the current MMI_M_MMI_STATUS is correct
+        /// </summary>
         private static void CheckMmiStatus()
         {
             // Get EVC102_alias_1_B1
@@ -111,7 +156,7 @@ namespace Testcase.Telegrams.DMItoEVC
         }
 
         /// <summary>
-        /// Defines the identity of the activated cabin
+        /// Check the identity of the activated cabin
         /// 
         /// Values:
         /// 0 = "No cabin is active"
@@ -165,7 +210,34 @@ namespace Testcase.Telegrams.DMItoEVC
         }
 
         /// <summary>
+        /// Check the validity of shown mode
         /// 
+        /// Values:
+        /// 0 = "Mode presentation failed (SIL2)"
+        /// 1 = "Mode presentation passed (SIL2)"
+        /// 2 = "Unknown (SIL0)"
+        /// </summary>
+        public static MMI_M_MODE_STATUS Check_MMI_M_MODE_STATUS
+        {
+            set
+            {
+                _mModeStatus = value;
+                CheckModeStatus(_mModeStatus);
+            }
+        }
+
+        /// <summary>
+        /// Check the current health status of MMI
+        /// 
+        /// Values:
+        /// 0 = "Unknown"
+        /// 1 = "Failure"
+        /// 2 = "Idle"
+        /// 3 = "Active"
+        /// 4 = "Spare"
+        /// 5 = "ATP Down, NACK"
+        /// 6 = "ATP Down, ACK "
+        /// 7..15 = "Spare"
         /// </summary>
         public static MMI_M_MMI_STATUS Check_MMI_M_MMI_STATUS
         {
@@ -227,7 +299,22 @@ namespace Testcase.Telegrams.DMItoEVC
         }
 
         /// <summary>
-        /// Defines the MMI status
+        /// Indicates validity of shown mode
+        /// 
+        /// Values:
+        /// 0 = "Mode presentation failed (SIL2)"
+        /// 1 = "Mode presentation passed (SIL2)"
+        /// 2 = "Unknown (SIL0)"
+        /// </summary>
+        public enum MMI_M_MODE_STATUS : byte
+        {
+            ModePresentationFailed_SIL2 = 0,
+            ModePresentationPassed_SIL2 = 1,
+            Unknown_SIL0 = 2
+        }
+
+        /// <summary>
+        /// The current health status of MMI
         /// 
         /// Values:
         /// 0 = "Unknown"
