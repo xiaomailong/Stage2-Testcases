@@ -168,7 +168,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// 
         /// Values:
         /// 0 = "'No default value' =&gt; Data field shall remain empty"
-        /// 1..4095 = "total train length"
+        /// 1..4095 = "total train length (m)"
         /// 4096..65535 = "Reserved"
         /// </summary>
         public static ushort MMI_L_TRAIN
@@ -215,9 +215,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     19 = "FG 3"
         ///     20 = "FG 4"
         /// </summary>
-        public static Variables.MMI_NID_KEY MMI_NID_KEY_TRAIN_CAT
+        public static Variables.MMI_NID_KEY_Train_Cat MMI_NID_KEY_TRAIN_CAT
         {
-            get { return (Variables.MMI_NID_KEY) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value); }
+            get { return (Variables.MMI_NID_KEY_Train_Cat) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value); }
             set { _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = (byte) value; }
         }
 
@@ -255,9 +255,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         ///     32 = "E4"
         ///     33 = "E5"
         /// </summary>
-        public static Variables.MMI_NID_KEY MMI_NID_KEY_AXLE_LOAD
+        public static Variables.MMI_NID_KEY_Axle_Load MMI_NID_KEY_AXLE_LOAD
         {
-            get { return (Variables.MMI_NID_KEY) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value); }
+            get { return (Variables.MMI_NID_KEY_Axle_Load) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value); }
             set { _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyAxleLoad.Value = (byte) value; }
         }
 

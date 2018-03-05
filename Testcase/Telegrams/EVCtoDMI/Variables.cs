@@ -795,7 +795,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         [Flags]
         public enum MMI_M_DATA_ENABLE : ushort
         {
-            NONE = 0,
+            None = 0,
             TrainSetID = 0x8000,
             TrainCategory = 0x4000,
             TrainLength = 0x2000,
@@ -803,7 +803,8 @@ namespace Testcase.Telegrams.EVCtoDMI
             MaxTrainSpeed = 0x800,
             AxleLoadCategory = 0x400,
             Airtightness = 0x200,
-            LoadingGauge = 0x100
+            LoadingGauge = 0x100,
+            All = 0xff00
         }
 
         /// <summary>
@@ -929,6 +930,90 @@ namespace Testcase.Telegrams.EVCtoDMI
             GB = 36,
             GC = 37,
             OutofGC = 38
+        }
+
+        /// <summary>
+        /// Identifier of an MMI keyboard key name.
+        /// 
+        /// 21 = "CAT A"
+        /// 22 = "CAT HS17"
+        /// 23 = "CAT B1"
+        /// 24 = "CAT B2"
+        /// 25 = "CAT C2"
+        /// 26 = "CAT C3"
+        /// 27 = "CAT C4"
+        /// 28 = "CAT D2"
+        /// 29 = "CAT D3"
+        /// 30 = "CAT D4"
+        /// 31 = "CAT D4XL"
+        /// 32 = "CAT E4"
+        /// 33 = "CAT E5"
+        /// 
+        /// Note: the definition is according to preliminary SubSet-121 'NID_KEY' definition.
+        /// </summary>
+        public enum MMI_NID_KEY_Axle_Load : byte
+        {
+            NoDedicatedKey = 0,
+            CATA = 21,
+            CATHS17 = 22,
+            CATB1 = 23,
+            CATB2 = 24,
+            CATC2 = 25,
+            CATC3 = 26,
+            CATC4 = 27,
+            CATD2 = 28,
+            CATD3 = 29,
+            CATD4 = 30,
+            CATD4XL = 31,
+            CATE4 = 32,
+            CATE5 = 33
+        }
+
+        /// <summary>
+        /// Identifier of an MMI keyboard key name.
+        /// 
+        /// 3 = "PASS1"
+        /// 4 = "PASS2"
+        /// 5 = "PASS3"
+        /// 6 = "TILT1"
+        /// 7 = "TILT2"
+        /// 8 = "TILT3"
+        /// 9 = "TILT4"
+        /// 10 = "TILT5"
+        /// 11 = "TILT6"
+        /// 12 = "TILT7"
+        /// 13 = "FP1"
+        /// 14 = "FP2"
+        /// 15 = "FP3"
+        /// 16 = "FP4"
+        /// 17 = "FG1"
+        /// 18 = "FG2"
+        /// 19 = "FG3"
+        /// 20 = "FG4"
+        /// 
+        /// Note: the definition is according to preliminary SubSet-121 'NID_KEY' definition.
+        /// </summary>
+        public enum MMI_NID_KEY_Train_Cat : byte
+        {
+            NoDedicatedKey = 0,
+            PASS1 = 3,
+            PASS2 = 4,
+            PASS3 = 5,
+            TILT1 = 6,
+            TILT2 = 7,
+            TILT3 = 8,
+            TILT4 = 9,
+            TILT5 = 10,
+            TILT6 = 11,
+            TILT7 = 12,
+            FP1 = 13,
+            FP2 = 14,
+            FP3 = 15,
+            FP4 = 16,
+            FG1 = 17,
+            FG2 = 18,
+            FG3 = 19,
+            FG4 = 20
         }
 
         /// <summary>

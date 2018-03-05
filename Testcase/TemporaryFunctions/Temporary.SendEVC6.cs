@@ -22,8 +22,8 @@ namespace Testcase.TemporaryFunctions
         ///     <param name="mmiMAltDem">Control variable for alternative train data entry method</param>
         /// </summary>
         public static void SendEVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
-            ushort mmiVMaxTrain, Variables.MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc,
-            Variables.MMI_NID_KEY mmiNidKeyAxleLoad,
+            ushort mmiVMaxTrain, Variables.MMI_NID_KEY_Train_Cat mmiNidKeyTrainCat, byte mmiMBrakePerc,
+            Variables.MMI_NID_KEY_Axle_Load mmiNidKeyAxleLoad,
             byte mmiMAirtight, Variables.MMI_NID_KEY_Load_Gauge mmiNidKeyLoadGauge,
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA mmiMButtons,
             ushort mmiMTrainsetId,
@@ -68,9 +68,9 @@ namespace Testcase.TemporaryFunctions
             EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0; // Train length
             EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
 
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.NoDedicatedKey; // Train category
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY_Train_Cat.NoDedicatedKey; // Train category
             EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.NoDedicatedKey; // Axle load category
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY_Axle_Load.NoDedicatedKey; // Axle load category
             EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
             EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE =
                 Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey; // Loading gauge type of train 

@@ -172,7 +172,7 @@ namespace Testcase.DMITestCases
             DmiActions.Display_Main_Window_with_Start_button_not_enabled(this);
             DmiActions.ShowInstruction(this, @"Press ‘Train data’ button");
 
-            DmiActions.Display_Fixed_Train_Data_Window(this);
+            DmiActions.Display_Flexible_Train_Data_Window(this);
 
             DmiExpectedResults.Train_data_window_displayed(this);
 

@@ -192,8 +192,8 @@ namespace Testcase.DMITestCases
         ///     <param name="mmiMAltDem">Control variable for alternative train data entry method</param>
         /// </summary>
         public static void Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
-            ushort mmiVMaxTrain, Variables.MMI_NID_KEY mmiNidKeyTrainCat, byte mmiMBrakePerc,
-            Variables.MMI_NID_KEY mmiNidKeyAxleLoad,
+            ushort mmiVMaxTrain, Variables.MMI_NID_KEY_Train_Cat mmiNidKeyTrainCat, byte mmiMBrakePerc,
+            Variables.MMI_NID_KEY_Axle_Load mmiNidKeyAxleLoad,
             byte mmiMAirtight, Variables.MMI_NID_KEY_Load_Gauge mmiNidKeyLoadGauge,
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA mmiMButtons,
             ushort mmiMTrainsetId, ushort mmiMAltDem, string[] trainSetCaptions,
@@ -238,16 +238,16 @@ namespace Testcase.DMITestCases
             // Train data enabled
             EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE =
                 Variables.MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
-            EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0; // Train length
-            EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.NoDedicatedKey; // Train category
-            EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.NoDedicatedKey; // Axle load category
-            EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE =
-                Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey; // Loading gauge type of train 
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS =
-                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            // EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0; // Train length
+            // EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
+            // EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.NoDedicatedKey; // Train category
+            // EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
+            // EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.NoDedicatedKey; // Axle load category
+            // EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
+            // EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE =
+            //     Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey; // Loading gauge type of train 
+            // EVC6_MMICurrentTrainData.MMI_M_BUTTONS =
+            //     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId; // Preselected Trainset ID
             EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = 0; // No alternative train data available
 
@@ -911,6 +911,28 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Display flexible train data window with some default values
+        /// </summary>
+        /// <param name="pool"></param>
+        public static void Display_Flexible_Train_Data_Window(SignalPool pool)
+        {
+            EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = 0;     // Allows for Fixed or flexible TDE
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.All;   // Allows all fields to be modified
+
+            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = 0; // Forces flexible TDE
+            EVC6_MMICurrentTrainData.MMI_L_TRAIN = 200;     // 200 metres
+            EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0;    // Airtight system not fitted
+            EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 100;    // 100% brake percentage
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY_Axle_Load.CATA;
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY_Load_Gauge.G1;
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY_Train_Cat.PASS1;
+
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA
+                .BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC6_MMICurrentTrainData.Send();
+        }
+
+        /// <summary>
         /// Description: Enable "Yes" button to validate Fixed Train data selection
         /// Used in:
         ///     Step 4 in TC-ID: 15.1.3 in 20.1.3
@@ -931,7 +953,7 @@ namespace Testcase.DMITestCases
             };
 
             Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID, 0, 0,
-                    Variables.MMI_NID_KEY.NoDedicatedKey, 0, Variables.MMI_NID_KEY.NoDedicatedKey, 0,
+                    Variables.MMI_NID_KEY_Train_Cat.NoDedicatedKey, 0, Variables.MMI_NID_KEY_Axle_Load.NoDedicatedKey, 0,
                     Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey,
                     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                     Convert.ToUInt16((byte) trainsetSelected), 0, new string[] { }, dataElements);
@@ -957,8 +979,8 @@ namespace Testcase.DMITestCases
                 new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.Length, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""}
             };
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.NONE, 0, 0,
-                Variables.MMI_NID_KEY.NoDedicatedKey, 0, Variables.MMI_NID_KEY.NoDedicatedKey, 0,
+            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.None, 0, 0,
+                Variables.MMI_NID_KEY_Train_Cat.NoDedicatedKey, 0, Variables.MMI_NID_KEY_Axle_Load.NoDedicatedKey, 0,
                 Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey,
                 EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
                 Convert.ToUInt16((byte) (trainsetSelected)), 0, new string[] { }, dataElements);
@@ -1261,9 +1283,9 @@ namespace Testcase.DMITestCases
                 Variables.MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
             EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0; // Train length
             EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.NoDedicatedKey; // Train category
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY_Train_Cat.NoDedicatedKey; // Train category
             EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
-            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.NoDedicatedKey; // Axle load category
+            EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY_Axle_Load.NoDedicatedKey; // Axle load category
             EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
             EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE =
                 Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey; // Loading gauge type of train 

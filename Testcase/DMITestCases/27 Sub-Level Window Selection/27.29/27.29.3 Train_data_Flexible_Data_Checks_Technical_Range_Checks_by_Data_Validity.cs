@@ -67,9 +67,9 @@ namespace Testcase.DMITestCases
                                                      Variables.MMI_M_DATA_ENABLE.BrakePercentage |
                                                      Variables.MMI_M_DATA_ENABLE.MaxTrainSpeed,
                 100, 200,
-                Variables.MMI_NID_KEY.PASS2,
+                Variables.MMI_NID_KEY_Train_Cat.PASS2,
                 70,
-                Variables.MMI_NID_KEY.CATA,
+                Variables.MMI_NID_KEY_Axle_Load.CATA,
                 0,
                 Variables.MMI_NID_KEY_Load_Gauge.G1,
                 EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
