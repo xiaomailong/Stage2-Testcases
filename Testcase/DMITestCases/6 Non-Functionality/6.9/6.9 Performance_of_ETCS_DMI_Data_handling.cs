@@ -33,8 +33,8 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 20437;
             // Testcase entrypoint
-            DmiActions.ShowInstruction(this, "THIS TESCASE TO BE SKIPPED??");
-            StartUp();
+            
+            //StartUp();
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM in SR mode, Level 2",
                 "RCI logs the concerned activities as specified in the precondition");
@@ -43,9 +43,6 @@ namespace Testcase.DMITestCases
             Action: Perform SoM in SR mode, Level 2
             Expected Result: RCI logs the concerned activities as specified in the precondition
             */
-
-            DmiActions.Perform_SoM_in_SR_mode_Level_2(this);
-
 
             MakeTestStepHeader(2, UniqueIdentifier++,
                 "Observe the timestamps in RCI log and calculate the average differentiation of the response time of the incoming data in:- The MVB port - The GPP component",
@@ -57,7 +54,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 87 (partly: read);
             */
 
-
             MakeTestStepHeader(3, UniqueIdentifier++,
                 "Follow step 2 to calculate the average differentiation of the response time of the outgoing data",
                 "(1) Use the RCI log to confirm the (average) response time differentiation of the outgoing data (message) in the MVB port and GPP component (toutGPP - toutMVB) is less than 128 ms");
@@ -68,7 +64,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 87 (partly: write);
             */
 
-
             MakeTestStepHeader(4, UniqueIdentifier++, "Follow step 2 to calculate the data throughput",
                 "(1) Use the RCI log to confirm the (average) response time differentiation of every incoming or outgoing EVC data (extracted EVC packets) with the size of 50 Bytes in GPP component and MVB port (tEVCinGPP – tinMVB or tEVCoutGPP - toutMVB)is less than 250 ms");
             /*
@@ -77,7 +72,6 @@ namespace Testcase.DMITestCases
             Expected Result: (1) Use the RCI log to confirm the (average) response time differentiation of every incoming or outgoing EVC data (extracted EVC packets) with the size of 50 Bytes in GPP component and MVB port (tEVCinGPP – tinMVB or tEVCoutGPP - toutMVB)is less than 250 ms
             Test Step Comment: (1) MMI_gen 89 (partly: throughput);
             */
-
 
             MakeTestStepHeader(5, UniqueIdentifier++, "Send the data of EVC-8 with size of 200 Bytes by 1_9_a.xml",
                 "The big size of data can be transferred to ETCS-DMI screen and the text message of “ABC … BC17” displayed in area E5 – E9.Note: Each group of the text message is identified with number 2 – 17, except the first group");
@@ -88,7 +82,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 89 (partly: extra in one shot);
             */
 
-
             TraceHeader("End of test");
 
             /*
@@ -96,7 +89,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

@@ -26,8 +26,8 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 20453;
             // Testcase entrypoint
-            DmiActions.ShowInstruction(this, "THIS TESCASE TO BE SKIPPED??");
-            StartUp();
+            
+            // Message data timing is outside the capability of this test suite.
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM in SR mode, Level 2",
                 "RCI logs the concerned activities as specified in the precondition");
@@ -36,9 +36,6 @@ namespace Testcase.DMITestCases
             Action: Perform SoM in SR mode, Level 2
             Expected Result: RCI logs the concerned activities as specified in the precondition
             */
-
-            DmiActions.Perform_SoM_in_SR_mode_Level_2(this);
-
 
             MakeTestStepHeader(2, UniqueIdentifier++,
                 "Observe the timestamps in RCI log and calculate the average differentiation of the response time of the incoming data and ETCS-DMI update in:- The MVB port- The ETCS-DMI screen",
@@ -50,7 +47,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3216; MMI_gen 88 (partly: ETCS BA);
             */
 
-
             TraceHeader("End of test");
 
             /*
@@ -58,7 +54,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }

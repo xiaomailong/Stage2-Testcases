@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: 
             */
             StartUp();
-            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
+            DmiActions.Complete_SoM_L1_SR(this);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SR mode, Level 1.");

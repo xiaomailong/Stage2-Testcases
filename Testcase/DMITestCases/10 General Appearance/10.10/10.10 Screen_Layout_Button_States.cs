@@ -303,7 +303,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 4377 (partly: Setting window);
             */
 
-            DMITestCases.DmiActions.ShowInstruction(this, "Press the ‘Exit’ button and select the Settings menu");
+            DmiActions.ShowInstruction(this, "Press the ‘Exit’ button and select the Settings menu");
             DmiActions.Open_the_Settings_window(this);
             // The spec indicates 9 bits to set but only tests 8 buttons: assume the first 6 are correct and Set Clock (#25) is SetLocalTimeDateAndOffset
             // Bit #32 would be in the next word so if MMI_Q_REQUEST_ENABLE_LOW is available and the only button to be set it could be a bool as suggested
@@ -489,7 +489,7 @@ namespace Testcase.DMITestCases
             DmiActions.Send_SH_Mode(this);
             DmiActions.Send_L1(this);
 
-            DMITestCases.DmiExpectedResults.SH_Mode_displayed(this);
+            DmiExpectedResults.SH_Mode_displayed(this);
 
             MakeTestStepHeader(10, UniqueIdentifier++,
                 "Run test script 5_10_a.xml to send EVC-30 with,MMI_Q_REQUEST_ENABLE         (#6) = 0",
@@ -569,7 +569,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI disiplays in SR mode
             */
 
-            DMITestCases.DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
+            DmiActions.Complete_SoM_L1_SR(this);
             DmiExpectedResults.SR_Mode_displayed(this);
 
             MakeTestStepHeader(13, UniqueIdentifier++, "Drive the train forward with 40 km/h then select Setting menu",

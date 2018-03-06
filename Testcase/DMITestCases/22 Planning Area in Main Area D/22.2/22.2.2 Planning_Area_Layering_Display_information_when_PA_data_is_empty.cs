@@ -48,7 +48,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1.Verify that there are only the following objects are displayed in PA,PA Distance Scale (0-4000m)PASP with PASP-dark-colour
             Test Step Comment: MMI_gen 7109;
             */
-            DmiActions.Perform_SoM_in_SR_mode_Level_1(this);
+            DmiActions.Complete_SoM_L1_SR(this);
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
