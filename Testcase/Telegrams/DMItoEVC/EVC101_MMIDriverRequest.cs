@@ -50,7 +50,7 @@ namespace Testcase.Telegrams.DMItoEVC
                     _pool.SITR.CCUO.ETCS1DriverRequest.EVC101alias1.Atomic.WaitForCondition(Is.Equal, _qButton)
                 };
 
-                _checkResult = _pool.WaitForConditionAtomic(list, 10000, 20);
+                _checkResult = _pool.WaitForConditionAtomic(list, 10000, 100);
 
                 // If check passes
                 if (_checkResult)
