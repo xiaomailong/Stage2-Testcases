@@ -51,9 +51,7 @@ namespace Testcase.DMITestCases
             Action: Driver performs SoM to SR mode, Level 1.Note: Please set Train length = 100m during train data entry process
             Expected Result: DMI displays in SR mode, level 1
             */
-            DmiActions.ShowInstruction(this,
-                "Perform SoM to SR mode, level 1: setting Train Length = 100m in train data entry");
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
+           EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
                 EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
             DmiActions.Finished_SoM_Default_Window(this);
