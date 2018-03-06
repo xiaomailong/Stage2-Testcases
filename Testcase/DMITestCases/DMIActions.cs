@@ -1156,60 +1156,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Apply Brakes
-        /// Used in:
-        ///     Step 16 in TC-ID: 5.10 in 10.10 Screen Layout: Button States
-        ///     Step 2 in TC-ID: 12.1 in 17.1 Display of Speed Pointer and Speed Digital
-        ///     Step 2 in TC-ID: 12.3 in 17.3.1 Speed Pointer: Sub-Area B1
-        ///     Step 6 in TC-ID: 12.4 in 17.4 Current Train Speed Digital: Sub-Area B1
-        ///     Step 5 in TC-ID: 12.7.1 in 17.7.1 Release Speed: At Sub-area B2 and B6
-        ///     Step 6 in TC-ID: 12.12 in 17.12 Slip Indication
-        ///     Step 5 in TC-ID: 13.1.1 in 18.1.1 Distance to Target  Bar: General Appearance
-        ///     Step 6 in TC-ID: 13.1.5 in 18.1.5 Distance to Target in RV mode
-        ///     Step 4 in TC-ID: 13.1.6 in 18.1.6 Distance to Target Digital in RV mode with special value
-        ///     Step 2 in TC-ID: 13.1.9 in Distance to Target Bar and Digital: Appearance of distance to target for Imperial Unit
-        ///     Step 8 in TC-ID: 15.5.1 in 20.5.1 Adhesion factor: General appearance
-        ///     Step 3 in TC-ID: 17.3 in 22.3 Planning Area: PA Distance Scale
-        ///     Step 5 in TC-ID: 17.4.1 in 22.4.1 PA Track Condition: Non stopping area in Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.2 in 22.4.2 PA Track Condition: Sound Horn in Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.3 in 22.4.3 PA Track Condition:  Lower Pantograph in Sub-Area D2 and B3
-        ///     Step 10 in TC-ID: 17.4.3 in 22.4.3 PA Track Condition:  Lower Pantograph in Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.4 in 22.4.4 PA Track Condition: Radio Hole in Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.5 in 22.4.5 PA Track Condition: Air Tightness in Sub-Area D2 and B3
-        ///     Step 10 in TC-ID: 17.4.5 in 22.4.5 PA Track Condition: Air Tightness in Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.6 in 22.4.6 PA Track Condition: Switch off regenerative brake in Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.7 in PA Track Condition: Switch off eddy current brake in Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.8 in 22.4.8 PA Track Condition: Switch off magnetic shoe brake in Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.9 in 22.4.9 PA Track Condition: Switch off main power switch in Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.10 in 22.4.10 PA Track Condition: Change of traction system, not fitted Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.11 in 22.4.11 PA Track Condition: Change of traction system, AC 25 KV 50 Hz Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.12 in 22.4.12 PA Track Condition: Change of traction system, AC 15 KV 16.7 Hz Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.13 in 22.4.13 PA Track Condition: Change of traction system, DC 3kV Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.14 in 22.4.14 PA Track Condition: Change of traction system, DC 1.5 kV Sub-Area D2 and B3
-        ///     Step 5 in TC-ID: 17.4.15 in 22.4.15 PA Track Condition: Change of traction system, DC 600/750 V Sub-Area D2 and B3
-        ///     Step 7 in TC-ID: 17.6.1 in 22.6.1 PA Speed Profile Discontinuity: Display in sub-area D6 and D7
-        ///     Step 2 in TC-ID: 17.7.1 in 22.7.1 PA Speed Profile (PASP): Display in sub-area D7 and D8
-        ///     Step 9 in TC-ID: 17.8 in 22.8 PA Indication Marker: Sub-Area D7
-        ///     Step 10 in TC-ID: 17.10.1 in 22.10.1 Zoom PA Function: General appearance
-        ///     Step 5 in TC-ID: 21.1.1 in Sound S1 - Over Speed
-        ///     Step 18 in TC-ID: 22.10 in 27.10 Special window
-        ///     Step 7 in TC-ID: 26.1 in 1 Introduction
-        ///     Step 5 in TC-ID: 36.1 in Sound S1 - Driving too fast
-        ///     Step 12 in TC-ID: 36.1 in Sound S1 - Driving too fast
-        ///     Step 5 in TC-ID: 36.2 in Sound S3 - End of Intervention
-        ///     Step 11 in TC-ID: 36.2 in Sound S3 - End of Intervention
-        ///     Step 7 in TC-ID: 36.3.1 in 39.3.1 Restrictive Target with Speed Monitoring in Full Supervision Mode
-        ///     Step 5 in TC-ID: 36.3.2 in 39.3.2 Restrictive Target with Movement Authority Changed in Full Supervision Mode
-        ///     Step 5 in TC-ID: 36.3.3 in 39.3.3 Restrictive Target with Speed Monitoring in Limited Supervision Mode
-        ///     Step 5 in TC-ID: 36.3.4 in 39.3.4 Restrictive Target with Movement Authority Changed in Limited Supervision Mode
-        ///     Step 6 in TC-ID: 15.1.1 in 20.1.1
-        /// </summary>
-        public static void Apply_Brakes(SignalPool pool)
-        {
-            EVC1_MMIDynamic.MMI_A_TRAIN = -50;
-        }
-
-        /// <summary>
         /// Description: Stop the train
         /// Used in:
         ///     Step 7 in TC-ID: 15.1.1 in 20.1.1

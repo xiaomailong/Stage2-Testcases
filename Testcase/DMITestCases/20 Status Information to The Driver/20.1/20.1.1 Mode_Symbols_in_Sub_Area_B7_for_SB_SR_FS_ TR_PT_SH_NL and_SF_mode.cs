@@ -149,7 +149,7 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.Force_train_forward_overpassing_EOA(this);
-            DmiActions.Apply_Brakes(this);
+
             DmiActions.Send_EB_Intervention(this);
 
             DmiActions.Send_TR_Mode(this);
