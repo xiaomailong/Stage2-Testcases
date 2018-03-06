@@ -143,7 +143,7 @@ namespace Testcase.DMITestCases
             DmiActions.Enable_Fixed_Train_Data_Validation(this, Variables.Fixed_Trainset_Captions.FLU);
             DmiActions.ShowInstruction(this, @"Press ‘Yes’ button.");
 
-            DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
+            DmiActions.Complete_Fixed_Train_Data_Entry(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                              Environment.NewLine +
                                              "1. Press ‘Yes’ button." + Environment.NewLine +

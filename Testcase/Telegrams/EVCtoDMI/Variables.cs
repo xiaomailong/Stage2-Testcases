@@ -18,6 +18,9 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static ushort PopulateDataElements(string baseString, ushort totalSizeCounter,
             List<DataElement> dataElements, SignalPool _pool)
         {
+            if (dataElements == null)
+                return totalSizeCounter;
+
             // Populate the data elements array
             for (int tdeIndex = 0; tdeIndex < dataElements.Count; tdeIndex++)
             {

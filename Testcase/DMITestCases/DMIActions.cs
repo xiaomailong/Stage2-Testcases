@@ -20,7 +20,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L0_UN(SignalPool pool)
         {
             // Set driver ID
-            Display_Driver_ID_Window(pool, "1234");
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
 
             // Set to level 0 and UN mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L0;
@@ -38,7 +38,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L1_SB(SignalPool pool)
         {
             // Set driver ID
-            Display_Driver_ID_Window(pool, "1234");
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
@@ -56,7 +56,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L1_FS(SignalPool pool)
         {
             // Set driver ID
-            Display_Driver_ID_Window(pool, "1234");
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
@@ -74,7 +74,7 @@ namespace Testcase.DMITestCases
         public static void Complete_SoM_L1_SR(SignalPool pool)
         {
             // Set driver ID
-            Display_Driver_ID_Window(pool, "1234");
+            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
 
             // Set to level 1 and SR mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
@@ -142,7 +142,7 @@ namespace Testcase.DMITestCases
 
         /// <summary>
         /// Description: Set Override Mode. *
-        /// This function shall be called after driveraction StartEOA has been performed
+        /// This function shall be called after driver action StartEOA has been performed
         /// </summary>
         /// <param name="pool">Signal pool</param>
         public static void Set_Override(SignalPool pool)
@@ -161,6 +161,7 @@ namespace Testcase.DMITestCases
         /// Description: Set SR distance/speed window
         /// Used in:
         ///     Step 6 in TC-ID: 14.1 in 19.1
+        /// </summary>
         /// <param name="pool">Signal pool</param>
         public static void Display_SR_speed_distance_window(SignalPool pool, uint lStff, ushort vStff)
         {
@@ -191,13 +192,19 @@ namespace Testcase.DMITestCases
         ///     <param name="mmiMTrainsetId">ID of preconfigured train data set</param>
         ///     <param name="mmiMAltDem">Control variable for alternative train data entry method</param>
         /// </summary>
-        public static void Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE mmiMDataEnable, ushort mmiLTrain,
-            ushort mmiVMaxTrain, Variables.MMI_NID_KEY_Train_Cat mmiNidKeyTrainCat, byte mmiMBrakePerc,
-            Variables.MMI_NID_KEY_Axle_Load mmiNidKeyAxleLoad,
-            byte mmiMAirtight, Variables.MMI_NID_KEY_Load_Gauge mmiNidKeyLoadGauge,
-            EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA mmiMButtons,
-            ushort mmiMTrainsetId, ushort mmiMAltDem, string[] trainSetCaptions,
-            Variables.DataElement[] dataElements = null)
+        public static void Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE mmiMDataEnable, 
+                                                        ushort mmiLTrain,
+                                                        ushort mmiVMaxTrain, 
+                                                        Variables.MMI_NID_KEY_Train_Cat mmiNidKeyTrainCat, 
+                                                        byte mmiMBrakePerc,
+                                                        Variables.MMI_NID_KEY_Axle_Load mmiNidKeyAxleLoad,
+                                                        byte mmiMAirtight, 
+                                                        Variables.MMI_NID_KEY_Load_Gauge mmiNidKeyLoadGauge,
+                                                        EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA mmiMButtons,
+                                                        ushort mmiMTrainsetId, 
+                                                        ushort mmiMAltDem, 
+                                                        string[] trainSetCaptions,
+                                                        Variables.DataElement[] dataElements = null)
         {
             EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = mmiMDataEnable; // Train data enabled
             EVC6_MMICurrentTrainData.MMI_L_TRAIN = mmiLTrain; // Train length
@@ -231,7 +238,7 @@ namespace Testcase.DMITestCases
         /// </summary>
         /// <param name="pool">Signal pool</param>
         /// <param name="fixedTrainsetCaptions"> Array of strings for trainset captions</param>
-        /// <param name="mmiMTrainsetId">Index of trainset to be pre-selected on DMI</param>
+        /// <param name="mmiMTrainsetId">Index of trainset to be pre-selected on DMI, cannot be 0</param>
         public static void Send_EVC6_MMICurrentTrainData_FixedDataEntry(SignalPool pool, string[] fixedTrainsetCaptions,
             ushort mmiMTrainsetId)
         {
@@ -257,23 +264,23 @@ namespace Testcase.DMITestCases
             EVC6_MMICurrentTrainData.Send();
         }
 
-        public static void Send_EVC10_MMIEchoedTrainData(SignalPool pool, Variables.MMI_M_DATA_ENABLE mmiMDataEnable,
-            ushort mmiLTrain,
-            ushort mmiVMaxTrain, Variables.MMI_NID_KEY mmiNidKeyTrainCat,
-            byte mmiMBrakePerc, Variables.MMI_NID_KEY mmiNidKeyAxleLoad,
-            byte mmiMAirtight, Variables.MMI_NID_KEY mmiNidKeyLoadGauge,
-            string[] trainSetCaptions)
+        public static void Send_EVC10_MMIEchoedTrainData(SignalPool pool, 
+                                            Variables.MMI_M_DATA_ENABLE mmiMDataEnable,
+                                            ushort mmiLTrain,
+                                            ushort mmiVMaxTrain, Variables.MMI_NID_KEY mmiNidKeyTrainCat,
+                                            byte mmiMBrakePerc, Variables.MMI_NID_KEY mmiNidKeyAxleLoad,
+                                            byte mmiMAirtight, Variables.MMI_NID_KEY mmiNidKeyLoadGauge,
+                                            string[] trainSetCaptions)
         {
             // EVC-10 inverts all the integral values except the alias
             EVC10_MMIEchoedTrainData.MMI_M_DATA_ENABLE_ = (ushort) mmiMDataEnable; // Train data enabled
-            EVC10_MMIEchoedTrainData.MMI_L_TRAIN_ = (ushort) mmiLTrain; // Train length
-            EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN_ = (ushort) mmiVMaxTrain; // Max train speed
+            EVC10_MMIEchoedTrainData.MMI_L_TRAIN_ = mmiLTrain; // Train length
+            EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN_ = mmiVMaxTrain; // Max train speed
             EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT_ = (byte) mmiNidKeyTrainCat; // Train category
-            EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC_ = (byte) mmiMBrakePerc; // Brake percentage
+            EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC_ = mmiMBrakePerc; // Brake percentage
             EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD_R = (byte) mmiNidKeyAxleLoad; // Axle load category
-            EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT_R = (byte) mmiMAirtight; // Train equipped with airtight system
-            EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE_ =
-                (byte) mmiNidKeyLoadGauge; // Loading gauge type of train 
+            EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT_R = mmiMAirtight; // Train equipped with airtight system
+            EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE_ = (byte) mmiNidKeyLoadGauge; // Loading gauge type of train 
             EVC10_MMIEchoedTrainData.EVC10_alias_1 =
                 pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value; // Alias variable for bit mapping
             EVC10_MMIEchoedTrainData.MMI_N_TRAINSETS_ = pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value;
@@ -281,24 +288,6 @@ namespace Testcase.DMITestCases
 
             EVC10_MMIEchoedTrainData.Send();
         }
-
-        /*public static void Send_EVC10_MMIEchoedTrainData(SignalPool pool)
-        {
-            // EVC-10 inverts all the integral values except the alias
-            EVC10_MMIEchoedTrainData.MMI_M_DATA_ENABLE_ = (ushort)EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE;                   // Train data enabled
-            EVC10_MMIEchoedTrainData.MMI_L_TRAIN_ = (ushort)EVC6_MMICurrentTrainData.MMI_L_TRAIN;                               // Train length
-            EVC10_MMIEchoedTrainData.MMI_V_MAXTRAIN_ = (ushort)EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN;                         // Max train speed
-            EVC10_MMIEchoedTrainData.MMI_NID_KEY_TRAIN_CAT_ = (byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT;             // Train category
-            EVC10_MMIEchoedTrainData.MMI_M_BRAKE_PERC_ = (byte)EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC;                       // Brake percentage
-            EVC10_MMIEchoedTrainData.MMI_NID_KEY_AXLE_LOAD_R = (byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD;            // Axle load category
-            EVC10_MMIEchoedTrainData.MMI_M_AIRTIGHT_R = (byte)EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT;                          // Train equipped with airtight system
-            EVC10_MMIEchoedTrainData.MMI_NID_KEY_LOAD_GAUGE_ = (byte)EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE;           // Loading gauge type of train 
-            EVC10_MMIEchoedTrainData.EVC10_alias_1 = pool.SITR.ETCS1.CurrentTrainData.EVC6alias1.Value;                         // Alias variable for bit mapping
-            EVC10_MMIEchoedTrainData.MMI_N_TRAINSETS_ = (ushort)pool.SITR.ETCS1.CurrentTrainData.MmiNTrainset.Value;
-            EVC10_MMIEchoedTrainData.TrainSetCaptions = EVC6_MMICurrentTrainData.TrainSetCaptions;
-
-            EVC10_MMIEchoedTrainData.Send();
-        }*/
 
         /// <summary>
         ///     Sends EVC-10 telegram with Fixed Data Entry for up to 9 trainset strings.
@@ -349,21 +338,22 @@ namespace Testcase.DMITestCases
         /// <summary>
         /// Send_EVC22_MMI_Current_Rbc_Data sends RBC Data to the DMI
         /// </summary>
-        public static void Send_EVC22_MMI_Current_RBC(SignalPool pool, uint rbcId, ulong mmiNidRadio,
+        public static void Send_EVC22_MMI_Current_RBC(SignalPool pool, 
+            uint rbcId, 
+            ulong mmiNidRadio,
             ushort mmiNidWindow,
-            bool closeEnable, EVC22_MMICurrentRBC.EVC22BUTTONS mmiMButtons,
+            bool closeEnable, 
+            EVC22_MMICurrentRBC.EVC22BUTTONS mmiMButtons,
             string[] textDataElements)
         {
             EVC22_MMICurrentRBC.NID_C = Variables.NidC;
             EVC22_MMICurrentRBC.NID_RBC = rbcId;
             EVC22_MMICurrentRBC.MMI_NID_RADIO = mmiNidRadio; // RBC phone number
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = mmiNidWindow; // ETCS Window Id
-            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE =
-                closeEnable
-                    ? Variables.MMI_Q_CLOSE_ENABLE.Enabled
-                    : Variables.MMI_Q_CLOSE_ENABLE.Disabled; // Close button enable?
+            EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = closeEnable
+                                                    ? Variables.MMI_Q_CLOSE_ENABLE.Enabled
+                                                    : Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = mmiMButtons; // Buttons available
-
             EVC22_MMICurrentRBC.NetworkCaptions = new List<string>(textDataElements);
             EVC22_MMICurrentRBC.DataElements = new List<Variables.DataElement>();
 
@@ -929,6 +919,7 @@ namespace Testcase.DMITestCases
 
             EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA
                 .BTN_YES_DATA_ENTRY_COMPLETE;
+
             EVC6_MMICurrentTrainData.Send();
         }
 
@@ -939,35 +930,32 @@ namespace Testcase.DMITestCases
         /// </summary>
         /// <param name="pool"></param>
         /// <param name="trainsetSelected"></param>
-        public static void Enable_Fixed_Train_Data_Validation(SignalPool pool,
-            Variables.Fixed_Trainset_Captions trainsetSelected)
+        public static void Enable_Fixed_Train_Data_Validation(SignalPool pool, Variables.Fixed_Trainset_Captions trainsetSelected)
         {
-            Variables.DataElement[] dataElements = new Variables.DataElement[1]
-            {
-                new Variables.DataElement
+            Variables.DataElement dataElements = new Variables.DataElement
                 {
                     Identifier = Variables.MMI_NID_DATA.TrainType_TrainDataSetIdentifier,
                     QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed,
                     EchoText = Enum.GetName(typeof(Variables.Fixed_Trainset_Captions), trainsetSelected)
-                }
-            };
+                };
 
-            Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.TrainSetID, 0, 0,
-                    Variables.MMI_NID_KEY_Train_Cat.NoDedicatedKey, 0, Variables.MMI_NID_KEY_Axle_Load.NoDedicatedKey, 0,
-                    Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey,
-                    EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                    Convert.ToUInt16((byte) trainsetSelected), 0, new string[] { }, dataElements);
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.None;
+            EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = 0;
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = (ushort) trainsetSelected;
+            EVC6_MMICurrentTrainData.DataElements = new List<Variables.DataElement>{dataElements};
+
+            EVC6_MMICurrentTrainData.Send();
         }
 
         /// <summary>
         /// Description: Finishes the Train Data Entry process in order to move to Train Data Validation
         /// </summary>
         /// <param name="pool"></param>
-        /// <param name="trainsetSelected"></param>
-        public static void Complete_Fixed_Train_Data_Entry(SignalPool pool,
-            Variables.Fixed_Trainset_Captions trainsetSelected)
+        /// 
+        public static void Complete_Fixed_Train_Data_Entry(SignalPool pool)
         {
-            Variables.DataElement[] dataElements = new Variables.DataElement[8]
+            Variables.DataElement[] dataElements = 
             {
                 new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.TrainType_TrainDataSetIdentifier, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""},
                 new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.BrakePercentage, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""},
@@ -979,11 +967,13 @@ namespace Testcase.DMITestCases
                 new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.Length, QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed, EchoText = ""}
             };
 
-            DmiActions.Send_EVC6_MMICurrentTrainData(Variables.MMI_M_DATA_ENABLE.None, 0, 0,
-                Variables.MMI_NID_KEY_Train_Cat.NoDedicatedKey, 0, Variables.MMI_NID_KEY_Axle_Load.NoDedicatedKey, 0,
-                Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey,
-                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE,
-                Convert.ToUInt16((byte) (trainsetSelected)), 0, new string[] { }, dataElements);
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.None;
+            EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = 0;
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC6_MMICurrentTrainData.DataElements = new List<Variables.DataElement>{dataElements[0], dataElements[1],
+                dataElements[2], dataElements[3], dataElements[4], dataElements[5], dataElements[6], dataElements[7] };
+
+            EVC6_MMICurrentTrainData.Send();
         }
 
         /// <summary>
@@ -1338,7 +1328,7 @@ namespace Testcase.DMITestCases
             Enable_Fixed_Train_Data_Validation(pool, Variables.Fixed_Trainset_Captions.FLU);
             ShowInstruction(pool, @"Press ‘Yes’ button.");
 
-            Complete_Fixed_Train_Data_Entry(pool, Variables.Fixed_Trainset_Captions.FLU);
+            Complete_Fixed_Train_Data_Entry(pool);
             ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                   Environment.NewLine +
                                   "1. Press ‘Yes’ button." + Environment.NewLine +
@@ -1427,7 +1417,7 @@ namespace Testcase.DMITestCases
                                   "1. Press ‘Yes’ button." + Environment.NewLine +
                                   "2. Press OK on THIS window.");
 
-            Complete_Fixed_Train_Data_Entry(pool, Variables.Fixed_Trainset_Captions.FLU);
+            Complete_Fixed_Train_Data_Entry(pool);
             Display_Train_data_validation_Window(pool);
             ShowInstruction(pool, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                   Environment.NewLine +

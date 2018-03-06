@@ -35,7 +35,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set default values
             _pool.SITR.ETCS1.CurrentTrainData.MmiMPacket.Value = 6; // Packet ID
             MMI_M_ALT_DEM = 0;
-            MMI_M_TRAINSET_ID = 0;
+            MMI_M_TRAINSET_ID = 15;
         }
 
         // Change the EVC6_Alias_1 by bit-shifting the MMI_TRAINSET_ID and MMI_ALT_DEM values
@@ -61,25 +61,34 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Populate the array of trainset captions
             for (int trainsetIndex = 0; trainsetIndex < TrainSetCaptions.Count; trainsetIndex++)
             {
+                // Turn string into char array
                 var charArray = TrainSetCaptions[trainsetIndex].ToCharArray();
 
+                // Throw exception if too many characters in string
                 if (charArray.Length > 12)
                     throw new ArgumentOutOfRangeException();
 
                 // Set length of char array
-                _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiNCaptionTrainset", BaseString, trainsetIndex),
-                    charArray.Length);
+                string nCaptionString = string.Format("{0}1{1}_MmiNCaptionTrainset", BaseString, trainsetIndex);
+                _pool.SITR.Client.Write(nCaptionString, charArray.Length);
 
+                // Increment packet size
                 totalSizeCounter += 16;
 
+                // For all characters in string
                 for (int charIndex = 0; charIndex < charArray.Length; charIndex++)
                 {
+                    // Get character
                     char character = charArray[charIndex];
 
-                    _pool.SITR.Client.Write(string.Format("{0}{1}",
-                        string.Format("{0}1{1}_EVC06CurrentTrainDataSub11", BaseString, trainsetIndex),
-                        string.Format("{0}_MmiXCaptionTrainset", charIndex.ToString("00"))), character);
+                    // Build RTSim strings
+                    string currentTrainDataSub = string.Format("{0}1{1}_EVC06CurrentTrainDataSub11", BaseString, trainsetIndex);
+                    string xCaptionString = currentTrainDataSub + string.Format("{0}_MmiXCaptionTrainset", charIndex.ToString("00"));
 
+                    // Write signal
+                    _pool.SITR.Client.Write(xCaptionString, character);
+
+                    // Increment packet size
                     totalSizeCounter += 8;
                 }
             }
@@ -87,6 +96,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set number of train data elements
             _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
+            // Populate Data Elements and increment packet size counter
             totalSizeCounter = Variables.PopulateDataElements(string.Format("{0}2", BaseString), totalSizeCounter,
                 DataElements, _pool);
 
@@ -116,25 +126,34 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Populate the array of trainset captions
             for (int trainsetIndex = 0; trainsetIndex < TrainSetCaptions.Count; trainsetIndex++)
             {
+                // Turn string into char array
                 var charArray = TrainSetCaptions[trainsetIndex].ToCharArray();
 
+                // Throw exception if too many characters in string
                 if (charArray.Length > 12)
                     throw new ArgumentOutOfRangeException();
 
                 // Set length of char array
-                _pool.SITR.Client.Write(string.Format("{0}1{1}_MmiNCaptionTrainset", BaseString, trainsetIndex),
-                    charArray.Length);
+                string nCaptionString = string.Format("{0}1{1}_MmiNCaptionTrainset", BaseString, trainsetIndex);
+                _pool.SITR.Client.Write(nCaptionString, charArray.Length);
 
+                // Increment packet size
                 totalSizeCounter += 16;
 
+                // For all characters in string
                 for (int charIndex = 0; charIndex < charArray.Length; charIndex++)
                 {
+                    // Get character
                     char character = charArray[charIndex];
 
-                    _pool.SITR.Client.Write(
-                        string.Format("{0}1{1}_EVC06CurrentTrainDataSub11", BaseString, trainsetIndex) +
-                        string.Format("{0}_MmiXCaptionTrainset", charIndex.ToString("00")), character);
+                    // Build RTSim strings
+                    string currentTrainDataSub = string.Format("{0}1{1}_EVC06CurrentTrainDataSub11", BaseString, trainsetIndex);
+                    string xCaptionString = currentTrainDataSub + string.Format("{0}_MmiXCaptionTrainset", charIndex.ToString("00"));
 
+                    // Write signal
+                    _pool.SITR.Client.Write(xCaptionString, character);
+
+                    // Increment packet size
                     totalSizeCounter += 8;
                 }
             }
@@ -142,6 +161,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set number of train data elements
             _pool.SITR.ETCS1.CurrentTrainData.MmiNDataElements.Value = (ushort) DataElements.Count;
 
+            // Populate Data Elements and increment packet size counter
             totalSizeCounter = Variables.PopulateDataElements(string.Format("{0}2", BaseString), totalSizeCounter,
                 DataElements, _pool);
 
@@ -217,7 +237,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static Variables.MMI_NID_KEY_Train_Cat MMI_NID_KEY_TRAIN_CAT
         {
-            get { return (Variables.MMI_NID_KEY_Train_Cat) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value); }
+            get { return (Variables.MMI_NID_KEY_Train_Cat) _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value; }
             set { _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyTrainCat.Value = (byte) value; }
         }
 
@@ -291,7 +311,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             get
             {
-                return (Variables.MMI_NID_KEY_Load_Gauge) (_pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value);
+                return (Variables.MMI_NID_KEY_Load_Gauge) _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value;
             }
             set { _pool.SITR.ETCS1.CurrentTrainData.MmiNidKeyLoadGauge.Value = (byte) value; }
         }

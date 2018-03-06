@@ -103,7 +103,7 @@ namespace Testcase.DMITestCases
             DmiActions.Enable_Fixed_Train_Data_Validation(this, Variables.Fixed_Trainset_Captions.FLU);
             DmiExpectedResults.Fixed_Train_Data_validated(this, Variables.Fixed_Trainset_Captions.FLU);
 
-            DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
+            DmiActions.Complete_Fixed_Train_Data_Entry(this);
 
             Wait_Realtime(1000);
 

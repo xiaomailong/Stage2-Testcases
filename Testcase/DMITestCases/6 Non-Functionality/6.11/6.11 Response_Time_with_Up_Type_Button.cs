@@ -104,7 +104,7 @@ namespace Testcase.DMITestCases
                                              "1. Press ‘Yes’ button." + Environment.NewLine +
                                              "2. Press OK on THIS window.");
 
-            DmiActions.Complete_Fixed_Train_Data_Entry(this, Variables.Fixed_Trainset_Captions.FLU);
+            DmiActions.Complete_Fixed_Train_Data_Entry(this);
             DmiActions.Display_Train_data_validation_Window(this);
             DmiActions.ShowInstruction(this, @"Perform the following actions on the DMI: " + Environment.NewLine +
                                              Environment.NewLine +
