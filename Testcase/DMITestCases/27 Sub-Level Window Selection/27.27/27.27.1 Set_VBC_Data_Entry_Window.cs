@@ -350,7 +350,7 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, @"Continue to enter the new value more than 8 characters");
             WaitForVerification("Verify the following information:" + Environment.NewLine + Environment.NewLine +
-                                "The data value is separated into 2 lines. " + Environment.NewLine +
+                                "The data value is separated into 2 lines." + Environment.NewLine +
                                 "In each line is displayed only 8 characters.");
 
             #endregion
@@ -452,7 +452,9 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
             // Call generic Check Results Method
-            DmiExpectedResults.DMI_displays_Set_VBC_window(this);
+
+            WaitForVerification("Verify the following information:" + Environment.NewLine + Environment.NewLine +
+                                "The Set VBC window is displayed.");
 
 
             MakeTestStepHeader(14, UniqueIdentifier++,
@@ -467,11 +469,9 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Enter the value ‘65536’ for VBC code.Then, confirm an entered data by pressing an input field");
             // Call generic Check Results Method
-            DmiExpectedResults.The_state_of_VBC_Code_input_field_is_changed_to_accepted(this);
-
 
             MakeTestStepHeader(15, UniqueIdentifier++, "Press and hold the Label area of ‘Set VBC’ input field",
-                "Verify the following information,The state of ‘Set VBC’ input field is changed to ‘Pressed’, the border of button is removed.The state of ‘Set VBC’ input field remains ‘accecpted’. The sound ‘Click’ is played once");
+                "Verify the following information,The state of ‘Set VBC’ input field is changed to ‘Pressed’, the border of button is removed. The state of ‘Set VBC’ input field remains ‘accepted’. The sound ‘Click’ is played once");
             /*
             Test Step 15
             Action: Press and hold the Label area of ‘Set VBC’ input field
@@ -509,8 +509,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4686 (partly: Label area, Set VBC), MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)); MMI_gen 4374;
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Release the pressed area");
-
 
             MakeTestStepHeader(19, UniqueIdentifier++, "Perform action step 13-17 for the Data area of an input field",
                 "Verify the following information,The state of an input field is changed to ‘accepted’ when release the pressed area at the Data area of input field");
@@ -521,12 +519,8 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 8326 (partly: MMI_gen 4686 (partly: Data area)); MMI_gen 9390 (partly: Set VBC window);
             */
             // Call generic Action Method
-            DmiActions.Perform_action_step_13_17_for_the_Data_area_of_an_input_field(this);
-            // Call generic Check Results Method
-            DmiExpectedResults
-                .Verify_the_following_information_The_state_of_an_input_field_is_changed_to_accepted_when_release_the_pressed_area_at_the_Data_area_of_input_field(
-                    this);
 
+            // Call generic Check Results Method
 
             MakeTestStepHeader(20, UniqueIdentifier++, "Press ‘Close’ button",
                 "Verify the following information, Use the log file to confirm that DMI sent out packet [MMI_DRIVER_REQUEST (EVC-101)] with variable MMI_M_REQUEST = 25 (Exit Set VBC Entry).Use the log file to confirm that DMI sent out packet [MMI_ENABLE_REQUEST (EVC-30)] with variable MMI_NID_WINDOW = 254.The window is closed and the Settings window is displayed");
@@ -537,8 +531,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9885 (partly: EVC-101);(2) MMI_gen 9885 (partly: MMI_gen 12071 (partly: EVC-30), MMI_gen 4355 (partly: [Close]));(3) MMI_gen 9885 (partly: MMI_gen 12071 (partly: closure), MMI_gen 4355 (partly: [Close])); MMI_gen 4392 (partly: returning to the parent window);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press ‘Close’ button");
-
 
             TraceHeader("End of test");
 
@@ -547,7 +539,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
