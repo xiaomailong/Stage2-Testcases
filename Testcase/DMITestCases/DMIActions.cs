@@ -1738,28 +1738,6 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
-        /// Description: Confirm an entered data.Then, apply the action step 2-3 for ‘Yes’ button
-        /// Used in:
-        ///     Step 12 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 12 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        /// </summary>
-        public static void Confirm_an_entered_data_Then_apply_the_action_step_2_3_for_Yes_button(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: Perform action step 13-17 for the Data area of an input field
-        /// Used in:
-        ///     Step 19 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 19 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        /// </summary>
-        public static void Perform_action_step_13_17_for_the_Data_area_of_an_input_field(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Description: This step is to complete the process of ‘Train data’:- Press the ‘Yes’ button on the ‘Train data’ window.- Validate the data in the data validation window
         /// Used in:
         ///     Step 11 in TC-ID: 22.29.3 in 27.29.3 ‘Train data’ (Flexible) Data Checks: Technical Range Checks by Data Validity

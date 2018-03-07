@@ -486,8 +486,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SH_Mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is cuurently not supported
-            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Shunting;
             Driver_symbol_displayed(pool, "Shunting mode", "MO01", "B7", false);
         }
 
@@ -1824,18 +1822,6 @@ namespace Testcase.DMITestCases
             throw new NotImplementedException();
         }
 
-
-        /// <summary>
-        /// Description: DMI displays Set VBC window
-        /// Used in:
-        ///     Step 13 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 30 in TC-ID: 34.7 in 37.7 Dialogue Sequence of Settings window
-        /// </summary>
-        public static void DMI_displays_Set_VBC_window(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Description: The state of ‘VBC Code’ input field is changed to ‘accepted’
         /// Used in:
@@ -1846,20 +1832,6 @@ namespace Testcase.DMITestCases
         {
             throw new NotImplementedException();
         }
-
-        /// <summary>
-        /// Description: Verify the following information,The state of an input field is changed to ‘accepted’ when release the pressed area at the Data area of input field
-        /// Used in:
-        ///     Step 19 in TC-ID: 22.27.1 in 27.27.1 ‘Set VBC’ Data Entry Window
-        ///     Step 19 in TC-ID: 22.28.1 in 27.28.1 ‘Remove VBC’ Data Entry Window
-        /// </summary>
-        public static void
-            Verify_the_following_information_The_state_of_an_input_field_is_changed_to_accepted_when_release_the_pressed_area_at_the_Data_area_of_input_field(
-                SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
 
         /// <summary>
         /// Description: See the expected results of Step 7 – Step 8
