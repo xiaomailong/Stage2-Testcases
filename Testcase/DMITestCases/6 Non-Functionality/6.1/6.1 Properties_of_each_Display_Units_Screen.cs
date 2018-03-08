@@ -25,8 +25,8 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 20336;
             // Testcase entrypoint
             StartUp();
-            DmiActions.Display_Driver_ID_Window(this, "1234");
-            DmiActions.Send_SB_Mode(this);
+            
+            DmiActions.Complete_SoM_L1_SB(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Press ‘Settings’ button", "DMI displays Settings window");
             /*
@@ -35,7 +35,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Settings window
             */
 
-            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
+            DmiExpectedResults.Settings_Button_Pressed(this);
+
             DmiActions.Open_the_Settings_window(this);
 
             DmiExpectedResults.DMI_displays_Settings_window(this);
@@ -109,9 +110,8 @@ namespace Testcase.DMITestCases
             The value of an input field is restored to 55 and the brightness is not effected from setting of step 3
             */
 
-            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button, followed by the Brightness button.");
 
-            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
             WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
             MakeTestStepHeader(7, UniqueIdentifier++,
@@ -151,9 +151,8 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Rebooting Cab...");
             DmiActions.Deactivate_and_activate_cabin(this);
 
-            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button, followed by the Brightness button.");
 
-            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
             WaitForVerification(@"Is the Brightness set at median value (= 55)?");
 
             MakeTestStepHeader(9, UniqueIdentifier++,
@@ -168,10 +167,10 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 "Press and hold ‘+‘ button in order to increasing brightness to defined maximum level." +
                 Environment.NewLine +
-                "Then, confirm entered data by pressing an input field");
+                "Then, confirm entered data by pressing an input field.");
 
             WaitForVerification(
-                @"Confirm that DMI displays Settings window with luminance increased refer to entered data");
+                @"Confirm that the DMI Settings window is brighter according to the set value in the previous step.");
 
             MakeTestStepHeader(10, UniqueIdentifier++, "Press ‘Brightness’ button.",
                 "The ‘Brightness’ window is come up with maximum value of the luminance range");
@@ -188,9 +187,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, @"Rebooting Cab...");
             DmiActions.Deactivate_and_activate_cabin(this);
 
-            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button");
-
-            DmiActions.ShowInstruction(this, @"Press ‘Brightness’ button");
+            DmiActions.ShowInstruction(this, @"Press ‘Settings’ button, followed by the Brightness button.");
 
             WaitForVerification(@"Is the Brightness set at its maximum value?");
 
@@ -201,7 +198,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
