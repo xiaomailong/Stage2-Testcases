@@ -1326,6 +1326,8 @@ namespace Testcase.DMITestCases
             // Deactivates Cabin 1 - not supplied as a parameter but implicit in context of caller.
             Deactivate_Cabin(pool);
 
+            pool.Wait_Realtime(5000);
+
             // Then reactivate cabin 1.
             Activate_Cabin_1(pool);
         }
