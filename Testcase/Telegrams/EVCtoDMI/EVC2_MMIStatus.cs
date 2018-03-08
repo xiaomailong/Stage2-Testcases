@@ -28,6 +28,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             // Set default values
             _pool.SITR.ETCS1.Status.MmiMPacket.Value = 2;
             _pool.SITR.ETCS1.Status.MmiLPacket.Value = 72;
+            TrainRunningNumber = 0x123FFFFF;
         }
 
         /// <summary>
