@@ -451,18 +451,19 @@ namespace Testcase.DMITestCases
             EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataView;
         }
 
+
+
         /// <summary>
         /// Description: Settings button is pressed and released
         /// Used in:
         ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
         /// </summary>
-        public static void Settings_Button_pressed_and_released(SignalPool pool)
+        public static void Settings_Button_Pressed(SignalPool pool)
         {
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine +
                                              Environment.NewLine +
                                              "1. Press ‘Settings’ button.");
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Settings;
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.Settings;
         }
 
         /// <summary>

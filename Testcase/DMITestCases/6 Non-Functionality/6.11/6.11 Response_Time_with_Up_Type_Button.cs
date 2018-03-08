@@ -180,7 +180,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 65 (partly: ‘System Version’ button);
             */
 
-            DmiExpectedResults.Settings_Button_pressed_and_released(this);
+            DmiExpectedResults.Settings_Button_Pressed(this);
             DmiExpectedResults.DMI_displays_Settings_window(this);
             DmiExpectedResults.System_Version_Button_pressed_and_released(this);
 
