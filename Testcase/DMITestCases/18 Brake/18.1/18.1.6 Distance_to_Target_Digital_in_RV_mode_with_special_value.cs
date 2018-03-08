@@ -24,7 +24,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 13_1_6.tdg
     /// </summary>
-    public class TC_13_1_6_Brake : TestcaseBase
+    public class TC_ID_13_1_6_Brake : TestcaseBase
     {
         public override bool TestcaseEntryPoint()
         {
