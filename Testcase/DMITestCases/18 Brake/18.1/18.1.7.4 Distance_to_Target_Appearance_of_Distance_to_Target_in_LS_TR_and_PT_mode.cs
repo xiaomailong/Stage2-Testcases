@@ -1,4 +1,5 @@
 using System;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -41,7 +42,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, LS mode); MMI_gen 2567 (partly: MMI_M_WARNING, OBU_TR_M_MODE, LS mode);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, LS mode);(3) MMI_gen 2567 (partly: Table 38, LS mode); MMI_gen 6774 (partly: not be shown);(4) MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 10;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000; // 100m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000; // 100 m
 
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
@@ -51,9 +52,10 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Acknowledge LS mode by pressing in sub-area C1");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET = -1;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
+                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.LimitedSupervisionModeAck;
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.LimitedSupervision;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Does the DMI delete the SR mode symbol (MO09) and replace it with the LS mode symbol (MO21) in area B7?" +
@@ -66,8 +68,12 @@ namespace Testcase.DMITestCases
                 "DMI displays in TR mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 7 (Trip)(2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)");
             /*
             Test Step 2
-            Action: Force the train into TR mode by moving the train forward to position of EOA.Then, stop the train
-            Expected Result: DMI displays in TR mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 7 (Trip)(2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
+            Action: Force the train into TR mode by moving the train forward to position of EOA. Then, stop the train
+            Expected Result: DMI displays in TR mode, level 1. Verify the following information,
+            (1) Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 7 (Trip)
+            (2) The distance to target bar is not display in sub-area A3.
+            (3) The distance to target digital is not display in sub-area A2.
+            (4) Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, TR mode);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, TR mode);(3) MMI_gen 2567 (partly: Table 38, TR mode); MMI_gen 6774 (partly: not be shown);(4) MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);
             */
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 30000; // EOA
@@ -81,7 +87,7 @@ namespace Testcase.DMITestCases
                                 "2. The distance to target bar is not displayed in sub-area A3." + Environment.NewLine +
                                 "3. The digital distance to target is not displayed in sub-area A2.");
 
-            MakeTestStepHeader(3, UniqueIdentifier++, "Press the  PT mode acknowledgement in sub-area C1",
+            MakeTestStepHeader(3, UniqueIdentifier++, "Press the PT mode acknowledgement in sub-area C1",
                 "DMI displays in PT mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 8 (Post trip)(2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)");
             /*
             Test Step 3
@@ -89,6 +95,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in PT mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 8 (Post trip)(2)   The distance to target bar is not display in sub-area A3. (3)   The distance to target digital is not display in sub-area A2.(4)   Use the log file to confirm that DMI receives the packet EVC-1 with variable MMI_O_BRAKETARGET = -1 (Default)
             Test Step Comment: (1) MMI_gen 107 (partly: MMI_M_WARNING, OBU_TR_M_MODE, PT mode);(2) MMI_gen 6658 (partly: not be shown); MMI_gen 107 (partly: Table 37, PT mode);(3) MMI_gen 2567 (partly: Table 38, PT mode); MMI_gen 6774 (partly: not be shown);(4) MMI_gen 6658 (partly: MMI_O_BRAKETARGET is less than zero); MMI_gen 6774 (partly: MMI_O_BRAKETARGET is less than zero);
             */
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
 
             // No acknowledgement status for PT mode...
