@@ -5,7 +5,7 @@
 	<Configuration>VCS10 Unit Test TCMS, 2018-02-22 14:01:45</Configuration>
 	<Rack>Signalling Integration Test Rig VCS 10</Rack>
 	<Tester>Signalling Integration Team (Ricky Morris)</Tester>
-	<Logpath>C:\Users\VCS10\Dropbox\Logs and Results</Logpath>
+	<Logpath>C:\Users\rvanvaad\Desktop\MTE_Results</Logpath>
 	<Logwindow>True</Logwindow>
 	<LogWindowAutoClose>True</LogWindowAutoClose>
 	<LogSizeMaximum>200MB</LogSizeMaximum>

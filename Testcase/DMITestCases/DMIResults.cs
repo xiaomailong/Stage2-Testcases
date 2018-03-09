@@ -184,6 +184,17 @@ namespace Testcase.DMITestCases
         }
 
         /// <summary>
+        /// Description: RV mode Acknowledgement symbol on DMI area C1 is pressed and released.
+        /// Used in:
+        ///     Step 4 in TC-ID: 15.1.2 in 20.1.2
+        /// </summary>
+        public static void RV_Mode_Ack_Pressed(SignalPool pool)
+        {
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
+            pool.WaitForVerification("Has the MO15 (Acknowledgement for Reversing) symbol disappeared from sub-area C1?");
+        }
+
+        /// <summary>
         /// Description: SR Mode acknowledgement is requested on DMI area C1
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.1 in 20.1.1

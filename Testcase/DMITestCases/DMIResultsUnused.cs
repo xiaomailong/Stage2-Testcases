@@ -11,62 +11,6 @@ namespace Testcase.DMITestCases
     public static partial class DmiExpectedResults
     {
         /// <summary>
-        /// Description: SR mode Acknowledgement symbol on DMI area C1 is pressed and released.
-        /// Used in:
-        ///     Step 3 in TC-ID: 15.1.1 in 20.1.1
-        /// </summary>
-        public static void SR_Mode_Ack_pressed_and_released(SignalPool pool)
-        {
-            pool.WaitForVerification("Is the MO10 (Acknowledgement for Staff Responsible mode) symbol frame flashing?");
-        }
-
-        /// <summary>
-        /// Description:
-        /// Used in:
-        ///     Step 2 in TC-ID: 12.7.2 in 17.7.2 
-        /// </summary>
-        /// <param name="pool">The SignalPool</param>
-        public static void DMI_displays_in_SR_mode_level_1(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: RV mode Acknowledgement symbol on DMI area C1 is pressed and released.
-        /// Used in:
-        ///     Step 4 in TC-ID: 15.1.2 in 20.1.2
-        /// </summary>
-        public static void RV_Mode_Ack_Pressed(SignalPool pool)
-        {
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
-            pool.WaitForVerification("Has the MO15 (Acknowledgement for Reversing) symbol disappeared from sub-area C1?");
-        }
-
-        /// <summary>
-        /// Description: DMI does NOT display SL mode despite EVC-7 with [MMI_ETCS_MISC_OUT_SIGNALS.OBU_TR_M_MODE] = 5 received
-        /// Used in:
-        ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
-        /// </summary>
-        public static void SL_Mode_NOT_displayed(SignalPool pool)
-        {
-            pool.WaitForVerification("Is there NO symbol displayed in area B7?");
-        }
-
-        /// <summary>
-        /// Description: Exit Shunting button is pressed and hold
-        /// Used in:
-        ///     Step 11 in TC-ID: 15.1.1 in 20.1.1     
-        /// </summary>
-        public static void Exit_Shunting_button_pressed_and_hold(SignalPool pool)
-        {
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitShunting;
-            pool.Wait_Realtime(2000);
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitShunting;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
-                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ExitShuntingSelected;
-        }
-
-        /// <summary>
         /// Description: DMI displays the text "Driver's cab not active" in area E5
         /// Used in:
         ///     Step 5 in TC-ID: 15.1.2 in 20.1.2
@@ -87,33 +31,6 @@ namespace Testcase.DMITestCases
             pool.WaitForVerification("Is the Set VBC window displayed on the DMI?");
         }
 
-        /// <summary>
-        /// Description: DMI displays the default window. The Driver ID window is displayed
-        /// Used in:
-        ///     Step 1 in TC-ID: 1.2 in 6.2 Internal Components
-        ///     Step 7 in TC-ID: 1.2 in 6.2 Internal Components
-        ///     Step 1 in TC-ID: 5.3 in 10.3 Screen Layout: Frames
-        ///     Step 1 in TC-ID: 15.2.6 in 20.2.7 ETCS Level: STM level symbol
-        ///     Step 1 in TC-ID: 17.10.3 in 22.10.3 Zoom PA Function with Scale Down
-        ///     Step 1 in TC-ID: 17.10.4 in 22.10.4 Zoom PA Function with the communication loss between ETCS Onboard and DMI
-        ///     Step 1 in TC-ID: 17.11 in 22.11 Handle at least 31 PA Speed Profile Segments
-        ///     Step 1 in TC-ID: 17.12 in Handle at least 31 PA Gradient Profile Segments
-        /// </summary>
-        public static void DMI_displays_the_default_window_The_Driver_ID_window_is_displayed(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Description: The Settings window is presented with all sub-menus
-        /// Used in:
-        ///     Step 3 in TC-ID: 1.2 in 6.2 Internal Components
-        ///     Step 2 in TC-ID: 1.6 in 6.6 Adjustment of Sound Volume
-        /// </summary>
-        public static void The_Settings_window_is_presented_with_all_sub_menus(SignalPool pool)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Description: The Settings window is displayed

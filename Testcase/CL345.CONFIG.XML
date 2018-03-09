@@ -7,7 +7,7 @@
       <ConfigFile>fl_config.xml</ConfigFile>
       <ConfigVersion>name=Crossrail version=R6Unit Test TCMS crc=0xFF8FC45E</ConfigVersion>
       <ConsistType></ConsistType>
-      <IPAddress>10.158.40.11</IPAddress>
+      <IPAddress>10.0.0.46</IPAddress>
       <IsEnabled>True</IsEnabled>
       <Namespace>SITR</Namespace>
       <Orientation></Orientation>

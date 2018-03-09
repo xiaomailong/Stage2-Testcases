@@ -31,11 +31,7 @@ namespace Testcase
             else
             {
                 TestcaseRunner.AddTestcase(typeof(TC_ID_12_7_4_Train_Speed));
-            
-                //TestcaseRunner.AddTestcase(typeof(TC_ID_15_2_12_ETCS_Level));
-                
 
-                //TestcaseRunner.AddTestcase(typeof(TestcaseBase));
                 TestcaseRunner.RunTestcases(args);
             }
         }
