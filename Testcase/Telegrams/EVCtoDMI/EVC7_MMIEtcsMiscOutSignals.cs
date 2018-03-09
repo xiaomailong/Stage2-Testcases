@@ -37,7 +37,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = 255; // No STM in hot standby
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = 255; // No STM
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = 2880; // 48 hours
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 1000000000; // Initial position
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 100; // Initial position
             SetValidityBits(true);
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0x8000; // 32768 in decimal
