@@ -143,7 +143,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in UN mode, level 0
             */
 
-            DmiExpectedResults.Start_Button_pressed_and_released(this);
+            DmiExpectedResults.Start_Button_Pressed(this);
 
             DmiActions.Display_Default_Window(this);
 
@@ -151,7 +151,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.UN_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
-            DmiExpectedResults.UN_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.UN_Mode_Ack_Pressed(this);
 
             DmiActions.Send_UN_Mode(this);
             DmiActions.Send_L0(this);
@@ -210,7 +210,7 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, @"Acknowledge train trip");
-            DmiExpectedResults.TR_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.TR_Mode_Ack_Pressed(this);
 
             DmiActions.Send_PT_Mode(this);
             DmiExpectedResults.PT_Mode_displayed(this);

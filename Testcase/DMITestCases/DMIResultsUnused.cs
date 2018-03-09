@@ -36,15 +36,10 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 4 in TC-ID: 15.1.2 in 20.1.2
         /// </summary>
-        public static void RV_Mode_Ack_pressed_and_released(SignalPool pool)
+        public static void RV_Mode_Ack_Pressed(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
-                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
-            pool.WaitForVerification(
-                "Has the MO15 (Acknowledgement for Reversing) symbol disappeared from sub-area C1?");
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.ReversingModeAck;
+            pool.WaitForVerification("Has the MO15 (Acknowledgement for Reversing) symbol disappeared from sub-area C1?");
         }
 
         /// <summary>

@@ -63,7 +63,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.RV_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, "Press the symbol in sub-area C1");
-            DmiExpectedResults.RV_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.RV_Mode_Ack_Pressed(this);
 
             DmiActions.Send_L1(this);
             DmiActions.Send_RV_Mode(this);
@@ -261,7 +261,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.UN_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.UN_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.UN_Mode_Ack_Pressed(this);
 
             DmiActions.Send_L1(this);
             DmiActions.Send_UN_Mode(this);
@@ -357,7 +357,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.OS_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.OS_Mode_Ack_Pressed(this);
 
             DmiActions.Send_L1(this);
             DmiActions.Send_OS_Mode(this);
@@ -434,7 +434,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.LS_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.LS_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.LS_Mode_Ack_Pressed(this);
 
             DmiActions.Send_L1(this);
             DmiActions.Send_LS_Mode(this);
@@ -523,7 +523,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.TR_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.TR_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.TR_Mode_Ack_Pressed(this);
 
             DmiActions.Send_L1(this);
             DmiActions.Send_PT_Mode(this);

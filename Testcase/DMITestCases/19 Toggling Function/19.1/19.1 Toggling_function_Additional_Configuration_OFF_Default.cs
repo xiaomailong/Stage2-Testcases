@@ -45,7 +45,7 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 22091;
             // Testcase entrypoint
             StartUp();
-            DmiActions.Complete_SoM_L1_SR(this);
+            DmiActions.Complete_SoM_L1_FS(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward pass BG1.Then stop the train",
                 "DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6");
@@ -55,7 +55,6 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in FS mode, Level 1 with the ST06 symbol at sub-area C6
             */
 
-            DmiActions.Send_FS_Mode(this);
             DmiActions.Send_RV_Permitted_Symbol(this);
 
             DmiExpectedResults.FS_mode_displayed(this);
@@ -86,7 +85,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.RV_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, "Press the symbol in sub-area C1");
-            DmiExpectedResults.RV_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.RV_Mode_Ack_Pressed(this);
 
             // Remove RV ACK (MO15)
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -270,7 +269,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.UN_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.UN_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.UN_Mode_Ack_Pressed(this);
 
             DmiActions.Send_L1(this);
             DmiActions.Send_UN_Mode(this);
@@ -364,7 +363,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.OS_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.OS_Mode_Ack_Pressed(this);
 
             DmiActions.Send_L1(this);
             DmiActions.Send_OS_Mode(this);
@@ -431,7 +430,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.LS_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.LS_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.LS_Mode_Ack_Pressed(this);
 
             DmiActions.Send_L1(this);
             DmiActions.Send_LS_Mode(this);
@@ -519,7 +518,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.TR_Mode_Ack_requested(this);
 
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.TR_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.TR_Mode_Ack_Pressed(this);
 
             DmiActions.Send_L1(this);
             DmiActions.Send_PT_Mode(this);

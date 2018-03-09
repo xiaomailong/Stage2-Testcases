@@ -110,7 +110,7 @@ namespace Testcase.DMITestCases
                                              Environment.NewLine +
                                              "1. Acknowledge L0 annoucement by pressing DMI area C1");
 
-            DmiExpectedResults.L0_Announcement_Ack_pressed_and_released(this);
+            DmiExpectedResults.L0_Announcement_Ack_Pressed(this);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;

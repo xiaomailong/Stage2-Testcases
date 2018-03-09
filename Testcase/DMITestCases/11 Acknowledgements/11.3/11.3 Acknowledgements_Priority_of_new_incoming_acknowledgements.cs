@@ -334,7 +334,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: mode acknowledgement); MMI_gen 4482 (moveable focus);
             */
             DmiActions.ShowInstruction(this, "Acknowledge TAF by pressing in area D");
-            DmiExpectedResults.TAF_ack_pressed_and_released(this);
+            DmiExpectedResults.TAF_Ack_Pressed(this);
 
             EVC8_MMIDriverMessage.MMI_I_TEXT = 12;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
@@ -357,7 +357,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays MO17 symbol on sub-area C1
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area C1");
-            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.OS_Mode_Ack_Pressed(this);
             DmiActions.Send_OS_Mode(this);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
@@ -378,7 +378,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: level acknowledgement); MMI_gen 4482 (partly: moveable focus);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area C1");
-            DmiExpectedResults.UN_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.UN_Mode_Ack_Pressed(this);
             DmiActions.Send_UN_Mode(this);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
@@ -402,7 +402,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 4486 (partly: other acknowledgement);(2) MMI_gen 4482 (partly: overflow);
             */
             DmiActions.ShowInstruction(this, @"Acknowledge by pressing in sub-area C1");
-            DmiExpectedResults.L0_Announcement_Ack_pressed_and_released(this);
+            DmiExpectedResults.L0_Announcement_Ack_Pressed(this);
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 269;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;

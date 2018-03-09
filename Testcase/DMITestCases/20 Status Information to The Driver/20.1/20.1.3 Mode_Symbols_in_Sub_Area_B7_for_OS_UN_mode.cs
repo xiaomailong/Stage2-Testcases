@@ -181,7 +181,7 @@ namespace Testcase.DMITestCases
                                (2) MMI_gen 11233 (partly: MO17);
             */
 
-            DmiExpectedResults.Start_Button_pressed_and_released(this);
+            DmiExpectedResults.Start_Button_Pressed(this);
 
             DmiActions.Display_Default_Window(this);
 
@@ -209,7 +209,7 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
-            DmiExpectedResults.UN_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.UN_Mode_Ack_Pressed(this);
 
             DmiActions.Send_UN_Mode(this);
             DmiActions.Send_L0(this);
@@ -362,7 +362,7 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, "Press DMI Sub Area C1");
-            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.OS_Mode_Ack_Pressed(this);
 
             DmiActions.Send_OS_Mode(this);
             DmiExpectedResults.OS_Mode_displayed(this);

@@ -133,7 +133,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 65 (partly: ‘Start’ button);
             */
 
-            DmiExpectedResults.Start_Button_pressed_and_released(this);
+            DmiExpectedResults.Start_Button_Pressed(this);
 
             WaitForVerification("Verify the following:" + Environment.NewLine + Environment.NewLine +
                                 "Actuation of the ‘Start’ buttons is not exceeded 130 ms when DMI sends EVC-101");
@@ -160,7 +160,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 65 (partly: ‘Data view’ button);
             */
 
-            DmiExpectedResults.Data_View_Button_pressed_and_released(this);
+            DmiExpectedResults.Data_View_Button_Pressed(this);
             DmiActions.Display_Data_View_Window(this);
 
             WaitForVerification("Verify the following:" + Environment.NewLine + Environment.NewLine +
@@ -182,7 +182,7 @@ namespace Testcase.DMITestCases
 
             DmiExpectedResults.Settings_Button_Pressed(this);
             DmiExpectedResults.DMI_displays_Settings_window(this);
-            DmiExpectedResults.System_Version_Button_pressed_and_released(this);
+            DmiExpectedResults.System_Version_Button_Pressed(this);
 
             WaitForVerification("Verify the following:" + Environment.NewLine + Environment.NewLine +
                                 "Actuation of the ‘System Version’ buttons is not exceeded 130 ms when DMI sends EVC-101");

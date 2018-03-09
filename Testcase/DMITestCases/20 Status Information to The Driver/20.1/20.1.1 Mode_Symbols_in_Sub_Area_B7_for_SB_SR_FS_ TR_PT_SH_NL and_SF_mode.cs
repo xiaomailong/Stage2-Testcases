@@ -197,7 +197,7 @@ namespace Testcase.DMITestCases
             */
 
             DmiActions.ShowInstruction(this, "Press DMI sub area C1.");
-            DmiExpectedResults.TR_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.TR_Mode_Ack_Pressed(this);
 
             DmiActions.Send_PT_Mode(this);
             DmiExpectedResults.PT_Mode_displayed(this);
@@ -221,7 +221,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Main_Window_displayed(this, true);
 
             DmiActions.ShowInstruction(this, "Press \"Start\" button.");
-            DmiExpectedResults.Start_Button_pressed_and_released(this);
+            DmiExpectedResults.Start_Button_Pressed(this);
 
             DmiActions.Send_SR_Mode_Ack(this);
             DmiExpectedResults.SR_Mode_Ack_requested(this);

@@ -65,13 +65,9 @@ namespace Testcase.DMITestCases
                                      string.Format("removed from area {0}?", symbolArea));
         }
 
-        public static void TAF_ack_pressed_and_released(SignalPool pool)
+        public static void TAF_Ack_Pressed(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
-                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrackAheadFreeConfirmation;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrackAheadFreeConfirmation;
         }
 
         /// <summary>
@@ -91,14 +87,10 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
         ///     Step 4 in TC-ID: 15.2.4 in 20.2.4
         /// </summary>
-        public static void L0_Announcement_Ack_pressed_and_released(SignalPool pool)
+        public static void L0_Announcement_Ack_Pressed(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level0Ack;
-            pool.WaitForVerification(
-                "Has the LE07 symbol disappeared and been replaced with LE06 symbol in sub-area C1?");
+            pool.WaitForVerification("Has the LE07 symbol disappeared and been replaced with LE06 symbol in sub-area C1?");
         }
 
         /// <summary>
@@ -118,14 +110,10 @@ namespace Testcase.DMITestCases
         ///     Step 1 in TC-ID: 15.1.4 in 20.1.4
         ///     Step 4 in TC-ID: 15.2.4 in 20.2.4
         /// </summary>
-        public static void L1_Announcement_Ack_pressed_and_released(SignalPool pool)
+        public static void L1_Announcement_Ack_Pressed(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.Level1Ack;
-            pool.WaitForVerification(
-                "Has the LE11 symbol disappeared and been replaced with LE10 symbol in sub-area C1?");
+            pool.WaitForVerification("Has the LE11 symbol disappeared and been replaced with LE10 symbol in sub-area C1?");
         }
 
         /// <summary>
@@ -143,13 +131,9 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 2 in TC-ID: 15.1.6 in 20.1.6
         /// </summary>
-        public static void LS_Mode_Ack_pressed_and_released(SignalPool pool)
+        public static void LS_Mode_Ack_Pressed(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
-                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.LimitedSupervisionModeAck;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.LimitedSupervisionModeAck;
             pool.WaitForVerification("Has the MO22 symbol disappeared from sub-area C1?");
         }
 
@@ -160,9 +144,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void LS_Mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is currently not supported
-            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK =
-            //    EVC102_MMIStatusReport.MMI_M_MODE_READBACK.LimitedSupervision;
             Driver_symbol_displayed(pool, "Limited Supervision mode", "MO21", "B7", false);
         }
 
@@ -196,13 +177,9 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 12 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
-        public static void OS_Mode_Ack_pressed_and_released(SignalPool pool)
+        public static void OS_Mode_Ack_Pressed(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
-                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.OnSightModeAck;
             pool.WaitForVerification("Has the MO08 symbol disappeared from sub-area C1?");
         }
 
@@ -223,10 +200,8 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void SR_Mode_Ack_pressed_and_hold(SignalPool pool)
         {
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
-                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
-            pool.WaitForVerification(
-                "Has the MO10 (Acknowledgement for Staff Responsible mode) symbol disappeared from sub-area C1?");
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StaffResponsibleModeAck;
+            pool.WaitForVerification("Has the MO10 (Acknowledgement for Staff Responsible mode) symbol disappeared from sub-area C1?");
         }
 
         /// <summary>
@@ -264,15 +239,10 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 9 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
-        public static void UN_Mode_Ack_pressed_and_released(SignalPool pool)
+        public static void UN_Mode_Ack_Pressed(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
-                EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.UnfittedModeAck;
-            pool.WaitForVerification(
-                "Has the MO17 (Acknowledgement for Unfitted mode) symbol disappeared from sub-area C1?");
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.UnfittedModeAck;
+            pool.WaitForVerification("Has the MO17 (Acknowledgement for Unfitted mode) symbol disappeared from sub-area C1?");
         }
 
         /// <summary>
@@ -282,8 +252,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void TR_Mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is cuurently not supported
-            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Trip;
             Driver_symbol_displayed(pool, "Trip mode", "MO04", "B7", false);
         }
 
@@ -312,11 +280,8 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 8 in TC-ID: 15.1.1 in 20.1.1
         /// </summary>
-        public static void TR_Mode_Ack_pressed_and_released(SignalPool pool)
+        public static void TR_Mode_Ack_Pressed(SignalPool pool)
         {
-            EVC111_MMIDriverMessageAck.MMI_Q_ACK = MMI_Q_ACK.AcknowledgeYES;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Pressed;
-            EVC111_MMIDriverMessageAck.MMI_Q_BUTTON = Variables.MMI_Q_BUTTON.Released;
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
             pool.WaitForVerification("Has the MO05 (Acknowledgement for Trip) symbol disappeared from sub-area C1?");
         }
@@ -328,8 +293,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void PT_Mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is cuurently not supported
-            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.PostTrip;
             Driver_symbol_displayed(pool, "Post Trip mode", "MO06", "B7", false);
         }
 
@@ -340,8 +303,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void RV_Mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is cuurently not supported
-            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Reversing;
             Driver_symbol_displayed(pool, "Reversing mode", "MO14", "B7", false);
         }
 
@@ -352,8 +313,6 @@ namespace Testcase.DMITestCases
         /// </summary>
         public static void UN_Mode_displayed(SignalPool pool)
         {
-            // EVC102 feedback is cuurently not supported
-            // EVC102_MMIStatusReport.Check_MMI_M_MODE_READBACK = EVC102_MMIStatusReport.MMI_M_MODE_READBACK.Unfitted;
             Driver_symbol_displayed(pool, "Unfitted mode", "MO16", "B7", false);
         }
 
@@ -385,14 +344,12 @@ namespace Testcase.DMITestCases
         ///     Step 9 in TC-ID: 15.1.1 in 20.1.1
         ///     Step 8 in TC-ID: 15.1.3 in 20.1.3
         /// </summary>
-        public static void Start_Button_pressed_and_released(SignalPool pool)
+        public static void Start_Button_Pressed(SignalPool pool)
         {
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine +
                                              Environment.NewLine +
                                              "1. Press ‘Start’ button.");
-            //EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Start;
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.Start;
-            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.StartSelected;
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.Start;
         }
 
         /// <summary>
@@ -400,13 +357,12 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 3 in TC-ID: 15.2.3 in 20.2.3 
         /// </summary>
-        public static void Close_Button_Level_Window_pressed_and_released(SignalPool pool)
+        public static void Close_Button_Level_Window_Pressed(SignalPool pool)
         {
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine +
                                              Environment.NewLine +
                                              "1. Press close button.");
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitChangeLevel;
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitChangeLevel;
         }
 
         /// <summary>
@@ -428,13 +384,13 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
         /// </summary>
-        public static void Set_VBC_Button_pressed_and_released(SignalPool pool)
+        public static void Set_VBC_Button_Pressed(SignalPool pool)
         {
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine +
                                              Environment.NewLine +
                                              "1. Press Set VBC button.");
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartSetVBC;
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartSetVBC;
+
         }
 
         /// <summary>
@@ -442,13 +398,12 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     
         /// </summary>
-        public static void Data_View_Button_pressed_and_released(SignalPool pool)
+        public static void Data_View_Button_Pressed(SignalPool pool)
         {
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine +
                                              Environment.NewLine +
                                              "1. Press ‘Data view’ button.");
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartTrainDataView;
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataView;
         }
 
 
@@ -471,13 +426,12 @@ namespace Testcase.DMITestCases
         /// Used in:
         ///     Step 1 in TC-ID: 22.27.1 in 27.27.1
         /// </summary>
-        public static void System_Version_Button_pressed_and_released(SignalPool pool)
+        public static void System_Version_Button_Pressed(SignalPool pool)
         {
             DmiActions.ShowInstruction(pool, "Perform the following action after pressing OK:" + Environment.NewLine +
                                              Environment.NewLine +
                                              "1. Press ‘System Version’ button.");
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.SystemVersionRequest;
-            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.SystemVersionRequest;
         }
 
         /// <summary>
@@ -1053,6 +1007,7 @@ namespace Testcase.DMITestCases
             EVC106_MMINewSrRules.MMI_L_STFF = lStff;
             EVC106_MMINewSrRules.MMI_V_STFF = vStff;
             EVC106_MMINewSrRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_SR_RULES.BTN_ENTER;
+            EVC106_MMINewSrRules.CheckPacketContent();
         }
 
         /// <summary>

@@ -85,7 +85,7 @@ namespace Testcase.DMITestCases
                 @"Perform the following actions on the DMI within 3 seconds after pressing 'OK': " +
                 Environment.NewLine + Environment.NewLine +
                 "1. Press DMI Sub Area C1." + Environment.NewLine);
-            DmiExpectedResults.LS_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.LS_Mode_Ack_Pressed(this);
 
             DmiActions.Send_LS_Mode(this);
             DmiExpectedResults.LS_Mode_displayed(this);
@@ -151,7 +151,7 @@ namespace Testcase.DMITestCases
                 @"Perform the following actions on the DMI within 3 seconds after pression 'OK': " +
                 Environment.NewLine + Environment.NewLine +
                 "1. Press DMI Sub Area C1." + Environment.NewLine);
-            DmiExpectedResults.OS_Mode_Ack_pressed_and_released(this);
+            DmiExpectedResults.OS_Mode_Ack_Pressed(this);
 
             DmiActions.Send_OS_Mode(this);
             DmiExpectedResults.OS_Mode_displayed(this);

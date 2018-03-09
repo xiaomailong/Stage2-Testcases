@@ -39,7 +39,7 @@ namespace Testcase.DMITestCases
             Action: Press ‘Set VBC’ button
             */
 
-            DmiExpectedResults.Set_VBC_Button_pressed_and_released(this);
+            DmiExpectedResults.Set_VBC_Button_Pressed(this);
             DmiActions.Display_Set_VBC_Window(this);
 
             /*

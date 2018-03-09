@@ -54,7 +54,7 @@ namespace Testcase.DMITestCases
                                              Environment.NewLine +
                                              "1. Press ‘Start’ button." + Environment.NewLine +
                                              "2. Press OK on THIS window within 3 seconds.");
-            DmiExpectedResults.Start_Button_pressed_and_released(this);
+            DmiExpectedResults.Start_Button_Pressed(this);
 
             DmiActions.Send_SR_Mode_Ack(this);
             DmiExpectedResults.SR_Mode_Ack_requested(this);
@@ -123,7 +123,7 @@ namespace Testcase.DMITestCases
             DmiExpectedResults.Level_window_displayed(this);
 
             DmiExpectedResults.Level_1_Selected(this);
-            DmiExpectedResults.Close_Button_Level_Window_pressed_and_released(this);
+            DmiExpectedResults.Close_Button_Level_Window_Pressed(this);
 
             #endregion
 
