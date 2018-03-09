@@ -117,7 +117,7 @@ namespace Testcase.DMITestCases
 
             #region Start
 
-            DmiExpectedResults.Start_Button_pressed_and_released(this);
+            DmiExpectedResults.Start_Button_Pressed(this);
             DmiExpectedResults.Default_Window_Displayed(this);
             DmiExpectedResults.SR_Mode_Ack_requested(this);
 
