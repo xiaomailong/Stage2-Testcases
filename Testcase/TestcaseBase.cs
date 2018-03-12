@@ -91,7 +91,7 @@ namespace Testcase
             EVC106_MMINewSrRules.Initialise(this);
             EVC107_MMINewTrainData.Initialise(this);
             EVC109_MMISetTimeMMI.Initialise(this);
-            EVC110_MMIConfimedTrainData.Initialise(this);
+            EVC110_MMIConfirmedTrainData.Initialise(this);
             EVC111_MMIDriverMessageAck.Initialise(this);
             EVC112_MMINewRbcData.Initialise(this);
             EVC116_MMINewTrainNumber.Initialise(this);
