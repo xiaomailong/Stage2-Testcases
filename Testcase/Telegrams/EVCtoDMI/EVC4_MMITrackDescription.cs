@@ -38,10 +38,6 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             ushort numberOfTrackDescriptions = (ushort) TrackDescriptions.Count;
 
-            // Only 31 track descriptions allowed in telegram
-            if (numberOfTrackDescriptions > 31)
-                throw new ArgumentOutOfRangeException("Too many track descriptions.");
-
             // Set number of MRSP and Gradient track descriptions
             _pool.SITR.ETCS1.TrackDescription.MmiNMrsp.Value = numberOfTrackDescriptions;
             _pool.SITR.ETCS1.TrackDescription.MmiNGradient.Value = numberOfTrackDescriptions;
@@ -53,7 +49,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             var baseString = "ETCS1_TrackDescription_EVC04TrackDescriptionSub";
 
             // For all track conditions
-            for (int k = 0; k < numberOfTrackDescriptions; k++)
+            for (int k = 0; (k < numberOfTrackDescriptions) && (k < 32); k++)
             {
                 // Write SignalPool signals
                 if (k < 10)
