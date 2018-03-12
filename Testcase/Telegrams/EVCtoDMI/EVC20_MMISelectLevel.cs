@@ -143,6 +143,9 @@ namespace Testcase.Telegrams.EVCtoDMI
 
         /// <summary>
         /// Indicates if MMI_M_LEVEL_NTC_ID is marked or not.
+        /// For Crossrail purposes:
+        /// 'Marked' = visible
+        /// 'Not Marked' = invisible
         /// The interpretation of the mark needs to be defined by related requirements. 
         /// Basic idea is that 'marked' levels are allowed for edit by the driver
         /// (see ERA_ERTMS_15560, v.3.4.9, ch. 11.3.2.7, 11.3..2.8)
