@@ -79,18 +79,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6892 (partly: RV mode, Table 34 (CSM), Table 38 (CSM))(2) MMI_gen 6890 (partly: RV mode, unidentified mode, un-concerned object), Table 34 (CSM), Table 35 (CSM)
             */
 
-            DmiActions.ShowInstruction(this, "Change the train direction to reverse");
-
-            DmiActions.Send_RV_Mode_Ack(this);
-            DmiExpectedResults.RV_Mode_Ack_requested(this);
-
-            DmiActions.ShowInstruction(this, "Press the symbol in sub-area C1");
-            DmiExpectedResults.RV_Mode_Ack_Pressed(this);
-
-            // Remove RV ACK (MO15)
-            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
-            EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 4;
-            EVC8_MMIDriverMessage.Send();
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 100000;
             EVC1_MMIDynamic.MMI_O_BRAKETARGET = 150000;
@@ -115,7 +103,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this, "Press on area A1-A4, and area B, respectively, at least twice");
 
             WaitForVerification(
-                "Check that the following objects do not toggle  and remain the same as in the previous step:" +
+                "Check that the following objects do not toggle and remain the same as in the previous step:" +
                 Environment.NewLine + Environment.NewLine +
                 "1. White basic speed hook (remains visible)." + Environment.NewLine +
                 "2.	Medium-grey basic speed hook (remains invisible)." + Environment.NewLine +
@@ -123,7 +111,7 @@ namespace Testcase.DMITestCases
                 "4. Digital	release speed (remains invisible).");
 
             MakeTestStepHeader(4, UniqueIdentifier++,
-                "Perform the following procedure,De-activate Cabin AActivate Cabin A",
+                "Perform the following procedure, De-activate Cabin Activate Cabin A",
                 "DMI displays in SB mode, Level 1");
             /*
             Test Step 4
@@ -134,8 +122,6 @@ namespace Testcase.DMITestCases
             DmiActions.Deactivate_Cabin(this);
             Wait_Realtime(5000);
             DmiActions.Activate_Cabin_1(this);
-
-            DmiActions.Display_Driver_ID_Window(this, "1234");
 
             DmiActions.Send_SB_Mode(this);
             DmiExpectedResults.SB_Mode_displayed(this);
@@ -170,7 +156,7 @@ namespace Testcase.DMITestCases
             Press ‘Spec’ button.
             Press ‘SR speed/disาtance’ button.
             Enter and confirm the following data,
-            SR speed = 40 km/hSR distance = 300 m
+            SR speed = 40 km/h SR distance = 300 m
             Expected Result: Verify the following information,
             The objects below still not displayed on DMI, (toggle off)
             White basic speed hook
@@ -181,13 +167,6 @@ namespace Testcase.DMITestCases
             MMI_gen 6450 (partly: 2nd bullet, SR mode), Table 34 (not CSM), Table 38 (not CSM), MMI_gen 6898 (partly: configuration ‘OFF’);(2) MMI_gen 6890 (partly: SR mode, un-concerned object), Table 35 (not CSM)
             */
 
-
-            DmiActions.ShowInstruction(this, @"Press ‘Spec’ button");
-            DmiActions.Open_the_Special_window(this);
-
-            DmiExpectedResults.DMI_displays_Special_window(this);
-
-            DmiActions.ShowInstruction(this, @"Press the ‘SR speed/distance’ button");
             DmiActions.Display_SR_speed_distance_window(this, 0, 0);
 
             DmiExpectedResults.DMI_displays_SR_speed_distance_window(this);
@@ -199,8 +178,8 @@ namespace Testcase.DMITestCases
             EVC11_MMICurrentSRRules.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC11_MMICurrentSRRules.DataElements = new List<Variables.DataElement>
             {
-                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Speed, EchoText = "40", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed},
-                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Distance, EchoText = "300", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed}
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Speed, EchoText = "", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed},
+                new Variables.DataElement {Identifier = Variables.MMI_NID_DATA.SR_Distance, EchoText = "", QDataCheck = Variables.Q_DATA_CHECK.All_checks_passed}
             };
             EVC11_MMICurrentSRRules.Send();
 
@@ -259,23 +238,16 @@ namespace Testcase.DMITestCases
                 "DMI displays in UN mode, Level 0.The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
             /*
             Test Step 9
-            Action: Drive the train forward pass BG2 with speed = 20km/h (or below permitted speed).Then, press an area C1 for acknowledgement
+            Action: Drive the train forward pass BG2 with speed = 20 km/h (or below permitted speed).Then, press an area C1 for acknowledgement
             Expected Result: DMI displays in UN mode, Level 0.The objects below are not displayed on DMI,White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital
             Test Step Comment: (1) MMI_gen 6892 (partly: UN mode, Table 34, Table 38, Table 35), MMI_gen 6890 (partly: FS mode, unidentified mode, un-concerned object)
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
-            DmiActions.Send_UN_Mode_Ack(this);
-            DmiExpectedResults.UN_Mode_Ack_requested(this);
-
-            DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.UN_Mode_Ack_Pressed(this);
-
-            DmiActions.Send_L1(this);
             DmiActions.Send_UN_Mode(this);
+            DmiActions.Send_L0(this);
 
             DmiExpectedResults.UN_Mode_displayed(this);
-            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
             WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in UN mode, Level 1." + Environment.NewLine +
@@ -316,6 +288,7 @@ namespace Testcase.DMITestCases
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 20;
 
             DmiActions.Send_FS_Mode(this);
+            DmiActions.Send_L1(this);
             DmiExpectedResults.FS_mode_displayed(this);
             DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
@@ -359,17 +332,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11868 (partly: OS mode), Table 34 (not CSM), Table 35 (not CSM), Table 38 (not CSM), MMI_gen 6450 (partly: 2nd bullet, OS mode), MMI_gen 6898 (configuration ‘OFF’, OS mode);
             */
 
-            DmiActions.Send_OS_Mode_Ack(this);
-            DmiExpectedResults.OS_Mode_Ack_requested(this);
-
-            DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.OS_Mode_Ack_Pressed(this);
-
-            DmiActions.Send_L1(this);
             DmiActions.Send_OS_Mode(this);
 
             DmiExpectedResults.OS_Mode_displayed(this);
-            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
             WaitForVerification("Check that the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in OS mode, Level 1." + Environment.NewLine +
@@ -426,17 +391,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 6892 (partly: LS mode, Table 35 (not CSM), Table 38 (not CSM))(2) MMI_gen 6890 (partly: LS mode, unidentified mode, un-concerned object), Table 34 (not CSM)
             */
 
-            DmiActions.Send_LS_Mode_Ack(this);
-            DmiExpectedResults.LS_Mode_Ack_requested(this);
-
-            DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.LS_Mode_Ack_Pressed(this);
-
-            DmiActions.Send_L1(this);
             DmiActions.Send_LS_Mode(this);
 
             DmiExpectedResults.LS_Mode_displayed(this);
-            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
             WaitForVerification("Check the following :" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in LS mode, Level 1." + Environment.NewLine +
@@ -444,6 +401,7 @@ namespace Testcase.DMITestCases
                                 "3. DMI displays the Digital release speed." + Environment.NewLine +
                                 "4. DMI does not display the White basic speed hook." + Environment.NewLine +
                                 "5. DMI does not display the Medium-grey basic speed hook.");
+
             MakeTestStepHeader(17, UniqueIdentifier++,
                 "Stop the train.Press, at least twice, on area A1-A4, and area B respectively.Then, continue to drive the train forward after expected result verified",
                 "Verify the following information,The objects below are not toggled visible/invisible, (always remain the same as the previous step)White Basic speed HookMedium-grey basic speed hookDistance to target (digital)Release Speed Digital");
@@ -514,17 +472,9 @@ namespace Testcase.DMITestCases
             */
             // Spec may be inconsistent here: says TR but expects PT to result
 
-            DmiActions.Send_TR_Mode_Ack(this);
-            DmiExpectedResults.TR_Mode_Ack_requested(this);
-
-            DmiActions.ShowInstruction(this, @"Acknowledge by pressing on area C1");
-            DmiExpectedResults.TR_Mode_Ack_Pressed(this);
-
-            DmiActions.Send_L1(this);
             DmiActions.Send_PT_Mode(this);
 
             DmiExpectedResults.PT_Mode_displayed(this);
-            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1.	DMI displays in PT mode, Level 1." + Environment.NewLine +
@@ -566,18 +516,9 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 11868 (partly: SH mode);                    MMI_gen 6450 (partly: 2nd bullet, SH mode) , Table 34 (CSM), MMI_gen 6898 (partly: configuration ‘OFF’);(2) MMI_gen 6890 (partly: SH mode, un-concerned object), Table 34 (CSM), Table 38 (CSM), Table 35 (CSM)
             */
 
-            DmiActions.ShowInstruction(this, "Press the ‘Main’ button.");
-            DmiActions.Display_Main_Window_with_Start_button_enabled(this);
-
-            DmiActions.ShowInstruction(this,
-                "Press and hold ‘Shunting’ button for up to 2s then release the ‘Shunting’ button");
-            DmiExpectedResults.Shunting_button_pressed_and_hold(this);
-
             DmiActions.Send_SH_Mode(this);
-            DmiActions.Send_L1(this);
 
             DmiExpectedResults.SH_Mode_displayed(this);
-            DmiExpectedResults.Driver_symbol_displayed(this, "Level 1", "LE03", "C8", true);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays in SH mode, Level 1." + Environment.NewLine +
