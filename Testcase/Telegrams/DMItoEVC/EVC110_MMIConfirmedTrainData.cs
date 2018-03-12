@@ -13,7 +13,7 @@ namespace Testcase.Telegrams.DMItoEVC
     /// 3. Driver completes entering a data block by pressing 'Yes'.
     /// 4. Driver overrules an operational check rule by pressing 'Delay Type Yes'.
     /// </summary>
-    public static class EVC110_MMIConfimedTrainData
+    public static class EVC110_MMIConfirmedTrainData
     {
         private static TestcaseBase _pool;
         private static bool _checkResult;

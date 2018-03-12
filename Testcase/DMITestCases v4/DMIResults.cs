@@ -998,7 +998,7 @@ namespace Testcase.DMITestCases
                                              Environment.NewLine +
                                              "1. Press ‘Yes’ button." + Environment.NewLine +
                                              "2. Confirmed the selected value by pressing the input field.");
-            EVC110_MMIConfimedTrainData.CheckConfirmedTrainData();
+            EVC110_MMIConfirmedTrainData.CheckConfirmedTrainData();
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
                 EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainDataValidation;
         }

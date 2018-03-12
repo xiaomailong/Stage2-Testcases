@@ -168,7 +168,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, "Confirm by pressing the data input field");
 
-            EVC110_MMIConfimedTrainData.CheckConfirmedTrainData();
+            EVC110_MMIConfirmedTrainData.CheckConfirmedTrainData();
 
             EVC16_CurrentTrainNumber.TrainRunningNumber = 1;
             EVC16_CurrentTrainNumber.Send();
