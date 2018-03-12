@@ -1,5 +1,6 @@
 using System;
 using Testcase.Telegrams.EVCtoDMI;
+using Testcase.Telegrams.DMItoEVC;
 
 
 namespace Testcase.DMITestCases
@@ -53,27 +54,27 @@ namespace Testcase.DMITestCases
                 "DMI displays in SN mode, Level ATB.Verify the following information,(1)    All objects of PA in Main-area D are removed");
             /*
             Test Step 2
-            Action: Perform the following procedure,Press ‘Main’ buttonPress ‘Level’ buttonSelect and confirm  level ‘ATB’At Main window, press ‘Close’ button
-            Expected Result: DMI displays in SN mode, Level ATB.Verify the following information,(1)    All objects of PA in Main-area D are removed
+            Action: Perform the following procedure,Press ‘Main’ buttonPress ‘Level’ buttonSelect and confirm level ‘ATB’. At Main window, press ‘Close’ button
+            Expected Result: DMI displays in SN mode, Level ATB. Verify the following information,
+            (1) All objects of PA in Main-area D are removed
             Test Step Comment: (1) MMI_gen 7354;
             */
-            DmiActions.ShowInstruction(this, "Press the ‘Main’ button, then press the ‘Level’ button");
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
-                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
-                {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
-                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
-                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
-                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
-                {Variables.MMI_M_LEVEL_NTC_ID.AWS_TPWS};
+            
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[] {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[] {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[] {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[] {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[] { Variables.MMI_Q_LEVEL_NTC_ID.STM_ID };
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[] {Variables.MMI_M_LEVEL_NTC_ID.AWS_TPWS};
+
             EVC20_MMISelectLevel.Send();
-            DmiActions.ShowInstruction(this, "Select level AWS TPWS");
+            DmiActions.ShowInstruction(this, "Select level AWS TPWS, and then close the main window.");
+
+            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.LevelEntered;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.NationalSystem;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.LNTC;
