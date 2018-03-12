@@ -1,4 +1,5 @@
 using System;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -22,7 +23,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 12_3_10.tdg
     /// </summary>
-    public class TC_12_3_10_Train_Speed : TestcaseBase
+    public class TC_ID_12_3_10_Train_Speed : TestcaseBase
     {
         public override bool TestcaseEntryPoint()
         {
@@ -50,7 +51,9 @@ namespace Testcase.DMITestCases
             /*
             Test Step 2
             Action: Force the train into TR mode by moving the train forward to position of EOA
-            Expected Result: DMI displays in TR mode, level 1.The train is forced to stop, train speed is decreasing to 0 km/h.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 7 (Trip)(2)   The speed pointer is always display in red colour
+            Expected Result: DMI displays in TR mode, level 1.The train is forced to stop, train speed is decreasing to 0 km/h.Verify the following information,
+            (1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 7 (Trip)
+            (2)   The speed pointer is always display in red colour
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 7);(2) MMI_gen 6299 (partly: colour of speed pointer, TR mode);
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
@@ -64,12 +67,16 @@ namespace Testcase.DMITestCases
                                 "2. Is the speed pointer red?");
 
             MakeTestStepHeader(3, UniqueIdentifier++,
-                "Perform the following procedure,Press an acknowledgement in sub-area C1.Chage the train direction to ‘Reverse’Drive the train with speed = 40 km/h",
-                "DMI displays in PT mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 8 (Post trip)(2)   The speed pointer is always display in grey colour.Note: The train will be force to stop due to runaway movement is detect when the train moving back over 200m");
+                "Perform the following procedure,Press an acknowledgement in sub-area C1. Change the train direction to ‘Reverse’. Drive the train with speed = 40 km/h",
+                "DMI displays in PT mode, level 1. Verify the following information," +
+                "(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 8 (Post trip)" +
+                "(2)   The speed pointer is always display in grey colour.Note: The train will be force to stop due to runaway movement is detect when the train moving back over 200m");
             /*
             Test Step 3
             Action: Perform the following procedure,Press an acknowledgement in sub-area C1.Chage the train direction to ‘Reverse’Drive the train with speed = 40 km/h
-            Expected Result: DMI displays in PT mode, level 1.Verify the following information,(1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 8 (Post trip)(2)   The speed pointer is always display in grey colour.Note: The train will be force to stop due to runaway movement is detect when the train moving back over 200m
+            Expected Result: DMI displays in PT mode, level 1. Verify the following information,
+            (1)   Use the log file to confirm that DMI received the EVC-7 with variable OBU_TR_M_MODE = 8 (Post trip)
+            (2)   The speed pointer is always display in grey colour.Note: The train will be force to stop due to runaway movement is detect when the train moving back over 200m
             Test Step Comment: (1) MMI_gen 6299 (partly: OBU_TR_M_MODE = 8);(2) MMI_gen 6299 (partly: colour of speed pointer, PT mode);
             */
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
@@ -78,9 +85,11 @@ namespace Testcase.DMITestCases
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 266;
             EVC8_MMIDriverMessage.Send();
 
-            WaitForVerification("Press an acknowledgement in sub-area C1. Change the train direction to ‘Reverse’");
+            WaitForVerification("Press an acknowledgement in sub-area C1. Change the train direction to ‘Reverse’.");
 
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.PostTrip;
+            EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION = EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrainTripAck;
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Reversing;
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 40;
             EVC1_MMIDynamic.MMI_V_PERMITTED_KMH = 45;
 
