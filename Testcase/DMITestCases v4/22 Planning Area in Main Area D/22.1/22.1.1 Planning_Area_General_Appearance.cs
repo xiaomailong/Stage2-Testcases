@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
@@ -41,7 +42,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             StartUp();
-            DmiActions.Display_Driver_ID_Window(this, "1234");
+
             // Call generic Check Results Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Is the Driver ID window displayed.");
@@ -53,17 +54,16 @@ namespace Testcase.DMITestCases
             Action: Perform SoM to SR mode, level 1
             Expected Result: DMI displays in SR mode, level 1
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
+            DmiActions.Complete_SoM_L1_SR(this);
             DmiActions.Finished_SoM_Default_Window(this);
 
             // Call generic Check Results Method
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Does the DMI show Staff Responsible Mode.");
+                                "1. The DMI shows Staff Responsible Mode, Level 1." + Environment.NewLine +
+                                "2. Confirm that the planning area is NOT displayed.");
 
             MakeTestStepHeader(3, UniqueIdentifier++, "Drive the train forward passing BG1",
-                "DMI remain displays in SR mode, level 1. Verify that the Planning area is not displayed in main area D");
+                "DMI remain displays in SR mode, level 1. Verify that the Planning area is NOT displayed in main area D.");
             /*
             Test Step 3
             Action: Drive the train forward passing BG1
@@ -71,9 +71,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7101 (partly: default  configuration);              
             */
             // Call generic Action Method
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Does the DMI show Staff Responsible Mode." + Environment.NewLine +
-                                "2. Confirm that the planning area IS NOT displayed.");
 
             MakeTestStepHeader(4, UniqueIdentifier++, "Drive the train forward passing BG2",
                 "DMI changes from SR mode to FS mode.");
@@ -95,9 +92,38 @@ namespace Testcase.DMITestCases
             */
             // Force train into Full Supervision Mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 5;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 30;
+
+            // EVC-32 values
+            TrackCondition trackCond = new TrackCondition
+            {
+                MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness,
+                MMI_NID_TRACKCOND = 1,
+                MMI_O_TRACKCOND_ANNOUNCE = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 1500,
+                MMI_O_TRACKCOND_START = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 30000,
+                MMI_O_TRACKCOND_END = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 60000,
+                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
+                MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
+                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea
+            };
+
+            EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition>{trackCond};
+            EVC32_MMITrackConditions.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Does the DMI show Full Supervision Mode." + Environment.NewLine +
-                                "2. Confirm that the planning area IS displayed.");
+                                "1. The DMI show Full Supervision Mode." + Environment.NewLine +
+                                "2. Confirm that the planning area is displayed with the following items:" + Environment.NewLine
+                                 + Environment.NewLine +
+                                "a. Distance scale" + Environment.NewLine +
+                                "b. Order and announcement of Air Tightness track condition" + Environment.NewLine +
+                                "c. Gradient profile" + Environment.NewLine +
+                                "d. Speed profile discontinuities" + Environment.NewLine +
+                                "e. PASPIndication marker" + Environment.NewLine +
+                                "f. Hide and show planning information" + Environment.NewLine +
+                                "g. Zoom function");
 
             TraceHeader("End of test");
 
