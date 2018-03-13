@@ -43,10 +43,6 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             StartUp();
 
-            // Call generic Check Results Method
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Is the Driver ID window displayed.");
-
             MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM to SR mode, level 1",
                 "DMI displays in SR mode, level 1");
             /*
