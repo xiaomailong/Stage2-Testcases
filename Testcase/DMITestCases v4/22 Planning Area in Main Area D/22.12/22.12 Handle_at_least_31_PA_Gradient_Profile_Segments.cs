@@ -15,7 +15,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 17_12.tdg
     /// </summary>
-    public class at_least_31_PA_Gradient_Profile_Segments : TestcaseBase
+    public class TC_ID_17_12_Handle_at_least_31_PA_Gradient_Profile_Segments : TestcaseBase
     {
         public override bool TestcaseEntryPoint()
         {
