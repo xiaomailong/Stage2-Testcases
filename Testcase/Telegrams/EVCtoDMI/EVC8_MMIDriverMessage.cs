@@ -267,13 +267,9 @@ namespace Testcase.Telegrams.EVCtoDMI
             {
                 var charArray = value.ToCharArray();
 
-                // If PlainTextMessage is empty
-                if (charArray.Length < 0)
-                    throw new NotImplementedException();
-
                 // If PlainTextMessage has too many characters
                 if (charArray.Length > 256)
-                    throw new ArgumentOutOfRangeException("Too many characters in the message!");
+                    Array.Resize(ref charArray, 256);
 
                 // Number of characters in PlainTextMessage
                 _pool.SITR.ETCS1.DriverMessage.MmiNText.Value = (ushort) charArray.Length;
