@@ -242,19 +242,9 @@ namespace Testcase.DMITestCases
         public static void Send_EVC6_MMICurrentTrainData_FixedDataEntry(SignalPool pool, string[] fixedTrainsetCaptions,
             ushort mmiMTrainsetId)
         {
-            // Train data enabled
-            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE =
-                Variables.MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
-            // EVC6_MMICurrentTrainData.MMI_L_TRAIN = 0; // Train length
-            // EVC6_MMICurrentTrainData.MMI_V_MAXTRAIN = 0; // Max train speed
-            // EVC6_MMICurrentTrainData.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.NoDedicatedKey; // Train category
-            // EVC6_MMICurrentTrainData.MMI_M_BRAKE_PERC = 0; // Brake percentage
-            // EVC6_MMICurrentTrainData.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.NoDedicatedKey; // Axle load category
-            // EVC6_MMICurrentTrainData.MMI_M_AIRTIGHT = 0; // Train equipped with airtight system
-            // EVC6_MMICurrentTrainData.MMI_NID_KEY_LOAD_GAUGE =
-            //     Variables.MMI_NID_KEY_Load_Gauge.NoDedicatedKey; // Loading gauge type of train 
-            // EVC6_MMICurrentTrainData.MMI_M_BUTTONS =
-            //     EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC6_MMICurrentTrainData.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.TrainSetID; // "Train Set ID" data enabled
+            EVC6_MMICurrentTrainData.MMI_M_BUTTONS = 
+                EVC6_MMICurrentTrainData.MMI_M_BUTTONS_CURRENT_TRAIN_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
             EVC6_MMICurrentTrainData.MMI_M_TRAINSET_ID = mmiMTrainsetId; // Preselected Trainset ID
             EVC6_MMICurrentTrainData.MMI_M_ALT_DEM = 0; // No alternative train data available
 
