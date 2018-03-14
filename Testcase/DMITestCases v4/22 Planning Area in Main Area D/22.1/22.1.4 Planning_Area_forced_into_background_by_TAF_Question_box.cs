@@ -26,8 +26,6 @@ namespace Testcase.DMITestCases
             // This identifier shall match the identity of the first testcasestep of the testcase in Doors
             UniqueIdentifier = 23314;
             // Testcase entrypoint
-            TraceInfo("This test case requires a DMI configuration change - " +
-                      "See Precondition requirements. If this is not done manually, the test may fail!");
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Perform SoM to SR mode, level 2",
                 "DMI displays in SR mode, level 2");
@@ -40,9 +38,6 @@ namespace Testcase.DMITestCases
             StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is displaying Staff Responsible Mode." + Environment.NewLine +
-                                "2. DMI shows that the ATP is in Level 2.");
 
             MakeTestStepHeader(2, UniqueIdentifier++, "Receive information from RBC",
                 "DMI changes from SR mode to FS mode, level 2");
@@ -52,10 +47,6 @@ namespace Testcase.DMITestCases
             Expected Result: DMI changes from SR mode to FS mode, level 2
             */
             // Call generic Check Results Method
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is displying Full Supervision Mode." + Environment.NewLine +
-                                "2. DMI shows that the ATP is in Level 2.");
 
             MakeTestStepHeader(3, UniqueIdentifier++, "Acknowledge OS mode by pressing at area C1",
                 "DMI changes from FS mode to OS mode, level 2");
@@ -83,8 +74,10 @@ namespace Testcase.DMITestCases
 
             EVC8_MMIDriverMessage.MMI_Q_TEXT = 298;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 1;
+            EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.Send();
+
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. Planning Area has been forced into the background." + Environment.NewLine +
                                 "2. The Track Ahead Free Symbol (DR02) has been displayed." + Environment.NewLine +
@@ -99,9 +92,7 @@ namespace Testcase.DMITestCases
             Expected Result: The symbol DR02 is still displayed in Main area D
             */
             // Call generic Action Method
-            WaitForVerification("Please press the DMI button to acknowledge that the track ahead is free.");
-
-
+            
             MakeTestStepHeader(6, UniqueIdentifier++, "Press ‘Yes’ button in Main area D",
                 "DMI displays PA in Main area D again.Verify that the following object is moving down to the bottom of area D.PASPUse the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 22 (Confirmation of Track Ahead Free)");
             /*
@@ -110,18 +101,13 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays PA in Main area D again.Verify that the following object is moving down to the bottom of area D.PASPUse the log file to confirm that DMI sends out packet [MMI_DRIVER_ACTION (EVC-152)] with the value of variable MMI_M_DRIVER_ACTION refer to sequence below,a)   MMI_M_DRIVER_ACTION = 22 (Confirmation of Track Ahead Free)
             Test Step Comment: (1) MMI_gen 7097 (partly: Update information in background);(2) MMI_gen 11470 (partly: Bit # 22);
             */
-            // Check DMI --> EVC telegrams 
-            //Check MMI_DRIVER_ACTION (EVC 152)
-            // Check Results
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI is displaying Planning Area.");
+            DmiActions.ShowInstruction(this, "Acknowledge that the track ahead is free.");
 
             EVC152_MMIDriverAction.Check_MMI_M_DRIVER_ACTION =
                 EVC152_MMIDriverAction.MMI_M_DRIVER_ACTION.TrackAheadFreeConfirmation;
 
-            //{TraceInfo("The DMI driver action to confirm TAF is CORRECT");}
-
-            //{TraceInfo("The DMI driver action to confirm TAF is INCORRECT");}
+            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
+                                "1. DMI is displaying Planning Area.");
 
             TraceHeader("End of test");
 
@@ -130,8 +116,7 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
-
+            
             return GlobalTestResult;
         }
     }
