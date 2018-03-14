@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Testcase.Telegrams.EVCtoDMI;
 
 namespace Testcase.DMITestCases
@@ -35,12 +36,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Driver ID window
             */
             StartUp();
-
-            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
-            EVC14_MMICurrentDriverID.Send();
-
-            DmiExpectedResults.Driver_ID_window_displayed(this);
-
+            
             MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM in SR mode, Level 1",
                 "DMI displays in SR mode, level 1");
             /*
@@ -49,13 +45,8 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays in SR mode, level 1
             */
             // Tested exhaustively elsewhere: force SoM
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode =
-                EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StaffResponsible;
-            DmiActions.Finished_SoM_Default_Window(this);
-
-            DmiExpectedResults.SR_Mode_displayed(this);
-
+            DmiActions.Complete_SoM_L1_SR(this);
+            DmiExpectedResults.Default_Window_Displayed(this);
 
             MakeTestStepHeader(3, UniqueIdentifier++, "Driver drives the train passing BG1",
                 "DMI changes from SR mode to FS mode.Verify the order (background to fore ground) for each objects in PA as follows,PASPPA Distance ScaleIndication MarkerPA Track Condition, Gradient profile and Speed DiscontinuitiesHide/Show and Zoom PA buttons.Note: The object which have a lower order (i.e. PASP) cannot overlap the higher order object");
@@ -67,6 +58,30 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
+            //TODO
+            // Track condition variables need to be checked
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 5;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 30;
+            EVC4_MMITrackDescription.Send();
+
+            // EVC-32 values
+            TrackCondition trackCond = new TrackCondition
+            {
+                MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness,
+                MMI_NID_TRACKCOND = 1,
+                MMI_O_TRACKCOND_ANNOUNCE = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 1500,
+                MMI_O_TRACKCOND_START = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 30000,
+                MMI_O_TRACKCOND_END = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 60000,
+                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
+                MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
+                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea
+            };
+
+            EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { trackCond };
+            EVC32_MMITrackConditions.Send();
+
+
             WaitForVerification(
                 "Check that the following objects are displayed in order (from background to foreground):" +
                 Environment.NewLine + Environment.NewLine +
@@ -76,6 +91,7 @@ namespace Testcase.DMITestCases
                 "4. PA Track Condition, Gradient Profile and Speed Discontinuities." + Environment.NewLine +
                 "5. Hide/Show and Zoom PA buttons." + Environment.NewLine +
                 "6. An object in the background of another object does not overlap it." + Environment.NewLine);
+
             TraceHeader("End of test");
 
             /*
