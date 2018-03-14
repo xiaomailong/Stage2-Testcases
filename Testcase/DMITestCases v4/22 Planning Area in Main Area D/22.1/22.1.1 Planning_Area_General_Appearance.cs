@@ -91,6 +91,7 @@ namespace Testcase.DMITestCases
 
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 5;
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 30;
+            EVC4_MMITrackDescription.Send();
 
             // EVC-32 values
             TrackCondition trackCond = new TrackCondition
