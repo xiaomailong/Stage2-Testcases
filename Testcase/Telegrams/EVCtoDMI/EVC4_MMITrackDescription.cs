@@ -203,6 +203,23 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// This is the position in odometer co-ordinates of the start location of a speed discontinuity
+        /// in the most restrictive speed profile. This position can be adjusted depending on supervision.
+        /// 
+        /// Values:
+        /// 0..21474836 in m
+        /// -1 = "Spare"
+        /// 
+        /// Note: The odometer related variables will only contain bit 0-31 of the source variable.
+        ///         I.e. the variable will wrap from 2147483647 -> 0. The receiver should be able to handle this.
+        /// </summary>
+        public int MMI_O_MRSP_M
+        {
+            set { _mmiOMrsp = value * 100; }
+            get { return _mmiOMrsp / 100; }
+        }
+
+        /// <summary>
         /// The speed value at a discontinuity of the most restrictive speed profile
         /// 
         /// Values:
@@ -232,12 +249,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                if (value > 400)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                    
-                else if (value <= 0)
+                if (value <= 0)
                     _mmiVMrsp = value;
 
                 else
@@ -249,8 +261,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 if (_mmiVMrsp <= 0)
                     return _mmiVMrsp;
 
-                else
-                    return (short) (_mmiVMrsp * Variables.CmSToKmH);
+                return (short) (_mmiVMrsp * Variables.CmSToKmH);
             }
         }
 
@@ -268,10 +279,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set
             {
-                if (value > 248)
-                    throw new ArgumentOutOfRangeException();
-
-                else if (value <= 0)
+                if (value <= 0)
                     _mmiVMrsp = value;
 
                 else
@@ -283,8 +291,7 @@ namespace Testcase.Telegrams.EVCtoDMI
                 if (_mmiVMrsp <= 0)
                     return _mmiVMrsp;
 
-                else
-                    return (short) (_mmiVMrsp * Variables.CmSToMph);
+                return (short) (_mmiVMrsp * Variables.CmSToMph);
             }
         }
 
@@ -304,6 +311,24 @@ namespace Testcase.Telegrams.EVCtoDMI
         {
             set { _mmiOGradient = value; }
             get { return _mmiOGradient; }
+        }
+
+        /// <summary>
+        /// This is the position, in odometer co-ordinates, without tolerance correction,
+        /// of the start location of a gradient value for a part of the track.
+        /// The remaining distances shall be computed taking into account the estimated train front end position.
+        /// 
+        /// Values:
+        /// 0..21474836 in m
+        /// -1 = "Spare"
+        /// 
+        /// Note: The odometer related variables will only contain bit 0-31 of the source variable.
+        ///         I.e. the variable will wrap from 2147483647 -> 0. The receiver should be able to handle this.
+        /// </summary>
+        public int MMI_O_GRADIENT_M
+        {
+            set { _mmiOGradient = value * 100; }
+            get { return _mmiOGradient / 100; }
         }
 
         /// <summary>

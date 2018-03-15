@@ -37,7 +37,7 @@ namespace Testcase.Telegrams.EVCtoDMI
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = 255; // No STM in hot standby
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = 255; // No STM
             _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = 2880; // 48 hours
-            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 100; // Initial position
+            _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = 1000000; // Initial position
             SetValidityBits(true);
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW1.Value = 0x8000; // 32768 in decimal
             _pool.SITR.ETCS1.EtcsMiscOutSignals.EVC7SSW2.Value = 0x8000; // 32768 in decimal
@@ -69,11 +69,11 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte MMI_OBU_TR_M_ADHESION
         {
             get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value; }
-            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = (byte) value; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrMAdhesion.Value = value; }
         }
 
         /// <summary>
-        /// Current nominal position of the train.
+        /// Current nominal position of the train in centimetres.
         /// 
         /// Values:
         /// -2147483648 = "Unknown" (DEFAULT)
@@ -85,7 +85,23 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static int MMI_OBU_TR_O_TRAIN
         {
             get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value; }
-            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = (int) value; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = value; }
+        }
+
+        /// <summary>
+        /// Current nominal position of the train in metres.
+        /// 
+        /// Values:
+        /// -2147483648 = "Unknown" (DEFAULT)
+        /// 
+        /// Note 1: Currently the ETCS Onboard counts this coordinate from 0 to maximum value. Negative values are not used.
+        /// Note 2: The odometer related variables will only contain bit 0-31 of the source variable.
+        ///         I.e. The variable will wrap from 2147483647 -> 0. The receiver should be able to handle this.
+        /// </summary>
+        public static int MMI_OBU_TR_O_TRAIN_M
+        {
+            get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value / 100; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrOTrain.Value = value * 100; }
         }
 
         /// <summary>
@@ -100,7 +116,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static ushort BRAKE_TEST_TIMEOUT
         {
             get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value; }
-            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = (ushort) value; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrBrakeTestTimeOut.Value = value; }
         }
 
         /// <summary>
@@ -115,7 +131,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte OBU_TR_NID_STM_DA
         {
             get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value; }
-            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = (byte) value; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmDa.Value = value; }
         }
 
         /// <summary>
@@ -130,7 +146,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         public static byte OBU_TR_NID_STM_HS
         {
             get { return _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value; }
-            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = (byte) value; }
+            set { _pool.SITR.ETCS1.EtcsMiscOutSignals.MmiObuTrNidStmHs.Value = value; }
         }
 
         /// <summary>
