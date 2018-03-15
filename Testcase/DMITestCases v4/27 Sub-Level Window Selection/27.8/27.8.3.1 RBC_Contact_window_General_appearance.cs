@@ -126,7 +126,7 @@ namespace Testcase.DMITestCases
                 @"Whilst keeping the ‘Enter RBC data’ button pressed, drag it out of its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter RBC data’ button field is displayed enabled." + Environment.NewLine +
+                                "1. The ‘Enter RBC data’ button field is displayed enabled." + Environment.NewLine +
                                 "2. No sound is played.");
 
             MakeTestStepHeader(5, UniqueIdentifier++, "Slide back into ‘Enter RBC data’ button",
@@ -141,7 +141,7 @@ namespace Testcase.DMITestCases
                 @"Whilst keeping the ‘Enter RBC data’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                @"1. The ‘Enter RBC data’ button is displayed pressed." + Environment.NewLine +
+                                "1. The ‘Enter RBC data’ button is displayed pressed." + Environment.NewLine +
                                 "2. No sound is played.");
 
             MakeTestStepHeader(6, UniqueIdentifier++, "Release ‘Enter RBC data’ button",
@@ -152,11 +152,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following points,DMI displays RBC Data window.Use the log file to confirm that DMI sends out the packet [MMI_NEW_RBC_DATA (EVC-112)] with variable [MMI_NEW_RBC_DATA (EVC-112). MMI_M_BUTTONS] = 23 (BTN_ENTER_RBC_DATA) and [MMI_NEW_RBC_DATA (EVC-112). MMI_N_DATA_ELEMENTS] = 0
             Test Step Comment: (1) MMI_gen 8516 (partly: MMI_gen 4557 (partly: button ‘Enter RBC Data’, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)));(2) MMI_gen 9450 (partly: Enter RBC data);
             */
-            DmiActions.ShowInstruction(this, @"Release the ‘Enter RBC data’ button");
+            DmiActions.ShowInstruction(this, "Release the ‘Enter RBC data’ button");
 
-            // Spec says button type = 23 
-            EVC112_MMINewRbcData.MMI_NID_DATA = new List<Variables.MMI_NID_DATA>();
-            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER_RBC_DATA;
             EVC112_MMINewRbcData.CheckPacketContent();
 
             EVC30_MMIRequestEnable.SendBlank();
@@ -596,16 +594,18 @@ namespace Testcase.DMITestCases
             EVC22_MMICurrentRBC.NID_RBC = 0;
             EVC22_MMICurrentRBC.MMI_NID_RADIO = 0;
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
-            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.NoButton;
+            EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_RADIO_NETWORK_ID;
             switch (type)
             {
                 case msgType.typea:
                     EVC22_MMICurrentRBC.MMI_NID_WINDOW = 5;
+
                     break;
+
                 case msgType.typeb:
                     EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
-                    EVC22_MMICurrentRBC.NetworkCaptions =
-                        new List<string>(); // empty list so count now 0 to close window
+                    EVC22_MMICurrentRBC.NetworkCaptions = new List<string>(); // empty list so count now 0 to close window
+
                     break;
             }
 
