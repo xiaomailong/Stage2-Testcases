@@ -307,6 +307,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public enum MMI_M_BUTTONS_RBC_DATA : byte
         {
+            BTN_ENTER_RBC_DATA = 23,
             BTN_YES_DATA_ENTRY_COMPLETE = 36,
             BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE = 37,
             BTN_ENTER_DELAY_TYPE = 253,
