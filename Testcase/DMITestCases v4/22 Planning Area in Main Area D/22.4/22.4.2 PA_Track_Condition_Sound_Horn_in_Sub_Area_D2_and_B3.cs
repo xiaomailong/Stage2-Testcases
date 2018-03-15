@@ -78,18 +78,26 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information(1)   DMI displays PL24 symbol in sub-area D2
             Test Step Comment: (1) MMI_gen 619(PL24);
             */
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET_M = 5000;
+
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 100;
+            EVC4_MMITrackDescription.Send();
+
+            EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
             TrackCondition trackCondition = new TrackCondition
             {
-                MMI_O_TRACKCOND_ANNOUNCE = 30000,
-                MMI_O_TRACKCOND_START = 0,
-                MMI_O_TRACKCOND_END = 0,
+                MMI_O_TRACKCOND_ANNOUNCE = -2147483647,
+                MMI_O_TRACKCOND_START = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 20000,
+                MMI_O_TRACKCOND_END = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 40000,
                 MMI_NID_TRACKCOND = 0,
                 MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Sound_Horn,
-                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.InsideArea_Active,
-                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
-                MMI_Q_TRACKCOND_ACTION_END = 0
+                MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
+                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
+                MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
             };
-            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> {{trackCondition}};
+
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> { trackCondition };
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -133,7 +141,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 7
             Action: Stop the train when the TC 35 symbol displays in sub-area B3
-            Expected Result: Verify the following information(1)   DMI displays TC35 symbol in sub-area B3.(2)   Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 2MMI_Q_TRACKCOND_STEP = 1MMI_Q_TRACKCOND_ACTION_START = 0
+            Expected Result: Verify the following information(1)   DMI displays TC35 symbol in sub-area B3.(2)   Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables, MMI_M_TRACkCOND_TYPE = 2 MMI_Q_TRACKCOND_STEP = 1 MMI_Q_TRACKCOND_ACTION_START = 0
             Test Step Comment: (1) MMI_gen 10465 (partly:Table40(TC35));(2) MMI_gen 662 (partly: TC35);
             */
             // Remove current track condition?
@@ -167,7 +175,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 9
             Action: Stop the train when the track condition symbol has been removed from sub-area B3
-            Expected Result: Verify the following information(1)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables,MMI_Q_TRACKCOND_STEP = 4MMI_NID_TRACKCOND = same value with expected result No.2 of step 7
+            Expected Result: Verify the following information(1)   Use the log file to confirm that DMI received packet information MMI_TRACK_CONDITIONS (EVC-32) with the following variables, MMI_Q_TRACKCOND_STEP = 4 MMI_NID_TRACKCOND = same value with expected result No.2 of step 7
             Test Step Comment: (1) MMI_gen 9965;
             */
             trackCondition.MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.RemoveTC;
