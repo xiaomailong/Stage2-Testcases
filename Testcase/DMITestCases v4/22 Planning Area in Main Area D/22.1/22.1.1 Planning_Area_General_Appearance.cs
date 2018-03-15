@@ -89,16 +89,14 @@ namespace Testcase.DMITestCases
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN_M = 1;
-            EVC1_MMIDynamic.MMI_O_BRAKETARGET_M = 2000;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET_M = 1000;
 
-            TrackDescription trackDesc1 = new TrackDescription { MMI_V_MRSP_KMH = 40, MMI_O_MRSP_M = 200, MMI_G_GRADIENT = 10, MMI_O_GRADIENT_M = 200 };
-            TrackDescription trackDesc2 = new TrackDescription { MMI_V_MRSP_KMH = 50, MMI_O_MRSP_M = 400, MMI_G_GRADIENT = 20, MMI_O_GRADIENT_M = 400 };
-            TrackDescription trackDesc3 = new TrackDescription { MMI_V_MRSP_KMH = 60, MMI_O_MRSP_M = 600, MMI_G_GRADIENT = -30, MMI_O_GRADIENT_M = 600 };
-            TrackDescription trackDesc4 = new TrackDescription { MMI_V_MRSP_KMH = 70, MMI_O_MRSP_M = 800, MMI_G_GRADIENT = -15, MMI_O_GRADIENT_M = 800 };
+            TrackDescription trackDesc1 = new TrackDescription { MMI_V_MRSP_KMH = 25, MMI_O_MRSP_M = 50, MMI_G_GRADIENT = 5, MMI_O_GRADIENT_M = 50 };
+            TrackDescription trackDesc2 = new TrackDescription { MMI_V_MRSP_KMH = 50, MMI_O_MRSP_M = 100, MMI_G_GRADIENT = 5, MMI_O_GRADIENT_M = 100 };
 
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 5;
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 30;
-            EVC4_MMITrackDescription.TrackDescriptions = new List<TrackDescription>{trackDesc1, trackDesc2, trackDesc3, trackDesc4};
+            EVC4_MMITrackDescription.TrackDescriptions = new List<TrackDescription>{ trackDesc1, trackDesc2 };
             EVC4_MMITrackDescription.Send();
 
             // EVC-32 values

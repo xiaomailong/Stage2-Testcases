@@ -46,10 +46,9 @@ namespace Testcase.DMITestCases
             */
             // Tested exhaustively elsewhere: force SoM
             DmiActions.Complete_SoM_L1_SR(this);
-            DmiExpectedResults.Default_Window_Displayed(this);
 
             MakeTestStepHeader(3, UniqueIdentifier++, "Driver drives the train passing BG1",
-                "DMI changes from SR mode to FS mode.Verify the order (background to fore ground) for each objects in PA as follows,PASPPA Distance ScaleIndication MarkerPA Track Condition, Gradient profile and Speed DiscontinuitiesHide/Show and Zoom PA buttons.Note: The object which have a lower order (i.e. PASP) cannot overlap the higher order object");
+                "DMI changes from SR mode to FS mode. Verify the order (background to fore ground) for each objects in PA as follows, PASPPA Distance Scale Indication Marker PA Track Condition, Gradient profile and Speed Discontinuities Hide/Show and Zoom PA buttons. Note: The object which have a lower order (i.e. PASP) cannot overlap the higher order object");
             /*
             Test Step 3
             Action: Driver drives the train passing BG1
@@ -58,10 +57,11 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
-            //TODO
-            // Track condition variables need to be checked
-            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 5;
-            EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 30;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET_M = 3000;     // MA of 3000 m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 100;
+
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 90;
             EVC4_MMITrackDescription.Send();
 
             // EVC-32 values

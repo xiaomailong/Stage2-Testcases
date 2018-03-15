@@ -26,9 +26,6 @@ namespace Testcase.DMITestCases
             UniqueIdentifier = 23283;
             // Testcase entrypoint
 
-            TraceInfo(
-                "This test case requires a DMI configuration change; See Precondition requirements. If this is not done manually, the test may fail!");
-
             MakeTestStepHeader(1, UniqueIdentifier++, "Activate Cabin A", "DMI displays Driver ID window");
             /*
             Test Step 1
@@ -37,10 +34,6 @@ namespace Testcase.DMITestCases
             */
             // Call generic Action Method
             StartUp();
-            DmiActions.Display_Driver_ID_Window(this, "1234");
-            // Call generic Check Results Method
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Is the Driver ID window displayed.");
 
             MakeTestStepHeader(2, UniqueIdentifier++, "Driver performs SoM to SR mode, level 1",
                 "DMI displays in SR mode, level 1");
@@ -52,7 +45,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.Complete_SoM_L1_SR(this);
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. Does the DMI show Staff Responsible Mode.");
+                                "1. Does the DMI show Staff Responsible Mode?");
 
 
             // Test Step 3
@@ -81,14 +74,11 @@ namespace Testcase.DMITestCases
             Action: Drive train forward pass BG2.Then, press an acknowledgement of OS mode symbol in area C1
             Expected Result: DMI change from FS mode to OS mode
             */
-
-            // Call Method to replace planning area on DMI
-            DmiActions.Activate_Cabin_1(this);
             // Change mode to On Sight
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.OnSight;
 
             MakeTestStepHeader(6, UniqueIdentifier++, "Touch main area D",
-                "Verify that the Planning Area is not displayed on DMI");
+                "Verify that the Planning Area is NOT displayed on DMI.");
             /*
             Test Step 6
             Action: Touch main area D
@@ -97,7 +87,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             WaitForVerification("Touch main area D and please confirm:" + Environment.NewLine + Environment.NewLine +
-                                "1. Mode has changed to On Sight." + Environment.NewLine +
+                                "1. Mode is On Sight." + Environment.NewLine +
                                 "2. Planning Area is NOT displayed");
 
             // Test Step 7
