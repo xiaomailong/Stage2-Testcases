@@ -33,10 +33,10 @@ namespace Testcase.DMITestCases
                       "See Precondition requirements. If this is not done manually, the test may fail!");
 
             StartUp();
-            DmiActions.Complete_SoM_L1_SR(this);
+            DmiActions.Complete_SoM_L1_FS(this);
 
             MakeTestStepHeader(1, UniqueIdentifier++, "Drive the train forward with speed = 20 km/h",
-                "The speed pointer is indicated as 20  km/h");
+                "The speed pointer is indicated as 20 km/h");
             /*
             Test Step 1
             Action: Drive the train forward with speed = 20 km/h
@@ -48,49 +48,51 @@ namespace Testcase.DMITestCases
                                 "1. The speed pointer is displayed with speed = 20 km/h.");
 
             MakeTestStepHeader(2, UniqueIdentifier++,
-                "Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27",
+                "Drive the train forward pass BG0 with MA and Track description Pkt 12, 21 and 27",
                 "Mode changes to FS mode , level 1");
             /*
             Test Step 2
             Action: Drive the train forward pass BG0 with MA and Track descriptionPkt 12,21 and 27
             Expected Result: Mode changes to FS mode , level 1
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays in FS mode, Level 1.");
 
             MakeTestStepHeader(3, UniqueIdentifier++,
                 "Continue to drive the train forward pass BG1 with Track conditionPkt 68:D_TRACKCOND = 200L_TRACKCOND = 200M_TRACKCOND = 0(Non stopping area)",
                 "Mode remains in FS mode");
             /*
             Test Step 3
-            Action: Continue to drive the train forward pass BG1 with Track conditionPkt 68:D_TRACKCOND = 200L_TRACKCOND = 200M_TRACKCOND = 0(Non stopping area)
+            Action: Continue to drive the train forward pass BG1 with Track conditionPkt 68: D_TRACKCOND = 200 L_TRACKCOND = 200 M_TRACKCOND = 0 (Non stopping area)
             Expected Result: Mode remains in FS mode
             */
 
             MakeTestStepHeader(4, UniqueIdentifier++, "Enter Anouncement of Track condition “Non stopping area”",
-                "Verify the following information(1)   DMI displays PL09 symbol in sub-area D2");
+                "Verify the following information(1)  DMI displays PL09 symbol in sub-area D2");
             /*
             Test Step 4
             Action: Enter Anouncement of Track condition “Non stopping area”
             Expected Result: Verify the following information(1)   DMI displays PL09 symbol in sub-area D2
             Test Step Comment: (1) MMI_gen 619(Partly: PL09);
             */
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET_M = 5000;
+
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 100;
+            EVC4_MMITrackDescription.Send();
+
             EVC32_MMITrackConditions.MMI_Q_TRACKCOND_UPDATE = 0;
             TrackCondition trackCondition = new TrackCondition
             {
-                MMI_O_TRACKCOND_ANNOUNCE = 30000,
-                MMI_O_TRACKCOND_START = 0,
-                MMI_O_TRACKCOND_END = 0,
+                MMI_O_TRACKCOND_ANNOUNCE = -2147483647,
+                MMI_O_TRACKCOND_START = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 20000,
+                MMI_O_TRACKCOND_END = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 40000,
                 MMI_NID_TRACKCOND = 0,
                 MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Non_Stopping_Area,
                 MMI_Q_TRACKCOND_STEP = Variables.MMI_Q_TRACKCOND_STEP.AnnounceArea,
-                MMI_Q_TRACKCOND_ACTION_START = 0,
-                MMI_Q_TRACKCOND_ACTION_END = 0
+                MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction,
+                MMI_Q_TRACKCOND_ACTION_END = Variables.MMI_Q_TRACKCOND_ACTION.WithDriverAction
             };
 
-            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> {{trackCondition}};
+            EVC32_MMITrackConditions.TrackConditions = new List<TrackCondition> {trackCondition};
             EVC32_MMITrackConditions.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -101,7 +103,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 5
             Action: Stop the train
-            Expected Result: Verify the following information(1)    Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 0MMI_Q_TRACKCOND_STEP = 0MMI_O_TRACKCOND_ANNOUNCE - OBU_TR_O_TRAIN (EVC-7) =  Remaining distance from PL09 symbol on area D2 to the first distance scale line (zero line)(2)    The bottom of PL09 symbol is displayed with the correct position in the PA distance scale refer to the result of calculation from expected result (1)
+            Expected Result: Verify the following information(1)    Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables, MMI_M_TRACkCOND_TYPE = 0 MMI_Q_TRACKCOND_STEP = 0 MMI_O_TRACKCOND_ANNOUNCE - OBU_TR_O_TRAIN (EVC-7) =  Remaining distance from PL09 symbol on area D2 to the first distance scale line (zero line)(2)    The bottom of PL09 symbol is displayed with the correct position in the PA distance scale refer to the result of calculation from expected result (1)
             Test Step Comment: (1) MMI_gen 9980 (partly: Table 45 (PL09));MMI_gen 9979 (partly: ANNOUNCE); MMI_gen 636 (partly: ANNOUNCE);(2) MMI_gen 2604 (partly: bottom of the symbol, D2);
             */
             EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
@@ -134,7 +136,7 @@ namespace Testcase.DMITestCases
             /*
             Test Step 7
             Action: Stop the train when the TC10 or TC11 symbol displays in sub-area B3
-            Expected Result: Verify the following information(1)   DMI displays TC10 or TC11 symbol in sub-area B3. (TC10) or (TC11)(2)   Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 0MMI_Q_TRACKCOND_STEP = 1MMI_Q_TRACKCOND_ACTION_START = 1 (TC10) or 0 (TC11)
+            Expected Result: Verify the following information(1)   DMI displays TC10 or TC11 symbol in sub-area B3. (TC10) or (TC11)(2)   Use the log file to confirm that DMI recieved packet information MMI_DRIVER_MESSAGE_ACK (EVC-32) and MMI_ETCS_MISC_OUT_SIGNALS (EVC-7) with the following variables,MMI_M_TRACkCOND_TYPE = 0 MMI_Q_TRACKCOND_STEP = 1 MMI_Q_TRACKCOND_ACTION_START = 1 (TC10) or 0 (TC11)
             Test Step Comment: (1) MMI_gen 10465 (partly: Table 40(TC10 or TC11));(2) MMI_gen 662 (Partly: TC10 or TC11); 
             */
             // Remove current track condition?
