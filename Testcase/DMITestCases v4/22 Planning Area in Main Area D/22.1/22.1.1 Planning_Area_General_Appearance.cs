@@ -86,11 +86,19 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 3063 (partly: FS mode); MMI_gen 7102 (partly: default  configuration);
                                 (2) MMI_gen 9937;   
             */
-            // Force train into Full Supervision Mode
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 100;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET_M = 2000;
+
+            TrackDescription trackDesc1 = new TrackDescription { MMI_V_MRSP_KMH = 40, MMI_O_MRSP = 20000, MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 20000 };
+            TrackDescription trackDesc2 = new TrackDescription { MMI_V_MRSP_KMH = 50, MMI_O_MRSP = 40000, MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 40000 };
+            TrackDescription trackDesc3 = new TrackDescription { MMI_V_MRSP_KMH = 60, MMI_O_MRSP = 60000, MMI_G_GRADIENT = 30, MMI_O_GRADIENT = 60000 };
+            TrackDescription trackDesc4 = new TrackDescription { MMI_V_MRSP_KMH = 70, MMI_O_MRSP = 80000, MMI_G_GRADIENT = 40, MMI_O_GRADIENT = 80000 };
 
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 5;
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 30;
+            EVC4_MMITrackDescription.TrackDescriptions = new List<TrackDescription>{trackDesc1, trackDesc2, trackDesc3, trackDesc4};
             EVC4_MMITrackDescription.Send();
 
             // EVC-32 values
