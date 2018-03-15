@@ -45,7 +45,16 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static void Send()
         {
-            ushort numberOfNetworks = (ushort) NetworkCaptions.Count;
+            ushort numberOfNetworks;
+
+            if (NetworkCaptions == null)
+            {
+                numberOfNetworks = 0;
+            }
+            else
+            {
+                numberOfNetworks = (ushort)NetworkCaptions.Count;
+            }
 
             if (numberOfNetworks > 10)
                 throw new ArgumentOutOfRangeException("Too many RBC networks!");
