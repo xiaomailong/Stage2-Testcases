@@ -27,6 +27,10 @@ namespace Testcase.Telegrams.DMItoEVC
         public static void Initialise(TestcaseBase pool)
         {
             _pool = pool;
+            MMI_NID_MN = 255;
+            MMI_NID_RADIO = 0;
+            MMI_NID_RBC = 0;
+
             MMI_NID_DATA = new List<Variables.MMI_NID_DATA>();
             _pool.SITR.SMDCtrl.CCUO.ETCS1NewRbcData.Value = 0x0009;
             _pool.SITR.SMDStat.CCUO.ETCS1NewRbcData.Value = 0x00;
@@ -54,15 +58,15 @@ namespace Testcase.Telegrams.DMItoEVC
                                       "MMI_M_BUTTONS = \"" + MMI_M_BUTTONS + "\"" + Environment.NewLine +
                                       "Result: PASSED.");
                 }
-                // Else display the real value extracted from EVC-106
+                // Else display the real value extracted from EVC-112
                 else
                 {
                     _pool.TraceError(baseString0 + Environment.NewLine +
                                      "MMI_NID_RBC = \"" + _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRbc.Value + "\"" +
                                      Environment.NewLine +
                                      "MMI_NID_RADIO = " +
-                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(0).ToString() +
-                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(1).ToString() +
+                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(0) +
+                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(1) +
                                      Environment.NewLine +
                                      "MMI_NID_MN = \"" + _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidMn.Value + "\"" +
                                      Environment.NewLine +
@@ -78,25 +82,23 @@ namespace Testcase.Telegrams.DMItoEVC
                     // If comparison matches
                     _pool.TraceReport("MMI_N_DATA_ELEMENTS = \"" + MMI_NID_DATA.Count + "\" Result: PASSED.");
 
-                    for (var _nidDataIndex = 0; _nidDataIndex < MMI_NID_DATA.Count; _nidDataIndex++)
+                    for (int nidDataIndex = 0; nidDataIndex < MMI_NID_DATA.Count; nidDataIndex++)
                     {
-                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1,
-                            _nidDataIndex));
+                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1, nidDataIndex));
+                        
                         // Compare each data element
-                        _checkResult = _nidData.Equals(MMI_NID_DATA[_nidDataIndex]);
+                        _checkResult = _nidData.Equals(MMI_NID_DATA[nidDataIndex]);
 
-                        // If comparaison matches
+                        // If comparison matches
                         if (_checkResult)
                         {
                             _pool.TraceReport(
-                                string.Format("MMI_NID_DATA{0} = \"{1}\" Result: PASSED!", _nidDataIndex,
-                                    MMI_NID_DATA[_nidDataIndex]));
+                                string.Format("MMI_NID_DATA{0} = \"{1}\" Result: PASSED!", nidDataIndex, MMI_NID_DATA[nidDataIndex]));
                         }
                         // Else display the real value extracted from EVC-112
                         else
                         {
-                            _pool.TraceError(string.Format("MMI_NID_DATA{0} = \"{1}\" Result: FAILED!", _nidDataIndex,
-                                _nidData));
+                            _pool.TraceError(string.Format("MMI_NID_DATA{0} = \"{1}\" Result: FAILED!", nidDataIndex, _nidData));
                         }
                     }
                 }
@@ -108,15 +110,11 @@ namespace Testcase.Telegrams.DMItoEVC
                                      _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value + "\" Result: FAILED!");
 
                     // Display data elements value indicating that the test has failed
-                    for (var _nidDataIndex = 0;
-                        _nidDataIndex < _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value;
-                        _nidDataIndex++)
+                    for (int nidDataIndex = 0; nidDataIndex < _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value; nidDataIndex++)
                     {
-                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1,
-                            _nidDataIndex));
+                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1, nidDataIndex));
                         _pool.TraceError(string.Format("{0}", baseString0) + Environment.NewLine +
-                                         string.Format("MMI_NID_DATA{0} = \"{1}\" Result: FAILED!", _nidDataIndex,
-                                             _nidData));
+                                         string.Format("MMI_NID_DATA{0} = \"{1}\" Result: FAILED!", nidDataIndex, _nidData));
                     }
                 }
             }
@@ -143,8 +141,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Bits 24..31 = 'spare'
         /// Special Value NID_RBC = 16383 - 'contact last known RBC'
         /// 
-        /// 24 bit(10 bit unsigned int for NID_C +
-        /// 14 bit unsigned int for NID_RBC)
+        /// 24 bit (10-bit uint for NID_C + 14-bit uint for NID_RBC)
         /// </summary>
         public static uint MMI_NID_RBC { get; set; }
 
@@ -166,6 +163,7 @@ namespace Testcase.Telegrams.DMItoEVC
         /// Values:
         /// 0..254 = "Selection"
         /// 255 = "Unknown"
+        /// 
         /// Note: Selected Network ID index starting from 0.
         /// </summary>
         public static uint MMI_NID_MN { get; set; }
@@ -173,12 +171,14 @@ namespace Testcase.Telegrams.DMItoEVC
         /// <summary>
         /// Only MMI Buttons used in EVC-112. 
         /// 
-        /// Values:        
+        /// Values:
+        /// 23 = "BTN_ENTER_RBC_DATA"
         /// 36 = "BTN_YES_DATA_ENTRY_COMPLETE"
-        /// 37 = "BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE"       
+        /// 37 = "BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE"
         /// 253 = "BTN_ENTER_DELAY_TYPE"
         /// 254 = "BTN_ENTER"
         /// 255 = "no button"
+        /// 
         /// Note: the definition is according to preliminary SubSet-121 'M_BUTTONS' definition.
         /// </summary>
         public static Variables.MMI_M_BUTTONS_RBC_DATA MMI_M_BUTTONS { get; set; }
