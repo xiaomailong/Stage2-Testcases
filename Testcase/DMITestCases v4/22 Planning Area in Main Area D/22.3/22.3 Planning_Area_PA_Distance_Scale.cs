@@ -38,9 +38,7 @@ namespace Testcase.DMITestCases
             */
             // Call generic Check Results Method
             StartUp();
-            DmiActions.Complete_SoM_L1_SR(this);
-
-            DmiExpectedResults.SR_Mode_displayed(this);
+            DmiActions.Complete_SoM_L1_FS(this);
 
             MakeTestStepHeader(2, UniqueIdentifier++, "Drive the train forward passing BG1",
                 "DMI changes from SR mode to FS mode");
@@ -49,12 +47,11 @@ namespace Testcase.DMITestCases
             Action: Drive the train forward passing BG1
             Expected Result: DMI changes from SR mode to FS mode
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             DmiExpectedResults.FS_mode_displayed(this);
 
             MakeTestStepHeader(3, UniqueIdentifier++, "Stop the train",
-                "The Planning Area is displayed in area DVerify the following points,The scale numbers are displayed in Medium-Grey colour and vertically centred on the distance scale lines.It is presented aligned to the right of Sub-Area D1.There are 9 distance scale lines displayed crossing sub-areas D2 – D7.From the bottom to top each line of distance scale are displayed with following colour,1st, 6th and 9th distance scale line are Medium-GreyOther distance scale line are Dark-greyVerify that the DMI displays the distance ranges from 0 to 4000 meter as default value.The following PA distance scale number are displayed in meter (see comment).0500100020004000At the following PA distance scale number, there are distance scale line displayed.0100200300400500100020004000Note: Need a self calculation for distance scale number in some location which not have distance scale number specify.The position of PASP is consisted with train position refer to PA distance scale number and distance scale line");
+                "The Planning Area is displayed in area D Verify the following points,The scale numbers are displayed in Medium-Grey colour and vertically centred on the distance scale lines. It is presented aligned to the right of Sub-Area D1. There are 9 distance scale lines displayed crossing sub-areas D2 – D7. From the bottom to top each line of distance scale are displayed with following colour, 1st, 6th and 9th distance scale line are Medium-Grey Other distance scale line are Dark-grey Verify that the DMI displays the distance ranges from 0 to 4000 meter as default value. The following PA distance scale number are displayed in meter (see comment). 0500100020004000 At the following PA distance scale number, there are distance scale line displayed. 0100200300400500100020004000 Note: Need a self calculation for distance scale number in some location which not have distance scale number specify. The position of PASP is consisted with train position refer to PA distance scale number and distance scale line");
             /*
             Test Step 3
             Action: Stop the train
@@ -62,31 +59,12 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 9938 (partly: MMI_gen 7213 (partly: Scale number colour));  (2) MMI_gen 9938 (partly: MMI_gen 7212 (partly: 9 distance scale lines));  (3) MMI_gen 9938 (partly: MMI_gen 7213 (partly: Distance scale lines colour)); (4) MMI_gen 9938 (partly: MMI_gen 7148        (partly: If not specified, range [0..4000] is default)); (5) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..4000], Displayed Numbers in Units));(6) MMI_gen 9938 (partly: MMI_gen 7116 (partly: [0..4000], Displayed Distance Scale Lines));(7) MMI_gen 9938 (partly: functions displayed in D2-D8);          Note: MMI_gen 7212 and MMI_gen 7213 shall also verify by Code Review in Chapter 39.
             */
             // Call generic Action Method
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 0;
 
             // Need to set track descriptions for scale to display correctly
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000; // 200m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN_M = 1000;
 
-            List<TrackDescription> descriptionsList = new List<TrackDescription>()
-            {
-                new TrackDescription
-                {
-                    MMI_G_GRADIENT = 10,
-                    MMI_O_GRADIENT = 10000,
-                    MMI_O_MRSP = 10500,
-                    MMI_V_MRSP = 800
-                },
-                new TrackDescription
-                {
-                    MMI_G_GRADIENT = 15,
-                    MMI_O_GRADIENT = 20000,
-                    MMI_O_MRSP = 15000,
-                    MMI_V_MRSP = 700
-                },
-                new TrackDescription {MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 30000, MMI_O_MRSP = 20500, MMI_V_MRSP = 600}
-            };
-
-            EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
+            EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 30;
             EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -266,10 +244,10 @@ namespace Testcase.DMITestCases
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Planning Area" + Environment.NewLine +
-                                "2. The PA distance scale has the range 0-32000m");
+                                "2. The PA distance scale has the range 0-32000 m");
 
             MakeTestStepHeader(11, UniqueIdentifier++,
-                "Power OFF system.Then, power ON system and repeat action step 1-3",
+                "Power OFF system. Then, power ON system and repeat action step 1-3",
                 "Verify that the DMI displays the distance ranges from 0 to 4000 meter as default value");
             /*
             Test Step 11
@@ -277,17 +255,14 @@ namespace Testcase.DMITestCases
             Expected Result: Verify that the DMI displays the distance ranges from 0 to 4000 meter as default value
             Test Step Comment: MMI_gen 7148 (partly: Default applies after power loss);
             */
-            // ?? Does this re-boot
             // Repeat Step 1
-            DmiActions.Complete_SoM_L1_SR(this);
+            StartUp();
 
-            // Repeat Step 2
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            DmiActions.Complete_SoM_L1_FS(this);
 
             // Repeat Step 3       
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000; // 200m
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN_M = 200;
 
-            EVC4_MMITrackDescription.TrackDescriptions = descriptionsList;
             EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
@@ -300,7 +275,6 @@ namespace Testcase.DMITestCases
             Action: End of test
             Expected Result: 
             */
-
 
             return GlobalTestResult;
         }
