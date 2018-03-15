@@ -35,11 +35,6 @@ namespace Testcase.DMITestCases
             */
             StartUp();
 
-            EVC14_MMICurrentDriverID.MMI_X_DRIVER_ID = "1234";
-            EVC14_MMICurrentDriverID.Send();
-
-            DmiExpectedResults.Driver_ID_window_displayed(this);
-
             MakeTestStepHeader(2, UniqueIdentifier++, "Perform SoM in SR mode, Level 1",
                 "DMI displays in SR mode, level 1.Verify that there are only the following objects are displayed in PA,PA Distance Scale (0-4000m)PASP with PASP-dark-colour");
             /*
@@ -49,8 +44,6 @@ namespace Testcase.DMITestCases
             Test Step Comment: MMI_gen 7109;
             */
             DmiActions.Complete_SoM_L1_SR(this);
-
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
 
             WaitForVerification("Check that only the following objects are displayed:" + Environment.NewLine +
                                 Environment.NewLine +
