@@ -142,10 +142,10 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public class TrackCondition
     {
-        private static int _mmiOTrackcondAnnounce;
+        private static int _mmiOTrackcondAnnounce = -2147483647;    // No announcement as default
         private static int _mmiOTrackcondStart;
         private static int _mmiOTrackcondEnd;
-        private static byte _mmiNidTrackcond;
+        private static byte _mmiNidTrackcond = 1;
         private static byte _mmiMTrackcondType;
 
         private static byte _evc32Alias2;

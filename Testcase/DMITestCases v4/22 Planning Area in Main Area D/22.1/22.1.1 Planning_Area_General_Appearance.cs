@@ -103,8 +103,6 @@ namespace Testcase.DMITestCases
             TrackCondition trackCond = new TrackCondition
             {
                 MMI_M_TRACKCOND_TYPE = Variables.MMI_M_TRACKCOND_TYPE.Air_tightness,
-                MMI_NID_TRACKCOND = 1,
-                MMI_O_TRACKCOND_ANNOUNCE = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 1500,
                 MMI_O_TRACKCOND_START = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 30000,
                 MMI_O_TRACKCOND_END = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + 60000,
                 MMI_Q_TRACKCOND_ACTION_START = Variables.MMI_Q_TRACKCOND_ACTION.WithoutDriverAction,
