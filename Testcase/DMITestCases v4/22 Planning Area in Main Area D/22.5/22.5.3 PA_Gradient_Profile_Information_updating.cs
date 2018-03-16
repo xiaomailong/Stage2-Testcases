@@ -38,7 +38,6 @@ namespace Testcase.DMITestCases
             Action: Activate cabin A. Then  perform SoM to SR mode, level 1
             Expected Result: DMI displays SR mode, level 1
             */
-            // force: tested elsewhere...
             StartUp();
             DmiActions.Complete_SoM_L1_SR(this);
 
@@ -54,9 +53,10 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7257 (partly: 1st bullet (normal value));(2) MMI_gen 7257 (Partly: 2nd bullet);
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC1_MMIDynamic.MMI_O_BRAKETARGET_M = 2000;     // MA of 2000 m
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 10000;
 
-            List<TrackDescription> descriptionsList = new List<TrackDescription>()
+            List<TrackDescription> descriptionsList = new List<TrackDescription>
             {
                 new TrackDescription {MMI_G_GRADIENT = 10, MMI_O_GRADIENT = 200000},
             };
@@ -82,10 +82,8 @@ namespace Testcase.DMITestCases
             */
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 20000;
             descriptionsList.Clear();
-            descriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = 20, MMI_O_GRADIENT = 250});
-            descriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = 25, MMI_O_GRADIENT = 500});
-            // Not needed?
-            //descriptionsList.Add(new TrackDescription { MMI_G_GRADIENT = 0, MMI_O_GRADIENT = 2000 });
+            descriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = 25, MMI_O_GRADIENT_M = 250});
+            descriptionsList.Add(new TrackDescription {MMI_G_GRADIENT = -255, MMI_O_GRADIENT_M = 500});
 
             EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 20;
             EVC4_MMITrackDescription.Send();
@@ -105,8 +103,11 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 7257 (partly: delete all PA Gradient profile, 1st bullet (special value));
             */
             descriptionsList.Clear();
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = -255;
             EVC4_MMITrackDescription.Send();
+
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.Trip;
+
             EVC8_MMIDriverMessage.MMI_I_TEXT = 1;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CLASS = MMI_Q_TEXT_CLASS.ImportantInformation;
             EVC8_MMIDriverMessage.MMI_Q_TEXT_CRITERIA = 3;
