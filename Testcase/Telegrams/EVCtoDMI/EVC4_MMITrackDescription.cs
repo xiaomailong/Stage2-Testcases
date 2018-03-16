@@ -183,7 +183,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static int _mmiOMrsp;
         private static short _mmiVMrsp;
         private static int _mmiOGradient;
-        private static short _mmiGGradient;
+        private static short _mmiGGradient = -255;
 
         /// <summary>
         /// This is the position in odometer co-ordinates of the start location of a speed discontinuity
