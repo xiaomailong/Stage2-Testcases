@@ -118,6 +118,17 @@ namespace Testcase.Telegrams.EVCtoDMI
         }
 
         /// <summary>
+        /// Send EVC-20 MMI Select Level telegram.
+        /// </summary>
+        public static void SendClose()
+        {
+            _pool.SITR.ETCS1.SelectLevel.MmiNLevels.Value = 0;
+            _pool.SITR.ETCS1.SelectLevel.MmiLPacket.Value = 56;
+            _pool.SITR.SMDCtrl.ETCS1.SelectLevel.Value = 0x0003;
+            _pool.WaitForAck(_pool.SITR.SMDStat.ETCS1.SelectLevel);
+        }
+
+        /// <summary>
         /// Qualifier for the variable MMI_M_LEVEL_NTC_ID
         /// 
         /// Values:
