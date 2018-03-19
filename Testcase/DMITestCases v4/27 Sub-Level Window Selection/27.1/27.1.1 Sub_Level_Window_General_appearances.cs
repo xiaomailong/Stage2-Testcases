@@ -1,4 +1,6 @@
 using System;
+using CL345;
+using Testcase.Telegrams.DMItoEVC;
 using Testcase.Telegrams.EVCtoDMI;
 
 
@@ -35,7 +37,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Main’, ‘Override’, Data View’ and ‘Special’ buttons are invisible.The ‘Settings’ button is visible
             Test Step Comment: (1) MMI_gen 2959       (partly: state inactive, ‘Main’, ‘Override’, ‘Data View’ and ‘Special’);(2) MMI_gen 2959       (partly: enabled ‘Settings’, state inactive);
             */
-            DmiActions.ShowInstruction(this, "Power on DMI (without ATP)");
+
+            RigControl.SetMCSState(this, 2, RigControl.CabState.Forward);
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Main’ button." + Environment.NewLine +
@@ -51,7 +54,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘Main’, ‘Override’, Data View’ and ‘Special’ buttons are invisible.The ‘Settings’ button is visible
             Test Step Comment: (1) MMI_gen 2959       (partly: state inactive, ‘Main’, ‘Override’, ‘Data View’ and ‘Special’);(2) MMI_gen 2959       (partly: enabled ‘Settings’, state inactive);
             */
-            StartUp();
+            DmiActions.Start_ATP();
+
+            // Disable all buttons so that the Main button is not enabled
+            EVC30_MMIRequestEnable.SendBlank();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI does not display the ‘Main’ button." + Environment.NewLine +
@@ -67,10 +73,9 @@ namespace Testcase.DMITestCases
             Action: Perform the following procedure,Activate Cabin AEnter Driver ID and perform brake testSelect and confirm Level 1
             Expected Result: DMI displays Main window
             */
-            // Individual steps tested elsewhere...
-            DmiActions.Display_Driver_ID_Window(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L1;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
+
             EVC30_MMIRequestEnable.SendBlank();
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH =
                 EVC30_MMIRequestEnable.EnabledRequests.Start | Variables.standardFlags;
@@ -89,7 +94,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 167;(2) MMI_gen 11925, MMI_gen 2956, MMI_gen 2959 (partly: state ‘Active’), MMI_gen 11924
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window." + Environment.NewLine +
@@ -109,7 +114,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following potins,The ‘Main’ button is shown as pressed state. The sound ‘Click’ played once
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Main’, MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(2) MMI_gen 2955 (partly: button ‘Main’), MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 9512; MMI_gen 968;
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Main’ button");
+            DmiActions.ShowInstruction(this, "Press and hold the ‘Main’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Main’ button pressed." + Environment.NewLine +
@@ -123,7 +128,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the Default window.The ‘Main’ button becomes the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 2955 (partly: button ‘Main’), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Main’ button pressed, drag outside its area");
+            DmiActions.ShowInstruction(this, "Whilst keeping the ‘Main’ button pressed, drag outside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Main’ button enabled." + Environment.NewLine +
@@ -137,7 +142,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the Default window.The Main button is shown as pressed state and no sound ‘Click’ is played
             Test Step Comment: (1) MMI_gen 2955 (partly: button ‘Main’), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Main’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this, "Whilst keeping the ‘Main’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Main’ button pressed." + Environment.NewLine +
@@ -151,7 +156,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays Main window
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Main’, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)) , MMI_gen 12137 (partly: Sub-level window, main)
             */
-            DmiActions.ShowInstruction(this, @"Release the ‘Main’ button");
+            DmiActions.ShowInstruction(this, "Release the ‘Main’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
@@ -162,7 +167,7 @@ namespace Testcase.DMITestCases
             Action: Press ‘Close’ button
             Expected Result: DMI displays Default window
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
@@ -175,7 +180,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following potins,The ‘Override’ button is shown as pressed state. The sound ‘Click’ played once
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Override’, MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(2) MMI_gen 2955 (partly: button ‘Override’), MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 9512; MMI_gen 968;
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Override’ button");
+            DmiActions.ShowInstruction(this, "Press and hold the ‘Override’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Override’ button pressed." + Environment.NewLine +
@@ -189,7 +194,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the Default window.The ‘Override’ button becomes the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 2955 (partly: button ‘Override’), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Override’ button pressed, drag outside its area");
+            DmiActions.ShowInstruction(this, "Whilst keeping the ‘Override’ button pressed, drag outside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Override’ button enabled." + Environment.NewLine +
@@ -203,8 +208,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the Default window.The Override button is shown as pressed state and no sound ‘Click’ is played
             Test Step Comment: (1) MMI_gen 2955 (partly: button ‘Override’), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
-            DmiActions.ShowInstruction(this,
-                @"Whilst keeping the ‘Override’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this,"Whilst keeping the ‘Override’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Override’ button pressed." + Environment.NewLine +
@@ -218,7 +222,10 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays Override window
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Override, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)) , MMI_gen 12137 (partly: Sub-level window, override)
             */
-            DmiActions.ShowInstruction(this, @"Release the ‘Override’ button");
+            DmiActions.ShowInstruction(this, "Release the ‘Override’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartOverrideEOA;
+
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Override window.");
@@ -229,7 +236,7 @@ namespace Testcase.DMITestCases
             Action: Press ‘Close’ button
             Expected Result: DMI displays Default window
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
@@ -242,7 +249,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following potins,The ‘Data View’ button is shown as pressed state. The sound ‘Click’ played once
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Data view’, MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(2) MMI_gen 2955 (partly: button ‘Data view’), MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 9512; MMI_gen 968;
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Data view’ button");
+            DmiActions.ShowInstruction(this, "Press and hold the ‘Data view’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Data view’ button pressed." + Environment.NewLine +
@@ -256,7 +263,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the Default window.The ‘Data View’ button becomes the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 2955 (partly: button ‘Data view’), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Data view’ button pressed, drag outside its area");
+            DmiActions.ShowInstruction(this, "Whilst keeping the ‘Data view’ button pressed, drag outside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Data view’ button enabled." + Environment.NewLine +
@@ -270,8 +277,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the Default window.The Data View button is shown as pressed state and no sound ‘Click’ is played
             Test Step Comment: (1) MMI_gen 2955 (partly: button ‘Data view), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
-            DmiActions.ShowInstruction(this,
-                @"Whilst keeping the ‘Data view’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this, "Whilst keeping the ‘Data view’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Data view’ button pressed." + Environment.NewLine +
@@ -282,26 +288,19 @@ namespace Testcase.DMITestCases
             /*
             Test Step 18
             Action: Release the ‘Data view’ button
-            Expected Result: Verify the following information,DMI displays Data View window
+            Expected Result: Verify the following information,  DMI displays Data View window
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Data view’, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)) , MMI_gen 12137 (partly: Sub-level window, data view)
             */
-            DmiActions.ShowInstruction(this, @"Release the ‘Data view’ button");
-            EVC13_MMIDataView.MMI_X_DRIVER_ID = "";
+            DmiActions.ShowInstruction(this, "Release the ‘Data view’ button");
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataView;
+
+            EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234";
             EVC13_MMIDataView.MMI_NID_OPERATION = 0xffffffff;
-            EVC13_MMIDataView.MMI_M_DATA_ENABLE = (Variables.MMI_M_DATA_ENABLE) 0x0080; // 128
-            EVC13_MMIDataView.MMI_L_TRAIN = 4096;
-            EVC13_MMIDataView.MMI_V_MAXTRAIN = 601;
-            EVC13_MMIDataView.MMI_M_BRAKE_PERC = 9;
-            EVC13_MMIDataView.MMI_NID_KEY_AXLE_LOAD = Variables.MMI_NID_KEY.FG4; // 20
-            EVC13_MMIDataView.MMI_NID_RADIO =
-                0xffffffffffffffff; // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
-            EVC13_MMIDataView.MMI_M_AIRTIGHT = 3;
-            EVC13_MMIDataView.MMI_NID_KEY_LOAD_GAUGE = Variables.MMI_NID_KEY.CATE5;
-            EVC13_MMIDataView.Trainset_Caption = "";
-            EVC13_MMIDataView.Network_Caption = "";
-            EVC13_MMIDataView.MMI_NID_KEY_TRAIN_CAT = Variables.MMI_NID_KEY.CATA; // 21
+            EVC13_MMIDataView.MMI_M_DATA_ENABLE = Variables.MMI_M_DATA_ENABLE.All;
+            EVC13_MMIDataView.MMI_NID_RADIO = 0xffffffffffffffff; // 4294967295 (= 0xffffffff) hi, 4294967295 (= 0xffffffff) lo
+            EVC13_MMIDataView.Trainset_Caption = "Train_1";
+            EVC13_MMIDataView.Network_Caption = "Radio 1";
             EVC13_MMIDataView.Send();
-            ;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Data view window.");
@@ -312,20 +311,20 @@ namespace Testcase.DMITestCases
             Action: Press ‘Close’ button
             Expected Result: DMI displays Default window
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
             MakeTestStepHeader(20, UniqueIdentifier++, "Press and hold ‘Special’ button",
-                "Verify the following potins,The ‘Special’ button is shown as pressed state. The sound ‘Click’ played once");
+                "Verify the following poitns, The ‘Special’ button is shown as pressed state. The sound ‘Click’ played once");
             /*
             Test Step 20
             Action: Press and hold ‘Special’ button
             Expected Result: Verify the following potins,The ‘Special’ button is shown as pressed state. The sound ‘Click’ played once
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Special’, MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(2) MMI_gen 2955 (partly: button ‘Special’), MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 9512; MMI_gen 968;
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Special’ button");
+            DmiActions.ShowInstruction(this, "Press and hold the ‘Special’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Special’ button pressed." + Environment.NewLine +
@@ -339,7 +338,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the Default window.The ‘Special’ button becomes the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 2955 (partly: button ‘Special’), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Special’ button pressed, drag outside its area");
+            DmiActions.ShowInstruction(this, "Whilst keeping the ‘Special’ button pressed, drag outside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Special’ button enabled." + Environment.NewLine +
@@ -353,8 +352,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the Default window.The Special button is shown as pressed state and no sound ‘Click’ is played
             Test Step Comment: (1) MMI_gen 2955 (partly: button ‘Special’), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
-            DmiActions.ShowInstruction(this,
-                @"Whilst keeping the ‘Special’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this, "Whilst keeping the ‘Special’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Special’ button pressed." + Environment.NewLine +
@@ -368,7 +366,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays Special window
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Special’, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)) , MMI_gen 12137 (partly: Sub-level window, special)
             */
-            DmiActions.ShowInstruction(this, @"Release the ‘Special’ button");
+            DmiActions.ShowInstruction(this, "Release the ‘Special’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Special window.");
@@ -379,20 +377,20 @@ namespace Testcase.DMITestCases
             Action: Press ‘Close’ button
             Expected Result: DMI displays Default window
             */
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
 
             MakeTestStepHeader(25, UniqueIdentifier++, "Press and hold ‘Setting’ button",
-                "Verify the following potins,The ‘Settings’ button is shown as pressed state. The sound ‘Click’ played once");
+                "Verify the following potins ,The ‘Settings’ button is shown as pressed state. The sound ‘Click’ played once");
             /*
             Test Step 25
             Action: Press and hold ‘Setting’ button
             Expected Result: Verify the following potins,The ‘Settings’ button is shown as pressed state. The sound ‘Click’ played once
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Setting’, MMI_gen 4381 (partly: change to state ‘Pressed’ as long as remain actuated));(2) MMI_gen 2955 (partly: button ‘Setting’), MMI_gen 4381 (partly: the sound for Up-Type button)); MMI_gen 9512; MMI_gen 968;
             */
-            DmiActions.ShowInstruction(this, @"Press and hold the ‘Settings’ button");
+            DmiActions.ShowInstruction(this, "Press and hold the ‘Settings’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the ‘Settings’ button pressed." + Environment.NewLine +
@@ -406,7 +404,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the Default window.The ‘Settings’ button becomes the ‘Enabled’ state without a sound
             Test Step Comment: (1) MMI_gen 2955 (partly: button ‘Setting’), MMI_gen 4382 (partly: state ‘Enabled’ when slide out with force applied, no sound));
             */
-            DmiActions.ShowInstruction(this, @"Whilst keeping the ‘Settings’ button pressed, drag outside its area");
+            DmiActions.ShowInstruction(this, "Whilst keeping the ‘Settings’ button pressed, drag outside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the Default window." + Environment.NewLine +
@@ -421,8 +419,7 @@ namespace Testcase.DMITestCases
             Expected Result: DMI still displays the Default window.The Settings button is shown as pressed state and no sound ‘Click’ is played
             Test Step Comment: (1) MMI_gen 2955 (partly: button ‘Setting’), MMI_gen 4382 (partly: state ‘Pressed’ when slide back, no sound));
             */
-            DmiActions.ShowInstruction(this,
-                @"Whilst keeping the ‘Settings’ button pressed, drag it back inside its area");
+            DmiActions.ShowInstruction(this, "Whilst keeping the ‘Settings’ button pressed, drag it back inside its area");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI still displays the Default window." + Environment.NewLine +
@@ -437,7 +434,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,DMI displays Settings window
             Test Step Comment: (1) MMI_gen 2955 (partly: ‘Setting’, MMI_gen 4381 (partly: exit state ‘Pressed’, execute function associated to the button)), MMI_gen 12137 (partly: Sub-level window, settings)
             */
-            DmiActions.ShowInstruction(this, @"Release the ‘Settings’ button");
+            DmiActions.ShowInstruction(this, "Release the ‘Settings’ button");
+
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.Settings;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window.");
@@ -454,7 +453,7 @@ namespace Testcase.DMITestCases
             EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = EVC30_MMIRequestEnable.EnabledRequests.Language;
             EVC30_MMIRequestEnable.Send();
 
-            DmiActions.ShowInstruction(this, @"Press the ‘Language’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Language’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Language window.");
@@ -466,13 +465,13 @@ namespace Testcase.DMITestCases
             Action: Select and confirm ‘Deutsch’ language
             Expected Result: DMI displays Setting window with changed display refer to selected language
             */
-            DmiActions.ShowInstruction(this, @"Select and confirm ‘Deutsch’ language");
+            DmiActions.ShowInstruction(this, "Select and confirm ‘English’ language");  // German is not available for Crossrail
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Settings window with texts displayed in German.");
 
             MakeTestStepHeader(31, UniqueIdentifier++, "Press ‘Close’ button",
-                "DMI display Default window.Verify that symbol SE04 still applies for Deutsch");
+                "DMI display Default window. Verify that symbol SE04 still applies for Deutsch");
             /*
             Test Step 31
             Action: Press ‘Close’ button
@@ -480,7 +479,7 @@ namespace Testcase.DMITestCases
             Test Step Comment: (1) MMI_gen 2957 (partly: Deutsch);
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window with symbol SE04 in sub-area F5.");
@@ -492,11 +491,9 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays Setting window
             */
             // Call generic Action Method
-            DmiActions.ShowInstruction(this, @"Press the ‘Settings’ button");
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings window");
-
+            TraceReport("Other languages not available in Crossrail. Test step skipped.");
+            
             MakeTestStepHeader(33, UniqueIdentifier++, "Repeat action setp 30-31 for another language",
                 "Verify the following information,Verify the label of are F5 is presented symbol SE04 independently from the currently active language");
             /*
@@ -505,18 +502,9 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,Verify the label of are F5 is presented symbol SE04 independently from the currently active language
             Test Step Comment: (1) MMI_gen 2957;
             */
-            // Repeat Step 30
-            DmiActions.ShowInstruction(this, @"Select and confirm a language other than German");
 
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Settings window with texts displayed in the language just selected.");
-
-            // Repeat Step 31
-            DmiActions.ShowInstruction(this, @"Press the ‘Close’ button");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI displays the Default window with symbol SE04 in sub-area F5.");
-
+            TraceReport("Other languages not available in Crossrail. Test step skipped.");
+          
             MakeTestStepHeader(34, UniqueIdentifier++, "Power off ATP (without Fallback)",
                 "Verify the following information,The buttons ‘Main’, ‘Override’, Data View’ and ‘Special’ buttons are invisibled in any other state.The ‘Settings’ button is still visible");
             /*
@@ -543,13 +531,7 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The buttons ‘Main’, ‘Override’, Data View’ and ‘Special’ buttons are invisibled in any other state.The ‘Settings’ button is still visible
             Test Step Comment: (1) MMI_gen 2959 (partly: They are invisible in any other state, fallback);(2) MMI_gen 2959 (partly: ‘Settings’, inactive cabin, fallback)
             */
-            DmiActions.ShowInstruction(this, @"Run the ‘Fallback’ function");
-
-            WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
-                                "1. DMI does not display the ‘Main’ button." + Environment.NewLine +
-                                "2. DMI does not display the ‘Override’ button." + Environment.NewLine +
-                                "3. DMI does not display the ‘Data View’ button." + Environment.NewLine +
-                                "4. DMI still displays the ‘Settings’ button.");
+            TraceReport("Fallback function is outside the capability of this testing.");
 
             TraceHeader("End of test");
 
