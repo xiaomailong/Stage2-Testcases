@@ -58,7 +58,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press and hold the ‘Radio Network ID’ button for at least 2 second, then release the ‘Radio Network ID’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartNetworkID;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartNetworkID;
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 9;
             EVC22_MMICurrentRBC.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
@@ -88,7 +88,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘RBC data’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartRBCdataEntry;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartRBCdataEntry;
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.Send();
@@ -105,7 +105,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the RBC data window");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitRBCdataEntry;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitRBCdataEntry;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the RBC Contact window.");
@@ -120,7 +120,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Enter RBC data’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartRBCdataEntry;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartRBCdataEntry;
 
             EVC22_MMICurrentRBC.MMI_NID_WINDOW = 10;
             EVC22_MMICurrentRBC.MMI_M_BUTTONS = EVC22_MMICurrentRBC.EVC22BUTTONS.BTN_YES_DATA_ENTRY_COMPLETE_DELAY_TYPE;
@@ -146,7 +146,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Level’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ChangeLevel;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeLevel;
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Disabled;
             EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new [] {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
@@ -177,7 +177,7 @@ namespace Testcase.DMITestCases
             */
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the RBC Contact window");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitRBCcontact;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitRBCcontact;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Main window.");
@@ -194,7 +194,7 @@ namespace Testcase.DMITestCases
             DmiActions.ShowInstruction(this,
                 @"Press the ‘Close’ button in the Main window. Press the ‘Data view’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.StartTrainDataView;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.StartTrainDataView;
 
             EVC13_MMIDataView.MMI_X_DRIVER_ID = "1234";
             EVC13_MMIDataView.MMI_NID_OPERATION = 1;
@@ -213,7 +213,7 @@ namespace Testcase.DMITestCases
             // Call generic Action Method
             DmiActions.ShowInstruction(this, @"Press the ‘Close’ button in the Data view window");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ExitTrainDataEntry;
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ExitTrainDataEntry;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Default window.");
