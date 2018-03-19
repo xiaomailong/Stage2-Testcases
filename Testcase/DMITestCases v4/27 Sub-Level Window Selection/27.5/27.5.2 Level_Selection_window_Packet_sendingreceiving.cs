@@ -106,7 +106,8 @@ namespace Testcase.DMITestCases
 
             DmiActions.ShowInstruction(this, "Press the ‘Level’ button");
 
-            EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ChangeLevel;
+            // Only released telegram is sent when Level is selected
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeLevel;
 
             Variables.MMI_Q_LEVEL_NTC_ID[] paramEvc20MmiQLevelNtcId =
             {
