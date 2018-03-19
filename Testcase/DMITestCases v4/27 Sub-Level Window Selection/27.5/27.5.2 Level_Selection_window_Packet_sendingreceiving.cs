@@ -100,6 +100,10 @@ namespace Testcase.DMITestCases
 
             EVC121_MMINewLevel.LevelSelected = Variables.MMI_M_LEVEL_NTC_ID.L1;
 
+            EVC30_MMIRequestEnable.SendBlank();
+            EVC30_MMIRequestEnable.MMI_Q_REQUEST_ENABLE_HIGH = Variables.standardFlags;
+            EVC30_MMIRequestEnable.Send();
+
             DmiActions.ShowInstruction(this, "Press the ‘Level’ button");
 
             EVC101_MMIDriverRequest.CheckMRequestPressed = Variables.MMI_M_REQUEST.ChangeLevel;
@@ -171,9 +175,9 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Level window." + Environment.NewLine +
                                 "2. A keyboard with a 3 x 2 array of buttons is displayed with the following buttons (left to right):" +
                                 Environment.NewLine +
-                                "3. ‘Level 1’, ‘Level 2’, ‘Level3’ in the top row; ‘Level 0’, ‘CBTC’, ‘AWS_TPWS’ in the bottom row." +
+                                "3. ‘Level 1’, ‘Level 2’, ‘Level 3’ in the top row; ‘Level 0’, ‘Level CBTC’, ‘Level TPWS’ in the bottom row." +
                                 Environment.NewLine +
-                                "4. The button text is grey." + Environment.NewLine +
+                                "4. The button text is white." + Environment.NewLine +
                                 "5. The buttons are displayed enabled.");
 
             MakeTestStepHeader(5, UniqueIdentifier++,
@@ -190,7 +194,7 @@ namespace Testcase.DMITestCases
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. A keyboard with a 3 x 1 array of buttons is displayed with the following buttons (left to right):" +
                                 Environment.NewLine +
-                                "2. ‘Level 0’, ‘Level 2’, ‘AWS_TPWS’.");
+                                "2. ‘Level 0’, ‘Level 2’, ‘Level TPWS’.");
 
             MakeTestStepHeader(6, UniqueIdentifier++, "Use the test script file 22_5_2_b.xml to send EVC-20 again",
                 "Verify the following information,The Level window is closed.Use the log file to confirm that there is no packet information (i.e. EVC-101, EVC-121) send out from DMI");
