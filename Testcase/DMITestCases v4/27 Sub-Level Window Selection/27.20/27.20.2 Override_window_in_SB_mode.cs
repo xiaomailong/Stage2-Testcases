@@ -20,7 +20,7 @@ namespace Testcase.DMITestCases
     /// Used files:
     /// 22_20_2.utt
     /// </summary>
-    public class TC_22_20_2_Override_window : TestcaseBase
+    public class TC_ID_22_20_2_Override_window : TestcaseBase
     {
         public override bool TestcaseEntryPoint()
         {
