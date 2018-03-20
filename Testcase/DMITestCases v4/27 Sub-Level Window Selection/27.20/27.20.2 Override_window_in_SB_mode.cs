@@ -35,7 +35,6 @@ namespace Testcase.DMITestCases
             Expected Result: DMI displays RBC Data window
             */
             StartUp();
-            DmiActions.Display_Driver_ID_Window(this, "1234");
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Level = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_LEVEL.L2;
             EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.StandBy;
 
@@ -60,7 +59,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the RBC Data window");
 
             MakeTestStepHeader(2, UniqueIdentifier++,
-                "Enter and confirm the following values, RBC ID= 6996969RBC Phone number = 0031840880100Then, press ‘Yes’ button",
+                "Enter and confirm the following values, RBC ID= 6996969 RBC Phone number = 0031840880100 Then, press ‘Yes’ button",
                 "DMI displays Main window");
             /*
             Test Step 2
@@ -72,7 +71,8 @@ namespace Testcase.DMITestCases
 
             EVC112_MMINewRbcData.MMI_NID_RADIO = 0031840880100;
             EVC112_MMINewRbcData.MMI_NID_RBC = 6996969;
-            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_YES_DATA_ENTRY_COMPLETE;
+            EVC112_MMINewRbcData.MMI_NID_MN = 0;
+            EVC112_MMINewRbcData.MMI_M_BUTTONS = Variables.MMI_M_BUTTONS_RBC_DATA.BTN_ENTER;
             EVC112_MMINewRbcData.CheckPacketContent();
 
             // Need to close RBC Contact window
@@ -134,7 +134,7 @@ namespace Testcase.DMITestCases
                                 "1. DMI displays the Override window with an enabled ‘EOA’ button.");
 
             MakeTestStepHeader(6, UniqueIdentifier++,
-                "Perform the following procedure, Press ‘Close’ buttonPress ‘Main’ buttonPress ‘Level’ buttonSelect and confirm Level 1.Press ‘Close’ buttonPress ‘Override’ button",
+                "Perform the following procedure, Press ‘Close’ button Press ‘Main’ button Press ‘Level’ button Select and confirm Level 1. Press ‘Close’ buttonPress ‘Override’ button",
                 "Verify the following information,The ‘EOA’ button is in disable state.Use the log file to confirm that DMI receives EVC-30 with with bit No.9 of variable MMI_Q_REQUEST_ENABLE_64 = 0 (Disable Start Override EOA)");
             /*
             Test Step 6
@@ -142,28 +142,20 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,The ‘EOA’ button is in disable state.Use the log file to confirm that DMI receives EVC-30 with with bit No.9 of variable MMI_Q_REQUEST_ENABLE_64 = 0 (Disable Start Override EOA)
             Test Step Comment: (1) MMI_gen 8415 (partly: touch screen, label “EOA”);              MMI_gen 11225 (partly: EVC-30, disabled);(2) MMI_gen 11225 (partly: disabled);
             */
-            DmiActions.ShowInstruction(this,
-                @"Press the ‘Close’ button, then the ‘Main’ button, then the ‘Level’ button.");
+            DmiActions.ShowInstruction(this, "Press the ‘Close’ button, then the ‘Main’ button, then the ‘Level’ button.");
+
+            EVC101_MMIDriverRequest.CheckMRequestReleased = Variables.MMI_M_REQUEST.ChangeLevel;
 
             EVC20_MMISelectLevel.MMI_Q_CLOSE_ENABLE = Variables.MMI_Q_CLOSE_ENABLE.Enabled;
-            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new Variables.MMI_Q_LEVEL_NTC_ID[]
-                {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
-            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new Variables.MMI_M_CURRENT_LEVEL[]
-                {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new Variables.MMI_M_LEVEL_FLAG[]
-                {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
-            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new Variables.MMI_M_INHIBITED_LEVEL[]
-                {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
-            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new Variables.MMI_M_INHIBIT_ENABLE[]
-                {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
-            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new Variables.MMI_M_LEVEL_NTC_ID[]
-                {Variables.MMI_M_LEVEL_NTC_ID.L1};
+            EVC20_MMISelectLevel.MMI_Q_LEVEL_NTC_ID = new [] {Variables.MMI_Q_LEVEL_NTC_ID.ETCS_Level};
+            EVC20_MMISelectLevel.MMI_M_CURRENT_LEVEL = new [] {Variables.MMI_M_CURRENT_LEVEL.NotLastUsedLevel};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_FLAG = new [] {Variables.MMI_M_LEVEL_FLAG.MarkedLevel};
+            EVC20_MMISelectLevel.MMI_M_INHIBITED_LEVEL = new [] {Variables.MMI_M_INHIBITED_LEVEL.NotInhibited};
+            EVC20_MMISelectLevel.MMI_M_INHIBIT_ENABLE = new [] {Variables.MMI_M_INHIBIT_ENABLE.AllowedForInhibiting};
+            EVC20_MMISelectLevel.MMI_M_LEVEL_NTC_ID = new [] {Variables.MMI_M_LEVEL_NTC_ID.L1};
             EVC20_MMISelectLevel.Send();
 
-            EVC30_MMIRequestEnable.SendBlank();
-
-            DmiActions.ShowInstruction(this,
-                @"Select and confirm Level 1. Press the ‘Close’ button then the ‘Override’ button");
+            DmiActions.ShowInstruction(this, "Select and confirm Level 1. Press the ‘Close’ button then the ‘Override’ button");
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the Override window with a disabled ‘EOA’ button.");
