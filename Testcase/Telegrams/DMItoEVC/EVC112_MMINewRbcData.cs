@@ -53,7 +53,7 @@ namespace Testcase.Telegrams.DMItoEVC
                 {
                     _pool.TraceReport(baseString0 + Environment.NewLine +
                                       "MMI_NID_RBC = " + MMI_NID_RBC + Environment.NewLine +
-                                      "MMI_NID_RADIO = " + _nidRadio[0] + _nidRadio[1] + Environment.NewLine +
+                                      "MMI_NID_RADIO = " + _nidRadio[0] + " " + _nidRadio[1] + Environment.NewLine +
                                       "MMI_NID_MN = " + MMI_NID_MN + Environment.NewLine +
                                       "MMI_M_BUTTONS = \"" + MMI_M_BUTTONS + "\"" + Environment.NewLine +
                                       "Result: PASSED.");
@@ -64,10 +64,10 @@ namespace Testcase.Telegrams.DMItoEVC
                     _pool.TraceError(baseString0 + Environment.NewLine +
                                      "MMI_NID_RBC = \"" + _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRbc.Value + "\"" +
                                      Environment.NewLine +
-                                     "MMI_NID_RADIO = " +
-                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(0) +
-                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(1) +
-                                     Environment.NewLine +
+                                     "MMI_NID_RADIO low byte = " +
+                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(0) + Environment.NewLine +
+                                     "MMI_NID_RADIO low byte = " +
+                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidRadio.GetValueAtIndex(1) + Environment.NewLine +
                                      "MMI_NID_MN = \"" + _pool.SITR.CCUO.ETCS1NewRbcData.MmiNidMn.Value + "\"" +
                                      Environment.NewLine +
                                      "MMI_M_BUTTONS = \"" +
@@ -76,47 +76,50 @@ namespace Testcase.Telegrams.DMItoEVC
                                      "Result: FAILED!");
                 }
 
-                // Compare number of data element.                
-                if (_pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value.Equals((ushort)MMI_NID_DATA.Count))
-                {
-                    // If comparison matches
-                    _pool.TraceReport("MMI_N_DATA_ELEMENTS = \"" + MMI_NID_DATA.Count + "\" Result: PASSED.");
+                #region EVC-112 Data Element check
 
-                    for (int nidDataIndex = 0; nidDataIndex < MMI_NID_DATA.Count; nidDataIndex++)
-                    {
-                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1, nidDataIndex));
-                        
-                        // Compare each data element
-                        _checkResult = _nidData.Equals(MMI_NID_DATA[nidDataIndex]);
+                //// Compare number of data element.                
+                //if (_pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value.Equals((ushort)MMI_NID_DATA.Count))
+                //{
+                //    // If comparison matches
+                //    _pool.TraceReport("MMI_N_DATA_ELEMENTS = \"" + MMI_NID_DATA.Count + "\" Result: PASSED.");
 
-                        // If comparison matches
-                        if (_checkResult)
-                        {
-                            _pool.TraceReport(
-                                string.Format("MMI_NID_DATA{0} = \"{1}\" Result: PASSED!", nidDataIndex, MMI_NID_DATA[nidDataIndex]));
-                        }
-                        // Else display the real value extracted from EVC-112
-                        else
-                        {
-                            _pool.TraceError(string.Format("MMI_NID_DATA{0} = \"{1}\" Result: FAILED!", nidDataIndex, _nidData));
-                        }
-                    }
-                }
-                else
-                {
-                    // Else display the real value extracted from EVC-112
-                    _pool.TraceError(baseString0 + Environment.NewLine +
-                                     "MMI_N_DATA_ELEMENTS = \"" +
-                                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value + "\" Result: FAILED!");
+                //    for (int nidDataIndex = 0; nidDataIndex < MMI_NID_DATA.Count; nidDataIndex++)
+                //    {
+                //        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1, nidDataIndex));
 
-                    // Display data elements value indicating that the test has failed
-                    for (int nidDataIndex = 0; nidDataIndex < _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value; nidDataIndex++)
-                    {
-                        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1, nidDataIndex));
-                        _pool.TraceError(string.Format("{0}", baseString0) + Environment.NewLine +
-                                         string.Format("MMI_NID_DATA{0} = \"{1}\" Result: FAILED!", nidDataIndex, _nidData));
-                    }
-                }
+                //        // Compare each data element
+                //        _checkResult = _nidData.Equals(MMI_NID_DATA[nidDataIndex]);
+
+                //        // If comparison matches
+                //        if (_checkResult)
+                //        {
+                //            _pool.TraceReport(
+                //                string.Format("MMI_NID_DATA{0} = \"{1}\" Result: PASSED!", nidDataIndex, MMI_NID_DATA[nidDataIndex]));
+                //        }
+                //        // Else display the real value extracted from EVC-112
+                //        else
+                //        {
+                //            _pool.TraceError(string.Format("MMI_NID_DATA{0} = \"{1}\" Result: FAILED!", nidDataIndex, _nidData));
+                //        }
+                //    }
+                //}
+                //else
+                //{
+                //    // Else display the real value extracted from EVC-112
+                //    _pool.TraceError(baseString0 + Environment.NewLine +
+                //                     "MMI_N_DATA_ELEMENTS = \"" +
+                //                     _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value + "\" Result: FAILED!");
+
+                //    // Display data elements value indicating that the test has failed
+                //    for (int nidDataIndex = 0; nidDataIndex < _pool.SITR.CCUO.ETCS1NewRbcData.MmiNDataElements.Value; nidDataIndex++)
+                //    {
+                //        _nidData = (byte) _pool.SITR.Client.Read(string.Format("{0}{1}_MmiNidData", baseString1, nidDataIndex));
+                //        _pool.TraceError(string.Format("{0}", baseString0) + Environment.NewLine +
+                //                         string.Format("MMI_NID_DATA{0} = \"{1}\" Result: FAILED!", nidDataIndex, _nidData));
+                //    }
+                //}
+                #endregion
             }
             // EVC-112 could not be received
             else
@@ -153,7 +156,9 @@ namespace Testcase.Telegrams.DMItoEVC
             set
             {
                 var bytes = BitConverter.GetBytes(value);
-                _nidRadio = new[] {BitConverter.ToUInt32(bytes, 2), BitConverter.ToUInt32(bytes, 0)};
+                _nidRadio = new[] {BitConverter.ToUInt32(bytes, 4), BitConverter.ToUInt32(bytes, 0)};
+                _pool.TraceReport("MMI_NID_RADIO high byte = " + _nidRadio[1] + Environment.NewLine +
+                                  "MMI_NID_RADIO low byte = " + _nidRadio[0]);
             }
         }
 
