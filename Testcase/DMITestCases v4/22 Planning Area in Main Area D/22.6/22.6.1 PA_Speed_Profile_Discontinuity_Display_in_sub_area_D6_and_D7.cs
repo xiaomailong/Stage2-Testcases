@@ -34,28 +34,65 @@ namespace Testcase.DMITestCases
                 "DMI displays in FS mode, Level 1.Verify the following information,The PA Speed Profile Discontinuities symbol are displayed in area D6-D7 and the right half of PA Speed Profile Discontinuities symbol are extended into area D7, a remaining part are covering the right side of area D6.Use the log file to confirm the result of comparision in packet EVC-4 for displaying each PA Speed Profile Discontinuities symbol at sub-area D6-D7 and position for each position of PA Speed Profile Discontinuities from the differentiate of variable [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP] and [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] refer as follows,Speed Profile DiscontinuitiesMMI_V_MRSP[0] < MMI_V_MRSP_CURRPosition [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[0]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 50000 (500m)DMI displays symbol PL22 (a speed decrease) at position 500m. Speed Profile DiscontinuitiesMMI_V_MRSP[0] < MMI_V_MRSP[1]Position[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[1]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 100000 (1000m)DMI displays symbol PL21 (a speed increase) At position 1000m.Speed Profile DiscontinuitiesMMI_V_MRSP[2] = 0 Position[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[2]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 200000 (2000m)DMI displays symbol PL23 (a speed decrease to a target at zero speed).There is no PA Speed Profile Discontinuity symbol displayed beyond position 2000m.(4)   The bottom of horizontal line of each symbol are located at specific location in expected result No.2");
             /*
             Test Step 1
-            Action: Drive the train forward and pass BG1.Then, stop the train
-            Expected Result: DMI displays in FS mode, Level 1.Verify the following information,The PA Speed Profile Discontinuities symbol are displayed in area D6-D7 and the right half of PA Speed Profile Discontinuities symbol are extended into area D7, a remaining part are covering the right side of area D6.Use the log file to confirm the result of comparision in packet EVC-4 for displaying each PA Speed Profile Discontinuities symbol at sub-area D6-D7 and position for each position of PA Speed Profile Discontinuities from the differentiate of variable [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP] and [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] refer as follows,Speed Profile DiscontinuitiesMMI_V_MRSP[0] < MMI_V_MRSP_CURRPosition [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[0]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 50000 (500m)DMI displays symbol PL22 (a speed decrease) at position 500m. Speed Profile DiscontinuitiesMMI_V_MRSP[0] < MMI_V_MRSP[1]Position[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[1]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 100000 (1000m)DMI displays symbol PL21 (a speed increase) At position 1000m.Speed Profile DiscontinuitiesMMI_V_MRSP[2] = 0 Position[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[2]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is approximately to 200000 (2000m)DMI displays symbol PL23 (a speed decrease to a target at zero speed).There is no PA Speed Profile Discontinuity symbol displayed beyond position 2000m.(4)   The bottom of horizontal line of each symbol are located at specific location in expected result No.2
+            Action: Drive the train forward and pass BG1. Then, stop the train
+            Expected Result: DMI displays in FS mode, Level 1. Verify that PA Speed Profile Discontinuities symbols are displayed
+            in area D6-D7; the right half of the symbols are extended into area D7 while the remaining part cover the right side of area D6. 
+
+            //Use the log file to confirm the result of comparision in 
+            //packet EVC-4 for displaying each PA Speed Profile Discontinuities symbol at sub-area D6-D7 and position for each 
+            //position of PA Speed Profile Discontinuities from the differentiate of variable [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP] 
+            //and [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] refer as follows,Speed Profile DiscontinuitiesMMI_V_MRSP[0] < 
+            //MMI_V_MRSP_CURRPosition [MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[0]] – [MMI_ETCS_MISC_OUT_SIGNALS (EVC-7).OBU_TR_O_TRAIN] is 
+            //approximately to 50000 (500m)DMI displays symbol PL22 (a speed decrease) at position 500m. Speed Profile 
+            //DiscontinuitiesMMI_V_MRSP[0] < MMI_V_MRSP[1]Position[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[1]] – [MMI_ETCS_MISC_OUT_SIGNALS
+            //(EVC-7).OBU_TR_O_TRAIN] is approximately to 100000 (1000m)DMI displays symbol PL21 (a speed increase) At position 1000m.Speed 
+            //Profile DiscontinuitiesMMI_V_MRSP[2] = 0 Position[MMI_TRACK_DESCRIPTION (EVC-4).MMI_O_MRSP[2]] – [MMI_ETCS_MISC_OUT_SIGNALS 
+            //(EVC-7).OBU_TR_O_TRAIN] is approximately to 200000 (2000m)DMI displays symbol PL23 (a speed decrease to a target at zero speed).
+            //There is no PA Speed Profile Discontinuity symbol displayed beyond position 2000m.(4)   The bottom of horizontal line of
+            //each symbol are located at specific location in expected result No.2
+            
+            There should be three speed discontinuities. For each, a PA speed profile discontinuity symbol should be shown in sub-area D6-D7.
+            These are:
+            i) symbol PL22, a speed decrease at approximately 50000 (500m) 
+            ii) symbol PL21, a speed increase at approximately 100000 (1000m) 
+            iii) symbol PL23, a speed decrease to zero at approximately 200000 (2000m) 
+            
             Test Step Comment: (1) MMI_gen 9941 (partly: D6-D7 areas); MMI_gen 622;(2) MMI_gen 7293; MMI_gen 641 (partly: 1st bullet, result of calculation, 4th bullet, result of comparision to display PL21 symbol, result of comparision to display PL22 symbol, result of comparision to display PL23 symbol); MMI_gen 9942 (partly: LOA location, symbol PL21, PL22, PL23);(3) MMI_gen 9941 (partly: up to the first target at zero speed);(4) MMI_gen 9941 (partly: bottom of the horizontal line); MMI_gen 7295;
             */
-            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 50;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 5000;
 
+            EVC1_MMIDynamic.MMI_V_TRAIN_KMH = 80;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_Mode = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_M_MODE.FullSupervision;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN_M = 5000;
+
+            
             List<TrackDescription> trackDescriptions = new List<TrackDescription>()
             {
                 // to position symbol: O_MRSP - OBU_TR_O_TRAIN = position, so 5OOOO (5OOm) + 5000 => 55000
                 new TrackDescription
                 {
                     MMI_G_GRADIENT = 0,
-                    MMI_O_GRADIENT = 200000,
-                    MMI_O_MRSP = 55000,
-                    MMI_V_MRSP_KMH = 40
+                    MMI_O_GRADIENT = 5500,
+                    MMI_O_MRSP_M = 5500,
+                    MMI_V_MRSP_KMH = 20
                 },
-                new TrackDescription {MMI_O_MRSP = 15000, MMI_V_MRSP_KMH = 45},
-                new TrackDescription {MMI_O_MRSP = 25000, MMI_V_MRSP_KMH = 0}
+                new TrackDescription
+                {
+                    MMI_G_GRADIENT = 0,
+                    MMI_O_GRADIENT_M = 6000,
+                    MMI_O_MRSP_M = 6000,
+                    MMI_V_MRSP_KMH = 45
+                },
+                new TrackDescription
+                {
+                    MMI_G_GRADIENT = 0,
+                    MMI_O_GRADIENT_M = 7000,
+                    MMI_O_MRSP_M = 7000,
+                    MMI_V_MRSP_KMH = 0
+                }
             };
+
             EVC4_MMITrackDescription.MMI_V_MRSP_CURR_KMH = 50;
+            EVC4_MMITrackDescription.MMI_G_GRADIENT_CURR = 0;
             EVC4_MMITrackDescription.TrackDescriptions = trackDescriptions;
             EVC4_MMITrackDescription.Send();
 
@@ -83,7 +120,8 @@ namespace Testcase.DMITestCases
             Expected Result: Verify the following information,While the train is running forward, each symbol of PA Speed Profile Discontinuities are moving down to the zero line
             Test Step Comment: (1) MMI_gen 643 (partly: 1st bullet, changes during train movement, 3rd bullet, move to calculated Y-coordinate);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 50000;
+     //       EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 50000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN_M = 5300;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays the PA Speed Profile Discontinuities closer to the zero line.");
@@ -93,10 +131,12 @@ namespace Testcase.DMITestCases
             /*
             Test Step 3
             Action: Continue to drive the train forward
-            Expected Result: Verify the following information,The 1st symbol of PA Speed Profile Discontinuity is removed from are D6-D7 after passed the zero line
+            Expected Result: Verify the following information,The 1st symbol of PA Speed Profile Discontinuity is removed from are D6-D7 after passed
+            the zero line
             Test Step Comment: (1) MMI_gen 643 (partly: 4th bullet, deleted);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 55000;
+            //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 55000;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN_M = 5600;
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI removes the (first) PA Speed Profile Discontinuity that has passed the zero line.");
@@ -106,10 +146,30 @@ namespace Testcase.DMITestCases
             /*
             Test Step 4
             Action: Drive the train forward and pass BG2
-            Expected Result: Verify the following information,(1)   DMI displays symbol PL23 at position 600m and there is no another PA Speed Profile Discontinuity symbol displayed at the position beyond 600m.(2)   A position 200-210m, the 2 symbols of PL22 are drawn. The closest one to the train's current location (0m in distance scale) shall be drawn on top of the other symbols
-            Test Step Comment: (1) MMI_gen 9941 (partly: within MA); MMI_gen 9942 (partly: EOA);(2) MMI_gen 1418 (partly: 3rd bullet, drawn on top of the other symbols of the same type, PL22);
+            Expected Result: Verify the following information,(1)   DMI displays symbol PL23 at position 600m and there are no other PA
+            Speed Profile Discontinuity symbols displayed at the position beyond 600m.(2)   A position 200-210m, the 2 symbols of PL22 are drawn.
+            The closest one to the train's current location (0m in distance scale) shall be drawn on top of the other symbols
+            Test Step Comment: (1) MMI_gen 9941 (partly: within MA); MMI_gen 9942 (partly: EOA);(2) MMI_gen 1418 (partly: 3rd bullet, drawn on top of
+            the other symbols of the same type, PL22);
             */
-            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 60500;
+            //EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN = 60500;
+            EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN_M = 6400;
+
+            // to position symbol: O_MRSP - OBU_TR_O_TRAIN = position, so 5OOOO (5OOm) + 5000 => 55000
+            TrackDescription td1 = new TrackDescription();
+            td1.MMI_G_GRADIENT = 0;
+            td1.MMI_O_GRADIENT = 6800;
+            td1.MMI_O_MRSP_M = 6800;
+            td1.MMI_V_MRSP_KMH = 15;
+            EVC4_MMITrackDescription.TrackDescriptions.Insert(2, td1);
+
+            TrackDescription td2 = new TrackDescription();
+            td2.MMI_G_GRADIENT = 0;
+            td2.MMI_O_GRADIENT = 6820;
+            td2.MMI_O_MRSP_M = 6820;
+            td2.MMI_V_MRSP_KMH = 10;
+            EVC4_MMITrackDescription.TrackDescriptions.Insert(3, td2);
+            EVC4_MMITrackDescription.Send();
 
             WaitForVerification("Check the following:" + Environment.NewLine + Environment.NewLine +
                                 "1. DMI displays displays the decrease to zero target symbol, PL23, at the 600m position." +
