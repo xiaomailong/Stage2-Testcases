@@ -180,14 +180,16 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public class TrackDescription
     {
-        private static int _mmiOMrsp;
-        private static short _mmiVMrsp;
-        private static int _mmiOGradient;
-        private static short _mmiGGradient = -255;
+        private int _mmiOMrsp;
+        private short _mmiVMrsp;
+        private int _mmiOGradient;
+        private short _mmiGGradient = -255;
 
         /// <summary>
         /// This is the position in odometer co-ordinates of the start location of a speed discontinuity
         /// in the most restrictive speed profile. This position can be adjusted depending on supervision.
+        /// 
+        /// Note: This is relative to the current train position.
         /// 
         /// Values:
         /// 0..2147483647 in cm
@@ -198,13 +200,15 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public int MMI_O_MRSP
         {
-            set { _mmiOMrsp = value; }
+            set { _mmiOMrsp = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + value; }
             get { return _mmiOMrsp; }
         }
 
         /// <summary>
         /// This is the position in odometer co-ordinates of the start location of a speed discontinuity
         /// in the most restrictive speed profile. This position can be adjusted depending on supervision.
+        /// 
+        /// Note: This is relative to the current train position.
         /// 
         /// Values:
         /// 0..21474836 in m
@@ -215,7 +219,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public int MMI_O_MRSP_M
         {
-            set { _mmiOMrsp = value * 100; }
+            set { _mmiOMrsp = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + value * 100; }
             get { return _mmiOMrsp / 100; }
         }
 
@@ -300,6 +304,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// of the start location of a gradient value for a part of the track.
         /// The remaining distances shall be computed taking into account the estimated train front end position.
         /// 
+        /// Note: This is relative to the current train position.
+        /// 
         /// Values:
         /// 0..2147483647 in cm
         /// -1 = "Spare"
@@ -309,7 +315,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public int MMI_O_GRADIENT
         {
-            set { _mmiOGradient = value; }
+            set { _mmiOGradient = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + value; }
             get { return _mmiOGradient; }
         }
 
@@ -317,6 +323,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// This is the position, in odometer co-ordinates, without tolerance correction,
         /// of the start location of a gradient value for a part of the track.
         /// The remaining distances shall be computed taking into account the estimated train front end position.
+        /// 
+        /// Note: This is relative to the current train position.
         /// 
         /// Values:
         /// 0..21474836 in m
@@ -327,7 +335,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public int MMI_O_GRADIENT_M
         {
-            set { _mmiOGradient = value * 100; }
+            set { _mmiOGradient = EVC7_MMIEtcsMiscOutSignals.MMI_OBU_TR_O_TRAIN + value * 100; }
             get { return _mmiOGradient / 100; }
         }
 
