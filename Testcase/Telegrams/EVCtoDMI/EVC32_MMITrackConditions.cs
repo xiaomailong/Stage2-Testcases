@@ -142,18 +142,18 @@ namespace Testcase.Telegrams.EVCtoDMI
     /// </summary>
     public class TrackCondition
     {
-        private static int _mmiOTrackcondAnnounce = -2147483647;    // No announcement as default
-        private static int _mmiOTrackcondStart;
-        private static int _mmiOTrackcondEnd;
-        private static byte _mmiNidTrackcond = 1;
-        private static byte _mmiMTrackcondType;
+        private int _mmiOTrackcondAnnounce = -2147483647;    // No announcement as default
+        private int _mmiOTrackcondStart;
+        private int _mmiOTrackcondEnd;
+        private byte _mmiNidTrackcond = 1;
+        private byte _mmiMTrackcondType;
 
-        private static byte _evc32Alias2;
-        private static byte _mmiQTrackcondStep;
-        private static byte _mmiQTrackcondActionStart;
-        private static byte _mmiQTrackcondActionEnd;
+        private byte _evc32Alias2;
+        private byte _mmiQTrackcondStep;
+        private byte _mmiQTrackcondActionStart;
+        private byte _mmiQTrackcondActionEnd;
 
-        private static void SetAlias2()
+        private void SetAlias2()
         {
             _evc32Alias2 = (byte) (_mmiQTrackcondStep << 4 | _mmiQTrackcondActionStart << 3 | _mmiQTrackcondActionEnd << 2);
         }
