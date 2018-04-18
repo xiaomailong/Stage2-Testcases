@@ -17,7 +17,7 @@ namespace Testcase.Telegrams.EVCtoDMI
         private static TestcaseBase _pool;
 
         /// <summary>
-        /// Initialise EVC-4 MMI_Track_Descriptions telegram.
+        /// Initialise EVC-4 MMI Track Descriptions telegram.
         /// </summary>
         /// <param name="pool"></param>
         public static void Initialise(TestcaseBase pool)
@@ -26,13 +26,13 @@ namespace Testcase.Telegrams.EVCtoDMI
 
             // Set default values
             _pool.SITR.ETCS1.TrackDescription.MmiMPacket.Value = 4; // Packet ID
-            _pool.SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x8;
+            _pool.SITR.SMDCtrl.ETCS1.TrackDescription.Value = 0x0008;
 
             TrackDescriptions = new List<TrackDescription>();
         }
 
         /// <summary>
-        /// Send EVC-4 MMI_Track_Descriptions telegram.
+        /// Send EVC-4 MMI Track Descriptions telegram.
         /// </summary>
         public static void Send()
         {
