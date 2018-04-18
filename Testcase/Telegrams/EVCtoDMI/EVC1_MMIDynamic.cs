@@ -199,8 +199,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static short MMI_A_TRAIN_M
         {
-            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiATrain.Value * 0.01); }
-            set { _pool.SITR.ETCS1.Dynamic.MmiATrain.Value = Convert.ToInt16(value / 0.01); }
+            get { return Convert.ToInt16(_pool.SITR.ETCS1.Dynamic.MmiATrain.Value / 100); }
+            set { _pool.SITR.ETCS1.Dynamic.MmiATrain.Value = Convert.ToInt16(value * 100); }
         }
 
         /// <summary>
@@ -400,8 +400,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static int MMI_O_BRAKETARGET_M
         {
-            get { return _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value * 100; }
-            set { _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = value / 100; }
+            get { return _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value / 100; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiOBraketarget.Value = value * 100; }
         }
 
         /// <summary>
@@ -450,8 +450,8 @@ namespace Testcase.Telegrams.EVCtoDMI
         /// </summary>
         public static int MMI_O_IML_M
         {
-            get { return _pool.SITR.ETCS1.Dynamic.MmiOIml.Value * 100; }
-            set { _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = value / 100; }
+            get { return _pool.SITR.ETCS1.Dynamic.MmiOIml.Value / 100; }
+            set { _pool.SITR.ETCS1.Dynamic.MmiOIml.Value = value * 100; }
         }
 
         /// <summary>
